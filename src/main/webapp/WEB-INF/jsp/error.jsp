@@ -1,5 +1,5 @@
 <%@ page import="edu.mcw.scge.configuration.Access" %>
-<%@ page import="edu.mcw.scge.service.Data" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: jthota
   Date: 1/27/2021
@@ -10,9 +10,9 @@
 <html>
 <head>
     <title>Home</title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<%--    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">--%>
+<%--    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>--%>
+<%--    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>--%>
     <!------ Include the above in your HEAD tag ---------->
     <style>
 

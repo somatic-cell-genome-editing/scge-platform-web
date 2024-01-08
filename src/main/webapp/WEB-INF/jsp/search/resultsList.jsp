@@ -4,7 +4,6 @@
 <%@ page import="edu.mcw.scge.configuration.Access" %>
 <%@ page import="org.elasticsearch.action.search.SearchResponse" %>
 <%@ page import="org.elasticsearch.search.SearchHit" %>
-<%@ page import="edu.mcw.scge.datamodel.Guide" %>
 <%@ page import="java.util.*" %><%--
   Created by IntelliJ IDEA.
   User: jthota
@@ -205,16 +204,7 @@
 
 
             <span><span class="header">Target Locus :</span>
-                    <%for(Guide guide:(List<Guide>) hit.get("guides")){
-                        if(first){
-                            first=false;
-                    %>
-                    <%=guide.getTargetLocus()%>
-              <%}else{%>
-                    ,&nbsp;<%=guide.getTargetLocus()%>
-                    <%}%>
 
-                    <%}%>
                 </span> <br>
 
             <%}%>

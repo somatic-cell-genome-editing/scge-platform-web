@@ -2,17 +2,14 @@ package edu.mcw.scge.configuration;
 
 import edu.mcw.scge.dao.implementation.*;
 import edu.mcw.scge.datamodel.*;
-import edu.mcw.scge.service.DataAccessService;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Access {
     PersonDao pdao=new PersonDao();

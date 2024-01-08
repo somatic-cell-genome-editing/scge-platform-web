@@ -1,12 +1,9 @@
 package edu.mcw.scge.controller;
 
 
-import com.google.gson.Gson;
 import edu.mcw.scge.configuration.Access;
-import edu.mcw.scge.configuration.UserService;
 import edu.mcw.scge.dao.implementation.PersonDao;
 import edu.mcw.scge.datamodel.Person;
-import edu.mcw.scge.service.DataAccessService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ResolvableType;
@@ -43,7 +40,6 @@ public class LoginController{
 
     private static final String authorizationRequestBaseUri = "login";
     Map<String, String> oauth2AuthenticationUrls = new HashMap<>();
-    DataAccessService service=new DataAccessService();
     PersonDao pdao=new PersonDao();
     Access access=new Access();
     @Autowired
@@ -81,6 +77,7 @@ public class LoginController{
 
     @RequestMapping("/loginSuccessPage")
     public String verifyAuthentication(OAuth2AuthenticationToken authentication, HttpServletRequest req) throws Exception {
+        System.out.println("Authentication Not null:"+ (authentication!=null));
         Map userAttributes=getUserAttributes(authentication);
 
         if(userAttributes!=null) {
@@ -88,6 +85,7 @@ public class LoginController{
             if (userExists) {
                 List<Person> personList = pdao.getPersonByEmail(userAttributes.get("email").toString());
                 Person p=personList.get(0);
+                System.out.println("PERSON:"+p.getEmail());
                 if (p.getStatus().equalsIgnoreCase("active")) {
                     HttpSession session = req.getSession(true);
                     session.setAttribute("userAttributes", userAttributes);

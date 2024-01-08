@@ -5,8 +5,6 @@ import edu.mcw.scge.configuration.UserService;
 import edu.mcw.scge.dao.implementation.*;
 import edu.mcw.scge.datamodel.Person;
 import edu.mcw.scge.datamodel.PersonInfo;
-import edu.mcw.scge.datamodel.Protocol;
-import edu.mcw.scge.datamodel.Study;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

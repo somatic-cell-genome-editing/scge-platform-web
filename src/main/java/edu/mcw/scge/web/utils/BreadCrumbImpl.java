@@ -8,82 +8,8 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class BreadCrumbImpl implements Crumb {
-    @Override
-    public TreeMap<Integer, Map<String, String>> getCrumbTrailMap(
-            HttpServletRequest req,
-            Object parent, Object child, String pageContext ) {
-        String reqUri=req.getRequestURI();
-        String contextPath=req.getContextPath();
-       // System.out.println("REQ URI:"+ reqUri+"\nCONTEXT PATH:"+contextPath);
 
-        if(pageContext!=null && pageContext.equalsIgnoreCase("search")){
-            return getSearchCrumbTrail(pageContext, req);
-        }
-        TreeMap<Integer, Map<String, String>> crumbTrail=new TreeMap<>();
-        Map<String, String> trailNLink=new HashMap<>();
-        String parentCrumb=new String();
-        long parentId=0;
-        String childCrumb=new String();
-        long childId=0;
-        String parentUrl=new String();
-        String childUrl=new String();
-        if(parent instanceof Study){
-            trailNLink.put("Studies", "/platform/data/studies/search/");
-            parentCrumb = ((Study) parent).getStudy();
-           parentId=((Study) parent).getStudyId();
-           parentUrl="/platform/data/experiments/study/";
-        }
-        if(parent instanceof Experiment){
-            trailNLink.put("Experiments", "/platform/data/experiments/search/");
-            parentCrumb= ((Experiment) parent).getName();
-            parentId=((Experiment) parent).getExperimentId();
-            parentUrl="/platform/data/experiments/experiment/";
-        }
-       if(parent instanceof Editor){
-           trailNLink.put("Editors", "/platform/data/editors/search/");
-           crumbTrail.put(1, trailNLink);
-           return crumbTrail;
-       }
-        if(parent instanceof Model){
-         //   System.out.println("YES MODEL INSTANCE");
-            trailNLink.put("Models", "/platform/data/models/search/");
-            crumbTrail.put(1, trailNLink);
-            return crumbTrail;
-        }
-        if(parent instanceof Experiment){
-            trailNLink.put("Experiments", "/platform/data/experiments/search/");
-            crumbTrail.put(1, trailNLink);
-            return crumbTrail;
-        }
-        if(parent instanceof Guide){
-            trailNLink.put("Guides", "/platform/data/guide/search/");
-            crumbTrail.put(1, trailNLink);
-            return crumbTrail;
-        }
-        if(parent instanceof Delivery){
-            trailNLink.put("Delivery Systems", "/platform/data/search/results/Delivery%20System?searchTerm=");
-            crumbTrail.put(1, trailNLink);
-            return crumbTrail;
-        }
 
-        if(child instanceof Experiment){
-            childCrumb= ((Experiment) child).getName();
-            childId=((Experiment) child).getExperimentId();
-            childUrl="/platform/data/experiments/experiment/";
-        }
-
-        req.getRequestURI();
-        crumbTrail.put(1, trailNLink);
-        Map<String, String> trailNLink2=new HashMap<>();
-        trailNLink2.put(parentCrumb, parentUrl+parentId);
-        crumbTrail.put(2, trailNLink2);
-        if(childCrumb!=null && !childCrumb.equals("")) {
-            Map<String, String> trailNLink3 = new HashMap<>();
-            trailNLink3.put(childCrumb, childUrl + childId);
-            crumbTrail.put(3, trailNLink3);
-        }
-        return crumbTrail;
-    }
     public TreeMap<Integer, Map<String, String>> getSearchCrumbTrail(String pageContext, HttpServletRequest req){
         TreeMap<Integer, Map<String, String>> crumbTrail=new TreeMap<>();
         String parentCrumb=new String();
@@ -131,4 +57,8 @@ public class BreadCrumbImpl implements Crumb {
         return crumbTrail;
     }
 
+    @Override
+    public TreeMap<Integer, Map<String, String>> getCrumbTrailMap(HttpServletRequest req, Object parent, Object child, String pageContext) {
+        return null;
+    }
 }

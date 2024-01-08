@@ -1,5 +1,6 @@
-<%@ page import="edu.mcw.scge.configuration.Access" %>
-<%@ page import="edu.mcw.scge.service.Data" %><%--
+
+
+<%--
   Created by IntelliJ IDEA.
   User: jthota
   Date: 1/27/2021
