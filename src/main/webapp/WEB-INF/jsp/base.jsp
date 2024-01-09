@@ -80,7 +80,7 @@
                 <!-- Icon -->
                 <div class="fadeIn first">
 
-                    <h2 class="navbar-brand"><img src="/platform/images/scge-logo-200w.png" border="0" width="100" height="100" alt="SCGE"/>Somatic Cell Genome Editing Platform</h2>
+                    <h2 class="navbar-brand"><img src="/platform/images/scge-logo-png-1.png" border="0" width="100" height="100" alt="SCGE"/>Somatic Cell Genome Editing Platform</h2>
                 </div>
             </div>
 

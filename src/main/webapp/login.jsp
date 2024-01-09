@@ -299,7 +299,7 @@
 
     <!-- Icon -->
     <div class="fadeIn first">
-      <img src="/platform/images/scge-logo-200w.png" border="0" alt="SCGE"/>
+      <img src="/platform/images/scge-logo-png-1.png" border="0" alt="SCGE"/>
     </div>
 
     <!-- Login Form -->
