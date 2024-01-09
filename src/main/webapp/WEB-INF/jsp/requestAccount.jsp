@@ -289,7 +289,7 @@ hello
 
 <% if (msg == null) { %>
 <div style="color:#ED7D17; font-size:16px;padding: 15px;margin:10px;background-color:#ECE8E5;" >
-    SCGE Toolkit Accounts are currently available to consortium members only<br>
+    SCGE Platform Accounts are currently available to consortium members only<br>
     Questions regarding access can be mailed to scge@mcw.edu
 </div>
 <% } %>
@@ -343,7 +343,7 @@ hello
 <div style="border:1px solid black; padding:5px; margin:5px;">
     <table>
 
-        <tr><td>The SCGE toolkit uses <b>Google</b> as its authentication provider</td></tr>
+        <tr><td>The SCGE Platform uses <b>Google</b> as its authentication provider</td></tr>
 
         <tr><td><br>To gain access you must have an account at <a href="https://www.google.com" style="font-weight:700;">https://www.google.com</a><br><br></td></tr>
 
