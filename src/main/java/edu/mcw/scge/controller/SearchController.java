@@ -8,6 +8,7 @@ import edu.mcw.scge.configuration.UserService;
 import edu.mcw.scge.datamodel.Person;
 import edu.mcw.scge.service.es.IndexServices;
 
+import edu.mcw.scge.service.es.clinicalTrails.PlatformIndexServices;
 import edu.mcw.scge.web.Facet;
 import edu.mcw.scge.web.utils.BreadCrumbImpl;
 import org.elasticsearch.action.search.SearchResponse;
@@ -218,6 +219,18 @@ public class SearchController{
          /*   }
         }*/
 
+
+        return null;
+    }
+    @RequestMapping(value="/clinicalTrails")
+    public String getClinicalTrails(HttpServletRequest req, HttpServletResponse res, Model model,
+                                       @PathVariable(required = false) String category, @RequestParam(required = false) String searchTerm) throws Exception {
+        PlatformIndexServices services=new PlatformIndexServices();
+        SearchResponse sr=services.getSearchResults(searchTerm );
+        req.setAttribute("searchTerm", searchTerm);
+        req.setAttribute("sr", sr);
+        req.setAttribute("page", "/WEB-INF/jsp/search/clinicalTrails/results");
+        req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
 
         return null;
     }
