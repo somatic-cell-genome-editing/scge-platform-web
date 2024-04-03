@@ -15,6 +15,7 @@ import org.elasticsearch.action.search.SearchResponse;
 
 import org.elasticsearch.search.aggregations.Aggregation;
 import org.elasticsearch.search.aggregations.Aggregations;
+import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.stereotype.Controller;
@@ -229,7 +230,9 @@ public class SearchController{
         SearchResponse sr=services.getSearchResults(searchTerm );
         req.setAttribute("searchTerm", searchTerm);
         req.setAttribute("sr", sr);
-        req.setAttribute("page", "/WEB-INF/jsp/search/clinicalTrails/results");
+        Terms terms=sr.getAggregations().get("organization");
+        System.out.println("AGGREGATIONS:"+ terms.getBuckets().size());
+        req.setAttribute("page", "/WEB-INF/jsp/search/clinicalTrails/resultsview");
         req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
 
         return null;

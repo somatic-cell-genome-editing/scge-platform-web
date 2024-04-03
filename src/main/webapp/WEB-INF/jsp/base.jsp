@@ -73,7 +73,7 @@
 
 <%--    </div>--%>
 <%--</nav>--%>
-<div class="container">
+<div class="container-fluid">
     <header class="blog-header py-3">
         <div class="row justify-content-between align-items-center">
             <div class="col-8 pt-1 m-auto">
@@ -106,18 +106,19 @@
         </div>
     </header>
 </div>
-<div class="container">
+<div class="container-fluid">
 <div class="d-flex flex-column flex-md-row align-items-center px-md-4 mb-3 bg-white border-bottom box-shadow">
     <h5 class="my-0 mr-md-auto font-weight-normal"></h5>
     <nav class="my-2 my-md-0 mr-md-3">
         <a class="p-2 text-dark" href="/platform">Home</a>
         <a class="p-2 text-dark" href="#">Features</a>
         <a class="p-2 text-dark" href="#">About Us</a>
+        <a class="p-2 text-dark" href="/platform/data/search/clinicalTrails">Clinical Trails</a>
         <a class="p-2 text-dark" href="#">Forms</a>
     </nav>
 </div>
 </div>
-<div id="main" class="container">
+<div id="main" class="container-fluid">
     <div class="" style="margin-top: 0;padding-top: 0">
         <div class="container-fluid">
 
