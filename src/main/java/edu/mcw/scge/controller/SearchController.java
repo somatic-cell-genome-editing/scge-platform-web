@@ -226,10 +226,12 @@ public class SearchController{
     @RequestMapping(value="/clinicalTrails")
     public String getClinicalTrails(HttpServletRequest req, HttpServletResponse res, Model model,
                                        @PathVariable(required = false) String category, @RequestParam(required = false) String searchTerm) throws Exception {
-        PlatformIndexServices services=new PlatformIndexServices();
-        SearchResponse sr=services.getSearchResults(searchTerm );
+        PlatformIndexServices services = new PlatformIndexServices();
+        Map<String, List<String>> filterMap=getFiltersMap(req);
+        SearchResponse sr=services.getSearchResults(searchTerm ,getFiltersMap(req));
         req.setAttribute("searchTerm", searchTerm);
         req.setAttribute("sr", sr);
+        req.setAttribute("filterMap", filterMap);
         Terms terms=sr.getAggregations().get("organization");
         System.out.println("AGGREGATIONS:"+ terms.getBuckets().size());
         req.setAttribute("page", "/WEB-INF/jsp/search/clinicalTrails/resultsview");
@@ -237,6 +239,7 @@ public class SearchController{
 
         return null;
     }
+
 
     @RequestMapping(value="/results/{category1}/{category2}")
     public String getMultiCatResults(HttpServletRequest req, HttpServletResponse res, Model model,
@@ -286,6 +289,23 @@ public class SearchController{
          /*   }
         }*/
         return null;
+    }
+    public Map<String,  List<String>> getFiltersMap(HttpServletRequest request) throws IOException {
+        Map<String,  List<String>> filterMap=new HashMap<>();
+
+        if(request.getParameterValues("status")!=null){
+            List<String> status= Arrays.asList(request.getParameterValues("status"));
+            filterMap.put("status", status);
+        }
+        if(request.getParameterValues("organization")!=null){
+            List<String> organization= Arrays.asList(request.getParameterValues("organization"));
+            filterMap.put("organization", organization);
+        }
+        if(request.getParameterValues("condition")!=null){
+            List<String> condition= Arrays.asList(request.getParameterValues("condition"));
+            filterMap.put("condition", condition);
+        }
+        return filterMap;
     }
     public Map<String, String> getFilterMap(HttpServletRequest req) throws IOException {
         String unchecked= req.getParameter("unchecked");

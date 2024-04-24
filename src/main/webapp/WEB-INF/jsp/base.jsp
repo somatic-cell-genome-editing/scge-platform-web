@@ -17,6 +17,9 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
@@ -24,6 +27,14 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet" type="text/css"/>
     <link href="/platform/common/css/sticky-footer-navbar.css" rel="stylesheet">
 
+    <link href="/platform/common/tableSorter/css/filter.formatter.css" rel="stylesheet" type="text/css"/>
+    <link href="/platform/common/tableSorter/css/theme.jui.css" rel="stylesheet" type="text/css"/>
+    <link href="/platform/common/tableSorter/css/theme.blue.css" rel="stylesheet" type="text/css"/>
+
+    <script src="/platform/common/tableSorter/js/tablesorter.js"> </script>
+    <script src="/platform/common/tableSorter/js/jquery.tablesorter.widgets.js"></script>
+
+    <script src="/platform/js/scge.js"></script>
 </head>
 
 <body>
@@ -155,17 +166,14 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<script src="../../assets/js/vendor/holder.min.js"></script>
-<script>
-    Holder.addTheme('thumb', {
-        bg: '#55595c',
-        fg: '#eceeef',
-        text: 'Thumbnail'
-    });
-</script>
+<%--<script src="../../assets/js/vendor/holder.min.js"></script>--%>
+<%--<script>--%>
+<%--    Holder.addTheme('thumb', {--%>
+<%--        bg: '#55595c',--%>
+<%--        fg: '#eceeef',--%>
+<%--        text: 'Thumbnail'--%>
+<%--    });--%>
+<%--</script>--%>
 </body>
 </html>

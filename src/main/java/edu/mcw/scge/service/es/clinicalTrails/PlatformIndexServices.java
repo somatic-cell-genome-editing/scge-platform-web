@@ -19,10 +19,10 @@ import java.util.*;
 
 public class PlatformIndexServices {
 
-    public SearchResponse getSearchResults(String searchTerm) throws IOException {
+    public SearchResponse getSearchResults(String searchTerm, Map<String,  List<String>> filtersMap) throws IOException {
         String searchIndex = "scge_platform_search_dev";
         SearchSourceBuilder srb=new SearchSourceBuilder();
-        srb.query(this.buildBoolQuery(searchTerm));
+        srb.query(this.buildBoolQuery(searchTerm, filtersMap));
 //        srb.aggregation(buildAggregations("protocolSection.identificationModule.organization.fullName"));
 //        srb.aggregation(buildAggregations("protocolSection.statusModule.overallStatus"));
 
@@ -36,6 +36,10 @@ public class PlatformIndexServices {
         }catch (Exception e){
             e.printStackTrace();
         }
+        if(filtersMap!=null && filtersMap.size()>0)
+            srb.postFilter(filter(filtersMap));
+        System.out.println("QUERY:"+ srb);
+
         SearchRequest searchRequest=new SearchRequest(searchIndex);
         searchRequest.source(srb);
 
@@ -43,7 +47,21 @@ public class PlatformIndexServices {
         return sr;
 
     }
-    public BoolQueryBuilder buildBoolQuery( String searchTerm){
+    public BoolQueryBuilder filter(Map<String, List<String>> filters){
+        BoolQueryBuilder q=new BoolQueryBuilder();
+        for(String filter:filters.keySet()) {
+            List<String> filterValues=filters.get(filter);
+            if (filter.equalsIgnoreCase("status"))
+                q.must(QueryBuilders.termsQuery("protocolSection.statusModule.overallStatus" + ".keyword", filterValues.toArray()));
+            if (filter.equalsIgnoreCase("organization"))
+                q.must(QueryBuilders.termsQuery("protocolSection.identificationModule.organization.fullName" + ".keyword", filterValues.toArray()));
+
+            if (filter.equalsIgnoreCase("condition"))
+                q.must(QueryBuilders.termsQuery("protocolSection.conditionsModule.conditions" + ".keyword", filterValues.toArray()));
+        }
+        return q;
+    }
+    public BoolQueryBuilder buildBoolQuery( String searchTerm, Map<String,  List<String>> filterMap){
         BoolQueryBuilder q=new BoolQueryBuilder();
         q.must(buildQuery(searchTerm));
 
