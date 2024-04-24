@@ -205,7 +205,7 @@
     var  conditionSelected=<%=gson.toJson(selectedCondition)%>;
     var orgSelected=<%=gson.toJson(selectedOrganization)%>;
 </script>
-<h1>Clinical Trails - <%=hits.size()%></h1>
+<h1>Clinical Trails</h1>
 <div class="container-fluid">
 
   <div class="row">
