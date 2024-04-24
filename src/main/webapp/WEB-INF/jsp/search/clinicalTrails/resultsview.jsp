@@ -223,7 +223,7 @@
             <div class="col-md-10">
               <h2><i class="fa fa-file-o"></i> Result</h2>
               <hr>
-              <p>Showing all  <%=hits.size()%> results matching <strong>Intervention:&nbsp;BIOLOGICAL OR GENETIC OR GENE THERAPY OR GENE EDITING</strong>&nbsp;|&nbsp;<strong>Condition: Gene Therapy OR  Gene Editing</strong></p>
+              <p>Showing all  <%=hits.size()%> results matching <strong>Intervention:&nbsp;BIOLOGICAL OR GENETIC OR GENE THERAPY OR GENE EDITING</strong></p>
                 <%if(filterMap!=null && filterMap.size()>0){%>
                 <strong>Filters:</strong>
 
