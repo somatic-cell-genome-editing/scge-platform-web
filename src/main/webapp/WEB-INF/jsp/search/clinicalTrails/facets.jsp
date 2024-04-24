@@ -69,7 +69,7 @@ for(String id:idsFromTrackerSheet){
 <p><b>NCTIDS not indexed:</b>&nbsp;<%=notFound.size()%></p>
 <% int i=1;
   for(String idNotFound:notFound){%>
-<p style="color:red"><%=i++%>.&nbsp;<a href="https://clinicaltrials.gov/api/v2/studies/<%=idNotFound%>" target="_blank"><b style="color:red"><%=idNotFound%></b></a></p>
+<p style="color:red"><%=i++%>.&nbsp;<a href="https://www.clinicaltrials.gov/study/<%=idNotFound%>" target="_blank"><b style="color:red"><%=idNotFound%></b></a></p>
 <%}%>
 <%}%>
 
