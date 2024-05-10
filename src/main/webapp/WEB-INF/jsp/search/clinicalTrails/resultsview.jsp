@@ -188,15 +188,15 @@
         if(filterMap.get("organization")!=null)
             selectedOrganization.addAll(filterMap.get("organization"));
     }
-    for(SearchHit hit:hits){
-        Map<String, Object> sourceFields=hit.getSourceAsMap();
-        Map<String, Object> protocolSection= (Map<String, Object>) sourceFields.get("protocolSection");
-        Map<String, Object> identificationModule= (Map<String, Object>) protocolSection.get("identificationModule");
-        String nctId= (String) identificationModule.get("nctId");
-        if(idsFromTrackerSheet.contains(nctId)){
-            found.add(nctId);
-        }
-    }
+//    for(SearchHit hit:hits){
+//        Map<String, Object> sourceFields=hit.getSourceAsMap();
+//        Map<String, Object> protocolSection= (Map<String, Object>) sourceFields.get("protocolSection");
+//        Map<String, Object> identificationModule= (Map<String, Object>) protocolSection.get("identificationModule");
+//        String nctId= (String) identificationModule.get("nctId");
+//        if(idsFromTrackerSheet.contains(nctId)){
+//            found.add(nctId);
+//        }
+//    }
 
 %>
 
@@ -205,7 +205,9 @@
     var  conditionSelected=<%=gson.toJson(selectedCondition)%>;
     var orgSelected=<%=gson.toJson(selectedOrganization)%>;
 </script>
-<h1>Clinical Trails</h1>
+<div class="jumbotron">
+<h1>Clinical Trails - Gene Therapy Tracker</h1>
+</div>
 <div class="container-fluid">
 
   <div class="row">
@@ -223,7 +225,7 @@
             <div class="col-md-10">
               <h2><i class="fa fa-file-o"></i> Result</h2>
               <hr>
-              <p>Showing all  <%=hits.size()%> results matching <strong>Intervention:&nbsp;BIOLOGICAL OR GENETIC OR GENE THERAPY OR GENE EDITING</strong></p>
+              <p>Showing all  <%=hits.size()%> results</p>
                 <%if(filterMap!=null && filterMap.size()>0){%>
                 <strong>Filters:</strong>
 
@@ -237,167 +239,60 @@
                 <!-- BEGIN TABLE RESULT -->
               <div >
                 <table class="table table-hover table-sm tablesorter " id="myTable">
-                  <caption align="top">Clinical Trails -BIOLOGICAL INTERVENTIONS - Summary</caption>
+                  <caption align="top">Clinical Trails - Gene Therapy - Summary</caption>
                   <thead>
-                  <tr><th></th>
+                  <tr>
                       <th>Sponsor</th>
+                      <th>Compound</th>
+                      <th>Editor Type</th>
+                      <th>Therapy Type</th>
+                      <th>Current Stage</th>
+                      <th>Status</th>
                       <th>NCTID</th>
-                    <%--            <th>Org StudyId</th>--%>
-<%--                    <th>Organization</th>--%>
-<%--                    <th>briefTitle</th>--%>
-                    <th>Intervention</th>
-<%--                      <th>Description</th>--%>
-                    <th>Conditions</th>
-                    <th>Phases</th>
+
+                    <th>Indication</th>
                     <th>Start_Date</th>
                     <th>Completion</th>
-                    <th>Submit_Date</th>
                     <th>Last_Update</th>
-                      <th>% Days Elapsed</th>
-                    <th>Status</th>
-                    <th>Has Results</th>
-                      <th>Expanded Access</th>
+                      <th>Total Days</th>
+                      <th>Days Elapsed</th>
+                      <th>Progress</th>
+                        <th>Updates</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <%for(SearchHit hit:hits){
-                    Map<String, Object> sourceFields=hit.getSourceAsMap();
-                    Map<String, Object> protocolSection= (Map<String, Object>) sourceFields.get("protocolSection");
-                    Map<String, Object> identificationModule= (Map<String, Object>) protocolSection.get("identificationModule");
-                   String  nctId= (String) identificationModule.get("nctId");
-                   try{
-                      Map<String, Object> sponsorCollaboratorsModule= (Map<String, Object>) protocolSection.get("sponsorCollaboratorsModule");
-//                    Map leadSponsor= (Map) sponsorCollaboratorsModule.get("leadSponsor");
-//                      Map idMap= (Map) identificationModule.get("orgStudyIdInfo");
-//                    Map orgMap= (Map) identificationModule.get("organization");
-
-                    Map<String, Object> statusModule= (Map<String, Object>) protocolSection.get("statusModule");
-                    Map startDate = new HashMap<>();
-                    if((statusModule.get("startDateStruct")!=null)){
-                           startDate=  (Map) statusModule.get("startDateStruct");
-                    }
-                    Map completionDate= new HashMap();
-                    if(statusModule.get("completionDateStruct")!=null){
-                        completionDate  = (Map) statusModule.get("completionDateStruct");
-                    }
-                    Map lastUpdatePostDate= new HashMap();
-                    if(statusModule.get("lastUpdatePostDateStruct")!=null){
-                        lastUpdatePostDate=   (Map) statusModule.get("lastUpdatePostDateStruct");
-                    }
-
-                    Map expandedAccess= new HashMap();
-                    if(statusModule.get("expandedAccessInfo")!=null){
-                        expandedAccess=  (Map) statusModule.get("expandedAccessInfo");
-                    }
-                    Map<String, Object> conditionsModule= (Map<String, Object>) protocolSection.get("conditionsModule");
-//                    String conditions=((List<String>)conditionsModule.get("conditions")).stream().collect(Collectors.joining(", "));
-
-                    Map<String, Object> armsInterventionsModule= (Map<String, Object>) protocolSection.get("armsInterventionsModule");
-//                    List<Map> interventions= (List<Map>) armsInterventionsModule.get("interventions");
-
-                    Map<String, Object> designModule= (Map<String, Object>) protocolSection.get("designModule");
-                    List<String> phases= (List<String>) designModule.get("phases");
-                    if(phases!=null){
-
-
-                  %>
-                  <tr>
-                      <td><%if(idsFromTrackerSheet.contains(nctId)){%>
-                          <i class="fa-solid fa-circle-check" style="color:green"></i>
-                          <%}%>
-                      </td>
-                      <td><%Map leadSponsor= new HashMap();
-                          if(sponsorCollaboratorsModule.get("leadSponsor")!=null){
-                               leadSponsor= (Map) sponsorCollaboratorsModule.get("leadSponsor");
-
+                  <%
+                      for(SearchHit hit:hits) {
+                      Map<String, Object> sourceFields = hit.getSourceAsMap();
                       %>
-                          <%=leadSponsor.get("name")%>
-                          <%}%>
-                      </td>
+                    <tr>
+                        <td><%=sourceFields.get("sponsor")%></td>
+                        <td><%=sourceFields.get("sponsorCompound")%></td>
+                        <td><%=sourceFields.get("editorType")%></td>
+                        <td><%=sourceFields.get("therapyType")%></td>
+                        <td><%=sourceFields.get("currentStage")%></td>
+                        <td><%=sourceFields.get("status")%></td>
+                        <td><strong><a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nCTNumber")%>"><%=sourceFields.get("nCTNumber")%></a></strong></td>
 
-                      <td><strong><a href="https://www.clinicaltrials.gov/study/<%=nctId%>" target="_blank"><%=nctId%></a></strong>
-
-                  </td>
-                    <%--            <td><%=idMap.get("id")%></td>--%>
-<%--                    <td><%=orgMap.get("fullName")%></td>--%>
-<%--                    <td><%=identificationModule.get("briefTitle")%></td>--%>
-                      <td>
-                          <%
-                            List<Map> interventions=new ArrayList<>();
-                            if(  armsInterventionsModule.get("interventions")!=null){
-                                interventions= (List<Map>) armsInterventionsModule.get("interventions");%>
-
-                          <details><summary><%=interventions.get(0).get("name")%></summary><p><%=interventions.get(0).get("description")%></p></details>
-                          <%}%>
-                      </td>
-
-                    <td><%
-                        String conditions=null;
-                        if(conditionsModule.get("conditions")!=null) {
-                          conditions=  ((List<String>) conditionsModule.get("conditions")).stream().collect(Collectors.joining(", "));%>
-
-                        <%=conditions%>
-                        <% } %>
-                    </td>
-                    <td><%=String.join(", ", phases)%>
-
-                    </td>
-
-                    <td><%=startDate.get("date")%></td>
-
-                    <td><% if(completionDate!=null){%>
-                      <%=completionDate.get("date")%>
-                      <%}%>
-                    </td>
-
-
-                    <td><%=statusModule.get("lastUpdateSubmitDate")%></td>
-                    <td><%=lastUpdatePostDate.get("date")%></td>
-<td>
-    <%
-        String percentDiff ="";
-        if(startDate.get("date") != null && lastUpdatePostDate.get("date") != null && completionDate!=null && completionDate.get("date")!=null ) {
-            Stamp stamp = new Stamp();
-
-            try {
-                percentDiff += stamp.getpercentage(startDate.get("date").toString(),completionDate.get("date").toString() , lastUpdatePostDate.get("date").toString() );
-
-
-            }catch (Exception e){}}
-        %>
-    <%=percentDiff%>
-</td>
-                    <td><%=statusModule.get("overallStatus")%></td>
-                    <td><%=sourceFields.get("hasResults")%></td>
-                      <td><%if(expandedAccess!=null && expandedAccess.get("nctId")!=null){%>
-                          <strong><a href="https://www.clinicaltrials.gov/study/<%=expandedAccess.get("nctId")%>"><%=expandedAccess.get("nctId")%></a></strong>
-                          <%}%></td>
-                  </tr>
-
-                  <%}
-                  }catch (Exception e){
-                       System.err.println("NCD ID:"+nctId);
-                       e.printStackTrace();
-                   }
-                  }
-
-                  %>
+                        <td><%=sourceFields.get("indication")%></td>
+                        <td><%=sourceFields.get("actualStudyStartDate(m/d/y)")%></td>
+                        <td><%=sourceFields.get("estimatedPrimaryCompletion(m/d/y)")%></td>
+                        <td><%=sourceFields.get("dateofLastupdate")%></td>
+                        <td><%=sourceFields.get("totalDays")%></td>
+                        <td><%=sourceFields.get("dayselapsed")%></td>
+                        <td><%=sourceFields.get("progress")%></td>
+                        <td><%
+                            if(sourceFields.get("notes")!=null){
+                        %>
+                            <%=sourceFields.get("notes")%>
+                            <%}%>
+                        </td>
+                    </tr>
+                  <%}%>
                   </tbody>
                 </table>
               </div>
-              <!-- END TABLE RESULT -->
 
-              <!-- BEGIN PAGINATION -->
-<%--              <nav aria-label="Page navigation example">--%>
-<%--                <ul class="pagination">--%>
-<%--                  <li class="page-item"><a class="page-link" href="#">Previous</a></li>--%>
-<%--                  <li class="page-item"><a class="page-link" href="#">1</a></li>--%>
-<%--                  <li class="page-item"><a class="page-link" href="#">2</a></li>--%>
-<%--                  <li class="page-item"><a class="page-link" href="#">3</a></li>--%>
-<%--                  <li class="page-item"><a class="page-link" href="#">Next</a></li>--%>
-<%--                </ul>--%>
-<%--              </nav>--%>
-              <!-- END PAGINATION -->
             </div>
             <!-- END RESULT -->
           </div>

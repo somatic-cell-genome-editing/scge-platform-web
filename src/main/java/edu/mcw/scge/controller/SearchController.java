@@ -8,6 +8,7 @@ import edu.mcw.scge.configuration.UserService;
 import edu.mcw.scge.datamodel.Person;
 import edu.mcw.scge.service.es.IndexServices;
 
+import edu.mcw.scge.service.es.clinicalTrails.ClinicalTrailsService;
 import edu.mcw.scge.service.es.clinicalTrails.PlatformIndexServices;
 import edu.mcw.scge.web.Facet;
 import edu.mcw.scge.web.utils.BreadCrumbImpl;
@@ -223,8 +224,8 @@ public class SearchController{
 
         return null;
     }
-    @RequestMapping(value="/clinicalTrails")
-    public String getClinicalTrails(HttpServletRequest req, HttpServletResponse res, Model model,
+    @RequestMapping(value="/clinicalTrailsapi")
+    public String getClinicalTrailsAPIResults(HttpServletRequest req, HttpServletResponse res, Model model,
                                        @PathVariable(required = false) String category, @RequestParam(required = false) String searchTerm) throws Exception {
         PlatformIndexServices services = new PlatformIndexServices();
         Map<String, List<String>> filterMap=getFiltersMap(req);
@@ -233,13 +234,26 @@ public class SearchController{
         req.setAttribute("sr", sr);
         req.setAttribute("filterMap", filterMap);
         Terms terms=sr.getAggregations().get("organization");
-        System.out.println("AGGREGATIONS:"+ terms.getBuckets().size());
         req.setAttribute("page", "/WEB-INF/jsp/search/clinicalTrails/resultsview");
         req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
 
         return null;
     }
+    @RequestMapping(value="/clinicalTrails")
+    public String getClinicalTrailsFileResults(HttpServletRequest req, HttpServletResponse res, Model model,
+                                              @PathVariable(required = false) String category, @RequestParam(required = false) String searchTerm) throws Exception {
+        ClinicalTrailsService services = new ClinicalTrailsService();
+        Map<String, List<String>> filterMap=getFiltersMap(req);
+        SearchResponse sr=services.getSearchResults(searchTerm ,getFiltersMap(req));
+        req.setAttribute("searchTerm", searchTerm);
+        req.setAttribute("sr", sr);
+        req.setAttribute("filterMap", filterMap);
+//        Terms terms=sr.getAggregations().get("organization");
+        req.setAttribute("page", "/WEB-INF/jsp/search/clinicalTrails/resultsview");
+        req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
 
+        return null;
+    }
 
     @RequestMapping(value="/results/{category1}/{category2}")
     public String getMultiCatResults(HttpServletRequest req, HttpServletResponse res, Model model,

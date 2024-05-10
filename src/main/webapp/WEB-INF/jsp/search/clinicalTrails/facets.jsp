@@ -8,7 +8,9 @@
 
 
 <h2 class="grid-title"><i class="fa fa-filter"></i> Filters ..</h2>
-<%--<button  onclick="applyFilters()">Apply</button>--%>
+<div align="right">
+<button id="clearFilters" class="btn btn-primary btn-sm" onclick="removeFilters()" >Clear Filters</button>
+</div>
 <hr>
 
 <%
@@ -63,18 +65,25 @@ for(String id:idsFromTrackerSheet){
 
 
 </form>
-<%if(filterMap.size()==0){%>
-<p><b>NCTIDS in Tracker:</b>&nbsp;<%=idsFromTrackerSheet.size()%></p>
-<p><b>NCTIDS indexed:</b>&nbsp;<%=found.size()%></p>
-<p><b>NCTIDS not indexed:</b>&nbsp;<%=notFound.size()%></p>
-<% int i=1;
-  for(String idNotFound:notFound){%>
-<p style="color:red"><%=i++%>.&nbsp;<a href="https://www.clinicaltrials.gov/study/<%=idNotFound%>" target="_blank"><b style="color:red"><%=idNotFound%></b></a></p>
-<%}%>
-<%}%>
+<%--<%if(filterMap.size()==0){%>--%>
+<%--<p><b>NCTIDS in Tracker:</b>&nbsp;<%=idsFromTrackerSheet.size()%></p>--%>
+<%--<p><b>NCTIDS indexed:</b>&nbsp;<%=found.size()%></p>--%>
+<%--<p><b>NCTIDS not indexed:</b>&nbsp;<%=notFound.size()%></p>--%>
+<%--<% int i=1;--%>
+<%--  for(String idNotFound:notFound){%>--%>
+<%--<p style="color:red"><%=i++%>.&nbsp;<a href="https://www.clinicaltrials.gov/study/<%=idNotFound%>" target="_blank"><b style="color:red"><%=idNotFound%></b></a></p>--%>
+<%--<%}%>--%>
+<%--<%}%>--%>
 
 <script>
   function applyFilters(){
+    $('#facetForm').submit()
+  }
+  function removeFilters(){
+    $.each($('input[type="checkbox"]'), function (){
+      var _this=$(this);
+      _this.prop('checked', false);
+    })
     $('#facetForm').submit()
   }
   $('input[type="checkbox"]').on('click',function (){
