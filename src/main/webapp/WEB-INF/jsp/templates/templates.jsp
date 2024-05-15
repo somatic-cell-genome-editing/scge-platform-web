@@ -43,7 +43,7 @@
     <div class="body">
         <p></p>
         <ul>
-            <li><a href="/platform/data/GENERAL INVESTIGATIONAL PLAN_Template .docx">GENERAL INVESTIGATIONAL PLAN</a></li>
+            <li><a href="/platform/data/public/GENERAL INVESTIGATIONAL PLAN_Template .docx">GENERAL INVESTIGATIONAL PLAN</a></li>
             <li><a href="/platform/data/">INTERACT MEETING REQUEST</a></li>
             <li><a href="">INVESTIGATOR'S BROCHURE</a></li>
             <li><a href="">Module 5 CLINICAL PROTOCOL</a></li>
@@ -63,7 +63,7 @@
         </div>
         <div class="card-body">
             <ul>
-            <li><a href="/platform/data/eCTD Tech Guide v1.8 Final.pdf">eCTD TECHNICAL CONFORMANCE GUIDE </a>- Content current as of: 03/22/2023</li>
+            <li><a href="/platform/data/public/eCTD Tech Guide v1.8 Final.pdf">eCTD TECHNICAL CONFORMANCE GUIDE </a>- Content current as of: 03/22/2023</li>
             <li><a href="https://www.fda.gov/drugs/electronic-regulatory-submission-and-review/submit-using-ectd#review">Submit Using eCTD</a></li>
             </ul>
         </div>
