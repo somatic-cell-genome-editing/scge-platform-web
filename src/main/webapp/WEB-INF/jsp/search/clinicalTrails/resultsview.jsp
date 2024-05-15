@@ -238,7 +238,7 @@
               <div class="padding"></div>
                 <!-- BEGIN TABLE RESULT -->
               <div >
-                <table class="table table-hover table-sm tablesorter " id="myTable">
+                <table class="table table-hover table-sm tablesorter " id="myTable" style="width: fit-content">
                   <caption align="top">Clinical Trails - Gene Therapy - Summary</caption>
                   <thead>
                   <tr>

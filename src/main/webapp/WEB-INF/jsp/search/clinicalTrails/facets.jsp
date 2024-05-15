@@ -8,9 +8,7 @@
 
 
 <h2 class="grid-title"><i class="fa fa-filter"></i> Filters ..</h2>
-<div align="right">
-<button id="clearFilters" class="btn btn-primary btn-sm" onclick="removeFilters()" >Clear Filters</button>
-</div>
+
 <hr>
 
 <%
@@ -27,7 +25,9 @@ for(String id:idsFromTrackerSheet){
     notFound.add(id);
   }
 }%>
-
+<div align="right">
+  <button id="clearFilters" class="btn btn-primary btn-sm" onclick="removeFilters()" >Clear Filters</button>
+</div>
 <form id="facetForm" action="/platform/data/search/clinicalTrails">
 <h4>By STATUS:</h4>
 
@@ -42,7 +42,7 @@ for(String id:idsFromTrackerSheet){
 <!-- END FILTER BY CATEGORY -->
   <div class="padding"></div><br>
   <!-- BEGIN FILTER BY CATEGORY -->
-  <h4>By Condition:</h4>
+  <h4>By Indication:</h4>
   <div style="height: 300px;overflow-y: auto">
 
     <%for(Terms.Bucket bkt:conditionAggregations.getBuckets()){%>
