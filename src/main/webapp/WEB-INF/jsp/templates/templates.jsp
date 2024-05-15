@@ -28,7 +28,7 @@
                 <p><strong>Module 4</strong> references non-clinical information.</p>
 
                 <p><strong>Module 5</strong> references clinical information.</p>
-                <a href="/platform/data/USFDA_eCTDv4_0_CTOC_v1.pdf"><strong>Comprehensive Table of Contents Headings and Hierarchy</strong></a>
+                <a href="/platform/forms_public/USFDA_eCTDv4_0_CTOC_v1.pdf"><strong>Comprehensive Table of Contents Headings and Hierarchy</strong></a>
 
             </div>
             <div class="col">
@@ -63,7 +63,7 @@
         </div>
         <div class="card-body">
             <ul>
-            <li><a href="/platform/data/public/eCTD Tech Guide v1.8 Final.pdf">eCTD TECHNICAL CONFORMANCE GUIDE </a>- Content current as of: 03/22/2023</li>
+            <li><a href="/platform/forms_public/eCTD Tech Guide v1.8 Final.pdf">eCTD TECHNICAL CONFORMANCE GUIDE </a>- Content current as of: 03/22/2023</li>
             <li><a href="https://www.fda.gov/drugs/electronic-regulatory-submission-and-review/submit-using-ectd#review">Submit Using eCTD</a></li>
             </ul>
         </div>
