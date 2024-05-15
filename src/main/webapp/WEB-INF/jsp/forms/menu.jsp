@@ -11,7 +11,7 @@
         list-style: none;
     }
 </style>
-<h4>Menu</h4>
+<h4>Contents</h4>
 <div style="height: 300px;overflow-y: auto">
    <ul>
        <li><a href="">What is IND?</a></li>

@@ -41,6 +41,7 @@
         <url-pattern>*.js</url-pattern>
         <url-pattern>*.css</url-pattern>
         <url-pattern>*.pdf</url-pattern>
+        <url-pattern>*.docx</url-pattern>
         <url-pattern>/images/*</url-pattern>
         <url-pattern>/common/images/*</url-pattern>
 

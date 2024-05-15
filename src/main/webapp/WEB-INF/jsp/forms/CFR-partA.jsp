@@ -58,7 +58,9 @@
   </details>
 <details>
   <summary>2. A table of contents</summary>
-  <p class="ind-content-paragraph"><a href="/platform/data/USFDA_eCTDv4_0_CTOC_v1.pdf"><strong>Comprehensive Table of Contents Headings and Hierarchy</strong></a></p>
+  <p class="ind-content-paragraph">A sponsor-investigator is required to provide a table of contents and should provide pagination and tabbed breaks between sections to allow FDA reviewers to more easily navigate the submission.<br>
+<%--  <a href="/platform/data/USFDA_eCTDv4_0_CTOC_v1.pdf"><strong>Comprehensive Table of Contents Headings and Hierarchy</strong></a>--%>
+  </p>
 </details>
   <details>
     <summary>3. Introductory statement and general investigational plan</summary>
