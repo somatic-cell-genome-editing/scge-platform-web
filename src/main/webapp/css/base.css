@@ -2,6 +2,15 @@ html {
     position: relative;
     min-height: 100%;
 }
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+}
+div {
+    width: 100vw;
+    height: 100vh;
+}
 #wrapper {
     min-height: 100%;
 }
@@ -178,13 +187,4 @@ input[type="email"] {
 /* Add some hover effects to buttons */
 .form-container .btn:hover, .open-button:hover {
     opacity: 1;
-}
-
-.jumbotron{
-    /*    background-image: url("/platform/images/banner.jpg");
-        background-image: linear-gradient(to right, #1a80b6  , #e6f3fa);*/
-    /*  background: rgb(139,194,226);
-      background: radial-gradient(circle, rgba(139,194,226,1) 0%, rgba(247,247,247,1) 100%);*/
-  /*  background-color: transparent;
-    border-bottom: 1px solid lightgrey;*/
 }
