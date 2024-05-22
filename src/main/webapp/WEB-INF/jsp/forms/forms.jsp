@@ -46,8 +46,8 @@
                                 <div class="card-header"><h2>IND Categories</h2></div>
                                 <div class="card-body">
                                     <ul>
-                                        <li>Commercial</li>
-                                        <li>Research (non-commercial)</li>
+                                        <li><strong>Commercial:</strong> A commercial IND is one for which the sponsor (usually a corporate entity) intends to commercialize the product by eventually submitting a marketing application. In this case, the sponsor should select “Commercial IND” on FDA Form 1571 Field 6B.  FDA may also designate an IND as commercial if it is clear that the sponsor intends for the product to be commercialized at a later date.</li>
+                                        <li><strong>Research (non-commercial):</strong> A research IND (also called a non-commercial IND) is one for which the sponsor (generally an individual investigator, academic institution or non-profit entity) does not intend to later commercialize the product.  These studies are strictly for research, are usually shorter in duration and may result in publications in peer-reviewed journals.</li>
                                     </ul>
                                   </div>
                             </div>
