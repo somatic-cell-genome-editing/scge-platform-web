@@ -44,15 +44,15 @@
         <p></p>
         <ul>
             <li><a href="/platform/data/protected/GENERAL INVESTIGATIONAL PLAN_Template .docx">GENERAL INVESTIGATIONAL PLAN</a></li>
-            <li><a href="/platform/data/">INTERACT MEETING REQUEST</a></li>
-            <li><a href="">INVESTIGATOR'S BROCHURE</a></li>
-            <li><a href="">Module 5 CLINICAL PROTOCOL</a></li>
-            <li><a href="">Module 5 INFORMED CONSENT</a></li>
-            <li><a href="">Module 4</a></li>
-            <li><a href="">NON-CLINICAL OVERVIEW</a></li>
-            <li><a href="">NON-CLINICAL WRITTEN AND TABULATED SUMMARIES TEMPLATE</a></li>
-            <li><a href="">Pre-IND Meeting Information Package</a></li>
-            <li><a href="">Pre-IND Meeting Request</a></li>
+            <li><a href="/platform/data/protected/INTERACT MEETING REQUEST_MEETING INFORMATION PACKAGE_Template.docx">INTERACT MEETING REQUEST</a></li>
+            <li><a href="/platform/data/protected/INVESTIGATOR'S BROCHURE_template.docx">INVESTIGATOR'S BROCHURE</a></li>
+            <li><a href="/platform/data/protected/Module 5_ CLINICAL PROTOCOL_Template.docx">Module 5 CLINICAL PROTOCOL</a></li>
+            <li><a href="/platform/data/protected/Module 5_ INFORMED CONSENT_Template.docx">Module 5 INFORMED CONSENT</a></li>
+            <li><a href="/platform/data/protected/Module4_Template.docx">Module 4</a></li>
+            <li><a href="/platform/data/protected/NON-CLINICAL OVERVIEW_Template.docx">NON-CLINICAL OVERVIEW</a></li>
+            <li><a href="/platform/data/protected/NON-CLINICAL WRITTEN AND TABULATED SUMMARIES_template.docx">NON-CLINICAL WRITTEN AND TABULATED SUMMARIES TEMPLATE</a></li>
+            <li><a href="/platform/data/protected/PRE_IND MEETING INFORMATION PACKAGE Template.docx">Pre-IND Meeting Information Package</a></li>
+            <li><a href="/platform/data/protected/PRE_IND MEETING REQUEST_template.docx">Pre-IND Meeting Request</a></li>
         </ul>
 
     </div>
