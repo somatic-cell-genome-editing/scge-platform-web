@@ -43,7 +43,7 @@
     <div class="body">
         <p></p>
         <ul>
-            <li><a href="/platform/data/public/GENERAL INVESTIGATIONAL PLAN_Template .docx">GENERAL INVESTIGATIONAL PLAN</a></li>
+            <li><a href="/platform/data/protected/GENERAL INVESTIGATIONAL PLAN_Template .docx">GENERAL INVESTIGATIONAL PLAN</a></li>
             <li><a href="/platform/data/">INTERACT MEETING REQUEST</a></li>
             <li><a href="">INVESTIGATOR'S BROCHURE</a></li>
             <li><a href="">Module 5 CLINICAL PROTOCOL</a></li>
