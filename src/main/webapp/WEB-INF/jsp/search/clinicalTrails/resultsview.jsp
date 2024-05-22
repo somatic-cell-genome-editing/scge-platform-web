@@ -206,7 +206,13 @@
     var orgSelected=<%=gson.toJson(selectedOrganization)%>;
 </script>
 <div class="jumbotron">
-<h1>Clinical Trails - Gene Therapy Tracker</h1>
+    <div class="row"><div class="col"><h1>Clinical Trails - Gene Therapy Tracker</h1>
+    </div>
+        <div class="col-2">
+            <h5>Updated: 05/22/2024</h5>
+
+        </div>
+    </div>
 </div>
 <div class="container-fluid">
 
@@ -238,7 +244,7 @@
               <div class="padding"></div>
                 <!-- BEGIN TABLE RESULT -->
               <div >
-                <table class="table table-hover table-sm tablesorter " id="myTable" style="width: fit-content">
+                <table class="table table-hover table-sm tablesorter" id="myTable">
                   <caption align="top">Clinical Trails - Gene Therapy - Summary</caption>
                   <thead>
                   <tr>
