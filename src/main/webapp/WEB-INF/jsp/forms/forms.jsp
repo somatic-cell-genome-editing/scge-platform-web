@@ -53,14 +53,14 @@
                             </div>
                             <div class="card">
                                 <div class="card-header">
-                                    <h2>Clinical Path to New Medical Products</h2>
+                                    <h2>FDA's Clinical Path to New Medical Products</h2>
                                 </div>
                                 <div class="card-body">
-                                    <img src="/platform/data/protected/IND_phases.png">
+                                    <img src="/platform/data/protected/IND_phases.png" alt="">
                                 </div>
                             </div>
                             <div class="card">
-                                <div class="card-header"><a href="https://www.fda.gov/vaccines-blood-biologics/investigational-new-drug-applications-inds-cber-regulated-products/submission-investigational-new-drug-application-ind-cber" target="_blank"><h2>IND Content and Format</h2></a></div>
+                                <div class="card-header"><h2>IND Content and Format&nbsp;<a href="https://www.fda.gov/vaccines-blood-biologics/investigational-new-drug-applications-inds-cber-regulated-products/submission-investigational-new-drug-application-ind-cber" target="_blank" title="Go to FDA"><i class="fa fa-external-link" aria-hidden="true"></i></a></h2></div>
                                 <div class="card-body">
 
                                     <p>The content and format of an IND submission must be complete, well-organized as per 21 CFR 312, and include all applicable FDA Forms, provided below. These forms can also be found in <a data-entity-substitution="canonical" data-entity-type="node" data-entity-uuid="41aa2346-1c33-4025-b0c6-e0db744ee4ab" href="/about-fda/reports-manuals-forms/forms" title="Forms">FDA’s Form Database</a>.</p>
@@ -75,7 +75,8 @@
                                         <li><a data-entity-substitution="media_download" data-entity-type="media" data-entity-uuid="7d50fac4-68f6-4ede-913b-4ac5e102b860" href="https://www.fda.gov/media/134964/download?attachment" title="Certification of Compliance, under 42 U.S.C. , 282(j)(5)(B), with Requirements of ClinicalTrials.gov ">Form FDA 3674: Certification of Compliance</a></li>
                                     </ul>
                                     <div class="card">
-                                        <div class="card-header"><a href="https://www.ecfr.gov/current/title-21/part-312" target="_blank"><h2>21 CFR 312 - INVESTIGATIONAL NEW DRUG APPLICATION</h2></a></div class="card-header">
+                                        <div class="card-header"><h2>21 CFR 312 - INVESTIGATIONAL NEW DRUG APPLICATION <a href="https://www.ecfr.gov/current/title-21/part-312" target="_blank" title="Code of Federal Regulations (CFR)"><i class="fa fa-external-link" aria-hidden="true"></i></a></h2></div>
+
                                         <div class="card-body">
                                     <%@include file="cfr-312.23.jsp"%>
                                         </div>
