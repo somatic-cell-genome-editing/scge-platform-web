@@ -13,11 +13,15 @@
 </style>
 <h4>Contents</h4>
 <div style="height: 300px;overflow-y: auto">
-   <ul>
-       <li><a href="">What is IND?</a></li>
-       <li><a href="">IND Content and Format</a></li>
-       <li><a href="">Submission of an IND</a></li>
-   </ul>
+
+       <p><a href="#ind-def">What is IND?</a></p>
+    <p><a href="#ind-types">IND Types</a></p>
+    <p><a href="#ind-categories">IND Categories</a></p>
+    <p><a href="#clinical-path">FDA's Clinical Path</a></p>
+       <p><a href="#ind-content-format">IND Content and Format</a></p>
+       <p><a href="#ind-submission">Submission of an IND</a></p>
+    <p><a href="#fda-review-time">FDA's Review Time</a></p>
+
 
 
 

@@ -24,7 +24,7 @@
                         <!-- END FILTERS -->
                         <!-- BEGIN RESULT -->
                         <div class="col-md-10">
-                            <div class="card">
+                            <div class="card" id="ind-def">
                                 <div class="card-header"><h2>What is IND?</h2></div>
                                 <div class="card-body">
                                     <p>An Investigational New Drug Application (IND) is a request from a clinical study sponsor to obtain authorization from the Food and Drug Administration (FDA) to administer an investigational drug or biological product to humans. Such authorization must be secured prior to interstate shipment and administration of any new drug or biological product that is not the subject of an approved New Drug Application or Biologics/Product License Application.</p>
@@ -32,7 +32,7 @@
                                     <p>Please refer to the “Additional Resources” section below for useful information on the development and submission of INDs.</p>
                                 </div>
                             </div>
-                            <div class="card">
+                            <div class="card" id="ind-types">
                                 <div class="card-header"><h2>IND types</h2></div>
                                 <div class="card-body">
                                     <ul>
@@ -42,7 +42,7 @@
                                     </ul>
                                     </div>
                             </div>
-                            <div class="card">
+                            <div class="card" id="ind-categories">
                                 <div class="card-header"><h2>IND Categories</h2></div>
                                 <div class="card-body">
                                     <ul>
@@ -51,7 +51,7 @@
                                     </ul>
                                   </div>
                             </div>
-                            <div class="card">
+                            <div class="card" id="clinical-path">
                                 <div class="card-header">
                                     <h2>FDA's Clinical Path to New Medical Products</h2>
                                 </div>
@@ -59,7 +59,7 @@
                                     <img src="/platform/data/protected/IND_phases.png" alt="">
                                 </div>
                             </div>
-                            <div class="card">
+                            <div class="card" id="ind-content-format">
                                 <div class="card-header"><h2>IND Content and Format&nbsp;<a href="https://www.fda.gov/vaccines-blood-biologics/investigational-new-drug-applications-inds-cber-regulated-products/submission-investigational-new-drug-application-ind-cber" target="_blank" title="Go to FDA"><i class="fa fa-external-link" aria-hidden="true"></i></a></h2></div>
                                 <div class="card-body">
 
@@ -83,7 +83,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card">
+                            <div class="card" id="ind-submission">
                                 <div class="card-header"><h2>Submission of an IND</h2></div>
                                 <div class="card-body">
                                     <p>Sponsors of commercial INDs and all subsequent amendments are required to submit information electronically in the electronic Common Technical Document (eCTD) format. For electronic submission in eCTD, see <a data-entity-substitution="canonical" data-entity-type="node" data-entity-uuid="3e77e5d8-6cf2-46ff-acc2-69d8513b0d35" href="/vaccines-blood-biologics/development-approval-process-cber/regulatory-submissions-electronic-format-cber-regulated-products" title="Regulatory Submissions in Electronic Format for CBER-Regulated Products">Information on Regulatory Submissions in Electronic Format for Biologic Products</a>. IND sponsors should request a submission tracking number (STN) from CBER prior to an eCTD submission. Detailed procedures are outlined in <a data-entity-substitution="media_download" data-entity-type="media" data-entity-uuid="3bab0a9d-a105-4b6f-9501-27b8974894bd" href="/media/93416/download?attachment" title="SOPP 8117: Issuing Tracking Numbers in Advance of Electronic Submissions in eCTD Format">SOPP 8117: Issuing Tracking Numbers in Advance of Electronic Submissions in eCTD Format</a>.</p>
@@ -92,7 +92,7 @@
 
                                 </div>
                             </div>
-                            <div class="card">
+                            <div class="card" id="fda-review-time">
                                 <div class="card-header"><h2>Review Time for initial submission</h2></div>
                                 <div class="card-body">
                                     <p>Review Time for initial submission of an Investigational New Drug application is 30 days from the date FDA receives the IND. An IND applicant may proceed with a clinical investigation once the applicant has been notified by FDA that the investigation may proceed or after 30 days if the IND is not placed on Clinical Hold.</p>
