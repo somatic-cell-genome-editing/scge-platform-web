@@ -65,8 +65,8 @@
             <ul>
             <li><a href="/platform/forms_public/eCTD Tech Guide v1.8 Final.pdf" target="_blank">eCTD TECHNICAL CONFORMANCE GUIDE </a>- Content current as of: 03/22/2023</li>
             <li><a href="https://www.fda.gov/drugs/electronic-regulatory-submission-and-review/submit-using-ectd#review" target="_blank">Submit Using eCTD</a></li>
-                <li><a href="https://www.fda.gov/vaccines-blood-biologics/cellular-gene-therapy-products/otp-pre-ind-meetings">OTP Pre-IND Meetings</a></li>
-            <li><a href="https://www.fda.gov/vaccines-blood-biologics/cellular-gene-therapy-products/otp-interact-meeting">OTP INTERACT Meeting</a></li>
+                <li><a href="https://www.fda.gov/vaccines-blood-biologics/cellular-gene-therapy-products/otp-pre-ind-meetings" target="_blank">OTP Pre-IND Meetings</a></li>
+            <li><a href="https://www.fda.gov/vaccines-blood-biologics/cellular-gene-therapy-products/otp-interact-meeting" target="_blank">OTP INTERACT Meeting</a></li>
             </ul>
         </div>
     </div>
