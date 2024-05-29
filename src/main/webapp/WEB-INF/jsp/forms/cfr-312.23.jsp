@@ -13,7 +13,7 @@
 <div class="section" id="312.23">
     <div class="card">
         <div class="card-header">
-            <a href="https://www.ecfr.gov/current/title-21/section-312.23"><h2>CFR 312.23</h2></a>
+            <a href="https://www.ecfr.gov/current/title-21/section-312.23" target="_blank"><h2>CFR 312.23</h2></a>
         </div>
         <div class="card-body">
             <%@include file="CFR-partA.jsp"%>

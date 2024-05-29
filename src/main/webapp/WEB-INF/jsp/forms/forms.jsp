@@ -52,12 +52,20 @@
                                   </div>
                             </div>
                             <div class="card">
+                                <div class="card-header">
+                                    <h2>Clinical Path to New Medical Products</h2>
+                                </div>
+                                <div class="card-body">
+                                    <img src="/platform/data/protected/IND_phases.png">
+                                </div>
+                            </div>
+                            <div class="card">
                                 <div class="card-header"><a href="https://www.fda.gov/vaccines-blood-biologics/investigational-new-drug-applications-inds-cber-regulated-products/submission-investigational-new-drug-application-ind-cber" target="_blank"><h2>IND Content and Format</h2></a></div>
                                 <div class="card-body">
 
                                     <p>The content and format of an IND submission must be complete, well-organized as per 21 CFR 312, and include all applicable FDA Forms, provided below. These forms can also be found in <a data-entity-substitution="canonical" data-entity-type="node" data-entity-uuid="41aa2346-1c33-4025-b0c6-e0db744ee4ab" href="/about-fda/reports-manuals-forms/forms" title="Forms">FDA’s Form Database</a>.</p>
 
-                                    <ul><li><a data-entity-substitution="media_download" data-entity-type="media" data-entity-uuid="0e4d9050-7768-4a55-ac65-f4675d6e16a3" href="https://www.fda.gov/media/123543/download?attachment" title="Investigational New Drug Application (IND)" download>Form FDA 1571: Investigational New Drug Application</a>&nbsp;<a href="/platform/forms_public/FDA-1571_Instructions_R14_03-21-2023 (1).pdf" class="btn-primary btn-sm">Instructions to fill</a>
+                                    <ul><li><a data-entity-substitution="media_download" data-entity-type="media" data-entity-uuid="0e4d9050-7768-4a55-ac65-f4675d6e16a3" href="https://www.fda.gov/media/123543/download?attachment" title="Investigational New Drug Application (IND)" download>Form FDA 1571: Investigational New Drug Application</a>&nbsp;<a href="/platform/forms_public/FDA-1571_Instructions_R14_03-21-2023 (1).pdf" target="_blank" class="btn-primary btn-sm">Instructions to fill</a>
 
                                         <ul><li>For Individual patient INDs, a licensed physician may use <a data-entity-substitution="media_download" data-entity-type="media" data-entity-uuid="4e9ec72c-e5f4-44a8-ba48-8ce94fb0727c" href="/media/98616/download?attachment" title="Individual Patient Expanded Access Investigational New Drug Application (IND) (PDF)**Note: For best form functionality, Right-click 3926 link and click Save Link As… to save to your desktop and then open the file.">Form FDA 3926: Individual Patient Expanded Access IND</a> in place of the Form FDA 1571</li>
                                         </ul></li>

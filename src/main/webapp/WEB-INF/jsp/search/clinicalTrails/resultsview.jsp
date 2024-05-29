@@ -278,7 +278,7 @@
                         <td><%=sourceFields.get("therapyType")%></td>
                         <td><%=sourceFields.get("currentStage")%></td>
                         <td><%=sourceFields.get("status")%></td>
-                        <td><strong><a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nCTNumber")%>"><%=sourceFields.get("nCTNumber")%></a></strong></td>
+                        <td><strong><a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nCTNumber")%>" target="_blank"><%=sourceFields.get("nCTNumber")%></a></strong></td>
 
                         <td><%=sourceFields.get("indication")%></td>
                         <td><%=sourceFields.get("actualStudyStartDate(m/d/y)")%></td>
