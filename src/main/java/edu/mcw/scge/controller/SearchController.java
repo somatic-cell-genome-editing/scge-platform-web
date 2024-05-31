@@ -8,8 +8,8 @@ import edu.mcw.scge.configuration.UserService;
 import edu.mcw.scge.datamodel.Person;
 import edu.mcw.scge.service.es.IndexServices;
 
-import edu.mcw.scge.service.es.clinicalTrails.ClinicalTrailsService;
-import edu.mcw.scge.service.es.clinicalTrails.PlatformIndexServices;
+import edu.mcw.scge.service.es.clinicalTrials.ClinicalTrialsService;
+import edu.mcw.scge.service.es.clinicalTrials.PlatformIndexServices;
 import edu.mcw.scge.web.Facet;
 import edu.mcw.scge.web.utils.BreadCrumbImpl;
 import org.elasticsearch.action.search.SearchResponse;
@@ -25,12 +25,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(value="/data/search")
@@ -224,8 +222,8 @@ public class SearchController{
 
         return null;
     }
-    @RequestMapping(value="/clinicalTrailsapi")
-    public String getClinicalTrailsAPIResults(HttpServletRequest req, HttpServletResponse res, Model model,
+    @RequestMapping(value="/clinicalTrialsapi")
+    public String getClinicalTrialsAPIResults(HttpServletRequest req, HttpServletResponse res, Model model,
                                        @PathVariable(required = false) String category, @RequestParam(required = false) String searchTerm) throws Exception {
         PlatformIndexServices services = new PlatformIndexServices();
         Map<String, List<String>> filterMap=getFiltersMap(req);
@@ -234,22 +232,22 @@ public class SearchController{
         req.setAttribute("sr", sr);
         req.setAttribute("filterMap", filterMap);
         Terms terms=sr.getAggregations().get("organization");
-        req.setAttribute("page", "/WEB-INF/jsp/search/clinicalTrails/resultsview");
+        req.setAttribute("page", "/WEB-INF/jsp/search/clinicalTrials/resultsview");
         req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
 
         return null;
     }
-    @RequestMapping(value="/clinicalTrails")
-    public String getClinicalTrailsFileResults(HttpServletRequest req, HttpServletResponse res, Model model,
+    @RequestMapping(value="/clinicalTrials")
+    public String getClinicalTrialsFileResults(HttpServletRequest req, HttpServletResponse res, Model model,
                                               @PathVariable(required = false) String category, @RequestParam(required = false) String searchTerm) throws Exception {
-        ClinicalTrailsService services = new ClinicalTrailsService();
+        ClinicalTrialsService services = new ClinicalTrialsService();
         Map<String, List<String>> filterMap=getFiltersMap(req);
         SearchResponse sr=services.getSearchResults(searchTerm ,getFiltersMap(req));
         req.setAttribute("searchTerm", searchTerm);
         req.setAttribute("sr", sr);
         req.setAttribute("filterMap", filterMap);
 //        Terms terms=sr.getAggregations().get("organization");
-        req.setAttribute("page", "/WEB-INF/jsp/search/clinicalTrails/resultsview");
+        req.setAttribute("page", "/WEB-INF/jsp/search/clinicalTrials/resultsview");
         req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
 
         return null;

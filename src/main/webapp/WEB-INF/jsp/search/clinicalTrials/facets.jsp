@@ -28,7 +28,7 @@ for(String id:idsFromTrackerSheet){
 <div align="right">
   <button id="clearFilters" class="btn btn-primary btn-sm" onclick="removeFilters()" >Clear Filters</button>
 </div>
-<form id="facetForm" action="/platform/data/search/clinicalTrails">
+<form id="facetForm" action="/platform/data/search/clinicalTrials">
 <h4>By STATUS:</h4>
 
 

@@ -245,7 +245,7 @@
                 <!-- BEGIN TABLE RESULT -->
               <div >
                 <table class="table table-hover table-sm tablesorter" id="myTable">
-                  <caption align="top">Clinical Trails - Gene Therapy - Summary</caption>
+                  <caption align="top">Clinical Trials - Gene Therapy - Summary</caption>
                   <thead>
                   <tr>
                       <th>Sponsor</th>
