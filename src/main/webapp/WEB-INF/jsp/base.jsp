@@ -124,7 +124,7 @@
         <a class="p-2 text-dark" href="/platform">Home</a>
         <a class="p-2 text-dark" href="#">Features</a>
         <a class="p-2 text-dark" href="#">About Us</a>
-        <a class="p-2 text-dark" href="/platform/data/search/clinicalTrails">Clinical Trials</a>
+        <a class="p-2 text-dark" href="/platform/data/search/clinicalTrials">Clinical Trials</a>
         <a class="p-2 text-dark" href="/platform/data/ind/templates">Templates</a>
         <a class="p-2 text-dark" href="/platform/data/ind/forms">Guidance & Forms</a>
     </nav>
