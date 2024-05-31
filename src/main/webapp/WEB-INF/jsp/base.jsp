@@ -91,7 +91,7 @@
                 <!-- Icon -->
                 <div class="fadeIn first">
 
-                    <h2 class="navbar-brand"><img src="/platform/images/scge-logo-png-1.png" border="0" width="100" height="100" alt="SCGE"/>Somatic Cell Genome Editing Platform</h2>
+                    <h2 class="navbar-brand"><img src="/platform/images/scge-logo-png-1.png" border="0" width="100" height="100" alt="SCGE"/>&nbsp;Somatic Cell Genome Editing Platform</h2>
                 </div>
             </div>
 
@@ -124,7 +124,7 @@
         <a class="p-2 text-dark" href="/platform">Home</a>
         <a class="p-2 text-dark" href="#">Features</a>
         <a class="p-2 text-dark" href="#">About Us</a>
-        <a class="p-2 text-dark" href="/platform/data/search/clinicalTrails">Clinical Trails</a>
+        <a class="p-2 text-dark" href="/platform/data/search/clinicalTrails">Clinical Trials</a>
         <a class="p-2 text-dark" href="/platform/data/ind/templates">Templates</a>
         <a class="p-2 text-dark" href="/platform/data/ind/forms">Guidance & Forms</a>
     </nav>
