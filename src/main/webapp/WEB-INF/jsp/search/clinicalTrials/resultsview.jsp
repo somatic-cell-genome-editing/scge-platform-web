@@ -237,13 +237,21 @@
               <h2><i class="fa fa-file-o"></i> Result</h2>
               <hr>
               <p>Showing all  <%=hits.size()%> results ...</p>
-                <%if(filterMap!=null && filterMap.size()>0){%>
+                <%if(filterMap!=null && filterMap.size()>0){
+                    boolean first=true;
+                %>
                 <strong>Filters:</strong>
 
                 <%for(String key: filterMap.keySet()){
                     List<String> values=filterMap.get(key);
-                    for(String filter:values){%>
-                        &nbsp;<span style="color:darkorange; font-weight: bold"><%=filter%></span><span style="font-weight: bold">&nbsp;>&nbsp;</span>
+                    for(String filter:values){
+                        if(first){first=false;%>
+                &nbsp;<span style="color:darkorange; font-weight: bold"><%=filter%></span>
+                       <% }else{%>
+                &nbsp;<span style="font-weight: bold">&nbsp;|&nbsp;</span><span style="color:darkorange; font-weight: bold"><%=filter%></span>
+                       <% }
+                %>
+
                     <%}}}%>
 
               <div class="padding"></div>
