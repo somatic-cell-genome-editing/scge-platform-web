@@ -24,6 +24,7 @@ public class ClinicalTrialsService {
         SearchSourceBuilder srb=new SearchSourceBuilder();
         srb.query(this.buildBoolQuery(searchTerm, filtersMap));
 
+        srb.aggregation(buildAggregations("trackerType"));
         srb.aggregation(buildAggregations("organization"));
         srb.aggregation(buildAggregations("status"));
         srb.aggregation(buildAggregations("condition"));
@@ -55,6 +56,8 @@ public class ClinicalTrialsService {
 
             if (filter.equalsIgnoreCase("condition"))
                 q.must(QueryBuilders.termsQuery("indication" + ".keyword", filterValues.toArray()));
+            if (filter.equalsIgnoreCase("trackerType"))
+                q.must(QueryBuilders.termsQuery("trackerType" + ".keyword", filterValues.toArray()));
         }
         return q;
     }
@@ -73,7 +76,8 @@ public class ClinicalTrialsService {
             builder=AggregationBuilders.terms(fieldName).field("status" + ".keyword") .order(BucketOrder.key(true));
         if(fieldName.equalsIgnoreCase("condition"))
             builder=AggregationBuilders.terms(fieldName).field("indication" + ".keyword").size(1000) .order(BucketOrder.key(true));
-
+        if(fieldName.equalsIgnoreCase("trackerType"))
+            builder=AggregationBuilders.terms(fieldName).field(fieldName + ".keyword").size(10) .order(BucketOrder.key(true));
         return builder;
     }
 

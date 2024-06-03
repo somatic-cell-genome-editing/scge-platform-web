@@ -29,7 +29,15 @@ for(String id:idsFromTrackerSheet){
   <button id="clearFilters" class="btn btn-primary btn-sm" onclick="removeFilters()" >Clear Filters</button>
 </div>
 <form id="facetForm" action="/platform/data/search/clinicalTrials">
-<h4>By STATUS:</h4>
+  <h4>By Category:</h4>
+
+
+  <%for(Terms.Bucket bkt:trackerTypeAggregations.getBuckets()){%>
+  <div class="checkbox">
+    <label><input type="checkbox" class="icheck" name="trackerType" value="<%=bkt.getKey()%>"> <%=bkt.getKey()%>&nbsp;(<%=bkt.getDocCount()%>)</label>
+  </div>
+  <%}%>
+<h4>By Status:</h4>
 
 
 <%for(Terms.Bucket bkt:statAggregations.getBuckets()){%>
@@ -131,5 +139,18 @@ for(String id:idsFromTrackerSheet){
   })
   }
   });
+      $.each($('input[name="trackerType"]'), function(){
+        var _this=$(this);
+        var val=_this.val();
+        _this.prop('checked', false);
+
+        if(trackerTypeSelected !== typeof undefined) {
+          $.each(trackerTypeSelected, function (i, selected) {
+            if (selected === val) {
+              _this.prop('checked', true)
+            }
+          })
+        }
+      });
   })
 </script>

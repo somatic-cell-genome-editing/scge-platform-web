@@ -173,6 +173,7 @@
     Terms orgAggregations=sr.getAggregations().get("organization");
     Terms statAggregations=sr.getAggregations().get("status");
     Terms conditionAggregations=sr.getAggregations().get("condition");
+    Terms trackerTypeAggregations=sr.getAggregations().get("trackerType");
 
     SearchHit[] hitsArray=sr.getHits().getHits();
     List<SearchHit> hits=(Arrays.asList(hitsArray));
@@ -180,6 +181,7 @@
     List<String> selectedStatus=new ArrayList<>();
     List<String> selectedCondition=new ArrayList<>();
     List<String> selectedOrganization=new ArrayList<>();
+    List<String> selectedTrackerType=new ArrayList<>();
     if(filterMap!=null){
         if(filterMap.get("status")!=null)
             selectedStatus.addAll(filterMap.get("status"));
@@ -187,6 +189,8 @@
             selectedCondition.addAll(filterMap.get("condition"));
         if(filterMap.get("organization")!=null)
             selectedOrganization.addAll(filterMap.get("organization"));
+        if(filterMap.get("trackerType")!=null)
+            selectedTrackerType.addAll(filterMap.get("trackerType"));
     }
 //    for(SearchHit hit:hits){
 //        Map<String, Object> sourceFields=hit.getSourceAsMap();
@@ -204,6 +208,7 @@
     var  statusSelected=<%=gson.toJson(selectedStatus)%>;
     var  conditionSelected=<%=gson.toJson(selectedCondition)%>;
     var orgSelected=<%=gson.toJson(selectedOrganization)%>;
+    var trackerTypeSelected=<%=gson.toJson(selectedTrackerType)%>
 </script>
 <div class="jumbotron">
     <div class="row"><div class="col"><h1>Clinical Trials - Gene Therapy Tracker</h1>
@@ -231,14 +236,14 @@
             <div class="col-md-10">
               <h2><i class="fa fa-file-o"></i> Result</h2>
               <hr>
-              <p>Showing all  <%=hits.size()%> results</p>
+              <p>Showing all  <%=hits.size()%> results ...</p>
                 <%if(filterMap!=null && filterMap.size()>0){%>
                 <strong>Filters:</strong>
 
                 <%for(String key: filterMap.keySet()){
                     List<String> values=filterMap.get(key);
                     for(String filter:values){%>
-                        &nbsp;<%=filter%>
+                        &nbsp;<span style="color:darkorange; font-weight: bold"><%=filter%></span><span style="font-weight: bold">&nbsp;>&nbsp;</span>
                     <%}}}%>
 
               <div class="padding"></div>
