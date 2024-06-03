@@ -317,6 +317,10 @@ public class SearchController{
             List<String> condition= Arrays.asList(request.getParameterValues("condition"));
             filterMap.put("condition", condition);
         }
+        if(request.getParameterValues("trackerType")!=null){
+            List<String> trackerType= Arrays.asList(request.getParameterValues("trackerType"));
+            filterMap.put("trackerType", trackerType);
+        }
         return filterMap;
     }
     public Map<String, String> getFilterMap(HttpServletRequest req) throws IOException {
