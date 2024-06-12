@@ -24,12 +24,20 @@
                         <!-- END FILTERS -->
                         <!-- BEGIN RESULT -->
                         <div class="col-md-10">
+                            <div class="card" id="clinical-path">
+                                <div class="card-header">
+                                    <h2>FDA's Clinical Path to New Medical Products</h2>
+                                </div>
+                                <div class="card-body">
+                                    <img src="/platform/data/protected/IND_phases.png" alt="" width="100%">
+                                </div>
+                            </div>
                             <div class="card" id="ind-def">
                                 <div class="card-header"><h2>What is IND?</h2></div>
                                 <div class="card-body">
                                     <p>An Investigational New Drug Application (IND) is a request from a clinical study sponsor to obtain authorization from the Food and Drug Administration (FDA) to administer an investigational drug or biological product to humans. Such authorization must be secured prior to interstate shipment and administration of any new drug or biological product that is not the subject of an approved New Drug Application or Biologics/Product License Application.</p>
 
-                                    <p>Please refer to the “Additional Resources” section below for useful information on the development and submission of INDs.</p>
+                                    <p>Please refer to the sections below for useful information on the development and submission of INDs.</p>
                                 </div>
                             </div>
                             <div class="card" id="ind-types">
@@ -46,24 +54,43 @@
                                 <div class="card-header"><h2>IND Categories</h2></div>
                                 <div class="card-body">
                                     <ul>
-                                        <li><strong>Commercial:</strong> A commercial IND is one for which the sponsor (usually a corporate entity) intends to commercialize the product by eventually submitting a marketing application. In this case, the sponsor should select “Commercial IND” on FDA Form 1571 Field 6B.  FDA may also designate an IND as commercial if it is clear that the sponsor intends for the product to be commercialized at a later date.</li>
+                                        <li><strong>Commercial:</strong> A commercial IND is one for which the sponsor (usually a corporate entity) intends to commercialize the product by eventually submitting a marketing application. In this case, the sponsor should select "Commercial IND" on FDA Form 1571 Field 6B.  FDA may also designate an IND as commercial if it is clear that the sponsor intends for the product to be commercialized at a later date.</li>
                                         <li><strong>Research (non-commercial):</strong> A research IND (also called a non-commercial IND) is one for which the sponsor (generally an individual investigator, academic institution or non-profit entity) does not intend to later commercialize the product.  These studies are strictly for research, are usually shorter in duration and may result in publications in peer-reviewed journals.</li>
                                     </ul>
                                   </div>
                             </div>
-                            <div class="card" id="clinical-path">
-                                <div class="card-header">
-                                    <h2>FDA's Clinical Path to New Medical Products</h2>
-                                </div>
+
+                            <div class="card" id="ind-meetings">
+                                <div class="card-header"><h2>IND FDA MEETINGS</h2></div>
                                 <div class="card-body">
-                                    <img src="/platform/data/protected/IND_phases.png" alt="">
+                                    <ul>
+                                        <li><strong>INTERACT Meeting:</strong> INTERACT or an INitial Targeted Engagement for Regulatory Advice on CBER/CDER ProducTs is a meeting at a specific time early in product development. The appropriate timing for an INTERACT is when a sponsor has identified the investigational product to be evaluated in a clinical study and conducted some preliminary preclinical proof-of-concept studies with the intended investigational product, but has not yet designed and conducted definitive toxicology studies. For additional details on a development program's qualification for INTERACT, how to request and where to send the meeting request, please see <a href="https://www.fda.gov/vaccines-blood-biologics/cellular-gene-therapy-products/otp-interact-meeting" target="_blank"><strong>FDA INTEACT Meeting Guidance</strong></a><br></li>
+                                        <li>&nbsp;</li>
+                                        <li><strong>Pre IND Meeting:</strong> Pre-IND meetings can be valuable for sponsors in procuring feedback on a sponsor's product development program. A pre-IND meeting can also provide information that will assist sponsors in preparing to submit complete investigational new drug (IND) applications and reduce the risk of a clinical hold. The primary purpose of this meeting is to review and obtain feedback on the design of preclinical studies, the design of the initial IND study, and product manufacturing and quality controls needed to initiate human studies. The meeting also provides an opportunity to discuss the  plans for studying the product in pediatric populations, the target product profile,  the quality target product profile, the design and results of any natural history studies, and the best approach for presentation and formatting of data in the IND.</li>
+                                    </ul>
                                 </div>
                             </div>
+                            <div class="card" id="timing-pre-ind">
+                                <div class="card-header"><h2>Timing of Pre-IND Meeting Request</h2></div>
+                                <div class="card-body">
+                                    Sponsors are sometimes unsure whether to request an INTERACT or pre-IND meeting for the current state of development of their product. See INTERACT Meeting Section for information regarding INTERACT meetings.  In general, a pre-IND is the appropriate meeting type if:
+<ul>
+                                   <li>The sponsor has defined the manufacturing process to be used for the clinical studies and has developed assays and preliminary lot release criteria.</li>
+    <li>The sponsor has completed proof-of-concept (POC) and possibly some preliminary preclinical safety/toxicology studies and desires to move to the definitive toxicology studies</li>
+    <li>The sponsor's questions involve IND-enabling Chemistry, Manufacturing, and Controls (CMC), pharmacology/toxicology (P/T), and/or clinical trial design issues.</li>
+</ul>
+                                    <a target=_blank href="https://www.fda.gov/vaccines-blood-biologics/cellular-gene-therapy-products/otp-pre-ind-meetings"><strong>Process for requesting a pre-IND meeting</strong></a>
+                                </div>
+                            </div>
+
+
+
+
                             <div class="card" id="ind-content-format">
                                 <div class="card-header"><h2>IND Content and Format&nbsp;<a href="https://www.fda.gov/vaccines-blood-biologics/investigational-new-drug-applications-inds-cber-regulated-products/submission-investigational-new-drug-application-ind-cber" target="_blank" title="Go to FDA"><i class="fa fa-external-link" aria-hidden="true"></i></a></h2></div>
                                 <div class="card-body">
 
-                                    <p>The content and format of an IND submission must be complete, well-organized as per 21 CFR 312, and include all applicable FDA Forms, provided below. These forms can also be found in <a data-entity-substitution="canonical" data-entity-type="node" data-entity-uuid="41aa2346-1c33-4025-b0c6-e0db744ee4ab" href="/about-fda/reports-manuals-forms/forms" title="Forms">FDA’s Form Database</a>.</p>
+                                    <p>The content and format of an IND submission must be complete, well-organized as per 21 CFR 312, and include all applicable FDA Forms, provided below. These forms can also be found in <a data-entity-substitution="canonical" data-entity-type="node" data-entity-uuid="41aa2346-1c33-4025-b0c6-e0db744ee4ab" href="https://www.fda.gov/about-fda/reports-manuals-forms/forms" title="Forms">FDA's Form Database</a>.</p>
 
                                     <ul><li><a data-entity-substitution="media_download" data-entity-type="media" data-entity-uuid="0e4d9050-7768-4a55-ac65-f4675d6e16a3" href="https://www.fda.gov/media/123543/download?attachment" title="Investigational New Drug Application (IND)" download>Form FDA 1571: Investigational New Drug Application</a>&nbsp;<a href="/platform/forms_public/FDA-1571_Instructions_R14_03-21-2023 (1).pdf" target="_blank" class="btn-primary btn-sm">Instructions to fill</a>
 
@@ -96,7 +123,7 @@
                                 <div class="card-header"><h2>Review Time for initial submission</h2></div>
                                 <div class="card-body">
                                     <p>Review Time for initial submission of an Investigational New Drug application is 30 days from the date FDA receives the IND. An IND applicant may proceed with a clinical investigation once the applicant has been notified by FDA that the investigation may proceed or after 30 days if the IND is not placed on Clinical Hold.</p>
-
+                                    <img src="/platform/data/protected/review_process.png" alt="">
                                 </div>
                             </div>
                         </div>
