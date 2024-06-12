@@ -257,7 +257,7 @@
               <div class="padding"></div>
                 <!-- BEGIN TABLE RESULT -->
               <div >
-                <table class="table table-hover table-sm tablesorter" id="myTable">
+                <table class="table table-hover table-sm tablesorter" id="myTable" style="width: 100%;">
                   <caption align="top">Clinical Trials - Gene Therapy - Summary</caption>
                   <thead>
                   <tr>
@@ -299,7 +299,12 @@
                         <td><%=sourceFields.get("dateofLastupdate")%></td>
                         <td><%=sourceFields.get("totalDays")%></td>
                         <td><%=sourceFields.get("dayselapsed")%></td>
-                        <td><%=sourceFields.get("progress")%></td>
+                        <td><%
+                            String progress=sourceFields.get("progress").toString().replace("%","").trim();
+                        %>
+                            <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: <%=progress%>%" aria-valuenow=<%=progress%> aria-valuemin="0" aria-valuemax="100"></div>
+                        </div><%=sourceFields.get("progress")%></td>
                         <td><%
                             if(sourceFields.get("notes")!=null){
                         %>
