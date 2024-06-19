@@ -50,8 +50,8 @@
   /*  height: 50px;*/
   /*}*/
 
-
 </style>
+
 <%
     Gson gson=new Gson();
     List<String> found=new ArrayList<>();
@@ -209,7 +209,28 @@
     var  conditionSelected=<%=gson.toJson(selectedCondition)%>;
     var orgSelected=<%=gson.toJson(selectedOrganization)%>;
     var trackerTypeSelected=<%=gson.toJson(selectedTrackerType)%>
+
 </script>
+<script>
+    $(function() {
+        $("#myTable").tablesorter({
+
+            widthFixed : true,
+            theme : 'blue',
+            widgets: ['zebra','resizable', 'stickyHeaders'],
+            widgetOptions: {
+                // jQuery selector or object to attach sticky header to
+                stickyHeaders_attachTo: $('.table-wrapper'),
+
+            }
+        });
+    });
+</script>
+<style>
+    #myTable .tablesorter-filter-row td>[data-column="0"] {
+        width: 50%;
+    }
+</style>
 <div class="jumbotron">
     <div class="row"><div class="col"><h1>Clinical Trials - Gene Therapy Tracker</h1>
     </div>
@@ -256,26 +277,26 @@
 
               <div class="padding"></div>
                 <!-- BEGIN TABLE RESULT -->
-              <div >
-                <table class="table table-hover table-sm tablesorter" id="myTable" style="width: 100%;">
+              <div  style="width: 100%">
+                <table class="tablesorter" id="myTable">
                   <caption align="top">Clinical Trials - Gene Therapy - Summary</caption>
                   <thead>
                   <tr>
-                      <th>Sponsor</th>
-                      <th>Compound</th>
+                      <th class="sorter-false">Study</th>
+<%--                      <th>Compound</th>--%>
                       <th>Editor Type</th>
                       <th>Therapy Type</th>
                       <th>Current Stage</th>
-                      <th>Status</th>
-                      <th>NCTID</th>
+<%--                      <th>Status</th>--%>
+<%--                      <th>NCTID</th>--%>
 
                     <th>Indication</th>
-                    <th>Start_Date</th>
-                    <th>Completion</th>
+<%--                    <th>Start_Date</th>--%>
+<%--                    <th>Completion</th>--%>
                     <th>Last_Update</th>
-                      <th>Total Days</th>
-                      <th>Days Elapsed</th>
-                      <th>Progress</th>
+<%--                      <th>Total Days</th>--%>
+<%--                      <th>Days Elapsed</th>--%>
+                      <th>Days Progressed</th>
                         <th>Updates</th>
                   </tr>
                   </thead>
@@ -285,20 +306,29 @@
                       Map<String, Object> sourceFields = hit.getSourceAsMap();
                       %>
                     <tr>
-                        <td><%=sourceFields.get("sponsor")%></td>
-                        <td><%=sourceFields.get("sponsorCompound")%></td>
+                        <td  style="width: 40%">
+                           <strong>Sponsor:</strong> <%=sourceFields.get("sponsor")%><br>
+                            <strong>Compound:</strong> <%=sourceFields.get("sponsorCompound")%><br>
+                            <strong>NCTID:</strong><strong> <a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nCTNumber")%>" target="_blank"><%=sourceFields.get("nCTNumber")%></a></strong><br>
+                            <strong>Start Date:</strong> <%=sourceFields.get("actualStudyStartDate(m/d/y)")%><br>
+                            <strong>Completion Date:</strong> <%=sourceFields.get("estimatedPrimaryCompletion(m/d/y)")%><br>
+
+                           <strong>Status:</strong><%=sourceFields.get("status")%>
+
+                        </td>
+<%--                        <td><%=sourceFields.get("sponsorCompound")%></td>--%>
                         <td><%=sourceFields.get("editorType")%></td>
                         <td><%=sourceFields.get("therapyType")%></td>
                         <td><%=sourceFields.get("currentStage")%></td>
-                        <td><%=sourceFields.get("status")%></td>
-                        <td><strong><a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nCTNumber")%>" target="_blank"><%=sourceFields.get("nCTNumber")%></a></strong></td>
+<%--                        <td><%=sourceFields.get("status")%></td>--%>
+<%--                        <td><strong><a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nCTNumber")%>" target="_blank"><%=sourceFields.get("nCTNumber")%></a></strong></td>--%>
 
                         <td><%=sourceFields.get("indication")%></td>
-                        <td><%=sourceFields.get("actualStudyStartDate(m/d/y)")%></td>
-                        <td><%=sourceFields.get("estimatedPrimaryCompletion(m/d/y)")%></td>
+<%--                        <td><%=sourceFields.get("actualStudyStartDate(m/d/y)")%></td>--%>
+<%--                        <td><%=sourceFields.get("estimatedPrimaryCompletion(m/d/y)")%></td>--%>
                         <td><%=sourceFields.get("dateofLastupdate")%></td>
-                        <td><%=sourceFields.get("totalDays")%></td>
-                        <td><%=sourceFields.get("dayselapsed")%></td>
+<%--                        <td><%=sourceFields.get("totalDays")%></td>--%>
+<%--                        <td><%=sourceFields.get("dayselapsed")%></td>--%>
                         <td><%
                             String progress=sourceFields.get("progress").toString().replace("%","").trim();
                         %>
