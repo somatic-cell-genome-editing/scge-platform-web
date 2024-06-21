@@ -32,7 +32,7 @@
 
             </div>
             <div class="col">
-                <img src="/platform/images/ctd.png" alt="CTD triangle">
+                <img src="/platform/images/CTD_triangle.png" alt="CTD triangle">
             </div>
         </div>
 
