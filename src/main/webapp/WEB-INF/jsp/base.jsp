@@ -1,8 +1,9 @@
-<%@ page import="edu.mcw.scge.datamodel.Person" %>
+
 <%@ page import="edu.mcw.scge.configuration.Access" %>
+<%@ page import="edu.mcw.scge.platform.datamodel.Person" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!doctype html>
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -13,7 +14,7 @@
 
     <title>SCGE Platform</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/blog/">
+<%--    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/blog/">--%>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -127,6 +128,7 @@
         <a class="p-2 text-dark" href="/platform/data/search/clinicalTrials">Clinical Trials</a>
         <a class="p-2 text-dark" href="/platform/data/ind/templates">Templates & Forms</a>
         <a class="p-2 text-dark" href="/platform/data/ind/forms">Guidance</a>
+        <a class="p-2 text-dark" href="/platform/data/ind/ctdRequirements">Initial IND CTD Requirements</a>
     </nav>
 </div>
 </div>

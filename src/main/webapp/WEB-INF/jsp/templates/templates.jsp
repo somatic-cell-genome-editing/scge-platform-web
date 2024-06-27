@@ -32,7 +32,10 @@
 
             </div>
             <div class="col">
-                <img src="/platform/images/CTD_triangle.png" alt="CTD triangle">
+                <img src="/platform/images/CTD_triangle.png" alt="CTD triangle" usemap="#ctdmap">
+                <map name="ctdmap">
+                    <area shape="rect" coords="234,42,395,164" alt="CTD triangle" href="/platform/forms_public/USFDA_eCTDv4_0_CTOC_v1.pdf">
+                </map>
             </div>
         </div>
 
