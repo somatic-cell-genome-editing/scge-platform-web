@@ -57,8 +57,12 @@
         List<Section> level2Sections=sectionDAO.getLevel2SectionsOfModule(module);
         List<Section> level3Sections=sectionDAO.getLevel3SectionsOfModule(module);
         List<Section> level4Sections=sectionDAO.getLevel4SectionsOfModule(module);
+        String activeTab="";
+        if(module==1){
+            activeTab+="active";
+        }
         %>
-    <div class="tab-pane fade show active" id="module<%=module%>" role="tabpanel" aria-labelledby="home-tab">
+    <div class="tab-pane fade show <%=activeTab%>" id="module<%=module%>" role="tabpanel" aria-labelledby="home-tab">
         <div style="padding: 20px">
            <%=sectionDAO.getModuleDescription(module)%>
         </div>
