@@ -39,19 +39,5 @@ public class GuidanceController {
 
         return null;
     }
-    @RequestMapping(value="/ctdRequirements")
-    public String getCTDRequirements(HttpServletRequest req, HttpServletResponse res, Model model,
-                                  @PathVariable(required = false) String category, @RequestParam(required = false) String searchTerm) throws Exception {
-        SectionDAO sectionDAO=new SectionDAO();
-        Map<Integer, List<Section>> modules=new HashMap<>();
-        for(int module: Arrays.asList(1,2,3,4,5)) {
-            List<Section> sections = sectionDAO.getTopLevelSectionsOfModule(module);
-            modules.put(module, sections);
-        }
-        req.setAttribute("modules", modules);
-        req.setAttribute("page", "/WEB-INF/jsp/ctd/ctdTable");
-        req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
 
-        return null;
-    }
 }
