@@ -3,7 +3,7 @@ package edu.mcw.scge.controller;
 import com.google.gson.Gson;
 import edu.mcw.scge.configuration.Access;
 import edu.mcw.scge.configuration.UserService;
-import edu.mcw.scge.datamodel.Person;
+import edu.mcw.scge.platform.datamodel.Person;
 import edu.mcw.scge.service.es.ESClient;
 import edu.mcw.scge.service.es.IndexServices;
 import edu.mcw.scge.web.SCGEContext;

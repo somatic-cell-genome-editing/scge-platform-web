@@ -1,6 +1,5 @@
 package edu.mcw.scge.web.utils;
 
-import edu.mcw.scge.datamodel.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;

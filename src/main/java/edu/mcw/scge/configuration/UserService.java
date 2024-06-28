@@ -1,7 +1,8 @@
 package edu.mcw.scge.configuration;
 
-import edu.mcw.scge.dao.implementation.PersonDao;
-import edu.mcw.scge.datamodel.Person;
+
+import edu.mcw.scge.platform.dao.implementation.PersonDao;
+import edu.mcw.scge.platform.datamodel.Person;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;

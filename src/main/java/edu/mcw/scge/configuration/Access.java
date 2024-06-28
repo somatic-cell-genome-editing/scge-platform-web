@@ -1,8 +1,10 @@
 package edu.mcw.scge.configuration;
 
-import edu.mcw.scge.dao.implementation.*;
-import edu.mcw.scge.datamodel.*;
 
+
+import edu.mcw.scge.platform.dao.implementation.PersonDao;
+import edu.mcw.scge.platform.datamodel.Person;
+import edu.mcw.scge.platform.datamodel.PersonInfo;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 

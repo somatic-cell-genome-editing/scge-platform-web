@@ -2,8 +2,8 @@ package edu.mcw.scge.controller;
 
 
 import edu.mcw.scge.configuration.Access;
-import edu.mcw.scge.dao.implementation.PersonDao;
-import edu.mcw.scge.datamodel.Person;
+import edu.mcw.scge.platform.dao.implementation.PersonDao;
+import edu.mcw.scge.platform.datamodel.Person;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ResolvableType;
