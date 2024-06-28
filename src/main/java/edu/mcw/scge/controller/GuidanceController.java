@@ -1,12 +1,9 @@
 package edu.mcw.scge.controller;
 
 
-import com.google.api.client.util.PemReader;
-import edu.mcw.scge.platform.dao.implementation.ctd.SectionDAO;
-import edu.mcw.scge.platform.datamodel.ctd.Section;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
