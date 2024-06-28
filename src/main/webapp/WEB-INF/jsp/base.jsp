@@ -128,7 +128,7 @@
         <a class="p-2 text-dark" href="/platform/data/search/clinicalTrials">Clinical Trials</a>
         <a class="p-2 text-dark" href="/platform/data/ind/templates">Templates & Forms</a>
         <a class="p-2 text-dark" href="/platform/data/ind/forms">Guidance</a>
-        <a class="p-2 text-dark" href="/platform/data/ind/ctdRequirements">Initial IND CTD Requirements</a>
+
     </nav>
 </div>
 </div>
@@ -140,7 +140,7 @@
                 <hr>
             </c:if>
 
-            <div style="margin-top: 0;padding-top:0">
+            <div style="margin-top: 0;padding-top:0;margin-bottom:10%">
 
                 <c:if test="${page!=null}">
 
