@@ -26,6 +26,5 @@
 
     </beans:bean>
     <context:component-scan base-package="edu.mcw.scge.controller" />
-    <context:component-scan base-package="edu.mcw.scge.storage" />
 
 </beans:beans>
