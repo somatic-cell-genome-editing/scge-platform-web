@@ -70,7 +70,7 @@
             <li><a href="https://www.fda.gov/drugs/electronic-regulatory-submission-and-review/submit-using-ectd#review" target="_blank">Submit Using eCTD</a></li>
                 <li><a href="https://www.fda.gov/vaccines-blood-biologics/cellular-gene-therapy-products/otp-pre-ind-meetings" target="_blank">OTP Pre-IND Meetings</a></li>
             <li><a href="https://www.fda.gov/vaccines-blood-biologics/cellular-gene-therapy-products/otp-interact-meeting" target="_blank">OTP INTERACT Meeting</a></li>
-            <li><a href="https://www.elpidatx.com/documents">Elpida Therapeutics (SPG50 Phase I/II Regulatory Documents)</a></li>
+            <li><a href="https://www.elpidatx.com/documents" target="_blank">Elpida Therapeutics (SPG50 Phase I/II Regulatory Documents)</a></li>
             </ul>
         </div>
     </div>
