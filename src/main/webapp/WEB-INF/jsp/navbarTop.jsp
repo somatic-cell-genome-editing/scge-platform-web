@@ -22,7 +22,8 @@
 
           <c:choose>
             <c:when test="${userAttributes.get('name')!=null}">
-              <img class="rounded-circle" src="${userAttributes.get('picture')}" width="24">
+             <a href="/platform/dashboard"> <button class="btn btn-primary btn-sm">My Dashboard</button></a>
+              &nbsp;&nbsp;<img class="rounded-circle" src="${userAttributes.get('picture')}" width="24">
               <span class="text-light" >&nbsp;${userAttributes.get('name')}&nbsp;&nbsp;</span>
               <a href="/platform/logout" title="Sign out"><button class="btn btn-primary btn-sm">Logout</button></a>
 
