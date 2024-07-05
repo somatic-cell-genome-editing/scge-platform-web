@@ -35,7 +35,7 @@ public class LoginController{
         return "base";
     }
 
-    @RequestMapping("/loginSuccessPage")
+    @RequestMapping("/dashboard")
     public String verifyAuthentication(OAuth2AuthenticationToken authentication, HttpServletRequest req) throws Exception {
         Map userAttributes=getUserAttributes(authentication);
 
