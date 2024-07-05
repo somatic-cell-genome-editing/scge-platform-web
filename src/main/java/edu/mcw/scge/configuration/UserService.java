@@ -14,31 +14,8 @@ import java.util.Map;
 
 @Service
 public class UserService {
-
-    public static Person guestAccount = null;
-
     PersonDao pdao=new PersonDao();
     public Person getCurrentUser(HttpSession session) throws Exception {
-
-        if (UserService.guestAccount == null) {
-            UserService.guestAccount=new PersonDao().getPersonById(SecurityConfiguration.GUEST_ACCOUNT_ID).get(0);
-        }
-
-
-       // if (session.getAttribute("person") == null) {
-       //     PersonDao pdao = new PersonDao();
-       //     Person p = pdao.getPersonById(1884).get(0);
-       //     this.setCurrentUser(p,session);
-
-
-           // Map attributes = (Map) session.getAttribute("userAttributes");
-           // attributes.put("email", p.getEmail());
-           // attributes.put("name", p.getName());
-           // attributes.put("personId",p.getId());
-
-        //    session.setAttribute("userAttributes",attributes);
-       // }
-
 
         if (session.getAttribute("person") != null) {
             return (Person) session.getAttribute("person");
@@ -48,23 +25,23 @@ public class UserService {
                 Map<String, Object> attributes;
                 if (authToken instanceof OAuth2AuthenticationToken) {
                     attributes = ((OAuth2AuthenticationToken) authToken).getPrincipal().getAttributes();
-                    if (attributes != null) {
+                    System.out.println("PRINCIPAL:"+ authToken.getName());
+                    if (attributes != null && !authToken.getName().equalsIgnoreCase("anonymous")) {
                         String userEmail = (String) attributes.get("email");
                         List<Person> pList = pdao.getPersonByEmail(userEmail);
-                        if (pList != null && pList.size() > 0)
-                            session.setAttribute("person",pList.get(0));
+                        if (pList != null && pList.size() > 0) {
+                            session.setAttribute("userAttributes", attributes);
+                            session.setAttribute("person", pList.get(0));
                             return pList.get(0);
+                        }
 
                     }
                 }
             }
         }
 
-        if (SecurityConfiguration.REQUIRE_AUTHENTICATION) {
-            return null;
-        }else {
-            return UserService.guestAccount;
-        }
+        return null;
+
     }
 
     public void setCurrentUser(Person p, HttpSession session) {
