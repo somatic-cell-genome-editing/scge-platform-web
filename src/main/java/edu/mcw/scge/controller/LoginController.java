@@ -1,4 +1,4 @@
-package edu.mcw.scge.controller;
+package edu.mcw.scge.configuration;
 
 
 import edu.mcw.scge.configuration.Access;
@@ -38,32 +38,33 @@ import java.util.*;
 
 public class LoginController{
 
-    private static final String authorizationRequestBaseUri = "login";
-    Map<String, String> oauth2AuthenticationUrls = new HashMap<>();
+//    private static final String authorizationRequestBaseUri = "login";
+//    Map<String, String> oauth2AuthenticationUrls = new HashMap<>();
     PersonDao pdao=new PersonDao();
     Access access=new Access();
-    @Autowired
-   private ClientRegistrationRepository clientRegistrationRepository;
-    @Autowired
-    private OAuth2AuthorizedClientService authorizedClientService;
 
-    @RequestMapping("/oauth_login")
-    public String getLoginPage(OAuth2AuthenticationToken authentication) throws Exception {
-      Iterable<ClientRegistration> clientRegistrations = null;
-        ResolvableType type = ResolvableType.forInstance(clientRegistrationRepository)
-                .as(Iterable.class);
-        if (type != ResolvableType.NONE && ClientRegistration.class.isAssignableFrom(type.resolveGenerics()[0])) {
-            clientRegistrations = (Iterable<ClientRegistration>) clientRegistrationRepository;
-        }
-      /* clientRegistrations.forEach(clientRegistration -> System.out.println(clientRegistration.getClientId()+"\n"+clientRegistration.getClientSecret()+"\n"+
-               clientRegistration.getProviderDetails().getAuthorizationUri()+"\nSCOPES: "+clientRegistration.getScopes().toString()));*/
+//    @Autowired
+//    private ClientRegistrationRepository clientRegistrationRepository;
+//    @Autowired
+//    private OAuth2AuthorizedClientService authorizedClientService;
 
-        clientRegistrations.forEach(registration -> oauth2AuthenticationUrls.put(registration.getClientName(), authorizationRequestBaseUri + "/" + registration.getRegistrationId()));
-        //model.addAttribute("urls", oauth2AuthenticationUrls);
-
-       return "redirect:/";
-
-    }
+//    @RequestMapping("/oauth_login")
+//    public String getLoginPage(OAuth2AuthenticationToken authentication) throws Exception {
+//      Iterable<ClientRegistration> clientRegistrations = null;
+//        ResolvableType type = ResolvableType.forInstance(clientRegistrationRepository)
+//                .as(Iterable.class);
+//        if (type != ResolvableType.NONE && ClientRegistration.class.isAssignableFrom(type.resolveGenerics()[0])) {
+//            clientRegistrations = (Iterable<ClientRegistration>) clientRegistrationRepository;
+//        }
+//      /* clientRegistrations.forEach(clientRegistration -> System.out.println(clientRegistration.getClientId()+"\n"+clientRegistration.getClientSecret()+"\n"+
+//               clientRegistration.getProviderDetails().getAuthorizationUri()+"\nSCOPES: "+clientRegistration.getScopes().toString()));*/
+//
+//        clientRegistrations.forEach(registration -> oauth2AuthenticationUrls.put(registration.getClientName(), authorizationRequestBaseUri + "/" + registration.getRegistrationId()));
+//        //model.addAttribute("urls", oauth2AuthenticationUrls);
+//
+//       return "redirect:/";
+//
+//    }
 
     @RequestMapping("/loginSuccess")
     public String getHomePage(OAuth2AuthenticationToken authentication, HttpServletRequest req) throws Exception {
@@ -77,7 +78,7 @@ public class LoginController{
 
     @RequestMapping("/loginSuccessPage")
     public String verifyAuthentication(OAuth2AuthenticationToken authentication, HttpServletRequest req) throws Exception {
-        System.out.println("Authentication Not null:"+ (authentication!=null));
+System.out.println("AUTHENITCATION:" + authentication.getName());
         Map userAttributes=getUserAttributes(authentication);
 
         if(userAttributes!=null) {
@@ -94,8 +95,9 @@ public class LoginController{
                     req.setAttribute("personInfoList", access.getPersonInfoRecords(userAttributes));
 
                     System.out.println("USER_LOGIN_SUCCESS " + userAttributes.get("email").toString()+ " " +  new Date().toString());
-
-                    return "redirect:/loginSuccess";
+                    req.setAttribute("page", "/WEB-INF/jsp/login/home");
+                    return "base";
+                 //   return "redirect:/loginSuccess";
                 }
             } else {
                 System.out.println("USER_LOGIN_FAILED " + userAttributes.get("email").toString() + " " +  new Date().toString());
@@ -115,23 +117,24 @@ public class LoginController{
     }
  public Map getUserAttributes(OAuth2AuthenticationToken authentication){
      if(authentication!=null) {
-         OAuth2AuthorizedClient client = authorizedClientService.loadAuthorizedClient(authentication.getAuthorizedClientRegistrationId(), authentication.getName());
-         if(client!=null) {
-             String userInfoEndpointUri = client.getClientRegistration()
-                     .getProviderDetails()
-                     .getUserInfoEndpoint()
-                     .getUri();
-             if (!StringUtils.isEmpty(userInfoEndpointUri)) {
-                 RestTemplate restTemplate = new RestTemplate();
-                 HttpHeaders headers = new HttpHeaders();
-                 headers.add(HttpHeaders.AUTHORIZATION, "Bearer " + client.getAccessToken()
-                         .getTokenValue());
-                 HttpEntity<String> entity = new HttpEntity<String>("", headers);
-
-                 ResponseEntity<Map> response = restTemplate.exchange(userInfoEndpointUri, HttpMethod.GET, entity, Map.class);
-                 return response.getBody();
-             }
-         }
+       return   authentication.getPrincipal().getAttributes();
+//         OAuth2AuthorizedClient client = authorizedClientService.loadAuthorizedClient(authentication.getAuthorizedClientRegistrationId(), authentication.getName());
+//         if(client!=null) {
+//             String userInfoEndpointUri = client.getClientRegistration()
+//                     .getProviderDetails()
+//                     .getUserInfoEndpoint()
+//                     .getUri();
+//             if (!StringUtils.isEmpty(userInfoEndpointUri)) {
+//                 RestTemplate restTemplate = new RestTemplate();
+//                 HttpHeaders headers = new HttpHeaders();
+//                 headers.add(HttpHeaders.AUTHORIZATION, "Bearer " + client.getAccessToken()
+//                         .getTokenValue());
+//                 HttpEntity<String> entity = new HttpEntity<String>("", headers);
+//
+//                 ResponseEntity<Map> response = restTemplate.exchange(userInfoEndpointUri, HttpMethod.GET, entity, Map.class);
+//                 return response.getBody();
+//             }
+//         }
      }
      return null;
  }

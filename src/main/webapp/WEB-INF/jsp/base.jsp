@@ -1,6 +1,6 @@
 
 <%@ page import="edu.mcw.scge.configuration.Access" %>
-<%@ page import="edu.mcw.scge.platform.datamodel.Person" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
@@ -41,7 +41,7 @@
 <body>
 <%
     Access access = new Access();
-    Person person = access.getUser(request.getSession());
+   // Person person = access.getUser(request.getSession());
 %>
 <div style="font-size:12px; color:white; background-color: black; width:100%;padding-left:15px;padding-top:4px; padding-bottom:2px;">
     <div style="text-align:right; color:white;padding-right:12px;">
@@ -108,8 +108,8 @@
 
 
                     </div>
-                    <small class="form-text text-dark" style="font-size: 11px;">Examples:&nbsp;<a class="text-dark" style="font-size: 11px;" href="/platform/data/search/results?searchTerm=Epithelium">Epithelium</a>, <a class="text-dark" href="/platform/data/search/results?searchTerm=CRISPR" style="font-size: 11px;" >CRISPR</a>,
-                        <a class="text-dark" style="font-size: 11px;" href="/platform/data/search/results?searchTerm=AAV" >AAV</a>, <a class="text-dark" style="font-size: 11px;" href="/platform/data/search/results?searchTerm=Ai9" >Ai9</a>
+                    <small class="form-text text-dark" style="font-size: 11px;">Examples:&nbsp;<a class="text-dark" style="font-size: 11px;" href="">Epithelium</a>, <a class="text-dark" href="" style="font-size: 11px;" >CRISPR</a>,
+                        <a class="text-dark" style="font-size: 11px;" href="" >AAV</a>, <a class="text-dark" style="font-size: 11px;" href="" >Ai9</a>
                     </small>
                 </form>
 
