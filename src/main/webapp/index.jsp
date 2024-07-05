@@ -6,6 +6,6 @@
 <%--<%--%>
 <%--    }else {--%>
 <%--%>--%>
-<% request.setAttribute("page", "WEB-INF/jsp/home");%>
-<%--<%response.sendRedirect("home");%>--%>
+<%--<% request.setAttribute("page", "WEB-INF/jsp/home");%>--%>
+<%response.sendRedirect("home");%>
 <%--<% } %>--%>

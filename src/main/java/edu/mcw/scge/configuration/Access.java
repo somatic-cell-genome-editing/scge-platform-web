@@ -20,34 +20,11 @@ public class Access {
         UserService us = new UserService();
         return us.getCurrentUser(session);
     }
-
-
     public boolean isAdmin(Person p) throws Exception{
-
-        if (p.getEmail().toLowerCase().equals("jdepons@yahoo.com")
-            || p.getEmail().toLowerCase().equals("jthota@mcw.edu")
-            || p.getEmail().toLowerCase().equals("mrdwinel@mcw.edu")
-            || p.getEmail().toLowerCase().equals("mjhoffman@mcw.edu")
-            || p.getEmail().toLowerCase().equals("ageurts@mcw.edu")
-            || p.getEmail().toLowerCase().equals("alemke@mcw.edu")
-            || p.getEmail().toLowerCase().equals("mgrzybowski@mcw.edu")
-            || p.getEmail().toLowerCase().equals("jrsmith@mcw.edu")
-            || p.getEmail().toLowerCase().equals("akwitek@mcw.edu")
-            || p.getEmail().toLowerCase().equals("mtutaj@mcw.edu")) {
-            return true;
-        }else {
-            return false;
-        }
+        return pdao.isAdmin(p);
     }
     public boolean isDeveloper(Person p) throws Exception{
-
-        if (p.getEmail().toLowerCase().equals("jdepons@yahoo.com")
-                || p.getEmail().toLowerCase().equals("jthota@mcw.edu")
-                || p.getEmail().toLowerCase().equals("mtutaj@mcw.edu")) {
-            return true;
-        }else {
-            return false;
-        }
+        return pdao.isDeveloper(p);
     }
     public boolean verifyUserExists( String principalName, String email) throws Exception {
 
