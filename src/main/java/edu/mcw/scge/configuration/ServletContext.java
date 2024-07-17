@@ -1,6 +1,5 @@
 package edu.mcw.scge.configuration;
 
-import org.apache.logging.log4j.Level;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

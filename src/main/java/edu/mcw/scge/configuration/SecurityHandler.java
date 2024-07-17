@@ -1,10 +1,8 @@
 package edu.mcw.scge.configuration;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.WebAttributes;
@@ -16,13 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.Set;
 
 /**
  * Created by jthota on 12/6/2019.
  */
 
-@Component
+//@Component
 public class SecurityHandler implements AuthenticationSuccessHandler {
 
 
@@ -61,7 +58,7 @@ public class SecurityHandler implements AuthenticationSuccessHandler {
         }
 
         if (isUser) {
-            return "/homepage.html";
+            return "/loginSuccessPage";
         } else if (isAdmin) {
             return "/console.html";
         } else {
