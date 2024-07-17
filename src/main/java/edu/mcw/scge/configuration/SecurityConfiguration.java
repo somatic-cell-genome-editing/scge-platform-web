@@ -29,13 +29,10 @@ import org.springframework.security.oauth2.client.web.AuthorizationRequestReposi
 import org.springframework.security.oauth2.client.web.HttpSessionOAuth2AuthorizationRequestRepository;
 
 
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 
@@ -95,9 +92,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                     .and()
                     .oauth2Login()
-                    .loginPage("/loginSuccessPage")
+                    .loginPage("/dashboard")
                     .permitAll()
-                    .defaultSuccessUrl("/loginSuccessPage", true)
+                    .defaultSuccessUrl("/dashboard", true)
                     .failureUrl("/loginFailure")
                     .clientRegistrationRepository(clientRegistrationRepository())
                     .authorizedClientService(authorizedClientService())
@@ -124,10 +121,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                     .and()
                     .oauth2Login()
-                    .loginPage("/loginSuccessPage")
+                    .loginPage("/dashboard")
                     .permitAll()
                     //    .successHandler(successHandler())
-                    .defaultSuccessUrl("/loginSuccessPage", true)
+                    .defaultSuccessUrl("/dashboard", true)
                     .failureUrl("/loginFailure")
                     .clientRegistrationRepository(clientRegistrationRepository())
                     .authorizedClientService(authorizedClientService())
@@ -192,21 +189,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return null;
     }
 
-    @Configuration
-    @EnableResourceServer
-    protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
-        @Override
-        public void configure(HttpSecurity http) throws Exception {
-            // @formatter:off
-            http.antMatcher("/me").authorizeRequests().anyRequest().authenticated();
-            // @formatter:on
-
-            /*   http
-                    .authorizeRequests()
-                    .antMatchers("/scge/**").authenticated()
-                    .antMatchers("/").permitAll();*/
-        }
-    }
+ //   @Configuration
+//    @EnableResourceServer
+//    protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
+//        @Override
+//        public void configure(HttpSecurity http) throws Exception {
+//            // @formatter:off
+//            http.antMatcher("/me").authorizeRequests().anyRequest().authenticated();
+//            // @formatter:on
+//
+//            /*   http
+//                    .authorizeRequests()
+//                    .antMatchers("/scge/**").authenticated()
+//                    .antMatchers("/").permitAll();*/
+//        }
+//    }
     @Bean(name = "filterMultipartResolver")
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
