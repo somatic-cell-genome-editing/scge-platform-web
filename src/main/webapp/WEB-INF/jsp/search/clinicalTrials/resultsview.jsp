@@ -1,11 +1,8 @@
 <%@ page import="org.elasticsearch.search.SearchHit" %>
 <%@ page import="org.elasticsearch.action.search.SearchResponse" %>
-<%@ page import="com.fasterxml.jackson.databind.ObjectMapper" %>
 <%@ page import="com.google.gson.Gson" %>
-<%@ page import="org.elasticsearch.search.aggregations.Aggregations" %>
 <%@ page import="org.elasticsearch.search.aggregations.bucket.terms.Terms" %>
-<%@ page import="java.util.stream.Collectors" %>
-<%@ page import="edu.mcw.scge.web.utils.Stamp" %>
+
 <%@ page import="java.util.*" %><%--
   Created by IntelliJ IDEA.
   User: jthota
