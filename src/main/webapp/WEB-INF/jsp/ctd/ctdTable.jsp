@@ -1,23 +1,23 @@
-<%@ page import="edu.mcw.scge.platform.datamodel.ctd.Section" %>
+<%@ page import="edu.mcw.scge.datamodel.ctd.Section" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
-<%@ page import="edu.mcw.scge.platform.dao.implementation.ctd.SectionDAO" %><%--
+<%@ page import="edu.mcw.scge.dao.implementation.ctd.SectionDAO" %><%--
   Created by IntelliJ IDEA.
   User: jthota
   Date: 6/26/2024
   Time: 1:12 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <style>
-    table tr th{
-        background-color: cadetblue;
+    table thead tr th{
         color:whitesmoke;
     }
 </style>
-<div class="jumbotron">
-<h1>Common Technical Document (CTD) requirements for Initial IND</h1>
+
+<div class="container">
+    <%@include file="application.jsp"%>
 </div>
+<h2>View/Upload Common Technical Document (CTD) requirements</h2>
 <%
     SectionDAO sectionDAO=new SectionDAO();
 %>
@@ -57,6 +57,7 @@
         List<Section> level2Sections=sectionDAO.getLevel2SectionsOfModule(module);
         List<Section> level3Sections=sectionDAO.getLevel3SectionsOfModule(module);
         List<Section> level4Sections=sectionDAO.getLevel4SectionsOfModule(module);
+
         String activeTab="";
         if(module==1){
             activeTab+="active";
@@ -71,10 +72,13 @@
     <table class="table table-sm " >
         <thead>
         <tr>
-            <th style="width: 5%">Module</th>
-            <th colspan="4" style="text-align: center;width: 10%">Section</th>
-            <th>Section_Name</th>
-            <th>Required for Initial IND submission <br>[<strong>Y</strong>(Yes)/<strong>N</strong>(No)/<strong>M</strong>(May Be)]</th>
+            <th style="width: 5%;background-color: cadetblue">Module</th>
+            <th colspan="4" style="text-align: center;width: 10%;background-color: cadetblue">Section</th>
+            <th style="background-color: cadetblue">Section_Name</th>
+            <th style="background-color: cadetblue">Required for Initial IND submission <br>[<strong>Y</strong>(Yes)/<strong>N</strong>(No)/<strong>M</strong>(May Be)]</th>
+            <th style="background-color: cadetblue">Documents_Uploaded</th>
+            <th style="background-color: cadetblue;text-align: center">Action</th>
+
         </tr>
         </thead>
     <tr>
@@ -85,10 +89,17 @@
         <td></td>
         <td></td>
         <td></td>
+        <td>0</td>
+        <td></td>
     </tr>
     <%
         for(Section section:sections){
+        //    int sectionCode=0;
+            String l1SectionCode =new String();
+            if(!section.getSectionCode().trim().isEmpty()) {
+                 l1SectionCode = section.getSectionCode().replaceAll("\\.", "_");
 
+            }
     %>
             <tr><td></td>
                 <td><%=section.getSectionCode()%></td>
@@ -101,9 +112,23 @@
                 %>
                     <%=section.getRequiredForInitialIND()%>
                     <%}%></td>
+                <td>0</td>
+                <td>
+                    <%if(!l1SectionCode.isEmpty()){
+                        String sectionCode=l1SectionCode;
+                    %>
+                    <%@include file="action.jsp"%>
+                    <%}%>
+                </td>
             </tr>
        <%for(Section l2:level2Sections){
-            if(l2.getParentId().equals(section.getSectionCode())){
+
+           if(l2.getParentId().equals(section.getSectionCode())){
+               String l2SectionCode=new String();
+               if(!l2.getSectionCode().trim().isEmpty()) {
+                    l2SectionCode = l2.getSectionCode().replaceAll("\\.", "_");
+
+               }
        %>
 
     <tr><td></td>
@@ -124,11 +149,20 @@
         %>
             <%=l2.getRequiredForInitialIND()%>
             <%}%></td>
+        <td>0</td>
+        <td> <%if(!l2SectionCode.isEmpty()){
+            String sectionCode=l2SectionCode;
+        %><%@include file="action.jsp"%><%}%></td>
     </tr>
     <%
         for(Section l3:level3Sections){
-            if(l3.getParentId().equals(l2.getSectionCode())){
 
+            if(l3.getParentId().equals(l2.getSectionCode())){
+                String l3SectionCode=new String();
+                if(!l3.getSectionCode().trim().isEmpty()){
+                     l3SectionCode=l3.getSectionCode().replaceAll("\\.","_");
+
+                }
 
     %>
     <tr><td></td>
@@ -148,11 +182,21 @@
         %>
             <%=l3.getRequiredForInitialIND()%>
             <%}%></td>
+        <td>0</td>
+        <td> <%if(!l3SectionCode.isEmpty()){
+        String sectionCode=l3SectionCode;
+        %><%@include file="action.jsp"%><%}%></td>
     </tr>
 
     <%
         for(Section l4:level4Sections){
+            String l4SectionCode=new String();
+
             if(l4.getParentId().equals(l3.getSectionCode())){
+                if(!l4.getSectionCode().trim().isEmpty()){
+                     l4SectionCode=l4.getSectionCode().replaceAll("\\.","_");
+
+                }
 
 
 
@@ -170,6 +214,10 @@
             <%=l4.getRequiredForInitialIND()%>
             <%}%>
         </td>
+        <td>0</td>
+        <td><%if(!l4SectionCode.isEmpty()){
+            String sectionCode=l4SectionCode;
+        %><%@include file="action.jsp"%><%}%></td>
     </tr>
        <%}     } }
 
@@ -183,5 +231,9 @@
     </div>
     <%}%>
 
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
 
 </div>

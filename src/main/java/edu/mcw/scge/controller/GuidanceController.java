@@ -1,8 +1,8 @@
 package edu.mcw.scge.controller;
 
 
-import edu.mcw.scge.platform.dao.implementation.ctd.SectionDAO;
-import edu.mcw.scge.platform.datamodel.ctd.Section;
+import edu.mcw.scge.dao.implementation.ctd.SectionDAO;
+import edu.mcw.scge.datamodel.ctd.Section;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value="/data/ind")
