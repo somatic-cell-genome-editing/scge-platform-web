@@ -14,9 +14,7 @@
     }
 </style>
 
-<div class="container">
-    <%@include file="application.jsp"%>
-</div>
+
 <h2>View/Upload Common Technical Document (CTD) requirements</h2>
 <%
     SectionDAO sectionDAO=new SectionDAO();
