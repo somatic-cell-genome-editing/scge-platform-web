@@ -36,15 +36,7 @@
         <button class="nav-link" id="module5-tab" data-toggle="tab" data-target="#module5" type="button" role="tab" aria-controls="module5" aria-selected="false">Module 5</button>
     </li>
 </ul>
-<%--<div class="tab-content" id="myTabContent">--%>
-<%--    <div class="tab-pane fade show active" id="module1" role="tabpanel" aria-labelledby="home-tab">MODULE1</div>--%>
-<%--    <div class="tab-pane fade" id="module2" role="tabpanel" aria-labelledby="profile-tab">MODULE2</div>--%>
-<%--    <div class="tab-pane fade" id="module3" role="tabpanel" aria-labelledby="contact-tab">MODULE3</div>--%>
-<%--    <div class="tab-pane fade" id="module4" role="tabpanel" aria-labelledby="contact-tab">MODULE4</div>--%>
 
-<%--    <div class="tab-pane fade" id="module5" role="tabpanel" aria-labelledby="contact-tab">MODULE5</div>--%>
-
-<%--</div>--%>
 <div class="tab-content" id="myTabContent">
 
 <%
@@ -94,6 +86,7 @@
         for(Section section:sections){
         //    int sectionCode=0;
             String l1SectionCode =new String();
+            String l1SectionName =section.getSectionName();
             if(!section.getSectionCode().trim().isEmpty()) {
                  l1SectionCode = section.getSectionCode().replaceAll("\\.", "_");
 
@@ -114,6 +107,7 @@
                 <td>
                     <%if(!l1SectionCode.isEmpty()){
                         String sectionCode=l1SectionCode;
+                        String sectionName=l1SectionName;
                     %>
                     <%@include file="action.jsp"%>
                     <%}%>
@@ -123,6 +117,7 @@
 
            if(l2.getParentId().equals(section.getSectionCode())){
                String l2SectionCode=new String();
+               String l2SectionName=l2.getSectionName();
                if(!l2.getSectionCode().trim().isEmpty()) {
                     l2SectionCode = l2.getSectionCode().replaceAll("\\.", "_");
 
@@ -150,6 +145,7 @@
         <td>0</td>
         <td> <%if(!l2SectionCode.isEmpty()){
             String sectionCode=l2SectionCode;
+            String sectionName=l2SectionName;
         %><%@include file="action.jsp"%><%}%></td>
     </tr>
     <%
@@ -157,6 +153,7 @@
 
             if(l3.getParentId().equals(l2.getSectionCode())){
                 String l3SectionCode=new String();
+                String l3SectionName=l3.getSectionName();
                 if(!l3.getSectionCode().trim().isEmpty()){
                      l3SectionCode=l3.getSectionCode().replaceAll("\\.","_");
 
@@ -183,13 +180,14 @@
         <td>0</td>
         <td> <%if(!l3SectionCode.isEmpty()){
         String sectionCode=l3SectionCode;
+        String sectionName=l3SectionName;
         %><%@include file="action.jsp"%><%}%></td>
     </tr>
 
     <%
         for(Section l4:level4Sections){
             String l4SectionCode=new String();
-
+            String l4SectionName=l4.getSectionName();
             if(l4.getParentId().equals(l3.getSectionCode())){
                 if(!l4.getSectionCode().trim().isEmpty()){
                      l4SectionCode=l4.getSectionCode().replaceAll("\\.","_");
@@ -216,6 +214,7 @@
         <td><%if(!l4SectionCode.isEmpty()){
 
            String sectionCode=l4SectionCode;
+           String sectionName=l4SectionName;
         %><%@include file="action.jsp"%><%}%></td>
     </tr>
        <%}     } }
