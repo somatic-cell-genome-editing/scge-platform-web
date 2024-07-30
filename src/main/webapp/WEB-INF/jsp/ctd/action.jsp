@@ -16,7 +16,7 @@
     </div>
     <div class="col-12 col-md-5">
 <%--        <form action="/platform/data/ind/upload">--%>
-        <button class="btn btn-success btn-sm responsive "   onclick="uploadDocument($(this),'<%=sectionCode.trim()%>')" >Upload </button>
+        <button class="btn btn-success btn-sm responsive"  id="btn<%=sectionCode.trim()%>" data-toggle="modal" data-target="#upload<%=sectionCode.trim()%>" >Upload </button>
 
     </div>
     <div class="col-12 col-md-3">
@@ -26,31 +26,8 @@
     </div>
 
 </div>
-    <div class="modal" id="uploadModal<%=sectionCode.trim()%>" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <h1>Section <%=sectionCode%></h1>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-
+    <div class="modal" id="upload<%=sectionCode.trim()%>" tabindex="-1">
+        <%@include file="loadDoc.jsp"%>
     </div>
+
 </div>
-<script>
-    function uploadDocument(_this, sectionId){
-        alert(sectionId)
-        console.log("SECTION ID:" +sectionId)
-        var id='#uploadModal'+sectionId
-        console.log("UPLOAD ID:"+ id)
-        $(id).toggle();
-    }
-</script>
