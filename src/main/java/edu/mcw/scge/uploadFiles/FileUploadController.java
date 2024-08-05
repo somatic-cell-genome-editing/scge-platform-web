@@ -65,7 +65,7 @@ public class FileUploadController {
     @GetMapping("/files/{filename:.+}")
     @ResponseBody
     public ResponseEntity<Resource> serveFile(@PathVariable(required = true) String filename) {
-        System.out.println("FILENAME:"+ filename);
+        System.out.println("FILENAME GET:"+ filename);
 
         Resource file = storageService.loadAsResource(filename);
 
@@ -76,7 +76,7 @@ public class FileUploadController {
                     "attachment; filename=\"" + file.getFilename() + "\"").body(file);
         }else {
             FileNameMap fileNameMap= URLConnection.getFileNameMap();
-            String mimeType=fileNameMap.getContentTypeFor(file.getFilename());
+            String mimeType=fileNameMap.getContentTypeFor(file.getFilename()); //not working for JSON files
             return ResponseEntity.ok()
                     .header(HttpHeaders.CONTENT_DISPOSITION,
                     "inline; filename=\"" + file.getFilename() + "\"")
@@ -84,7 +84,6 @@ public class FileUploadController {
                     .body(file);
         }
     }
-
     @PostMapping("/")
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes) {
