@@ -1,7 +1,9 @@
 <%@ page import="edu.mcw.scge.datamodel.ctd.Section" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
-<%@ page import="edu.mcw.scge.dao.implementation.ctd.SectionDAO" %><%--
+<%@ page import="edu.mcw.scge.dao.implementation.ctd.SectionDAO" %>
+<%@ page import="org.springframework.ui.Model" %>
+<%@ page import="java.util.HashMap" %><%--
   Created by IntelliJ IDEA.
   User: jthota
   Date: 6/26/2024
@@ -13,8 +15,25 @@
         color:whitesmoke;
     }
 </style>
+<div>
+  <%
+      Model model= (Model) request.getAttribute("model");
+      String message= "";
+              if(model.getAttribute("message")!=null)
+             message+= (String) model.getAttribute("message");
+              Map<String, String> fileLocationMap= new HashMap<>();
+              if(model.getAttribute("fileLocationMap")!=null)
+                     fileLocationMap.putAll ((Map<String, String>)model.getAttribute("fileLocationMap"));
+  %>
+    <%=message%>
+<ul>
+    <%
+        for(Map.Entry entry:fileLocationMap.entrySet()){%>
+    <li><a href="<%=entry.getValue()%>"><%=entry.getKey()%></a></li>
+        <%}%>
 
-
+</ul>
+</div>
 <h2>View/Upload Common Technical Document (CTD) requirements</h2>
 <%
     SectionDAO sectionDAO=new SectionDAO();
@@ -230,3 +249,5 @@
     <%}%>
 
 </div>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.min.js" type="text/javascript"></script>
+

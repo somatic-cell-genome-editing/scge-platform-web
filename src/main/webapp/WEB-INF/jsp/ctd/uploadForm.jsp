@@ -14,6 +14,7 @@
             <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+            <form method="POST" enctype="multipart/form-data" action="/platform/data/store/">
             <div class="row">
                 <div class="col-5">Document Title</div>
                 <div class="col">:&nbsp;<%=sectionName%></div>
@@ -33,21 +34,42 @@
             <div class="row">
                 <div class="col-5">Sponsor</div>
                 <div class="col-6">:&nbsp;XXXX</div>
-            </div><br>
-            <div class="form-floating">
-                <label for="floatingTextarea2">Comments</label>
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-
+            </div>
+            <div class="row">
+                <div class="col-5">Access Tier</div>
+                <div class="col-6"><select class="form-select" aria-label="Default select example">
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select></div>
             </div>
             <br>
-                <div class="form-group">
-                    <label for="exampleFormControlFile1">File input</label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                </div>
+            <div class="form-floating">
+                <label for="comments<%=sectionCode.trim()%>">Comments</label>
+                <textarea class="form-control" placeholder="Leave a comment here" id="comments<%=sectionCode.trim()%>" style="height: 100px"></textarea>
+
+            </div>
+
+            <br>
+            <div>
+
+                    <table>
+                        <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
+                        <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+                    </table>
+
+            </div>
+            </form>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
-            <button type="button" class="btn btn-primary">Upload</button>
+<%--            <button type="button" class="btn btn-primary" onclick="uploadFile('<%=module%>','<%=sectionCode.trim()%>','file<%=sectionCode.trim()%>')">Upload</button>--%>
+
+
+
+
+
         </div>
     </div>
 </div>

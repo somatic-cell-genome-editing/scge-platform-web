@@ -27,7 +27,7 @@
 
 </div>
     <div class="modal" id="upload<%=sectionCode.trim()%>" tabindex="-1">
-        <%@include file="loadDoc.jsp"%>
+        <%@include file="uploadForm.jsp"%>
     </div>
 
 </div>

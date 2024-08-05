@@ -91,14 +91,11 @@
         <button type="submit" class="btn btn-primary btn-sm">Submit</button>
         </div>
         <div class="col-3">
-            <button  class="btn btn-primary btn-sm"><a href="/platform/data/ind/ctdRequirements" style="color: whitesmoke">Upload Documents</a></button>
+            <button  class="btn btn-primary btn-sm"><a href="/platform/data/ind/initStorage" style="color: whitesmoke">Upload Documents</a></button>
 
         </div>
     </div>
    <br>
-<%--    <div class="form-group">--%>
-<%--        <label for="exampleFormControlFile1">File input</label>--%>
-<%--        <input type="file" class="form-control-file" id="exampleFormControlFile1">--%>
-<%--    </div>--%>
+
 </form>
 </div></div>
