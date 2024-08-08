@@ -73,7 +73,7 @@
                     </li>
                     <li class="nav-item">&nbsp;</li>
                     <li class="nav-item">
-                        <button class="btn btn-primary">Create Application</button>
+                        <button class="btn btn-primary"><a href="/platform/data/ind/application">Create Application</a></button>
                     </li>
 <%--                    <li class="nav-item">--%>
 <%--                        <a class="nav-link" href="#">--%>
