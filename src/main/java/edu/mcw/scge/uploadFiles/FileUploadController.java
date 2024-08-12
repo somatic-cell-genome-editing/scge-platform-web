@@ -11,7 +11,9 @@ import java.util.stream.Collectors;
 
 
 import com.google.gson.Gson;
+import edu.mcw.scge.uploadFiles.storage.FileSystemStorageService;
 import edu.mcw.scge.uploadFiles.storage.StorageFileNotFoundException;
+import edu.mcw.scge.uploadFiles.storage.StorageProperties;
 import edu.mcw.scge.uploadFiles.storage.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -27,20 +29,44 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
 @RequestMapping(value="/data/store")
 public class FileUploadController {
 
-    private final StorageService storageService;
-
+    private  StorageService storageService;
     @Autowired
-    public FileUploadController(StorageService storageService) {
-        this.storageService = storageService;
+    private StorageProperties storageProperties;
+    @ModelAttribute("storageProperties")
+    @Autowired
+    public void setStorageProperties(StorageProperties storageProperties) {
+        System.out.println("MODEL ATTRIBUTE AUTOWIRED:"+ storageProperties.getSponsorName());
+        this.storageProperties.setApplicationId(storageProperties.getApplicationId());
+        this.storageProperties.setSponsorName(storageProperties.getSponsorName());
+        this.storageProperties.setLocation("C:/"+storageProperties.getApplicationId()+"_"+storageProperties.getSponsorName());
+        this.storageService=new FileSystemStorageService(this.storageProperties);
+    }
+//    @Autowired
+//    public FileUploadController(StorageService storageService) {
+//        this.storageService=new FileSystemStorageService(storageProperties);
+//    }
+
+//
+    @RequestMapping(value="/application")
+    public String getUploadForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
+        req.setAttribute("storageProperties", storageProperties);
+        req.setAttribute("page", "/WEB-INF/jsp/ctd/application");
+        req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
+
+        return null;
     }
 
     @GetMapping("/")
     public String listUploadedFiles(Model model,  RedirectAttributes redirectAttributes) throws IOException {
-
+        setStorageProperties((StorageProperties) model.getAttribute("storageProperties"));
+        redirectAttributes.addFlashAttribute("storageProperties", storageProperties);
         model.addAttribute("files", storageService.loadAll().map(
                         path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
                                 "serveFile", path.getFileName().toString()).build().toUri().toString())
@@ -66,6 +92,7 @@ public class FileUploadController {
     @ResponseBody
     public ResponseEntity<Resource> serveFile(@PathVariable(required = true) String filename) {
         System.out.println("FILENAME GET:"+ filename);
+     //  model.addAttribute("storageProperties", storageProperties);
 
         Resource file = storageService.loadAsResource(filename);
 
@@ -84,10 +111,29 @@ public class FileUploadController {
                     .body(file);
         }
     }
-    @PostMapping("/")
+    @PostMapping("/{module}")
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
-                                   RedirectAttributes redirectAttributes) {
-        storageService.store(file);
+                                   RedirectAttributes redirectAttributes, @PathVariable("module") int module, Model model,@ModelAttribute("storageProperties") StorageProperties storageProperties ) {
+        System.out.println("MODULE:"+ module);
+        model.addAttribute("storageProperties", storageProperties);
+        setStorageProperties(storageProperties);
+        storageService.store(file, module);
+        System.out.println("STORAGE PROPS:"+ storageProperties.getSponsorName());
+
+        redirectAttributes.addFlashAttribute("message",
+                "You successfully uploaded " + file.getOriginalFilename() + "!");
+
+        return "redirect:/data/store/";
+    }
+    @PostMapping("/")
+    public String fileUpload(@RequestParam("file") MultipartFile file, @RequestParam("module") int module,
+                                   RedirectAttributes redirectAttributes, Model model ) {
+        model.addAttribute("storageProperties", storageProperties);
+        setStorageProperties(storageProperties);
+        storageService.store(file, module);
+        System.out.println("STORAGE PROPS:"+ storageProperties.getSponsorName());
+
+        redirectAttributes.addFlashAttribute("storageProperties", storageProperties);
         redirectAttributes.addFlashAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
 
@@ -98,5 +144,13 @@ public class FileUploadController {
     public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {
         return ResponseEntity.notFound().build();
     }
+//    public void initStorageProperties(String appId, String sponsorName){
+//        StorageProperties properties=new StorageProperties();
+//        properties.setApplicationId(appId);
+//        properties.setSponsorName(sponsorName);
+//        properties.setLocation("C:/"+appId+"_"+sponsorName);
+//
+//    }
+
 
 }

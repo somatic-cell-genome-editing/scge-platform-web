@@ -1,9 +1,10 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
-  Created by IntelliJ IDEA.
-  User: jthota
-  Date: 7/29/2024
-  Time: 11:58 AM
-  To change this template use File | Settings | File Templates.
+ Created by IntelliJ IDEA.
+ User: jthota
+ Date: 7/29/2024
+ Time: 11:58 AM
+ To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -14,7 +15,12 @@
             <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form method="POST" enctype="multipart/form-data" action="/platform/data/store/">
+            <form:form method="post" enctype="multipart/form-data" action="/platform/data/store/" modelAttribute="storageProperties" >
+                <input type="hidden" value="<%=sectionCode%>" name="sectionCode"/>
+                <form:input type="text"  path="applicationId" />
+                <form:input type="text"  path="sponsorName" />
+                <input type="text" name="module" value="<%=module%>"/>
+
             <div class="row">
                 <div class="col-5">Document Title</div>
                 <div class="col">:&nbsp;<%=sectionName%></div>
@@ -29,11 +35,11 @@
             </div>
             <div class="row">
                 <div class="col-5">Application ID</div>
-                <div class="col-6">:&nbsp;12345</div>
+                <div class="col-6">:&nbsp;${storageProperties.applicationId}</div>
             </div>
             <div class="row">
                 <div class="col-5">Sponsor</div>
-                <div class="col-6">:&nbsp;XXXX</div>
+                <div class="col-6">:&nbsp;${storageProperties.sponsorName}</div>
             </div>
             <div class="row">
                 <div class="col-5">Access Tier</div>
@@ -60,7 +66,7 @@
                     </table>
 
             </div>
-            </form>
+            </form:form>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>

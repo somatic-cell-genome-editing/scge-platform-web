@@ -6,14 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.util.FileSystemUtils;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 @Service
@@ -21,22 +28,25 @@ public class FileSystemStorageService  implements StorageService{
     private final Path rootLocation;
 
     @Autowired
-    public FileSystemStorageService(StorageProperties properties) {
+    public FileSystemStorageService(StorageProperties storageProperties) {
 
-        if(properties.getLocation().trim().length() == 0){
-            throw new StorageException("File upload location can not be Empty.");
-        }
+            if (storageProperties.getLocation() != null && storageProperties.getLocation().trim().length() == 0) {
+                throw new StorageException("File upload location can not be Empty.");
+            }
 
-        this.rootLocation = Paths.get(properties.getLocation());
+            this.rootLocation = Paths.get(storageProperties.getLocation());
+          init();
+
     }
 
     @Override
-    public void store(MultipartFile file) {
+    public void store(MultipartFile file, int module) {
         try {
             if (file.isEmpty()) {
                 throw new StorageException("Failed to store empty file " + file.getOriginalFilename());
             }
-            Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()));
+            Path moduleLocation=Paths.get("C:/"+this.rootLocation.getFileName()+ "/m"+module);
+            Files.copy(file.getInputStream(), moduleLocation.resolve(file.getOriginalFilename()));
         } catch (IOException e) {
             throw new StorageException("Failed to store file " + file.getOriginalFilename(), e);
         }
@@ -84,9 +94,21 @@ public class FileSystemStorageService  implements StorageService{
     @Override
     public void init() {
         try {
-            Files.createDirectory(rootLocation);
+            boolean existsRootLocation=Files.exists(rootLocation);
+            System.out.println("Exists root location:" +existsRootLocation);
+            if(!existsRootLocation) {
+                Files.createDirectory(rootLocation);
+                for (int module : Arrays.asList(1, 2, 3, 4, 5)) {
+                    Path modulePath = Paths.get("C:/" + rootLocation.getFileName() + "/m" + module);
+                    Files.createDirectory(modulePath);
+                  //  System.out.println("MODULE PATH:" + modulePath);
+                }
+            }
+
+
         } catch (IOException e) {
             throw new StorageException("Could not initialize storage", e);
         }
     }
+
 }

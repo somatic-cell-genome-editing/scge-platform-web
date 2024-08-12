@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: jthota
@@ -11,11 +12,11 @@
         <h2>New IND Application</h2>
     </div>
     <div class="card-body">
-<form>
+    <form:form action="/platform/data/ind/ctdRequirements" method="post" modelAttribute="storageProperties">
     <div class="row">
         <div class="form-group col-md-6">
             <label for="applicationId">Application ID</label>
-            <input type="text" class="form-control" id="applicationId" placeholder="Application ID" disabled>
+            <form:input type="text" class="form-control" id="applicationId" name="applicationId"  placeholder="Application ID" path="applicationId"  />
         </div>
         <div class="form-group col-md-6">
             <label for="applicationType">Application Type</label>
@@ -25,8 +26,8 @@
 
         <div class="row">
             <div class="form-group col-md-6">
-                <label for="sponsor_name">Sponsor Name</label>
-                <input type="password" class="form-control" id="sponsor_name" placeholder="Sponsor Name">
+                <label for="sponsorName">Sponsor Name</label>
+                <form:input type="text" class="form-control" id="sponsorName" name="sponsorName"  placeholder="Sponsor Name" path="sponsorName"/>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Email</label>
@@ -91,11 +92,12 @@
         <button type="submit" class="btn btn-primary btn-sm">Submit</button>
         </div>
         <div class="col-3">
-            <button  class="btn btn-primary btn-sm"><a href="/platform/data/ind/initStorage" style="color: whitesmoke">Upload Documents</a></button>
+<%--            <button  class="btn btn-primary btn-sm"><a href="/platform/data/ind/initStorage" style="color: whitesmoke">Upload Documents</a></button>--%>
+            <button  class="btn btn-primary btn-sm" type="submit">Upload Documents</button>
 
         </div>
     </div>
    <br>
 
-</form>
+</form:form>
 </div></div>
