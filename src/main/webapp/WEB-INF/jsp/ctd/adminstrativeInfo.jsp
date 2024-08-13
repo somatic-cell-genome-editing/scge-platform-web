@@ -12,7 +12,7 @@
         <h2>New IND Application</h2>
     </div>
     <div class="card-body">
-    <form:form action="/platform/data/ind/ctdRequirements" method="post" modelAttribute="storageProperties">
+    <form:form action="/platform/data/store/ctdRequirements" method="post" modelAttribute="storageProperties">
     <div class="row">
         <div class="form-group col-md-6">
             <label for="applicationId">Application ID</label>

@@ -5,12 +5,18 @@ import java.net.FileNameMap;
 import java.net.URLConnection;
 
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 
 import com.google.gson.Gson;
+import edu.mcw.scge.configuration.UserService;
+import edu.mcw.scge.dao.implementation.ctd.SectionDAO;
+import edu.mcw.scge.datamodel.Person;
+import edu.mcw.scge.datamodel.ctd.Section;
 import edu.mcw.scge.uploadFiles.storage.FileSystemStorageService;
 import edu.mcw.scge.uploadFiles.storage.StorageFileNotFoundException;
 import edu.mcw.scge.uploadFiles.storage.StorageProperties;
@@ -39,6 +45,9 @@ public class FileUploadController {
     private  StorageService storageService;
     @Autowired
     private StorageProperties storageProperties;
+
+    @Autowired
+    private UserService userService;
     @ModelAttribute("storageProperties")
     @Autowired
     public void setStorageProperties(StorageProperties storageProperties) {
@@ -51,44 +60,62 @@ public class FileUploadController {
     }
     @RequestMapping(value="/application")
     public String getUploadForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
+        Person user=userService.getCurrentUser(req.getSession());
+        System.out.println("USER:"+ user.getName());
         req.setAttribute("storageProperties", storageProperties);
         req.setAttribute("page", "/WEB-INF/jsp/ctd/application");
         req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
 
         return null;
     }
+    @RequestMapping(value="/ctdRequirements")
+    public String getCTDRequirements(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception {
+        // initStorageSystem();
+        SectionDAO sectionDAO=new SectionDAO();
+        Map<Integer, List<Section>> modules=new HashMap<>();
+        for(int module: Arrays.asList(1,2,3,4,5)) {
+            List<Section> sections = sectionDAO.getTopLevelSectionsOfModule(module);
+            modules.put(module, sections);
+        }
+        //  model.addAttribute("storageProperties", storageProperties);
+        req.setAttribute("model", model);
+        req.setAttribute("storageProperties", model.getAttribute("storageProperties"));
+        req.setAttribute("modules", modules);
+        req.setAttribute("page", "/WEB-INF/jsp/ctd/ctdTable");
+        req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
 
+        return null;
+    }
     @GetMapping("/")
     public String listUploadedFiles(Model model,  RedirectAttributes redirectAttributes) throws IOException {
         setStorageProperties((StorageProperties) model.getAttribute("storageProperties"));
         redirectAttributes.addFlashAttribute("storageProperties", storageProperties);
         model.addAttribute("files", storageService.loadAll().map(
                         path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
-                                "serveFile", path.getFileName().toString()).build().toUri().toString())
+                                "serveFile", storageProperties.getApplicationId(), storageProperties.getSponsorName(),storageProperties.getModule(),path.getFileName().toString()).build().toUri().toString())
                 .collect(Collectors.toList()));
         Map<String, String> fileLocationMap=new HashMap<>();
 
         for(Path path:(Iterable<Path>)()->storageService.loadAll().iterator()){
             fileLocationMap.put(path.getFileName().toString(), MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
-                    "serveFile", path.getFileName().toString()).build().toUri().toString()) ;
+                    "serveFile", storageProperties.getApplicationId(), storageProperties.getSponsorName(), storageProperties.getModule(),path.getFileName().toString()).build().toUri().toString()) ;
         }
         model.addAttribute("fileLocationMap", fileLocationMap);
         redirectAttributes.addFlashAttribute("fileLocationMap", fileLocationMap);
         redirectAttributes.addFlashAttribute("message", model.getAttribute("message"));
-//        Gson gson=new Gson();
-//        System.out.println("FILE LOCATION MAP:"+gson.toJson(fileLocationMap));
-//        System.out.println("Redirect attributes:"+model.getAttribute("message"));
-        return "redirect:/data/ind/ctdRequirements";
+        return "redirect:/data/store/ctdRequirements";
       //  return "uploadForm";
 
     }
 
-    @GetMapping("/files/{filename:.+}")
+    @GetMapping("/files/{applicationId}/{sponsorName}/{module}/{filename:.+}/")
     @ResponseBody
-    public ResponseEntity<Resource> serveFile(@PathVariable(required = true) String filename) {
+    public ResponseEntity<Resource> serveFile(@PathVariable(required = true) String applicationId, @PathVariable(required = true) String sponsorName,@PathVariable(required = true) int module,@PathVariable(required = true) String filename) {
         System.out.println("FILENAME GET:"+ filename);
-     //  model.addAttribute("storageProperties", storageProperties);
-
+        storageProperties.setSponsorName(sponsorName);
+        storageProperties.setApplicationId(applicationId);
+        storageProperties.setModule(module);
+        setStorageProperties(storageProperties);
         Resource file = storageService.loadAsResource(filename);
 
         if (file == null)
@@ -107,11 +134,11 @@ public class FileUploadController {
         }
     }
     @PostMapping("/")
-    public String fileUpload(@RequestParam("file") MultipartFile file, @RequestParam("module") int module,
+    public String fileUpload(@RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes, Model model ) {
         model.addAttribute("storageProperties", storageProperties);
         setStorageProperties(storageProperties);
-        storageService.store(file, module);
+        storageService.store(file);
         redirectAttributes.addFlashAttribute("storageProperties", storageProperties);
         redirectAttributes.addFlashAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
