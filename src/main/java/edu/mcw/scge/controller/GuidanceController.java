@@ -5,11 +5,14 @@ import edu.mcw.scge.dao.implementation.ctd.SectionDAO;
 import edu.mcw.scge.datamodel.ctd.Section;
 import edu.mcw.scge.uploadFiles.storage.FileSystemStorageService;
 import edu.mcw.scge.uploadFiles.storage.StorageProperties;
+import edu.mcw.scge.uploadFiles.storage.StorageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +23,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping(value="/data/ind")
-public class GuidanceController {
+public class GuidanceController{
     @RequestMapping(value="/forms")
     public String getINDForms(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
@@ -36,34 +39,5 @@ public class GuidanceController {
         req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
 
         return null;
-    }
-    @RequestMapping(value="/initStorage")
-    public String initStorage(HttpServletRequest req, HttpServletResponse res, Model model,
-                                     @PathVariable(required = false) String category, @RequestParam(required = false) String searchTerm) throws Exception {
-        initStorageSystem();
-        return "redirect:/data/ind/ctdRequirements";
-    }
-    @RequestMapping(value="/ctdRequirements")
-    public String getCTDRequirements(HttpServletRequest req, HttpServletResponse res, Model model,
-                                  @PathVariable(required = false) String category, @RequestParam(required = false) String searchTerm) throws Exception {
-      // initStorageSystem();
-        SectionDAO sectionDAO=new SectionDAO();
-        Map<Integer, List<Section>> modules=new HashMap<>();
-        for(int module: Arrays.asList(1,2,3,4,5)) {
-            List<Section> sections = sectionDAO.getTopLevelSectionsOfModule(module);
-            modules.put(module, sections);
-        }
-        req.setAttribute("model", model);
-        req.setAttribute("modules", modules);
-        req.setAttribute("page", "/WEB-INF/jsp/ctd/ctdTable");
-        req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
-
-        return null;
-    }
-    public void initStorageSystem(){
-        StorageProperties properties=new StorageProperties();
-        FileSystemStorageService storageService=new FileSystemStorageService(properties);
-        storageService.deleteAll();
-        storageService.init();
     }
 }
