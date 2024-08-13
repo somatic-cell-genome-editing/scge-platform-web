@@ -8,7 +8,7 @@ import java.nio.file.Path;
 import java.util.stream.Stream;
 
 public interface StorageService {
-    void init();
+    void init(String applicationId);
 
     void store(MultipartFile file, int module);
 
@@ -19,4 +19,5 @@ public interface StorageService {
     Resource loadAsResource(String filename);
 
     void deleteAll();
+
 }

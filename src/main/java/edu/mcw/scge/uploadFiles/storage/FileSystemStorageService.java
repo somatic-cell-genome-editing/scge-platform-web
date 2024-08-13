@@ -6,15 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 import org.springframework.util.FileSystemUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
@@ -33,12 +27,14 @@ public class FileSystemStorageService  implements StorageService{
             if (storageProperties.getLocation() != null && storageProperties.getLocation().trim().length() == 0) {
                 throw new StorageException("File upload location can not be Empty.");
             }
+            String rootLocation=storageProperties.getLocation();
+            if(!storageProperties.getApplicationId().isEmpty() && !storageProperties.getSponsorName().isEmpty())
+            rootLocation+="/"+storageProperties.getApplicationId()+"_"+storageProperties.getSponsorName();
+            this.rootLocation = Paths.get(rootLocation);
 
-            this.rootLocation = Paths.get(storageProperties.getLocation()+"/"+storageProperties.getApplicationId()+"_"+storageProperties.getSponsorName());
-          init();
+          init(storageProperties.getApplicationId());
 
     }
-
     @Override
     public void store(MultipartFile file, int module) {
         try {
@@ -92,17 +88,16 @@ public class FileSystemStorageService  implements StorageService{
     }
 
     @Override
-    public void init() {
+    public void init(String applicationId) {
         try {
             boolean existsRootLocation=Files.exists(rootLocation);
-            System.out.println("Exists root location:" +existsRootLocation);
             if(!existsRootLocation) {
                 Files.createDirectory(rootLocation);
+                if(applicationId!=null && !applicationId.equals(""))
                 for (int module : Arrays.asList(1, 2, 3, 4, 5)) {
                     System.out.println("LOCATION:"+ rootLocation.toString() + "/m" + module);
                     Path modulePath = Paths.get(rootLocation.toString() + "/m" + module);
                     Files.createDirectory(modulePath);
-                  //  System.out.println("MODULE PATH:" + modulePath);
                 }
             }
 
