@@ -3,14 +3,14 @@ package edu.mcw.scge.uploadFiles.storage;
 
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+@Configuration("storageProperties")
 public class StorageProperties {
     /**
      * Folder location for storing files
      */
     private String location ="C:/upload-dir";
-    private String applicationId="1234";
-    private String sponsorName="jthota";
+    private String applicationId="";
+    private String sponsorName="";
     public int module;
 
     public int getModule() {

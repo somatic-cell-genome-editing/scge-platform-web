@@ -34,7 +34,7 @@ public class FileSystemStorageService  implements StorageService{
                 throw new StorageException("File upload location can not be Empty.");
             }
 
-            this.rootLocation = Paths.get(storageProperties.getLocation());
+            this.rootLocation = Paths.get(storageProperties.getLocation()+"/"+storageProperties.getApplicationId()+"_"+storageProperties.getSponsorName());
           init();
 
     }
@@ -45,7 +45,7 @@ public class FileSystemStorageService  implements StorageService{
             if (file.isEmpty()) {
                 throw new StorageException("Failed to store empty file " + file.getOriginalFilename());
             }
-            Path moduleLocation=Paths.get("C:/"+this.rootLocation.getFileName()+ "/m"+module);
+            Path moduleLocation=Paths.get(this.rootLocation+ "/m"+module);
             Files.copy(file.getInputStream(), moduleLocation.resolve(file.getOriginalFilename()));
         } catch (IOException e) {
             throw new StorageException("Failed to store file " + file.getOriginalFilename(), e);
@@ -99,7 +99,8 @@ public class FileSystemStorageService  implements StorageService{
             if(!existsRootLocation) {
                 Files.createDirectory(rootLocation);
                 for (int module : Arrays.asList(1, 2, 3, 4, 5)) {
-                    Path modulePath = Paths.get("C:/" + rootLocation.getFileName() + "/m" + module);
+                    System.out.println("LOCATION:"+ rootLocation.toString() + "/m" + module);
+                    Path modulePath = Paths.get(rootLocation.toString() + "/m" + module);
                     Files.createDirectory(modulePath);
                   //  System.out.println("MODULE PATH:" + modulePath);
                 }

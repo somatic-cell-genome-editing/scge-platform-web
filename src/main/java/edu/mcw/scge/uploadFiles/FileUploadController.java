@@ -42,18 +42,13 @@ public class FileUploadController {
     @ModelAttribute("storageProperties")
     @Autowired
     public void setStorageProperties(StorageProperties storageProperties) {
-        System.out.println("MODEL ATTRIBUTE AUTOWIRED:"+ storageProperties.getSponsorName());
-        this.storageProperties.setApplicationId(storageProperties.getApplicationId());
-        this.storageProperties.setSponsorName(storageProperties.getSponsorName());
-        this.storageProperties.setLocation("C:/"+storageProperties.getApplicationId()+"_"+storageProperties.getSponsorName());
+        this.storageProperties=storageProperties;
         this.storageService=new FileSystemStorageService(this.storageProperties);
     }
-//    @Autowired
-//    public FileUploadController(StorageService storageService) {
-//        this.storageService=new FileSystemStorageService(storageProperties);
-//    }
-
-//
+    @Autowired
+    public FileUploadController(StorageService storageService) {
+        this.storageService=storageService;
+    }
     @RequestMapping(value="/application")
     public String getUploadForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
         req.setAttribute("storageProperties", storageProperties);
@@ -80,9 +75,9 @@ public class FileUploadController {
         model.addAttribute("fileLocationMap", fileLocationMap);
         redirectAttributes.addFlashAttribute("fileLocationMap", fileLocationMap);
         redirectAttributes.addFlashAttribute("message", model.getAttribute("message"));
-        Gson gson=new Gson();
-        System.out.println("FILE LOCATION MAP:"+gson.toJson(fileLocationMap));
-        System.out.println("Redirect attributes:"+model.getAttribute("message"));
+//        Gson gson=new Gson();
+//        System.out.println("FILE LOCATION MAP:"+gson.toJson(fileLocationMap));
+//        System.out.println("Redirect attributes:"+model.getAttribute("message"));
         return "redirect:/data/ind/ctdRequirements";
       //  return "uploadForm";
 
@@ -111,28 +106,12 @@ public class FileUploadController {
                     .body(file);
         }
     }
-    @PostMapping("/{module}")
-    public String handleFileUpload(@RequestParam("file") MultipartFile file,
-                                   RedirectAttributes redirectAttributes, @PathVariable("module") int module, Model model,@ModelAttribute("storageProperties") StorageProperties storageProperties ) {
-        System.out.println("MODULE:"+ module);
-        model.addAttribute("storageProperties", storageProperties);
-        setStorageProperties(storageProperties);
-        storageService.store(file, module);
-        System.out.println("STORAGE PROPS:"+ storageProperties.getSponsorName());
-
-        redirectAttributes.addFlashAttribute("message",
-                "You successfully uploaded " + file.getOriginalFilename() + "!");
-
-        return "redirect:/data/store/";
-    }
     @PostMapping("/")
     public String fileUpload(@RequestParam("file") MultipartFile file, @RequestParam("module") int module,
                                    RedirectAttributes redirectAttributes, Model model ) {
         model.addAttribute("storageProperties", storageProperties);
         setStorageProperties(storageProperties);
         storageService.store(file, module);
-        System.out.println("STORAGE PROPS:"+ storageProperties.getSponsorName());
-
         redirectAttributes.addFlashAttribute("storageProperties", storageProperties);
         redirectAttributes.addFlashAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
@@ -144,13 +123,5 @@ public class FileUploadController {
     public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {
         return ResponseEntity.notFound().build();
     }
-//    public void initStorageProperties(String appId, String sponsorName){
-//        StorageProperties properties=new StorageProperties();
-//        properties.setApplicationId(appId);
-//        properties.setSponsorName(sponsorName);
-//        properties.setLocation("C:/"+appId+"_"+sponsorName);
-//
-//    }
-
 
 }
