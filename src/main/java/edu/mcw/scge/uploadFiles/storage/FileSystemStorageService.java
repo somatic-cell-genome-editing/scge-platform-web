@@ -28,7 +28,7 @@ public class FileSystemStorageService  implements StorageService{
                 throw new StorageException("File upload location can not be Empty.");
             }
             String rootLocation=storageProperties.getLocation();
-            if(!storageProperties.getApplicationId().isEmpty() && !storageProperties.getSponsorName().isEmpty())
+            if(storageProperties.getApplicationId()>0 && !storageProperties.getSponsorName().isEmpty())
             rootLocation+="/"+storageProperties.getApplicationId()+"_"+storageProperties.getSponsorName();
             if(storageProperties.getModule()>0){
                 rootLocation+="/m"+storageProperties.getModule();
@@ -39,12 +39,12 @@ public class FileSystemStorageService  implements StorageService{
 
     }
     @Override
-    public void store(MultipartFile file) {
+    public void store(MultipartFile file, String sectionCode) {
         try {
             if (file.isEmpty()) {
                 throw new StorageException("Failed to store empty file " + file.getOriginalFilename());
             }
-            Files.copy(file.getInputStream(), rootLocation.resolve(file.getOriginalFilename()));
+            Files.copy(file.getInputStream(), rootLocation.resolve(sectionCode.replaceAll("\\.", "_")+"_"+file.getOriginalFilename()));
         } catch (IOException e) {
             throw new StorageException("Failed to store file " + file.getOriginalFilename(), e);
         }
@@ -69,7 +69,7 @@ public class FileSystemStorageService  implements StorageService{
 
     @Override
     public Resource loadAsResource(String filename) {
-        System.out.println("Storage location:" +this.rootLocation +"\nFILE NAME:"+ filename);
+        System.out.println("Storage location:" +this.rootLocation);
         try {
             Path file = load(filename);
             Resource resource = new UrlResource(file.toUri());
@@ -91,12 +91,12 @@ public class FileSystemStorageService  implements StorageService{
     }
 
     @Override
-    public void init(String applicationId) {
+    public void init(int applicationId) {
         try {
             boolean existsRootLocation=Files.exists(rootLocation);
             if(!existsRootLocation) {
                 Files.createDirectory(rootLocation);
-                if(applicationId!=null && !applicationId.equals(""))
+                if(applicationId!=0 )
                 for (int module : Arrays.asList(1, 2, 3, 4, 5)) {
                     System.out.println("LOCATION:"+ rootLocation.toString() + "/m" + module);
                     Path modulePath = Paths.get(rootLocation.toString() + "/m" + module);

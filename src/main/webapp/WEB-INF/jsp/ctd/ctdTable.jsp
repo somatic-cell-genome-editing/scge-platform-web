@@ -29,7 +29,7 @@
 <ul>
     <%
         for(Map.Entry entry:fileLocationMap.entrySet()){%>
-    <li><a href="<%=entry.getValue()%>"><%=entry.getKey()%></a></li>
+    <li><a href="<%=entry.getValue()%>" target="_blank"><%=entry.getKey()%></a></li>
         <%}%>
 
 </ul>

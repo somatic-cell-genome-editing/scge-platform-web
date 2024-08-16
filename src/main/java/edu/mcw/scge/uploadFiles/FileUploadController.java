@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 import com.google.gson.Gson;
 import edu.mcw.scge.configuration.UserService;
 import edu.mcw.scge.dao.implementation.ctd.SectionDAO;
+import edu.mcw.scge.datamodel.Application;
 import edu.mcw.scge.datamodel.Person;
 import edu.mcw.scge.datamodel.ctd.Section;
 import edu.mcw.scge.uploadFiles.storage.FileSystemStorageService;
@@ -46,8 +47,7 @@ public class FileUploadController {
     @Autowired
     private StorageProperties storageProperties;
 
-    @Autowired
-    private UserService userService;
+
     @ModelAttribute("storageProperties")
     @Autowired
     public void setStorageProperties(StorageProperties storageProperties) {
@@ -58,19 +58,36 @@ public class FileUploadController {
     public FileUploadController(StorageService storageService) {
         this.storageService=storageService;
     }
-    @RequestMapping(value="/application")
-    public String getUploadForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
-        Person user=userService.getCurrentUser(req.getSession());
-        System.out.println("USER:"+ user.getName());
+    @GetMapping(value="/application")
+    public String getNewApplication(HttpServletRequest req, HttpServletResponse res) throws Exception {
         req.setAttribute("storageProperties", storageProperties);
         req.setAttribute("page", "/WEB-INF/jsp/ctd/application");
         req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
 
         return null;
     }
+    @GetMapping(value="/application/{applicationId}")
+    public String getApplicationById(HttpServletRequest req, HttpServletResponse res) throws Exception {
+        req.setAttribute("storageProperties", storageProperties);
+        req.setAttribute("page", "/WEB-INF/jsp/ctd/application");
+        req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
+
+        return null;
+    }
+    @PostMapping(value="/application")
+    public String createApplication(RedirectAttributes redirectAttributes, Model model) throws Exception {
+        setStorageProperties((StorageProperties) model.getAttribute("storageProperties"));
+      System.out.println("ApplicationId:"+ storageProperties.getApplicationId()+"\tSponsor:"+ storageProperties.getSponsorName());
+      Application application=new Application();
+        application.setApplicationId(storageProperties.getApplicationId());
+        System.out.println("APPLCATION ID:"+ application.getApplicationId());
+      redirectAttributes.addFlashAttribute("storageProperties", model.getAttribute("storageProperties"));
+        return "redirect:/data/store/ctdRequirements";
+
+    }
     @RequestMapping(value="/ctdRequirements")
     public String getCTDRequirements(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception {
-        // initStorageSystem();
+
         SectionDAO sectionDAO=new SectionDAO();
         Map<Integer, List<Section>> modules=new HashMap<>();
         for(int module: Arrays.asList(1,2,3,4,5)) {
@@ -110,7 +127,7 @@ public class FileUploadController {
 
     @GetMapping("/files/{applicationId}/{sponsorName}/{module}/{filename:.+}/")
     @ResponseBody
-    public ResponseEntity<Resource> serveFile(@PathVariable(required = true) String applicationId, @PathVariable(required = true) String sponsorName,@PathVariable(required = true) int module,@PathVariable(required = true) String filename) {
+    public ResponseEntity<Resource> serveFile(@PathVariable(required = true) int applicationId, @PathVariable(required = true) String sponsorName,@PathVariable(required = true) int module,@PathVariable(required = true) String filename) {
         System.out.println("FILENAME GET:"+ filename);
         storageProperties.setSponsorName(sponsorName);
         storageProperties.setApplicationId(applicationId);
@@ -135,10 +152,10 @@ public class FileUploadController {
     }
     @PostMapping("/")
     public String fileUpload(@RequestParam("file") MultipartFile file,
-                                   RedirectAttributes redirectAttributes, Model model ) {
+                                   RedirectAttributes redirectAttributes, Model model, @RequestParam("sectionCode") String sectionCode ) {
         model.addAttribute("storageProperties", storageProperties);
         setStorageProperties(storageProperties);
-        storageService.store(file);
+        storageService.store(file, sectionCode);
         redirectAttributes.addFlashAttribute("storageProperties", storageProperties);
         redirectAttributes.addFlashAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");

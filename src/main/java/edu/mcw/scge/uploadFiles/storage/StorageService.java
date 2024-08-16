@@ -8,9 +8,9 @@ import java.nio.file.Path;
 import java.util.stream.Stream;
 
 public interface StorageService {
-    void init(String applicationId);
+    void init(int applicationId);
 
-    void store(MultipartFile file);
+    void store(MultipartFile file, String sectionCode);
 
     Stream<Path> loadAll();
 
