@@ -125,7 +125,7 @@
                 <td>0</td>
                 <td>
                     <%if(!l1SectionCode.isEmpty()){
-                        String sectionCode=l1SectionCode;
+                        String sectionCode=l1SectionCode.trim();
                         String sectionName=l1SectionName;
                     %>
                     <%@include file="action.jsp"%>
@@ -163,7 +163,7 @@
             <%}%></td>
         <td>0</td>
         <td> <%if(!l2SectionCode.isEmpty()){
-            String sectionCode=l2SectionCode;
+            String sectionCode=l2SectionCode.trim();
             String sectionName=l2SectionName;
         %><%@include file="action.jsp"%><%}%></td>
     </tr>
@@ -198,7 +198,7 @@
             <%}%></td>
         <td>0</td>
         <td> <%if(!l3SectionCode.isEmpty()){
-        String sectionCode=l3SectionCode;
+        String sectionCode=l3SectionCode.trim();
         String sectionName=l3SectionName;
         %><%@include file="action.jsp"%><%}%></td>
     </tr>
@@ -232,7 +232,7 @@
         <td>0</td>
         <td><%if(!l4SectionCode.isEmpty()){
 
-           String sectionCode=l4SectionCode;
+           String sectionCode=l4SectionCode.trim();
            String sectionName=l4SectionName;
         %><%@include file="action.jsp"%><%}%></td>
     </tr>

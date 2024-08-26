@@ -144,6 +144,7 @@ public class FileUploadController {
     @PostMapping("/")
     public String fileUpload(@RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes, Model model, @RequestParam("sectionCode") String sectionCode ) throws Exception {
+        storageProperties.setSection(sectionCode);
         model.addAttribute("storageProperties", storageProperties);
         model.addAttribute("application", application);
         setStorageProperties(storageProperties);

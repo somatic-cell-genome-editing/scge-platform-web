@@ -2,11 +2,14 @@ package edu.mcw.scge.uploadFiles;
 
 import edu.mcw.scge.dao.implementation.ApplicationDAO;
 import edu.mcw.scge.dao.implementation.DocumentDAO;
+import edu.mcw.scge.dao.spring.ApplicationQuery;
 import edu.mcw.scge.datamodel.Application;
 import edu.mcw.scge.datamodel.Document;
 import edu.mcw.scge.uploadFiles.storage.StorageProperties;
 import io.grpc.Context;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class DBService {
@@ -33,6 +36,7 @@ public class DBService {
            document.setUploadedBy(properties.getSubmittedBy());
            document.setDocumentName(fileName);
            document.setModule(properties.getModule());
+           document.setSection(properties.getSection());
            document.setApplicationId(properties.getApplicationId());
            document.setSponsorName(properties.getSponsorName());
            document.setVersion("1");
@@ -53,5 +57,11 @@ public class DBService {
 
     public Document getDocument(String fileName, StorageProperties storageProperties) throws Exception {
       return   documentDAO.getDocumentByName(fileName, storageProperties.getApplicationId(), storageProperties.getSponsorName(), storageProperties.getModule());
+    }
+    public List<Application> getApplications() throws Exception {
+       return applicationDAO.getApplications();
+    }
+    public Application getApplicationById(int applicationId) throws Exception {
+        return applicationDAO.getApplicationById(applicationId);
     }
 }

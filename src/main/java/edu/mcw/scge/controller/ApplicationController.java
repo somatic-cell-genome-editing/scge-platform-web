@@ -38,4 +38,12 @@ public class ApplicationController {
         return "redirect:/data/store/ctdRequirements";
 
     }
+    @RequestMapping(value="/{applicationId}")
+    public String getApplicationById(RedirectAttributes redirectAttributes, Model model, @PathVariable(required = true) int applicationId) throws Exception {
+        Application application=dbService.getApplicationById(applicationId);
+        model.addAttribute("application", application);
+        redirectAttributes.addFlashAttribute("application", application);
+        return "redirect:/data/store/ctdRequirements";
+
+    }
 }
