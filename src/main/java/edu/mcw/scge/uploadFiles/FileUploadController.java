@@ -12,11 +12,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 
-import com.google.gson.Gson;
-import edu.mcw.scge.configuration.UserService;
 import edu.mcw.scge.dao.implementation.ctd.SectionDAO;
 import edu.mcw.scge.datamodel.Application;
-import edu.mcw.scge.datamodel.Person;
+import edu.mcw.scge.datamodel.Document;
 import edu.mcw.scge.datamodel.ctd.Section;
 import edu.mcw.scge.uploadFiles.storage.FileSystemStorageService;
 import edu.mcw.scge.uploadFiles.storage.StorageFileNotFoundException;
@@ -47,6 +45,10 @@ public class FileUploadController {
     @Autowired
     private StorageProperties storageProperties;
 
+    @Autowired
+    private Application application;
+    @Autowired
+    private DBService dbService;
 
     @ModelAttribute("storageProperties")
     @Autowired
@@ -58,10 +60,25 @@ public class FileUploadController {
     public FileUploadController(StorageService storageService) {
         this.storageService=storageService;
     }
-    @GetMapping(value="/application")
-    public String getNewApplication(HttpServletRequest req, HttpServletResponse res) throws Exception {
-        req.setAttribute("storageProperties", storageProperties);
-        req.setAttribute("page", "/WEB-INF/jsp/ctd/application");
+
+    @RequestMapping(value="/ctdRequirements")
+    public String getCTDRequirements(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception {
+
+        this. application= (Application) model.getAttribute("application");
+        this.storageProperties.setApplicationId(application.getApplicationId());
+        this.storageProperties.setSponsorName(application.getSponsorName());
+        SectionDAO sectionDAO=new SectionDAO();
+        Map<Integer, List<Section>> modules=new HashMap<>();
+        for(int module: Arrays.asList(1,2,3,4,5)) {
+            List<Section> sections = sectionDAO.getTopLevelSectionsOfModule(module);
+            modules.put(module, sections);
+        }
+        //  model.addAttribute("storageProperties", storageProperties);
+        req.setAttribute("model", model);
+        req.setAttribute("storageProperties", this.storageProperties);
+        req.setAttribute("application", this.application);
+        req.setAttribute("modules", modules);
+        req.setAttribute("page", "/WEB-INF/jsp/ctd/ctdTable");
         req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
 
         return null;
@@ -74,50 +91,24 @@ public class FileUploadController {
 
         return null;
     }
-    @PostMapping(value="/application")
-    public String createApplication(RedirectAttributes redirectAttributes, Model model) throws Exception {
-        setStorageProperties((StorageProperties) model.getAttribute("storageProperties"));
-      System.out.println("ApplicationId:"+ storageProperties.getApplicationId()+"\tSponsor:"+ storageProperties.getSponsorName());
-      Application application=new Application();
-        application.setApplicationId(storageProperties.getApplicationId());
-        System.out.println("APPLCATION ID:"+ application.getApplicationId());
-      redirectAttributes.addFlashAttribute("storageProperties", model.getAttribute("storageProperties"));
-        return "redirect:/data/store/ctdRequirements";
-
-    }
-    @RequestMapping(value="/ctdRequirements")
-    public String getCTDRequirements(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception {
-
-        SectionDAO sectionDAO=new SectionDAO();
-        Map<Integer, List<Section>> modules=new HashMap<>();
-        for(int module: Arrays.asList(1,2,3,4,5)) {
-            List<Section> sections = sectionDAO.getTopLevelSectionsOfModule(module);
-            modules.put(module, sections);
-        }
-        //  model.addAttribute("storageProperties", storageProperties);
-        req.setAttribute("model", model);
-        req.setAttribute("storageProperties", model.getAttribute("storageProperties"));
-        req.setAttribute("modules", modules);
-        req.setAttribute("page", "/WEB-INF/jsp/ctd/ctdTable");
-        req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
-
-        return null;
-    }
     @GetMapping("/")
     public String listUploadedFiles(Model model,  RedirectAttributes redirectAttributes) throws IOException {
         setStorageProperties((StorageProperties) model.getAttribute("storageProperties"));
         redirectAttributes.addFlashAttribute("storageProperties", storageProperties);
-        model.addAttribute("files", storageService.loadAll().map(
+        redirectAttributes.addFlashAttribute("application", application);
+        model.addAttribute("files", storageService.loadAll(storageProperties.getModule()).map(
                         path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
                                 "serveFile", storageProperties.getApplicationId(), storageProperties.getSponsorName(),storageProperties.getModule(),path.getFileName().toString()).build().toUri().toString())
                 .collect(Collectors.toList()));
         Map<String, String> fileLocationMap=new HashMap<>();
 
-        for(Path path:(Iterable<Path>)()->storageService.loadAll().iterator()){
+        for(Path path:(Iterable<Path>)()->storageService.loadAll(storageProperties.getModule()).iterator()){
             fileLocationMap.put(path.getFileName().toString(), MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
                     "serveFile", storageProperties.getApplicationId(), storageProperties.getSponsorName(), storageProperties.getModule(),path.getFileName().toString()).build().toUri().toString()) ;
         }
         model.addAttribute("fileLocationMap", fileLocationMap);
+        model.addAttribute("application", application);
+
         redirectAttributes.addFlashAttribute("fileLocationMap", fileLocationMap);
         redirectAttributes.addFlashAttribute("message", model.getAttribute("message"));
         return "redirect:/data/store/ctdRequirements";
@@ -133,7 +124,7 @@ public class FileUploadController {
         storageProperties.setApplicationId(applicationId);
         storageProperties.setModule(module);
         setStorageProperties(storageProperties);
-        Resource file = storageService.loadAsResource(filename);
+        Resource file = storageService.loadAsResource(filename, module);
 
         if (file == null)
             return ResponseEntity.notFound().build();
@@ -152,10 +143,13 @@ public class FileUploadController {
     }
     @PostMapping("/")
     public String fileUpload(@RequestParam("file") MultipartFile file,
-                                   RedirectAttributes redirectAttributes, Model model, @RequestParam("sectionCode") String sectionCode ) {
+                                   RedirectAttributes redirectAttributes, Model model, @RequestParam("sectionCode") String sectionCode ) throws Exception {
         model.addAttribute("storageProperties", storageProperties);
+        model.addAttribute("application", application);
         setStorageProperties(storageProperties);
-        storageService.store(file, sectionCode);
+        String rename=sectionCode.replaceAll("\\.", "_")+"_"+file.getOriginalFilename();
+        String version=dbService.saveDocument(rename, storageProperties, storageProperties.getTier());
+        storageService.store(file, rename, storageProperties.getModule(), version);
         redirectAttributes.addFlashAttribute("storageProperties", storageProperties);
         redirectAttributes.addFlashAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");

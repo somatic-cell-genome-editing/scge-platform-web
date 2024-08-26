@@ -10,13 +10,13 @@ import java.util.stream.Stream;
 public interface StorageService {
     void init(int applicationId);
 
-    void store(MultipartFile file, String sectionCode);
+    void store(MultipartFile file, String sectionCode, int module, String version);
 
-    Stream<Path> loadAll();
+    Stream<Path> loadAll(int module);
 
-    Path load(String filename);
+    Path load(String filename, int module);
 
-    Resource loadAsResource(String filename);
+    Resource loadAsResource(String filename, int module);
 
     void deleteAll();
 

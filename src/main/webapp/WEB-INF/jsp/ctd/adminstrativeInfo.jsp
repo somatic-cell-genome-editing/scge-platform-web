@@ -12,7 +12,7 @@
         <h2>New IND Application</h2>
     </div>
     <div class="card-body">
-    <form:form action="/platform/data/store/application" method="post" modelAttribute="storageProperties">
+    <form:form action="/platform/ind/application/create/" method="post" modelAttribute="application">
     <div class="row">
         <div class="form-group col-md-6">
             <label for="applicationId">Application ID</label>
@@ -20,7 +20,7 @@
         </div>
         <div class="form-group col-md-6">
             <label for="applicationType">Application Type</label>
-            <input type="text" class="form-control" id="applicationType" placeholder="Initial IND" disabled>
+            <form:input type="text" class="form-control" id="applicationType" placeholder="Initial IND" path="applicationType"/>
         </div>
     </div>
 
@@ -37,40 +37,40 @@
         </div>
         <div class="form-group">
             <label for="inputAddress">Product Name</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="Product Name">
+            <form:input type="text" class="form-control" id="inputAddress" placeholder="Product Name" path="productName"/>
         </div>
         <div class="form-group">
             <label for="inputAddress2">Indication</label>
-            <input type="text" class="form-control" id="inputAddress2" placeholder="Indication">
+            <form:input type="text" class="form-control" id="inputAddress2" placeholder="Indication" path="indication"/>
         </div>
     <div class="form-group">
         <label for="routeOfAdministration">Route of Administration</label>
-        <input type="text" class="form-control" id="routeOfAdministration" placeholder="Route of Administration">
+        <form:input type="text" class="form-control" id="routeOfAdministration" placeholder="Route of Administration" path="routeOfAdministration"/>
     </div>
     <div class="form-group">
         <label for="pharmaceutical_formulation">Pharmaceutical Formulation</label>
-        <input type="text" class="form-control" id="pharmaceutical_formulation" placeholder="Pharmaceutical Formulation">
+        <form:input type="text" class="form-control" id="pharmaceutical_formulation" placeholder="Pharmaceutical Formulation" path="pharmaceuticalFormulation"/>
     </div>
     <div class="form-group">
         <label for="manufacturer_name">Manufacturer Name</label>
-        <input type="text" class="form-control" id="manufacturer_name" placeholder="Manufacturer Name">
+        <form:input type="text" class="form-control" id="manufacturer_name" placeholder="Manufacturer Name" path="manufacturerName"/>
     </div>
     <div class="form-group">
         <label for="referenceStandard">Reference Standard</label>
-        <input type="text" class="form-control" id="referenceStandard" placeholder="Reference Standard">
+        <form:input type="text" class="form-control" id="referenceStandard" placeholder="Reference Standard" path="referenceStandard"/>
     </div>
     <div class="form-group">
         <label for="dosageStrength">Dosage Strength</label>
-        <input type="text" class="form-control" id="dosageStrength" placeholder="Dosage Strength">
+        <form:input type="text" class="form-control" id="dosageStrength" placeholder="Dosage Strength" path="dosageStrength"/>
     </div>
         <div class="row">
             <div class="form-group col-md-6">
                 <label for="inputCity">Application Number</label>
-                <input type="text" class="form-control" id="inputCity">
+                <form:input type="text" class="form-control" id="inputCity" path="applicationNumber"/>
             </div>
             <div class="form-group col-md-4">
                 <label for="submissionDate">Submission Date</label>
-                <input type="text" class="form-control" id="submissionDate">
+                <form:input type="text" class="form-control" id="submissionDate" path="submissionDate"/>
 
             </div>
 
@@ -85,17 +85,17 @@
 <%--        </div>--%>
     <div class="form-group">
         <label for="exampleFormControlTextarea1">Description</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        <form:textarea class="form-control" id="exampleFormControlTextarea1" rows="3" path="description"/>
     </div><br>
     <div class="row">
         <div class="col-1">
         <button type="submit" class="btn btn-primary btn-sm">Submit</button>
         </div>
-        <div class="col-3">
-<%--            <button  class="btn btn-primary btn-sm"><a href="/platform/data/ind/initStorage" style="color: whitesmoke">Upload Documents</a></button>--%>
-            <button  class="btn btn-primary btn-sm" type="submit">Upload Documents</button>
+<%--        <div class="col-3">--%>
+<%--&lt;%&ndash;            <button  class="btn btn-primary btn-sm"><a href="/platform/data/ind/initStorage" style="color: whitesmoke">Upload Documents</a></button>&ndash;%&gt;--%>
+<%--            <button  class="btn btn-primary btn-sm" type="submit">Upload Documents</button>--%>
 
-        </div>
+<%--        </div>--%>
     </div>
    <br>
 
