@@ -9,7 +9,10 @@ import edu.mcw.scge.uploadFiles.storage.StorageProperties;
 import io.grpc.Context;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class DBService {
@@ -63,5 +66,20 @@ public class DBService {
     }
     public Application getApplicationById(int applicationId) throws Exception {
         return applicationDAO.getApplicationById(applicationId);
+    }
+    public Map<String, List<Document>> getApplicationDocuments(int applicationId) throws Exception {
+      List<Document> documents=  documentDAO.getDocumentsByApplicationId(applicationId);
+      Map<String, List<Document>> map=new HashMap<>(); //section documents map
+      if(documents.size()>0){
+          for(Document document:documents){
+              List<Document> docs=new ArrayList<>();
+              if(map.get(document.getSection())!=null){
+                  docs.addAll(map.get(document.getSection()));
+              }
+              docs.add(document);
+              map.put(document.getSection().trim(), docs);
+          }
+      }
+        return map;
     }
 }

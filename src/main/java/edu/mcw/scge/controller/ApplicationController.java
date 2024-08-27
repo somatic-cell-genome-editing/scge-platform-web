@@ -2,6 +2,7 @@ package edu.mcw.scge.controller;
 
 import com.google.gson.Gson;
 import edu.mcw.scge.datamodel.Application;
+import edu.mcw.scge.datamodel.Document;
 import edu.mcw.scge.uploadFiles.DBService;
 import edu.mcw.scge.uploadFiles.storage.StorageProperties;
 import org.checkerframework.checker.units.qual.A;
@@ -14,6 +15,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value="/ind/application")
@@ -40,8 +43,13 @@ public class ApplicationController {
     }
     @RequestMapping(value="/{applicationId}")
     public String getApplicationById(RedirectAttributes redirectAttributes, Model model, @PathVariable(required = true) int applicationId) throws Exception {
+        Gson gson=new Gson();
         Application application=dbService.getApplicationById(applicationId);
+        Map<String, List<Document>> sectionDocuments=dbService.getApplicationDocuments(applicationId);
+        System.out.println("SECTION DOCS:"+gson.toJson(sectionDocuments));
         model.addAttribute("application", application);
+        model.addAttribute("sectionDocuments", sectionDocuments);
+        redirectAttributes.addFlashAttribute("sectionDocuments", sectionDocuments);
         redirectAttributes.addFlashAttribute("application", application);
         return "redirect:/data/store/ctdRequirements";
 

@@ -3,7 +3,8 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="edu.mcw.scge.dao.implementation.ctd.SectionDAO" %>
 <%@ page import="org.springframework.ui.Model" %>
-<%@ page import="java.util.HashMap" %><%--
+<%@ page import="java.util.HashMap" %>
+<%@ page import="edu.mcw.scge.datamodel.Document" %><%--
   Created by IntelliJ IDEA.
   User: jthota
   Date: 6/26/2024
@@ -17,6 +18,11 @@
 </style>
 <div>
   <%
+      Map<String, List<Document>> sectionDocuments= null;
+      if(request.getAttribute("sectionDocuments")!=null){
+          sectionDocuments=(Map<String, List<Document>>) request.getAttribute("sectionDocuments");
+      }
+
       Model model= (Model) request.getAttribute("model");
       String message= "";
               if(model.getAttribute("message")!=null)
@@ -83,10 +89,10 @@
         <tr>
             <th style="width: 5%;background-color: cadetblue">Module</th>
             <th colspan="4" style="text-align: center;width: 10%;background-color: cadetblue">Section</th>
-            <th style="background-color: cadetblue">Section_Name</th>
+            <th style="background-color: cadetblue;">Section_Name</th>
             <th style="background-color: cadetblue">Required for Initial IND submission <br>[<strong>Y</strong>(Yes)/<strong>N</strong>(No)/<strong>M</strong>(May Be)]</th>
             <th style="background-color: cadetblue">Documents_Uploaded</th>
-            <th style="background-color: cadetblue;text-align: center">Action</th>
+            <th style="background-color: cadetblue;text-align: center;">Action</th>
 
         </tr>
         </thead>
@@ -116,14 +122,26 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td><strong><%=section.getSectionName()%></strong></td>
+                <td><strong><%=section.getSectionName()%></strong>
+                    <%if(sectionDocuments!=null && !l1SectionCode.isEmpty()){
+                        List<Document> docs=sectionDocuments.get(l1SectionCode.trim());
+                        if(docs!=null){%>
+                    <ul>
+                    <%
+
+                    for(Document doc:docs){%>
+                        <li><a href=""><%=doc.getDocumentName()%></a></li>
+                    <%}%>
+                    </ul>
+                    <%}}%>
+                </td>
                 <td> <%
                     if(section.getRequiredForInitialIND()!=null){
                 %>
                     <%=section.getRequiredForInitialIND()%>
                     <%}%></td>
                 <td>0</td>
-                <td>
+                <td >
                     <%if(!l1SectionCode.isEmpty()){
                         String sectionCode=l1SectionCode.trim();
                         String sectionName=l1SectionName;
@@ -155,6 +173,15 @@
                 <%}else{%>
             <strong><%=l2.getSectionName()%></strong>
             <%}%>
+            <%if(sectionDocuments!=null && !l2SectionCode.isEmpty()){
+                List<Document> docs=sectionDocuments.get(l2SectionCode.trim());
+                if(docs!=null){%>
+            <ul>
+                <%for(Document doc:docs){%>
+                <li><a href="" target="_blank"><%=doc.getDocumentName()%></a></li>
+                <%}%>
+            </ul>
+            <%}}%>
         </td>
         <td> <%
             if(l2.getRequiredForInitialIND()!=null){
@@ -162,7 +189,7 @@
             <%=l2.getRequiredForInitialIND()%>
             <%}%></td>
         <td>0</td>
-        <td> <%if(!l2SectionCode.isEmpty()){
+        <td > <%if(!l2SectionCode.isEmpty()){
             String sectionCode=l2SectionCode.trim();
             String sectionName=l2SectionName;
         %><%@include file="action.jsp"%><%}%></td>
@@ -190,6 +217,17 @@
                <%}else{%>
             <%=l3.getSectionName()%>
             <%}%>
+            <%if(sectionDocuments!=null && !l3SectionCode.isEmpty()){
+                List<Document> docs=sectionDocuments.get(l3SectionCode.trim());
+                if(docs!=null){
+            %>
+            <ul>
+                <%
+                    for(Document doc:docs){%>
+                <li><a href="" target="_blank"><%=doc.getDocumentName()%></a></li>
+                <%}%>
+            </ul>
+            <%}}%>
         </td>
         <td> <%
             if(l3.getRequiredForInitialIND()!=null){
@@ -221,7 +259,20 @@
         <td></td>
         <td></td>
         <td><%=l4.getSectionCode()%></td>
-        <td><%=l4.getSectionName()%></td>
+        <td><%=l4.getSectionName()%>
+            <%if(sectionDocuments!=null && !l4SectionCode.isEmpty()){
+
+                List<Document> docs=sectionDocuments.get(l4SectionCode.trim());
+                if(docs!=null){%>
+            <ul>
+                <%
+
+                    for(Document doc:docs){%>
+                <li><a href="" target="_blank"><%=doc.getDocumentName()%></a></li>
+                <%}%>
+            </ul>
+            <%}}%>
+        </td>
         <td>
             <%
             if(l4.getRequiredForInitialIND()!=null){
@@ -230,7 +281,7 @@
             <%}%>
         </td>
         <td>0</td>
-        <td><%if(!l4SectionCode.isEmpty()){
+        <td ><%if(!l4SectionCode.isEmpty()){
 
            String sectionCode=l4SectionCode.trim();
            String sectionName=l4SectionName;

@@ -74,6 +74,8 @@ public class FileUploadController {
             modules.put(module, sections);
         }
         //  model.addAttribute("storageProperties", storageProperties);
+        if(model.getAttribute("sectionDocuments")!=null)
+        req.setAttribute("sectionDocuments",  model.getAttribute("sectionDocuments"));
         req.setAttribute("model", model);
         req.setAttribute("storageProperties", this.storageProperties);
         req.setAttribute("application", this.application);
