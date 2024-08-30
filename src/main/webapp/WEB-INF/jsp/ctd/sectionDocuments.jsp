@@ -13,7 +13,6 @@
     if(docs!=null && docs.size()>0){%>
 <ul>
     <%
-
         for(Document doc:docs){
             String docName="";
             String docLocation=docLocationURI+module+"/";

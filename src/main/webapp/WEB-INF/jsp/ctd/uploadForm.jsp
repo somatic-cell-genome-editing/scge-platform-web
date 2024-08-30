@@ -17,12 +17,12 @@
         <div class="modal-body">
             <form:form method="post" enctype="multipart/form-data" action="/platform/data/store/" modelAttribute="storageProperties" >
                 <input type="hidden" value="<%=sectionCode%>" name="sectionCode"/>
-                <form:input type="text"  path="applicationId" />
-                <form:input type="text"  path="sponsorName" />
-                <input type="text" name="module" value="<%=module%>"/>
+                <form:input type="hidden"  path="applicationId" />
+                <form:input type="hidden"  path="sponsorName" />
+                <input type="hidden" name="module" value="<%=module%>"/>
 
             <div class="row">
-                <div class="col-5">Document Title</div>
+                <div class="col-5">Section Title</div>
                 <div class="col">:&nbsp;<%=sectionName%></div>
             </div>
             <div class="row">
