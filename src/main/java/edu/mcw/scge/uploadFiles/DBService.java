@@ -1,5 +1,6 @@
 package edu.mcw.scge.uploadFiles;
 
+import com.google.gson.Gson;
 import edu.mcw.scge.dao.implementation.ApplicationDAO;
 import edu.mcw.scge.dao.implementation.DocumentDAO;
 import edu.mcw.scge.dao.spring.ApplicationQuery;
@@ -20,8 +21,11 @@ public class DBService {
      ApplicationDAO applicationDAO= new ApplicationDAO();
      DocumentDAO documentDAO= new DocumentDAO();
 
-    public void insertApplication(Application application) throws Exception {
+    public int insertApplication(Application application) throws Exception {
+        int applicationId=applicationDAO.getNextKey("application_id_seq");
+        application.setApplicationId(applicationId);
         applicationDAO.insert(application);
+        return applicationId;
     }
     public void insertDocument(Document document) throws Exception {
         documentDAO.insert(document);
@@ -30,10 +34,12 @@ public class DBService {
         return applicationDAO.getNextKey("application_id_seq");
     }
     public String saveDocument(String fileName, StorageProperties properties, int tier) throws Exception {
+        Gson gson=new Gson();
        Document document=getDocument(fileName, properties);
+       System.out.println("DOCUMENT TO SAVE:"+gson.toJson(document));
+        int docSequenceKey = documentDAO.getNextKey("document_seq");
        if(document==null) {
            document=new Document();
-           int docSequenceKey = documentDAO.getNextKey("document_seq");
            document.setDocumentId(docSequenceKey);
            document.setTier(tier);
            document.setUploadedBy(properties.getSubmittedBy());
@@ -44,18 +50,22 @@ public class DBService {
            document.setSponsorName(properties.getSponsorName());
            document.setVersion("1");
            document.setProductName(properties.getProductName());
+           System.out.println("DOCUMENT EXISTS:" + false);
            documentDAO.insert(document);
+           return document.getVersion();
        }else{
+
            String version=document.getVersion();
            int updatedVersion=Integer.parseInt(version)+1;
            document.setVersion(String.valueOf(updatedVersion));
-           int docSequenceKey = documentDAO.getNextKey("document_seq");
            document.setDocumentId(docSequenceKey);
+           System.out.println("DOCUMENT EXISTS:" + true+"\tnew version:"+ document.getVersion());
+           System.out.println("DUPLICATE DOCUMENT:"+gson.toJson(document));
            documentDAO.insert(document);
+           return String.valueOf(updatedVersion);
        }
-        System.out.println("DOCUMENT VERSION:"+ document.getVersion());
 
-        return document.getVersion();
+
     }
 
     public Document getDocument(String fileName, StorageProperties storageProperties) throws Exception {

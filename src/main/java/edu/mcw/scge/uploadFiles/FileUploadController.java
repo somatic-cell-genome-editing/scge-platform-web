@@ -73,9 +73,11 @@ public class FileUploadController {
             List<Section> sections = sectionDAO.getTopLevelSectionsOfModule(module);
             modules.put(module, sections);
         }
+        model.addAttribute("application", application);
         //  model.addAttribute("storageProperties", storageProperties);
         if(model.getAttribute("sectionDocuments")!=null)
         req.setAttribute("sectionDocuments",  model.getAttribute("sectionDocuments"));
+        req.setAttribute("readonly", model.getAttribute("readonly"));
         req.setAttribute("model", model);
         req.setAttribute("storageProperties", this.storageProperties);
         req.setAttribute("application", this.application);
@@ -85,18 +87,12 @@ public class FileUploadController {
 
         return null;
     }
-    @GetMapping(value="/application/{applicationId}")
-    public String getApplicationById(HttpServletRequest req, HttpServletResponse res) throws Exception {
-        req.setAttribute("storageProperties", storageProperties);
-        req.setAttribute("page", "/WEB-INF/jsp/ctd/application");
-        req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
 
-        return null;
-    }
     @GetMapping("/")
-    public String listUploadedFiles(Model model,  RedirectAttributes redirectAttributes) throws IOException {
+    public String listUploadedFiles(Model model,  RedirectAttributes redirectAttributes) throws Exception {
         setStorageProperties((StorageProperties) model.getAttribute("storageProperties"));
         redirectAttributes.addFlashAttribute("storageProperties", storageProperties);
+        this.application= (Application) model.getAttribute("application");
         redirectAttributes.addFlashAttribute("application", application);
         model.addAttribute("files", storageService.loadAll(storageProperties.getModule()).map(
                         path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
@@ -110,18 +106,21 @@ public class FileUploadController {
         }
         model.addAttribute("fileLocationMap", fileLocationMap);
         model.addAttribute("application", application);
+        Map<String, List<Document>> sectionDocuments=dbService.getApplicationDocuments(application.getApplicationId());
+        model.addAttribute("sectionDocuments", sectionDocuments);
+        redirectAttributes.addFlashAttribute("readonly", true);
+        redirectAttributes.addFlashAttribute("sectionDocuments", sectionDocuments);
 
         redirectAttributes.addFlashAttribute("fileLocationMap", fileLocationMap);
         redirectAttributes.addFlashAttribute("message", model.getAttribute("message"));
-        return "redirect:/data/store/ctdRequirements";
+    //    return "redirect:/data/store/ctdRequirements";
       //  return "uploadForm";
-
+       return  "redirect:/ind/application/"+application.getApplicationId();
     }
 
     @GetMapping("/files/{applicationId}/{sponsorName}/{module}/{filename:.+}/")
     @ResponseBody
     public ResponseEntity<Resource> serveFile(@PathVariable(required = true) int applicationId, @PathVariable(required = true) String sponsorName,@PathVariable(required = true) int module,@PathVariable(required = true) String filename) {
-        System.out.println("FILENAME GET:"+ filename);
         storageProperties.setSponsorName(sponsorName);
         storageProperties.setApplicationId(applicationId);
         storageProperties.setModule(module);
@@ -148,11 +147,13 @@ public class FileUploadController {
                                    RedirectAttributes redirectAttributes, Model model, @RequestParam("sectionCode") String sectionCode ) throws Exception {
         storageProperties.setSection(sectionCode);
         model.addAttribute("storageProperties", storageProperties);
+        application=dbService.getApplicationById(storageProperties.getApplicationId());
         model.addAttribute("application", application);
         setStorageProperties(storageProperties);
         String rename=sectionCode.replaceAll("\\.", "_")+"_"+file.getOriginalFilename();
         String version=dbService.saveDocument(rename, storageProperties, storageProperties.getTier());
         storageService.store(file, rename, storageProperties.getModule(), version);
+        redirectAttributes.addFlashAttribute("application", application);
         redirectAttributes.addFlashAttribute("storageProperties", storageProperties);
         redirectAttributes.addFlashAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");

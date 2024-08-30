@@ -16,6 +16,10 @@
         color:whitesmoke;
     }
 </style>
+
+<%--<div>--%>
+<%--<%@include file="application.jsp"%>--%>
+<%--</div>--%>
 <div>
   <%
       Map<String, List<Document>> sectionDocuments= null;
@@ -112,9 +116,15 @@
         //    int sectionCode=0;
             String l1SectionCode =new String();
             String l1SectionName =section.getSectionName();
+            String sectionCode=null;
+            String sectionName=null;
             if(!section.getSectionCode().trim().isEmpty()) {
                  l1SectionCode = section.getSectionCode().replaceAll("\\.", "_");
 
+            }
+            if(!l1SectionCode.isEmpty()) {
+                 sectionCode = l1SectionCode.trim();
+                 sectionName = l1SectionName;
             }
     %>
             <tr><td></td>
@@ -123,17 +133,7 @@
                 <td></td>
                 <td></td>
                 <td><strong><%=section.getSectionName()%></strong>
-                    <%if(sectionDocuments!=null && !l1SectionCode.isEmpty()){
-                        List<Document> docs=sectionDocuments.get(l1SectionCode.trim());
-                        if(docs!=null){%>
-                    <ul>
-                    <%
-
-                    for(Document doc:docs){%>
-                        <li><a href=""><%=doc.getDocumentName()%></a></li>
-                    <%}%>
-                    </ul>
-                    <%}}%>
+                  <%@include file="sectionDocuments.jsp"%>
                 </td>
                 <td> <%
                     if(section.getRequiredForInitialIND()!=null){
@@ -142,10 +142,7 @@
                     <%}%></td>
                 <td>0</td>
                 <td >
-                    <%if(!l1SectionCode.isEmpty()){
-                        String sectionCode=l1SectionCode.trim();
-                        String sectionName=l1SectionName;
-                    %>
+                    <%if(!l1SectionCode.isEmpty()){%>
                     <%@include file="action.jsp"%>
                     <%}%>
                 </td>
@@ -158,6 +155,10 @@
                if(!l2.getSectionCode().trim().isEmpty()) {
                     l2SectionCode = l2.getSectionCode().replaceAll("\\.", "_");
 
+               }
+               if(!l2SectionCode.isEmpty()) {
+                    sectionCode = l2SectionCode.trim();
+                    sectionName = l2SectionName;
                }
        %>
 
@@ -173,15 +174,7 @@
                 <%}else{%>
             <strong><%=l2.getSectionName()%></strong>
             <%}%>
-            <%if(sectionDocuments!=null && !l2SectionCode.isEmpty()){
-                List<Document> docs=sectionDocuments.get(l2SectionCode.trim());
-                if(docs!=null){%>
-            <ul>
-                <%for(Document doc:docs){%>
-                <li><a href="" target="_blank"><%=doc.getDocumentName()%></a></li>
-                <%}%>
-            </ul>
-            <%}}%>
+            <%@include file="sectionDocuments.jsp"%>
         </td>
         <td> <%
             if(l2.getRequiredForInitialIND()!=null){
@@ -190,8 +183,7 @@
             <%}%></td>
         <td>0</td>
         <td > <%if(!l2SectionCode.isEmpty()){
-            String sectionCode=l2SectionCode.trim();
-            String sectionName=l2SectionName;
+
         %><%@include file="action.jsp"%><%}%></td>
     </tr>
     <%
@@ -202,7 +194,8 @@
                 String l3SectionName=l3.getSectionName();
                 if(!l3.getSectionCode().trim().isEmpty()){
                      l3SectionCode=l3.getSectionCode().replaceAll("\\.","_");
-
+                     sectionCode=l3SectionCode.trim();
+                     sectionName=l3SectionName;
                 }
 
     %>
@@ -217,17 +210,7 @@
                <%}else{%>
             <%=l3.getSectionName()%>
             <%}%>
-            <%if(sectionDocuments!=null && !l3SectionCode.isEmpty()){
-                List<Document> docs=sectionDocuments.get(l3SectionCode.trim());
-                if(docs!=null){
-            %>
-            <ul>
-                <%
-                    for(Document doc:docs){%>
-                <li><a href="" target="_blank"><%=doc.getDocumentName()%></a></li>
-                <%}%>
-            </ul>
-            <%}}%>
+            <%@include file="sectionDocuments.jsp"%>
         </td>
         <td> <%
             if(l3.getRequiredForInitialIND()!=null){
@@ -236,8 +219,7 @@
             <%}%></td>
         <td>0</td>
         <td> <%if(!l3SectionCode.isEmpty()){
-        String sectionCode=l3SectionCode.trim();
-        String sectionName=l3SectionName;
+
         %><%@include file="action.jsp"%><%}%></td>
     </tr>
 
@@ -248,7 +230,8 @@
             if(l4.getParentId().equals(l3.getSectionCode())){
                 if(!l4.getSectionCode().trim().isEmpty()){
                      l4SectionCode=l4.getSectionCode().replaceAll("\\.","_");
-
+                     sectionCode=l4SectionCode.trim();
+                     sectionName=l4SectionName;
                 }
 
 
@@ -260,18 +243,7 @@
         <td></td>
         <td><%=l4.getSectionCode()%></td>
         <td><%=l4.getSectionName()%>
-            <%if(sectionDocuments!=null && !l4SectionCode.isEmpty()){
-
-                List<Document> docs=sectionDocuments.get(l4SectionCode.trim());
-                if(docs!=null){%>
-            <ul>
-                <%
-
-                    for(Document doc:docs){%>
-                <li><a href="" target="_blank"><%=doc.getDocumentName()%></a></li>
-                <%}%>
-            </ul>
-            <%}}%>
+            <%@include file="sectionDocuments.jsp"%>
         </td>
         <td>
             <%
@@ -283,8 +255,7 @@
         <td>0</td>
         <td ><%if(!l4SectionCode.isEmpty()){
 
-           String sectionCode=l4SectionCode.trim();
-           String sectionName=l4SectionName;
+
         %><%@include file="action.jsp"%><%}%></td>
     </tr>
        <%}     } }
