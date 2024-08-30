@@ -15,13 +15,15 @@
     <%
 
         for(Document doc:docs){
-            docLocationURI+=module+"/";
+            String docName="";
+            String docLocation=docLocationURI+module+"/";
             if(Integer.parseInt(doc.getVersion())>1){
-                docLocationURI+="v"+doc.getVersion()+"_";
+                docName+="v"+doc.getVersion()+"_";
             }
-            docLocationURI+=doc.getDocumentName()+"/";
+            docName+=doc.getDocumentName();
+            docLocation+=docName+"/";
     %>
-    <li><a href="<%=docLocationURI%>"  target="_blank"><%=doc.getDocumentName()%></a></li>
+    <li><a href="<%=docLocation%>"  target="_blank"><%=docName%></a></li>
     <%}%>
 </ul>
 <%}}%>
