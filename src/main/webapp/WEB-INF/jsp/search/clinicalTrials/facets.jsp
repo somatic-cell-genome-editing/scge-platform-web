@@ -11,20 +11,7 @@
 
 <hr>
 
-<%
-for(String id:idsFromTrackerSheet){
-  boolean flag=false;
-  for(String idFound:found){
-    if (id.contains(idFound) || id.equalsIgnoreCase(idFound)) {
-      flag = true;
 
-      break;
-    }
-  }
-  if(!flag){
-    notFound.add(id);
-  }
-}%>
 <div align="right">
   <button id="clearFilters" class="btn btn-primary btn-sm" onclick="removeFilters()" >Clear Filters</button>
 </div>
