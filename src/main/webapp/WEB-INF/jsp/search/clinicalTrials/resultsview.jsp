@@ -33,9 +33,9 @@
     SearchResponse sr= (SearchResponse) request.getAttribute("sr");
 
 
-    Terms orgAggregations=sr.getAggregations().get("organization");
+    Terms orgAggregations=sr.getAggregations().get("sponsor");
     Terms statAggregations=sr.getAggregations().get("studyStatus");
-    Terms conditionAggregations=sr.getAggregations().get("condition");
+    Terms conditionAggregations=sr.getAggregations().get("indication");
     Terms trackerTypeAggregations=sr.getAggregations().get("trackerType");
 
     SearchHit[] hitsArray=sr.getHits().getHits();
@@ -46,12 +46,12 @@
     List<String> selectedOrganization=new ArrayList<>();
     List<String> selectedTrackerType=new ArrayList<>();
     if(filterMap!=null){
-        if(filterMap.get("status")!=null)
-            selectedStatus.addAll(filterMap.get("status"));
-        if(filterMap.get("condition")!=null)
-            selectedCondition.addAll(filterMap.get("condition"));
-        if(filterMap.get("organization")!=null)
-            selectedOrganization.addAll(filterMap.get("organization"));
+        if(filterMap.get("studyStatus")!=null)
+            selectedStatus.addAll(filterMap.get("studyStatus"));
+        if(filterMap.get("indication")!=null)
+            selectedCondition.addAll(filterMap.get("indication"));
+        if(filterMap.get("sponsor")!=null)
+            selectedOrganization.addAll(filterMap.get("sponsor"));
         if(filterMap.get("trackerType")!=null)
             selectedTrackerType.addAll(filterMap.get("trackerType"));
     }

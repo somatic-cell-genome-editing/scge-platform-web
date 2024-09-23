@@ -25,9 +25,9 @@ public class ClinicalTrialsService {
         srb.query(this.buildBoolQuery(searchTerm, filtersMap));
 
         srb.aggregation(buildAggregations("trackerType"));
-        srb.aggregation(buildAggregations("organization"));
+        srb.aggregation(buildAggregations("sponsor"));
         srb.aggregation(buildAggregations("studyStatus"));
-        srb.aggregation(buildAggregations("condition"));
+        srb.aggregation(buildAggregations("indication"));
 
         srb.size(10000);
         try {
@@ -49,12 +49,12 @@ public class ClinicalTrialsService {
         BoolQueryBuilder q=new BoolQueryBuilder();
         for(String filter:filters.keySet()) {
             List<String> filterValues=filters.get(filter);
-            if (filter.equalsIgnoreCase("status"))
-                q.must(QueryBuilders.termsQuery("status" + ".keyword", filterValues.toArray()));
-            if (filter.equalsIgnoreCase("organization"))
+            if (filter.equalsIgnoreCase("studyStatus"))
+                q.must(QueryBuilders.termsQuery("studyStatus" + ".keyword", filterValues.toArray()));
+            if (filter.equalsIgnoreCase("sponsor"))
                 q.must(QueryBuilders.termsQuery("sponsor" + ".keyword", filterValues.toArray()));
 
-            if (filter.equalsIgnoreCase("condition"))
+            if (filter.equalsIgnoreCase("indication"))
                 q.must(QueryBuilders.termsQuery("indication" + ".keyword", filterValues.toArray()));
             if (filter.equalsIgnoreCase("trackerType"))
                 q.must(QueryBuilders.termsQuery("trackerType" + ".keyword", filterValues.toArray()));
@@ -70,11 +70,11 @@ public class ClinicalTrialsService {
 
     public AggregationBuilder buildAggregations(String fieldName){
         AggregationBuilder builder=null;
-        if(fieldName.equalsIgnoreCase("organization"))
+        if(fieldName.equalsIgnoreCase("sponsor"))
             builder= AggregationBuilders.terms(fieldName).field("sponsor" + ".keyword") .size(1000).order(BucketOrder.key(true));
         if(fieldName.equalsIgnoreCase("studyStatus"))
             builder=AggregationBuilders.terms(fieldName).field("studyStatus" + ".keyword") .order(BucketOrder.key(true));
-        if(fieldName.equalsIgnoreCase("condition"))
+        if(fieldName.equalsIgnoreCase("indication"))
             builder=AggregationBuilders.terms(fieldName).field("indication" + ".keyword").size(1000) .order(BucketOrder.key(true));
         if(fieldName.equalsIgnoreCase("trackerType"))
             builder=AggregationBuilders.terms(fieldName).field(fieldName + ".keyword").size(10) .order(BucketOrder.key(true));

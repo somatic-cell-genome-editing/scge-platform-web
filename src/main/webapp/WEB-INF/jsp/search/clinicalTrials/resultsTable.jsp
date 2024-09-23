@@ -98,14 +98,107 @@
         <td><%=sourceFields.get("clinicalCentersinUSA?")%></td>
         <td><%=sourceFields.get("countries")%></td>
         <td><%=sourceFields.get("hasUSIND?")%></td>
-        <td class="manual"><%=sourceFields.get("clinicalPublications")%></td>
-        <td class="manual"><%=sourceFields.get("preclinicalPublications")%></td>
+        <td class="manual">
+<%--            <%=sourceFields.get("clinicalPublications")%>--%>
+    <% if(sourceFields.get("clinicalPublications")!=null){
+        List<String> publications= Arrays.asList(sourceFields.get("clinicalPublications").toString().split(";"));
+        for(String s:publications){
+            String url="";
+            String label="";
+            if(s.contains("https") || s.toLowerCase().contains("pmid")) {
+                if(s.contains("https")) {
+                    url += s;
+                    label += s.substring(s.lastIndexOf("/") + 1);
+                }
+                if(s.toLowerCase().contains("pmid")) {
+                    url += "https://pubmed.ncbi.nlm.nih.gov/";
+                    url += s.substring(s.indexOf(":") + 1).trim();
+                    label += s;
+                }
+    %>
+    <a href="<%=url%>" target="_blank"><%=label%></a><br>
+    <%--            <%=sourceFields.get("clinicalPublications")%>--%>
+    <%}else{%>
+    <%=s%><br>
+    <%}}}%>
+        </td>
+        <td class="manual">
+                 <% if(sourceFields.get("preclinicalPublications")!=null){
+                List<String> publications= Arrays.asList(sourceFields.get("preclinicalPublications").toString().split(";"));
+                for(String s:publications){
+                    String url="";
+                    String label="";
+                    if(s.contains("https") || s.toLowerCase().contains("pmid")) {
+                        if(s.contains("https")) {
+                            url += s;
+                            label += s.substring(s.lastIndexOf("/") + 1);
+                        }
+                        if(s.toLowerCase().contains("pmid")) {
+                            url += "https://pubmed.ncbi.nlm.nih.gov/";
+                            url += s.substring(s.indexOf(":") + 1).trim();
+                            label += s;
+                        }
+            %>
+            <a href="<%=url%>" target="_blank"><%=label%></a><br>
+            <%}else{%>
+            <%=s%><br>
+            <%}}}%>
+
+        </td>
         <td class="manual"><%=sourceFields.get("grants")%></td>
-        <td class="manual"><%=sourceFields.get("protocols")%></td>
+        <td class="manual">
+<%--            <%=sourceFields.get("protocols")%>--%>
+            <% if(sourceFields.get("protocols")!=null){
+                List<String> publications= Arrays.asList(sourceFields.get("protocols").toString().split(";"));
+                for(String s:publications){
+                    String url="";
+                    String label="";
+                    if(s.contains("https") || s.toLowerCase().contains("pmid")) {
+                    if(s.contains("https")) {
+                        url += s;
+                        label += s.substring(s.lastIndexOf("/") + 1);
+                    }
+                    if(s.toLowerCase().contains("pmid")) {
+                        url += "https://pubmed.ncbi.nlm.nih.gov/";
+                        url += s.substring(s.indexOf(":") + 1).trim();
+                        label += s;
+                    }
+            %>
+            <a href="<%=url%>" target="_blank"><%=label%></a><br>
+            <%}else{%>
+            <%=s%><br>
+            <%}}}%>
+
+        </td>
         <td class="manual"><%=sourceFields.get("patents")%></td>
         <td class="manual"><%=sourceFields.get("sponsor'sTrialWebsiteLink")%></td>
         <td class="manual"><%=sourceFields.get("recentUpdates")%></td>
-        <td class="manual"><%=sourceFields.get("newsandPressReleases")%></td>
+        <td class="manual">
+<%--            <%=sourceFields.get("newsandPressReleases")%>--%>
+    <% if(sourceFields.get("newsandPressReleases")!=null){
+        List<String> publications= Arrays.asList(sourceFields.get("newsandPressReleases").toString().split(";"));
+        for(String s:publications){
+            String url="";
+            String label="";
+            if(s.contains("https") || s.toLowerCase().contains("pmid")) {
+                if(s.contains("https")) {
+                    url += s;
+                    label += s.substring(s.lastIndexOf("/") + 1);
+                }
+                if(s.toLowerCase().contains("pmid")) {
+                    url += "https://pubmed.ncbi.nlm.nih.gov/";
+                    url += s.substring(s.indexOf(":") + 1).trim();
+                    label += s;
+                }
+    %>
+    <a href="<%=url%>" target="_blank"><%=label%></a><br>
+    <%--            <%=sourceFields.get("clinicalPublications")%>--%>
+    <%}else{%>
+    <%=s%><br>
+    <%}}}%>
+
+
+        </td>
     </tr>
     <%}%>
     </tbody>

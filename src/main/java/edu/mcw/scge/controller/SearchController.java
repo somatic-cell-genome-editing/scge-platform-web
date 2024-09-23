@@ -58,15 +58,15 @@ public class SearchController{
 
         if(request.getParameterValues("status")!=null){
             List<String> status= Arrays.asList(request.getParameterValues("status"));
-            filterMap.put("status", status);
+            filterMap.put("studyStatus", status);
         }
         if(request.getParameterValues("organization")!=null){
             List<String> organization= Arrays.asList(request.getParameterValues("organization"));
-            filterMap.put("organization", organization);
+            filterMap.put("sponsor", organization);
         }
         if(request.getParameterValues("condition")!=null){
             List<String> condition= Arrays.asList(request.getParameterValues("condition"));
-            filterMap.put("condition", condition);
+            filterMap.put("indication", condition);
         }
         if(request.getParameterValues("trackerType")!=null){
             List<String> trackerType= Arrays.asList(request.getParameterValues("trackerType"));
