@@ -34,7 +34,7 @@
 
 
     Terms orgAggregations=sr.getAggregations().get("organization");
-    Terms statAggregations=sr.getAggregations().get("status");
+    Terms statAggregations=sr.getAggregations().get("studyStatus");
     Terms conditionAggregations=sr.getAggregations().get("condition");
     Terms trackerTypeAggregations=sr.getAggregations().get("trackerType");
 
@@ -71,7 +71,7 @@
     <div class="row"><div class="col"><h1>Clinical Trials - Gene Therapy Tracker</h1>
     </div>
         <div class="col-2">
-            <h5>Updated: 05/22/2024</h5>
+            <h5>Updated: 09/23/2024</h5>
 
         </div>
     </div>
@@ -113,7 +113,7 @@
 
               <div class="padding"></div>
                 <!-- BEGIN TABLE RESULT -->
-              <div >
+              <div style="width:100%">
                <%@include file="resultsTable.jsp"%>
               </div>
 

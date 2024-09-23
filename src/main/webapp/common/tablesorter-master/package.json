@@ -30,7 +30,7 @@
     "natural",
     "jquery-plugin"
   ],
-  "main": "dist/js/jquery.tablesorter.combined.js",
+  "main": "dist/js/tablesorter.combined.js",
   "files": [
     "dist/"
   ],

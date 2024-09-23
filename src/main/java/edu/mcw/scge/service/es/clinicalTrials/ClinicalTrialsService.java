@@ -20,13 +20,13 @@ import java.util.Map;
 
 public class ClinicalTrialsService {
     public SearchResponse getSearchResults(String searchTerm, Map<String, List<String>> filtersMap) throws IOException {
-        String searchIndex = "scge_platform_search_test";
+        String searchIndex = "scge_platform_search_dev";
         SearchSourceBuilder srb=new SearchSourceBuilder();
         srb.query(this.buildBoolQuery(searchTerm, filtersMap));
 
         srb.aggregation(buildAggregations("trackerType"));
         srb.aggregation(buildAggregations("organization"));
-        srb.aggregation(buildAggregations("status"));
+        srb.aggregation(buildAggregations("studyStatus"));
         srb.aggregation(buildAggregations("condition"));
 
         srb.size(10000);
@@ -72,8 +72,8 @@ public class ClinicalTrialsService {
         AggregationBuilder builder=null;
         if(fieldName.equalsIgnoreCase("organization"))
             builder= AggregationBuilders.terms(fieldName).field("sponsor" + ".keyword") .size(1000).order(BucketOrder.key(true));
-        if(fieldName.equalsIgnoreCase("status"))
-            builder=AggregationBuilders.terms(fieldName).field("status" + ".keyword") .order(BucketOrder.key(true));
+        if(fieldName.equalsIgnoreCase("studyStatus"))
+            builder=AggregationBuilders.terms(fieldName).field("studyStatus" + ".keyword") .order(BucketOrder.key(true));
         if(fieldName.equalsIgnoreCase("condition"))
             builder=AggregationBuilders.terms(fieldName).field("indication" + ".keyword").size(1000) .order(BucketOrder.key(true));
         if(fieldName.equalsIgnoreCase("trackerType"))
