@@ -29,7 +29,7 @@
                                     <h2>FDA's Clinical Path to New Medical Products</h2>
                                 </div>
                                 <div class="card-body">
-                                    <img src="/platform/data/protected/IND_phases.png" alt="" width="100%">
+                                    <img src="/platform/common/images/Clinical_Development_Timeline_Horizantal.png" alt="" width="100%" >
                                 </div>
                             </div>
                             <div class="card" id="ind-def">
