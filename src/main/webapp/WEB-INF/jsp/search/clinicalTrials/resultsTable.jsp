@@ -65,8 +65,8 @@
     %>
     <tr>
         <td>
-            <div style="width: 400px">
-            <div class="row">
+            <div class="card" style="width:300px">
+            <div class="row ">
                 <div class="col-5"><strong>Sponsor:</strong></div><div class="col-7"><%=sourceFields.get("sponsor")%></div>
             </div>
             <div class="row">
