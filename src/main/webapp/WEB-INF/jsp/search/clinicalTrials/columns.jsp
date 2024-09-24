@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<th>Study</th>
+<th class="sorter-false">Study</th>
 <th>Funder Type</th>
 <th>Indication</th>
 <th class="manual">Target Gene/Variant</th>

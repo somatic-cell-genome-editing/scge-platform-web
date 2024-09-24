@@ -41,10 +41,6 @@
         margin: 0;
     }
 
-    #myTable tbody .info-card{
-        /*white-space: nowrap;*/
-        width:30%
-    }
     #myTable tbody  .manual{
         /*white-space: nowrap;*/
       background-color:yellowgreen;
@@ -68,7 +64,30 @@
             Map<String, Object> sourceFields = hit.getSourceAsMap();
     %>
     <tr>
-        <td class="info-card"><strong>Sponsor:</strong> <%=sourceFields.get("sponsor")%><br><strong>Compound:</strong> <%=sourceFields.get("compoundName")%><br><strong>NCTID:</strong><strong> <a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nCTNumber")%>" target="_blank"><%=sourceFields.get("nCTNumber")%></a></strong><br><strong>Start Date:</strong> <%=sourceFields.get("actualStudyStartDate(m/d/y)")%><br><strong>Completion Date:</strong> <%=sourceFields.get("estimatedPrimaryCompletionDate(m/d/y)")%><br><strong>Status:</strong><%=sourceFields.get("studyStatus")%></td>
+        <td>
+            <div style="width: 400px">
+            <div class="row">
+                <div class="col-5"><strong>Sponsor:</strong></div><div class="col-7"><%=sourceFields.get("sponsor")%></div>
+            </div>
+            <div class="row">
+                <div class="col-5"><strong>Compound:</strong></div><div class="col-7"><%=sourceFields.get("compoundName")%></div>
+            </div>
+            <div class="row">
+                <div class="col-5"><strong>NCTID:</strong></div><div class="col-7"><strong> <a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nCTNumber")%>" target="_blank"><%=sourceFields.get("nCTNumber")%></a></strong></div>
+            </div>
+            <div class="row">
+                <div class="col-5"><strong>Start Date:</strong></div><div class="col-7"><%=sourceFields.get("actualStudyStartDate(m/d/y)")%></div>
+            </div>
+            <div class="row">
+                <div class="col-5"><strong>Completion Date:</strong></div><div class="col-7"><%=sourceFields.get("estimatedPrimaryCompletionDate(m/d/y)")%></div>
+            </div>
+            <div class="row">
+                <div class="col-5"><strong>Status:</strong></div><div class="col-7"><%=sourceFields.get("studyStatus")%></div>
+            </div>
+
+            </div>
+
+        </td>
         <td ><%=sourceFields.get("funderType")%></td>
         <td><%=sourceFields.get("indication")%></td>
         <td class="manual"><%=sourceFields.get("targetGene/Variant")%></td>

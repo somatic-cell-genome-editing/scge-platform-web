@@ -16,20 +16,20 @@
   <button id="clearFilters" class="btn btn-primary btn-sm" onclick="removeFilters()" >Clear Filters</button>
 </div>
 <form id="facetForm" action="/platform/data/search/clinicalTrials">
-  <h4>By Category:</h4>
+<%--  <h4>By Category:</h4>--%>
 
 
-  <%for(Terms.Bucket bkt:trackerTypeAggregations.getBuckets()){%>
-  <div class="checkbox">
-    <label><input type="checkbox" class="icheck" name="trackerType" value="<%=bkt.getKey()%>"> <%=bkt.getKey()%>&nbsp;(<%=bkt.getDocCount()%>)</label>
-  </div>
-  <%}%>
+<%--  <%for(Terms.Bucket bkt:trackerTypeAggregations.getBuckets()){%>--%>
+<%--  <div class="checkbox">--%>
+<%--    <label><input type="checkbox" class="icheck" name="trackerType" value="<%=bkt.getKey()%>"> <%=bkt.getKey()%>&nbsp;(<%=bkt.getDocCount()%>)</label>--%>
+<%--  </div>--%>
+<%--  <%}%>--%>
 <h4>By Status:</h4>
 
 
 <%for(Terms.Bucket bkt:statAggregations.getBuckets()){%>
 <div class="checkbox">
-  <label><input type="checkbox" class="icheck" name="status" value="<%=bkt.getKey()%>"> <%=bkt.getKey()%>&nbsp;(<%=bkt.getDocCount()%>)</label>
+  <label><input type="checkbox" class="icheck" name="studyStatus" value="<%=bkt.getKey()%>"> <%=bkt.getKey()%>&nbsp;(<%=bkt.getDocCount()%>)</label>
 </div>
 <%}%>
 
@@ -42,7 +42,7 @@
 
     <%for(Terms.Bucket bkt:conditionAggregations.getBuckets()){%>
     <div class="checkbox">
-      <label><input type="checkbox" class="icheck" name="condition" value="<%=bkt.getKey()%>" > <%=bkt.getKey()%>&nbsp;(<%=bkt.getDocCount()%>)</label>
+      <label><input type="checkbox" class="icheck" name="indication" value="<%=bkt.getKey()%>" > <%=bkt.getKey()%>&nbsp;(<%=bkt.getDocCount()%>)</label>
     </div>
     <%}%>
   </div>
@@ -53,7 +53,7 @@
     <%for(Terms.Bucket bkt:orgAggregations.getBuckets()){%>
 
   <div class="checkbox">
-    <label><input type="checkbox" class="icheck" name="organization" value="<%=bkt.getKey()%>"> <%=bkt.getKey()%>&nbsp;(<%=bkt.getDocCount()%>)</label>
+    <label><input type="checkbox" class="icheck" name="sponsor" value="<%=bkt.getKey()%>"> <%=bkt.getKey()%>&nbsp;(<%=bkt.getDocCount()%>)</label>
   </div>
 <%}%>
 </div>
@@ -87,7 +87,7 @@
 
 
     $(function () {
-    $.each($('input[name="status"]'), function(){
+    $.each($('input[name="studyStatus"]'), function(){
       var _this=$(this);
       var val=_this.val();
       _this.prop('checked', false);
@@ -100,7 +100,7 @@
         })
       }
     });
-    $.each($('input[name="organization"]'), function(){
+    $.each($('input[name="sponsor"]'), function(){
     var _this=$(this);
     var val=_this.val();
     _this.prop('checked', false);
@@ -113,7 +113,7 @@
   })
   }
   });
-    $.each($('input[name="condition"]'), function(){
+    $.each($('input[name="indication"]'), function(){
     var _this=$(this);
     var val=_this.val();
     _this.prop('checked', false);
