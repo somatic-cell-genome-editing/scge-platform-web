@@ -15,20 +15,24 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.sort.SortOrder;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 public class ClinicalTrialsService {
+
+    public static List<String> aggregationFields= Arrays.asList("studyStatus","indication", "sponsor","trackerType"
+            ,"funderType", "therapyType", "vectorType",
+            "deliverySystem","routeofAdministration","drugProductType","editorType"
+    );
     public SearchResponse getSearchResults(String searchTerm, Map<String, List<String>> filtersMap) throws IOException {
-        String searchIndex = "scge_platform_search_test";
+        String searchIndex = "scge_platform_search_dev";
         SearchSourceBuilder srb=new SearchSourceBuilder();
         srb.query(this.buildBoolQuery(searchTerm, filtersMap));
-
-        srb.aggregation(buildAggregations("trackerType"));
-        srb.aggregation(buildAggregations("organization"));
-        srb.aggregation(buildAggregations("status"));
-        srb.aggregation(buildAggregations("condition"));
-
+        for(String fieldName:ClinicalTrialsService.aggregationFields) {
+            srb.aggregation(buildAggregations(fieldName));
+        }
         srb.size(10000);
         try {
             srb.sort("sponsor.keyword", SortOrder.ASC);
@@ -49,15 +53,7 @@ public class ClinicalTrialsService {
         BoolQueryBuilder q=new BoolQueryBuilder();
         for(String filter:filters.keySet()) {
             List<String> filterValues=filters.get(filter);
-            if (filter.equalsIgnoreCase("status"))
-                q.must(QueryBuilders.termsQuery("status" + ".keyword", filterValues.toArray()));
-            if (filter.equalsIgnoreCase("organization"))
-                q.must(QueryBuilders.termsQuery("sponsor" + ".keyword", filterValues.toArray()));
-
-            if (filter.equalsIgnoreCase("condition"))
-                q.must(QueryBuilders.termsQuery("indication" + ".keyword", filterValues.toArray()));
-            if (filter.equalsIgnoreCase("trackerType"))
-                q.must(QueryBuilders.termsQuery("trackerType" + ".keyword", filterValues.toArray()));
+            q.must(QueryBuilders.termsQuery(filter + ".keyword", filterValues.toArray()));
         }
         return q;
     }
@@ -69,16 +65,9 @@ public class ClinicalTrialsService {
     }
 
     public AggregationBuilder buildAggregations(String fieldName){
-        AggregationBuilder builder=null;
-        if(fieldName.equalsIgnoreCase("organization"))
-            builder= AggregationBuilders.terms(fieldName).field("sponsor" + ".keyword") .size(1000).order(BucketOrder.key(true));
-        if(fieldName.equalsIgnoreCase("status"))
-            builder=AggregationBuilders.terms(fieldName).field("status" + ".keyword") .order(BucketOrder.key(true));
-        if(fieldName.equalsIgnoreCase("condition"))
-            builder=AggregationBuilders.terms(fieldName).field("indication" + ".keyword").size(1000) .order(BucketOrder.key(true));
-        if(fieldName.equalsIgnoreCase("trackerType"))
-            builder=AggregationBuilders.terms(fieldName).field(fieldName + ".keyword").size(10) .order(BucketOrder.key(true));
-        return builder;
+        AggregationBuilder builder = null;
+        builder= AggregationBuilders.terms(fieldName).field(fieldName + ".keyword").size(1000).order(BucketOrder.key(true));
+         return builder;
     }
 
     public QueryBuilder buildQuery(String term){

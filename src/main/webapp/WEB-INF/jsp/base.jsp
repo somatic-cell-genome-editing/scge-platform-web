@@ -22,25 +22,30 @@
 <%--    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>--%>
 <%--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>--%>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
-    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script> <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
 <%--    <link href="blog.css" rel="stylesheet">--%>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet" type="text/css"/>
     <link href="/platform/common/css/sticky-footer-navbar.css" rel="stylesheet">
+    <script
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+            integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+            crossorigin="anonymous"></script>
+    <link href="/platform/common/tablesorter-master/dist/css/filter.formatter.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/platform/common/tablesorter-master/dist/css/theme.jui.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/platform/common/tablesorter-master/dist/css/theme.blue.css" rel="stylesheet" type="text/css"/>
+    <link href="/platform/common/tablesorter-master/dist/css/theme.default.min.css">
 
-    <link href="/platform/common/tableSorter/css/filter.formatter.css" rel="stylesheet" type="text/css"/>
-    <link href="/platform/common/tableSorter/css/theme.jui.css" rel="stylesheet" type="text/css"/>
-    <link href="/platform/common/tableSorter/css/theme.blue.css" rel="stylesheet" type="text/css"/>
-
-    <script src="/platform/common/tableSorter/js/tablesorter.js"> </script>
-    <script src="/platform/common/tableSorter/js/jquery.tablesorter.widgets.js"></script>
+    <script src="/platform/common/tablesorter-master/dist/js/tablesorter.js"> </script>
+    <script src="/platform/common/tablesorter-master/dist/js/tablesorter.widgets.js"></script>
+    <script src="/platform/common/tablesorter-master/dist/js/widgets/widget-scroller.min.js"></script>
+<%--    <script src="/platform/common/tablesorter-master/dist/js/widgets/widget-uitheme.min.js"></script>--%>
 
     <script src="/platform/js/scge.js"></script>
 </head>
@@ -99,7 +104,7 @@
                 <!-- Icon -->
                 <div class="fadeIn first">
 
-                    <h2 class="navbar-brand"><img src="/platform/images/scge-logo-png-1.png" border="0" alt="SCGE"/>&nbsp;Somatic Cell Genome Editing Platform</h2>
+                    <h2 class="navbar-brand"><img src="/platform/images/scge-logo-png-1.png" border="0" width="100" height="100" alt="SCGE"/>&nbsp;Somatic Cell Genome Editing Platform</h2>
                 </div>
             </div>
 

@@ -12,22 +12,6 @@
 --%>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <style>
-  included, to get the result that you can see in the preview selection
-
-  body{margin-top:20px;
-    background:#eee;
-  }
-
-
-  .grid {
-    position: relative;
-    width: 100%;
-    background: #fff;
-    /*color: #666666;*/
-    border-radius: 2px;
-    margin-bottom: 25px;
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
-  }
 
   .grid .grid-body {
     padding: 15px 20px 15px 20px;
@@ -41,135 +25,17 @@
   }
 
 
-
-  /*.search table tr td img {*/
-  /*  width: 50px;*/
-  /*  height: 50px;*/
-  /*}*/
-
 </style>
 
 <%
     Gson gson=new Gson();
-    List<String> found=new ArrayList<>();
-    Set<String> notFound=new HashSet<>();
-    String idsStr="NCT05197270\n" +
-            "NCT05930561\n" +
-            "NCT04483440\n" +
-            "NCT04517149\n" +
-            "NCT04519749\n" +
-            "NCT05248230\n" +
-            "NCT04704921\n" +
-            "NCT02556736\n" +
-            "NCT04227106\n" +
-            "NCT05536973\n" +
-            "NCT04676048\n" +
-            "NCT03199469\n" +
-            "NCT04174105\n" +
-            "NCT05598333\n" +
-            "NCT05230459\n" +
-            "NCT03533673\n" +
-            "NCT06285643\n" +
-            "NCT05541627\n" +
-            "NCT05224505\n" +
-            "NCT05973630\n" +
-            "NCT03920007\n" +
-            "NCT05878860\n" +
-            "NCT06064890\n" +
-            "NCT03588299\n" +
-            "NCT05456880\n" +
-            "NCT05121376\n" +
-            "NCT04783181\n" +
-            "NCT04998396\n" +
-            "NCT03328130\n" +
-            "NCT05788536\n" +
-            "NCT04853576\n" +
-            "NCT05821959\n" +
-            "NCT04411654\n" +
-            "NCT04408625\n" +
-            "NCT06112275\n" +
-            "NCT05144386\n" +
-            "NCT05903794\n" +
-            "NCT04418414\n" +
-            "NCT05739643\n" +
-            "NCT05835895\n" +
-            "NCT03293524\n" +
-            "NCT03326336\n" +
-            "NCT05906953\n" +
-            "NCT06255782\n" +
-            "NCT05120830\n" +
-            "NCT06128629\n" +
-            "NCT05735158\n" +
-            "NCT05504837\n" +
-            "NCT06049082\n" +
-            "NCT03634007\n" +
-            "NCT05445323\n" +
-            "NCT06109181\n" +
-            "NCT04671433\n" +
-            "NCT05811351\n" +
-            "NCT03278873\n" +
-            "NCT05603312\n" +
-            "NCT02781480\n" +
-            "NCT05926765\n" +
-            "NCT04833907\n" +
-            "NCT04945772\n" +
-            "NCT05417126\n" +
-            "NCT05984927\n" +
-            "NCT05228145\n" +
-            "NCT05898620\n" +
-            "NCT05293626\n" +
-            "NCT05203939\n" +
-            "NCT06018558\n" +
-            "NCT05956626\n" +
-            "NCT05616793\n" +
-            "NCT06149403\n" +
-            "NCT04747431\n" +
-            "NCT04713475\n" +
-            "NCT03861273\n" +
-            "NCT04370054\n" +
-            "NCT04281485\n" +
-            "NCT04903288\n" +
-            "NCT03566043\n" +
-            "NCT05693142\n" +
-            "NCT06092034\n" +
-            "NCT05885412\n" +
-            "NCT04069533\n" +
-            "NCT03812263\n" +
-            "NCT04105166\n" +
-            "NCT04046224\n" +
-            "NCT05972629\n" +
-            "NCT06061549\n" +
-            "NCT06246513\n" +
-            "NCT01976091\n" +
-            "NCT05906251\n" +
-            "NCT06138639\n" +
-            "NCT05748873\n" +
-            "NCT03003533\n" +
-            "NCT04093349\n" +
-            "NCT04850118\n" +
-            "NCT05394064\n" +
-            "NCT05324943\n" +
-            "NCT04455230\n" +
-            "NCT05606614\n" +
-            "NCT05836259\n" +
-            "NCT02716246\n" +
-            "NCT05139316\n" +
-            "NCT05345171\n" +
-            "NCT04884815\n" +
-            "NCT05243017\n" +
-            "NCT06100276\n" +
-            "NCT06063850\n" +
-            "NCT05398029\n" +
-            "NCT04125732\n";
 
-    String[] array=idsStr.split("\n");
-    List<String> idsFromTrackerSheet=Arrays.asList(array);
     SearchResponse sr= (SearchResponse) request.getAttribute("sr");
 
 
-    Terms orgAggregations=sr.getAggregations().get("organization");
-    Terms statAggregations=sr.getAggregations().get("status");
-    Terms conditionAggregations=sr.getAggregations().get("condition");
+    Terms orgAggregations=sr.getAggregations().get("sponsor");
+    Terms statAggregations=sr.getAggregations().get("studyStatus");
+    Terms conditionAggregations=sr.getAggregations().get("indication");
     Terms trackerTypeAggregations=sr.getAggregations().get("trackerType");
 
     SearchHit[] hitsArray=sr.getHits().getHits();
@@ -180,24 +46,15 @@
     List<String> selectedOrganization=new ArrayList<>();
     List<String> selectedTrackerType=new ArrayList<>();
     if(filterMap!=null){
-        if(filterMap.get("status")!=null)
-            selectedStatus.addAll(filterMap.get("status"));
-        if(filterMap.get("condition")!=null)
-            selectedCondition.addAll(filterMap.get("condition"));
-        if(filterMap.get("organization")!=null)
-            selectedOrganization.addAll(filterMap.get("organization"));
+        if(filterMap.get("studyStatus")!=null)
+            selectedStatus.addAll(filterMap.get("studyStatus"));
+        if(filterMap.get("indication")!=null)
+            selectedCondition.addAll(filterMap.get("indication"));
+        if(filterMap.get("sponsor")!=null)
+            selectedOrganization.addAll(filterMap.get("sponsor"));
         if(filterMap.get("trackerType")!=null)
             selectedTrackerType.addAll(filterMap.get("trackerType"));
     }
-//    for(SearchHit hit:hits){
-//        Map<String, Object> sourceFields=hit.getSourceAsMap();
-//        Map<String, Object> protocolSection= (Map<String, Object>) sourceFields.get("protocolSection");
-//        Map<String, Object> identificationModule= (Map<String, Object>) protocolSection.get("identificationModule");
-//        String nctId= (String) identificationModule.get("nctId");
-//        if(idsFromTrackerSheet.contains(nctId)){
-//            found.add(nctId);
-//        }
-//    }
 
 %>
 
@@ -208,31 +65,13 @@
     var trackerTypeSelected=<%=gson.toJson(selectedTrackerType)%>
 
 </script>
-<script>
-    $(function() {
-        $("#myTable").tablesorter({
 
-            widthFixed : true,
-            theme : 'blue',
-            widgets: ['zebra','resizable', 'stickyHeaders'],
-            widgetOptions: {
-                // jQuery selector or object to attach sticky header to
-                stickyHeaders_attachTo: $('.table-wrapper'),
 
-            }
-        });
-    });
-</script>
-<style>
-    #myTable .tablesorter-filter-row td>[data-column="0"] {
-        width: 50%;
-    }
-</style>
 <div class="jumbotron">
     <div class="row"><div class="col"><h1>Clinical Trials - Gene Therapy Tracker</h1>
     </div>
         <div class="col-2">
-            <h5>Updated: 05/22/2024</h5>
+            <h5>Updated: 09/23/2024</h5>
 
         </div>
     </div>
@@ -274,74 +113,8 @@
 
               <div class="padding"></div>
                 <!-- BEGIN TABLE RESULT -->
-              <div  style="width: 100%">
-                <table class="tablesorter" id="myTable">
-                  <caption align="top">Clinical Trials - Gene Therapy - Summary</caption>
-                  <thead>
-                  <tr>
-                      <th class="sorter-false">Study</th>
-<%--                      <th>Compound</th>--%>
-                      <th>Editor Type</th>
-                      <th>Therapy Type</th>
-                      <th>Current Stage</th>
-<%--                      <th>Status</th>--%>
-<%--                      <th>NCTID</th>--%>
-
-                    <th>Indication</th>
-<%--                    <th>Start_Date</th>--%>
-<%--                    <th>Completion</th>--%>
-                    <th>Last_Update</th>
-<%--                      <th>Total Days</th>--%>
-<%--                      <th>Days Elapsed</th>--%>
-                      <th>Days Progressed</th>
-                        <th>Updates</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <%
-                      for(SearchHit hit:hits) {
-                      Map<String, Object> sourceFields = hit.getSourceAsMap();
-                      %>
-                    <tr>
-                        <td  style="width: 40%">
-                           <strong>Sponsor:</strong> <%=sourceFields.get("sponsor")%><br>
-                            <strong>Compound:</strong> <%=sourceFields.get("sponsorCompound")%><br>
-                            <strong>NCTID:</strong><strong> <a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nCTNumber")%>" target="_blank"><%=sourceFields.get("nCTNumber")%></a></strong><br>
-                            <strong>Start Date:</strong> <%=sourceFields.get("actualStudyStartDate(m/d/y)")%><br>
-                            <strong>Completion Date:</strong> <%=sourceFields.get("estimatedPrimaryCompletion(m/d/y)")%><br>
-
-                           <strong>Status:</strong><%=sourceFields.get("status")%>
-
-                        </td>
-<%--                        <td><%=sourceFields.get("sponsorCompound")%></td>--%>
-                        <td><%=sourceFields.get("editorType")%></td>
-                        <td><%=sourceFields.get("therapyType")%></td>
-                        <td><%=sourceFields.get("currentStage")%></td>
-<%--                        <td><%=sourceFields.get("status")%></td>--%>
-<%--                        <td><strong><a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nCTNumber")%>" target="_blank"><%=sourceFields.get("nCTNumber")%></a></strong></td>--%>
-
-                        <td><%=sourceFields.get("indication")%></td>
-<%--                        <td><%=sourceFields.get("actualStudyStartDate(m/d/y)")%></td>--%>
-<%--                        <td><%=sourceFields.get("estimatedPrimaryCompletion(m/d/y)")%></td>--%>
-                        <td><%=sourceFields.get("dateofLastupdate")%></td>
-<%--                        <td><%=sourceFields.get("totalDays")%></td>--%>
-<%--                        <td><%=sourceFields.get("dayselapsed")%></td>--%>
-                        <td><%
-                            String progress=sourceFields.get("progress").toString().replace("%","").trim();
-                        %>
-                            <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: <%=progress%>%" aria-valuenow=<%=progress%> aria-valuemin="0" aria-valuemax="100"></div>
-                        </div><%=sourceFields.get("progress")%></td>
-                        <td><%
-                            if(sourceFields.get("notes")!=null){
-                        %>
-                            <%=sourceFields.get("notes")%>
-                            <%}%>
-                        </td>
-                    </tr>
-                  <%}%>
-                  </tbody>
-                </table>
+              <div style="width:100%">
+               <%@include file="resultsTable.jsp"%>
               </div>
 
             </div>

@@ -55,22 +55,11 @@ public class SearchController{
     }
     public Map<String,  List<String>> getFiltersMap(HttpServletRequest request) throws IOException {
         Map<String,  List<String>> filterMap=new HashMap<>();
-
-        if(request.getParameterValues("status")!=null){
-            List<String> status= Arrays.asList(request.getParameterValues("status"));
-            filterMap.put("status", status);
-        }
-        if(request.getParameterValues("organization")!=null){
-            List<String> organization= Arrays.asList(request.getParameterValues("organization"));
-            filterMap.put("organization", organization);
-        }
-        if(request.getParameterValues("condition")!=null){
-            List<String> condition= Arrays.asList(request.getParameterValues("condition"));
-            filterMap.put("condition", condition);
-        }
-        if(request.getParameterValues("trackerType")!=null){
-            List<String> trackerType= Arrays.asList(request.getParameterValues("trackerType"));
-            filterMap.put("trackerType", trackerType);
+        for(String filterField:ClinicalTrialsService.aggregationFields) {
+            if (request.getParameterValues(filterField) != null) {
+                List<String> filterValues = Arrays.asList(request.getParameterValues(filterField));
+                filterMap.put(filterField, filterValues);
+            }
         }
         return filterMap;
     }
