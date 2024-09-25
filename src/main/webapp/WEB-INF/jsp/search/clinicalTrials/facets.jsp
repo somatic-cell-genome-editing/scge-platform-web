@@ -44,14 +44,17 @@
       <div class="pl-3  accordion-inner" style="height:auto;max-height: 300px;; overflow-y: auto">
         <%
          Terms aggs= sr.getAggregations().get(agg.getName());
-          for(Terms.Bucket bkt:aggs.getBuckets()){%>
+          for(Terms.Bucket bkt:aggs.getBuckets()){
+
+            if(bkt.getKey()!=null && !bkt.getKey().equals("")){
+        %>
         <div class="form-check">
           <input class="form-check-input" type="checkbox" name="<%=agg.getName()%>" value="<%=bkt.getKey()%>" id="<%=bkt.getKey()%>">
           <label class="form-check-label" for="<%=bkt.getKey()%>">
             <%=bkt.getKey()%>&nbsp;(<%=bkt.getDocCount()%>)
           </label>
         </div>
-          <%}%>
+          <%}}%>
 
       </div>
     </div>
