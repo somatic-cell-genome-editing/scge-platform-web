@@ -244,7 +244,7 @@
                     for(Map<String, String> map:links){
                         if(map.get("link")!=null){
             %>
-            <strong><%=map.get("type")%>&nbsp;:&nbsp;</strong><a href="<%=map.get("link")%>"><%=map.get("name")%></a><br>
+            <strong><%=map.get("type")%>&nbsp;:&nbsp;</strong><a href="<%=map.get("link")%>" target="_blank"><%=map.get("name")%></a><br>
                    <%}else{%>
             <strong><%=map.get("type")%>&nbsp;:&nbsp;</strong><%=map.get("name")%><br>
                         <%}}}%>
