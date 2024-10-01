@@ -29,7 +29,7 @@
 
     <%for(Terms.Bucket bkt:statAggregations.getBuckets()){%>
     <div class="checkbox">
-        <label><input type="checkbox" class="icheck" name="studyStatus" value="<%=bkt.getKey()%>"> <%=bkt.getKey()%>&nbsp;(<%=bkt.getDocCount()%>)</label>
+        <label><input type="checkbox" class="icheck" name="status" value="<%=bkt.getKey()%>"> <%=bkt.getKey()%>&nbsp;(<%=bkt.getDocCount()%>)</label>
     </div>
     <%}%>
 
@@ -87,7 +87,7 @@
 
 
     $(function () {
-        $.each($('input[name="studyStatus"]'), function(){
+        $.each($('input[name="status"]'), function(){
             var _this=$(this);
             var val=_this.val();
             _this.prop('checked', false);

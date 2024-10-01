@@ -1,4 +1,4 @@
-<%--
+<%@ page import="edu.mcw.scge.datamodel.ClinicalTrialExternalLink" %><%--
   Created by IntelliJ IDEA.
   User: jthota
   Date: 9/16/2024
@@ -48,7 +48,7 @@
     /* OPTIONAL CSS! */
     .tablesorter tbody td {
         /* force "Notes" column to not wrap, so we get a horizontal scrolling demo! */
-         white-space: nowrap;
+        /* white-space: nowrap;*/
         /* Add min column width, or "Index" column filter gets too narrow to use */
         min-width: 60px;
         font-size: .9rem;
@@ -75,7 +75,7 @@
 
 
 
-             <strong><a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nCTNumber")%>" target="_blank"><%=sourceFields.get("nCTNumber")%></a></strong>
+             <strong><a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nctId")%>" target="_blank"><%=sourceFields.get("nctId")%></a></strong>
 <%--                <div class="w-100"></div>--%>
 <%--                <div class="col-5"><strong>Start Date:</strong></div><div class="col-7"><%=sourceFields.get("actualStudyStartDate(m/d/y)")%></div>--%>
 <%--                <div class="w-100"></div>--%>
@@ -89,18 +89,18 @@
         </td>
 
         <td><%=sourceFields.get("sponsor")%></td>
-        <td><%=sourceFields.get("compoundName")%></td>
+        <td><%=sourceFields.get("interventionName")%></td>
 
-        <td ><%=sourceFields.get("funderType")%></td>
-        <td><%=sourceFields.get("studyStatus")%></td>
+        <td ><%=sourceFields.get("sponsorClass")%></td>
+        <td><%=sourceFields.get("status")%></td>
         <td><%=sourceFields.get("indication")%></td>
-        <td class="manual"><%=sourceFields.get("targetGene/Variant")%></td>
+        <td class="manual"><%=sourceFields.get("targetGeneOrVariant")%></td>
         <td class="manual"><%=sourceFields.get("therapyType")%></td>
         <td class="manual"><%=sourceFields.get("therapyRoute")%></td>
-        <td class="manual"><%=sourceFields.get("mechanismofaction")%></td>
-        <td class="manual"><%=sourceFields.get("routeofAdministration")%></td>
+        <td class="manual"><%=sourceFields.get("mechanismOfAction")%></td>
+        <td class="manual"><%=sourceFields.get("routeOfAdministration")%></td>
         <td class="manual"><%=sourceFields.get("drugProductType")%></td>
-        <td class="manual"><%=sourceFields.get("targetTissue/Cell")%></td>
+        <td class="manual"><%=sourceFields.get("targetTissueOrCell")%></td>
         <td class="manual"><%=sourceFields.get("deliverySystem")%></td>
         <td class="manual"><%=sourceFields.get("vectorType")%></td>
         <td class="manual"><%if(sourceFields.get("editorType")!=null && !sourceFields.get("editorType").toString().equalsIgnoreCase("none")){%>
@@ -112,116 +112,142 @@
         <td class="manual"><%=sourceFields.get("dose3")%></td>
         <td class="manual"><%=sourceFields.get("dose4")%></td>
         <td class="manual"><%=sourceFields.get("dose5")%></td>
-        <td ><%=sourceFields.get("interventionDescription")%></td>
-        <td ><%=sourceFields.get("currentStage")%></td>
-        <td><%=sourceFields.get("dateofLastUpdate")%></td>
-        <td><%=sourceFields.get("adults,Peds,Both")%></td>
-        <td><%=sourceFields.get("agesEligibleforStudy")%></td>
-        <td><%=sourceFields.get("trialEnrollment")%></td>
-        <td><%=sourceFields.get("ntrialsites")%></td>
+<%--        <td ><%=sourceFields.get("interventionDescription")%></td>--%>
+        <td ><%=sourceFields.get("phases")%></td>
+        <td><%=sourceFields.get("firstSubmitDate")%></td>
+        <td><%=sourceFields.get("estimatedCompleteDate")%></td>
+        <td><%=sourceFields.get("lastUpdatePostDate")%></td>
+        <td><%=sourceFields.get("standardAges")%></td>
+        <td>
+            <%if(sourceFields.get("elibilityMinAge")!=null && sourceFields.get("elibilityMaxAge")!=null){%>
+            <%=sourceFields.get("elibilityMinAge")%> - <%=sourceFields.get("elibilityMaxAge")%>
+
+            <%}else{
+                if(sourceFields.get("elibilityMinAge")!=null && sourceFields.get("elibilityMaxAge")==null){%>
+                   >=&nbsp;<%=sourceFields.get("elibilityMinAge")%>
+               <%}else{
+                   if(sourceFields.get("elibilityMinAge")==null && sourceFields.get("elibilityMaxAge")!=null){%>
+            <=&nbsp;<%=sourceFields.get("elibilityMaxAge")%>
+                  <% }}}%>
+
+        </td>
+        <td><%=sourceFields.get("enrorllmentCount")%></td>
+        <td><%=sourceFields.get("numberOfLocations")%></td>
         <td><%=sourceFields.get("clinicalCentersinUSA?")%></td>
-        <td><%=sourceFields.get("countries")%></td>
-        <td><%=sourceFields.get("hasUSIND?")%></td>
-        <td class="manual">
-<%--            <%=sourceFields.get("clinicalPublications")%>--%>
-    <% if(sourceFields.get("clinicalPublications")!=null){
-        List<String> publications= Arrays.asList(sourceFields.get("clinicalPublications").toString().split(";"));
-        for(String s:publications){
-            String url="";
-            String label="";
-            if(s.contains("https") || s.toLowerCase().contains("pmid")) {
-                if(s.contains("https")) {
-                    url += s;
-                    label += s.substring(s.lastIndexOf("/") + 1);
-                }
-                if(s.toLowerCase().contains("pmid")) {
-                    url += "https://pubmed.ncbi.nlm.nih.gov/";
-                    url += s.substring(s.indexOf(":") + 1).trim();
-                    label += s;
-                }
-    %>
-    <a href="<%=url%>" target="_blank"><%=label%></a><br>
-    <%--            <%=sourceFields.get("clinicalPublications")%>--%>
-    <%}else{%>
-    <%=s%><br>
-    <%}}}%>
-        </td>
-        <td class="manual">
-                 <% if(sourceFields.get("preclinicalPublications")!=null){
-                List<String> publications= Arrays.asList(sourceFields.get("preclinicalPublications").toString().split(";"));
-                for(String s:publications){
-                    String url="";
-                    String label="";
-                    if(s.contains("https") || s.toLowerCase().contains("pmid")) {
-                        if(s.contains("https")) {
-                            url += s;
-                            label += s.substring(s.lastIndexOf("/") + 1);
-                        }
-                        if(s.toLowerCase().contains("pmid")) {
-                            url += "https://pubmed.ncbi.nlm.nih.gov/";
-                            url += s.substring(s.indexOf(":") + 1).trim();
-                            label += s;
-                        }
-            %>
-            <a href="<%=url%>" target="_blank"><%=label%></a><br>
-            <%}else{%>
-            <%=s%><br>
-            <%}}}%>
+        <td><%=sourceFields.get("locations")%></td>
+        <td><%=sourceFields.get("isFDARegulated")%></td>
+<%--        <td class="manual">--%>
+<%--&lt;%&ndash;            <%=sourceFields.get("clinicalPublications")%>&ndash;%&gt;--%>
+<%--    <% if(sourceFields.get("clinicalPublications")!=null){--%>
+<%--        List<String> publications= Arrays.asList(sourceFields.get("clinicalPublications").toString().split(";"));--%>
+<%--        for(String s:publications){--%>
+<%--            String url="";--%>
+<%--            String label="";--%>
+<%--            if(s.contains("https") || s.toLowerCase().contains("pmid")) {--%>
+<%--                if(s.contains("https")) {--%>
+<%--                    url += s;--%>
+<%--                    label += s.substring(s.lastIndexOf("/") + 1);--%>
+<%--                }--%>
+<%--                if(s.toLowerCase().contains("pmid")) {--%>
+<%--                    url += "https://pubmed.ncbi.nlm.nih.gov/";--%>
+<%--                    url += s.substring(s.indexOf(":") + 1).trim();--%>
+<%--                    label += s;--%>
+<%--                }--%>
+<%--    %>--%>
+<%--    <a href="<%=url%>" target="_blank"><%=label%></a><br>--%>
+<%--    &lt;%&ndash;            <%=sourceFields.get("clinicalPublications")%>&ndash;%&gt;--%>
+<%--    <%}else{%>--%>
+<%--    <%=s%><br>--%>
+<%--    <%}}}%>--%>
+<%--        </td>--%>
+<%--        <td class="manual">--%>
+<%--                 <% if(sourceFields.get("preclinicalPublications")!=null){--%>
+<%--                List<String> publications= Arrays.asList(sourceFields.get("preclinicalPublications").toString().split(";"));--%>
+<%--                for(String s:publications){--%>
+<%--                    String url="";--%>
+<%--                    String label="";--%>
+<%--                    if(s.contains("https") || s.toLowerCase().contains("pmid")) {--%>
+<%--                        if(s.contains("https")) {--%>
+<%--                            url += s;--%>
+<%--                            label += s.substring(s.lastIndexOf("/") + 1);--%>
+<%--                        }--%>
+<%--                        if(s.toLowerCase().contains("pmid")) {--%>
+<%--                            url += "https://pubmed.ncbi.nlm.nih.gov/";--%>
+<%--                            url += s.substring(s.indexOf(":") + 1).trim();--%>
+<%--                            label += s;--%>
+<%--                        }--%>
+<%--            %>--%>
+<%--            <a href="<%=url%>" target="_blank"><%=label%></a><br>--%>
+<%--            <%}else{%>--%>
+<%--            <%=s%><br>--%>
+<%--            <%}}}%>--%>
 
-        </td>
-        <td class="manual"><%=sourceFields.get("grants")%></td>
-        <td class="manual">
-<%--            <%=sourceFields.get("protocols")%>--%>
-            <% if(sourceFields.get("protocols")!=null){
-                List<String> publications= Arrays.asList(sourceFields.get("protocols").toString().split(";"));
-                for(String s:publications){
-                    String url="";
-                    String label="";
-                    if(s.contains("https") || s.toLowerCase().contains("pmid")) {
-                    if(s.contains("https")) {
-                        url += s;
-                        label += s.substring(s.lastIndexOf("/") + 1);
-                    }
-                    if(s.toLowerCase().contains("pmid")) {
-                        url += "https://pubmed.ncbi.nlm.nih.gov/";
-                        url += s.substring(s.indexOf(":") + 1).trim();
-                        label += s;
-                    }
-            %>
-            <a href="<%=url%>" target="_blank"><%=label%></a><br>
-            <%}else{%>
-            <%=s%><br>
-            <%}}}%>
+<%--        </td>--%>
+<%--        <td class="manual"><%=sourceFields.get("grants")%></td>--%>
+<%--        <td class="manual">--%>
+<%--&lt;%&ndash;            <%=sourceFields.get("protocols")%>&ndash;%&gt;--%>
+<%--            <% if(sourceFields.get("protocols")!=null){--%>
+<%--                List<String> publications= Arrays.asList(sourceFields.get("protocols").toString().split(";"));--%>
+<%--                for(String s:publications){--%>
+<%--                    String url="";--%>
+<%--                    String label="";--%>
+<%--                    if(s.contains("https") || s.toLowerCase().contains("pmid")) {--%>
+<%--                    if(s.contains("https")) {--%>
+<%--                        url += s;--%>
+<%--                        label += s.substring(s.lastIndexOf("/") + 1);--%>
+<%--                    }--%>
+<%--                    if(s.toLowerCase().contains("pmid")) {--%>
+<%--                        url += "https://pubmed.ncbi.nlm.nih.gov/";--%>
+<%--                        url += s.substring(s.indexOf(":") + 1).trim();--%>
+<%--                        label += s;--%>
+<%--                    }--%>
+<%--            %>--%>
+<%--            <a href="<%=url%>" target="_blank"><%=label%></a><br>--%>
+<%--            <%}else{%>--%>
+<%--            <%=s%><br>--%>
+<%--            <%}}}%>--%>
 
-        </td>
+<%--        </td>--%>
         <td class="manual"><%=sourceFields.get("patents")%></td>
-        <td class="manual"><%=sourceFields.get("sponsor'sTrialWebsiteLink")%></td>
+<%--        <td class="manual"><%=sourceFields.get("sponsor'sTrialWebsiteLink")%></td>--%>
         <td class="manual"><%=sourceFields.get("recentUpdates")%></td>
-        <td class="manual">
+<%--        <td class="manual">--%>
 <%--            <%=sourceFields.get("newsandPressReleases")%>--%>
-    <% if(sourceFields.get("newsandPressReleases")!=null){
-        List<String> publications= Arrays.asList(sourceFields.get("newsandPressReleases").toString().split(";"));
-        for(String s:publications){
-            String url="";
-            String label="";
-            if(s.contains("https") || s.toLowerCase().contains("pmid")) {
-                if(s.contains("https")) {
-                    url += s;
-                    label += s.substring(s.lastIndexOf("/") + 1);
-                }
-                if(s.toLowerCase().contains("pmid")) {
-                    url += "https://pubmed.ncbi.nlm.nih.gov/";
-                    url += s.substring(s.indexOf(":") + 1).trim();
-                    label += s;
-                }
-    %>
-    <a href="<%=url%>" target="_blank"><%=label%></a><br>
-    <%--            <%=sourceFields.get("clinicalPublications")%>--%>
-    <%}else{%>
-    <%=s%><br>
-    <%}}}%>
+<%--    <% if(sourceFields.get("newsandPressReleases")!=null){--%>
+<%--        List<String> publications= Arrays.asList(sourceFields.get("newsandPressReleases").toString().split(";"));--%>
+<%--        for(String s:publications){--%>
+<%--            String url="";--%>
+<%--            String label="";--%>
+<%--            if(s.contains("https") || s.toLowerCase().contains("pmid")) {--%>
+<%--                if(s.contains("https")) {--%>
+<%--                    url += s;--%>
+<%--                    label += s.substring(s.lastIndexOf("/") + 1);--%>
+<%--                }--%>
+<%--                if(s.toLowerCase().contains("pmid")) {--%>
+<%--                    url += "https://pubmed.ncbi.nlm.nih.gov/";--%>
+<%--                    url += s.substring(s.indexOf(":") + 1).trim();--%>
+<%--                    label += s;--%>
+<%--                }--%>
+<%--    %>--%>
+<%--    <a href="<%=url%>" target="_blank"><%=label%></a><br>--%>
+<%--    &lt;%&ndash;            <%=sourceFields.get("clinicalPublications")%>&ndash;%&gt;--%>
+<%--    <%}else{%>--%>
+<%--    <%=s%><br>--%>
+<%--    <%}}}%>--%>
 
 
+<%--        </td>--%>
+        <td class="manual">
+            <%
+                if(sourceFields.get("externalLinks")!=null){
+                    List<Map<String,String>> links= (List<Map<String,String>>) sourceFields.get("externalLinks");
+                    for(Map<String, String> map:links){
+                        if(map.get("link")!=null){
+            %>
+            <strong><%=map.get("type")%>&nbsp;:&nbsp;</strong><a href="<%=map.get("link")%>"><%=map.get("name")%></a><br>
+                   <%}else{%>
+            <strong><%=map.get("type")%>&nbsp;:&nbsp;</strong><%=map.get("name")%><br>
+                        <%}}}%>
         </td>
     </tr>
     <%}%>

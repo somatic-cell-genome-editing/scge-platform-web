@@ -22,9 +22,13 @@ import java.util.Map;
 
 public class ClinicalTrialsService {
 
-    public static List<String> aggregationFields= Arrays.asList("studyStatus","indication", "sponsor","trackerType"
-            ,"funderType", "therapyType", "vectorType",
-            "deliverySystem","routeofAdministration","drugProductType","editorType"
+//    public static List<String> aggregationFields= Arrays.asList("status","indication", "sponsor","trackerType"
+//            ,"funderType", "therapyType", "vectorType",
+//            "deliverySystem","routeofAdministration","drugProductType","editorType"
+//    );
+    public static List<String> aggregationFields= Arrays.asList("status","indication", "sponsor"
+            ,"sponsorClass", "therapyType", "vectorType",
+            "deliverySystem","routeOfAdministration","drugProductType","editorType"
     );
     public SearchResponse getSearchResults(String searchTerm, Map<String, List<String>> filtersMap) throws IOException {
         String searchIndex = "scge_platform_ctapi_search_dev";

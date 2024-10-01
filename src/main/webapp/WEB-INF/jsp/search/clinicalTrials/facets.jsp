@@ -126,7 +126,7 @@
 
 
     $(function () {
-    $.each($('input[name="studyStatus"]'), function(){
+    $.each($('input[name="status"]'), function(){
       var _this=$(this);
       var val=_this.val();
       _this.prop('checked', false);

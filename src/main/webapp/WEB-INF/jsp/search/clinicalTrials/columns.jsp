@@ -28,8 +28,10 @@
 <th class="manual">Dose 3</th>
 <th class="manual">Dose 4</th>
 <th class="manual">Dose 5</th>
-<th>Treatment</th>
+<%--<th>Treatment</th>--%>
 <th>Current Stage</th>
+<th>Submit Date</th>
+<th>Completion Date</th>
 <th>Last_Update</th>
 <th>Std Ages</th>
 <th>Eligibility Age</th>
@@ -38,11 +40,12 @@
 <th>Centers in USA</th>
 <th>Locations</th>
 <th>Has US IND</th>
-<th class="manual">Clinical Publications</th>
-<th class="manual">Preclinical Publications</th>
-<th class="manual">Grants</th>
-<th class="manual">Protocols</th>
+<%--<th class="manual">Clinical Publications</th>--%>
+<%--<th class="manual">Preclinical Publications</th>--%>
+<%--<th class="manual">Grants</th>--%>
+<%--<th class="manual">Protocols</th>--%>
 <th class="manual">Patents</th>
-<th class="manual">Trial Web Link</th>
+<%--<th class="manual">Trial Web Link</th>--%>
 <th class="manual">Recent Updates</th>
-<th class="manual">News and Press releases</th>
+<%--<th class="manual">News and Press releases</th>--%>
+<th class="manual">Resources/Links</th>

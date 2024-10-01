@@ -34,7 +34,7 @@
 
 
     Terms orgAggregations=sr.getAggregations().get("sponsor");
-    Terms statAggregations=sr.getAggregations().get("studyStatus");
+    Terms statAggregations=sr.getAggregations().get("status");
     Terms conditionAggregations=sr.getAggregations().get("indication");
     Terms trackerTypeAggregations=sr.getAggregations().get("trackerType");
 
@@ -46,8 +46,8 @@
     List<String> selectedOrganization=new ArrayList<>();
     List<String> selectedTrackerType=new ArrayList<>();
     if(filterMap!=null){
-        if(filterMap.get("studyStatus")!=null)
-            selectedStatus.addAll(filterMap.get("studyStatus"));
+        if(filterMap.get("status")!=null)
+            selectedStatus.addAll(filterMap.get("status"));
         if(filterMap.get("indication")!=null)
             selectedCondition.addAll(filterMap.get("indication"));
         if(filterMap.get("sponsor")!=null)
