@@ -46,13 +46,19 @@
       background-color:yellowgreen;
     }
     /* OPTIONAL CSS! */
-    #myTable tbody td {
+    .tablesorter tbody td {
         /* force "Notes" column to not wrap, so we get a horizontal scrolling demo! */
-        /* white-space: nowrap;*/
+         white-space: nowrap;
         /* Add min column width, or "Index" column filter gets too narrow to use */
         min-width: 60px;
-        font-size: 1rem;
+        font-size: .9rem;
     }
+    .tablesorter tbody td .card{
+        padding-left: 5%;
+
+    }
+
+
 </style>
 
 <table  id="myTable" class="tablesorter">
@@ -65,30 +71,28 @@
     %>
     <tr>
         <td>
-            <div class="card" style="width:300px">
-            <div class="row ">
-                <div class="col-5"><strong>Sponsor:</strong></div><div class="col-7"><%=sourceFields.get("sponsor")%></div>
-            </div>
-            <div class="row">
-                <div class="col-5"><strong>Compound:</strong></div><div class="col-7"><%=sourceFields.get("compoundName")%></div>
-            </div>
-            <div class="row">
-                <div class="col-5"><strong>NCTID:</strong></div><div class="col-7"><strong> <a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nCTNumber")%>" target="_blank"><%=sourceFields.get("nCTNumber")%></a></strong></div>
-            </div>
-            <div class="row">
-                <div class="col-5"><strong>Start Date:</strong></div><div class="col-7"><%=sourceFields.get("actualStudyStartDate(m/d/y)")%></div>
-            </div>
-            <div class="row">
-                <div class="col-5"><strong>Completion Date:</strong></div><div class="col-7"><%=sourceFields.get("estimatedPrimaryCompletionDate(m/d/y)")%></div>
-            </div>
-            <div class="row">
-                <div class="col-5"><strong>Status:</strong></div><div class="col-7"><%=sourceFields.get("studyStatus")%></div>
-            </div>
 
-            </div>
+
+
+
+             <strong><a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nCTNumber")%>" target="_blank"><%=sourceFields.get("nCTNumber")%></a></strong>
+<%--                <div class="w-100"></div>--%>
+<%--                <div class="col-5"><strong>Start Date:</strong></div><div class="col-7"><%=sourceFields.get("actualStudyStartDate(m/d/y)")%></div>--%>
+<%--                <div class="w-100"></div>--%>
+<%--                <div class="col-5"><strong>Completion Date:</strong></div><div class="col-7"><%=sourceFields.get("estimatedPrimaryCompletionDate(m/d/y)")%></div>--%>
+
+
+
+
+
 
         </td>
+
+        <td><%=sourceFields.get("sponsor")%></td>
+        <td><%=sourceFields.get("compoundName")%></td>
+
         <td ><%=sourceFields.get("funderType")%></td>
+        <td><%=sourceFields.get("studyStatus")%></td>
         <td><%=sourceFields.get("indication")%></td>
         <td class="manual"><%=sourceFields.get("targetGene/Variant")%></td>
         <td class="manual"><%=sourceFields.get("therapyType")%></td>
@@ -108,6 +112,7 @@
         <td class="manual"><%=sourceFields.get("dose3")%></td>
         <td class="manual"><%=sourceFields.get("dose4")%></td>
         <td class="manual"><%=sourceFields.get("dose5")%></td>
+        <td ><%=sourceFields.get("interventionDescription")%></td>
         <td ><%=sourceFields.get("currentStage")%></td>
         <td><%=sourceFields.get("dateofLastUpdate")%></td>
         <td><%=sourceFields.get("adults,Peds,Both")%></td>

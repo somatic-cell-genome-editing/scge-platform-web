@@ -68,7 +68,7 @@
 
 
 <div class="jumbotron">
-    <div class="row"><div class="col"><h1>Clinical Trials - Gene Therapy Tracker</h1>
+    <div class="row"><div class="col"><h3>Clinical Trials - Gene Therapy Tracker</h3>
     </div>
         <div class="col-2">
             <h5>Updated: 09/23/2024</h5>
@@ -91,7 +91,7 @@
             <!-- END FILTERS -->
             <!-- BEGIN RESULT -->
             <div class="col-md-10">
-              <h2><i class="fa fa-file-o"></i> Result</h2>
+              <h4><i class="fa fa-file-o"></i> Result</h4>
               <hr>
               <p>Showing all  <%=hits.size()%> results ...</p>
                 <%if(filterMap!=null && filterMap.size()>0){

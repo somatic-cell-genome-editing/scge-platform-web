@@ -6,8 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<th class="sorter-false">Study</th>
+<th>NCTID</th>
+
+<th class="sorter-false"><div class="info-card">Sponsor</div></th>
+<th>Compound</th>
 <th>Funder Type</th>
+<th>Status</th>
 <th>Indication</th>
 <th class="manual">Target Gene/Variant</th>
 <th class="manual">Therapy Type</th>
@@ -24,9 +28,10 @@
 <th class="manual">Dose 3</th>
 <th class="manual">Dose 4</th>
 <th class="manual">Dose 5</th>
+<th>Treatment</th>
 <th>Current Stage</th>
 <th>Last_Update</th>
-<th>Std Ages (Adult[A]/Peds[P]/Both[B])</th>
+<th>Std Ages</th>
 <th>Eligibility Age</th>
 <th>Enrollment Count</th>
 <th>No. of Trial Sites</th>

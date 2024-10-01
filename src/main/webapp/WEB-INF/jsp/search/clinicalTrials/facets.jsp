@@ -23,7 +23,7 @@
   });
 </script>
 
-<h2 class="grid-title"><i class="fa fa-filter"></i> Filters ..</h2>
+<h4 class="grid-title"><i class="fa fa-filter"></i> Filters ..</h4>
 
 <hr>
 

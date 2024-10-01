@@ -27,7 +27,8 @@ public class ClinicalTrialsService {
             "deliverySystem","routeofAdministration","drugProductType","editorType"
     );
     public SearchResponse getSearchResults(String searchTerm, Map<String, List<String>> filtersMap) throws IOException {
-        String searchIndex = "scge_platform_search_dev";
+        String searchIndex = "scge_platform_ctapi_search_dev";
+                //"scge_platform_search_dev";
         SearchSourceBuilder srb=new SearchSourceBuilder();
         srb.query(this.buildBoolQuery(searchTerm, filtersMap));
         for(String fieldName:ClinicalTrialsService.aggregationFields) {
