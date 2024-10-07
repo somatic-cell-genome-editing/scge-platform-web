@@ -5,7 +5,7 @@
   Time: 1:00 PM
   To change this template use File | Settings | File Templates.
 --%>
-<nav class="navbar navbar-expand-lg flex-md-nowrap  shadow" style="background-color: black" >
+<nav class="navbar navbar-expand-lg flex-md-nowrap  shadow" style="background-color: rgb(27, 128, 182)" >
   <div class="container-fluid">
 
     <button class="navbar-toggler btn-sm" type="button" data-toggle="collapse" data-target="#navbarResponsiveTop" aria-controls="navbarResponsiveTop" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,11 +25,11 @@
              <a href="/platform/dashboard"> <button class="btn btn-primary btn-sm">My Dashboard</button></a>
               &nbsp;&nbsp;<img class="rounded-circle" src="${userAttributes.get('picture')}" width="24">
               <span class="text-light" >&nbsp;${userAttributes.get('name')}&nbsp;&nbsp;</span>
-              <a href="/platform/logout" title="Sign out"><button class="btn btn-primary btn-sm">Logout</button></a>
+              <a href="/platform/logout" title="Sign out"><button class="btn btn-light btn-sm">Logout</button></a>
 
             </c:when>
             <c:otherwise>
-              <a href="/platform/login.jsp" title="Consortium Member Sign In"><button class="btn btn-primary btn-sm">Login</button></a>
+              <a href="/platform/login.jsp" title="Consortium Member Sign In"><button class="btn btn-light btn-sm">Login</button></a>
             </c:otherwise>
           </c:choose>
 

@@ -112,13 +112,13 @@
 </script>
 
 
-<div>
+<div class="container-fluid page-header" >
     <div class="row">
         <div class="col-6"><h3>Clinical Trials - Gene Therapy Tracker</h3></div>
 <%--        <div class="col-3"><small>Last Updated Date: 09/23/2024</small></div>--%>
     </div>
 </div>
-<hr>
+
 <div class="container-fluid">
 
   <div class="row">
