@@ -1,5 +1,6 @@
 
-<%@ page import="org.elasticsearch.search.aggregations.Aggregation" %><%--
+<%@ page import="org.elasticsearch.search.aggregations.Aggregation" %>
+<%@ page import="edu.mcw.scge.service.es.clinicalTrials.ClinicalTrialsService" %><%--
   Created by IntelliJ IDEA.
   User: jthota
   Date: 4/22/2024
@@ -21,7 +22,7 @@
   <div class="accordion-group">
     <div class="pl-3  accordion-heading card-header">
       <a class="accordion-toggle  search-results-anchor" data-toggle="collapse" href="#collapse<%=agg.getName()%>">
-        <%=agg.getName()%><span class="float-right"><i class="fas fa-angle-up"></i></span>
+        <%=ClinicalTrialsService.fieldDisplayNames.get(agg.getName())%><span class="float-right"><i class="fas fa-angle-up"></i></span>
       </a>
     </div>
     <div id="collapse<%=agg.getName()%>" class="accordion-body collapse" >

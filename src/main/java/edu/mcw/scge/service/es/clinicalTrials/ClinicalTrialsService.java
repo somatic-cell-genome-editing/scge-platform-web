@@ -13,23 +13,28 @@ import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.BucketOrder;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.sort.SortOrder;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ClinicalTrialsService {
 
-//    public static List<String> aggregationFields= Arrays.asList("status","indication", "sponsor","trackerType"
-//            ,"funderType", "therapyType", "vectorType",
-//            "deliverySystem","routeofAdministration","drugProductType","editorType"
-//    );
     public static List<String> aggregationFields= Arrays.asList("status","indication", "sponsor"
             ,"sponsorClass", "therapyType", "vectorType",
-            "deliverySystem","routeOfAdministration","drugProductType","editorType"
+            "deliverySystem","routeOfAdministration","drugProductType","editorType",
+            "targetGeneOrVariant", "mechanismOfAction", "targetTissueOrCell", "phases","standardAges", "therapyRoute"
     );
+    public static Map<String, String> fieldDisplayNames= new HashMap<>();
+    static{
+            for(String field:aggregationFields) {
+                String dispalyName=String.join(" ", field.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])"));
+                fieldDisplayNames.put(field, StringUtils.capitalize(dispalyName));
+            }
+
+    }
+
     public SearchResponse getSearchResults(String searchTerm, Map<String, List<String>> filtersMap) throws IOException {
         String searchIndex = "scge_platform_ctapi_search_dev";
                 //"scge_platform_search_dev";
