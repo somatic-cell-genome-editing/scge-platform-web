@@ -56,10 +56,12 @@ public class ClinicalTrialsService {
     }
     public BoolQueryBuilder filter(Map<String, List<String>> filters){
         BoolQueryBuilder q=new BoolQueryBuilder();
+        DisMaxQueryBuilder dqb=new DisMaxQueryBuilder();
         for(String filter:filters.keySet()) {
             List<String> filterValues=filters.get(filter);
-            q.must(QueryBuilders.termsQuery(filter + ".keyword", filterValues.toArray()));
+            dqb.add(QueryBuilders.termsQuery(filter + ".keyword", filterValues.toArray()));
         }
+        q.must(dqb);
         return q;
     }
     public BoolQueryBuilder buildBoolQuery( String searchTerm, Map<String,  List<String>> filterMap){

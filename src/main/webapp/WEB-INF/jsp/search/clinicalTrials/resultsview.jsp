@@ -38,6 +38,15 @@
     Terms conditionAggregations=sr.getAggregations().get("indication");
     Terms trackerTypeAggregations=sr.getAggregations().get("trackerType");
 
+    Terms vectorTypeAggregations=sr.getAggregations().get("vectorType");
+    Terms deliverySystermAggregations=sr.getAggregations().get("deliverySystem");
+    Terms routeOfAdministrationAggregations=sr.getAggregations().get("routeOfAdministration");
+    Terms therapyType=sr.getAggregations().get("therapyType");
+
+    Terms editorTypeAggregations=sr.getAggregations().get("editorType");
+    Terms drugProductTypeAggregations=sr.getAggregations().get("drugProductType");
+    Terms sponsorClassAggregations=sr.getAggregations().get("sponsorClass");
+
     SearchHit[] hitsArray=sr.getHits().getHits();
     List<SearchHit> hits=(Arrays.asList(hitsArray));
     Map<String, List<String>> filterMap= (Map<String, List<String>>) request.getAttribute("filterMap");
@@ -45,6 +54,16 @@
     List<String> selectedCondition=new ArrayList<>();
     List<String> selectedOrganization=new ArrayList<>();
     List<String> selectedTrackerType=new ArrayList<>();
+
+    List<String> selectedVectorType=new ArrayList<>();
+    List<String> selectedDeliverySystem=new ArrayList<>();
+    List<String> selectedEditorType=new ArrayList<>();
+    List<String> selectedDrugProductType=new ArrayList<>();
+
+    List<String> selectedRouteOfAdministration=new ArrayList<>();
+    List<String> selectedSponsorClass=new ArrayList<>();
+    List<String> selectedTherapyType=new ArrayList<>();
+
     if(filterMap!=null){
         if(filterMap.get("status")!=null)
             selectedStatus.addAll(filterMap.get("status"));
@@ -54,6 +73,23 @@
             selectedOrganization.addAll(filterMap.get("sponsor"));
         if(filterMap.get("trackerType")!=null)
             selectedTrackerType.addAll(filterMap.get("trackerType"));
+
+        if(filterMap.get("vectorType")!=null)
+            selectedVectorType.addAll(filterMap.get("vectorType"));
+        if(filterMap.get("deliverySystem")!=null)
+            selectedDeliverySystem.addAll(filterMap.get("deliverySystem"));
+        if(filterMap.get("editorType")!=null)
+            selectedEditorType.addAll(filterMap.get("editorType"));
+        if(filterMap.get("routeOfAdministration")!=null)
+            selectedRouteOfAdministration.addAll(filterMap.get("routeOfAdministration"));
+
+        if(filterMap.get("drugProductType")!=null)
+            selectedDrugProductType.addAll(filterMap.get("drugProductType"));
+        if(filterMap.get("sponsorClass")!=null)
+            selectedSponsorClass.addAll(filterMap.get("sponsorClass"));
+        if(filterMap.get("therapyType")!=null)
+            selectedTherapyType.addAll(filterMap.get("therapyType"));
+
     }
 
 %>
@@ -64,18 +100,25 @@
     var orgSelected=<%=gson.toJson(selectedOrganization)%>;
     var trackerTypeSelected=<%=gson.toJson(selectedTrackerType)%>
 
+    var  vectorTypeSelected=<%=gson.toJson(selectedVectorType)%>;
+    var  deliverySystemSelected=<%=gson.toJson(selectedDeliverySystem)%>;
+    var editorTypeSelected=<%=gson.toJson(selectedEditorType)%>;
+    var therapyTypeSelected=<%=gson.toJson(selectedTherapyType)%>
+
+    var  drugProductTypeSelected=<%=gson.toJson(selectedDrugProductType)%>;
+    var  routeOfAdministrationSelected=<%=gson.toJson(selectedRouteOfAdministration)%>;
+    var sponsorClasssSelected=<%=gson.toJson(selectedSponsorClass)%>;
+
 </script>
 
 
-<div class="jumbotron">
-    <div class="row"><div class="col"><h3>Clinical Trials - Gene Therapy Tracker</h3>
-    </div>
-        <div class="col-2">
-            <h5>Updated: 09/23/2024</h5>
-
-        </div>
+<div>
+    <div class="row">
+        <div class="col-6"><h3>Clinical Trials - Gene Therapy Tracker</h3></div>
+<%--        <div class="col-3"><small>Last Updated Date: 09/23/2024</small></div>--%>
     </div>
 </div>
+<hr>
 <div class="container-fluid">
 
   <div class="row">
@@ -92,8 +135,9 @@
             <!-- BEGIN RESULT -->
             <div class="col-md-10">
               <h4><i class="fa fa-file-o"></i> Result</h4>
+
               <hr>
-              <p>Showing all  <%=hits.size()%> results ...</p>
+                <span>Showing all  <%=hits.size()%> results ...</span><br>
                 <%if(filterMap!=null && filterMap.size()>0){
                     boolean first=true;
                 %>
