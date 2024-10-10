@@ -5,7 +5,7 @@
   Time: 1:00 PM
   To change this template use File | Settings | File Templates.
 --%>
-<nav class="navbar navbar-expand-lg flex-md-nowrap  shadow" style="background-color: rgb(27, 128, 182)" >
+<nav class="navbar navbar-expand-lg flex-md-nowrap  shadow" >
   <div class="container-fluid">
 
     <button class="navbar-toggler btn-sm" type="button" data-toggle="collapse" data-target="#navbarResponsiveTop" aria-controls="navbarResponsiveTop" aria-expanded="false" aria-label="Toggle navigation">

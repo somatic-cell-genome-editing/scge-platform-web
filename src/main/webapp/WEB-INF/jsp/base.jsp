@@ -73,6 +73,7 @@
     </div>
 </div>
 <%@include file="navbarTop.jsp"%>
+<%@include file="navbar.jsp"%>
 
 <div class="container-fluid">
     <header class="blog-header py-3">
