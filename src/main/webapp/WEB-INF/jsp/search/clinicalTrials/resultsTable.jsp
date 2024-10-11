@@ -251,13 +251,15 @@
             <div class="col-1 text-nowrap"><strong><%=type%>&nbsp;:</strong></div>
                 <div class="col-5">
                     <ul>
-                        <%for(Map<String, String> map:sortedLinks.get(type)){
-                        if(map.get("link")!=null){
-            %>
-           <li  style="list-style: none"><a href="<%=map.get("link")%>" target="_blank"><%=map.get("name")%></a></li>
-                   <%}else{%>
-                        <li style="list-style: none"><%=map.get("name")%><li>
-                        <%}}%>
+                        <%for(Map<String, String> map:sortedLinks.get(type)){%>
+                        <li  style="list-style-type: none">
+                        <%if(map.get("link")!=null){%>
+                            <a href="<%=map.get("link")%>" target="_blank"><%=map.get("name")%></a>
+                                <%}else{%>
+                                <%=map.get("name")%>
+                        <%}%>
+                        </li>
+                        <%}%>
                     </ul>
                 </div>
             </div>
