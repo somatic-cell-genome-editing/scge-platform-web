@@ -89,19 +89,19 @@
         </td>
 
         <td><%=sourceFields.get("sponsor")%></td>
-        <td><%=sourceFields.get("interventionName")%></td>
-
-        <td ><%=sourceFields.get("sponsorClass")%></td>
+<%--        <td><%=sourceFields.get("interventionName")%></td>--%>
+        <td class="manual"><%=sourceFields.get("compoundName")%></td>
+<%--        <td ><%=sourceFields.get("sponsorClass")%></td>--%>
         <td><%=sourceFields.get("status")%></td>
-        <td><%=sourceFields.get("indication")%></td>
+        <td class="manual"><%=sourceFields.get("indication")%></td>
         <td class="manual"><%=sourceFields.get("targetGeneOrVariant")%></td>
-        <td class="manual"><%=sourceFields.get("therapyType")%></td>
-        <td class="manual"><%=sourceFields.get("therapyRoute")%></td>
-        <td class="manual"><%=sourceFields.get("mechanismOfAction")%></td>
-        <td class="manual"><%=sourceFields.get("routeOfAdministration")%></td>
-        <td class="manual"><%=sourceFields.get("drugProductType")%></td>
+<%--        <td class="manual"><%=sourceFields.get("therapyType")%></td>--%>
+<%--        <td class="manual"><%=sourceFields.get("therapyRoute")%></td>--%>
+<%--        <td class="manual"><%=sourceFields.get("mechanismOfAction")%></td>--%>
+<%--        <td class="manual"><%=sourceFields.get("routeOfAdministration")%></td>--%>
+<%--        <td class="manual"><%=sourceFields.get("drugProductType")%></td>--%>
         <td class="manual"><%=sourceFields.get("targetTissueOrCell")%></td>
-        <td class="manual"><%=sourceFields.get("deliverySystem")%></td>
+<%--        <td class="manual"><%=sourceFields.get("deliverySystem")%></td>--%>
         <td class="manual"><%=sourceFields.get("vectorType")%></td>
         <td class="manual"><%if(sourceFields.get("editorType")!=null && !sourceFields.get("editorType").toString().equalsIgnoreCase("none")){%>
             <%=sourceFields.get("editorType")%>
@@ -133,8 +133,8 @@
         </td>
         <td><%=sourceFields.get("enrorllmentCount")%></td>
         <td><%=sourceFields.get("numberOfLocations")%></td>
-        <td><%=sourceFields.get("clinicalCentersinUSA?")%></td>
-        <td><%=sourceFields.get("locations")%></td>
+<%--        <td><%=sourceFields.get("clinicalCentersinUSA?")%></td>--%>
+<%--        <td><%=sourceFields.get("locations")%></td>--%>
         <td><%=sourceFields.get("isFDARegulated")%></td>
 <%--        <td class="manual">--%>
 <%--&lt;%&ndash;            <%=sourceFields.get("clinicalPublications")%>&ndash;%&gt;--%>

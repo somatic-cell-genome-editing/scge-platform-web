@@ -24,7 +24,7 @@ public class ClinicalTrialsService {
     public static List<String> aggregationFields= Arrays.asList("status","indication", "sponsor"
             ,"sponsorClass", "therapyType", "vectorType",
             "deliverySystem","routeOfAdministration","drugProductType","editorType",
-            "targetGeneOrVariant", "mechanismOfAction", "targetTissueOrCell", "phases","standardAges", "therapyRoute"
+            "targetGeneOrVariant", "mechanismOfAction", "targetTissueOrCell", "phases","standardAges", "therapyRoute","locations"
     );
     public static Map<String, String> fieldDisplayNames= new HashMap<>();
     static{

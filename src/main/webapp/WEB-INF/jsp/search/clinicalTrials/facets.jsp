@@ -7,7 +7,11 @@
   Time: 2:40 PM
   To change this template use File | Settings | File Templates.
 --%>
-
+<style>
+  .sponsorClass,.therapyType,.therapyRoute,.mechanismOfAction,.routeOfAdministration, .drugProductType,.deliverySystem,.locations{
+    color:red;
+  }
+</style>
 <h4 class="grid-title"><i class="fa fa-filter"></i> Filters ..&nbsp;&nbsp;&nbsp;<span style="float:right"><button id="clearFilters" class="btn btn-primary btn-sm" onclick="removeFilters()" >Clear Filters</button></span></h4>
 
 <hr>
@@ -22,7 +26,7 @@
   <div class="accordion-group">
     <div class="pl-3  accordion-heading card-header">
       <a class="accordion-toggle  search-results-anchor" data-toggle="collapse" href="#collapse<%=agg.getName()%>">
-        <%=ClinicalTrialsService.fieldDisplayNames.get(agg.getName())%><span class="float-right"><i class="fas fa-angle-up"></i></span>
+        <span class="<%=agg.getName()%>"><%=ClinicalTrialsService.fieldDisplayNames.get(agg.getName())%></span><span class="float-right"><i class="fas fa-angle-up"></i></span>
       </a>
     </div>
     <div id="collapse<%=agg.getName()%>" class="accordion-body collapse" >
