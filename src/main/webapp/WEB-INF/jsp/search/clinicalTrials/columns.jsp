@@ -12,7 +12,7 @@
 <%--<th>Intervention</th>--%>
 <th>Compound</th>
 <%--<th>Funder Type</th>--%>
-<th>Status</th>
+
 <th>Indication</th>
 <th class="manual">Target Gene/Variant</th>
 <%--<th class="manual">Therapy Type</th>--%>
@@ -31,10 +31,11 @@
 <th class="manual">Dose 5</th>
 <%--<th>Treatment</th>--%>
 <th>Current Stage</th>
+<th>Status</th>
 <th>Submit Date</th>
 <th>Completion Date</th>
 <th>Last_Update</th>
-<th>Std Ages</th>
+<%--<th>Std Ages</th>--%>
 <th>Eligibility Age</th>
 <th>Enrollment Count</th>
 <th>No. of Trial Sites</th>

@@ -8,7 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <style>
-  .sponsorClass,.therapyType,.therapyRoute,.mechanismOfAction,.routeOfAdministration, .drugProductType,.deliverySystem,.locations{
+  .sponsorClass,.therapyType,.therapyRoute,.mechanismOfAction,.routeOfAdministration, .drugProductType,.deliverySystem,.locations,.standardAges{
     color:red;
   }
 </style>

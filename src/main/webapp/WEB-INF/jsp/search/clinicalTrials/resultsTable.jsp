@@ -71,19 +71,11 @@
     %>
     <tr>
         <td>
-
-
-
-
-             <strong><a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nctId")%>" target="_blank"><%=sourceFields.get("nctId")%></a></strong>
+            <strong><a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nctId")%>" target="_blank"><%=sourceFields.get("nctId")%></a></strong>
 <%--                <div class="w-100"></div>--%>
 <%--                <div class="col-5"><strong>Start Date:</strong></div><div class="col-7"><%=sourceFields.get("actualStudyStartDate(m/d/y)")%></div>--%>
 <%--                <div class="w-100"></div>--%>
 <%--                <div class="col-5"><strong>Completion Date:</strong></div><div class="col-7"><%=sourceFields.get("estimatedPrimaryCompletionDate(m/d/y)")%></div>--%>
-
-
-
-
 
 
         </td>
@@ -92,7 +84,7 @@
 <%--        <td><%=sourceFields.get("interventionName")%></td>--%>
         <td class="manual"><%=sourceFields.get("compoundName")%></td>
 <%--        <td ><%=sourceFields.get("sponsorClass")%></td>--%>
-        <td><%=sourceFields.get("status")%></td>
+
         <td class="manual"><%=sourceFields.get("indication")%></td>
         <td class="manual"><%=sourceFields.get("targetGeneOrVariant")%></td>
 <%--        <td class="manual"><%=sourceFields.get("therapyType")%></td>--%>
@@ -114,10 +106,11 @@
         <td class="manual"><%=sourceFields.get("dose5")%></td>
 <%--        <td ><%=sourceFields.get("interventionDescription")%></td>--%>
         <td class="text-nowrap"><%=sourceFields.get("phases")%></td>
+        <td><%=sourceFields.get("status")%></td>
         <td class="text-nowrap"><%=sourceFields.get("firstSubmitDate")%></td>
         <td><%=sourceFields.get("estimatedCompleteDate")%></td>
         <td class="text-nowrap"><%=sourceFields.get("lastUpdatePostDate")%></td>
-        <td class="text-nowrap"><%=sourceFields.get("standardAges")%></td>
+<%--        <td class="text-nowrap"><%=sourceFields.get("standardAges")%></td>--%>
         <td class="text-nowrap">
             <%if(sourceFields.get("elibilityMinAge")!=null && sourceFields.get("elibilityMaxAge")!=null){%>
             <%=sourceFields.get("elibilityMinAge")%> - <%=sourceFields.get("elibilityMaxAge")%>
