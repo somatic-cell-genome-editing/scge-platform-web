@@ -113,12 +113,12 @@
         <td class="manual"><%=sourceFields.get("dose4")%></td>
         <td class="manual"><%=sourceFields.get("dose5")%></td>
 <%--        <td ><%=sourceFields.get("interventionDescription")%></td>--%>
-        <td ><%=sourceFields.get("phases")%></td>
-        <td><%=sourceFields.get("firstSubmitDate")%></td>
+        <td class="text-nowrap"><%=sourceFields.get("phases")%></td>
+        <td class="text-nowrap"><%=sourceFields.get("firstSubmitDate")%></td>
         <td><%=sourceFields.get("estimatedCompleteDate")%></td>
-        <td><%=sourceFields.get("lastUpdatePostDate")%></td>
-        <td><%=sourceFields.get("standardAges")%></td>
-        <td>
+        <td class="text-nowrap"><%=sourceFields.get("lastUpdatePostDate")%></td>
+        <td class="text-nowrap"><%=sourceFields.get("standardAges")%></td>
+        <td class="text-nowrap">
             <%if(sourceFields.get("elibilityMinAge")!=null && sourceFields.get("elibilityMaxAge")!=null){%>
             <%=sourceFields.get("elibilityMinAge")%> - <%=sourceFields.get("elibilityMaxAge")%>
 
@@ -238,16 +238,39 @@
 
 <%--        </td>--%>
         <td class="manual">
+
             <%
                 if(sourceFields.get("externalLinks")!=null){
                     List<Map<String,String>> links= (List<Map<String,String>>) sourceFields.get("externalLinks");
+                    Map<String, List<Map<String,String>>> sortedLinks=new HashMap<>();
                     for(Map<String, String> map:links){
+                        if(map.get("type")!=null){
+                            List<Map<String,String>> list=new ArrayList<>();
+                           if( sortedLinks.get(map.get("type"))!=null){
+                               list.addAll(sortedLinks.get(map.get("type")));
+                           }
+                           list.add(map);
+                           sortedLinks.put(map.get("type"), list);
+                        }}%>
+
+                    <%for(String type:sortedLinks.keySet()){%>
+            <div class="row">
+            <div class="col-1 text-nowrap"><strong><%=type%>&nbsp;:</strong></div>
+                <div class="col-5">
+                    <ul>
+                        <%for(Map<String, String> map:sortedLinks.get(type)){
                         if(map.get("link")!=null){
             %>
-            <strong><%=map.get("type")%>&nbsp;:&nbsp;</strong><a href="<%=map.get("link")%>" target="_blank"><%=map.get("name")%></a><br>
+           <li  style="list-style: none"><a href="<%=map.get("link")%>" target="_blank"><%=map.get("name")%></a></li>
                    <%}else{%>
-            <strong><%=map.get("type")%>&nbsp;:&nbsp;</strong><%=map.get("name")%><br>
-                        <%}}}%>
+                        <li style="list-style: none"><%=map.get("name")%><li>
+                        <%}}%>
+                    </ul>
+                </div>
+            </div>
+                    <%}%>
+
+                <%}%>
         </td>
     </tr>
     <%}%>
