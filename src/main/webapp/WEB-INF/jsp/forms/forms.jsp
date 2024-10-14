@@ -26,14 +26,14 @@
                         <div class="col-md-10">
                             <div class="card" id="clinical-path">
                                 <div class="card-header">
-                                    <h2>FDA's Clinical Path to New Medical Products</h2>
+                                    <h5>FDA's Clinical Path to New Medical Products</h5>
                                 </div>
                                 <div class="card-body">
                                     <img src="/platform/common/images/Clinical_Development_Timeline_Horizantal.png" alt="" width="100%" >
                                 </div>
                             </div>
                             <div class="card" id="ind-def">
-                                <div class="card-header"><h2>What is IND?</h2></div>
+                                <div class="card-header"><h5>What is IND?</h5></div>
                                 <div class="card-body">
                                     <p>An Investigational New Drug Application (IND) is a request from a clinical study sponsor to obtain authorization from the Food and Drug Administration (FDA) to administer an investigational drug or biological product to humans. Such authorization must be secured prior to interstate shipment and administration of any new drug or biological product that is not the subject of an approved New Drug Application or Biologics/Product License Application.</p>
 
@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                             <div class="card" id="ind-types">
-                                <div class="card-header"><h2>IND types</h2></div>
+                                <div class="card-header"><h5>IND types</h5></div>
                                 <div class="card-body">
                                     <ul>
                                         <li><strong>Investigator IND</strong>&nbsp;is submitted by a physician who both initiates and conducts an investigation, and under whose immediate direction the investigational drug is administered or dispensed.  A physician might submit a research IND to propose studying an unapproved drug, or an approved product for a new indication or in a new patient population.</li>
@@ -51,7 +51,7 @@
                                     </div>
                             </div>
                             <div class="card" id="ind-categories">
-                                <div class="card-header"><h2>IND Categories</h2></div>
+                                <div class="card-header"><h5>IND Categories</h5></div>
                                 <div class="card-body">
                                     <ul>
                                         <li><strong>Commercial:</strong> A commercial IND is one for which the sponsor (usually a corporate entity) intends to commercialize the product by eventually submitting a marketing application. In this case, the sponsor should select "Commercial IND" on FDA Form 1571 Field 6B.  FDA may also designate an IND as commercial if it is clear that the sponsor intends for the product to be commercialized at a later date.</li>
@@ -61,7 +61,7 @@
                             </div>
 
                             <div class="card" id="ind-meetings">
-                                <div class="card-header"><h2>IND FDA MEETINGS</h2></div>
+                                <div class="card-header"><h5>IND FDA MEETINGS</h5></div>
                                 <div class="card-body">
                                     <ul>
                                         <li><strong>INTERACT Meeting:</strong> INTERACT or an INitial Targeted Engagement for Regulatory Advice on CBER/CDER ProducTs is a meeting at a specific time early in product development. The appropriate timing for an INTERACT is when a sponsor has identified the investigational product to be evaluated in a clinical study and conducted some preliminary preclinical proof-of-concept studies with the intended investigational product, but has not yet designed and conducted definitive toxicology studies. For additional details on a development program's qualification for INTERACT, how to request and where to send the meeting request, please see <a href="https://www.fda.gov/vaccines-blood-biologics/cellular-gene-therapy-products/otp-interact-meeting" target="_blank"><strong>FDA INTEACT Meeting Guidance</strong></a><br></li>
@@ -71,7 +71,7 @@
                                 </div>
                             </div>
                             <div class="card" id="timing-pre-ind">
-                                <div class="card-header"><h2>Timing of Pre-IND Meeting Request</h2></div>
+                                <div class="card-header"><h5>Timing of Pre-IND Meeting Request</h5></div>
                                 <div class="card-body">
                                     Sponsors are sometimes unsure whether to request an INTERACT or pre-IND meeting for the current state of development of their product. See INTERACT Meeting Section for information regarding INTERACT meetings.  In general, a pre-IND is the appropriate meeting type if:
 <ul>
@@ -87,7 +87,7 @@
 
 
                             <div class="card" id="ind-content-format">
-                                <div class="card-header"><h2>IND Content and Format&nbsp;<a href="https://www.fda.gov/vaccines-blood-biologics/investigational-new-drug-applications-inds-cber-regulated-products/submission-investigational-new-drug-application-ind-cber" target="_blank" title="Go to FDA"><i class="fa fa-external-link" aria-hidden="true"></i></a></h2></div>
+                                <div class="card-header"><h5>IND Content and Format&nbsp;<a href="https://www.fda.gov/vaccines-blood-biologics/investigational-new-drug-applications-inds-cber-regulated-products/submission-investigational-new-drug-application-ind-cber" target="_blank" title="Go to FDA"><i class="fa fa-external-link" aria-hidden="true"></i></a></h5></div>
                                 <div class="card-body">
 
                                     <p>The content and format of an IND submission must be complete, well-organized as per 21 CFR 312, and include all applicable FDA Forms, provided below. These forms can also be found in <a data-entity-substitution="canonical" data-entity-type="node" data-entity-uuid="41aa2346-1c33-4025-b0c6-e0db744ee4ab" href="https://www.fda.gov/about-fda/reports-manuals-forms/forms" title="Forms">FDA's Form Database</a>.</p>
@@ -102,7 +102,7 @@
                                         <li><a data-entity-substitution="media_download" data-entity-type="media" data-entity-uuid="7d50fac4-68f6-4ede-913b-4ac5e102b860" href="https://www.fda.gov/media/134964/download?attachment" title="Certification of Compliance, under 42 U.S.C. , 282(j)(5)(B), with Requirements of ClinicalTrials.gov ">Form FDA 3674: Certification of Compliance</a></li>
                                     </ul>
                                     <div class="card">
-                                        <div class="card-header"><h2>21 CFR 312 - INVESTIGATIONAL NEW DRUG APPLICATION <a href="https://www.ecfr.gov/current/title-21/part-312" target="_blank" title="Code of Federal Regulations (CFR)"><i class="fa fa-external-link" aria-hidden="true"></i></a></h2></div>
+                                        <div class="card-header"><h5>21 CFR 312 - INVESTIGATIONAL NEW DRUG APPLICATION <a href="https://www.ecfr.gov/current/title-21/part-312" target="_blank" title="Code of Federal Regulations (CFR)"><i class="fa fa-external-link" aria-hidden="true"></i></a></h5></div>
 
                                         <div class="card-body">
                                     <%@include file="cfr-312.23.jsp"%>
@@ -111,7 +111,7 @@
                                 </div>
                             </div>
                             <div class="card" id="ind-submission">
-                                <div class="card-header"><h2>Submission of an IND</h2></div>
+                                <div class="card-header"><h5>Submission of an IND</h5></div>
                                 <div class="card-body">
                                     <p>Sponsors of commercial INDs and all subsequent amendments are required to submit information electronically in the electronic Common Technical Document (eCTD) format. For electronic submission in eCTD, see <a data-entity-substitution="canonical" data-entity-type="node" data-entity-uuid="3e77e5d8-6cf2-46ff-acc2-69d8513b0d35" href="/vaccines-blood-biologics/development-approval-process-cber/regulatory-submissions-electronic-format-cber-regulated-products" title="Regulatory Submissions in Electronic Format for CBER-Regulated Products">Information on Regulatory Submissions in Electronic Format for Biologic Products</a>. IND sponsors should request a submission tracking number (STN) from CBER prior to an eCTD submission. Detailed procedures are outlined in <a data-entity-substitution="media_download" data-entity-type="media" data-entity-uuid="3bab0a9d-a105-4b6f-9501-27b8974894bd" href="/media/93416/download?attachment" title="SOPP 8117: Issuing Tracking Numbers in Advance of Electronic Submissions in eCTD Format">SOPP 8117: Issuing Tracking Numbers in Advance of Electronic Submissions in eCTD Format</a>.</p>
 
@@ -120,7 +120,7 @@
                                 </div>
                             </div>
                             <div class="card" id="fda-review-time">
-                                <div class="card-header"><h2>Review Time for initial submission</h2></div>
+                                <div class="card-header"><h5>Review Time for initial submission</h5></div>
                                 <div class="card-body">
                                     <p>Review Time for initial submission of an Investigational New Drug application is 30 days from the date FDA receives the IND. An IND applicant may proceed with a clinical investigation once the applicant has been notified by FDA that the investigation may proceed or after 30 days if the IND is not placed on Clinical Hold.</p>
                                     <img src="/platform/data/protected/review_process.png" alt="">

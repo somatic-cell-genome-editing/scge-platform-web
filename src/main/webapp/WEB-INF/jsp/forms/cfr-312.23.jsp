@@ -13,7 +13,7 @@
 <div class="section" id="312.23">
     <div class="card">
         <div class="card-header">
-            <h2>CFR 312.23&nbsp;<a href="https://www.ecfr.gov/current/title-21/section-312.23" target="_blank" title="Code of Federal Regulations"><i class="fa fa-external-link" aria-hidden="true"></i></a></h2>
+            <h5>CFR 312.23&nbsp;<a href="https://www.ecfr.gov/current/title-21/section-312.23" target="_blank" title="Code of Federal Regulations"><i class="fa fa-external-link" aria-hidden="true"></i></a></h5>
         </div>
         <div class="card-body">
             <%@include file="CFR-partA.jsp"%>

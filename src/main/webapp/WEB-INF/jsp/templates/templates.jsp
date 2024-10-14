@@ -7,11 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="page-header">
-    <h3>Investigational New Drug IND Application</h3>
+    <h3>IND (Investigational New Drug) Application</h3>
 </div>
 <div style="margin-bottom: 10%">
 <div class="card">
-    <div class="card-header"><h2>Common Technical Document (CTD)</h2></div>
+    <div class="card-header"><h5>Common Technical Document (CTD)</h5></div>
     <div class="card-body">
         <div class="row">
             <div class="col">
@@ -28,7 +28,7 @@
                 <p><strong>Module 4</strong> references non-clinical information.</p>
 
                 <p><strong>Module 5</strong> references clinical information.</p>
-                <a href="/platform/forms_public/USFDA_eCTDv4_0_CTOC_v1.pdf" target="_blank"><strong>Comprehensive Table of Contents Headings and Hierarchy</strong></a>
+                <a href="/platform/forms_public/USFDA_eCTDv4_0_CTOC_v1.pdf" target="_blank"><h5>Comprehensive Table of Contents Headings and Hierarchy</h5></a>
 
             </div>
             <div class="col">
@@ -42,7 +42,7 @@
     </div>
 </div>
 <div class="card">
-    <div class="card-header"><h2>Templates</h2></div>
+    <div class="card-header"><h5>Templates</h5></div>
     <div class="body">
         <p></p>
         <ul>
@@ -62,7 +62,7 @@
 </div>
     <div class="card">
         <div class="card-header">
-            <h2>Resources/Links</h2>
+            <h5>Resources/Links</h5>
         </div>
         <div class="card-body">
             <ul>
