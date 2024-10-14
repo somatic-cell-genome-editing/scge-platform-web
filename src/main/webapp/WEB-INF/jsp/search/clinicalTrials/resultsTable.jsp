@@ -259,8 +259,8 @@
 
                     <%for(String type:sortedLinks.keySet()){%>
             <div class="row">
-            <div class="col-2 text-nowrap"><strong><%=type%>&nbsp;:</strong></div>
-                <div class="col-5">
+            <div class="col-1 text-nowrap"><strong><%=type%>&nbsp;:</strong></div>
+                <div class="col-3">
                     <ul>
                         <%for(Map<String, String> map:sortedLinks.get(type)){%>
                         <li  style="list-style-type: none">
