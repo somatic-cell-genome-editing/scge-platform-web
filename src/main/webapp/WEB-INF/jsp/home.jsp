@@ -12,7 +12,7 @@
 
     <div class="jumbotron text-white rounded" style="background-color: #dceaf9;padding:0">
         <div class="col" align="center">
-            <div style="width: 60%" align="center">
+            <div style="width: 90%" align="center">
 <%--            <img class="img-fluid" src="/platform/images/platform-overview.png" />--%>
             <img class="img-fluid" src="/platform/common/images/platform-overview-original-size.png" width="100%"/>
             </div>
