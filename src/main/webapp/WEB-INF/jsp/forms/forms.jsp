@@ -28,9 +28,11 @@
                                 <div class="card-header">
                                     <h5>FDA's Clinical Path to New Medical Products</h5>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body" align="center">
+                                    <div style="width:60%">
                                     <img src="/platform/common/images/Clinical_Development_Timeline_Horizantal.png" alt="" width="100%" >
-                                </div>
+                                    </div>
+                                    </div>
                             </div>
                             <div class="card" id="ind-def">
                                 <div class="card-header"><h5>What is IND?</h5></div>
