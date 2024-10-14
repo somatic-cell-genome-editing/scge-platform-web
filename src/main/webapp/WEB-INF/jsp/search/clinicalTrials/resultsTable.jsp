@@ -1,4 +1,5 @@
-<%@ page import="edu.mcw.scge.datamodel.ClinicalTrialExternalLink" %><%--
+<%@ page import="edu.mcw.scge.datamodel.ClinicalTrialExternalLink" %>
+<%@ page import="java.util.stream.Collectors" %><%--
   Created by IntelliJ IDEA.
   User: jthota
   Date: 9/16/2024
@@ -105,8 +106,18 @@
         <td class="manual"><%=sourceFields.get("dose4")%></td>
         <td class="manual"><%=sourceFields.get("dose5")%></td>
 <%--        <td ><%=sourceFields.get("interventionDescription")%></td>--%>
-        <td class="text-nowrap"><%=sourceFields.get("phases")%></td>
-        <td><%=sourceFields.get("status")%></td>
+        <td class="text-nowrap">
+            <%
+                List<String> phases= (List<String>) sourceFields.get("phases");
+                String phase= phases.stream().collect(Collectors.joining(", "));
+            %>
+            <%=phase%>
+        </td>
+        <td>   <%
+            List<String> statuses= (List<String>) sourceFields.get("status");
+            String status= statuses.stream().collect(Collectors.joining(", "));
+        %>
+            <%=status%></td>
         <td class="text-nowrap"><%=sourceFields.get("firstSubmitDate")%></td>
         <td><%=sourceFields.get("estimatedCompleteDate")%></td>
         <td class="text-nowrap"><%=sourceFields.get("lastUpdatePostDate")%></td>
@@ -248,7 +259,7 @@
 
                     <%for(String type:sortedLinks.keySet()){%>
             <div class="row">
-            <div class="col-1 text-nowrap"><strong><%=type%>&nbsp;:</strong></div>
+            <div class="col-2 text-nowrap"><strong><%=type%>&nbsp;:</strong></div>
                 <div class="col-5">
                     <ul>
                         <%for(Map<String, String> map:sortedLinks.get(type)){%>
