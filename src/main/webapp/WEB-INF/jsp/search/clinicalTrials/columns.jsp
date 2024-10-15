@@ -10,7 +10,7 @@
 
 <th class="sorter-false"><div class="info-card">Sponsor</div></th>
 <%--<th>Intervention</th>--%>
-<th>Compound</th>
+<th>Compound Name</th>
 <%--<th>Funder Type</th>--%>
 
 <th>Indication</th>
