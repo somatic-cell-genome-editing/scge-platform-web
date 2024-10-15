@@ -8,6 +8,19 @@ function removeFilters(){
     })
     $('#facetForm').submit()
 }
+function removeFilter(filter) {
+    $.each($('input[type="checkbox"]'), function () {
+        var _this = $(this);
+        var val = _this.val();
+
+        if (val == filter) {
+            _this.prop('checked', false);
+            $('#unchecked').val(val);
+        }
+
+    });
+    $('#facetForm').submit()
+}
 $('input[type="checkbox"]').on('click',function (){
     $('#facetForm').submit()
 })
