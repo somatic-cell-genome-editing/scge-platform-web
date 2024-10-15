@@ -50,64 +50,15 @@
     SearchHit[] hitsArray=sr.getHits().getHits();
     List<SearchHit> hits=(Arrays.asList(hitsArray));
     Map<String, List<String>> filterMap= (Map<String, List<String>>) request.getAttribute("filterMap");
-    List<String> selectedStatus=new ArrayList<>();
-    List<String> selectedCondition=new ArrayList<>();
-    List<String> selectedOrganization=new ArrayList<>();
-    List<String> selectedTrackerType=new ArrayList<>();
 
-    List<String> selectedVectorType=new ArrayList<>();
-    List<String> selectedDeliverySystem=new ArrayList<>();
-    List<String> selectedEditorType=new ArrayList<>();
-    List<String> selectedDrugProductType=new ArrayList<>();
-
-    List<String> selectedRouteOfAdministration=new ArrayList<>();
-    List<String> selectedSponsorClass=new ArrayList<>();
-    List<String> selectedTherapyType=new ArrayList<>();
-
-    if(filterMap!=null){
-        if(filterMap.get("status")!=null)
-            selectedStatus.addAll(filterMap.get("status"));
-        if(filterMap.get("indication")!=null)
-            selectedCondition.addAll(filterMap.get("indication"));
-        if(filterMap.get("sponsor")!=null)
-            selectedOrganization.addAll(filterMap.get("sponsor"));
-        if(filterMap.get("trackerType")!=null)
-            selectedTrackerType.addAll(filterMap.get("trackerType"));
-
-        if(filterMap.get("vectorType")!=null)
-            selectedVectorType.addAll(filterMap.get("vectorType"));
-        if(filterMap.get("deliverySystem")!=null)
-            selectedDeliverySystem.addAll(filterMap.get("deliverySystem"));
-        if(filterMap.get("editorType")!=null)
-            selectedEditorType.addAll(filterMap.get("editorType"));
-        if(filterMap.get("routeOfAdministration")!=null)
-            selectedRouteOfAdministration.addAll(filterMap.get("routeOfAdministration"));
-
-        if(filterMap.get("drugProductType")!=null)
-            selectedDrugProductType.addAll(filterMap.get("drugProductType"));
-        if(filterMap.get("sponsorClass")!=null)
-            selectedSponsorClass.addAll(filterMap.get("sponsorClass"));
-        if(filterMap.get("therapyType")!=null)
-            selectedTherapyType.addAll(filterMap.get("therapyType"));
-
-    }
 
 %>
 
 <script>
-    var  statusSelected=<%=gson.toJson(selectedStatus)%>;
-    var  conditionSelected=<%=gson.toJson(selectedCondition)%>;
-    var orgSelected=<%=gson.toJson(selectedOrganization)%>;
-    var trackerTypeSelected=<%=gson.toJson(selectedTrackerType)%>
 
-    var  vectorTypeSelected=<%=gson.toJson(selectedVectorType)%>;
-    var  deliverySystemSelected=<%=gson.toJson(selectedDeliverySystem)%>;
-    var editorTypeSelected=<%=gson.toJson(selectedEditorType)%>;
-    var therapyTypeSelected=<%=gson.toJson(selectedTherapyType)%>
-
-    var  drugProductTypeSelected=<%=gson.toJson(selectedDrugProductType)%>;
-    var  routeOfAdministrationSelected=<%=gson.toJson(selectedRouteOfAdministration)%>;
-    var sponsorClasssSelected=<%=gson.toJson(selectedSponsorClass)%>;
+    var filterMap='<%=gson.toJson(filterMap)%>'
+        var json=JSON.parse(filterMap)
+        console.log("FilterMap:"+json.status+"\nFilterMap:"+ json.sponsorClass)
 
 </script>
 

@@ -1,4 +1,5 @@
-<%@ page import="edu.mcw.scge.datamodel.ClinicalTrialExternalLink" %><%--
+<%@ page import="edu.mcw.scge.datamodel.ClinicalTrialExternalLink" %>
+<%@ page import="java.util.stream.Collectors" %><%--
   Created by IntelliJ IDEA.
   User: jthota
   Date: 9/16/2024
@@ -48,7 +49,7 @@
     /* OPTIONAL CSS! */
     .tablesorter tbody td {
         /* force "Notes" column to not wrap, so we get a horizontal scrolling demo! */
-        /* white-space: nowrap;*/
+         white-space: nowrap;
         /* Add min column width, or "Index" column filter gets too narrow to use */
         min-width: 60px;
         font-size: .9rem;
@@ -71,37 +72,29 @@
     %>
     <tr>
         <td>
-
-
-
-
-             <strong><a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nctId")%>" target="_blank"><%=sourceFields.get("nctId")%></a></strong>
+            <strong><a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nctId")%>" target="_blank"><%=sourceFields.get("nctId")%></a></strong>
 <%--                <div class="w-100"></div>--%>
 <%--                <div class="col-5"><strong>Start Date:</strong></div><div class="col-7"><%=sourceFields.get("actualStudyStartDate(m/d/y)")%></div>--%>
 <%--                <div class="w-100"></div>--%>
 <%--                <div class="col-5"><strong>Completion Date:</strong></div><div class="col-7"><%=sourceFields.get("estimatedPrimaryCompletionDate(m/d/y)")%></div>--%>
 
 
-
-
-
-
         </td>
 
         <td><%=sourceFields.get("sponsor")%></td>
-        <td><%=sourceFields.get("interventionName")%></td>
+<%--        <td><%=sourceFields.get("interventionName")%></td>--%>
+        <td class="manual"><%=sourceFields.get("compoundName")%></td>
+<%--        <td ><%=sourceFields.get("sponsorClass")%></td>--%>
 
-        <td ><%=sourceFields.get("sponsorClass")%></td>
-        <td><%=sourceFields.get("status")%></td>
-        <td><%=sourceFields.get("indication")%></td>
+        <td class="manual"><%=sourceFields.get("indication")%></td>
         <td class="manual"><%=sourceFields.get("targetGeneOrVariant")%></td>
-        <td class="manual"><%=sourceFields.get("therapyType")%></td>
-        <td class="manual"><%=sourceFields.get("therapyRoute")%></td>
-        <td class="manual"><%=sourceFields.get("mechanismOfAction")%></td>
-        <td class="manual"><%=sourceFields.get("routeOfAdministration")%></td>
-        <td class="manual"><%=sourceFields.get("drugProductType")%></td>
+<%--        <td class="manual"><%=sourceFields.get("therapyType")%></td>--%>
+<%--        <td class="manual"><%=sourceFields.get("therapyRoute")%></td>--%>
+<%--        <td class="manual"><%=sourceFields.get("mechanismOfAction")%></td>--%>
+<%--        <td class="manual"><%=sourceFields.get("routeOfAdministration")%></td>--%>
+<%--        <td class="manual"><%=sourceFields.get("drugProductType")%></td>--%>
         <td class="manual"><%=sourceFields.get("targetTissueOrCell")%></td>
-        <td class="manual"><%=sourceFields.get("deliverySystem")%></td>
+<%--        <td class="manual"><%=sourceFields.get("deliverySystem")%></td>--%>
         <td class="manual"><%=sourceFields.get("vectorType")%></td>
         <td class="manual"><%if(sourceFields.get("editorType")!=null && !sourceFields.get("editorType").toString().equalsIgnoreCase("none")){%>
             <%=sourceFields.get("editorType")%>
@@ -113,12 +106,23 @@
         <td class="manual"><%=sourceFields.get("dose4")%></td>
         <td class="manual"><%=sourceFields.get("dose5")%></td>
 <%--        <td ><%=sourceFields.get("interventionDescription")%></td>--%>
-        <td ><%=sourceFields.get("phases")%></td>
-        <td><%=sourceFields.get("firstSubmitDate")%></td>
+        <td class="text-nowrap">
+            <%
+                List<String> phases= (List<String>) sourceFields.get("phases");
+                String phase= phases.stream().collect(Collectors.joining(", "));
+            %>
+            <%=phase%>
+        </td>
+        <td>   <%
+            List<String> statuses= (List<String>) sourceFields.get("status");
+            String status= statuses.stream().collect(Collectors.joining(", "));
+        %>
+            <%=status%></td>
+        <td class="text-nowrap"><%=sourceFields.get("firstSubmitDate")%></td>
         <td><%=sourceFields.get("estimatedCompleteDate")%></td>
-        <td><%=sourceFields.get("lastUpdatePostDate")%></td>
-        <td><%=sourceFields.get("standardAges")%></td>
-        <td>
+        <td class="text-nowrap"><%=sourceFields.get("lastUpdatePostDate")%></td>
+<%--        <td class="text-nowrap"><%=sourceFields.get("standardAges")%></td>--%>
+        <td class="text-nowrap">
             <%if(sourceFields.get("elibilityMinAge")!=null && sourceFields.get("elibilityMaxAge")!=null){%>
             <%=sourceFields.get("elibilityMinAge")%> - <%=sourceFields.get("elibilityMaxAge")%>
 
@@ -133,8 +137,8 @@
         </td>
         <td><%=sourceFields.get("enrorllmentCount")%></td>
         <td><%=sourceFields.get("numberOfLocations")%></td>
-        <td><%=sourceFields.get("clinicalCentersinUSA?")%></td>
-        <td><%=sourceFields.get("locations")%></td>
+<%--        <td><%=sourceFields.get("clinicalCentersinUSA?")%></td>--%>
+<%--        <td><%=sourceFields.get("locations")%></td>--%>
         <td><%=sourceFields.get("isFDARegulated")%></td>
 <%--        <td class="manual">--%>
 <%--&lt;%&ndash;            <%=sourceFields.get("clinicalPublications")%>&ndash;%&gt;--%>
@@ -238,16 +242,41 @@
 
 <%--        </td>--%>
         <td class="manual">
+
             <%
                 if(sourceFields.get("externalLinks")!=null){
                     List<Map<String,String>> links= (List<Map<String,String>>) sourceFields.get("externalLinks");
+                    Map<String, List<Map<String,String>>> sortedLinks=new HashMap<>();
                     for(Map<String, String> map:links){
-                        if(map.get("link")!=null){
-            %>
-            <strong><%=map.get("type")%>&nbsp;:&nbsp;</strong><a href="<%=map.get("link")%>" target="_blank"><%=map.get("name")%></a><br>
-                   <%}else{%>
-            <strong><%=map.get("type")%>&nbsp;:&nbsp;</strong><%=map.get("name")%><br>
-                        <%}}}%>
+                        if(map.get("type")!=null){
+                            List<Map<String,String>> list=new ArrayList<>();
+                           if( sortedLinks.get(map.get("type"))!=null){
+                               list.addAll(sortedLinks.get(map.get("type")));
+                           }
+                           list.add(map);
+                           sortedLinks.put(map.get("type"), list);
+                        }}%>
+
+                    <%for(String type:sortedLinks.keySet()){%>
+            <div class="row">
+            <div class="col-1 text-nowrap"><strong><%=type%>&nbsp;:</strong></div>
+                <div class="col-3">
+                    <ul>
+                        <%for(Map<String, String> map:sortedLinks.get(type)){%>
+                        <li  style="list-style-type: none">
+                        <%if(map.get("link")!=null){%>
+                            <a href="<%=map.get("link")%>" target="_blank"><%=map.get("name")%></a>
+                                <%}else{%>
+                                <%=map.get("name")%>
+                        <%}%>
+                        </li>
+                        <%}%>
+                    </ul>
+                </div>
+            </div>
+                    <%}%>
+
+                <%}%>
         </td>
     </tr>
     <%}%>

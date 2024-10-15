@@ -11,9 +11,11 @@
 
 
     <div class="jumbotron text-white rounded" style="background-color: #dceaf9;padding:0">
-        <div class="col" >
+        <div class="col" align="center">
+            <div style="width: 90%" align="center">
 <%--            <img class="img-fluid" src="/platform/images/platform-overview.png" />--%>
-            <img class="img-fluid" src="/platform/common/images/platform-overview-original-size.png"/>
+            <img class="img-fluid" src="/platform/common/images/platform-overview-original-size.png" width="100%"/>
+            </div>
 
         </div>
     </div>
@@ -75,7 +77,7 @@
             </h3>
 
             <div class="blog-post">
-                <h2 class="blog-post-title">Technologies and Assays for Therapeutic Genome Editing INDs (RFA-RM-22-014)</h2>
+                <h4 class="blog-post-title">Technologies and Assays for Therapeutic Genome Editing INDs (RFA-RM-22-014)</h4>
                 <hr>
                 <p><a href="">Utility of Human Organoids for Safety and Efficiency Evaluations of Genome Editing Therapeutics.</a><br>
                     <span class="blog-post-meta">PI: Freedman, Benjamin University of Washington</span></p>
@@ -86,7 +88,7 @@
             </div>
 
             <div class="blog-post">
-                <h2 class="blog-post-title">IND-enabling Studies of Somatic Genome Editing Therapeutic Leads (RFA-RM-22-015)</h2>
+                <h4 class="blog-post-title">IND-enabling Studies of Somatic Genome Editing Therapeutic Leads (RFA-RM-22-015)</h4>
                 <hr>
                 <p><a href="">Utility of Human Organoids for Safety and Efficiency Evaluations of Genome Editing Therapeutics.</a><br>
                     <span class="blog-post-meta">PI: Freedman, Benjamin University of Washington</span></p>
@@ -97,7 +99,7 @@
             </div>
 
             <div class="blog-post">
-                <h2 class="blog-post-title">Platform Clinical Trials of Genome Editors in Multiple Diseases (RFA-RM-22-016)</h2>
+                <h4 class="blog-post-title">Platform Clinical Trials of Genome Editors in Multiple Diseases (RFA-RM-22-016)</h4>
                 <hr>
                 <p><a href="">Utility of Human Organoids for Safety and Efficiency Evaluations of Genome Editing Therapeutics.</a><br>
                     <span class="blog-post-meta">PI: Freedman, Benjamin University of Washington</span></p>
