@@ -43,8 +43,8 @@
 </div>
 <div class="card">
     <div class="card-header"><h5>Templates</h5></div>
-    <div class="body">
-        <p></p>
+    <div class="card-body">
+
         <ul>
             <li><a href="/platform/data/protected/GENERAL INVESTIGATIONAL PLAN_Template .docx">GENERAL INVESTIGATIONAL PLAN</a></li>
             <li><a href="/platform/data/protected/INTERACT MEETING REQUEST_MEETING INFORMATION PACKAGE_Template.docx">INTERACT MEETING REQUEST</a></li>
