@@ -80,13 +80,13 @@
 
 
         </td>
+        <td class="manual"><%=sourceFields.get("indication")%></td>
 
-        <td><%=sourceFields.get("sponsor")%></td>
 <%--        <td><%=sourceFields.get("interventionName")%></td>--%>
         <td class="manual"><%=sourceFields.get("compoundName")%></td>
 <%--        <td ><%=sourceFields.get("sponsorClass")%></td>--%>
+        <td><%=sourceFields.get("sponsor")%></td>
 
-        <td class="manual"><%=sourceFields.get("indication")%></td>
         <td class="manual"><%=sourceFields.get("targetGeneOrVariant")%></td>
 <%--        <td class="manual"><%=sourceFields.get("therapyType")%></td>--%>
 <%--        <td class="manual"><%=sourceFields.get("therapyRoute")%></td>--%>

@@ -8,12 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <th>NCTID</th>
 
-<th class="sorter-false"><div class="info-card">Sponsor</div></th>
+<th>Indication</th>
 <%--<th>Intervention</th>--%>
 <th>Compound Name</th>
 <%--<th>Funder Type</th>--%>
 
-<th>Indication</th>
+
+<th class="sorter-false"><div class="info-card">Sponsor</div></th>
 <th class="manual">Target Gene/Variant</th>
 <%--<th class="manual">Therapy Type</th>--%>
 <%--<th class="manual">Therapy Route</th>--%>
