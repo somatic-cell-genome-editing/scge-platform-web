@@ -86,7 +86,7 @@
             </div>
 
             <div class="col-4 d-flex  align-items-center m-auto">
-                <form id="searchForm" class="input-group md-form form-sm form-2 pl-0 d-flex justify-content-center mx-4 mt-2" action="/platform/data/search/results">
+                <form id="searchForm" class="input-group md-form form-sm form-2 pl-0 d-flex justify-content-center mx-4 mt-2" action="/platform/data/search/clinicalTrials/">
                     <div class="input-group md-form form-sm form-2 pl-0">
 
                         <input class="form-control amber-border" id="commonSearchTerm" name="searchTerm" type="text" placeholder="Search SCGE Platform" aria-label="Search">
@@ -97,8 +97,8 @@
 
 
                     </div>
-                    <small class="form-text text-dark" style="font-size: 11px;">Examples:&nbsp;<a class="text-dark" style="font-size: 11px;" href="">Epithelium</a>, <a class="text-dark" href="" style="font-size: 11px;" >CRISPR</a>,
-                        <a class="text-dark" style="font-size: 11px;" href="" >AAV</a>, <a class="text-dark" style="font-size: 11px;" href="" >Ai9</a>
+                    <small class="form-text text-dark" style="font-size: 11px;">Examples:&nbsp;<a class="text-dark" style="font-size: 11px;" href="/platform/data/search/clinicalTrials/?searchTerm=Liver">Liver</a>, <a class="text-dark" href="/platform/data/search/clinicalTrials/?searchTerm=CRISPR" style="font-size: 11px;" >CRISPR</a>,
+                        <a class="text-dark" style="font-size: 11px;" href="/platform/data/search/clinicalTrials/?searchTerm=AAV" >AAV</a>, <a class="text-dark" style="font-size: 11px;" href="/platform/data/search/clinicalTrials/?searchTerm=Ai9" >Ai9</a>
                     </small>
                 </form>
 

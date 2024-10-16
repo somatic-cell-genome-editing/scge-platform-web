@@ -61,7 +61,10 @@
         console.log("FilterMap:"+json.status+"\nFilterMap:"+ json.sponsorClass)
 
 </script>
-
+<%
+    if(hits.size()==0){%>
+        <h4>0 results found for term <%=request.getAttribute("searchTerm")%></h4>
+    <%}else{%>
 
 <div class="container-fluid page-header" >
     <div class="row">
@@ -121,3 +124,4 @@
     <!-- END SEARCH RESULT -->
   </div>
 </div>
+<%}%>
