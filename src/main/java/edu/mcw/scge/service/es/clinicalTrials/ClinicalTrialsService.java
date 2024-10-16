@@ -4,10 +4,7 @@ import edu.mcw.scge.service.es.ESClient;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.index.query.BoolQueryBuilder;
-import org.elasticsearch.index.query.DisMaxQueryBuilder;
-import org.elasticsearch.index.query.QueryBuilder;
-import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.*;
 import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.BucketOrder;
@@ -84,8 +81,146 @@ public class ClinicalTrialsService {
 
     public QueryBuilder buildQuery(String term){
         DisMaxQueryBuilder q=new DisMaxQueryBuilder();
-        q.add(QueryBuilders.matchAllQuery());
+
+
+        if(term!=null && !term.equals("")) {
+            String searchTerm=term.toLowerCase().trim();
+            if(searchTerm.toLowerCase().contains(" and ")){
+                String searchString=String.join(" ", searchTerm.toLowerCase().split(" and "));
+                q.add(QueryBuilders.multiMatchQuery(searchString)
+                        .type(MultiMatchQueryBuilder.Type.CROSS_FIELDS)
+                        .operator(Operator.AND)
+                        .analyzer("stop")
+
+                );
+
+                q.add(QueryBuilders.multiMatchQuery(searchString)
+                        .type(MultiMatchQueryBuilder.Type.CROSS_FIELDS)
+                        .type(MultiMatchQueryBuilder.Type.PHRASE)
+                        .analyzer("stop")
+                        .boost(1000)
+                );
+
+            }else if(searchTerm.toLowerCase().contains(" or ")){
+                String searchString=String.join(" ", searchTerm.toLowerCase().split(" or "));
+                q.add(QueryBuilders.multiMatchQuery(searchString)
+                        .type(MultiMatchQueryBuilder.Type.CROSS_FIELDS)
+                        .operator(Operator.OR)
+                        .analyzer("stop")
+
+                );
+
+            }else if(!searchTerm.toLowerCase().contains(" and ") && searchTerm.toLowerCase().contains(" ") ) {
+                q.add(QueryBuilders.multiMatchQuery(searchTerm)
+                        .type(MultiMatchQueryBuilder.Type.CROSS_FIELDS)
+                        .operator(Operator.AND)
+
+                );
+                q.add(QueryBuilders.multiMatchQuery(searchTerm)
+                        .type(MultiMatchQueryBuilder.Type.CROSS_FIELDS)
+                        .operator(Operator.AND)
+                        .type(MultiMatchQueryBuilder.Type.PHRASE)
+                        .analyzer("stop")
+                        .boost(1000)
+                );
+
+            }else { if (isNumeric(searchTerm)) {
+//                q.add(QueryBuilders.termQuery("nctId", searchTerm));
+            } else {
+                q.add(QueryBuilders.multiMatchQuery(searchTerm, searchFields().toArray(new String[0]))
+                        .type(MultiMatchQueryBuilder.Type.CROSS_FIELDS)
+                        .type(MultiMatchQueryBuilder.Type.PHRASE)
+                        .analyzer("stop")
+                );
+                q.add(QueryBuilders.multiMatchQuery(searchTerm, searchFields().toArray(new String[0]))
+                        .type(MultiMatchQueryBuilder.Type.CROSS_FIELDS)
+                        .operator(Operator.AND)
+                        .analyzer("stop")
+                );
+            }
+            }
+
+            q.add(QueryBuilders.termQuery("symbol.custom", searchTerm).boost(1000));
+            q.add(QueryBuilders.termQuery("name.custom", searchTerm).boost(1000));
+            q.add(QueryBuilders.termQuery("pi", searchTerm).boost(1000));
+
+            q.add(QueryBuilders.matchPhraseQuery("symbol", searchTerm).boost(400));
+            q.add(QueryBuilders.matchPhraseQuery("name", searchTerm).boost(400));
+
+            q.add(QueryBuilders.matchPhrasePrefixQuery("symbol.custom", searchTerm).boost(100));
+            q.add(QueryBuilders.matchPhrasePrefixQuery("name.custom", searchTerm).boost(100));
+
+
+
+            q.add(QueryBuilders.matchPhrasePrefixQuery("pi", searchTerm).boost(500));
+            q.add(QueryBuilders.matchPhraseQuery("pi", searchTerm).boost(200));
+            q.add(QueryBuilders.termQuery("currentGrantNumber.keyword", searchTerm));
+            q.add(QueryBuilders.termQuery("formerGrantNumbers.keyword", searchTerm));
+            q.add(QueryBuilders.termQuery("description", searchTerm));
+            q.add(QueryBuilders.termQuery("articleIds.id.keyword", searchTerm).caseInsensitive(true));
+            q.add(QueryBuilders.termQuery("authorList.lastName.keyword", searchTerm).caseInsensitive(true));
+            q.add(QueryBuilders.termQuery("authorList.firstName.keyword", searchTerm).caseInsensitive(true));
+
+
+
+
+
+        }else{
+            q.add(QueryBuilders.matchAllQuery());
+        }
         return q;
     }
+    public boolean isNumeric(String searchTerm){
+        try{
+            if(Long.parseLong(searchTerm)>0)
+                return true;
+        }catch (Exception e){}
+        return false;
+    }
+    public static List<String> searchFields(){
+        return Arrays.asList(
+                "nctId," +
+                      
+                        "interventionName," +
+                        "     sponsor," +
+                        "     sponsorClass," +
+                        "     indication," +
+                        "     phase," +
+                        "     location," +
+                        "     eligibilitySex," +
 
+
+
+                        "     standardAge," +
+
+
+
+                        "     studyStatus," +
+
+
+
+                        "     browseConditionTerms," +
+                        "     nCTNumber," +
+                        "     targetGeneOrVariant," +
+                        "     therapyType," +
+                        "     therapyRoute," +
+                        "     mechanismOfAction," +
+                        "     routeOfAdministration," +
+                        "     drugProductType," +
+                        "     targetTissueOrCell," +
+                        "     deliverySystem," +
+                        "     vectorType," +
+                        "     editorType," +
+                        "     recentUpdates," +
+                        "     compoundName," +
+                        "   externalLinks," +
+                        "     patents," +
+                        " phases," +
+                        "   status," +
+                        "  standardAges," +
+                        "   locations;"
+                
+                
+        );
+    }
 }

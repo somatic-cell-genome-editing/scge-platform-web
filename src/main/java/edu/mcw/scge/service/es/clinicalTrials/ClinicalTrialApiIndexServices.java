@@ -17,7 +17,7 @@ import org.elasticsearch.search.sort.SortOrder;
 import java.io.IOException;
 import java.util.*;
 
-public class PlatformIndexServices {
+public class ClinicalTrialApiIndexServices {
 
     public SearchResponse getSearchResults(String searchTerm, Map<String,  List<String>> filtersMap) throws IOException {
         String searchIndex = "scge_platform_search_dev";
