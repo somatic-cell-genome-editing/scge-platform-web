@@ -3,7 +3,7 @@ package edu.mcw.scge.controller;
 
 
 import edu.mcw.scge.service.es.clinicalTrials.ClinicalTrialsService;
-import edu.mcw.scge.service.es.clinicalTrials.PlatformIndexServices;
+import edu.mcw.scge.service.es.clinicalTrials.ClinicalTrialApiIndexServices;
 
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
@@ -26,7 +26,7 @@ public class SearchController{
     @RequestMapping(value="/clinicalTrialsapi")
     public String getClinicalTrialsAPIResults(HttpServletRequest req, HttpServletResponse res, Model model,
                                        @PathVariable(required = false) String category, @RequestParam(required = false) String searchTerm) throws Exception {
-        PlatformIndexServices services = new PlatformIndexServices();
+        ClinicalTrialApiIndexServices services = new ClinicalTrialApiIndexServices();
         Map<String, List<String>> filterMap=getFiltersMap(req);
         SearchResponse sr=services.getSearchResults(searchTerm ,getFiltersMap(req));
         req.setAttribute("searchTerm", searchTerm);
@@ -38,6 +38,8 @@ public class SearchController{
 
         return null;
     }
+
+
     @RequestMapping(value="/clinicalTrials")
     public String getClinicalTrialsFileResults(HttpServletRequest req, HttpServletResponse res, Model model,
                                               @PathVariable(required = false) String category, @RequestParam(required = false) String searchTerm) throws Exception {
@@ -47,6 +49,7 @@ public class SearchController{
         req.setAttribute("searchTerm", searchTerm);
         req.setAttribute("sr", sr);
         req.setAttribute("filterMap", filterMap);
+        model.addAttribute("searchTerm", searchTerm);
 //        Terms terms=sr.getAggregations().get("organization");
         req.setAttribute("page", "/WEB-INF/jsp/search/clinicalTrials/resultsview");
         req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
