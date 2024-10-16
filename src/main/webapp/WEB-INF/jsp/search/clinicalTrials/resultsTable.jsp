@@ -49,7 +49,7 @@
     /* OPTIONAL CSS! */
     .tablesorter tbody td {
         /* force "Notes" column to not wrap, so we get a horizontal scrolling demo! */
-         white-space: nowrap;
+        /* white-space: nowrap;*/
         /* Add min column width, or "Index" column filter gets too narrow to use */
         min-width: 60px;
         font-size: .9rem;
