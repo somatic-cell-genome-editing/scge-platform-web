@@ -1,0 +1,152 @@
+
+
+html{
+    scroll-behavior: smooth;
+}
+
+.mainTitle {
+    color: #34495E;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px; /* Space below the heading */
+    display: grid;
+    grid-template-columns: auto 1fr; /* Two columns: label and title */
+    grid-gap: 0;
+    align-items: start;
+    width: 100%;
+}
+
+.report-label {
+    /*white-space: nowrap; !* Prevent the label from wrapping to a new line *!*/
+    padding-right: 8px; /* Space between the label and the brief title */
+}
+
+.brief-title {
+    /*word-wrap: break-word;*/
+    color: #34495E;
+    font-weight: normal;
+}
+
+.ctReportBody{
+    margin-left: 220px;
+    padding: 20px;
+}
+
+.ctReportTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+.ctReportTable td {
+    text-align: left;
+    padding: 10px;
+    /*border-bottom: 1px solid #ddd;*/
+}
+.ctReportForm {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.label {
+    font-weight: bold;
+    width: 200px;
+    background-color: lightsteelblue;
+}
+
+.readonly-field {
+    background-color: #f9f9f9;
+    border: none;
+    /*padding: 4px;*/
+    width: 100%;
+
+}
+
+/* Show more css */
+.collapsed {
+    max-height: 4.5em; /* Approximately 3 lines, adjust based on line-height */
+    overflow: hidden;
+}
+
+/* Styling for the Toggle Link */
+.toggle-link {
+    color: #1E90FF;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    padding-left: 4px;
+}
+
+.toggle-link:hover {
+    text-decoration: underline;
+}
+.description-field {
+    white-space: pre-wrap; /* Preserves whitespace and allows text wrapping */
+    word-wrap: break-word; /* Breaks long words to prevent overflow */
+    padding: 4px;
+}
+
+
+/*side navbar*/
+.sidenav {
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    background-color: #f9f9f9;
+    overflow-x: hidden;
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+.sidenav a {
+    /*padding: 10px 15px;*/
+    text-decoration: none;
+    font-size: 15px;
+    display: block;
+    padding-left: 18px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    color: #1E90FF;
+}
+
+.sidenav a:hover {
+    background-color: steelblue;
+    color: white;
+}
+
+/* Subheading for Link Types */
+.link-type-heading {
+    color: #2C3E50;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+
+}
+
+/* List of External Links */
+.external-links-list {
+    list-style-type: disc;
+    padding-left: 50px;
+    margin-bottom: 15px;
+}
+
+.external-links-list li {
+    margin-bottom: 8px;
+    font-size: 16px;
+    white-space: pre-wrap; /* Preserves whitespace and allows text wrapping */
+    word-wrap: break-word; /* Breaks long words to prevent overflow */
+}
+
+/* Styling for Links */
+.external-links-list li a {
+    color: #2980B9;
+    text-decoration: none;
+}
+
+.external-links-list li a:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
