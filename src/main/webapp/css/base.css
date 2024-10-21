@@ -1,190 +1,107 @@
-html {
-    position: relative;
-    min-height: 100%;
-}
-body {
+/* Reset some default browser styles */
+* {
     margin: 0;
-    width: 100vw;
-    height: 100vh;
+    padding: 0;
+    box-sizing: border-box;
 }
-div {
-    width: 100vw;
-    height: 100vh;
-}
-#wrapper {
-    min-height: 100%;
-}
-#main {
-    overflow:auto;
-    padding-bottom:150px; /* this needs to be bigger than footer height*/
-}
-footer{
-    position: relative;
-}
-.text-responsive {
-    font-size: calc(100% + 1vw + 1vh);
-}
-#home-page-search{
 
-    /*   background-image: linear-gradient(to bottom right, #0469bd, #ebeff2);*/
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
 
+/* Responsive typography */
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 0.5em;
+    color: #222;
 }
-.navbar-custom {
-    /*   background-color: #17a2b8!important;*/
-    background-color: #1a80b6!important ;
-}
-/* change the brand and text color */
-.navbar-custom .navbar-brand,
-.navbar-custom .navbar-text {
-    color: white;
-}
-/* change the link color */
-.navbar-custom .navbar-nav .nav-link {
-    color:white;
-    font-size: 16px;
-}
-/* change the color of active or hovered links */
-.navbar-custom .nav-item.active .nav-link,
-.navbar-custom .nav-item:hover .nav-link {
-    color: #1a80b6;
-    background-color: #bee5fa;
-}
-.navbar-custom .navbar-toggler{
-    background-color: lightgrey;
-    color:black;
-}
-.navbar-custom .navbar-toggler-icon{
-    color:#FFFFFF;
-}
-input[type="email"] {
-    width: 100%;
-    height: 30px;
-    font-size: large;
-    background-color : #f1f1f1;
 
+h1 {
+    font-size: 2.5rem; /* Adjust based on your design */
 }
-.hideMe {
-    bottom: 104px;
-    right: 42px;
-    position: fixed;
-    opacity: .8;
-    background-color: red;
-    color: white;
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.75rem;
+}
+
+/* Layout */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* High-DPI support */
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (min-resolution: 192dpi) {
+    .high-res-image {
+        background-image: url('high-res-image@2x.png');
+    }
+}
+
+/* Buttons */
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
     border-radius: 5px;
-    border: none;
-    text-align: center;
-    display:table-cell;
-    vertical-align:middle;
-    box-sizing: border-box;
-}
-.hiddenBtns {
-    bottom: 25px;
-    right: 35px;
-    height: 50px;
-    width: 50px;
-    position: fixed;
-    z-index: 500;
-    box-sizing: border-box;
-}
-.openLikeBtn{
-    height: 50px;
-    width: 50px;
-    position: fixed;
-    background-size: 100%;
-    border: white;
-    background-image: url("/platform/images/Feedback_Red.png");
-    border-radius: 24px;
     cursor: pointer;
-    opacity: .7;
-    box-sizing: border-box;
-}
-/* Button used to open the chat form - fixed at the bottom of the page */
-.open-button {
-    background-color: #2865A3;
-    color: white;
-    padding: 3px 10px;
-    border: none;
-    cursor: pointer;
-    position: fixed;
-    bottom: 23px;
-    right: 45px;
-    width: 145px;
-    height: 40px;
-    font-size: 13pt;
-    border-radius: 10px;
-    box-sizing: border-box;
+    transition: background-color 0.3s;
 }
 
-/* The popup chat - hidden by default */
-.chat-popup {
-    box-shadow: -6px 11px 8px #888888;
-    display: none;
-    position: fixed;
-    bottom: 30px;
-    right: 20px;
-    border: 1px solid black;
-    z-index: 501;
-    box-sizing: border-box;
-    background-color:#5D8DAF;
-    color:white;
-    width:400px;
-    height:500px;
-    border-radius:5px;
+button:hover {
+    background-color: #0056b3;
 }
 
-/* Add styles to the form container */
-.form-container {
-    max-width: 500px;
-    padding: 10px;
-    ackground-color: white;
-    box-sizing: border-box;
-    white-space: normal;
+/* Media Queries */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
 }
 
-/* Full-width textarea */
-.form-container textarea {
-    width: 100%;
-    padding: 15px;
-    margin: 5px 20px 22px 0;
-    border: none;
-    background: white;
-    resize: none;
-    min-height: 200px;
-    font-size: large;
-    box-sizing: border-box;
+/* Additional styles for accessibility */
+a {
+    color: #007BFF;
+    text-decoration: none;
 }
 
-/* When the textarea gets focus, do something */
-.form-container textarea:focus {
-    background-color: #ddd;
-    outline: none;
+a:hover {
+    text-decoration: underline;
 }
 
-/* Set a style for the submit/send button */
-.form-container .btn {
-    background-color: #2865A3;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom:10px;
-    opacity: 0.8;
-    font-size: large;
-    box-sizing: border-box;
+#main{
+    background-color: #FFFFFF;
+    padding-top:1%
 }
-
-.closeForm {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    cursor:pointer;
-    ackground-color: #770C0E;
-    olor: white;
-    order:0px solid black;
-
+.page-header{
+    /*background: rgb(34,121,195);*/
+    /*background-color: rgb(27, 128, 182);*/
+    color:whitesmoke ;
+    padding: 20px;
+    margin-bottom: 5px;
 }
-/* Add some hover effects to buttons */
-.form-container .btn:hover, .open-button:hover {
-    opacity: 1;
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; /* remove the gap so it doesn't close */
 }
