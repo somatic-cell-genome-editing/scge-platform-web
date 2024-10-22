@@ -2,18 +2,6 @@
 
 </style>
 <nav class="navbar navbar-expand-lg navbar-light shadow" style="background-color: white">
-
-        <!--a class="navbar-brand"  href="https://scge.mcw.edu/" >
-            <img src="https://scge.mcw.edu/wp-content/uploads/2019/03/SCGElogo-50.jpg" srcset="https://scge.mcw.edu/wp-content/uploads/2019/03/SCGElogo-50.jpg 1x" width="72" height="50" alt="Somatic Cell Gene Editing Logo" data-retina_logo_url="" class="fusion-standard-logo" style="background-color: transparent"/>
-        </a-->
-        <!--
-        <a class="navbar-brand" href="https://scge.mcw.edu/" >
-            <img src="https://scge.mcw.edu/wp-content/uploads/2019/03/logo-png-1.png" width=70" height="40"/></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon" ></span>
-            Menu
-        </button>
-        -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon" ></span>
 
@@ -82,27 +70,8 @@
                             <a  href="/platform/data/ind/templates" class="dropdown-item "><span>Templates & Forms</span></a>
                             <a  href="/platform/data/ind/forms" class="dropdown-item "><span>Guidance</span></a>
                            <a  href="/platform/data/search/clinicalTrials" class="dropdown-item "><span>Gene Therapy Tracker</span></a>
-                            <%--                        <li  id="menu-item-2916"  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2916 fusion-dropdown-submenu" ><a  href="https://scge.mcw.edu/policies/" class=""><span>Policies</span></a></li>--%>
                         </div>
                     </li>
-                    <%--                <li  id="menu-item-2563"  class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2563 fusion-menu-item-button"  data-item-id="2563"><a  href="https://scge.mcw.edu/toolkit/" class=""><span class="menu-text fusion-button button-default button-small"><span class="button-icon-divider-left"><i class="glyphicon fa-briefcase fas" aria-hidden="true"></i></span><span class="fusion-button-text-left">Toolkit</span></span></a></li>--%>
-<%--                    <li class="nav-item">--%>
-<%--                        <a class="fusion-main-menu-icon " href="#" aria-label="Search" data-title="Search" title="Search" role="button" aria-expanded="false"></a>--%>
-<%--                        <div class="fusion-custom-menu-item-contents">--%>
-<%--                            <form role="search" class="searchform fusion-search-form  fusion-search-form-classic" method="get" action="https://scge.mcw.edu/">--%>
-<%--                                <div class="fusion-search-form-content">--%>
-<%--                                    <div class="fusion-search-field search-field">--%>
-<%--                                        <label><span class="screen-reader-text">Search for:</span>--%>
-<%--                                            <input type="search" value="" name="s" class="s" placeholder="Search..." required aria-required="true" aria-label="Search..."/>--%>
-<%--                                        </label>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="fusion-search-button search-button">--%>
-<%--                                        <input type="submit" class="fusion-search-submit searchsubmit" aria-label="Search" value="&#xf002;" />--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </form>--%>
-<%--                        </div>--%>
-<%--                    </li>--%>
 
 
     </ul>
