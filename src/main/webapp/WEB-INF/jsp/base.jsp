@@ -102,7 +102,7 @@
         <div class="d-flex flex-column flex-md-row align-items-center px-md-4 mb-3 bg-white border-bottom">
             <h5 class="my-0 mr-md-auto font-weight-normal"></h5>
             <nav class="my-2 my-md-0 mr-md-3">
-                <%--        <a class="p-2 text-dark" href="/platform">Home</a>--%>
+                        <a class="p-2 text-dark" href="/platform">Home</a>
                 <%--        <a class="p-2 text-dark" href="#">Features</a>--%>
                 <%--        <a class="p-2 text-dark" href="#">About Us</a>--%>
                 <a class="p-2 text-dark" href="/platform/data/search/clinicalTrials">Clinical Trials</a>
@@ -114,15 +114,8 @@
     </div>
     <div class="" style=";padding-top: 0">
         <div>
-
-            <c:if test="${projectDescription!=null}">
-                <hr>
-            </c:if>
-
             <div style="margin-top: 0;padding-top:0;margin-bottom:10%">
-
                 <c:if test="${page!=null}">
-
                     <c:import url="${page}.jsp" />
                 </c:if>
             </div>

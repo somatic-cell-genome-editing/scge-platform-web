@@ -5,7 +5,7 @@ $(function() {
         headerTemplate : '',
         widgets: [  'zebra',  'scroller' ],
         widgetOptions : {
-            scroller_height : 600,
+            scroller_height : 400,
             // scroll tbody to top after sorting
             scroller_upAfterSort: true,
             // pop table header into view while scrolling up the page
@@ -26,7 +26,7 @@ $(function() {
         widgetOptions: {
             // jQuery selector or object to attach sticky header to
             // stickyHeaders_attachTo: $('.table-wrapper'),
-            scroller_height : 600,
+            scroller_height : 400,
             // scroll tbody to top after sorting
             scroller_upAfterSort: true,
             // pop table header into view while scrolling up the page

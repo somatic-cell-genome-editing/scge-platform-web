@@ -44,7 +44,7 @@
 
     #myTable tbody  .manual{
         /*white-space: nowrap;*/
-      background-color:yellowgreen;
+      /*background-color:yellowgreen;*/
     }
     /* OPTIONAL CSS! */
     .tablesorter tbody td {

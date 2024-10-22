@@ -94,13 +94,6 @@ a:hover {
     background-color: #FFFFFF;
     padding-top:1%
 }
-.page-header{
-    /*background: rgb(34,121,195);*/
-    /*background-color: rgb(27, 128, 182);*/
-    color:whitesmoke ;
-    padding: 20px;
-    margin-bottom: 5px;
-}
 .dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 0; /* remove the gap so it doesn't close */

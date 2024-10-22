@@ -1,7 +1,6 @@
 <%@ page import="org.elasticsearch.search.SearchHit" %>
 <%@ page import="org.elasticsearch.action.search.SearchResponse" %>
 <%@ page import="com.google.gson.Gson" %>
-<%@ page import="org.elasticsearch.search.aggregations.bucket.terms.Terms" %>
 
 <%@ page import="java.util.*" %><%--
   Created by IntelliJ IDEA.
@@ -29,28 +28,12 @@
 
 <%
     Gson gson=new Gson();
-
     SearchResponse sr= (SearchResponse) request.getAttribute("sr");
-
-
-    Terms orgAggregations=sr.getAggregations().get("sponsor");
-    Terms statAggregations=sr.getAggregations().get("status");
-    Terms conditionAggregations=sr.getAggregations().get("indication");
-    Terms trackerTypeAggregations=sr.getAggregations().get("trackerType");
-
-    Terms vectorTypeAggregations=sr.getAggregations().get("vectorType");
-    Terms deliverySystermAggregations=sr.getAggregations().get("deliverySystem");
-    Terms routeOfAdministrationAggregations=sr.getAggregations().get("routeOfAdministration");
-    Terms therapyType=sr.getAggregations().get("therapyType");
-
-    Terms editorTypeAggregations=sr.getAggregations().get("editorType");
-    Terms drugProductTypeAggregations=sr.getAggregations().get("drugProductType");
-    Terms sponsorClassAggregations=sr.getAggregations().get("sponsorClass");
-
     SearchHit[] hitsArray=sr.getHits().getHits();
     List<SearchHit> hits=(Arrays.asList(hitsArray));
     Map<String, List<String>> filterMap= (Map<String, List<String>>) request.getAttribute("filterMap");
-
+    List<String> filtersSelected= (List<String>) request.getAttribute("filtersSelected");
+    request.setAttribute("filtersSelected", filtersSelected);
 
 %>
 
@@ -67,10 +50,7 @@
     <%}else{%>
 
 <div class="container-fluid page-header" >
-    <div class="row">
-        <div class="col-6"><h3>Clinical Trials - Gene Therapy Tracker</h3></div>
-<%--        <div class="col-3"><small>Last Updated Date: 09/23/2024</small></div>--%>
-    </div>
+    <h3>Clinical Trials - Gene Therapy Tracker</h3>
 </div>
 
 <div class="container-fluid">
@@ -92,22 +72,7 @@
 
               <hr>
                 <span>Showing all  <%=hits.size()%> results ...</span><br>
-                <%if(filterMap!=null && filterMap.size()>0){
-                    boolean first=true;
-                %>
-                <strong>Filters:</strong>
-
-                <%for(String key: filterMap.keySet()){
-                    List<String> values=filterMap.get(key);
-                    for(String filter:values){
-                        if(first){first=false;%>
-                &nbsp;<span style="color:darkorange; font-weight: bold"><%=filter%></span>
-                       <% }else{%>
-                &nbsp;<span style="font-weight: bold">&nbsp;|&nbsp;</span><span style="color:darkorange; font-weight: bold"><%=filter%></span>
-                       <% }
-                %>
-
-                    <%}}}%>
+               <%@include file="filtersApplied.jsp"%>
 
               <div class="padding"></div>
                 <!-- BEGIN TABLE RESULT -->
