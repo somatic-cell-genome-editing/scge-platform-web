@@ -10,21 +10,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<style>
-
-  .grid .grid-body {
-    padding: 15px 20px 15px 20px;
-    font-size: 0.9em;
-    /*line-height: 1.9em;*/
-  }
-
-
-  .search table tr:hover {
-    cursor: pointer;
-  }
-
-
-</style>
+<link href="/platform/css/resultTable.css" rel="stylesheet" type="text/css"/>
+<link href="/platform/css/referencesModal.css" rel="stylesheet" type="text/css"/>
 
 <%
     Gson gson=new Gson();
@@ -38,11 +25,8 @@
 %>
 
 <script>
-
     var filterMap='<%=gson.toJson(filterMap)%>'
-        var json=JSON.parse(filterMap)
-        console.log("FilterMap:"+json.status+"\nFilterMap:"+ json.sponsorClass)
-
+    var json=JSON.parse(filterMap)
 </script>
 <%
     if(hits.size()==0){%>
