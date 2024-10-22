@@ -25,8 +25,6 @@
 <form id="facetForm" action="/platform/data/search/clinicalTrials">
   <input type="hidden" id="unchecked" name="unchecked" value=''/>
   <input type="hidden" id="checked" name="checked" value=''/>
-<%--  <input type="hidden" id="uncheckedName" name="uncheckedName" value=''/>--%>
-<%--  <input type="hidden" id="checkedName" name="checkedName" value=''/>--%>
   <input type="hidden" id="filtersSelected" name="filtersSelected" value='<%=gson.toJson(filtersSelected)%>'/>
 
   <%

@@ -12,25 +12,25 @@ function removeFilter(filter) {
     $.each($('input[type="checkbox"]'), function () {
         var _this = $(this);
         var val = _this.val();
-        var name=this.getAttribute("name");
+        // var name=this.getAttribute("name");
         if (val == filter) {
             _this.prop('checked', false);
             $('#unchecked').val(val);
-            $('#uncheckedName').val(name)
+            // $('#uncheckedName').val(name)
         }
 
     });
     $('#facetForm').submit()
 }
 $('input[type="checkbox"]').on('click',function (){
-    var name=this.getAttribute("name");
+    // var name=this.getAttribute("name");
     if ($(this).is(":checked")) {
 
         $('#checked').val($(this).val());
-        $('#checkedName').val(name)
+        // $('#checkedName').val(name)
     }else{
         $('#unchecked').val($(this).val());
-        $('#uncheckedName').val(name)
+        // $('#uncheckedName').val(name)
     }
     $('#facetForm').submit();})
 

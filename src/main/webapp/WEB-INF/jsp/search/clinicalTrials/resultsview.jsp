@@ -89,4 +89,9 @@
     <!-- END SEARCH RESULT -->
   </div>
 </div>
+<small><strong>Disclaimer:</strong> The information on this dashboard has been collected for the convenience of patients and researchers. Please discuss with your provider the risks/benefits of participating in a clinical trial.
+    The SCGE makes no comment as to the efficacy and safety of the items listed, as these are not known at the time of publication.
+    For the most up to date information, please refer to clinicaltrials.gov or the Sponsor's website.
+
+    The information contained within this table does not make use of any confidential or privileged information-all data is collected from publicly available sources.</small>
 <%}%>
