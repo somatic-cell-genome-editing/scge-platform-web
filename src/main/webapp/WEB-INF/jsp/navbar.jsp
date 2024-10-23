@@ -7,7 +7,7 @@
 
         </button>
 
-    <a class="navbar-brand" href="/platform/home"> <img src="https://scge.mcw.edu/wp-content/uploads/2019/03/SCGElogo-50.jpg" srcset="/platform/common/images/SCGElogo3.jpg 1x"  alt="Somatic Cell Gene Editing Logo" data-retina_logo_url="" class="fusion-standard-logo"/></a>
+    <a class="navbar-brand" href="/platform/home"> <img src="/platform/common/images/SCGElogo3.jpg" srcset="/platform/common/images/SCGElogo3.jpg 1x"  alt="Somatic Cell Gene Editing Logo" data-retina_logo_url="" class="fusion-standard-logo"/></a>
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0 nav nav-pills">
@@ -15,7 +15,7 @@
             <a class="nav-link" href="/platform">Home</a>
         </li>
                     <li  class="nav-item dropdown menu-item">
-                        <a  href="#" class="nav-link dropdown-toggle " data-toggle="dropdown"  role="button" aria-haspopup="true" aria-expanded="false">About</a>
+                        <a  href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"  role="button" aria-haspopup="true" aria-expanded="false">About</a>
                         <div class="dropdown-menu">
                             <a  href="https://scge.mcw.edu/about-the-scge-phase-2/" class="dropdown-item"><span>About the SCGE</span></a>
                             <a  href="https://scge.mcw.edu/meet-the-researchers/" class="dropdown-item "><span>Meet the Researchers</span></a>
@@ -24,7 +24,7 @@
                         </div>
                     </li>
                     <li  class="nav-item dropdown" >
-                        <a  href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"  role="button" aria-haspopup="true" aria-expanded="false"><span class="menu-text">Goals by Initiatives</span> <span class="fusion-caret"><i class="fusion-dropdown-indicator" aria-hidden="true"></i></span></a>
+                        <a  href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"  aria-expanded="false"><span>Goals by Initiatives</span></a>
                         <div class="dropdown-menu">
                             <a  href="https://scge.mcw.edu/phase-2-technology-and-assays/" class="dropdown-item "><span>Technology and Assays</span></a>
                             <a  href="https://scge.mcw.edu/phase-2-ind-enabling-studies/" class="dropdown-item "><span>IND-Enabling Studies, Therapeutic Leads</span></a>

@@ -1,6 +1,4 @@
-
-<%@ page import="edu.mcw.scge.configuration.Access" %>
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
@@ -18,9 +16,8 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script> <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
     <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
-    <!-- Custom styles for this template -->
+
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-<%--    <link href="blog.css" rel="stylesheet">--%>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet" type="text/css"/>
     <link href="/platform/common/css/sticky-footer-navbar.css" rel="stylesheet">
     <script
@@ -42,14 +39,8 @@
 
 </head>
 
-<style>
-
-</style>
 <body>
-<%
-    Access access = new Access();
-   // Person person = access.getUser(request.getSession());
-%>
+
 <div style="font-size:12px; color:white; background-color: rgb(27, 128, 182); width:100%;padding-left:15px;padding-top:4px; padding-bottom:2px;">
     <div style="text-align:right; color:white;padding-right:12px;">
         <a href="https://scge.mcw.edu" style="color:white;">SCGE Consortium Home</a>&nbsp;&nbsp;
@@ -60,42 +51,42 @@
     </div>
 </div>
 <%@include file="navbarTop.jsp"%>
-<%@include file="navbar.jsp"%>
+<%--<%@include file="navbar.jsp"%>--%>
 
 
-<%--<div class="container-fluid">--%>
-<%--    <header class="blog-header py-3">--%>
-<%--        <div class="row justify-content-between align-items-center">--%>
-<%--            <div class="col-8 pt-1 m-auto">--%>
-<%--                <!-- Icon -->--%>
-<%--                <div class="fadeIn first">--%>
+<div class="container-fluid">
+    <header class="blog-header py-3">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-8 pt-1 m-auto">
+                <!-- Icon -->
+                <div class="fadeIn first">
 
-<%--                    <h2 class="navbar-brand"><img src="/platform/images/scge-logo-png-1.png" border="0"  alt="SCGE"/>&nbsp;Somatic Cell Genome Editing Platform</h2>--%>
-<%--                </div>--%>
-<%--            </div>--%>
+                    <h2 class="navbar-brand"><img src="/platform/images/scge-logo-png-1.png" border="0"  alt="SCGE"/>&nbsp;Somatic Cell Genome Editing Platform</h2>
+                </div>
+            </div>
 
-<%--            <div class="col-4 d-flex  align-items-center m-auto">--%>
-<%--                <form id="searchForm" class="input-group md-form form-sm form-2 pl-0 d-flex justify-content-center mx-4 mt-2" action="/platform/data/search/results">--%>
-<%--                    <div class="input-group md-form form-sm form-2 pl-0">--%>
+            <div class="col-4 d-flex  align-items-center m-auto">
+                <form id="searchForm" class="input-group md-form form-sm form-2 pl-0 d-flex justify-content-center mx-4 mt-2" action="/platform/data/search/results">
+                    <div class="input-group md-form form-sm form-2 pl-0">
 
-<%--                        <input class="form-control amber-border" id="commonSearchTerm" name="searchTerm" type="text" placeholder="Search SCGE Platform" aria-label="Search">--%>
-<%--                        <div class="input-group-append">--%>
-<%--            <span class="input-group-text amber lighten-3" id="basic-text1" onclick="$('#searchForm').submit()"><i class="fas fa-search text-grey"--%>
-<%--                                                                                                                   aria-hidden="true"></i></span>--%>
-<%--                        </div>--%>
-
-
-<%--                    </div>--%>
-<%--                    <small class="form-text text-dark" style="font-size: 11px;">Examples:&nbsp;<a class="text-dark" style="font-size: 11px;" href="">Epithelium</a>, <a class="text-dark" href="" style="font-size: 11px;" >CRISPR</a>,--%>
-<%--                        <a class="text-dark" style="font-size: 11px;" href="" >AAV</a>, <a class="text-dark" style="font-size: 11px;" href="" >Ai9</a>--%>
-<%--                    </small>--%>
-<%--                </form>--%>
+                        <input class="form-control amber-border" id="commonSearchTerm" name="searchTerm" type="text" placeholder="Search SCGE Platform" aria-label="Search">
+                        <div class="input-group-append">
+            <span class="input-group-text amber lighten-3" id="basic-text1" onclick="$('#searchForm').submit()"><i class="fas fa-search text-grey"
+                                                                                                                   aria-hidden="true"></i></span>
+                        </div>
 
 
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </header>--%>
-<%--</div>--%>
+                    </div>
+                    <small class="form-text text-dark" style="font-size: 11px;">Examples:&nbsp;<a class="text-dark" style="font-size: 11px;" href="">Epithelium</a>, <a class="text-dark" href="" style="font-size: 11px;" >CRISPR</a>,
+                        <a class="text-dark" style="font-size: 11px;" href="" >AAV</a>, <a class="text-dark" style="font-size: 11px;" href="" >Ai9</a>
+                    </small>
+                </form>
+
+
+            </div>
+        </div>
+    </header>
+</div>
 
 <div id="main" class="container-fluid">
     <div class="container-fluid">

@@ -98,3 +98,11 @@ a:hover {
     display: block;
     margin-top: 0; /* remove the gap so it doesn't close */
 }
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    background-color: rgba(6, 147, 227, 1);
+
+}
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link{
+    color:whitesmoke;
+}

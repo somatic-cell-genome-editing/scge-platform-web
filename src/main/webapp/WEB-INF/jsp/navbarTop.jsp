@@ -14,13 +14,13 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarResponsiveTop">
-        <ul class="navbar-nav mr-auto" >
-        <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link text-light" href=""><i class="fab fa-facebook mr-1"></i></a></li>
-        <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link text-light" href=""><i class="fab fa-instagram mr-1"></i></a></li>
-        <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link text-light" href=""><i class="fa-brands fa-x-twitter"></i></a></li>
-        <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link text-light" href=""><i class="fab fa-linkedin mr-1"></i></a></li>
-        <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link text-light" href=""><i class="fab fa-youtube mr-1"></i></a></li>
-        </ul>
+<%--        <ul class="navbar-nav mr-auto" >--%>
+<%--        <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link text-light" href=""><i class="fab fa-facebook mr-1"></i></a></li>--%>
+<%--        <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link text-light" href=""><i class="fab fa-instagram mr-1"></i></a></li>--%>
+<%--        <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link text-light" href=""><i class="fa-brands fa-x-twitter"></i></a></li>--%>
+<%--        <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link text-light" href=""><i class="fab fa-linkedin mr-1"></i></a></li>--%>
+<%--        <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link text-light" href=""><i class="fab fa-youtube mr-1"></i></a></li>--%>
+<%--        </ul>--%>
         <ul class="navbar-nav ml-auto" style="padding-right: 2%">
 
 
