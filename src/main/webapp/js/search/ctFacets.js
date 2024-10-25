@@ -6,6 +6,7 @@ function removeFilters(){
         var _this=$(this);
         _this.prop('checked', false);
     })
+    $('#filtersSelected').val('')
     $('#facetForm').submit()
 }
 function removeFilter(filter) {

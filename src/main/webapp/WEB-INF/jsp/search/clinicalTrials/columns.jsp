@@ -9,7 +9,7 @@
 <th>NCTID</th>
 <th>Indication</th>
 <th>Compound Name</th>
-<th class="sorter-false"><div class="info-card">Sponsor</div></th>
+<th>Sponsor</th>
 <th>Funder Type</th>
 <%--<th>Intervention</th>--%>
 <th class="manual">Target Gene/Variant</th>
@@ -43,4 +43,4 @@
 
 <th class="manual">Patents</th>
 <th class="manual">Recent Updates</th>
-<th class="manual">Resources/Links</th>
+<th class="manual sorter-false">Resources/Links</th>

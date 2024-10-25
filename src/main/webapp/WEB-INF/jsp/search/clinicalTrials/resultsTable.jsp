@@ -8,8 +8,8 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<table  id="myTable" class="tablesorter">
+<div id="resultsTable"  style="display: none">
+<table  id="myTable">
     <thead><tr><%@include file="columns.jsp"%></tr></thead>
     <tfoot><tr><%@include file="columns.jsp"%></tr></tfoot>
     <tbody>
@@ -130,6 +130,7 @@
     <%}%>
     </tbody>
 </table>
+</div>
 <div class="modal fade" id="refModal" role="dialog" >
     <div class="modal-dialog">
 
@@ -150,6 +151,7 @@
 
     </div>
 </div>
+
 <script>
     function myModal(nctId) {
     var content=$('#refDiv');
@@ -162,6 +164,3 @@
 }
 
 </script>
-<style>
-
-</style>

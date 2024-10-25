@@ -77,7 +77,7 @@ public class SearchController{
         ObjectMapper mapper=new ObjectMapper();
         List<String> filters=new ArrayList<>();
 
-        if(request.getParameter("filtersSelected")!=null){
+        if(request.getParameter("filtersSelected")!=null && !request.getParameter("filtersSelected").equals("")){
             filters=mapper.readValue(request.getParameter("filtersSelected"), List.class);
         }
 
