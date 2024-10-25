@@ -22,7 +22,7 @@ $(function() {
         theme : 'blue',
         headerTemplate : '',
         showProcessing: true,
-        widgets: ['zebra','scroller'],
+        widgets: ['zebra','scroller','filter'],
         widgetOptions: {
             // jQuery selector or object to attach sticky header to
             // stickyHeaders_attachTo: $('.table-wrapper'),
@@ -42,14 +42,18 @@ $(function() {
             scroller_addFixedOverlay : false,
             // add hover highlighting to the fixed column (disable if it causes slowing)
             scroller_rowHighlight : 'hover',
+            filter_columnFilters: false,
+            filter_saveFilters : true,
+            filter_reset: '.reset'
 
         }
     });
+    $.tablesorter.filter.bindSearch( '#myTable', $('.search') );
     $(window).trigger('resize');
 
         const divToShow = document.getElementById('resultsTable');
         divToShow.style.display = 'block';
- 
+
 });
 
 
