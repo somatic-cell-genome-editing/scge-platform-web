@@ -10,9 +10,9 @@
 --%>
 <style>
   /*.sponsorClass,.therapyType,.therapyRoute,.mechanismOfAction,.routeOfAdministration, .drugProductType,.deliverySystem,.locations,*/
-  .standardAges{
-    color:red;
-  }
+  /*.standardAges{*/
+  /*  color:red;*/
+  /*}*/
 </style>
 <h4 class="grid-title"><i class="fa fa-filter"></i> Filters ..&nbsp;&nbsp;&nbsp;<span style="float:right"><button id="clearFilters" class="btn btn-primary btn-sm" onclick="removeFilters()" >Clear Filters</button></span></h4>
 
@@ -33,7 +33,7 @@
   for(String aggName:aggNames){
 %>
   <div class="accordion-group">
-    <div class="pl-3  accordion-heading card-header">
+    <div class="pl-3  accordion-heading">
       <a class="accordion-toggle  search-results-anchor" data-toggle="collapse" href="#collapse<%=aggName%>">
         <span class="<%=aggName%>"><%=ClinicalTrialsService.fieldDisplayNames.get(aggName)%></span><span class="float-right"><i class="fas fa-angle-up"></i></span>
       </a>
