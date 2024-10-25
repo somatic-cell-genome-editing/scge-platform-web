@@ -14,7 +14,8 @@
   /*  color:red;*/
   /*}*/
 </style>
-<h4 class="grid-title"><i class="fa fa-filter"></i> Filters ..&nbsp;&nbsp;&nbsp;<span style="float:right"><button id="clearFilters" class="btn btn-primary btn-sm" onclick="removeFilters()" >Clear Filters</button></span></h4>
+
+<h4 class="grid-title"><i class="fa fa-filter"></i> Filters ..&nbsp;&nbsp;&nbsp;<span id="expandAll" class="plus" title="Expand All" onclick="expandAll()"><i class="fa-solid fa-circle-plus"></i></span><span id="collapseAll" class="minus" style="display: none;color:red" title="Close All" onclick="collapseAll()"><i class="fa-solid fa-circle-minus"></i></span><span style="float:right"><button id="clearFilters" class="btn btn-primary btn-sm" onclick="removeFilters()" >Clear Filters</button></span></h4>
 
 <hr>
 

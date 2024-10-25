@@ -71,5 +71,16 @@ $(function () {
             }
         });
     })
-
+    $('#collapseAll').hide()
 })
+
+function expandAll(){
+    $('.collapse').addClass("show");
+    $('#expandAll').hide()
+    $('#collapseAll').show()
+}
+function collapseAll(){
+    $('.collapse').removeClass("show");
+    $('#expandAll').show()
+    $('#collapseAll').hide()
+}
