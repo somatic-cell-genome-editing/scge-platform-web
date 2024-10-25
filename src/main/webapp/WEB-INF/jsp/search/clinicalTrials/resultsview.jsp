@@ -52,9 +52,9 @@
             <!-- END FILTERS -->
             <!-- BEGIN RESULT -->
             <div class="col-md-10">
-              <h4><i class="fa fa-file-o"></i> Result</h4>
+<%--              <h4><i class="fa fa-file-o"></i> Result</h4>--%>
 
-              <hr>
+<%--              <hr>--%>
                 <span>Showing all  <%=hits.size()%> results ...</span><br>
                <%@include file="filtersApplied.jsp"%>
 
