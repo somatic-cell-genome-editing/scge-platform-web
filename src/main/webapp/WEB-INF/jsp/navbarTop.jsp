@@ -26,8 +26,8 @@
 
 <%--            <div style="text-align:right; color:white;padding-right:12px;">--%>
             <li class="nav-item text-nowrap text-light" ><a href="https://scge.mcw.edu" style="color:white;font-size: 0.9rem">SCGE Consortium Home</a>&nbsp;|&nbsp;</li>
-    <li class="nav-item text-nowrap text-light" ><a style="color:white;font-size: 0.9rem" href="">About SCGE Platform</a>&nbsp;|&nbsp;</li>
-    <li class="nav-item text-nowrap text-light"><a style="color:white;font-size: 0.9rem" onclick="openForm()" href="javascript:void(0)">Contact Us</a>&nbsp;|&nbsp;</li>
+    <li class="nav-item text-nowrap text-light" ><a style="color:white;font-size: 0.9rem" href="https://scge.mcw.edu/phase-2-tcdc/">About SCGE Platform</a>&nbsp;|&nbsp;</li>
+    <li class="nav-item text-nowrap text-light"><a style="color:white;font-size: 0.9rem"  href="https://scge.mcw.edu/contact/" target="_blank">Contact Us</a>&nbsp;|&nbsp;</li>
     <li class="nav-item text-nowrap text-light" ><a style="color:white;font-size: 0.9rem" href="">Citing the SCGE Platform</a>&nbsp;|&nbsp;</li>
     <li class="nav-item text-nowrap text-light"><a style="color:white;font-size: 0.9rem" href="https://creativecommons.org/licenses/by/4.0/">License</a></li>
 <%--            </div>--%>
