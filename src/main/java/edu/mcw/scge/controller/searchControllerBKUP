@@ -1,0 +1,116 @@
+package edu.mcw.scge.controller;
+
+
+
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import edu.mcw.scge.service.es.clinicalTrials.ClinicalTrialsService;
+import edu.mcw.scge.service.es.clinicalTrials.ClinicalTrialApiIndexServices;
+
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.search.aggregations.bucket.terms.Terms;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.*;
+
+@Controller
+@RequestMapping(value="/data/search")
+public class SearchController{
+
+    @RequestMapping(value="/clinicalTrialsapi")
+    public String getClinicalTrialsAPIResults(HttpServletRequest req, HttpServletResponse res, Model model,
+                                       @PathVariable(required = false) String category, @RequestParam(required = false) String searchTerm) throws Exception {
+        ClinicalTrialApiIndexServices services = new ClinicalTrialApiIndexServices();
+        Map<String, List<String>> filterMap=getFiltersMap(req);
+        SearchResponse sr=services.getSearchResults(searchTerm ,getFiltersMap(req));
+        req.setAttribute("searchTerm", searchTerm);
+        req.setAttribute("sr", sr);
+        req.setAttribute("filterMap", filterMap);
+        Terms terms=sr.getAggregations().get("organization");
+        req.setAttribute("page", "/WEB-INF/jsp/search/clinicalTrials/resultsview");
+        req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
+
+        return null;
+    }
+
+
+    @RequestMapping(value="/clinicalTrials")
+    public String getClinicalTrialsFileResults(HttpServletRequest req, HttpServletResponse res, Model model,
+                                              @PathVariable(required = false) String category, @RequestParam(required = false) String searchTerm) throws Exception {
+        ClinicalTrialsService services = new ClinicalTrialsService();
+        LinkedHashMap<String, List<String>> filterMap=getFiltersMap(req);
+        SearchResponse sr=services.getSearchResults(searchTerm ,getFiltersMap(req));
+        req.setAttribute("searchTerm", searchTerm);
+        req.setAttribute("sr", sr);
+        req.setAttribute("filterMap", filterMap);
+        model.addAttribute("searchTerm", searchTerm);
+//        Terms terms=sr.getAggregations().get("organization");
+        req.setAttribute("page", "/WEB-INF/jsp/search/clinicalTrials/resultsview");
+        req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
+
+        return null;
+    }
+    public LinkedHashMap<String,  List<String>> getFiltersMap(HttpServletRequest request) throws IOException {
+
+        ObjectMapper mapper=new ObjectMapper();
+        LinkedHashMap<String,  List<String>> filterMap=new LinkedHashMap<>();
+        if(request.getParameter("filterMapOrder")!=null){
+            filterMap= mapper.readValue(request.getParameter("filterMapOrder"), LinkedHashMap.class);
+        }
+
+        if(request.getParameter("unchecked")!=null && !request.getParameter("unchecked").equals("")){
+            removeFilter(request, filterMap);
+        }
+        if(request.getParameter("checked")!=null && !request.getParameter("checked").equals("")){
+           addFilter(request, filterMap);
+        }
+
+
+        return filterMap;
+    }
+    public void removeFilter(HttpServletRequest request, LinkedHashMap<String,  List<String>> filterMap){
+        String fieldName=request.getParameter("uncheckedName");
+        String fieldValue=request.getParameter("unchecked");
+        List<String> fieldValues=new ArrayList<>();
+        if(filterMap.get(fieldName)!=null){
+          List<String>  values=filterMap.get(fieldName);
+            for(String fv:values){
+                if (!fv.equalsIgnoreCase(fieldValue)) {
+                    fieldValues.add(fv);
+
+                }
+            }
+            if(fieldValues.size()>0){
+                filterMap.put(fieldName, fieldValues);
+            }else{
+                filterMap.remove(fieldName);
+            }
+        }
+
+
+    }
+    public void addFilter(HttpServletRequest request, LinkedHashMap<String,  List<String>> filterMap){
+        String fieldName=request.getParameter("checkedName");
+        String fieldValue=request.getParameter("checked");
+        List<String> fieldValues=new ArrayList<>();
+        if(filterMap.get(fieldName)!=null) {
+            fieldValues.addAll(filterMap.get(fieldName));
+        }
+        if(fieldValue!=null)
+        fieldValues.add(fieldValue);
+        if(fieldValues.size()>0)
+        filterMap.put(fieldName, fieldValues);
+        else{
+            filterMap.remove(fieldName);
+        }
+    }
+}
