@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<th>NCTID</th>
+<th>ClinicalTrials.gov ID</th>
 <th>Indication</th>
 <th>Compound Name</th>
 <th>Sponsor</th>
