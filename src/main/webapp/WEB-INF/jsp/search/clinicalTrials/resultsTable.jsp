@@ -8,7 +8,7 @@
 --%>
 <style>
     #resultsTable tr th{
-        font-size: 18px;
+        font-size: 1rem;
        white-space:nowrap;
         padding-top: 5px;
         padding-bottom: 5px;
