@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.PathParam;
 import java.io.IOException;
 import java.util.*;
 
@@ -42,13 +43,31 @@ public class SearchController{
         return null;
     }
 
-
-    @RequestMapping(value="/clinicalTrials")
-    public String getClinicalTrialsFileResults(HttpServletRequest req, HttpServletResponse res, Model model,
-                                              @PathVariable(required = false) String category, @RequestParam(required = false) String searchTerm) throws Exception {
+    @RequestMapping(value="/")
+    public String getSearchResultsResults(HttpServletRequest req, HttpServletResponse res, Model model,
+                                               @RequestParam(required = true) String searchTerm) throws Exception {
+        if(searchTerm==null)
+            return null;
         ClinicalTrialsService services = new ClinicalTrialsService();
         LinkedHashMap<String, List<String>> filterMap=getFiltersMap(req);
-        SearchResponse sr=services.getSearchResults(searchTerm ,getFiltersMap(req));
+        SearchResponse sr=services.getSearchResults(searchTerm ,null,getFiltersMap(req));
+        req.setAttribute("searchTerm", searchTerm);
+        req.setAttribute("sr", sr);
+        req.setAttribute("filterMap", filterMap);
+        req.setAttribute("filtersSelected", getSelectedOrderedFilters(req));
+        model.addAttribute("searchTerm", searchTerm);
+//        Terms terms=sr.getAggregations().get("organization");
+        req.setAttribute("page", "/WEB-INF/jsp/search/clinicalTrials/resultsview");
+        req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
+
+        return null;
+    }
+    @RequestMapping(value="/{category}")
+    public String getClinicalTrialsFileResults(HttpServletRequest req, HttpServletResponse res, Model model,
+                                               @PathVariable(required = true) String category, @RequestParam(required = false) String searchTerm) throws Exception {
+        ClinicalTrialsService services = new ClinicalTrialsService();
+        LinkedHashMap<String, List<String>> filterMap=getFiltersMap(req);
+        SearchResponse sr=services.getSearchResults(searchTerm ,category,getFiltersMap(req));
         req.setAttribute("searchTerm", searchTerm);
         req.setAttribute("sr", sr);
         req.setAttribute("filterMap", filterMap);

@@ -75,7 +75,7 @@
 
 
     </ul>
-        <form id="searchForm" class="form-inline my-2 my-lg-0 " action="/platform/data/search/results">
+        <form id="searchForm" class="form-inline my-2 my-lg-0 " action="/platform/data/search/">
             <div class="input-group md-form form-sm form-2 pl-0">
 
                 <input class="form-control amber-border" id="commonSearchTerm" name="searchTerm" type="text" placeholder="Search SCGE Platform" aria-label="Search">

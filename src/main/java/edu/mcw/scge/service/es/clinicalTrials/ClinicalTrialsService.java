@@ -32,11 +32,11 @@ public class ClinicalTrialsService {
 
     }
 
-    public SearchResponse getSearchResults(String searchTerm, Map<String, List<String>> filtersMap) throws IOException {
+    public SearchResponse getSearchResults(String searchTerm,String category, Map<String, List<String>> filtersMap) throws IOException {
         String searchIndex = "scge_platform_ctapi_search_dev";
                 //"scge_platform_search_dev";
         SearchSourceBuilder srb=new SearchSourceBuilder();
-        srb.query(this.buildBoolQuery(searchTerm, filtersMap));
+        srb.query(this.buildBoolQuery(searchTerm, category));
         for(String fieldName:ClinicalTrialsService.aggregationFields) {
             srb.aggregation(buildAggregations(fieldName));
         }
@@ -66,10 +66,12 @@ public class ClinicalTrialsService {
         q.must(dqb);
         return q;
     }
-    public BoolQueryBuilder buildBoolQuery( String searchTerm, Map<String,  List<String>> filterMap){
+    public BoolQueryBuilder buildBoolQuery( String searchTerm, String category){
         BoolQueryBuilder q=new BoolQueryBuilder();
         q.must(buildQuery(searchTerm));
-
+        if(category!=null && !category.equals("")){
+            q.filter(QueryBuilders.termQuery("category.keyword", category));
+        }
         return q;
     }
 
@@ -127,43 +129,18 @@ public class ClinicalTrialsService {
             }else { if (isNumeric(searchTerm)) {
 //                q.add(QueryBuilders.termQuery("nctId", searchTerm));
             } else {
-                q.add(QueryBuilders.multiMatchQuery(searchTerm, searchFields().toArray(new String[0]))
+                q.add(QueryBuilders.multiMatchQuery(searchTerm)
                         .type(MultiMatchQueryBuilder.Type.CROSS_FIELDS)
                         .type(MultiMatchQueryBuilder.Type.PHRASE)
-                        .analyzer("stop")
+//                        .analyzer("stop")
                 );
-                q.add(QueryBuilders.multiMatchQuery(searchTerm, searchFields().toArray(new String[0]))
+                q.add(QueryBuilders.multiMatchQuery(searchTerm)
                         .type(MultiMatchQueryBuilder.Type.CROSS_FIELDS)
                         .operator(Operator.AND)
-                        .analyzer("stop")
+//                        .analyzer("stop")
                 );
             }
             }
-
-            q.add(QueryBuilders.termQuery("symbol.custom", searchTerm).boost(1000));
-            q.add(QueryBuilders.termQuery("name.custom", searchTerm).boost(1000));
-            q.add(QueryBuilders.termQuery("pi", searchTerm).boost(1000));
-
-            q.add(QueryBuilders.matchPhraseQuery("symbol", searchTerm).boost(400));
-            q.add(QueryBuilders.matchPhraseQuery("name", searchTerm).boost(400));
-
-            q.add(QueryBuilders.matchPhrasePrefixQuery("symbol.custom", searchTerm).boost(100));
-            q.add(QueryBuilders.matchPhrasePrefixQuery("name.custom", searchTerm).boost(100));
-
-
-
-            q.add(QueryBuilders.matchPhrasePrefixQuery("pi", searchTerm).boost(500));
-            q.add(QueryBuilders.matchPhraseQuery("pi", searchTerm).boost(200));
-            q.add(QueryBuilders.termQuery("currentGrantNumber.keyword", searchTerm));
-            q.add(QueryBuilders.termQuery("formerGrantNumbers.keyword", searchTerm));
-            q.add(QueryBuilders.termQuery("description", searchTerm));
-            q.add(QueryBuilders.termQuery("articleIds.id.keyword", searchTerm).caseInsensitive(true));
-            q.add(QueryBuilders.termQuery("authorList.lastName.keyword", searchTerm).caseInsensitive(true));
-            q.add(QueryBuilders.termQuery("authorList.firstName.keyword", searchTerm).caseInsensitive(true));
-
-
-
-
 
         }else{
             q.add(QueryBuilders.matchAllQuery());
