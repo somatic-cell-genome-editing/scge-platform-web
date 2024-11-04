@@ -129,11 +129,13 @@
 
             <div class="p-3">
                 <h4 class="font-italic">Follow us on</h4>
-                <ol class="list-unstyled">
-                    <li><i class="fa-brands fa-github"></i>&nbsp;<a href="#">GitHub</a></li>
-                    <li><img src="/platform/common/images/logo-black.png" width="15" height="15">&nbsp;<a href="#">Twitter</a></li>
-                    <li><i class="fa-brands fa-facebook-f"></i>&nbsp;<a href="#">Facebook</a></li>
-                </ol>
+                <ul class="list-group list-group-horizontal">
+<%--                    <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link" href=""><i class="fab fa-facebook mr-1"></i></a></li>--%>
+<%--                    <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link " href=""><i class="fab fa-instagram mr-1"></i></a></li>--%>
+                    <li class="list-group-item"><a class="nav-link " href="https://twitter.com/somaticediting" target="_blank" title="twitter"><i class="fa-brands fa-x-twitter"></i></a></li>
+                    <li class="list-group-item"><a class="nav-link" href="https://www.linkedin.com/company/somatic-cell-genome-editing-consortium/about/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin mr-1"></i></a></li>
+                    <li class="list-group-item"><a class="nav-link " href="https://www.youtube.com/channel/UCnMSf_YZdv1gIuqPmB6vrYw" target="_blank" title="YouTube"><i class="fab fa-youtube mr-1"></i></a></li>
+                </ul>
             </div>
         </aside><!-- /.blog-sidebar -->
 
