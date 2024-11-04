@@ -16,6 +16,10 @@ html{
     width: 100%;
 }
 
+.ctSubHeading{
+    color:darkslategray;
+}
+
 .report-label {
     /*white-space: nowrap; !* Prevent the label from wrapping to a new line *!*/
     padding-right: 8px; /* Space between the label and the brief title */
@@ -63,7 +67,6 @@ html{
     border: none;
     /*padding: 4px;*/
     width: 100%;
-
 }
 
 /* Show more css */
@@ -102,6 +105,7 @@ html{
     overflow-x: hidden;
     margin-top: 20px;
     padding-top: 20px;
+
 }
 
 .sidenav a {
@@ -153,4 +157,11 @@ html{
 .external-links-list li a:hover {
     color: #007bff;
     text-decoration: underline;
+}
+
+@media (max-width: 600px){
+    .sidenav{
+        display: none;
+    }
+    
 }
