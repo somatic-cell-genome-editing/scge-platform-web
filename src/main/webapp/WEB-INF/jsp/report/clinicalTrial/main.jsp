@@ -96,11 +96,15 @@
                 <td class="label">
                     Status
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getStudyStatus()!=null?clinicalTrialData.getStudyStatus():""%>" readonly />--%>
-<%--                </td>--%>
+                <%
+                    String status = clinicalTrialData.getStudyStatus();
+                    boolean recStatus = "Recruiting".equalsIgnoreCase(status)||"Not yet recruiting".equalsIgnoreCase(status);
+                    String cssClass = recStatus?"status-recruiting":"status-other";
+                %>
                 <td>
+                    <div class="status-container <%=cssClass%>">
                     <%=clinicalTrialData.getStudyStatus()!=null?clinicalTrialData.getStudyStatus():""%>
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -226,7 +230,7 @@
 <%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getEditorType()!=null?clinicalTrialData.getEditorType():""%>" readonly />--%>
 <%--                </td>--%>
                 <td>
-                    <%=!clinicalTrialData.getEditorType().equalsIgnoreCase("none")?clinicalTrialData.getEditorType():""%>
+                    <%=clinicalTrialData.getEditorType()!=null&&!clinicalTrialData.getEditorType().equalsIgnoreCase("none")?clinicalTrialData.getEditorType():""%>
                 </td>
             </tr>
             <tr>

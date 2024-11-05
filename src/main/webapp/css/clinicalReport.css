@@ -159,6 +159,24 @@ html{
     text-decoration: underline;
 }
 
+.status-container{
+    border: 1px solid;
+    border-radius: 4px;
+    padding:8px;
+    width: fit-content;
+    color: white;
+}
+
+.status-recruiting{
+    background-color: #008817;
+    border-color: #008817;
+}
+
+.status-other{
+    background-color: #b50909;
+    border-color: #b50909;
+}
+
 @media (max-width: 600px){
     .sidenav{
         display: none;
