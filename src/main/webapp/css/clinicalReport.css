@@ -181,5 +181,9 @@ html{
     .sidenav{
         display: none;
     }
-    
+
+    .ctReportBody{
+        margin:0px;
+    }
+
 }

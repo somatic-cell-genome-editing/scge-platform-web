@@ -355,8 +355,11 @@
                             : (maxAge != null) ? "<=" + maxAge
                             : null;
                 %>
+<%--                <td>--%>
+<%--                    <input type="text" class="readonly-field" value="<%=age!=null?age:""%>" readonly />--%>
+<%--                </td>--%>
                 <td>
-                    <input type="text" class="readonly-field" value="<%=age!=null?age:""%>" readonly />
+                    <%=age!=null?age:""%>
                 </td>
             </tr>
             <tr>
