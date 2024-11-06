@@ -22,7 +22,7 @@
 %>
 
 <h4 class="mainTitle">
-    <span class="report-label">Clinical Trial Report:</span>
+    <span class="report-label">Gene Therapy Trial Report:</span>
     <span class="brief-title"><%= clinicalTrialData.getBriefTitle() != null ? clinicalTrialData.getBriefTitle() : "" %></span>
 </h4>
 
