@@ -87,12 +87,12 @@
         <div class="d-flex flex-column flex-md-row align-items-center px-md-4 mb-3 bg-white border-bottom">
             <h5 class="my-0 mr-md-auto font-weight-normal"></h5>
             <nav class="my-2 my-md-0 mr-md-3">
-                        <a class="p-2 text-dark" href="/platform">Home</a>
+<%--                        <a class="p-2 text-dark" href="/platform">Home</a>--%>
                 <%--        <a class="p-2 text-dark" href="#">Features</a>--%>
                 <%--        <a class="p-2 text-dark" href="#">About Us</a>--%>
                 <a class="p-2 text-dark" href="/platform/data/search/ClinicalTrial">Gene Therapy Tracker</a>
 <%--                <a class="p-2 text-dark" href="/platform/data/ind/templates">Templates & Forms</a>--%>
-                <a class="p-2 text-dark" href="/platform/data/ind/forms">Guidance</a>
+<%--                <a class="p-2 text-dark" href="/platform/data/ind/forms">Guidance</a>--%>
 
             </nav>
         </div>
