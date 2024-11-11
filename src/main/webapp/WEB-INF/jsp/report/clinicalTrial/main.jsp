@@ -89,7 +89,7 @@
 <%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getSponsorClass()!=null?clinicalTrialData.getSponsorClass():""%>" readonly />--%>
 <%--                </td>--%>
                 <td>
-                    <%=clinicalTrialData.getSponsorClass()!=null?clinicalTrialData.getSponsorClass():""%>
+                    <%=clinicalTrialData.getSponsorClass()!=null?clinicalTrialData.getSponsorClass().equalsIgnoreCase("NIH")?"NIH":clinicalTrialData.getSponsorClass():""%>
                 </td>
             </tr>
             <tr>
@@ -460,7 +460,9 @@
         <h5 class="link-type-heading">Patents</h5>
         <ul class="external-links-list">
             <%for(String patent:patents){%>
+            <%if(patent.trim()!=null&&!patent.trim().isEmpty()){%>
             <li><%=patent.trim()%></li>
+            <%}%>
             <%}%>
         </ul>
         <%}%>
