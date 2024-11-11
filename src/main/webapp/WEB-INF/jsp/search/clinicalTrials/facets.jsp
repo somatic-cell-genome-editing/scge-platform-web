@@ -23,7 +23,7 @@
 <div align="right">
 
 </div>
-<form id="facetForm" action="/platform/data/search/clinicalTrials">
+<form id="facetForm" action="/platform/data/search/ClinicalTrial">
   <input type="hidden" id="unchecked" name="unchecked" value=''/>
   <input type="hidden" id="checked" name="checked" value=''/>
   <input type="hidden" id="filtersSelected" name="filtersSelected" value='<%=gson.toJson(filtersSelected)%>'/>
