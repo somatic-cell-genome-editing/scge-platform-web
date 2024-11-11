@@ -33,9 +33,6 @@ public class ClinicalTrialsService {
     }
 
     public SearchResponse getSearchResults(String searchTerm,String category, Map<String, List<String>> filtersMap) throws IOException {
-       // String searchIndex = "scge_platform_ctapi_search_dev";
-      //  String searchIndex = "scge_platform_search_ct_dev";
-                //"scge_platform_search_dev";
         String searchIndex= SCGEContext.getESIndexName();
         SearchSourceBuilder srb=new SearchSourceBuilder();
         srb.query(this.buildBoolQuery(searchTerm, category));
