@@ -1,7 +1,7 @@
 package edu.mcw.scge.service.es.clinicalTrials;
 
 
-import edu.mcw.scge.service.es.ESClient;
+import edu.mcw.scge.services.ESClient;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;

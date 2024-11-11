@@ -57,10 +57,12 @@
             <%=phase%>
         </td>
         <td>   <%
+            if(sourceFields.get("status")!=null){
             List<String> statuses= (List<String>) sourceFields.get("status");
             String status= statuses.stream().collect(Collectors.joining(", "));
         %>
-            <%=status%></td>
+            <%=status%>
+        <%}%></td>
         <td class="text-nowrap"><%=sourceFields.get("firstSubmitDate")%></td>
         <td><%=sourceFields.get("estimatedCompleteDate")%></td>
         <td class="text-nowrap"><%=sourceFields.get("lastUpdatePostDate")%></td>

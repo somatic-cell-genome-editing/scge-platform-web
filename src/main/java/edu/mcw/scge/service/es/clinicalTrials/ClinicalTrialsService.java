@@ -1,6 +1,7 @@
 package edu.mcw.scge.service.es.clinicalTrials;
 
-import edu.mcw.scge.service.es.ESClient;
+import edu.mcw.scge.services.ESClient;
+import edu.mcw.scge.services.SCGEContext;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
@@ -14,7 +15,6 @@ import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class ClinicalTrialsService {
 
@@ -33,8 +33,10 @@ public class ClinicalTrialsService {
     }
 
     public SearchResponse getSearchResults(String searchTerm,String category, Map<String, List<String>> filtersMap) throws IOException {
-        String searchIndex = "scge_platform_ctapi_search_dev";
+       // String searchIndex = "scge_platform_ctapi_search_dev";
+      //  String searchIndex = "scge_platform_search_ct_dev";
                 //"scge_platform_search_dev";
+        String searchIndex= SCGEContext.getESIndexName();
         SearchSourceBuilder srb=new SearchSourceBuilder();
         srb.query(this.buildBoolQuery(searchTerm, category));
         for(String fieldName:ClinicalTrialsService.aggregationFields) {
