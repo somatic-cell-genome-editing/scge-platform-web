@@ -29,7 +29,7 @@
     <li class="nav-item text-nowrap text-light" ><a style="color:white;font-size: 0.9rem" href="https://scge.mcw.edu/phase-2-tcdc/" target="_blank">About SCGE Platform</a>&nbsp;|&nbsp;</li>
     <li class="nav-item text-nowrap text-light"><a style="color:white;font-size: 0.9rem"  href="https://scge.mcw.edu/contact/" target="_blank">Contact Us</a>&nbsp;|&nbsp;</li>
 <%--    <li class="nav-item text-nowrap text-light" ><a style="color:white;font-size: 0.9rem" href="">Citing the SCGE Platform</a>&nbsp;|&nbsp;</li>--%>
-    <li class="nav-item text-nowrap text-light"><a style="color:white;font-size: 0.9rem" href="https://creativecommons.org/licenses/by/4.0/">License</a></li>
+    <li class="nav-item text-nowrap text-light"><a style="color:white;font-size: 0.9rem" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">License</a></li>
 <%--            </div>--%>
 
         </ul>
