@@ -34,7 +34,7 @@
     <%}else{%>
 
 <div class="container-fluid page-header" >
-    <h3>Clinical Trials - Gene Therapy Tracker</h3>
+    <h3>Clinical Trials - Gene Therapy Trial Browser</h3>
 </div>
 
 <div class="container-fluid">

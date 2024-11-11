@@ -25,7 +25,9 @@
             Map<String, Object> sourceFields = hit.getSourceAsMap();
     %>
     <tr>
-        <td style="font-weight: bold"><a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nctId")%>" target="_blank"><%=sourceFields.get("nctId")%></a></td>
+<%--        <td style="font-weight: bold"><a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nctId")%>" target="_blank"><%=sourceFields.get("nctId")%></a></td>--%>
+        <td style="font-weight: bold"><%=sourceFields.get("nctId")%></td>
+
         <td class="manual"><%=sourceFields.get("indication")%></td>
         <td class="manual"><%=sourceFields.get("compoundName")%></td>
         <td><%=sourceFields.get("sponsor")%></td>
