@@ -13,15 +13,14 @@ function removeFilter(filter) {
     $.each($('input[type="checkbox"]'), function () {
         var _this = $(this);
         var val = _this.val();
-        // var name=this.getAttribute("name");
-        if (val == filter) {
+        if ('\''+val+'\'' == filter) {
+            console.log("equal")
             _this.prop('checked', false);
             $('#unchecked').val(val);
-            // $('#uncheckedName').val(name)
         }
 
     });
-    $('#facetForm').submit()
+  $('#facetForm').submit()
 }
 $('input[type="checkbox"]').on('click',function (){
     // var name=this.getAttribute("name");

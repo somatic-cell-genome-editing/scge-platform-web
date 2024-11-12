@@ -17,10 +17,10 @@
     if(first){first=false;
 %>
 <%--&nbsp;<span style="color:darkorange; font-weight: bold"><%=filter%></span>--%>
-<button class="btn btn-light btn-sm " value="<%=filter%>" onclick="removeFilter('<%=filter.replace("'","\\'")%>')" ><%=filter%>&nbsp;<i class="fa fa-times-circle" style="font-size:15px;color:red" ></i></button>
+<button class="btn btn-light btn-sm " value="<%=filter%>" onclick="removeFilter('\''+this.value+'\'')" ><%=filter%>&nbsp;<i class="fa fa-times-circle" style="font-size:15px;color:red" ></i></button>
 
   <% }else{%>
-  <span style="font-weight: bold">&nbsp;|&nbsp;</span><button class="btn btn-light btn-sm " value="<%=filter%>" onclick="removeFilter(encodeURI('<%=filter%>'))" ><%=filter%>&nbsp;<i class="fa fa-times-circle" style="font-size:15px;color:red" ></i></button>
+  <span style="font-weight: bold">&nbsp;|&nbsp;</span><button class="btn btn-light btn-sm " value="<%=filter%>" onclick="removeFilter('\''+this.value+'\'')" ><%=filter%>&nbsp;<i class="fa fa-times-circle" style="font-size:15px;color:red" ></i></button>
 
 <% }
 %>
