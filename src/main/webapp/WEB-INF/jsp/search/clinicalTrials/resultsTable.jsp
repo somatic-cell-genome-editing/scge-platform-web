@@ -19,8 +19,14 @@
     %>
     <tr>
 <%--        <td style="font-weight: bold"><a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nctId")%>" target="_blank"><%=sourceFields.get("nctId")%></a></td>--%>
-        <td style="font-weight: bold"><%=sourceFields.get("nctId")%> <a href="/platform/clinicalTrials/report/<%=sourceFields.get("nctId")%>"><small>View Report</small></a></td>
-
+    <td style="font-weight: bold">
+        <%=sourceFields.get("nctId")%>&nbsp;
+        <a href="/platform/clinicalTrials/report/<%=sourceFields.get("nctId")%>" target="_blank" style="text-decoration: none;">
+            <button style="font-size:0.75rem;font-weight: normal;padding:2px 5px;border: none; background-color: #007bff; color: white; border-radius: 4px; cursor: pointer;">
+                View Report
+            </button>
+        </a>
+    </td>
         <td class="manual"><%=sourceFields.get("indication")%></td>
         <td class="manual"><%=sourceFields.get("compoundName")%></td>
         <td><%=sourceFields.get("sponsor")%></td>
