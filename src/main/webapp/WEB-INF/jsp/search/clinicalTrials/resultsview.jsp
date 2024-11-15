@@ -33,8 +33,11 @@
         <h4>0 results found for term <%=request.getAttribute("searchTerm")%></h4>
     <%}else{%>
 
-<div class="container-fluid page-header" >
+<div class="jumbotron page-header" >
     <h3>Clinical Trials - Gene Therapy Trial Browser</h3>
+    <p>The Gene Therapy Trial Browser represents a unique publicly accessible, free database for the benefit of users seeking information on gene therapy development. The information within integrates various sources, including clinicaltrials.gov, publications, sponsor press releases, patent applications, and more to give a comprehensive overview of the gene therapy clinical trial landscape.
+
+    </p>
 </div>
 
 <div class="container-fluid">
