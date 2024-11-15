@@ -11,7 +11,7 @@
         font-size: 1rem;
        white-space:nowrap;
     }
-    .tablesorter-scroller-table {
+    .tablesorter-scroller.tablesorter-scroller-has-fixed-columns > .tablesorter-scroller-table{
         scrollbar-color: darkorange #ffff;
     }
 </style>
