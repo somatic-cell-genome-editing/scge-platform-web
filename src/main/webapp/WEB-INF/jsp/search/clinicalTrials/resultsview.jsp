@@ -12,6 +12,8 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="/platform/css/resultTable.css" rel="stylesheet" type="text/css"/>
 <link href="/platform/css/referencesModal.css" rel="stylesheet" type="text/css"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap" rel="stylesheet">
+
 
 <%
     Gson gson=new Gson();
@@ -33,10 +35,9 @@
         <h4>0 results found for term <%=request.getAttribute("searchTerm")%></h4>
     <%}else{%>
 
-<div class="jumbotron page-header" >
-    <h3>Clinical Trials - Gene Therapy Trial Browser</h3>
+<div style="background-color: whitesmoke" class="jumbotron page-header">
+    <h3 style="color: #1a80b6; font-family: 'Roboto Slab', serif; font-weight: 400;">Clinical Trials - Gene Therapy Trial Browser</h3>
     <p>The Gene Therapy Trial Browser represents a unique publicly accessible, free database for the benefit of users seeking information on gene therapy development. The information within integrates various sources, including clinicaltrials.gov, publications, sponsor press releases, patent applications, and more to give a comprehensive overview of the gene therapy clinical trial landscape.
-
     </p>
 </div>
 
