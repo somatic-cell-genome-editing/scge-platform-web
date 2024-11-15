@@ -10,8 +10,9 @@
     #resultsTable tr th{
         font-size: 1rem;
        white-space:nowrap;
-        /*padding-top: 5px;*/
-        /*padding-bottom: 5px;*/
+    }
+    .tablesorter-scroller-table {
+        scrollbar-color: darkorange #ffff;
     }
 </style>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
