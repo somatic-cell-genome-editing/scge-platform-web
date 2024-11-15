@@ -10,8 +10,8 @@
     #resultsTable tr th{
         font-size: 1rem;
        white-space:nowrap;
-        padding-top: 5px;
-        padding-bottom: 5px;
+        /*padding-top: 5px;*/
+        /*padding-bottom: 5px;*/
     }
 </style>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -26,7 +26,7 @@
     %>
     <tr>
 <%--        <td style="font-weight: bold"><a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nctId")%>" target="_blank"><%=sourceFields.get("nctId")%></a></td>--%>
-        <td style="font-weight: bold"><%=sourceFields.get("nctId")%></td>
+        <td style="font-weight: bold"><%=sourceFields.get("nctId")%> <a href="/platform/clinicalTrials/report/<%=sourceFields.get("nctId")%>"><small>View Report</small></a></td>
 
         <td class="manual"><%=sourceFields.get("indication")%></td>
         <td class="manual"><%=sourceFields.get("compoundName")%></td>
