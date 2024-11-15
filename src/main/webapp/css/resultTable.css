@@ -51,7 +51,13 @@
     font-size: 0.9em;
     /*line-height: 1.9em;*/
 }
-
+#resultsTable tr th{
+    font-size: 1rem;
+    white-space:nowrap;
+}
+.tablesorter-scroller.tablesorter-scroller-has-fixed-columns > .tablesorter-scroller-table{
+    scrollbar-color: darkorange #ffff;
+}
 
 /*.search table tr:hover {*/
 /*    cursor: pointer;*/

@@ -6,15 +6,7 @@
   Time: 9:44 AM
   To change this template use File | Settings | File Templates.
 --%>
-<style>
-    #resultsTable tr th{
-        font-size: 1rem;
-       white-space:nowrap;
-    }
-    .tablesorter-scroller.tablesorter-scroller-has-fixed-columns > .tablesorter-scroller-table{
-        scrollbar-color: darkorange #ffff;
-    }
-</style>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div id="resultsTable"  style="display: none">
 <table  id="myTable">
