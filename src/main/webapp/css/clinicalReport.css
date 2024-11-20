@@ -27,8 +27,10 @@ html{
 
 .brief-title {
     /*word-wrap: break-word;*/
-    color: #34495E;
-    font-weight: normal;
+    color: #333;
+    font-size: 22px;
+    font-style: normal;
+    font-family: Roboto, sans-serif;
 }
 
 .ctReportBody{

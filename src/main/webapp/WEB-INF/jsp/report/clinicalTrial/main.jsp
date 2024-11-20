@@ -14,6 +14,7 @@
     <meta charset="UTF-8">
     <title>Clinical Trial Report</title>
     <link rel="stylesheet" href="/platform/css/clinicalReport.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap" rel="stylesheet">
 </head>
 <body>
 <%
@@ -21,11 +22,13 @@
     List<ClinicalTrialExternalLink> clinicalExtLinkData = (List<ClinicalTrialExternalLink>) request.getAttribute("clinicalExtLinkData");
 %>
 
-<h4 class="mainTitle">
-    <span class="report-label">Gene Therapy Trial Report:</span>
-    <span class="brief-title"><%= clinicalTrialData.getBriefTitle() != null ? clinicalTrialData.getBriefTitle() : "" %></span>
-</h4>
-
+<%--<h4 class="mainTitle">--%>
+<%--    <span class="report-label">Gene Therapy Trial Report:</span>--%>
+<%--    <span class="brief-title"><%= clinicalTrialData.getBriefTitle() != null ? clinicalTrialData.getBriefTitle() : "" %></span>--%>
+<%--</h4>--%>
+<h3 style="color: #1a80b6; font-family: 'Roboto Slab', serif; font-weight: 400;">
+    Gene Therapy Trial Report
+</h3>
 <div class="sidenav" id="navbar">
     <!-- Dynamic links will be added here -->
 </div>
@@ -33,6 +36,7 @@
     <form class="ctReportForm">
         <input type="hidden" value="<%=clinicalTrialData.getNctId()%>"/>
         <div class="dynamic-heading" id="summary"><h3 class="ctSubHeading">Summary</h3></div>
+        <h2 class="brief-title"><%= clinicalTrialData.getBriefTitle() != null ? clinicalTrialData.getBriefTitle() : "" %></h2>
         <hr>
         <table class="ctReportTable">
             <tr>
