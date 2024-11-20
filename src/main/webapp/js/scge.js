@@ -32,7 +32,7 @@ $(function() {
             // pop table header into view while scrolling up the page
             scroller_jumpToHeader: true,
 
-            // scroller_fixedColumns : '1',
+            scroller_fixedColumns : '1',
             // In tablesorter v2.19.0 the scroll bar width is auto-detected
             // add a value here to override the auto-detected setting
             scroller_barWidth : null,
