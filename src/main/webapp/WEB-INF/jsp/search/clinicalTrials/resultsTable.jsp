@@ -61,6 +61,16 @@
         background-color: #ddd;
         z-index: -1; /* Behind the content but still part of the cell */
     }
+    #myTable td.lastColumn:after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background-color: #ddd;
+        z-index: -1; /* Behind the content but still part of the cell */
+    }
 
     #resultsTable {
         scrollbar-color: #ff6b00 #f1f1f1;  /* thumb and track color */
@@ -152,7 +162,7 @@
         <td><%=sourceFields.get("isFDARegulated")%></td>
         <td class="manual"><%=sourceFields.get("patents")%></td>
         <td class="manual"><%=sourceFields.get("recentUpdates")%></td>
-        <td class="manual">
+        <td class="manual lastColumn">
             <% if (sourceFields.get("externalLinks")!=null){%>
             <a href="javascript:void(0)" onclick="myModal('<%=sourceFields.get("nctId")%>')" title="Resources/Links" ><i class="fa-solid fa-eye"></i></a>
             <% } %>
