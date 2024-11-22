@@ -8,6 +8,65 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<style>
+    #resultsTable{
+        height: auto;
+        min-height: 50px;
+        max-height: 580px;
+        overflow: auto;
+        position: relative;
+        width:100%;
+        margin-top: 10px;
+    }
+    #myTable{
+        position: relative;
+        /*top:-8px;*/
+        bottom:10px;
+        /*left:-1px;*/
+        margin-bottom: 0px;
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+    #myTable td.firstColumn{
+        position: sticky;
+        /*left:-1px;*/
+        left:0;
+        z-index: 2;
+        background-color: white;
+    }
+
+    #myTable td.firstColumn:hover{
+        background-color: #ddd;
+    }
+
+    #myTable thead th{
+        position: sticky;
+        top:-1px;
+        z-index: 2;
+    }
+
+    #myTable tfoot th{
+        position: sticky;
+        bottom:-1px;
+        z-index: 2;
+    }
+
+    #myTable td.firstColumn:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 0.5px;
+        background-color: #ddd;
+        z-index: -1; /* Behind the content but still part of the cell */
+    }
+
+    #resultsTable {
+        scrollbar-color: #ff6b00 #f1f1f1;  /* thumb and track color */
+    }
+</style>
+
 <div id="resultsTable"  style="display: none">
 <table  id="myTable">
     <thead><tr><%@include file="columns.jsp"%></tr></thead>
@@ -19,7 +78,7 @@
     %>
     <tr>
 <%--        <td style="font-weight: bold"><a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nctId")%>" target="_blank"><%=sourceFields.get("nctId")%></a></td>--%>
-    <td style="font-weight: bold">
+    <td style="font-weight: bold" class="firstColumn">
         <%=sourceFields.get("nctId")%>&nbsp;
         <a href="/platform/clinicalTrials/report/<%=sourceFields.get("nctId")%>" target="_blank" style="text-decoration: none;">
             <button style="font-size:0.75rem;font-weight: normal;padding:2px 5px;border: none; background-color: #007bff; color: white; border-radius: 4px; cursor: pointer;">
