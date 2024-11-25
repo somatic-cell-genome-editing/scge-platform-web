@@ -77,7 +77,7 @@
         scrollbar-color: #ff6b00 #f1f1f1;  /* thumb and track color */
     }
 
-    
+
     #myTable td:nth-child(2),
     #myTable td:nth-child(3),
     #myTable td:nth-child(4),
@@ -93,7 +93,7 @@
     #myTable td:nth-child(22),
     #myTable td:nth-child(31),
     #myTable td:nth-child(32) {
-        padding-right: 20px;
+        padding-right: 23px;
     }
 
     #myTable td:nth-child(26) {
