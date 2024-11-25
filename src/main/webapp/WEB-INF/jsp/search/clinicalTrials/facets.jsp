@@ -37,7 +37,14 @@
   <div class="accordion-group">
     <div class="pl-3  accordion-heading">
       <a class="accordion-toggle  search-results-anchor" data-toggle="collapse" href="#collapse<%=aggName%>">
-        <span class="<%=aggName%>"><%=ClinicalTrialsService.fieldDisplayNames.get(aggName)%></span><span class="float-right"><i class="fas fa-angle-up"></i></span>
+        <%
+          String value = ClinicalTrialsService.fieldDisplayNames.get(aggName);
+          if (value != null) {
+            value = value.replaceAll("\\bOf\\b", "of").replaceAll("\\bOr\\b", "or");
+          }
+        %>
+<%--        <span class="<%=aggName%>"><%=ClinicalTrialsService.fieldDisplayNames.get(aggName)%></span><span class="float-right"><i class="fas fa-angle-up"></i></span>--%>
+        <span class="<%=aggName%>"><%=value%></span><span class="float-right"><i class="fas fa-angle-up"></i></span>
       </a>
     </div>
     <div id="collapse<%=aggName%>" class="accordion-body collapse" >
