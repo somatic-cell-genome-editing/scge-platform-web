@@ -76,6 +76,30 @@
     #resultsTable {
         scrollbar-color: #ff6b00 #f1f1f1;  /* thumb and track color */
     }
+
+    
+    #myTable td:nth-child(2),
+    #myTable td:nth-child(3),
+    #myTable td:nth-child(4),
+    #myTable td:nth-child(6),
+    #myTable td:nth-child(9),
+    #myTable td:nth-child(12),
+    #myTable td:nth-child(15),
+    #myTable td:nth-child(16),
+    #myTable td:nth-child(17),
+    #myTable td:nth-child(18),
+    #myTable td:nth-child(19),
+    #myTable td:nth-child(20),
+    #myTable td:nth-child(22),
+    #myTable td:nth-child(31),
+    #myTable td:nth-child(32) {
+        padding-right: 20px;
+    }
+
+    #myTable td:nth-child(26) {
+        padding-right: 15px;
+    }
+
 </style>
 
 <div id="resultsTable"  style="display: none">
