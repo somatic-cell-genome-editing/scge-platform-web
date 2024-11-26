@@ -61,7 +61,7 @@
         top: 0;
         bottom: 0;
         width: 1px;
-        background-color: #ddd;
+        background-color: lightgrey;
         /*z-index: -1; */
     }
     /*#myTable td.lastColumn:after {*/
