@@ -22,11 +22,12 @@
         position: relative;
         /*top:-8px;*/
         bottom:10px;
-        /*left:-1px;*/
+        left:-0.75px;
         margin-bottom: 0px;
         border-collapse: separate;
         border-spacing: 0;
-        border-right: 0.5px;
+        border-left: 1px;
+        /*border-right: 0.5px;*/
     }
     #myTable td.firstColumn{
         position: sticky;
@@ -62,16 +63,16 @@
         background-color: #ddd;
         /*z-index: -1; */
     }
-    #myTable td.lastColumn:after {
-        content: "";
-        position: absolute;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        width: 0.5px;
-        background-color: #ddd;
-        z-index: -1; /* Behind the content but still part of the cell */
-    }
+    /*#myTable td.lastColumn:after {*/
+    /*    content: "";*/
+    /*    position: absolute;*/
+    /*    right: 0;*/
+    /*    top: 0;*/
+    /*    bottom: 0;*/
+    /*    width: 0.5px;*/
+    /*    background-color: #ddd;*/
+    /*    z-index: -1; !* Behind the content but still part of the cell *!*/
+    /*}*/
 
     #resultsTable {
         scrollbar-color: #ff6b00 #f1f1f1;  /* thumb and track color */
