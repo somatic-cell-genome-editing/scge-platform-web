@@ -21,8 +21,9 @@
     #myTable{
         position: relative;
         /*top:-8px;*/
-        bottom:10px;
+        bottom:1px;
         left:-0.75px;
+        margin-top: 0px;
         margin-bottom: 0px;
         border-collapse: separate;
         border-spacing: 0;
@@ -49,7 +50,7 @@
 
     #myTable tfoot th{
         position: sticky;
-        bottom:-1px;
+        bottom:0px;
         z-index: 2;
     }
 
