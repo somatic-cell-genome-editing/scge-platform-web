@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<th class="firstColumn"style="position: sticky;left: -1px;z-index: 3">Trial ID</th>
+<th class="firstColumn"style="position: sticky;left: 0px;z-index: 3">Trial ID</th>
 <%--<th class="firstColumn">Trial ID</th>--%>
 <th>Indication</th>
 <th>Compound Name</th>

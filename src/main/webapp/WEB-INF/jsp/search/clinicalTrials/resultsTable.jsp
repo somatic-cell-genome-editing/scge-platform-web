@@ -60,7 +60,7 @@
         left: 0;
         top: 0;
         bottom: 0;
-        width: 0.5px;
+        width: 1px;
         background-color: #ddd;
         /*z-index: -1; */
     }
