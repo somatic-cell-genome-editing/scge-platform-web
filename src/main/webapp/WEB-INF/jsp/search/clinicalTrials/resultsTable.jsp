@@ -43,7 +43,7 @@
 
     #myTable thead th{
         position: sticky;
-        top:-1px;
+        top:0px;
         z-index: 2;
     }
 
