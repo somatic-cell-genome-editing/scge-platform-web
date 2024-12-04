@@ -8,6 +8,102 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<style>
+    #resultsTable{
+        height: auto;
+        min-height: 50px;
+        max-height: 580px;
+        overflow: auto;
+        position: relative;
+        width:100%;
+        margin-top: 10px;
+    }
+    #myTable{
+        position: relative;
+        /*top:-8px;*/
+        bottom:1px;
+        left:-0.75px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        border-collapse: separate;
+        border-spacing: 0;
+        border-left: 1px;
+        /*border-right: 0.5px;*/
+    }
+    #myTable td.firstColumn{
+        position: sticky;
+        /*left:-1px;*/
+        left:0;
+        z-index: 2;
+        background-color: white;
+    }
+
+    #myTable td.firstColumn:hover{
+        background-color: #ddd;
+    }
+
+    #myTable thead th{
+        position: sticky;
+        top:0px;
+        z-index: 2;
+    }
+
+    #myTable tfoot th{
+        position: sticky;
+        bottom:0px;
+        z-index: 2;
+    }
+
+    #myTable td.firstColumn:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background-color: lightgrey;
+        /*z-index: -1; */
+    }
+    /*#myTable td.lastColumn:after {*/
+    /*    content: "";*/
+    /*    position: absolute;*/
+    /*    right: 0;*/
+    /*    top: 0;*/
+    /*    bottom: 0;*/
+    /*    width: 0.5px;*/
+    /*    background-color: #ddd;*/
+    /*    z-index: -1; !* Behind the content but still part of the cell *!*/
+    /*}*/
+
+    #resultsTable {
+        scrollbar-color: #ff6b00 #f1f1f1;  /* thumb and track color */
+    }
+
+
+    #myTable td:nth-child(2),
+    #myTable td:nth-child(3),
+    #myTable td:nth-child(4),
+    #myTable td:nth-child(6),
+    #myTable td:nth-child(9),
+    #myTable td:nth-child(12),
+    #myTable td:nth-child(15),
+    #myTable td:nth-child(16),
+    #myTable td:nth-child(17),
+    #myTable td:nth-child(18),
+    #myTable td:nth-child(19),
+    #myTable td:nth-child(20),
+    #myTable td:nth-child(22),
+    #myTable td:nth-child(31),
+    #myTable td:nth-child(32) {
+        padding-right: 23px;
+    }
+
+    #myTable td:nth-child(26) {
+        padding-right: 15px;
+    }
+
+</style>
+
 <div id="resultsTable"  style="display: none">
 <table  id="myTable">
     <thead><tr><%@include file="columns.jsp"%></tr></thead>
@@ -19,7 +115,7 @@
     %>
     <tr>
 <%--        <td style="font-weight: bold"><a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nctId")%>" target="_blank"><%=sourceFields.get("nctId")%></a></td>--%>
-    <td style="font-weight: bold">
+    <td style="font-weight: bold" class="firstColumn">
         <%=sourceFields.get("nctId")%>&nbsp;
         <a href="/platform/clinicalTrials/report/<%=sourceFields.get("nctId")%>" target="_blank" style="text-decoration: none;">
             <button style="font-size:0.75rem;font-weight: normal;padding:2px 5px;border: none; background-color: #007bff; color: white; border-radius: 4px; cursor: pointer;">
@@ -93,7 +189,7 @@
         <td><%=sourceFields.get("isFDARegulated")%></td>
         <td class="manual"><%=sourceFields.get("patents")%></td>
         <td class="manual"><%=sourceFields.get("recentUpdates")%></td>
-        <td class="manual">
+        <td class="manual lastColumn">
             <% if (sourceFields.get("externalLinks")!=null){%>
             <a href="javascript:void(0)" onclick="myModal('<%=sourceFields.get("nctId")%>')" title="Resources/Links" ><i class="fa-solid fa-eye"></i></a>
             <% } %>

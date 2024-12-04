@@ -106,3 +106,142 @@ a:hover {
 .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link{
     color:whitesmoke;
 }
+
+/*feedback css starts here*/
+
+input[type="email"] {
+    width: 100%;
+    height: 30px;
+    font-size: large;
+    background-color : #f1f1f1;
+
+}
+.hideMe {
+    bottom: 104px;
+    right: 42px;
+    position: fixed;
+    opacity: .8;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    display:table-cell;
+    vertical-align:middle;
+    box-sizing: border-box;
+}
+.hiddenBtns {
+    bottom: 25px;
+    right: 35px;
+    height: 50px;
+    width: 50px;
+    position: fixed;
+    z-index: 500;
+    box-sizing: border-box;
+}
+.openLikeBtn{
+    height: 50px;
+    width: 50px;
+    position: fixed;
+    background-size: 100%;
+    border: white;
+    background-color: whitesmoke;
+    background-image: url("/platform/images/Feedback_Red.png");
+    border-radius: 24px;
+    cursor: pointer;
+    opacity: .7;
+    box-sizing: border-box;
+}
+.openLikeBtn:hover{
+    background-color: lightgrey;
+}
+/* Button used to open the chat form - fixed at the bottom of the page */
+.open-button {
+    background-color: #2865A3;
+    color: white;
+    padding: 3px 10px;
+    border: none;
+    cursor: pointer;
+    position: fixed;
+    bottom: 23px;
+    right: 45px;
+    width: 145px;
+    height: 40px;
+    font-size: 13pt;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+/* The popup chat - hidden by default */
+.chat-popup {
+    box-shadow: -6px 11px 8px #888888;
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    border: 1px solid black;
+    z-index: 501;
+    box-sizing: border-box;
+    background-color:#5D8DAF;
+    color:white;
+    width:400px;
+    height:500px;
+    border-radius:5px;
+}
+
+/* Add styles to the form container */
+.form-container {
+    max-width: 500px;
+    padding: 10px;
+    ackground-color: white;
+    box-sizing: border-box;
+    white-space: normal;
+}
+
+/* Full-width textarea */
+.form-container textarea {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 20px 22px 0;
+    border: none;
+    background: white;
+    resize: none;
+    min-height: 200px;
+    font-size: large;
+    box-sizing: border-box;
+}
+
+/* When the textarea gets focus, do something */
+.form-container textarea:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+/* Set a style for the submit/send button */
+.form-container .btn {
+    background-color: #2865A3;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+    font-size: large;
+    box-sizing: border-box;
+}
+
+.closeForm {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    cursor:pointer;
+    ackground-color: #770C0E;
+    olor: white;
+    order:0px solid black;
+
+}
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+    opacity: 1;
+}

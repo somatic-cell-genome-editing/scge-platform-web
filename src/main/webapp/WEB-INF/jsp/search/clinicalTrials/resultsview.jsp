@@ -61,6 +61,7 @@
 <%--              <hr>--%>
     <div class="row">
         <div class="col-2"> <span>Showing all  <%=hits.size()%> results ...</span></div>
+        <br>
 <%--        <div class="col-5">--%>
 <%--            <div style="width: 40%;float:right">--%>
 <%--                <div class="input-group"><input class="search selectable form-control" type="search" placeholder="Look up in the table" data-column="all"><div class="input-group-append">&nbsp;<span class="input-group-text reset" title="Reset"><i class="fa fa-refresh" aria-hidden="true"></i></span></div>--%>

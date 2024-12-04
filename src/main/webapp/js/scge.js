@@ -22,7 +22,7 @@ $(function() {
         theme : 'blue',
         headerTemplate : '',
         showProcessing: true,
-        widgets: ['zebra','scroller','filter'],
+        widgets: ['zebra','filter'],
         widgetOptions: {
             // jQuery selector or object to attach sticky header to
             // stickyHeaders_attachTo: $('.table-wrapper'),
@@ -54,6 +54,12 @@ $(function() {
 
         const divToShow = document.getElementById('resultsTable');
         divToShow.style.display = 'block';
+
+    //jumps to top of the table once sorting is finished. Alternative to scroller_upAfterSort: true,
+    $("#myTable").on("sortEnd", function() {
+        $('#resultsTable').animate({ scrollTop: 0 }, 'fast');
+    });
+    $('#resultsTable').show();
 
 });
 
