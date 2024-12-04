@@ -38,8 +38,8 @@ public class FeedbackController {
                 String feedbackMsg = (String) obj.get("message");
                 String page = (String) obj.get("webPage");
 
-                FeedbackDao fdao = new FeedbackDao();
-                fdao.insert(email, feedbackMsg, page);
+//                FeedbackDao fdao = new FeedbackDao();
+//                fdao.insert(email, feedbackMsg, page);
 
                 System.out.println(email+feedbackMsg+page);
                 String smtpHost = "smtp.mcw.edu";
