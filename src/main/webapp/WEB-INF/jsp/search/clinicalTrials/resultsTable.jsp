@@ -50,7 +50,7 @@
 
     #myTable tfoot th{
         position: sticky;
-        bottom:0px;
+        bottom:-1px;
         z-index: 2;
     }
 
