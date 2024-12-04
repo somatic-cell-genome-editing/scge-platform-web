@@ -60,7 +60,7 @@
         left: 0;
         top: 0;
         bottom: 0;
-        width: 1px;
+        width: 0.5px;
         background-color: lightgrey;
         /*z-index: -1; */
     }
