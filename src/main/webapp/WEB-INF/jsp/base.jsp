@@ -40,7 +40,7 @@
 </head>
 
 <body>
-
+<%@include file="feedbackForm.jsp"%>
 <div style="font-size:12px; color:white; background-color: rgb(27, 128, 182); width:100%;padding-left:15px;padding-top:4px; padding-bottom:2px;">
 
 </div>
