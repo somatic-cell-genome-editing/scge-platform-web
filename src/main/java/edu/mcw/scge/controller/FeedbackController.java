@@ -58,7 +58,7 @@ public class FeedbackController {
                 // -- Set the FROM and TO fields --
                 msg.setFrom(new InternetAddress("scge_platform@mcw.edu", "SCGE Platform"));
 
-                 msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("scge_platform@mcw.edu", false));
+                msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("scge_toolkit@mcw.edu", false));
 //                msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("akundurthi@mcw.edu", false));
 
                 //msg.setRecipients(Message.RecipientType.BCC, InternetAddress.parse("jdepons@mcw.edu", false));

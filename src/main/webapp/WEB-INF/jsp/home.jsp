@@ -5,10 +5,71 @@
   Time: 3:31 PM
   To change this template use File | Settings | File Templates.
 --%>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!-- CSS for animations -->
+<style>
+    /* Pulse animation for "live!" */
+    @keyframes pulse {
+        0% {
+            opacity: 1;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 0.5;
+            transform: scale(1.1);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    /* Bounce animation for "Click here" */
+    @keyframes bounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-5px);
+        }
+    }
+</style>
+
+
 <div class="container">
 
-
-
+<%--    <div style="text-align: center; margin-bottom: 10px; font-family: Arial, sans-serif; font-size: 18px; color: #003366; line-height: 1.6;">--%>
+<%--        <strong>--%>
+<%--            <span style="color: #2e7d32;">Exciting News!</span> The new--%>
+<%--            <span style="color: #0288d1;">Gene Therapy Trial Browser</span> is live!--%>
+<%--        </strong>--%>
+<%--        <br>--%>
+<%--        <a href="/" target="_blank" style="text-decoration: none; color: #d32f2f; font-weight: bold; font-size: 20px;">--%>
+<%--            Click here to explore it now!--%>
+<%--        </a>--%>
+<%--    </div>--%>
+<%--    <div style="text-align: center; margin-bottom: 10px; font-family: Arial, sans-serif; font-size: 18px; color: #003366;">--%>
+<%--        <strong>--%>
+<%--            <span style="color: #2e7d32;">🚀 Exciting News!</span> The new--%>
+<%--            <span style="color: #0288d1;">Gene Therapy Trial Browser</span> is live! 🎯--%>
+<%--        </strong>--%>
+<%--        <br>--%>
+<%--        <a href="/platform/data/search/ClinicalTrial" target="_blank" style="text-decoration: none; color: #d32f2f; font-weight: bold;">--%>
+<%--            👉 Click here to explore it now!--%>
+<%--        </a>--%>
+<%--    </div>--%>
+    <div style="text-align: center; margin-bottom: 10px; font-family: Arial, sans-serif; font-size: 18px; color: #003366;">
+        <strong>
+            <span style="color: #2e7d32;">🚀 Exciting News!</span> The new
+            <span style="color: #0288d1;">Gene Therapy Trial Browser</span> is
+            <span style="color: #ff5722; animation: pulse 1.5s infinite;">live!</span>
+        </strong>
+        <br>
+        <a href="/platform/data/search/ClinicalTrial" target="_blank" style="text-decoration: none; color: #d32f2f; font-weight: bold; display: inline-block; margin-top: 10px; animation: bounce 2s infinite;">
+            👉 Click here to explore it now!
+        </a>
+    </div>
 
     <div class="jumbotron text-white rounded" style="background-color: #dceaf9;padding:0">
         <div class="col" align="center">
@@ -70,59 +131,63 @@
 </div>
 
 <main role="main" class="container">
+    <div class="p-3 mb-3 bg-light rounded">
+        <h4 class="font-italic">About</h4>
+        <p class="mb-0">The National Institutes of Health (NIH) has awarded over $140 million to help accelerate genome editing approaches from the lab to the clinic. The newly funded projects build upon the work performed though the Somatic Cell Genome Editing (SCGE) Program over the past five years and will focus on translating safe and effective genome editing therapeutics into the clinic.</p>
+    </div>
     <div class="row">
-        <div class="col-md-8 blog-main">
-            <h3 class="pb-3 mb-4 font-italic border-bottom">
-                SCGE Platform Projects
-            </h3>
+<%--        <div class="col-md-8 blog-main">--%>
+<%--            <h3 class="pb-3 mb-4 font-italic border-bottom">--%>
+<%--                SCGE Platform Projects--%>
+<%--            </h3>--%>
 
-            <div class="blog-post">
-                <h4 class="blog-post-title">Technologies and Assays for Therapeutic Genome Editing INDs (RFA-RM-22-014)</h4>
-                <hr>
-                <p><a href="">Utility of Human Organoids for Safety and Efficiency Evaluations of Genome Editing Therapeutics.</a><br>
-                    <span class="blog-post-meta">PI: Freedman, Benjamin University of Washington</span></p>
+<%--            <div class="blog-post">--%>
+<%--                <h4 class="blog-post-title">Technologies and Assays for Therapeutic Genome Editing INDs (RFA-RM-22-014)</h4>--%>
+<%--                <hr>--%>
+<%--                <p><a href="">Utility of Human Organoids for Safety and Efficiency Evaluations of Genome Editing Therapeutics.</a><br>--%>
+<%--                    <span class="blog-post-meta">PI: Freedman, Benjamin University of Washington</span></p>--%>
 
-                <p><a href="">A Modality-Agnostic Potency Assay Enabling Both Ex Vivo and In Vivo Genome Editing Therapeutics for Sickle Cell Disease</a><br>
-                    <span class="blog-post-meta">PI: Giannikopoulos, Petros University of California Berkeley</span></p>
+<%--                <p><a href="">A Modality-Agnostic Potency Assay Enabling Both Ex Vivo and In Vivo Genome Editing Therapeutics for Sickle Cell Disease</a><br>--%>
+<%--                    <span class="blog-post-meta">PI: Giannikopoulos, Petros University of California Berkeley</span></p>--%>
 
-            </div>
+<%--            </div>--%>
 
-            <div class="blog-post">
-                <h4 class="blog-post-title">IND-enabling Studies of Somatic Genome Editing Therapeutic Leads (RFA-RM-22-015)</h4>
-                <hr>
-                <p><a href="">Utility of Human Organoids for Safety and Efficiency Evaluations of Genome Editing Therapeutics.</a><br>
-                    <span class="blog-post-meta">PI: Freedman, Benjamin University of Washington</span></p>
+<%--            <div class="blog-post">--%>
+<%--                <h4 class="blog-post-title">IND-enabling Studies of Somatic Genome Editing Therapeutic Leads (RFA-RM-22-015)</h4>--%>
+<%--                <hr>--%>
+<%--                <p><a href="">Utility of Human Organoids for Safety and Efficiency Evaluations of Genome Editing Therapeutics.</a><br>--%>
+<%--                    <span class="blog-post-meta">PI: Freedman, Benjamin University of Washington</span></p>--%>
 
-                <p><a href="">A Modality-Agnostic Potency Assay Enabling Both Ex Vivo and In Vivo Genome Editing Therapeutics for Sickle Cell Disease</a><br>
-                    <span class="blog-post-meta">PI: Giannikopoulos, Petros University of California Berkeley</span></p>
+<%--                <p><a href="">A Modality-Agnostic Potency Assay Enabling Both Ex Vivo and In Vivo Genome Editing Therapeutics for Sickle Cell Disease</a><br>--%>
+<%--                    <span class="blog-post-meta">PI: Giannikopoulos, Petros University of California Berkeley</span></p>--%>
 
-            </div>
+<%--            </div>--%>
 
-            <div class="blog-post">
-                <h4 class="blog-post-title">Platform Clinical Trials of Genome Editors in Multiple Diseases (RFA-RM-22-016)</h4>
-                <hr>
-                <p><a href="">Utility of Human Organoids for Safety and Efficiency Evaluations of Genome Editing Therapeutics.</a><br>
-                    <span class="blog-post-meta">PI: Freedman, Benjamin University of Washington</span></p>
+<%--            <div class="blog-post">--%>
+<%--                <h4 class="blog-post-title">Platform Clinical Trials of Genome Editors in Multiple Diseases (RFA-RM-22-016)</h4>--%>
+<%--                <hr>--%>
+<%--                <p><a href="">Utility of Human Organoids for Safety and Efficiency Evaluations of Genome Editing Therapeutics.</a><br>--%>
+<%--                    <span class="blog-post-meta">PI: Freedman, Benjamin University of Washington</span></p>--%>
 
-                <p><a href="">A Modality-Agnostic Potency Assay Enabling Both Ex Vivo and In Vivo Genome Editing Therapeutics for Sickle Cell Disease</a><br>
-                    <span class="blog-post-meta">PI: Giannikopoulos, Petros University of California Berkeley</span></p>
+<%--                <p><a href="">A Modality-Agnostic Potency Assay Enabling Both Ex Vivo and In Vivo Genome Editing Therapeutics for Sickle Cell Disease</a><br>--%>
+<%--                    <span class="blog-post-meta">PI: Giannikopoulos, Petros University of California Berkeley</span></p>--%>
 
-            </div>
-            <br>
-            <br>
-        </div><!-- /.blog-main -->
+<%--            </div>--%>
+<%--            <br>--%>
+<%--            <br>--%>
+<%--        </div><!-- /.blog-main -->--%>
 
         <aside class="col-md-4 blog-sidebar">
-            <div class="p-3 mb-3 bg-light rounded">
-                <h4 class="font-italic">About</h4>
-                <p class="mb-0">The National Institutes of Health (NIH) has awarded over $140 million to help accelerate genome editing approaches from the lab to the clinic. The newly funded projects build upon the work performed though the Somatic Cell Genome Editing (SCGE) Program over the past five years and will focus on translating safe and effective genome editing therapeutics into the clinic.</p>
-            </div>
+<%--            <div class="p-3 mb-3 bg-light rounded">--%>
+<%--                <h4 class="font-italic">About</h4>--%>
+<%--                <p class="mb-0">The National Institutes of Health (NIH) has awarded over $140 million to help accelerate genome editing approaches from the lab to the clinic. The newly funded projects build upon the work performed though the Somatic Cell Genome Editing (SCGE) Program over the past five years and will focus on translating safe and effective genome editing therapeutics into the clinic.</p>--%>
+<%--            </div>--%>
 
             <div class="p-3">
                 <h4 class="font-italic">Resources/links</h4>
                 <ol class="list-unstyled mb-0">
-                    <li><a href="https://www.fda.gov/drugs/investigational-new-drug-ind-application/ind-forms-and-instructions">IND Forms and Instructions</a></li>
-                    <li><a href="https://www.fda.gov/drugs/types-applications/investigational-new-drug-ind-application#FDA%20Guidances%20for%20Investigational%20New%20Drugs">Guidance Documents for INDs</a></li>
+                    <li><a href="https://www.fda.gov/drugs/investigational-new-drug-ind-application/ind-forms-and-instructions" target="_blank">IND Forms and Instructions</a></li>
+                    <li><a href="https://www.fda.gov/drugs/types-applications/investigational-new-drug-ind-application#FDA%20Guidances%20for%20Investigational%20New%20Drugs" target="_blank">Guidance Documents for INDs</a></li>
 
                 </ol>
             </div>

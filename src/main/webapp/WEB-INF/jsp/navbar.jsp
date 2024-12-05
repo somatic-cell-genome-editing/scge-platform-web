@@ -7,7 +7,7 @@
 
         </button>
 
-    <a class="navbar-brand" href="https://scge.mcw.edu/"> <img src="/platform/common/images/SCGE_Platform_logo_5.jpg" srcset="/platform/common/images/SCGE_Platform_logo_5.jpg 1x"  alt="Somatic Cell Gene Editing Logo" data-retina_logo_url="" class="fusion-standard-logo"/></a>
+    <a class="navbar-brand" href="/platform/home"> <img src="/platform/common/images/SCGE_Platform_logo_5.jpg" srcset="/platform/common/images/SCGE_Platform_logo_5.jpg 1x"  alt="Somatic Cell Gene Editing Logo" data-retina_logo_url="" class="fusion-standard-logo"/></a>
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0 nav nav-pills">
