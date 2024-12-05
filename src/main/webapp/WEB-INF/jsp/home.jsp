@@ -7,67 +7,15 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!-- CSS for animations -->
-<style>
-    /* Pulse animation for "live!" */
-    @keyframes pulse {
-        0% {
-            opacity: 1;
-            transform: scale(1);
-        }
-        50% {
-            opacity: 0.5;
-            transform: scale(1.1);
-        }
-        100% {
-            opacity: 1;
-            transform: scale(1);
-        }
-    }
-
-    /* Bounce animation for "Click here" */
-    @keyframes bounce {
-        0%, 100% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-5px);
-        }
-    }
-</style>
-
 
 <div class="container">
 
-<%--    <div style="text-align: center; margin-bottom: 10px; font-family: Arial, sans-serif; font-size: 18px; color: #003366; line-height: 1.6;">--%>
-<%--        <strong>--%>
-<%--            <span style="color: #2e7d32;">Exciting News!</span> The new--%>
-<%--            <span style="color: #0288d1;">Gene Therapy Trial Browser</span> is live!--%>
-<%--        </strong>--%>
-<%--        <br>--%>
-<%--        <a href="/" target="_blank" style="text-decoration: none; color: #d32f2f; font-weight: bold; font-size: 20px;">--%>
-<%--            Click here to explore it now!--%>
-<%--        </a>--%>
-<%--    </div>--%>
-<%--    <div style="text-align: center; margin-bottom: 10px; font-family: Arial, sans-serif; font-size: 18px; color: #003366;">--%>
-<%--        <strong>--%>
-<%--            <span style="color: #2e7d32;">🚀 Exciting News!</span> The new--%>
-<%--            <span style="color: #0288d1;">Gene Therapy Trial Browser</span> is live! 🎯--%>
-<%--        </strong>--%>
-<%--        <br>--%>
-<%--        <a href="/platform/data/search/ClinicalTrial" target="_blank" style="text-decoration: none; color: #d32f2f; font-weight: bold;">--%>
-<%--            👉 Click here to explore it now!--%>
-<%--        </a>--%>
-<%--    </div>--%>
-    <div style="text-align: center; margin-bottom: 10px; font-family: Arial, sans-serif; font-size: 18px; color: #003366;">
+    <div style="text-align: center; margin-bottom: 20px; font-family: Arial, sans-serif; font-size: 25px; color: #003366;">
         <strong>
-            <span style="color: #2e7d32;">🚀 Exciting News!</span> The new
-            <span style="color: #0288d1;">Gene Therapy Trial Browser</span> is
-            <span style="color: #ff5722; animation: pulse 1.5s infinite;">live!</span>
+            <span>The new Gene Therapy Trial Browser</span> is live!</strong>&nbsp;&nbsp;
         </strong>
-        <br>
-        <a href="/platform/data/search/ClinicalTrial" target="_blank" style="text-decoration: none; color: #d32f2f; font-weight: bold; display: inline-block; margin-top: 10px; animation: bounce 2s infinite;">
-            👉 Click here to explore it now!
+        <a href="/platform/data/search/ClinicalTrial" style="color: red; font-weight: bold; display: inline-block;">
+            Click here to explore it now.
         </a>
     </div>
 
