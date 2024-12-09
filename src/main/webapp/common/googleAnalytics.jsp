@@ -3,16 +3,24 @@
 
 <% } else { %>
 
+<%--<!-- Google tag (gtag.js) -->--%>
+<%--<script async src="https://www.googletagmanager.com/gtag/js?id=G-B71F5TZZ80"></script>--%>
+<%--<script>--%>
+<%--    window.dataLayer = window.dataLayer || [];--%>
+<%--    function gtag(){dataLayer.push(arguments);}--%>
+<%--    gtag('js', new Date());--%>
+
+<%--    gtag('config', 'G-B71F5TZZ80');--%>
+<%--</script>--%>
+
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B71F5TZZ80"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MQQJ485PFP"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
-    gtag('config', 'G-B71F5TZZ80');
+    gtag('config', 'G-MQQJ485PFP');
 </script>
-
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <!--
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150985023-1"></script>
