@@ -3,9 +3,11 @@ package edu.mcw.scge.controller;
 
 import edu.mcw.scge.configuration.Access;
 import edu.mcw.scge.dao.implementation.PersonDao;
+import edu.mcw.scge.dao.implementation.ctd.SectionDAO;
 import edu.mcw.scge.datamodel.Person;
 
 
+import edu.mcw.scge.datamodel.ctd.Section;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,7 +53,7 @@ public class LoginController{
                     session.setAttribute("personId", p.getId());
                   //  session.setAttribute("personInfoList", getPerson(userAttributes));
                     req.setAttribute("personInfoList", access.getPersonInfoRecords(userAttributes));
-
+                    req.setAttribute("modules", getCTDModules());
                     System.out.println("USER_LOGIN_SUCCESS " + userAttributes.get("email").toString()+ " " +  new Date().toString());
                     req.setAttribute("page", "/WEB-INF/jsp/login/home");
                     return "base";
@@ -79,5 +81,13 @@ public class LoginController{
      }
      return null;
  }
-
+    public  Map<Integer, List<Section>> getCTDModules() throws Exception {
+        SectionDAO sectionDAO=new SectionDAO();
+        Map<Integer, List<Section>> modules=new HashMap<>();
+        for(int module: Arrays.asList(1,2,3,4,5)) {
+            List<Section> sections = sectionDAO.getTopLevelSectionsOfModule(module);
+            modules.put(module, sections);
+        }
+        return modules;
+    }
 }

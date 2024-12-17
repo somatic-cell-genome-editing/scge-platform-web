@@ -1,10 +1,11 @@
 package edu.mcw.scge.uploadFiles.storage;
 
 
+import edu.mcw.scge.datamodel.Document;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
-public class StorageProperties {
+@Configuration("storageProperties")
+public class StorageProperties extends Document {
     /**
      * Folder location for storing files
      */

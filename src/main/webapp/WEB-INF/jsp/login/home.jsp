@@ -68,7 +68,7 @@
                     </li>
                     <li class="nav-item">&nbsp;</li>
                     <li class="nav-item">
-                        <button class="btn btn-primary">Create Application</button>
+                        <a href="/platform/ind/application/new"><button class="btn btn-primary">Create Application</button></a>
                     </li>
 <%--                    <li class="nav-item">--%>
 <%--                        <a class="nav-link" href="#">--%>
@@ -210,76 +210,9 @@
                         <h5 class="card-header">eCTD v4.0 Comprehensive Table of Contents Headings and Hierarchy</h5>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th colspan="3">CTD Section</th>
-                                        <th scope="col">Document</th>
-                                        <th scope="col">Required for Initial IND(Y/N/M)</th>
-                                        <th scope="col">Uploaded</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <th scope="row">1.1</th>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Forms</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"></th>
-                                        <td>1.1.1</td>
-                                        <td></td>
-                                        <td>Form FDA 1571</td>
-                                        <td>Y</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"></th>
-                                        <td>1.1.2</td>
-                                        <td></td>
-                                        <td>Form FDA 3564</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">1.2</th>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Cover Letter</td>
-                                        <td>Y</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">1.3</th>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Administrative Information</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"></th>
-                                        <td>1.3.1</td>
-                                        <td></td>
-                                        <td>Contact/Sponsor/Applicant info</td>
-                                        <td>Y</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"></th>
-                                        <td></td>
-                                        <td>1.3.1.1</td>
-                                        <td>Change of Address</td>
-                                        <td>N</td>
-                                        <td></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                                <%@include file="../ctd/ctdTable.jsp"%>
                             </div>
-                            <a href="#" class="btn btn-block btn-light">View all</a>
+<%--                            <a href="#" class="btn btn-block btn-light">View all</a>--%>
                         </div>
                     </div>
                 </div>
