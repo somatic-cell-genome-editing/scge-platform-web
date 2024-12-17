@@ -113,7 +113,7 @@
                     <%
                         if(application1!=null){
                     %>
-                    <th style="background-color: cadetblue">Documents_Uploaded</th>
+                    <th style="background-color: cadetblue">Documents Uploaded</th>
 
                     <th style="background-color: cadetblue;text-align: center;">Action</th>
 <%}%>

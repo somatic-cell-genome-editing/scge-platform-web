@@ -8,10 +8,9 @@ import edu.mcw.scge.datamodel.Document;
 import edu.mcw.scge.uploadFiles.storage.StorageProperties;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.print.Doc;
+import java.util.*;
+
 @Service
 public class DBService {
     ApplicationDAO applicationDAO= new ApplicationDAO();
@@ -32,10 +31,9 @@ public class DBService {
     public String saveDocument(String fileName, StorageProperties properties, int tier) throws Exception {
         Gson gson=new Gson();
         Document document=getDocument(fileName, properties);
-        System.out.println("DOCUMENT TO SAVE:"+gson.toJson(document));
         int docSequenceKey = documentDAO.getNextKey("document_seq");
         if(document==null) {
-            document=new Document();
+           document=new Document();
             document.setDocumentId(docSequenceKey);
             document.setTier(tier);
             document.setUploadedBy(properties.getSubmittedBy());
@@ -46,24 +44,19 @@ public class DBService {
             document.setSponsorName(properties.getSponsorName());
             document.setVersion("1");
             document.setProductName(properties.getProductName());
-            System.out.println("DOCUMENT EXISTS:" + false);
             documentDAO.insert(document);
             return document.getVersion();
         }else{
-
-            String version=document.getVersion();
-            int updatedVersion=Integer.parseInt(version)+1;
+            int version= Integer.parseInt(document.getVersion());
+            int updatedVersion=version+1;
             document.setVersion(String.valueOf(updatedVersion));
             document.setDocumentId(docSequenceKey);
-            System.out.println("DOCUMENT EXISTS:" + true+"\tnew version:"+ document.getVersion());
-            System.out.println("DUPLICATE DOCUMENT:"+gson.toJson(document));
             documentDAO.insert(document);
             return String.valueOf(updatedVersion);
         }
 
 
     }
-
     public Document getDocument(String fileName, StorageProperties storageProperties) throws Exception {
         return   documentDAO.getDocumentByName(fileName, storageProperties.getApplicationId(), storageProperties.getSponsorName(), storageProperties.getModule());
     }
