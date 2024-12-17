@@ -156,7 +156,7 @@
                     <td></td>
                     <td></td>
                     <td><strong><%=section.getSectionName()%></strong>
-<%--                        <%@include file="sectionDocuments.jsp"%>--%>
+                        <%@include file="sectionDocuments.jsp"%>
                     </td>
                     <td> <%
                         if(section.getRequiredForInitialIND()!=null){
@@ -201,7 +201,7 @@
                         <%}else{%>
                         <strong><%=l2.getSectionName()%></strong>
                         <%}%>
-<%--                        <%@include file="sectionDocuments.jsp"%>--%>
+                        <%@include file="sectionDocuments.jsp"%>
                     </td>
                     <td> <%
                         if(l2.getRequiredForInitialIND()!=null){
@@ -241,7 +241,7 @@
                         <%}else{%>
                         <%=l3.getSectionName()%>
                         <%}%>
-<%--                        <%@include file="sectionDocuments.jsp"%>--%>
+                        <%@include file="sectionDocuments.jsp"%>
                     </td>
                     <td> <%
                         if(l3.getRequiredForInitialIND()!=null){
@@ -278,7 +278,7 @@
                     <td></td>
                     <td><%=l4.getSectionCode()%></td>
                     <td><%=l4.getSectionName()%>
-<%--                        <%@include file="sectionDocuments.jsp"%>--%>
+                        <%@include file="sectionDocuments.jsp"%>
                     </td>
                     <td>
                         <%
