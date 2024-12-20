@@ -15,6 +15,11 @@
 //    String sponsor=application1.getSponsorName();
 
 %>
+<%
+    if(request.getAttribute("message")!=null){
+%>
+<h4 style="color:green"><%=request.getAttribute("message")%></h4>
+<%}%>
 <div class="container">
     <%@include file="adminstrativeInfo.jsp"%>
 

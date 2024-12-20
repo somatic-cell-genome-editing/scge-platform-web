@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,8 +36,9 @@ public class ApplicationController {
     }
 
     @PostMapping(value="/create")
-    public String createApplication(@ModelAttribute Application application, BindingResult bindingResult) throws Exception {
+    public String createApplication(@ModelAttribute Application application, BindingResult bindingResult, RedirectAttributes redirectAttributes) throws Exception {
         int applicationId=dbService.insertApplication(application);
+        redirectAttributes.addFlashAttribute("message", "Successfully created application. Please upload the required documents below");
         return "redirect:/ind/application/"+applicationId;
 
     }
@@ -46,6 +48,7 @@ public class ApplicationController {
         Map<String, List<Document>> sectionDocuments=dbService.getApplicationDocuments(applicationId);
         storageProperties.setApplicationId(applicationId);
         storageProperties.setSponsorName(application.getSponsorName());
+        req.setAttribute("message", model.getAttribute("message"));
         req.setAttribute("storageProperties", storageProperties);
         req.setAttribute("readonly", true);
         req.setAttribute("sectionDocuments", sectionDocuments);

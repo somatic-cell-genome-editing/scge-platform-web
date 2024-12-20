@@ -4,10 +4,13 @@ package edu.mcw.scge.controller;
 import edu.mcw.scge.configuration.Access;
 import edu.mcw.scge.dao.implementation.PersonDao;
 import edu.mcw.scge.dao.implementation.ctd.SectionDAO;
+import edu.mcw.scge.datamodel.Application;
 import edu.mcw.scge.datamodel.Person;
 
 
+import edu.mcw.scge.datamodel.PersonInfo;
 import edu.mcw.scge.datamodel.ctd.Section;
+import edu.mcw.scge.uploadFiles.DBService;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +30,7 @@ import java.util.*;
 public class LoginController{
     PersonDao pdao=new PersonDao();
     Access access=new Access();
-
+    DBService dbService=new DBService();
     @RequestMapping("/home")
     public String getHomePage(OAuth2AuthenticationToken authentication, HttpServletRequest req) throws Exception {
 
@@ -53,6 +56,7 @@ public class LoginController{
                     session.setAttribute("personId", p.getId());
                   //  session.setAttribute("personInfoList", getPerson(userAttributes));
                     req.setAttribute("personInfoList", access.getPersonInfoRecords(userAttributes));
+                    req.setAttribute("applicationsMap",dbService.getApplicationsByUserId(p.getId()) );
                     req.setAttribute("modules", getCTDModules());
                     System.out.println("USER_LOGIN_SUCCESS " + userAttributes.get("email").toString()+ " " +  new Date().toString());
                     req.setAttribute("page", "/WEB-INF/jsp/login/home");
@@ -68,6 +72,7 @@ public class LoginController{
             return "redirect:/loginFailure";
 
     }
+
 
     @RequestMapping("/loginFailure")
     public String getFailureMessage(HttpServletRequest req){

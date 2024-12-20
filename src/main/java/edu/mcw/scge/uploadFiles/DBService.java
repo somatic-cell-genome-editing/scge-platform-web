@@ -3,8 +3,10 @@ package edu.mcw.scge.uploadFiles;
 import com.google.gson.Gson;
 import edu.mcw.scge.dao.implementation.ApplicationDAO;
 import edu.mcw.scge.dao.implementation.DocumentDAO;
+import edu.mcw.scge.dao.implementation.PersonDao;
 import edu.mcw.scge.datamodel.Application;
 import edu.mcw.scge.datamodel.Document;
+import edu.mcw.scge.datamodel.PersonInfo;
 import edu.mcw.scge.uploadFiles.storage.StorageProperties;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,7 @@ public class DBService {
     ApplicationDAO applicationDAO= new ApplicationDAO();
     DocumentDAO documentDAO= new DocumentDAO();
 
+    PersonDao personDao=new PersonDao();
     public int insertApplication(Application application) throws Exception {
         int applicationId=applicationDAO.getNextKey("application_id_seq");
         application.setApplicationId(applicationId);
@@ -65,6 +68,23 @@ public class DBService {
     }
     public Application getApplicationById(int applicationId) throws Exception {
         return applicationDAO.getApplicationById(applicationId);
+    }
+    public List<Application> getApplicationByGroupId(int groupId) throws Exception {
+        return applicationDAO.getApplicationsByGroupId(groupId);
+    }
+    public Map<Integer, List<Application>> getApplicationsByUserId(int userId) throws Exception {
+        List<PersonInfo> personInfoList=personDao.getPersonInfo(userId);
+        Map<Integer, List<Application>> applicationsMap=new HashMap<>();
+        for(PersonInfo personInfo:personInfoList){
+            int groupId=personInfo.getGroupId();
+            List<Application> applications=new ArrayList<>();
+           if( applicationsMap.get(groupId)!=null){
+               applications.addAll(applicationsMap.get(groupId));
+           }
+           applications.addAll(getApplicationByGroupId(groupId));
+           applicationsMap.put(groupId, applications);
+        }
+        return applicationsMap;
     }
     public Map<String, List<Document>> getApplicationDocuments(int applicationId) throws Exception {
         List<Document> documents=  documentDAO.getDocumentsByApplicationId(applicationId);
