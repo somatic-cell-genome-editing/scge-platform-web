@@ -47,6 +47,24 @@
         toggleLink.textContent = "(Show More)";
     }
     });
+
+    //Form input color change
+        const textareas = document.querySelectorAll('textarea.form-control');
+        textareas.forEach(textarea =>{
+            const originalValue = textarea.value;
+
+            textarea.addEventListener('input',function (){
+                if(this.value!==originalValue){
+                    this.style.backgroundColor = '#fff3e0';
+                    this.classList.add('modified');
+                }
+                else{
+                    this.style.backgroundColor = '';
+                    this.classList.remove('modified');
+                }
+            })
+        });
+
     });
 
     //end of show more

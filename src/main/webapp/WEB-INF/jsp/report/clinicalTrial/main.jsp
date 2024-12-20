@@ -9,6 +9,7 @@
 <%@ page import="edu.mcw.scge.datamodel.ClinicalTrialRecord" %>
 <%@ page import="edu.mcw.scge.datamodel.ClinicalTrialExternalLink" %>
 <%@ page import="java.util.List" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -20,21 +21,27 @@
 <%
    ClinicalTrialRecord clinicalTrialData = (ClinicalTrialRecord) request.getAttribute("clinicalTrialData");
     List<ClinicalTrialExternalLink> clinicalExtLinkData = (List<ClinicalTrialExternalLink>) request.getAttribute("clinicalExtLinkData");
+//    String successMessage = (String)session.getAttribute("successMessage");
 %>
 
-<%--<h4 class="mainTitle">--%>
-<%--    <span class="report-label">Gene Therapy Trial Report:</span>--%>
-<%--    <span class="brief-title"><%= clinicalTrialData.getBriefTitle() != null ? clinicalTrialData.getBriefTitle() : "" %></span>--%>
-<%--</h4>--%>
-<h3 style="color: #1a80b6; font-family: 'Roboto Slab', serif; font-weight: 400;">
-    Gene Therapy Trial Report
-</h3>
+<div style="display: flex; justify-content: space-between; align-items: flex-end;">
+    <h3 style="color: #1a80b6; font-family: 'Roboto Slab', serif; font-weight: 400;">
+        Gene Therapy Trial Report
+    </h3>
+    <% if (request.getServerName().equals("localhost") || request.getServerName().equals("dev.scge.mcw.edu") || request.getServerName().equals("stage.scge.mcw.edu") ) { %>
+    <a style="margin-right: 26px;margin-top: 0" href="/platform/clinicalTrials/report/<%=clinicalTrialData.getNctId()%>?edit=true" class="btn btn-primary">Edit</a>
+    <%}%>
+</div>
+<%
+    boolean isEditMode = ((request.getServerName().equals("localhost") || request.getServerName().equals("dev.scge.mcw.edu") || request.getServerName().equals("stage.scge.mcw.edu"))&&request.getParameter("edit") != null && request.getParameter("edit").equals("true"));
+%>
 <div class="sidenav" id="navbar">
     <!-- Dynamic links will be added here -->
 </div>
 <div class="ctReportBody">
-    <form class="ctReportForm">
-        <input type="hidden" value="<%=clinicalTrialData.getNctId()%>"/>
+    <form class="ctReportForm" method="post" action="/platform/clinicalTrials/report/<%=clinicalTrialData.getNctId()%>/edit">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <input type="hidden" name="nctId" value="<%=clinicalTrialData.getNctId()%>"/>
         <div class="dynamic-heading" id="summary"><h3 class="ctSubHeading">Summary</h3></div>
         <h2 class="brief-title"><%= clinicalTrialData.getBriefTitle() != null ? clinicalTrialData.getBriefTitle() : "" %></h2>
         <hr>
@@ -63,7 +70,11 @@
                     Indication
                 </td>
                 <td>
-                    <%=clinicalTrialData.getIndication()!=null?clinicalTrialData.getIndication():""%>
+                    <% if(isEditMode) { %>
+                    <textarea name="indication" class="form-control" rows="1"><%= clinicalTrialData.getIndication()!= null ? clinicalTrialData.getIndication() : "" %></textarea>
+                    <% } else { %>
+                    <%= clinicalTrialData.getIndication() != null ? clinicalTrialData.getIndication() : "" %>
+                    <% } %>
                 </td>
             </tr>
             <tr>
@@ -71,16 +82,18 @@
                     Compound&nbsp;Name
                 </td>
                 <td>
+                    <% if(isEditMode) { %>
+                    <textarea name="compoundName" class="form-control" rows="1"><%= clinicalTrialData.getCompoundName() != null ? clinicalTrialData.getCompoundName() : "" %></textarea>
+                    <% } else { %>
                     <%= clinicalTrialData.getCompoundName() != null ? clinicalTrialData.getCompoundName() : "" %>
+                    <% } %>
                 </td>
             </tr>
             <tr>
                 <td class="label">
                     Sponsor
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getSponsor()!=null?clinicalTrialData.getSponsor():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
                     <%=clinicalTrialData.getSponsor()!=null?clinicalTrialData.getSponsor():""%>
                 </td>
@@ -89,9 +102,7 @@
                 <td class="label">
                     Funder&nbsp;Type
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getSponsorClass()!=null?clinicalTrialData.getSponsorClass():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
                     <%=clinicalTrialData.getSponsorClass()!=null?clinicalTrialData.getSponsorClass().equalsIgnoreCase("NIH")?"NIH":clinicalTrialData.getSponsorClass():""%>
                 </td>
@@ -115,9 +126,7 @@
                 <td class="label">
                     Enrollment&nbsp;Count
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getEnrorllmentCount()!=0?clinicalTrialData.getEnrorllmentCount():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
                     <%=clinicalTrialData.getEnrorllmentCount()!=0?clinicalTrialData.getEnrorllmentCount():""%>
                 </td>
@@ -131,165 +140,195 @@
                 <td class="label">
                     Target&nbsp;Gene/Variant
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getTargetGeneOrVariant()!=null?clinicalTrialData.getTargetGeneOrVariant():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
+                    <% if(isEditMode) { %>
+                    <textarea name="targetGeneOrVariant" class="form-control" rows="1"><%=clinicalTrialData.getTargetGeneOrVariant()!=null?clinicalTrialData.getTargetGeneOrVariant():""%></textarea>
+                    <% } else { %>
                     <%=clinicalTrialData.getTargetGeneOrVariant()!=null?clinicalTrialData.getTargetGeneOrVariant():""%>
+                    <% } %>
                 </td>
             </tr>
             <tr>
                 <td class="label">
                     Therapy&nbsp;Type
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getTherapyType()!=null?clinicalTrialData.getTherapyType():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
+                    <% if(isEditMode) { %>
+                    <textarea name="therapyType" class="form-control" rows="1"><%=clinicalTrialData.getTherapyType()!=null?clinicalTrialData.getTherapyType():""%></textarea>
+                    <% } else { %>
                     <%=clinicalTrialData.getTherapyType()!=null?clinicalTrialData.getTherapyType():""%>
+                    <% } %>
                 </td>
             </tr>
             <tr>
                 <td class="label">
                     Therapy&nbsp;Route
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getTherapyRoute()!=null?clinicalTrialData.getTherapyRoute():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
+                    <% if(isEditMode) { %>
+                    <textarea name="therapyRoute" class="form-control" rows="1"><%=clinicalTrialData.getTherapyRoute()!=null?clinicalTrialData.getTherapyRoute():""%></textarea>
+                    <% } else { %>
                     <%=clinicalTrialData.getTherapyRoute()!=null?clinicalTrialData.getTherapyRoute():""%>
+                    <% } %>
                 </td>
             </tr>
             <tr>
                 <td class="label">
                     Mechanism&nbsp;of&nbsp;Action
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getMechanismOfAction()!=null?clinicalTrialData.getMechanismOfAction():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
+                    <% if(isEditMode) { %>
+                    <textarea name="mechanismOfAction" class="form-control" rows="1"><%=clinicalTrialData.getMechanismOfAction()!=null?clinicalTrialData.getMechanismOfAction():""%></textarea>
+                    <% } else { %>
                     <%=clinicalTrialData.getMechanismOfAction()!=null?clinicalTrialData.getMechanismOfAction():""%>
+                    <% } %>
                 </td>
             </tr>
             <tr>
                 <td class="label">
                     Route&nbsp;of&nbsp;Administration
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getRouteOfAdministration()!=null?clinicalTrialData.getRouteOfAdministration():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
+                    <% if(isEditMode) { %>
+                    <textarea name="routeOfAdministration" class="form-control" rows="1"><%=clinicalTrialData.getRouteOfAdministration()!=null?clinicalTrialData.getRouteOfAdministration():""%></textarea>
+                    <% } else { %>
                     <%=clinicalTrialData.getRouteOfAdministration()!=null?clinicalTrialData.getRouteOfAdministration():""%>
+                    <% } %>
                 </td>
             </tr>
             <tr>
                 <td class="label">
                     Drug&nbsp;Product&nbsp;Type
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getDrugProductType()!=null?clinicalTrialData.getDrugProductType():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
+                    <% if(isEditMode) { %>
+                    <textarea name="drugProductType" class="form-control" rows="1"><%=clinicalTrialData.getDrugProductType()!=null?clinicalTrialData.getDrugProductType():""%></textarea>
+                    <% } else { %>
                     <%=clinicalTrialData.getDrugProductType()!=null?clinicalTrialData.getDrugProductType():""%>
+                    <% } %>
                 </td>
             </tr>
             <tr>
                 <td class="label">
                     Target&nbsp;Tissue/Cell
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getTargetTissueOrCell()!=null?clinicalTrialData.getTargetTissueOrCell():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
+                    <% if(isEditMode) { %>
+                    <textarea name="targetTissueOrCell" class="form-control" rows="1"><%=clinicalTrialData.getTargetTissueOrCell()!=null?clinicalTrialData.getTargetTissueOrCell():""%></textarea>
+                    <% } else { %>
                     <%=clinicalTrialData.getTargetTissueOrCell()!=null?clinicalTrialData.getTargetTissueOrCell():""%>
+                    <% } %>
                 </td>
             </tr>
             <tr>
                 <td class="label">
-                    Devlivery&nbsp;System
+                    Delivery&nbsp;System
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getDeliverySystem()!=null?clinicalTrialData.getDeliverySystem():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
+                    <% if(isEditMode) { %>
+                    <textarea name="deliverySystem" class="form-control" rows="1"><%=clinicalTrialData.getDeliverySystem()!=null?clinicalTrialData.getDeliverySystem():""%></textarea>
+                    <% } else { %>
                     <%=clinicalTrialData.getDeliverySystem()!=null?clinicalTrialData.getDeliverySystem():""%>
+                    <% } %>
                 </td>
             </tr>
             <tr>
                 <td class="label">
                     Vector&nbsp;Type
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getVectorType()!=null?clinicalTrialData.getVectorType():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
+                    <% if(isEditMode) { %>
+                    <textarea name="vectorType" class="form-control" rows="1"><%=clinicalTrialData.getVectorType()!=null?clinicalTrialData.getVectorType():""%></textarea>
+                    <% } else { %>
                     <%=clinicalTrialData.getVectorType()!=null?clinicalTrialData.getVectorType():""%>
+                    <% } %>
                 </td>
             </tr>
             <tr>
                 <td class="label">
                     Editor&nbsp;Type
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getEditorType()!=null?clinicalTrialData.getEditorType():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
-                    <%=clinicalTrialData.getEditorType()!=null&&!clinicalTrialData.getEditorType().equalsIgnoreCase("none")?clinicalTrialData.getEditorType():""%>
+                    <% if(isEditMode) { %>
+                    <textarea name="editorType" class="form-control" rows="1"><%=clinicalTrialData.getEditorType()!=null?clinicalTrialData.getEditorType():""%></textarea>
+                    <% } else { %>
+                    <%=clinicalTrialData.getEditorType()!=null?clinicalTrialData.getEditorType():""%>
+                    <% } %>
                 </td>
             </tr>
             <tr>
                 <td class="label">
                     Dose&nbsp;1
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getDose1()!=null?clinicalTrialData.getDose1():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
+                    <% if(isEditMode) { %>
+                    <textarea name="dose1" class="form-control" rows="1"><%=clinicalTrialData.getDose1()!=null?clinicalTrialData.getDose1():""%></textarea>
+                    <% } else { %>
                     <%=clinicalTrialData.getDose1()!=null?clinicalTrialData.getDose1():""%>
+                    <% } %>
                 </td>
             </tr>
             <tr>
                 <td class="label">
                     Dose&nbsp;2
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getDose2()!=null?clinicalTrialData.getDose2():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
+                    <% if(isEditMode) { %>
+                    <textarea name="dose2" class="form-control" rows="1"><%=clinicalTrialData.getDose2()!=null?clinicalTrialData.getDose2():""%></textarea>
+                    <% } else { %>
                     <%=clinicalTrialData.getDose2()!=null?clinicalTrialData.getDose2():""%>
+                    <% } %>
                 </td>
             </tr>
             <tr>
                 <td class="label">
                     Dose&nbsp;3
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getDose3()!=null?clinicalTrialData.getDose3():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
+                    <% if(isEditMode) { %>
+                    <textarea name="dose3" class="form-control" rows="1"><%=clinicalTrialData.getDose3()!=null?clinicalTrialData.getDose3():""%></textarea>
+                    <% } else { %>
                     <%=clinicalTrialData.getDose3()!=null?clinicalTrialData.getDose3():""%>
+                    <% } %>
                 </td>
             </tr>
             <tr>
                 <td class="label">
                     Dose&nbsp;4
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getDose4()!=null?clinicalTrialData.getDose4():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
+                    <% if(isEditMode) { %>
+                    <textarea name="dose4" class="form-control" rows="1"><%=clinicalTrialData.getDose4()!=null?clinicalTrialData.getDose4():""%></textarea>
+                    <% } else { %>
                     <%=clinicalTrialData.getDose4()!=null?clinicalTrialData.getDose4():""%>
+                    <% } %>
                 </td>
             </tr>
             <tr>
                 <td class="label">
                     Dose&nbsp;5
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getDose5()!=null?clinicalTrialData.getDose5():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
+                    <% if(isEditMode) { %>
+                    <textarea name="dose5" class="form-control" rows="1"><%=clinicalTrialData.getDose5()!=null?clinicalTrialData.getDose5():""%></textarea>
+                    <% } else { %>
                     <%=clinicalTrialData.getDose5()!=null?clinicalTrialData.getDose5():""%>
+                    <% } %>
                 </td>
             </tr>
         </table>
@@ -301,9 +340,7 @@
                 <td class="label">
                     Current&nbsp;Stage
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getPhase()!=null?clinicalTrialData.getPhase():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
                     <%=clinicalTrialData.getPhase()!=null?clinicalTrialData.getPhase():""%>
                 </td>
@@ -312,9 +349,7 @@
                 <td class="label">
                     Submit&nbsp;Date
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getFirstSubmitDate()!=null?clinicalTrialData.getFirstSubmitDate():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
                     <%=clinicalTrialData.getFirstSubmitDate()!=null?clinicalTrialData.getFirstSubmitDate():""%>
                 </td>
@@ -323,9 +358,7 @@
                 <td class="label">
                     Completion&nbsp;Date
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getEstimatedCompleteDate()!=null?clinicalTrialData.getEstimatedCompleteDate():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
                     <%=clinicalTrialData.getEstimatedCompleteDate()!=null?clinicalTrialData.getEstimatedCompleteDate():""%>
                 </td>
@@ -334,9 +367,7 @@
                 <td class="label">
                     Last&nbsp;Update
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getLastUpdatePostDate()!=null?clinicalTrialData.getLastUpdatePostDate():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
                     <%=clinicalTrialData.getLastUpdatePostDate()!=null?clinicalTrialData.getLastUpdatePostDate():""%>
                 </td>
@@ -359,9 +390,7 @@
                             : (maxAge != null) ? "<=" + maxAge
                             : null;
                 %>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=age!=null?age:""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
                     <%=age!=null?age:""%>
                 </td>
@@ -370,9 +399,7 @@
                 <td class="label">
                     Standard&nbsp;Ages
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getStandardAge()!=null?clinicalTrialData.getStandardAge():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
                     <%=clinicalTrialData.getStandardAge()!=null?clinicalTrialData.getStandardAge():""%>
                 </td>
@@ -381,9 +408,7 @@
                 <td class="label">
                     Eligible&nbsp;Sex
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getEligibilitySex()!=null?clinicalTrialData.getEligibilitySex():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
                     <%=clinicalTrialData.getEligibilitySex()!=null?clinicalTrialData.getEligibilitySex():""%>
                 </td>
@@ -397,9 +422,7 @@
                 <td class="label">
                     No.of&nbsp;Trial&nbsp;Sites
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getNumberOfLocations()!=0?clinicalTrialData.getNumberOfLocations():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
                     <%=clinicalTrialData.getNumberOfLocations()!=0?clinicalTrialData.getNumberOfLocations():""%>
                 </td>
@@ -408,9 +431,7 @@
                 <td class="label">
                     Locations
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getLocation()!=null?clinicalTrialData.getLocation():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
                     <%=clinicalTrialData.getLocation()!=null?clinicalTrialData.getLocation():""%>
                 </td>
@@ -424,9 +445,7 @@
                 <td class="label">
                     Has&nbsp;US&nbsp;IND
                 </td>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getIsFDARegulated()!=null?clinicalTrialData.getIsFDARegulated():""%>" readonly />--%>
-<%--                </td>--%>
+
                 <td>
                     <%=clinicalTrialData.getIsFDARegulated()!=null?clinicalTrialData.getIsFDARegulated():""%>
                 </td>
@@ -435,24 +454,35 @@
                 <td class="label">
                     Recent&nbsp;Updates
                 </td>
-<%--                <td>--%>
-<%--                    <div class="readonly-field description-field"><%=clinicalTrialData.getRecentUpdates()!=null?clinicalTrialData.getRecentUpdates():""%></div>--%>
-<%--                </td>--%>
+
                 <td>
+                    <% if(isEditMode) { %>
+                    <textarea name="recentUpdates" class="form-control" rows="1"><%=clinicalTrialData.getRecentUpdates()!=null?clinicalTrialData.getRecentUpdates():""%></textarea>
+                    <% } else { %>
                     <%=clinicalTrialData.getRecentUpdates()!=null?clinicalTrialData.getRecentUpdates():""%>
+                    <% } %>
                 </td>
             </tr>
-<%--            <tr>--%>
-<%--                <td class="label">--%>
-<%--                    Patents--%>
-<%--                </td>--%>
-<%--                <td>--%>
-<%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getPatents()!=null?clinicalTrialData.getPatents():""%>" readonly />--%>
-<%--                </td>--%>
-<%--            </tr>--%>
         </table>
 
         <%-- External Links Section --%>
+        <%if(isEditMode){%>
+        <div class="dynamic-heading" id="resources">
+            <h3 class="ctSubHeading">Resources/Links</h3>
+        </div>
+        <hr>
+        <table class="ctReportTable">
+            <tr>
+                <td class="label">
+                    Patents
+                </td>
+                <td>
+                    <textarea placeholder="(Enter the multiple patents separated by ';')" name="patents" class="form-control" rows="1"><%=clinicalTrialData.getPatents()!=null?clinicalTrialData.getPatents():""%></textarea>
+                </td>
+            </tr>
+        </table>
+
+        <%}else{%>
         <% if (clinicalExtLinkData != null && clinicalExtLinkData.size() > 0||(!clinicalTrialData.getPatents().isEmpty()&&clinicalTrialData.getPatents()!=null)) { %>
         <div class="dynamic-heading" id="resources">
             <h3 class="ctSubHeading">Resources/Links</h3>
@@ -522,10 +552,25 @@
             </tr>
         </table>
         <% } %>
+        <% } %>
 
+        <% if(isEditMode) { %>
+        <div style="margin-top: 20px; text-align: center;">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a href="/platform/clinicalTrials/report/<%=clinicalTrialData.getNctId()%>" class="btn btn-secondary">Cancel</a>
+        </div>
+        <% } %>
     </form>
 </div>
 
 <script src="/platform/js/clinicalTrialReport/clinicalTrialReport.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        <% if (session.getAttribute("showAlert") != null) { %>
+        alert("Changes saved successfully!");
+        <% session.removeAttribute("showAlert"); %>
+        <% } %>
+    });
+</script>
 </body>
 </html>
