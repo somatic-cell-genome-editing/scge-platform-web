@@ -206,7 +206,7 @@
             </tr>
             <tr>
                 <td class="label">
-                    Devlivery&nbsp;System
+                    Delivery&nbsp;System
                 </td>
 <%--                <td>--%>
 <%--                    <input type="text" class="readonly-field" value="<%=clinicalTrialData.getDeliverySystem()!=null?clinicalTrialData.getDeliverySystem():""%>" readonly />--%>

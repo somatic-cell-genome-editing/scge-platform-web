@@ -31,7 +31,7 @@ public class ClinicalTrialReportController {
                 req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
                 return null;
             }
-            List<ClinicalTrialExternalLink> clinicalExtLinkData = ctDAO.getExtLinksByNctId(nctId);
+            List<ClinicalTrialExternalLink> clinicalExtLinkData = ctDAO.getExtLinksByNctIdSorted(nctId);
             req.setAttribute("clinicalTrialData",clinicalTrialData);
             req.setAttribute("clinicalExtLinkData",clinicalExtLinkData);
             req.setAttribute("page","/WEB-INF/jsp/report/clinicalTrial/main");
