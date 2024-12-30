@@ -11,6 +11,16 @@
             navbar.appendChild(a);
         });
     }
+    //delete button in ext links section
+    function deleteExtLink(linkId) {
+        if (confirm('Are you sure you want to delete this link?')) {
+            const row = document.getElementById('link-' + linkId);
+            const deleteFlag = document.getElementById('deleteFlag-' + linkId);
+            deleteFlag.value = linkId;
+            deleteFlag.disabled = false;
+            row.style.display = 'none';
+        }
+    }
     // Show more functionality here
     document.addEventListener("DOMContentLoaded", function() {
     const toggleLink = document.getElementById("toggleDescription");

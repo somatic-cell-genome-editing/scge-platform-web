@@ -9,6 +9,8 @@
 <%@ page import="edu.mcw.scge.datamodel.ClinicalTrialRecord" %>
 <%@ page import="edu.mcw.scge.datamodel.ClinicalTrialExternalLink" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Collections" %>
+<%@ page import="java.util.Comparator" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -481,7 +483,46 @@
                 </td>
             </tr>
         </table>
-
+        <%if(clinicalExtLinkData != null && clinicalExtLinkData.size() > 0){%>
+        <div class="external-links-editor">
+            <table class="ext-links-table">
+                <colgroup>
+                    <col />
+                    <col />
+                    <col />
+                    <col />
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>Link Type</th>
+                    <th>Link Name</th>
+                    <th>Link URL</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% for(ClinicalTrialExternalLink cext : clinicalExtLinkData) { %>
+                <tr id="link-<%=cext.getId()%>">
+                    <input type="hidden" name="linkId" value="<%=cext.getId()%>">
+                    <input type="hidden" name="deleteLink" id="deleteFlag-<%=cext.getId()%>" value="" disabled>
+                    <td>
+                        <select name="extLink" class="form-control">
+                            <option value="Grant" <%=cext.getType()!=null&&cext.getType().equalsIgnoreCase("Grant")?"selected":""%>>Grant</option>
+                            <option value="Protocol" <%=cext.getType()!=null&&cext.getType().equalsIgnoreCase("Protocol")?"selected":""%>>Protocol</option>
+                            <option value="Preclinical Publications" <%=cext.getType()!=null&&cext.getType().equalsIgnoreCase("Preclinical Publications")?"selected":""%>>Preclinical Publications</option>
+                            <option value="News and Press Releases" <%=cext.getType()!=null&&cext.getType().equalsIgnoreCase("News and Press Releases")?"selected":""%>>News and Press Releases</option>
+                            <option value="Clinical Publications" <%=cext.getType()!=null&&cext.getType().equalsIgnoreCase("Clinical Publications")?"selected":""%>>Clinical Publications</option>
+                        </select>
+                    </td>
+                    <td><textarea name="linkName" class="form-control" rows="1"><%=cext.getName()!=null?cext.getName():""%></textarea></td>
+                    <td><textarea name="link" class="form-control" rows="1"><%=cext.getLink()!=null?cext.getLink():""%></textarea></td>
+                    <td><button type="button" class="btn btn-danger" onclick="deleteExtLink(<%=cext.getId()%>)">Delete</button></td>
+                </tr>
+                <% } %>
+                </tbody>
+            </table>
+        </div>
+        <% } %>
         <%}else{%>
         <% if (clinicalExtLinkData != null && clinicalExtLinkData.size() > 0||(!clinicalTrialData.getPatents().isEmpty()&&clinicalTrialData.getPatents()!=null)) { %>
         <div class="dynamic-heading" id="resources">

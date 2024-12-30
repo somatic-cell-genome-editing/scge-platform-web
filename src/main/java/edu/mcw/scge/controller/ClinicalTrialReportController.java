@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -32,7 +33,7 @@ public class ClinicalTrialReportController {
                 req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
                 return null;
             }
-            List<ClinicalTrialExternalLink> clinicalExtLinkData = ctDAO.getExtLinksByNctId(nctId);
+            List<ClinicalTrialExternalLink> clinicalExtLinkData = ctDAO.getExtLinksByNctIdSorted(nctId);
             req.setAttribute("clinicalTrialData",clinicalTrialData);
             req.setAttribute("clinicalExtLinkData",clinicalExtLinkData);
             req.setAttribute("page","/WEB-INF/jsp/report/clinicalTrial/main");
@@ -78,6 +79,32 @@ public class ClinicalTrialReportController {
             ctRecord.setPatents(req.getParameter("patents"));
             ctRecord.setCompoundName(req.getParameter("compoundName"));
             ctRecord.setIndication(req.getParameter("indication"));
+
+            // Handle external links updates
+            String[] linkIds = req.getParameterValues("linkId");
+            String[] extLinkTypes = req.getParameterValues("extLink");
+            String[] linkNames = req.getParameterValues("linkName");
+            String[] links = req.getParameterValues("link");
+            String[] deleteFlags = req.getParameterValues("deleteLink");
+            if(linkIds!=null&&linkIds.length>0) {
+                for (int i = 0; i < linkIds.length; i++) {
+
+                    //delete the links
+                    if (deleteFlags != null && Arrays.asList(deleteFlags).contains(linkIds[i])) {
+                        ctDAO.deleteExternalLink(Integer.parseInt(linkIds[i]));
+                        continue;
+                    }
+                    //Update the links table
+                    ClinicalTrialExternalLink extLink = new ClinicalTrialExternalLink();
+                    extLink.setName(linkNames[i]);
+                    extLink.setType(extLinkTypes[i]);
+                    extLink.setLink(links[i]);
+                    extLink.setNctId(nctId);
+                    extLink.setId(Integer.parseInt(linkIds[i]));
+                    ctDAO.updateExternalLink(extLink);
+                }
+            }
+
             //update the clinical_trial_record table
             ctDAO.updateCuratedDataFields(ctRecord);
             req.getSession().setAttribute("showAlert", "true");

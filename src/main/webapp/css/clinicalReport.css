@@ -204,6 +204,36 @@ html{
     border-color: #fb8c00;
     box-shadow: 0 0 0 0.2rem rgba(255, 167, 38, 0.25);
 }
+/*external link edit section*/
+.ext-links-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+}
+
+.ext-links-table th,
+.ext-links-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+}
+
+.ext-links-table th {
+    background-color: lightsteelblue;
+}
+
+/* Column widths */
+.ext-links-table colgroup col:nth-child(1) { width: 21%; }
+.ext-links-table colgroup col:nth-child(2) { width: 35%; }
+.ext-links-table colgroup col:nth-child(3) { width: 35%; }
+.ext-links-table colgroup col:nth-child(4) { width: 9%; }
+
+/* Make form controls fill their cells */
+.ext-links-table select,
+.ext-links-table textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
 
 /*.form-control.modified {*/
 /*    background-color: #e3f2fd;*/
