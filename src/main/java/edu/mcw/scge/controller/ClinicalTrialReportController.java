@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.util.Arrays;
 import java.util.List;
 
@@ -102,6 +103,19 @@ public class ClinicalTrialReportController {
                     extLink.setNctId(nctId);
                     extLink.setId(Integer.parseInt(linkIds[i]));
                     ctDAO.updateExternalLink(extLink);
+                }
+            }
+            //insert new external link
+            String[] newLinkIds = req.getParameterValues("newLinkId");
+            if (newLinkIds != null) {
+                for(String tempId:newLinkIds){
+                    ClinicalTrialExternalLink extLink = new ClinicalTrialExternalLink();
+                    extLink.setName(req.getParameter("newLinkName_" + tempId));
+                    extLink.setType(req.getParameter("newExtLink_" + tempId));
+                    extLink.setLink(req.getParameter("newLink_" + tempId));
+                    extLink.setNctId(nctId);
+                    extLink.setId(ctDAO.getNextKey("clinical_trial_ext_links_seq"));
+                    ctDAO.insertExternalLink(extLink);
                 }
             }
 

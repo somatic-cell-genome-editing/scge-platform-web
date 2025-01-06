@@ -483,7 +483,7 @@
                 </td>
             </tr>
         </table>
-        <%if(clinicalExtLinkData != null && clinicalExtLinkData.size() > 0){%>
+<%--        <%if(isEditMode||clinicalExtLinkData != null && clinicalExtLinkData.size() > 0){%>--%>
         <div class="external-links-editor">
             <table class="ext-links-table">
                 <colgroup>
@@ -521,8 +521,11 @@
                 <% } %>
                 </tbody>
             </table>
+            <div style=" margin-top: 15px;">
+                <button type="button" class="btn btn-primary" onclick="addNewLink()">Add External Link</button>
+            </div>
         </div>
-        <% } %>
+<%--        <% } %>--%>
         <%}else{%>
         <% if (clinicalExtLinkData != null && clinicalExtLinkData.size() > 0||(!clinicalTrialData.getPatents().isEmpty()&&clinicalTrialData.getPatents()!=null)) { %>
         <div class="dynamic-heading" id="resources">
@@ -597,7 +600,7 @@
 
         <% if(isEditMode) { %>
         <div style="margin-top: 20px; text-align: center;">
-            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <button type="submit" class="btn btn-primary" onclick="return validateForm()" >Save Changes</button>
             <a href="/platform/clinicalTrials/report/<%=clinicalTrialData.getNctId()%>" class="btn btn-secondary">Cancel</a>
         </div>
         <% } %>
@@ -606,12 +609,14 @@
 
 <script src="/platform/js/clinicalTrialReport/clinicalTrialReport.js"></script>
 <script>
+
     document.addEventListener('DOMContentLoaded', function() {
         <% if (session.getAttribute("showAlert") != null) { %>
         alert("Changes saved successfully!");
         <% session.removeAttribute("showAlert"); %>
         <% } %>
     });
+
 </script>
 </body>
 </html>
