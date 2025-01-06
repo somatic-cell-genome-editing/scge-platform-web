@@ -107,7 +107,7 @@
     });
 
     //Form input color change
-        const textareas = document.querySelectorAll('textarea.form-control');
+        const textareas = document.querySelectorAll('textarea.form-control,select.form-control');
         textareas.forEach(textarea =>{
             const originalValue = textarea.value;
 
