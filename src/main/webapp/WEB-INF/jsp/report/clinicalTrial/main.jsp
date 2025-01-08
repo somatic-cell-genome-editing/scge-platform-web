@@ -31,7 +31,7 @@
         Gene Therapy Trial Report
     </h3>
     <% if (request.getServerName().equals("localhost") || request.getServerName().equals("dev.scge.mcw.edu") || request.getServerName().equals("stage.scge.mcw.edu") ) { %>
-    <a style="margin-right: 26px;margin-top: 0" href="/platform/clinicalTrials/report/<%=clinicalTrialData.getNctId()%>?edit=true" class="btn btn-primary">Edit</a>
+    <a style="margin-right: 26px;margin-top: 0" href="/platform/data/clinicalTrials/report/<%=clinicalTrialData.getNctId()%>?edit=true" class="btn btn-primary">Edit</a>
     <%}%>
 </div>
 <%
@@ -41,7 +41,7 @@
     <!-- Dynamic links will be added here -->
 </div>
 <div class="ctReportBody">
-    <form class="ctReportForm" method="post" action="/platform/clinicalTrials/report/<%=clinicalTrialData.getNctId()%>/edit">
+    <form class="ctReportForm" method="post" action="/platform/clinicalTrialEdit/report/<%=clinicalTrialData.getNctId()%>/edit">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <input type="hidden" name="nctId" value="<%=clinicalTrialData.getNctId()%>"/>
         <div class="dynamic-heading" id="summary"><h3 class="ctSubHeading">Summary</h3></div>
