@@ -58,11 +58,12 @@
 </head>
 <body>
 <h1 class="clinical-title">Clinical Trials Editor</h1>
-<h5 class="clinical-subtitle">Edit an Existing Clinical Trial</h5>
+<h5 class="clinical-subtitle">Add a new Clinical Trial</h5>
 <form class="clinical-form" action="" method="get">
     <label for="nctid" class="clinical-label">Enter NCTID:</label>
     <input type="text" id="nctid" name="nctid" class="clinical-input" required>
     <input type="submit" value="Submit" class="clinical-submit">
 </form>
+<br>
 </body>
 </html>
