@@ -50,7 +50,7 @@
         <servlet-name>statCont</servlet-name>
         <url-pattern>*.js</url-pattern>
         <url-pattern>*.css</url-pattern>
-<!--        <url-pattern>*.pdf</url-pattern>-->
+        <url-pattern>*.pdf</url-pattern>
         <url-pattern>*.docx</url-pattern>
         <url-pattern>*.png</url-pattern>
 <!--        <url-pattern>*.xml</url-pattern>-->
