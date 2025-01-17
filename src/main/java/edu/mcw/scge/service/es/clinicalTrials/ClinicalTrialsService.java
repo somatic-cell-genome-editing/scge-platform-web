@@ -31,6 +31,27 @@ public class ClinicalTrialsService {
             }
 
     }
+    public static Map<String, String> facetDefinitions= new HashMap<>();
+    static{
+        facetDefinitions.put("status", "Indicates the current recruitment status or the expanded access status");
+        facetDefinitions.put("indication", "The disease, disorder, syndrome, illness, or injury that is being studied");
+        facetDefinitions.put("sponsor", "The organization or person who initiates the study and who has authority and control over the study");
+        facetDefinitions.put("sponsorClass","Describes the organization that provides support for the clinical study");
+        facetDefinitions.put("therapyType", "Describes the nature of the gene therapy");
+        facetDefinitions.put("vectorType","Gives additional specifics (if known) about delivery system (e.g. AAV serotype)");
+        facetDefinitions.put("deliverySystem","Describes the nature of the drug substance or process that is used to deliver the editor or corrected gene");
+        facetDefinitions.put("routeOfAdministration","How the drug product is introduced to the body");
+        facetDefinitions.put("drugProductType","Describes the nature of the drug product");
+        facetDefinitions.put("editorType","For gene editing type therapies, the protein that will perform the gene correction");
+        facetDefinitions.put("targetGeneOrVariant","The symbol of the gene that is corrected or replaced by the drug compound");
+        facetDefinitions.put("mechanismOfAction","Simplified description of how the drug product works");
+        facetDefinitions.put("targetTissueOrCell", "Lists target cells if the therapy is directed at a particular cell type (either by ex-vivo enrichment, or tissue-specific regulatory elements)");
+        facetDefinitions.put("phases","The stage of the clinical trial, determined based on the studies' objective");
+        facetDefinitions.put("standardAges", "Variable on whether trial accepts patients who are adults, pediatric (<18 years of age) or both");
+        facetDefinitions.put("therapyRoute","Describes whether the gene therapy is introduced to cells in-vivo or ex-vivo");
+        facetDefinitions.put("locations","List of countries that contain at least 1 clinical trial site");
+
+    }
 
     public SearchResponse getSearchResults(String searchTerm,String category, Map<String, List<String>> filtersMap) throws IOException {
         String searchIndex= SCGEContext.getESIndexName();

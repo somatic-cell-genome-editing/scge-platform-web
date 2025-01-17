@@ -60,20 +60,16 @@
 
 <%--              <hr>--%>
     <div class="row">
-        <div class="col-12 d-flex justify-content-between align-items-center"> <span>Showing all  <%=hits.size()%> results ...</span>
-            <% if (request.getServerName().equals("localhost") || request.getServerName().equals("dev.scge.mcw.edu") || request.getServerName().equals("stage.scge.mcw.edu") ) { %>
-            <a href="/platform/clinicalTrialEdit/home/" class="btn btn-primary">
-                Add
-            </a>
-            <%}%>
+        <div class="col"> <span>Showing all  <%=hits.size()%> results ...</span></div>
+        <br>
+        <div class="col-2">
+            <div style="width: 40%;">
+                <div class="input-group"><button class="btn btn-sm btn-info text-nowrap" data-toggle="modal" data-target="#definitionsModal">Help Doc&nbsp;&nbsp;<i class="fa fa-question-circle" aria-hidden="true" style="color:whitesmoke"></i></button></div>
+                </div>
+
+            <%@include file="../../definitions/modal.jsp"%>
+            </div>
         </div>
-<%--        <div class="col-5">--%>
-<%--            <div style="width: 40%;float:right">--%>
-<%--                <div class="input-group"><input class="search selectable form-control" type="search" placeholder="Look up in the table" data-column="all"><div class="input-group-append">&nbsp;<span class="input-group-text reset" title="Reset"><i class="fa fa-refresh" aria-hidden="true"></i></span></div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-    </div>
 
 
                <%@include file="filtersApplied.jsp"%>
@@ -93,6 +89,7 @@
     <!-- END SEARCH RESULT -->
   </div>
 </div>
+
 <small><strong>Disclaimer:</strong> The information on this dashboard has been collected for the convenience of patients and researchers. Please discuss with your provider the risks/benefits of participating in a clinical trial.
     The SCGE makes no comment as to the efficacy and safety of the items listed, as these are not known at the time of publication.
     For the most up to date information, please refer to clinicaltrials.gov or the Sponsor's website.
