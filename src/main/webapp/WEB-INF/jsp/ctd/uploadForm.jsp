@@ -15,7 +15,7 @@
             <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form:form method="post" enctype="multipart/form-data" action="/platform/data/store/" modelAttribute="storageProperties" >
+            <form:form method="post" enctype="multipart/form-data" action="/platform/secure/store/" modelAttribute="storageProperties" >
                 <input type="hidden" value="<%=sectionCode%>" name="sectionCode"/>
                 <form:input type="hidden"  path="applicationId" />
                 <form:input type="hidden"  path="sponsorName" />

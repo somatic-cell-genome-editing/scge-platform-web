@@ -28,7 +28,7 @@
         if(application1!=null) {
             int applicationId = application1.getApplicationId();
             String sponsor = application1.getSponsorName();
-            docLocationURI = "/platform/data/store/files/" + application1.getApplicationId() + "/" + application1.getSponsorName() + "/";
+            docLocationURI = "/platform/secure/store/files/" + application1.getApplicationId() + "/" + application1.getSponsorName() + "/";
         }
     }
     Map<String, List<Document>> sectionDocuments= null;

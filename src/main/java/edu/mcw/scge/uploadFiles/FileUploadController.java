@@ -39,7 +39,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
-@RequestMapping(value="/data/store")
+@RequestMapping(value="/secure/store")
 public class FileUploadController {
 
     private  StorageService storageService;
@@ -159,7 +159,7 @@ public class FileUploadController {
         redirectAttributes.addFlashAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
 
-        return "redirect:/data/store/";
+        return "redirect:/secure/store/";
     }
 
     @ExceptionHandler(StorageFileNotFoundException.class)
