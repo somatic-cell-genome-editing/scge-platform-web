@@ -2,9 +2,11 @@ package edu.mcw.scge.uploadFiles;
 
 import com.google.gson.Gson;
 import edu.mcw.scge.dao.implementation.ApplicationDAO;
+import edu.mcw.scge.dao.implementation.DefinitionDAO;
 import edu.mcw.scge.dao.implementation.DocumentDAO;
 import edu.mcw.scge.dao.implementation.PersonDao;
 import edu.mcw.scge.datamodel.Application;
+import edu.mcw.scge.datamodel.Definition;
 import edu.mcw.scge.datamodel.Document;
 import edu.mcw.scge.datamodel.PersonInfo;
 import edu.mcw.scge.uploadFiles.storage.StorageProperties;
@@ -18,6 +20,7 @@ public class DBService {
     ApplicationDAO applicationDAO= new ApplicationDAO();
     DocumentDAO documentDAO= new DocumentDAO();
 
+    DefinitionDAO definitionDAO=new DefinitionDAO();
     PersonDao personDao=new PersonDao();
     public int insertApplication(Application application) throws Exception {
         int applicationId=applicationDAO.getNextKey("application_id_seq");
@@ -72,6 +75,10 @@ public class DBService {
     public List<Application> getApplicationByGroupId(int groupId) throws Exception {
         return applicationDAO.getApplicationsByGroupId(groupId);
     }
+    public List<Definition> getAllDefinitions() throws Exception {
+        return definitionDAO.getAllDefinitions();
+    }
+
     public Map<Integer, List<Application>> getApplicationsByUserId(int userId) throws Exception {
         List<PersonInfo> personInfoList=personDao.getPersonInfo(userId);
         Map<Integer, List<Application>> applicationsMap=new HashMap<>();
