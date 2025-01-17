@@ -2,6 +2,7 @@ package edu.mcw.scge.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
@@ -43,6 +44,7 @@ import java.util.stream.Collectors;
  * Created by jthota on 11/12/2019.
  */
 
+
 @EnableWebSecurity
 @PropertySource("classpath:application.properties")
 
@@ -65,9 +67,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        if(System.getenv("HOSTNAME")!=null && System.getenv("HOSTNAME").equals("localhost")) {
+            http.authorizeRequests().antMatchers("/**").permitAll();
+        }else{
             http.authorizeRequests()
-                    .antMatchers("/","/home", "/logout", "/oauth_login", "/common/**", "/data/requestAccount", "/loginFailure",
-                            "/images/**","/css/**", "/js/**", "/forms_public/**","/data/**","/login.jsp").permitAll()
+                    .antMatchers("/", "/home", "/logout", "/oauth_login", "/common/**", "/data/requestAccount", "/loginFailure",
+                            "/images/**", "/css/**", "/js/**", "/forms_public/**", "/data/**", "/login.jsp").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .logout()
@@ -92,8 +97,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .tokenEndpoint()
                     .accessTokenResponseClient(accessTokenResponseClient());
 
-        http.headers().defaultsDisabled().cacheControl();
-
+            http.headers().defaultsDisabled().cacheControl();
+        }
     }
     @Bean
     public AuthenticationSuccessHandler successHandler(){
@@ -140,21 +145,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return null;
     }
 
- //   @Configuration
-//    @EnableResourceServer
-//    protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
-//        @Override
-//        public void configure(HttpSecurity http) throws Exception {
-//            // @formatter:off
-//            http.antMatcher("/me").authorizeRequests().anyRequest().authenticated();
-//            // @formatter:on
-//
-//            /*   http
-//                    .authorizeRequests()
-//                    .antMatchers("/scge/**").authenticated()
-//                    .antMatchers("/").permitAll();*/
-//        }
-//    }
     @Bean(name = "filterMultipartResolver")
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
