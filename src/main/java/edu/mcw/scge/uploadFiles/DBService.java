@@ -78,6 +78,18 @@ public class DBService {
     public List<Definition> getAllDefinitions() throws Exception {
         return definitionDAO.getAllDefinitions();
     }
+    public Map<String, List<Definition>> getAllDefinitionsMap() throws Exception {
+        List<Definition> definitions= definitionDAO.getAllDefinitions();
+        Map<String, List<Definition>> defMap=new TreeMap<>();
+        for(Definition def:definitions){
+            List<Definition> defList=new ArrayList<>();
+            if(defMap.get(def.getField())!=null){
+                defList.addAll(defMap.get(def.getField()));
+            } defList.add(def);
+            defMap.put(def.getField(), defList);
+        }
+        return defMap;
+    }
 
     public Map<Integer, List<Application>> getApplicationsByUserId(int userId) throws Exception {
         List<PersonInfo> personInfoList=personDao.getPersonInfo(userId);

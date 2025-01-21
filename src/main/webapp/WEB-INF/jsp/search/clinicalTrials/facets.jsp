@@ -52,7 +52,7 @@ $('[data-toggle="tooltip"]').tooltip()
           }
         %>
 <%--        <span class="<%=aggName%>"><%=ClinicalTrialsService.fieldDisplayNames.get(aggName)%></span><span class="float-right"><i class="fas fa-angle-up"></i></span>--%>
-        <span class="<%=aggName%>"><%=value%>&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get(aggName)%>"><i class="fa-solid fa-circle-info"></i></span></sup></span><span class="float-right"><i class="fas fa-angle-up"></i></span>
+        <span class="<%=aggName%>"><%=value%>&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get(value.trim())%>"><i class="fa-solid fa-circle-info"></i></span></sup></span><span class="float-right"><i class="fas fa-angle-up"></i></span>
       </a>
     </div>
     <div id="collapse<%=aggName%>" class="accordion-body collapse" >
