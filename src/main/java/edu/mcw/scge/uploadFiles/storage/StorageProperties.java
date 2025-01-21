@@ -9,7 +9,7 @@ public class StorageProperties extends Document {
     /**
      * Folder location for storing files
      */
-    private String location = "C:/upload-dir";
+    private String location = "/data";
 
     public String getLocation() {
         return location;
