@@ -49,7 +49,6 @@ public class LoginController{
             if (userExists) {
                 List<Person> personList = pdao.getPersonByEmail(userAttributes.get("email").toString());
                 Person p=personList.get(0);
-                System.out.println("PERSON:"+p.getEmail());
                 if (p.getStatus().equalsIgnoreCase("active")) {
                     HttpSession session = req.getSession(true);
                     session.setAttribute("userAttributes", userAttributes);

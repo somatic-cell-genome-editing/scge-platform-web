@@ -25,7 +25,6 @@ public class UserService {
                 Map<String, Object> attributes;
                 if (authToken instanceof OAuth2AuthenticationToken) {
                     attributes = ((OAuth2AuthenticationToken) authToken).getPrincipal().getAttributes();
-                    System.out.println("PRINCIPAL:"+ authToken.getName());
                     if (attributes != null && !authToken.getName().equalsIgnoreCase("anonymous")) {
                         String userEmail = (String) attributes.get("email");
                         List<Person> pList = pdao.getPersonByEmail(userEmail);
