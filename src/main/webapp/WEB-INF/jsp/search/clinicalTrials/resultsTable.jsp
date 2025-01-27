@@ -104,7 +104,29 @@
 
 </style>
 <script>
+$(function () {
+$('[data-toggle="popover"]').popover({
+html: true,
+content: function () {
+var content = $(this).attr("data-popover-content");
+return $(content).children(".popover-body").html();
+}
 
+})
+.on("focus", function () {
+$(this).popover("show");
+}).on("focusout", function () {
+var _this = this;
+if (!$(".popover:hover").length) {
+$(this).popover("hide");
+} else {
+$('.popover').mouseleave(function () {
+$(_this).popover("hide");
+$(this).off('mouseleave');
+});
+}
+});
+})
 </script>
 <div id="resultsTable"  style="display: none">
 <table  id="myTable">
@@ -206,13 +228,31 @@
         </td>
         <td><%=sourceFields.get("enrorllmentCount")%></td>
         <td><%=sourceFields.get("numberOfLocations")%></td>
-        <td><%
-            if(sourceFields.get("locations")!=null){
-                List<String> location= (List<String>) sourceFields.get("locations");
-                String locations= location.stream().collect(Collectors.joining(", "));
-        %>
-            <%=locations%>
-            <%}%></td>
+    <td>
+<%--        <td><%--%>
+<%--            if(sourceFields.get("locations")!=null){--%>
+<%--                List<String> location= (List<String>) sourceFields.get("locations");--%>
+<%--                String locations= location.stream().collect(Collectors.joining(", "));--%>
+<%--        %>--%>
+<%--            <%=locations%>--%>
+<%--            <%}%>--%>
+    <%if(sourceFields.get("locations")!=null){
+        List<String> location= (List<String>) sourceFields.get("locations");
+        String locations= location.stream().collect(Collectors.joining(", "));
+        if(locations.length()>0){
+            if(location.size()>1){
+    %>
+    <a data-container="body" data-trigger="hover click" data-toggle="popover" data-placement="bottom" data-popover-content="#popover-<%=sourceFields.get("nctId")%>" title="Locations" style="background-color: transparent;cursor: pointer;text-decoration: none">
+    <span style="display: none">Locations:</span><span style="text-decoration:underline"><%=location.get(0)%>&nbsp; + <%=location.size()%></span>
+    </a>
+    <div style="display: none" id="popover-<%=sourceFields.get("nctId")%>">
+        <div class="popover-body"><%=locations%></div>
+    </div>
+    <%}else{%>
+            <%=location.get(0)%>
+
+    <%}}}%>
+        </td>
         <td><%=sourceFields.get("isFDARegulated")%></td>
         <td class="manual"><%=sourceFields.get("patents")%></td>
         <td class="manual"><%=sourceFields.get("recentUpdates")%></td>
