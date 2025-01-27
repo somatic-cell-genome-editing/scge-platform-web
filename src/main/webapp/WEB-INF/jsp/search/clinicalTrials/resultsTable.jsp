@@ -141,11 +141,38 @@
             <%=sourceFields.get("editorType")%>
             <%}%>
         </td>
-        <td class="manual"><%=sourceFields.get("dose1")%></td>
-        <td class="manual"><%=sourceFields.get("dose2")%></td>
-        <td class="manual"><%=sourceFields.get("dose3")%></td>
-        <td class="manual"><%=sourceFields.get("dose4")%></td>
-        <td class="manual"><%=sourceFields.get("dose5")%></td>
+        <td class="manual">
+
+            <%
+                String dosage=null;
+                List<String> dosages=new ArrayList<>();
+                if(sourceFields.get("dose1")!=null && !sourceFields.get("dose1").toString().equals("")){
+                    dosages.add(sourceFields.get("dose1").toString());
+                }
+                if(sourceFields.get("dose2")!=null && !sourceFields.get("dose2").toString().equals("")){
+                    dosages.add(sourceFields.get("dose2").toString());
+                }
+                if(sourceFields.get("dose3")!=null && !sourceFields.get("dose3").toString().equals("")){
+                    dosages.add(sourceFields.get("dose3").toString());
+                }
+                if(sourceFields.get("dose4")!=null && !sourceFields.get("dose4").toString().equals("")){
+                    dosages.add(sourceFields.get("dose4").toString());
+                }
+                if(sourceFields.get("dose5")!=null && !sourceFields.get("dose5").toString().equals("")){
+                    dosages.add(sourceFields.get("dose5").toString());
+                }
+                if(dosages.size()==1){
+                    dosage=dosages.get(0);
+                }else if(dosages.size()>1){
+                    dosage=dosages.stream().collect(Collectors.joining(" | "));
+                }
+            %>
+            <%=dosage%>
+        </td>
+<%--        <td class="manual"><%=sourceFields.get("dose2")%></td>--%>
+<%--        <td class="manual"><%=sourceFields.get("dose3")%></td>--%>
+<%--        <td class="manual"><%=sourceFields.get("dose4")%></td>--%>
+<%--        <td class="manual"><%=sourceFields.get("dose5")%></td>--%>
         <td class="text-nowrap">
             <%
                 List<String> phases= (List<String>) sourceFields.get("phases");

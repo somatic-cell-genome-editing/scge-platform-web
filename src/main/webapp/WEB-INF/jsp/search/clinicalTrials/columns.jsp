@@ -23,11 +23,11 @@
 <th class="manual">Delivery System&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Delivery System")%>" class="column-header-description"></span></sup></th>
 <th class="manual">Vector Type&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Vector Type")%>" class="column-header-description"></span></sup></th>
 <th class="manual">Editor Type&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Editor Type")%>" class="column-header-description"></span></sup></th>
-<th class="manual">Dose 1&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Dose levels (up to 5)")%>" class="column-header-description"></span></sup></th>
-<th class="manual">Dose 2&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Dose levels (up to 5)")%>" class="column-header-description"></span></sup></th>
-<th class="manual">Dose 3&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Dose levels (up to 5)")%>" class="column-header-description"></span></sup></th>
-<th class="manual">Dose 4&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Dose levels (up to 5)")%>" class="column-header-description"></span></sup></th>
-<th class="manual">Dose 5&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Dose levels (up to 5)")%>" class="column-header-description"></span></sup></th>
+<th class="manual">Dosage&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Dose levels (up to 5)")%>" class="column-header-description"></span></sup></th>
+<%--<th class="manual">Dose 2&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Dose levels (up to 5)")%>" class="column-header-description"></span></sup></th>--%>
+<%--<th class="manual">Dose 3&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Dose levels (up to 5)")%>" class="column-header-description"></span></sup></th>--%>
+<%--<th class="manual">Dose 4&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Dose levels (up to 5)")%>" class="column-header-description"></span></sup></th>--%>
+<%--<th class="manual">Dose 5&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Dose levels (up to 5)")%>" class="column-header-description"></span></sup></th>--%>
 <%--<th>Treatment</th>--%>
 <th>Current Stage&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Current Stage")%>" class="column-header-description"></span></sup></th>
 <th>Status&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Study Status")%>" class="column-header-description"></span></sup></th>
