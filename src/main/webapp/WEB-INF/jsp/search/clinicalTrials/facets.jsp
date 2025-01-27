@@ -21,6 +21,7 @@
 $(function () {
 $('[data-toggle="tooltip"]').tooltip()
 })
+expandFilterVal="<%=request.getAttribute("expandAllFilters")%>"
 
 </script>
 <h4 class="grid-title"><i class="fa fa-filter"></i> Filters ..&nbsp;<span id="expandAll" class="plus" title="Expand All" onclick="expandAll()" style="cursor: pointer;font-size: medium"><i class="fa-solid fa-circle-plus"></i></span><span id="collapseAll" class="minus" style="display: none;color:red;cursor:pointer;font-size: medium" title="Close All" onclick="collapseAll()"><i class="fa-solid fa-circle-minus"></i></span><span style="float:right"><button id="clearFilters" class="btn btn-primary btn-sm" onclick="removeFilters()" >Clear</button></span></h4>
@@ -36,7 +37,7 @@ $('[data-toggle="tooltip"]').tooltip()
   <input type="hidden" id="unchecked" name="unchecked" value=''/>
   <input type="hidden" id="checked" name="checked" value=''/>
   <input type="hidden" id="filtersSelected" name="filtersSelected" value='<%=gson.toJson(filtersSelected)%>'/>
-
+  <input type="hidden" id="expandAllFilters" name="expandAllFilters" value="<%=request.getAttribute("expandAllFilters")%>">
   <%
     List<String> aggNames=Arrays.asList("indication","status","phases","standardAges","therapyType","therapyRoute","drugProductType","deliverySystem","sponsorClass","sponsor",
             "vectorType","editorType","targetTissueOrCell","targetGeneOrVariant","routeOfAdministration", "mechanismOfAction", "locations");
@@ -66,7 +67,7 @@ $('[data-toggle="tooltip"]').tooltip()
         <div class="form-check">
           <input class="form-check-input" type="checkbox" name="<%=aggName%>" value="<%=bkt.getKey()%>" id="<%=bkt.getKey()%>">
           <label class="form-check-label" for="<%=bkt.getKey()%>">
-            <%=bkt.getKey()%>&nbsp;(<%=bkt.getDocCount()%>)
+            <%=bkt.getKey()%>&nbsp;<!--(<%--=bkt.getDocCount()--%>)-->
           </label>
         </div>
           <%}}%>

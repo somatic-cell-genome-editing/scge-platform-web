@@ -22,6 +22,18 @@ public class ClinicalTrialEditController {
         req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
         return null;
     }
+
+    @RequestMapping("/upload")
+    public String upload(HttpServletRequest req,HttpServletResponse res) throws Exception{
+     String nctId= req.getParameter("nctid");
+     if(!nctId.isEmpty()){
+         ctDAO.downloadClinicalTrailByNctId(nctId);
+     }else {
+         req.setAttribute("page", "/WEB-INF/jsp/edit/ctEditHome");
+         req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
+     }
+        return null;
+    }
     @PostMapping("/report/{nctId}/edit")
     public String editClinicalTrialReport(
             HttpServletRequest req,
