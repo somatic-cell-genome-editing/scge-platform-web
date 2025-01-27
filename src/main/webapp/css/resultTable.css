@@ -59,9 +59,14 @@
     white-space:nowrap;
 }
 .tablesorter-scroller.tablesorter-scroller-has-fixed-columns > .tablesorter-scroller-table{
-    scrollbar-color: darkorange #ffff;
+    scrollbar-color: blue #ffff;
 }
-
+.tablesorter tr th{
+    /*background-color: #e9ecef;*/
+    background-color: whitesmoke;
+    padding-top:20px;
+    border:1px solid #e9ecef
+}
 /*.search table tr:hover {*/
 /*    cursor: pointer;*/
 /*}*/
