@@ -30,10 +30,10 @@
     var filterMap='<%=gson.toJson(filterMap)%>'
     var json=JSON.parse(filterMap)
 </script>
-<%
-    if(hits.size()==0){%>
-        <h4>0 results found for term <%=request.getAttribute("searchTerm")%></h4>
-    <%}else{%>
+<%--<%--%>
+<%--    if(hits.size()==0){%>--%>
+<%--        <h4>0 results found for term <%=request.getAttribute("searchTerm")%></h4>--%>
+<%--    <%}else{%>--%>
 
 <div style="background-color: whitesmoke;padding: 20px" class="jumbotron page-header">
     <h3 style="color: #1a80b6; font-family: 'Roboto Slab', serif; font-weight: 400;">Clinical Trials - Gene Therapy Trial Browser</h3>
@@ -77,7 +77,12 @@
               <div class="padding"></div>
                 <!-- BEGIN TABLE RESULT -->
               <div style="width:100%">
+                  <%
+                      if(hits.size()==0){%>
+                          <h4>0 results found <!--for term <%--=request.getAttribute("searchTerm")--%>--></h4>
+                      <%}else{%>
                <%@include file="resultsTable.jsp"%>
+                  <%}%>
               </div>
 
             </div>
@@ -95,4 +100,4 @@
     For the most up to date information, please refer to clinicaltrials.gov or the Sponsor's website.
 
     The information contained within this table does not make use of any confidential or privileged information-all data is collected from publicly available sources.</small>
-<%}%>
+<%--<%}%>--%>
