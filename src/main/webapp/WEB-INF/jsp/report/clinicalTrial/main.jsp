@@ -601,7 +601,7 @@
         <% if(isEditMode) { %>
         <div style="margin-top: 20px; text-align: center;">
             <button type="submit" class="btn btn-primary" onclick="return validateForm()" >Save Changes</button>
-            <a href="/platform/clinicalTrials/report/<%=clinicalTrialData.getNctId()%>" class="btn btn-secondary">Cancel</a>
+            <a href="/platform/data/clinicalTrials/report/<%=clinicalTrialData.getNctId()%>" class="btn btn-secondary">Cancel</a>
         </div>
         <% } %>
     </form>

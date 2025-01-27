@@ -62,10 +62,15 @@
     <div class="row">
         <div class="col"> <span>Showing all  <%=hits.size()%> results ...</span></div>
         <br>
-        <div class="col-2">
-            <div style="width: 40%;">
+        <div class="col-2 d-flex justify-content-end gap-2">
+<%--            <div style="width: 40%;">--%>
                 <div class="input-group"><button class="btn btn-sm btn-info text-nowrap" data-toggle="modal" data-target="#definitionsModal">Help Doc&nbsp;&nbsp;<i class="fa fa-question-circle" aria-hidden="true" style="color:whitesmoke"></i></button></div>
-                </div>
+<%--                </div>--%>
+    <% if (request.getServerName().equals("localhost") || request.getServerName().equals("dev.scge.mcw.edu") || request.getServerName().equals("stage.scge.mcw.edu") ) { %>
+    <a href="/platform/clinicalTrialEdit/home/" class="btn btn-primary">
+        Add
+    </a>
+    <%}%>
 
             <%@include file="../../definitions/modal.jsp"%>
             </div>
