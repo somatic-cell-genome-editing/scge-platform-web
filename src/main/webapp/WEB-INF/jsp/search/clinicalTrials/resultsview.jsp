@@ -35,7 +35,7 @@
 <%--        <h4>0 results found for term <%=request.getAttribute("searchTerm")%></h4>--%>
 <%--    <%}else{%>--%>
 
-<div style="background-color: whitesmoke;padding: 20px" class="jumbotron page-header">
+<div style="background-color: whitesmoke;padding: 10px" class="jumbotron">
     <h3 style="color: #1a80b6; font-family: 'Roboto Slab', serif; font-weight: 400;">Clinical Trials - Gene Therapy Trial Browser</h3>
     <p>The Gene Therapy Trial Browser represents a unique publicly accessible, free database for the benefit of users seeking information on gene therapy development. The information within integrates various sources, including clinicaltrials.gov, publications, sponsor press releases, patent applications, and more to give a comprehensive overview of the gene therapy clinical trial landscape.
     </p>
