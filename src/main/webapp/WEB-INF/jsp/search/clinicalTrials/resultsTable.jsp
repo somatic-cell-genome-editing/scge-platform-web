@@ -243,7 +243,7 @@ $(this).off('mouseleave');
             if(location.size()>1){
     %>
     <a data-container="body" data-trigger="hover click" data-toggle="popover" data-placement="bottom" data-popover-content="#popover-<%=sourceFields.get("nctId")%>" title="Locations" style="background-color: transparent;cursor: pointer;text-decoration: none">
-    <span style="display: none">Locations:</span><span style="text-decoration:underline"><%=location.get(0)%>&nbsp; + <%=location.size()%></span>
+    <span style="display: none">Locations:</span><span style="text-decoration:underline"><%=location.get(0)%>&nbsp; + <%=location.size()-1%>&nbsp;more</span>
     </a>
     <div style="display: none" id="popover-<%=sourceFields.get("nctId")%>">
         <div class="popover-body"><%=locations%></div>
@@ -253,7 +253,19 @@ $(this).off('mouseleave');
 
     <%}}}%>
         </td>
-        <td><%=sourceFields.get("isFDARegulated")%></td>
+        <td style="text-align: center">
+            <%
+                String isFDARegulated="";
+                if(sourceFields.get("isFDARegulated")!=null){
+                    String regulated= (String) sourceFields.get("isFDARegulated");
+                    if(regulated.equalsIgnoreCase("true")) {
+                        isFDARegulated += "<i class=\"fa-solid fa-check\" style='color:green'></i>";
+                    }else{
+                        isFDARegulated+="<i class=\"fa-solid fa-xmark\" style='color:red'></i>";
+                    }
+            }%>
+            <%=isFDARegulated%>
+        </td>
         <td class="manual"><%=sourceFields.get("patents")%></td>
         <td class="manual"><%=sourceFields.get("recentUpdates")%></td>
         <td class="manual lastColumn">
