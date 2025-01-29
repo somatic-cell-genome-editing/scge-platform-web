@@ -70,7 +70,7 @@
 
             <%@include file="../../definitions/modal.jsp"%>
     <% if (request.getServerName().equals("localhost") || request.getServerName().equals("dev.scge.mcw.edu") || request.getServerName().equals("stage.scge.mcw.edu") ) { %>
-    &nbsp;&nbsp;<a href="/platform/clinicalTrialEdit/home/" class="btn btn-primary btn-sm">
+    &nbsp;&nbsp;<a style="margin-left: 20px" href="/platform/clinicalTrialEdit/home/" class="btn btn-primary btn-sm">
         Add
     </a>
     <%}%>
