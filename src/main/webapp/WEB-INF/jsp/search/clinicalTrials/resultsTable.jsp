@@ -239,13 +239,23 @@ $(this).off('mouseleave');
 <%--            <%=locations%>--%>
 <%--            <%}%>--%>
     <%if(sourceFields.get("locations")!=null){
-        List<String> location= (List<String>) sourceFields.get("locations");
+        List<String> location= ((List<String>) sourceFields.get("locations"));
+        Collections.sort(location);
+        String firstMatch = "";
+        for(String loc:location){
+            if(loc.equalsIgnoreCase("united states")){
+                firstMatch+=loc;
+            }
+        }
+        if(firstMatch.isEmpty()){
+            firstMatch=location.get(0);
+        }
         String locations= location.stream().collect(Collectors.joining(", "));
         if(locations.length()>0){
             if(location.size()>1){
     %>
     <a data-container="body" data-trigger="hover click" data-toggle="popover" data-placement="bottom" data-popover-content="#popover-<%=sourceFields.get("nctId")%>" title="Locations" style="background-color: transparent;cursor: pointer;text-decoration: none">
-    <span style="display: none">Locations:</span><span style="text-decoration:underline"><%=location.get(0)%>&nbsp; + <%=location.size()-1%>&nbsp;more</span>
+    <span style="display: none">Locations:</span><span style="text-decoration:underline"><%=firstMatch%>&nbsp; + <%=location.size()-1%>&nbsp;more</span>
     </a>
     <div style="display: none" id="popover-<%=sourceFields.get("nctId")%>">
         <div class="popover-body"><%=locations%></div>
