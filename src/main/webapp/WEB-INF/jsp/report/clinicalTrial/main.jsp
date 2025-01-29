@@ -25,6 +25,16 @@
     List<ClinicalTrialExternalLink> clinicalExtLinkData = (List<ClinicalTrialExternalLink>) request.getAttribute("clinicalExtLinkData");
 //    String successMessage = (String)session.getAttribute("successMessage");
 %>
+<%--This result attribute comes from ClinicalTrialEditController, and when clinicalTrialEdit/home/ is accessed--%>
+<%
+    String result = (String) session.getAttribute("result");
+    if(result != null) {
+%>
+<script>
+    alert('<%= result %>');
+    <% session.removeAttribute("result"); %>
+</script>
+<% } %>
 
 <div style="display: flex; justify-content: space-between; align-items: flex-end;">
     <h3 style="color: #1a80b6; font-family: 'Roboto Slab', serif; font-weight: 400;">

@@ -4,9 +4,8 @@ import edu.mcw.scge.dao.implementation.ClinicalTrailDAO;
 import edu.mcw.scge.datamodel.ClinicalTrialExternalLink;
 import edu.mcw.scge.datamodel.ClinicalTrialRecord;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
@@ -20,18 +19,6 @@ public class ClinicalTrialEditController {
     public String home(HttpServletRequest req,HttpServletResponse res) throws Exception{
         req.setAttribute("page", "/WEB-INF/jsp/edit/ctEditHome");
         req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
-        return null;
-    }
-
-    @RequestMapping("/upload")
-    public String upload(HttpServletRequest req,HttpServletResponse res) throws Exception{
-     String nctId= req.getParameter("nctid");
-     if(!nctId.isEmpty()){
-         ctDAO.downloadClinicalTrailByNctId(nctId);
-     }else {
-         req.setAttribute("page", "/WEB-INF/jsp/edit/ctEditHome");
-         req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
-     }
         return null;
     }
     @PostMapping("/report/{nctId}/edit")
@@ -115,5 +102,25 @@ public class ClinicalTrialEditController {
             req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
             return null;
         }
+    }
+    @GetMapping("/add")
+    public String addClinicalTrialReport(@RequestParam(name="nctId",required = true)String nctId,
+                                         HttpServletRequest req,
+                                         HttpServletResponse res) throws Exception{
+        if(nctId!=null&&!nctId.trim().isEmpty()){
+            String result = ctDAO.downloadClinicalTrailByNctId(nctId);
+            switch(result){
+                case "inserted":
+                case "updated":
+                    req.getSession().setAttribute("result",result.equals("inserted")?"Clinical trial data successfully inserted":
+                            "Clinical trial data already exists, and got successfully updated");
+                    res.sendRedirect("/platform/data/clinicalTrials/report/"+nctId+"?edit=true");
+                    return null;
+                default:
+                    req.getSession().setAttribute("result","Error processing clinical trial data: " + result);
+                    res.sendRedirect("/platform/clinicalTrialEdit/home/");
+            }
+        }
+        return null;
     }
 }

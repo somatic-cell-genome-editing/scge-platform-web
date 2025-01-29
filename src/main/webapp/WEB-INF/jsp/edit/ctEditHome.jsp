@@ -55,13 +55,22 @@
             background-color: #45a049;
         }
     </style>
+    <%
+        String result = (String) session.getAttribute("result");
+        if(result != null) {
+    %>
+    <script>
+        alert('<%= result %>');
+        <% session.removeAttribute("result"); %>
+    </script>
+    <% } %>
 </head>
 <body>
 <h1 class="clinical-title">Clinical Trials Editor</h1>
 <h5 class="clinical-subtitle">Add a new Clinical Trial</h5>
-<form class="clinical-form" action="" method="get">
-    <label for="nctid" class="clinical-label">Enter NCTID:</label>
-    <input type="text" id="nctid" name="nctid" class="clinical-input" required>
+<form class="clinical-form" action="/platform/clinicalTrialEdit/add" method="get">
+    <label for="nctId" class="clinical-label">Enter NCTID:</label>
+    <input type="text" id="nctId" name="nctId" class="clinical-input" required>
     <input type="submit" value="Submit" class="clinical-submit">
 </form>
 <br>
