@@ -76,7 +76,7 @@
     /*}*/
 
     #resultsTable {
-        scrollbar-color: #007BFF #f1f1f1;  /* thumb and track color */
+        scrollbar-color: #ff6b00 #f1f1f1;  /* thumb and track color */
     }
 
 
@@ -141,8 +141,10 @@ $(this).off('mouseleave');
 <%--        <td style="font-weight: bold"><a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nctId")%>" target="_blank"><%=sourceFields.get("nctId")%></a></td>--%>
     <td style="font-weight: bold" class="firstColumn">
         <%=sourceFields.get("nctId")%>&nbsp;
-        <a href="/platform/data/clinicalTrials/report/<%=sourceFields.get("nctId")%>" target="_blank" style="text-decoration: none;" title="View Report">
-            <i class="far fa-file"></i>
+        <a href="/platform/data/clinicalTrials/report/<%=sourceFields.get("nctId")%>" target="_blank" style="text-decoration: none;">
+            <button style="font-size:0.75rem;font-weight: normal;padding:2px 5px;border: none; background-color: #007bff; color: white; border-radius: 4px; cursor: pointer;">
+                View Report
+            </button>
         </a>
     </td>
         <td class="manual"><%=sourceFields.get("indication")%></td>
