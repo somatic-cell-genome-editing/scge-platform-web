@@ -172,22 +172,22 @@ $(this).off('mouseleave');
                 List<String> dosages=new ArrayList<>();
                 if(sourceFields.get("dose1")!=null && !sourceFields.get("dose1").toString().equals("")){
                     if(sourceFields.get("dose2")!=null && !sourceFields.get("dose2").toString().equals(""))
-                    dosages.add("<b>Dose1:</b>&nbsp;"+(sourceFields.get("dose1").toString()));
+                    dosages.add("<b>Dose 1:</b>&nbsp;"+(sourceFields.get("dose1").toString()));
                     else
                         dosages.add((sourceFields.get("dose1").toString()));
 
                 }
                 if(sourceFields.get("dose2")!=null && !sourceFields.get("dose2").toString().equals("")){
-                    dosages.add("<b>Dose2:</b>&nbsp;"+sourceFields.get("dose2").toString());
+                    dosages.add("<b>Dose 2:</b>&nbsp;"+sourceFields.get("dose2").toString());
                 }
                 if(sourceFields.get("dose3")!=null && !sourceFields.get("dose3").toString().equals("")){
-                    dosages.add("<b>Dose3:</b>&nbsp;"+(sourceFields.get("dose3").toString()));
+                    dosages.add("<b>Dose 3:</b>&nbsp;"+(sourceFields.get("dose3").toString()));
                 }
                 if(sourceFields.get("dose4")!=null && !sourceFields.get("dose4").toString().equals("")){
-                    dosages.add("<b>Dose4:</b>&nbsp;"+(sourceFields.get("dose4").toString()));
+                    dosages.add("<b>Dose 4:</b>&nbsp;"+(sourceFields.get("dose4").toString()));
                 }
                 if(sourceFields.get("dose5")!=null && !sourceFields.get("dose5").toString().equals("")){
-                    dosages.add("<b>Dose5:</b>&nbsp;"+(sourceFields.get("dose5").toString()));
+                    dosages.add("<b>Dose 5:</b>&nbsp;"+(sourceFields.get("dose5").toString()));
                 }
                 if(dosages.size()==1){
                     dosage=dosages.get(0);
