@@ -11,6 +11,9 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Collections" %>
 <%@ page import="java.util.Comparator" %>
+<%@ page import="edu.mcw.scge.services.SCGEContext" %>
+<%@ page import="edu.mcw.scge.datamodel.Person" %>
+<%@ page import="edu.mcw.scge.configuration.Access" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -24,6 +27,13 @@
    ClinicalTrialRecord clinicalTrialData = (ClinicalTrialRecord) request.getAttribute("clinicalTrialData");
     List<ClinicalTrialExternalLink> clinicalExtLinkData = (List<ClinicalTrialExternalLink>) request.getAttribute("clinicalExtLinkData");
 //    String successMessage = (String)session.getAttribute("successMessage");
+    Access access= new Access();
+    Person p = null;
+    try {
+        p = access.getUser(request.getSession());
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
 %>
 <%--This result attribute comes from ClinicalTrialEditController, and when clinicalTrialEdit/home/ is accessed--%>
 <%
@@ -40,9 +50,12 @@
     <h3 style="color: #1a80b6; font-family: 'Roboto Slab', serif; font-weight: 400;">
         Gene Therapy Trial Report
     </h3>
-    <% if (request.getServerName().equals("localhost") || request.getServerName().equals("dev.scge.mcw.edu") || request.getServerName().equals("stage.scge.mcw.edu") ) { %>
+    <% if (request.getServerName().equals("localhost") || request.getServerName().equals("dev.scge.mcw.edu") || request.getServerName().equals("stage.scge.mcw.edu") )
+    {
+        if (p!=null && access.isAdmin(p) && !SCGEContext.isProduction()) {
+    %>
     <a style="margin-right: 26px;margin-top: 0" href="/platform/data/clinicalTrials/report/<%=clinicalTrialData.getNctId()%>?edit=true" class="btn btn-primary">Edit</a>
-    <%}%>
+    <%}}%>
 </div>
 <%
     boolean isEditMode = ((request.getServerName().equals("localhost") || request.getServerName().equals("dev.scge.mcw.edu") || request.getServerName().equals("stage.scge.mcw.edu"))&&request.getParameter("edit") != null && request.getParameter("edit").equals("true"));

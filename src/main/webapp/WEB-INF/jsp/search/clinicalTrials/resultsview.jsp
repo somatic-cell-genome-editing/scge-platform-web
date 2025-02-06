@@ -2,7 +2,10 @@
 <%@ page import="org.elasticsearch.action.search.SearchResponse" %>
 <%@ page import="com.google.gson.Gson" %>
 
-<%@ page import="java.util.*" %><%--
+<%@ page import="java.util.*" %>
+<%@ page import="edu.mcw.scge.services.SCGEContext" %>
+<%@ page import="edu.mcw.scge.datamodel.Person" %>
+<%@ page import="edu.mcw.scge.configuration.Access" %><%--
   Created by IntelliJ IDEA.
   User: jthota
   Date: 3/26/2024
@@ -23,7 +26,13 @@
     Map<String, List<String>> filterMap= (Map<String, List<String>>) request.getAttribute("filterMap");
     List<String> filtersSelected= (List<String>) request.getAttribute("filtersSelected");
     request.setAttribute("filtersSelected", filtersSelected);
-
+    Access access= new Access();
+    Person p = null;
+    try {
+        p = access.getUser(request.getSession());
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
 %>
 
 <script>
@@ -70,10 +79,19 @@
 
             <%@include file="../../definitions/modal.jsp"%>
     <% if (request.getServerName().equals("localhost") || request.getServerName().equals("dev.scge.mcw.edu") || request.getServerName().equals("stage.scge.mcw.edu") ) { %>
-    &nbsp;&nbsp;<a style="margin-left: 20px" href="/platform/clinicalTrialEdit/home/" class="btn btn-primary btn-sm">
-        Add
-    </a>
-    <%}%>
+    <%
+
+        try {
+            if (p!=null && access.isAdmin(p) && !SCGEContext.isProduction()) {
+    %>&nbsp;&nbsp;
+        <a style="margin-left: 20px" href="/platform/clinicalTrialEdit/home/" class="btn btn-primary btn-sm">
+            Add
+        </a>
+        <%}
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    }%>
             </div>
 
         </div>
