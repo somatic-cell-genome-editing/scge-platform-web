@@ -31,7 +31,7 @@
         <input type="hidden" name="newLinkId" value="${tempId}">
         <td>     
             <select name="newExtLink_${tempId}" class="form-control">
-                <option value="Grant">Grant</option>
+<!--                <option value="Grant">Grant</option>-->
                 <option value="Protocol">Protocol</option>
                 <option value="Preclinical Publications">Preclinical Publications</option>
                 <option value="News and Press Releases">News and Press Releases</option>
