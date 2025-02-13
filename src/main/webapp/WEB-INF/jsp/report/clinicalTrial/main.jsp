@@ -571,6 +571,9 @@
             String currentLinkType = "";
             for (int i = 0; i < clinicalExtLinkData.size(); i++) {
                 ClinicalTrialExternalLink cte = clinicalExtLinkData.get(i);
+                if (cte.getType() != null && cte.getType().equalsIgnoreCase("Grant")) {
+                    continue;
+                }
                 // Check if the current link_type is different from the previous
                 if (!cte.getType().equals(currentLinkType)) {
                     // If it's not the first group, close the previous list
