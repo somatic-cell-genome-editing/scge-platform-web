@@ -93,8 +93,8 @@
                 <%--        <a class="p-2 text-dark" href="#">About Us</a>--%>
                 <a class="p-2 text-dark" href="/platform/home">Home</a>
                 <a class="p-2 text-dark" href="/platform/data/search/ClinicalTrial">Gene Therapy Trial Browser</a>
-                <a class="p-2 text-dark" href="/platform/data/ind/templates">Templates & Forms</a>
-                <a class="p-2 text-dark" href="/platform/data/ind/forms">Guidance</a>
+<%--                <a class="p-2 text-dark" href="/platform/data/ind/templates">Templates & Forms</a>--%>
+<%--                <a class="p-2 text-dark" href="/platform/data/ind/forms">Guidance</a>--%>
 
             </nav>
         </div>
