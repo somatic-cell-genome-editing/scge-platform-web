@@ -2,7 +2,7 @@ package edu.mcw.scge.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
@@ -11,8 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.oauth2.client.CommonOAuth2Provider;
 
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.AuthorityUtils;
+
 import org.springframework.security.oauth2.client.InMemoryOAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 
@@ -36,17 +35,15 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
  * Created by jthota on 11/12/2019.
  */
+
 
 @EnableWebSecurity
 @PropertySource("classpath:application.properties")
@@ -57,13 +54,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private static List<String> clients = Arrays.asList("google");
 
-    /*   @Autowired
-    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("bill").password("abc123").roles("USER");
-        auth.inMemoryAuthentication().withUser("admin").password("root123").roles("ADMIN");
-        auth.inMemoryAuthentication().withUser("dba").password("root123").roles("ADMIN","DBA");//dba have two roles.
-    }
-    */
 
     @Bean
     public ClientRegistrationRepository clientRegistrationRepository() {
@@ -77,9 +67,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        if (SecurityConfiguration.REQUIRE_AUTHENTICATION) {
+        if(System.getenv("HOSTNAME")!=null && System.getenv("HOSTNAME").equals("localhost")) {
+            http.authorizeRequests().antMatchers("/**").permitAll();
+        }else{
             http.authorizeRequests()
-                    .antMatchers("/","/home", "/logout", "/oauth_login", "/common/**", "/data/requestAccount", "/loginFailure", "/images/**").permitAll()
+                    .antMatchers("/", "/home", "/logout", "/oauth_login", "/common/**", "/data/requestAccount", "/loginFailure",
+                            "/images/**", "/css/**", "/js/**", "/forms_public/**", "/data/**", "/login.jsp").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .logout()
@@ -102,47 +95,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .baseUri("/login")
                     .and()
                     .tokenEndpoint()
-                    .accessTokenResponseClient(accessTokenResponseClient())
+                    .accessTokenResponseClient(accessTokenResponseClient());
 
-            ;
-
-        }else {
-            http.authorizeRequests()
-                    .antMatchers("**").permitAll()
-                    .anyRequest().authenticated()
-                    .and()
-                    .logout()
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                    .logoutSuccessUrl("/")
-                    .deleteCookies("JSESSIONID")
-                    .invalidateHttpSession(true)
-                    .permitAll()
-                    .and()
-                    .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                    .and()
-                    .oauth2Login()
-                    .loginPage("/dashboard")
-                    .permitAll()
-                    //    .successHandler(successHandler())
-                    .defaultSuccessUrl("/dashboard", true)
-                    .failureUrl("/loginFailure")
-                    .clientRegistrationRepository(clientRegistrationRepository())
-                    .authorizedClientService(authorizedClientService())
-                    .authorizationEndpoint()
-                    .baseUri("/login")
-                    .and()
-                    .tokenEndpoint()
-                    .accessTokenResponseClient(accessTokenResponseClient())
-
-            ;
-
+            http.headers().defaultsDisabled().cacheControl();
         }
-
-
-
-
-        http.headers().defaultsDisabled().cacheControl();
-
     }
     @Bean
     public AuthenticationSuccessHandler successHandler(){
@@ -189,21 +145,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return null;
     }
 
- //   @Configuration
-//    @EnableResourceServer
-//    protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
-//        @Override
-//        public void configure(HttpSecurity http) throws Exception {
-//            // @formatter:off
-//            http.antMatcher("/me").authorizeRequests().anyRequest().authenticated();
-//            // @formatter:on
-//
-//            /*   http
-//                    .authorizeRequests()
-//                    .antMatchers("/scge/**").authenticated()
-//                    .antMatchers("/").permitAll();*/
-//        }
-//    }
     @Bean(name = "filterMultipartResolver")
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();

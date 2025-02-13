@@ -103,7 +103,31 @@
     }
 
 </style>
+<script>
+$(function () {
+$('[data-toggle="popover"]').popover({
+html: true,
+content: function () {
+var content = $(this).attr("data-popover-content");
+return $(content).children(".popover-body").html();
+}
 
+})
+.on("focus", function () {
+$(this).popover("show");
+}).on("focusout", function () {
+var _this = this;
+if (!$(".popover:hover").length) {
+$(this).popover("hide");
+} else {
+$('.popover').mouseleave(function () {
+$(_this).popover("hide");
+$(this).off('mouseleave');
+});
+}
+});
+})
+</script>
 <div id="resultsTable"  style="display: none">
 <table  id="myTable">
     <thead><tr><%@include file="columns.jsp"%></tr></thead>
@@ -117,7 +141,7 @@
 <%--        <td style="font-weight: bold"><a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nctId")%>" target="_blank"><%=sourceFields.get("nctId")%></a></td>--%>
     <td style="font-weight: bold" class="firstColumn">
         <%=sourceFields.get("nctId")%>&nbsp;
-        <a href="/platform/clinicalTrials/report/<%=sourceFields.get("nctId")%>" target="_blank" style="text-decoration: none;">
+        <a href="/platform/data/clinicalTrials/report/<%=sourceFields.get("nctId")%>" target="_blank" style="text-decoration: none;">
             <button style="font-size:0.75rem;font-weight: normal;padding:2px 5px;border: none; background-color: #007bff; color: white; border-radius: 4px; cursor: pointer;">
                 View Report
             </button>
@@ -141,11 +165,44 @@
             <%=sourceFields.get("editorType")%>
             <%}%>
         </td>
-        <td class="manual"><%=sourceFields.get("dose1")%></td>
-        <td class="manual"><%=sourceFields.get("dose2")%></td>
-        <td class="manual"><%=sourceFields.get("dose3")%></td>
-        <td class="manual"><%=sourceFields.get("dose4")%></td>
-        <td class="manual"><%=sourceFields.get("dose5")%></td>
+        <td class="manual">
+
+            <%
+                String dosage=null;
+                List<String> dosages=new ArrayList<>();
+                if(sourceFields.get("dose1")!=null && !sourceFields.get("dose1").toString().equals("")){
+                    if(sourceFields.get("dose2")!=null && !sourceFields.get("dose2").toString().equals(""))
+                    dosages.add("<b>Dose 1:</b>&nbsp;"+(sourceFields.get("dose1").toString()));
+                    else
+                        dosages.add((sourceFields.get("dose1").toString()));
+
+                }
+                if(sourceFields.get("dose2")!=null && !sourceFields.get("dose2").toString().equals("")){
+                    dosages.add("<b>Dose 2:</b>&nbsp;"+sourceFields.get("dose2").toString());
+                }
+                if(sourceFields.get("dose3")!=null && !sourceFields.get("dose3").toString().equals("")){
+                    dosages.add("<b>Dose 3:</b>&nbsp;"+(sourceFields.get("dose3").toString()));
+                }
+                if(sourceFields.get("dose4")!=null && !sourceFields.get("dose4").toString().equals("")){
+                    dosages.add("<b>Dose 4:</b>&nbsp;"+(sourceFields.get("dose4").toString()));
+                }
+                if(sourceFields.get("dose5")!=null && !sourceFields.get("dose5").toString().equals("")){
+                    dosages.add("<b>Dose 5:</b>&nbsp;"+(sourceFields.get("dose5").toString()));
+                }
+                if(dosages.size()==1){
+                    dosage=dosages.get(0);
+                }else if(dosages.size()>1){
+                    dosage=dosages.stream().collect(Collectors.joining(" | "));
+                }
+                if(dosage!=null){
+            %>
+            <%=dosage%>
+            <%}%>
+        </td>
+<%--        <td class="manual"><%=sourceFields.get("dose2")%></td>--%>
+<%--        <td class="manual"><%=sourceFields.get("dose3")%></td>--%>
+<%--        <td class="manual"><%=sourceFields.get("dose4")%></td>--%>
+<%--        <td class="manual"><%=sourceFields.get("dose5")%></td>--%>
         <td class="text-nowrap">
             <%
                 List<String> phases= (List<String>) sourceFields.get("phases");
@@ -179,14 +236,54 @@
         </td>
         <td><%=sourceFields.get("enrorllmentCount")%></td>
         <td><%=sourceFields.get("numberOfLocations")%></td>
-        <td><%
-            if(sourceFields.get("locations")!=null){
-                List<String> location= (List<String>) sourceFields.get("locations");
-                String locations= location.stream().collect(Collectors.joining(", "));
-        %>
-            <%=locations%>
-            <%}%></td>
-        <td><%=sourceFields.get("isFDARegulated")%></td>
+    <td>
+<%--        <td><%--%>
+<%--            if(sourceFields.get("locations")!=null){--%>
+<%--                List<String> location= (List<String>) sourceFields.get("locations");--%>
+<%--                String locations= location.stream().collect(Collectors.joining(", "));--%>
+<%--        %>--%>
+<%--            <%=locations%>--%>
+<%--            <%}%>--%>
+    <%if(sourceFields.get("locations")!=null){
+        List<String> location= ((List<String>) sourceFields.get("locations"));
+        Collections.sort(location);
+        String firstMatch = "";
+        for(String loc:location){
+            if(loc.equalsIgnoreCase("united states")){
+                firstMatch+=loc;
+            }
+        }
+        if(firstMatch.isEmpty()){
+            firstMatch=location.get(0);
+        }
+        String locations= location.stream().collect(Collectors.joining(", "));
+        if(locations.length()>0){
+            if(location.size()>1){
+    %>
+    <a data-container="body" data-trigger="hover click" data-toggle="popover" data-placement="bottom" data-popover-content="#popover-<%=sourceFields.get("nctId")%>" title="Locations" style="background-color: transparent;cursor: pointer;text-decoration: none">
+    <span style="display: none">Locations:</span><span style="text-decoration:underline"><%=firstMatch%>&nbsp; + <%=location.size()-1%>&nbsp;more</span>
+    </a>
+    <div style="display: none" id="popover-<%=sourceFields.get("nctId")%>">
+        <div class="popover-body"><%=locations%></div>
+    </div>
+    <%}else{%>
+            <%=location.get(0)%>
+
+    <%}}}%>
+        </td>
+        <td style="text-align: center">
+            <%
+                String isFDARegulated="";
+                if(sourceFields.get("isFDARegulated")!=null){
+                    String regulated= (String) sourceFields.get("isFDARegulated");
+                    if(regulated.equalsIgnoreCase("true")) {
+                        isFDARegulated += "<i class=\"fa-solid fa-check\" style='color:green'></i>";
+                    }else{
+                        isFDARegulated+="<i class=\"fa-solid fa-xmark\" style='color:red'></i>";
+                    }
+            }%>
+            <%=isFDARegulated%>
+        </td>
         <td class="manual"><%=sourceFields.get("patents")%></td>
         <td class="manual"><%=sourceFields.get("recentUpdates")%></td>
         <td class="manual lastColumn">

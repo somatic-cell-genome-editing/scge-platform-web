@@ -1,5 +1,7 @@
 package edu.mcw.scge.service.es.clinicalTrials;
 
+import edu.mcw.scge.dao.implementation.DefinitionDAO;
+import edu.mcw.scge.datamodel.Definition;
 import edu.mcw.scge.services.ESClient;
 import edu.mcw.scge.services.SCGEContext;
 import org.elasticsearch.action.search.SearchRequest;
@@ -26,9 +28,22 @@ public class ClinicalTrialsService {
     public static Map<String, String> fieldDisplayNames= new HashMap<>();
     static{
             for(String field:aggregationFields) {
-                String dispalyName=String.join(" ", field.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])"));
-                fieldDisplayNames.put(field, StringUtils.capitalize(dispalyName));
+                String displayName=String.join(" ", field.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])"));
+                fieldDisplayNames.put(field, StringUtils.capitalize(displayName));
             }
+
+    }
+    public static Map<String, String> facetDefinitions= new HashMap<>();
+    static{
+        DefinitionDAO definitionDAO=new DefinitionDAO();
+        try {
+            List<Definition> definitions=definitionDAO.getDefinitionsByCategory("Table Column Header");
+            for(Definition d:definitions){
+                facetDefinitions.put(d.getTerm(), d.getDefinition());
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
@@ -57,12 +72,11 @@ public class ClinicalTrialsService {
     }
     public BoolQueryBuilder filter(Map<String, List<String>> filters){
         BoolQueryBuilder q=new BoolQueryBuilder();
-        DisMaxQueryBuilder dqb=new DisMaxQueryBuilder();
         for(String filter:filters.keySet()) {
             List<String> filterValues=filters.get(filter);
-            dqb.add(QueryBuilders.termsQuery(filter + ".keyword", filterValues.toArray()));
+            q.filter().add(QueryBuilders.termsQuery(filter + ".keyword", filterValues.toArray()));
         }
-        q.must(dqb);
+      //  q.must(dqb);
         return q;
     }
     public BoolQueryBuilder buildBoolQuery( String searchTerm, String category){

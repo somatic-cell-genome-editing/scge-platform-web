@@ -12,34 +12,34 @@
 
     <style>
 
-    @media (max-width: 767.98px) {
-        .sidebar {
-            top: 11.5rem;
-            padding: 0;
+        @media (max-width: 767.98px) {
+            .sidebar {
+                top: 11.5rem;
+                padding: 0;
+            }
         }
-    }
 
-    .navbar {
-        box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1);
-    }
-
-    @media (min-width: 767.98px) {
         .navbar {
-            top: 0;
-            position: sticky;
-            z-index: 999;
+            box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1);
         }
-    }
 
-    .sidebar .nav-link {
-        color: #333;
-    }
+        @media (min-width: 767.98px) {
+            .navbar {
+                top: 0;
+                position: sticky;
+                z-index: 999;
+            }
+        }
 
-    .sidebar .nav-link.active {
-        color: #0d6efd;
-    }
+        .sidebar .nav-link {
+            color: #333;
+        }
 
-</style>
+        .sidebar .nav-link.active {
+            color: #0d6efd;
+        }
+
+    </style>
 </head>
 <body>
 
@@ -68,40 +68,40 @@
                     </li>
                     <li class="nav-item">&nbsp;</li>
                     <li class="nav-item">
-                        <button class="btn btn-primary">Create Application</button>
+                        <a href="/platform/ind/application/new"><button class="btn btn-primary">Create Application</button></a>
                     </li>
-<%--                    <li class="nav-item">--%>
-<%--                        <a class="nav-link" href="#">--%>
-<%--                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>--%>
-<%--                            <span class="ml-2">Customers</span>--%>
-<%--                        </a>--%>
-<%--                    </li>--%>
-<%--                    <li class="nav-item">--%>
-<%--                        <a class="nav-link" href="#">--%>
-<%--                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>--%>
-<%--                            <span class="ml-2">Reports</span>--%>
-<%--                        </a>--%>
-<%--                    </li>--%>
-<%--                    <li class="nav-item">--%>
-<%--                        <a class="nav-link" href="#">--%>
-<%--                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>--%>
-<%--                            <span class="ml-2">Integrations</span>--%>
-<%--                        </a>--%>
-<%--                    </li>--%>
-<%--                    <li class="nav-item">&nbsp;</li>--%>
-<%--                    <li class="nav-item">&nbsp;</li>--%>
-<%--                    <li class="nav-item">--%>
+                    <%--                    <li class="nav-item">--%>
+                    <%--                        <a class="nav-link" href="#">--%>
+                    <%--                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>--%>
+                    <%--                            <span class="ml-2">Customers</span>--%>
+                    <%--                        </a>--%>
+                    <%--                    </li>--%>
+                    <%--                    <li class="nav-item">--%>
+                    <%--                        <a class="nav-link" href="#">--%>
+                    <%--                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>--%>
+                    <%--                            <span class="ml-2">Reports</span>--%>
+                    <%--                        </a>--%>
+                    <%--                    </li>--%>
+                    <%--                    <li class="nav-item">--%>
+                    <%--                        <a class="nav-link" href="#">--%>
+                    <%--                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>--%>
+                    <%--                            <span class="ml-2">Integrations</span>--%>
+                    <%--                        </a>--%>
+                    <%--                    </li>--%>
+                    <%--                    <li class="nav-item">&nbsp;</li>--%>
+                    <%--                    <li class="nav-item">&nbsp;</li>--%>
+                    <%--                    <li class="nav-item">--%>
 
-<%--                            <ul class="progress">--%>
-<%--                                <li class="active"></li>--%>
-<%--                                <li style="background-color: white;padding-left: 20px">In Progress</li>--%>
-<%--                            </ul>--%>
-<%--                            <ul class="progress">--%>
-<%--                                <li style="background-color:green "></li>--%>
-<%--                                <li style="background-color: white;padding-left: 20px">Completed</li>--%>
-<%--                            </ul>--%>
+                    <%--                            <ul class="progress">--%>
+                    <%--                                <li class="active"></li>--%>
+                    <%--                                <li style="background-color: white;padding-left: 20px">In Progress</li>--%>
+                    <%--                            </ul>--%>
+                    <%--                            <ul class="progress">--%>
+                    <%--                                <li style="background-color:green "></li>--%>
+                    <%--                                <li style="background-color: white;padding-left: 20px">Completed</li>--%>
+                    <%--                            </ul>--%>
 
-<%--                    </li>--%>
+                    <%--                    </li>--%>
                 </ul>
             </div>
 
@@ -210,76 +210,9 @@
                         <h5 class="card-header">eCTD v4.0 Comprehensive Table of Contents Headings and Hierarchy</h5>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th colspan="3">CTD Section</th>
-                                        <th scope="col">Document</th>
-                                        <th scope="col">Required for Initial IND(Y/N/M)</th>
-                                        <th scope="col">Uploaded</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <th scope="row">1.1</th>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Forms</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"></th>
-                                        <td>1.1.1</td>
-                                        <td></td>
-                                        <td>Form FDA 1571</td>
-                                        <td>Y</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"></th>
-                                        <td>1.1.2</td>
-                                        <td></td>
-                                        <td>Form FDA 3564</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">1.2</th>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Cover Letter</td>
-                                        <td>Y</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">1.3</th>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Administrative Information</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"></th>
-                                        <td>1.3.1</td>
-                                        <td></td>
-                                        <td>Contact/Sponsor/Applicant info</td>
-                                        <td>Y</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"></th>
-                                        <td></td>
-                                        <td>1.3.1.1</td>
-                                        <td>Change of Address</td>
-                                        <td>N</td>
-                                        <td></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                                <%@include file="../ctd/ctdTable.jsp"%>
                             </div>
-                            <a href="#" class="btn btn-block btn-light">View all</a>
+                            <%--                            <a href="#" class="btn btn-block btn-light">View all</a>--%>
                         </div>
                     </div>
                 </div>

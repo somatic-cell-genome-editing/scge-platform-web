@@ -33,23 +33,23 @@
 <%--            </div>--%>
 
         </ul>
-<%--    <ul class="navbar-nav" style="margin-left: 2%">--%>
+    <ul class="navbar-nav" style="margin-left: 2%">
 
-<%--          <c:choose>--%>
-<%--            <c:when test="${userAttributes.get('name')!=null}">--%>
+          <c:choose>
+            <c:when test="${userAttributes.get('name')!=null}">
 
-<%--                <li class="nav-item text-nowrap" style="padding-right: 2%"><a href="/platform/dashboard"> <button class="btn btn-primary btn-sm">My Dashboard</button></a></li>--%>
-<%--                <li class="nav-item"><img class="rounded-circle" src="${userAttributes.get('picture')}" width="20" alt=""></li>--%>
-<%--                <li class="nav-item text-nowrap"  style="padding-right: 2%"><span class="text-light" >&nbsp;${userAttributes.get('name')}&nbsp;&nbsp;</span></li>--%>
-<%--                <li class="nav-item"  style="padding-right: 2%"><a href="/platform/logout" title="Sign out"><button class="btn btn-light btn-sm">Logout</button></a></li>--%>
-<%--      </c:when>--%>
-<%--            <c:otherwise>--%>
-<%--               <li class="nav-item"  style="padding-right: 2%"><a href="/platform/login.jsp" title="Consortium Member Sign In"><button class="btn btn-light btn-sm" style="padding-top:0;padding-bottom: 0">Login</button></a></li>--%>
-<%--                </c:otherwise>--%>
-<%--          </c:choose>--%>
+                <li class="nav-item text-nowrap" style="padding-right: 2%"><a href="/platform/dashboard"> <button class="btn btn-primary btn-sm">My Dashboard</button></a></li>
+                <li class="nav-item"><img class="rounded-circle" src="${userAttributes.get('picture')}" width="20" alt=""></li>
+                <li class="nav-item text-nowrap"  style="padding-right: 2%"><span class="text-light" >&nbsp;${userAttributes.get('name')}&nbsp;&nbsp;</span></li>
+                <li class="nav-item"  style="padding-right: 2%"><a href="/platform/logout" title="Sign out"><button class="btn btn-light btn-sm">Logout</button></a></li>
+      </c:when>
+            <c:otherwise>
+               <li class="nav-item"  style="padding-right: 2%"><a href="/platform/login.jsp" title="Consortium Member Sign In"><button class="btn btn-light btn-sm" style="padding-top:0;padding-bottom: 0">Login</button></a></li>
+                </c:otherwise>
+          </c:choose>
 
 
-<%--      </ul>--%>
+      </ul>
     </div>
   </div>
 </nav>
