@@ -9,8 +9,6 @@
 <%@ page import="edu.mcw.scge.datamodel.ClinicalTrialRecord" %>
 <%@ page import="edu.mcw.scge.datamodel.ClinicalTrialExternalLink" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.Collections" %>
-<%@ page import="java.util.Comparator" %>
 <%@ page import="edu.mcw.scge.services.SCGEContext" %>
 <%@ page import="edu.mcw.scge.datamodel.Person" %>
 <%@ page import="edu.mcw.scge.configuration.Access" %>
@@ -524,13 +522,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                <% for(ClinicalTrialExternalLink cext : clinicalExtLinkData) { %>
+                <% for(ClinicalTrialExternalLink cext : clinicalExtLinkData) {
+                    if(cext.getType()!=null&&!cext.getType().equalsIgnoreCase("Grant")){
+                    %>
                 <tr id="link-<%=cext.getId()%>">
                     <input type="hidden" name="linkId" value="<%=cext.getId()%>">
                     <input type="hidden" name="deleteLink" id="deleteFlag-<%=cext.getId()%>" value="" disabled>
                     <td>
                         <select name="extLink" class="form-control">
-                            <option value="Grant" <%=cext.getType()!=null&&cext.getType().equalsIgnoreCase("Grant")?"selected":""%>>Grant</option>
+<%--                            <option value="Grant" <%=cext.getType()!=null&&cext.getType().equalsIgnoreCase("Grant")?"selected":""%>>Grant</option>--%>
                             <option value="Protocol" <%=cext.getType()!=null&&cext.getType().equalsIgnoreCase("Protocol")?"selected":""%>>Protocol</option>
                             <option value="Preclinical Publications" <%=cext.getType()!=null&&cext.getType().equalsIgnoreCase("Preclinical Publications")?"selected":""%>>Preclinical Publications</option>
                             <option value="News and Press Releases" <%=cext.getType()!=null&&cext.getType().equalsIgnoreCase("News and Press Releases")?"selected":""%>>News and Press Releases</option>
@@ -541,6 +541,7 @@
                     <td><textarea name="link" class="form-control" rows="1"><%=cext.getLink()!=null?cext.getLink():""%></textarea></td>
                     <td><button type="button" class="btn btn-danger" onclick="deleteExtLink(<%=cext.getId()%>)">Delete</button></td>
                 </tr>
+                <% } %>
                 <% } %>
                 </tbody>
             </table>
