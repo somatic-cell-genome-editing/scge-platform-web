@@ -459,16 +459,16 @@
         </div>
         <hr>
         <%if(!clinicalTrialData.getPatents().isEmpty()&&clinicalTrialData.getPatents()!=null){
-            String[] patents = clinicalTrialData.getPatents().split(";");
+//            String[] patents = clinicalTrialData.getPatents().split(";");
         %>
-        <h5 class="link-type-heading">Patents</h5>
-        <ul class="external-links-list">
-            <%for(String patent:patents){%>
-            <%if(patent.trim()!=null&&!patent.trim().isEmpty()){%>
-            <li><%=patent.trim()%></li>
-            <%}%>
-            <%}%>
-        </ul>
+<%--        <h5 class="link-type-heading">Patents</h5>--%>
+<%--        <ul class="external-links-list">--%>
+<%--            <%for(String patent:patents){%>--%>
+<%--            <%if(patent.trim()!=null&&!patent.trim().isEmpty()){%>--%>
+<%--            <li><%=patent.trim()%></li>--%>
+<%--            <%}%>--%>
+<%--            <%}%>--%>
+<%--        </ul>--%>
         <%}%>
         <%
             String currentLinkType = "";
