@@ -496,16 +496,17 @@
             <h3 class="ctSubHeading">Resources/Links</h3>
         </div>
         <hr>
-        <table class="ctReportTable">
-            <tr>
-                <td class="label">
-                    Patents
-                </td>
-                <td>
-                    <textarea placeholder="(Enter the multiple patents separated by ';')" name="patents" class="form-control" rows="1"><%=clinicalTrialData.getPatents()!=null?clinicalTrialData.getPatents():""%></textarea>
-                </td>
-            </tr>
-        </table>
+        <input type="hidden" name="patents"value="<%=clinicalTrialData.getPatents()!=null?clinicalTrialData.getPatents():""%>">
+<%--        <table class="ctReportTable">--%>
+<%--            <tr>--%>
+<%--                <td class="label">--%>
+<%--                    Patents--%>
+<%--                </td>--%>
+<%--                <td>--%>
+<%--                    <textarea placeholder="(Enter the multiple patents separated by ';')" name="patents" class="form-control" rows="1"><%=clinicalTrialData.getPatents()!=null?clinicalTrialData.getPatents():""%></textarea>--%>
+<%--                </td>--%>
+<%--            </tr>--%>
+<%--        </table>--%>
 <%--        <%if(isEditMode||clinicalExtLinkData != null && clinicalExtLinkData.size() > 0){%>--%>
         <div class="external-links-editor">
             <table class="ext-links-table">
@@ -556,16 +557,16 @@
         </div>
         <hr>
         <%if(!clinicalTrialData.getPatents().isEmpty()&&clinicalTrialData.getPatents()!=null){
-            String[] patents = clinicalTrialData.getPatents().split(";");
+//            String[] patents = clinicalTrialData.getPatents().split(";");
         %>
-        <h5 class="link-type-heading">Patents</h5>
-        <ul class="external-links-list">
-            <%for(String patent:patents){%>
-            <%if(patent.trim()!=null&&!patent.trim().isEmpty()){%>
-            <li><%=patent.trim()%></li>
-            <%}%>
-            <%}%>
-        </ul>
+<%--        <h5 class="link-type-heading">Patents</h5>--%>
+<%--        <ul class="external-links-list">--%>
+<%--            <%for(String patent:patents){%>--%>
+<%--            <%if(patent.trim()!=null&&!patent.trim().isEmpty()){%>--%>
+<%--            <li><%=patent.trim()%></li>--%>
+<%--            <%}%>--%>
+<%--            <%}%>--%>
+<%--        </ul>--%>
         <%}%>
         <%
             String currentLinkType = "";
