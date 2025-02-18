@@ -41,7 +41,7 @@
                                 <li class="nav-item text-nowrap" style="padding-right: 2%"><a href="/platform/dashboard"> <button class="btn btn-sm btn-warning">My Dashboard</button></a></li>
                                 <li class="nav-item"><img class="rounded-circle " width="40" height="40" src='${userAttributes.picture}' alt=""></li>
                                 <li class="nav-item text-nowrap text-light"  style="padding-right: 2%">${userAttributes.name}</li>
-                                <li class="nav-item" ><a href="/platform/logout" title="Sign out"><button class="btn btn-light btn-sm">Logout</button></a></li>
+                                <li class="nav-item" ><a href="/platform/logout" title="Sign out"><button class="btn btn-light btn-sm"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout</button></a></li>
                             </ul>
                         </c:when>
                         <c:otherwise>
