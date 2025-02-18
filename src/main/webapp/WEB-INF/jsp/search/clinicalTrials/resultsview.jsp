@@ -33,7 +33,7 @@
         category= (String) request.getAttribute("category");
         dCategory+=" in "+request.getAttribute("category")+"s";
     }
-    if(request.getParameter("searchTerm")!=null){
+    if(request.getParameter("searchTerm")!=null && !Objects.equals(request.getParameter("searchTerm"), "null")){
         searchTerm+="of \""+request.getParameter("searchTerm")+"\"";
     }
     Access access= new Access();
