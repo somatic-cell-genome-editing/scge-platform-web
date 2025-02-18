@@ -49,10 +49,6 @@
     var filterMap='<%=gson.toJson(filterMap)%>'
     var json=JSON.parse(filterMap)
 </script>
-<%--<%--%>
-<%--    if(hits.size()==0){%>--%>
-<%--        <h4>0 results found for term <%=request.getAttribute("searchTerm")%></h4>--%>
-<%--    <%}else{%>--%>
 
 <div style="background-color: whitesmoke;padding: 10px; " class="jumbotron">
     <h3 style="color: #1a80b6; font-family: 'Roboto Slab', serif; font-weight: 400;">Clinical Trials - Gene Therapy Trial Browser</h3>
@@ -89,7 +85,7 @@
                                     <button class="btn btn-info btn-sm text-nowrap" data-toggle="modal" data-target="#definitionsModal">Help Doc&nbsp;&nbsp;<i class="fa fa-question-circle" aria-hidden="true" style="color:whitesmoke"></i></button>
                                     <% if (request.getServerName().equals("localhost") || request.getServerName().equals("dev.scge.mcw.edu") || request.getServerName().equals("stage.scge.mcw.edu") ) { %>
                                     <%try {if (p!=null && access.isAdmin(p) && !SCGEContext.isProduction()) {%>&nbsp;&nbsp;
-                                    <button class="btn btn-warning btn-sm">Add</button>
+                                    <a style="margin-left: 20px" href="/platform/clinicalTrialEdit/home/" class="btn btn-warning btn-sm">Add</a>
                                     <%}} catch (Exception e) {e.printStackTrace();}}%>
                                 </div>
                             </div>
