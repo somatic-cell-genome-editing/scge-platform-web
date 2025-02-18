@@ -49,13 +49,17 @@
     var filterMap='<%=gson.toJson(filterMap)%>'
     var json=JSON.parse(filterMap)
 </script>
-
 <div style="background-color: whitesmoke;padding: 10px; " class="jumbotron">
+<%
+    if(category!=null && !category.equals("")){%>
     <h3 style="color: #1a80b6; font-family: 'Roboto Slab', serif; font-weight: 400;">Clinical Trials - Gene Therapy Trial Browser</h3>
     <p>The Gene Therapy Trial Browser represents a unique publicly accessible, free database for the benefit of users seeking information on gene therapy development. The information within integrates various sources, including clinicaltrials.gov, publications, sponsor press releases, patent applications, and more to give a comprehensive overview of the gene therapy clinical trial landscape.
     </p>
-</div>
 
+<%}else{%>
+    <h3 style="color: #1a80b6; font-family: 'Roboto Slab', serif; font-weight: 400;">SCGE Platform - General Search Results</h3>
+<%}%>
+</div>
 <div class="container-fluid">
 
   <div class="row">
@@ -77,7 +81,11 @@
                     <div class="col-6 d-flex justify-content-end">
                         <div class="row">
                             <div class="col">
+                                <%
+                                    if(category!=null && !category.equals("")){%>
+                               
                                 <%@include file="../searchByCategory.jsp"%>
+                                <%}%>
                             </div>
                             <div class="col">
                                 <%@include file="../../definitions/modal.jsp"%>
