@@ -81,6 +81,7 @@ public class SearchController{
         Map<String,List<Definition>> definitions=service.getAllDefinitionsMap();
         req.setAttribute("expandAllFilters", req.getParameter("expandAllFilters"));
         req.setAttribute("definitions", definitions);
+        req.setAttribute("category", category);
         req.setAttribute("page", "/WEB-INF/jsp/search/clinicalTrials/resultsview");
         req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
 

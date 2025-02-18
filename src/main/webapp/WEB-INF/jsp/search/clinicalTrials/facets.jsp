@@ -24,8 +24,13 @@ $('[data-toggle="tooltip"]').tooltip()
 expandFilterVal="<%=request.getAttribute("expandAllFilters")%>"
 
 </script>
+<%--<div class="input-group">--%>
+<%--  <input class="search selectable form-control form-control-sm" type="search" placeholder="Search Gene Therapy Trials.." data-column="all">--%>
+<%--  <div class="input-group-append">&nbsp;<span class="input-group-text reset" title="Reset"><i class="fa fa-refresh" aria-hidden="true"></i></span>--%>
+<%--  </div>--%>
+<%--</div>--%>
+
 <h4 class="grid-title"><i class="fa fa-filter"></i> Filters ..&nbsp;<span id="expandAll" class="plus" title="Expand All" onclick="expandAll()" style="cursor: pointer;font-size: medium"><i class="fa-solid fa-circle-plus"></i></span><span id="collapseAll" class="minus" style="display: none;color:red;cursor:pointer;font-size: medium" title="Close All" onclick="collapseAll()"><i class="fa-solid fa-circle-minus"></i></span><span style="float:right"><button id="clearFilters" class="btn btn-primary btn-sm" onclick="removeFilters()" >Clear</button></span></h4>
-<div class="input-group"><input class="search selectable form-control form-control-sm" type="search" placeholder="Find in the table" data-column="all"><div class="input-group-append">&nbsp;<span class="input-group-text reset" title="Reset"><i class="fa fa-refresh" aria-hidden="true"></i></span></div></div>
 
 <hr>
 
@@ -38,6 +43,9 @@ expandFilterVal="<%=request.getAttribute("expandAllFilters")%>"
   <input type="hidden" id="checked" name="checked" value=''/>
   <input type="hidden" id="filtersSelected" name="filtersSelected" value='<%=gson.toJson(filtersSelected)%>'/>
   <input type="hidden" id="expandAllFilters" name="expandAllFilters" value="<%=request.getAttribute("expandAllFilters")%>">
+  <input type="hidden" id="category" name="category" value="<%=request.getAttribute("category")%>">
+  <input type="hidden"  name="searchTerm" value="<%=request.getAttribute("searchTerm")%>">
+
   <%
     List<String> aggNames=Arrays.asList("indication","status","phases","standardAges","therapyType","therapyRoute","drugProductType","deliverySystem","sponsorClass","sponsor",
             "vectorType","editorType","targetTissueOrCell","targetGeneOrVariant","routeOfAdministration", "mechanismOfAction", "locations");
