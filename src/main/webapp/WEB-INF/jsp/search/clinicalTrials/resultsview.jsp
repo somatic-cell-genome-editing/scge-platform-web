@@ -5,7 +5,10 @@
 <%@ page import="java.util.*" %>
 <%@ page import="edu.mcw.scge.services.SCGEContext" %>
 <%@ page import="edu.mcw.scge.datamodel.Person" %>
-<%@ page import="edu.mcw.scge.configuration.Access" %><%--
+<%@ page import="edu.mcw.scge.configuration.Access" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.time.LocalDateTime" %>
+<%@ page import="edu.mcw.scge.datamodel.clinicalTrialModel.Study" %><%--
   Created by IntelliJ IDEA.
   User: jthota
   Date: 3/26/2024
@@ -17,7 +20,7 @@
 <link href="/platform/css/referencesModal.css" rel="stylesheet" type="text/css"/>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap" rel="stylesheet">
 
-
+<script src="/platform/common/js/jquery.tabletoCSV.js"> </script>
 <%
     Gson gson=new Gson();
     SearchResponse sr= (SearchResponse) request.getAttribute("sr");
@@ -87,7 +90,16 @@
                                 <%@include file="../searchByCategory.jsp"%>
                                 <%}%>
                             </div>
-                            <div class="col">
+                            <div class="col-4">
+                                <div id="downloadEntireExperiment" width="100"><button class="btn btn-sm btn-primary text-nowrap"  onclick="download()">Export table to (.CSV) file</button></div>
+                                <%
+                                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                                    LocalDateTime now = LocalDateTime.now();
+
+                                %>
+                                <div id="fileCitation" style="display:none;">SCGE Platform Gene Therapy Clinical Trials downloaded on: <%=dtf.format(now)%>; Please cite the Somatic Cell Genome Editing Consortium Platform when using publicly accessible data in formal presentation or publication.</div>
+                            </div>
+                            <div class="col-3">
                                 <%@include file="../../definitions/modal.jsp"%>
                                 <div class="btn-group">
                                     <button class="btn btn-info btn-sm text-nowrap" data-toggle="modal" data-target="#definitionsModal">Help Doc&nbsp;&nbsp;<i class="fa fa-question-circle" aria-hidden="true" style="color:whitesmoke"></i></button>
@@ -131,3 +143,8 @@
 <%--<%}%>--%>
 
 </div>
+<script>
+    function download(){
+        $("#myTable").tableToCSV();
+    }
+</script>

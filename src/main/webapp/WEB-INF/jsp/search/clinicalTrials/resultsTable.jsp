@@ -130,6 +130,7 @@ $(this).off('mouseleave');
 </script>
 <div id="resultsTable"  style="display: none">
 <table  id="myTable">
+    <caption>SCGE Platform GTCT</caption>
     <thead><tr><%@include file="columns.jsp"%></tr></thead>
     <tfoot><tr><%@include file="columns.jsp"%></tr></tfoot>
     <tbody>
