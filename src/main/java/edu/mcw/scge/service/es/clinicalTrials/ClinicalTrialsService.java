@@ -26,7 +26,12 @@ public class ClinicalTrialsService {
     static{
             for(String field: ClinicalTrials.facets) {
                 String displayName=String.join(" ", field.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])"));
-                fieldDisplayNames.put(field, StringUtils.capitalize(displayName));
+                if(displayName.toLowerCase().startsWith("fda")) {
+                  String name=  displayName.substring(0,3).toUpperCase()+displayName.substring(3);
+                    fieldDisplayNames.put(field, StringUtils.capitalize(name));
+                }else{
+                    fieldDisplayNames.put(field, StringUtils.capitalize(displayName));
+                }
             }
 
     }
