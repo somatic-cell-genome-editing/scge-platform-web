@@ -51,6 +51,10 @@ public class ClinicalTrialEditController {
             ctRecord.setPatents(req.getParameter("patents"));
             ctRecord.setCompoundName(req.getParameter("compoundName"));
             ctRecord.setIndication(req.getParameter("indication"));
+            ctRecord.setDevelopmentStatus(req.getParameter("developmentStatus"));
+            ctRecord.setIndicationDOID(req.getParameter("indicationDOID"));
+            ctRecord.setFdaDesignation(req.getParameter("fdaDesignations"));
+            ctRecord.setNctId(nctId);
 
             // Handle external links updates
             String[] linkIds = req.getParameterValues("linkId");
@@ -92,6 +96,7 @@ public class ClinicalTrialEditController {
 
             //update the clinical_trial_record table
             ctDAO.updateCuratedDataFields(ctRecord);
+            ctDAO.updateSomeNewFieldsDataFields(ctRecord);
             req.getSession().setAttribute("showAlert", "true");
             res.sendRedirect("/platform/data/clinicalTrials/report/" + nctId);
             return null;
