@@ -45,10 +45,11 @@ $(function () {
     }).on('hide.bs.collapse', function(){
         $(this).prev(".card-header").find(".fas").removeClass("fa-angle-down").addClass("fa-angle-up");
     });
-    var facets=["status","indication", "sponsor"
-        ,"sponsorClass", "therapyType", "vectorType",
-        "deliverySystem","routeOfAdministration","drugProductType","editorType",
-        "targetGeneOrVariant", "mechanismOfAction", "targetTissueOrCell", "phases","standardAges", "therapyRoute","locations","developmentStatus"]
+    var facets=allFacets
+    // var facets=["status","indication", "sponsor"
+    //     ,"sponsorClass", "therapyType", "vectorType",
+    //     "deliverySystem","routeOfAdministration","drugProductType","editorType",
+    //     "targetGeneOrVariant", "mechanismOfAction", "targetTissueOrCell", "phases","standardAges", "therapyRoute","locations","developmentStatus"]
     $.each(facets, function (i,e){
         var checkbox="\""+e+"\"";
         var collapseId='#collapse'+e

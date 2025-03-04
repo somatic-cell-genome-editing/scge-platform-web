@@ -1,7 +1,8 @@
 
 <%@ page import="org.elasticsearch.search.aggregations.Aggregation" %>
 <%@ page import="edu.mcw.scge.service.es.clinicalTrials.ClinicalTrialsService" %>
-<%@ page import="org.elasticsearch.search.aggregations.bucket.terms.Terms" %><%--
+<%@ page import="org.elasticsearch.search.aggregations.bucket.terms.Terms" %>
+<%@ page import="edu.mcw.scge.datamodel.web.ClinicalTrials" %><%--
   Created by IntelliJ IDEA.
   User: jthota
   Date: 4/22/2024
@@ -30,7 +31,8 @@ expandFilterVal="<%=request.getAttribute("expandAllFilters")%>"
 <%--  </div>--%>
 <%--</div>--%>
 
-<h4 class="grid-title"><i class="fa fa-filter"></i> Filters ..&nbsp;<span id="expandAll" class="plus" title="Expand All" onclick="expandAll()" style="cursor: pointer;font-size: medium"><i class="fa-solid fa-circle-plus"></i></span><span id="collapseAll" class="minus" style="display: none;color:red;cursor:pointer;font-size: medium" title="Close All" onclick="collapseAll()"><i class="fa-solid fa-circle-minus"></i></span><span style="float:right"><button id="clearFilters" class="btn btn-primary btn-sm" onclick="removeFilters()" >Clear</button></span></h4>
+<h4 class="grid-title"><i class="fa fa-filter"></i> Filters ..&nbsp;<span id="expandAll" class="plus" title="Expand All" onclick="expandAll()" style="cursor: pointer;font-size: medium"><i class="fa-solid fa-circle-plus"></i></span><span id="collapseAll" class="minus" style="display: none;color:red;cursor:pointer;font-size: medium" title="Close All" onclick="collapseAll()"><i class="fa-solid fa-circle-minus"></i></span><span style="float:right"><!--button id="clearFilters" class="btn btn-primary btn-sm" onclick="removeFilters()" >Clear</button-->
+<a href="/platform/data/search/ClinicalTrial"><button id="clearFilters" class="btn btn-primary btn-sm"  >Clear</button></a></span></h4>
 
 <hr>
 
@@ -47,9 +49,8 @@ expandFilterVal="<%=request.getAttribute("expandAllFilters")%>"
   <input type="hidden"  name="searchTerm" value="<%=request.getAttribute("searchTerm")%>">
 
   <%
-    List<String> aggNames=Arrays.asList("indication","status","developmentStatus","phases","standardAges","therapyType","therapyRoute","drugProductType","deliverySystem","sponsorClass","sponsor",
-            "vectorType","editorType","targetTissueOrCell","targetGeneOrVariant","routeOfAdministration", "mechanismOfAction", "locations");
-  for(String aggName:aggNames){
+
+  for(String aggName:ClinicalTrials.facets){
 %>
   <div class="accordion-group">
     <div class="pl-3  accordion-heading">
@@ -99,6 +100,8 @@ expandFilterVal="<%=request.getAttribute("expandAllFilters")%>"
 
 
 </form>
-
+<script>
+let allFacets=<%=gson.toJson(ClinicalTrials.facets)%>
+</script>
 <script src="/platform/js/search/ctFacets.js"></script>
 

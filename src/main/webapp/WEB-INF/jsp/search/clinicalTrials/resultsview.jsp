@@ -91,7 +91,7 @@
                                 <%}%>
                             </div>
                             <div class="col-4">
-                                <div id="downloadEntireExperiment" width="100"><button class="btn btn-sm btn-primary text-nowrap"  onclick="download()">Export table to (.CSV) file</button></div>
+                                <div id="downloadGTCT" width="100"><button class="btn btn-sm btn-primary text-nowrap"  onclick="download()">Export table to (.CSV) file</button></div>
                                 <%
                                     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
                                     LocalDateTime now = LocalDateTime.now();

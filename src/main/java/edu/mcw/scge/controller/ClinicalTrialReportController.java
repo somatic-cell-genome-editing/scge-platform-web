@@ -18,14 +18,11 @@ public class ClinicalTrialReportController {
 
     ClinicalTrailDAO ctDAO = new ClinicalTrailDAO();
 
-    @GetMapping("/{nctId}")
-    public String getClinicalReport(
-            HttpServletRequest req,
-            HttpServletResponse res,
-            @PathVariable("nctId")String nctId
-    ) throws Exception{
+    @RequestMapping("/{nctId}")
+    public String getClinicalReport(HttpServletRequest req, HttpServletResponse res, @PathVariable(required = true)String nctId) throws Exception{
 
         try{
+            System.out.println("NCTID:"+ nctId);
             ClinicalTrialRecord clinicalTrialData = ctDAO.getSingleClinicalTrailRecordByNctId(nctId);
             if(clinicalTrialData==null){
                 req.setAttribute("errorMessage","Clinical Trial Data not found for NCT ID: "+nctId);

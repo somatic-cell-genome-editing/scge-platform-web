@@ -2,6 +2,7 @@ package edu.mcw.scge.service.es.clinicalTrials;
 
 import edu.mcw.scge.dao.implementation.DefinitionDAO;
 import edu.mcw.scge.datamodel.Definition;
+import edu.mcw.scge.datamodel.web.ClinicalTrials;
 import edu.mcw.scge.services.ESClient;
 import edu.mcw.scge.services.SCGEContext;
 import org.elasticsearch.action.search.SearchRequest;
@@ -20,14 +21,10 @@ import java.util.*;
 
 public class ClinicalTrialsService {
 
-    public static List<String> aggregationFields= Arrays.asList("status","indication", "sponsor"
-            ,"sponsorClass", "therapyType", "vectorType",
-            "deliverySystem","routeOfAdministration","drugProductType","editorType",
-            "targetGeneOrVariant", "mechanismOfAction", "targetTissueOrCell", "phases","standardAges", "therapyRoute","locations", "developmentStatus"
-    );
+
     public static Map<String, String> fieldDisplayNames= new HashMap<>();
     static{
-            for(String field:aggregationFields) {
+            for(String field: ClinicalTrials.facets) {
                 String displayName=String.join(" ", field.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])"));
                 fieldDisplayNames.put(field, StringUtils.capitalize(displayName));
             }
@@ -51,7 +48,7 @@ public class ClinicalTrialsService {
         String searchIndex= SCGEContext.getESIndexName();
         SearchSourceBuilder srb=new SearchSourceBuilder();
         srb.query(this.buildBoolQuery(searchTerm, category));
-        for(String fieldName:ClinicalTrialsService.aggregationFields) {
+        for(String fieldName:ClinicalTrials.facets) {
             srb.aggregation(buildAggregations(fieldName));
         }
         srb.size(10000);
