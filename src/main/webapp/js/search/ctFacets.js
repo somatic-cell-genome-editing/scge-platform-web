@@ -48,7 +48,7 @@ $(function () {
     var facets=["status","indication", "sponsor"
         ,"sponsorClass", "therapyType", "vectorType",
         "deliverySystem","routeOfAdministration","drugProductType","editorType",
-        "targetGeneOrVariant", "mechanismOfAction", "targetTissueOrCell", "phases","standardAges", "therapyRoute","locations" ]
+        "targetGeneOrVariant", "mechanismOfAction", "targetTissueOrCell", "phases","standardAges", "therapyRoute","locations","developmentStatus"]
     $.each(facets, function (i,e){
         var checkbox="\""+e+"\"";
         var collapseId='#collapse'+e

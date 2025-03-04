@@ -23,7 +23,7 @@ public class ClinicalTrialsService {
     public static List<String> aggregationFields= Arrays.asList("status","indication", "sponsor"
             ,"sponsorClass", "therapyType", "vectorType",
             "deliverySystem","routeOfAdministration","drugProductType","editorType",
-            "targetGeneOrVariant", "mechanismOfAction", "targetTissueOrCell", "phases","standardAges", "therapyRoute","locations"
+            "targetGeneOrVariant", "mechanismOfAction", "targetTissueOrCell", "phases","standardAges", "therapyRoute","locations", "developmentStatus"
     );
     public static Map<String, String> fieldDisplayNames= new HashMap<>();
     static{
@@ -98,7 +98,7 @@ public class ClinicalTrialsService {
         DisMaxQueryBuilder q=new DisMaxQueryBuilder();
 
 
-        if(term!=null && !term.equals("")) {
+        if(term!=null && !term.equals("") && !term.equals("null")) {
             String searchTerm=term.toLowerCase().trim();
             if(searchTerm.toLowerCase().contains(" and ")){
                 String searchString=String.join(" ", searchTerm.toLowerCase().split(" and "));
