@@ -36,6 +36,7 @@
                 <option value="Preclinical Publications">Preclinical Publications</option>
                 <option value="News and Press Releases">News and Press Releases</option>
                 <option value="Clinical Publications">Clinical Publications</option>
+                <option value="Related NCTID">Related NCTID</option>
             </select>
         </td>
         <td><textarea name="newLinkName_${tempId}" class="form-control" rows="1"></textarea></td>
