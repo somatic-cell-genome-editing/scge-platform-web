@@ -12,6 +12,7 @@
 <%@ page import="edu.mcw.scge.services.SCGEContext" %>
 <%@ page import="edu.mcw.scge.datamodel.Person" %>
 <%@ page import="edu.mcw.scge.configuration.Access" %>
+<%@ page import="edu.mcw.scge.datamodel.Alias" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -24,6 +25,7 @@
 <%
    ClinicalTrialRecord clinicalTrialData = (ClinicalTrialRecord) request.getAttribute("clinicalTrialData");
     List<ClinicalTrialExternalLink> clinicalExtLinkData = (List<ClinicalTrialExternalLink>) request.getAttribute("clinicalExtLinkData");
+    List<Alias>aliasData = (List<Alias>) request.getAttribute("aliasData");
 //    String successMessage = (String)session.getAttribute("successMessage");
     Access access= new Access();
     Person p = null;
@@ -124,6 +126,34 @@
                     <% } %>
                 </td>
             </tr>
+            <% if(isEditMode || (aliasData!=null && !aliasData.isEmpty() && aliasData.get(0).getAlias()!=null && !aliasData.get(0).getAlias().isEmpty())) { %>
+            <tr>
+                <td class="label">
+                    Compound&nbsp;Alias
+                </td>
+                <td>
+                    <% if(isEditMode) { %>
+                    <textarea name="compoundAlias" class="form-control" rows="1"><%= (aliasData!=null && !aliasData.isEmpty() && aliasData.get(0).getAlias()!=null) ? aliasData.get(0).getAlias() : "" %></textarea>
+                    <% } else { %>
+                    <%= aliasData.get(0).getAlias() %>
+                    <% } %>
+                </td>
+            </tr>
+            <% } %>
+            <% if(isEditMode || (clinicalTrialData.getCompoundDescription() != null && !clinicalTrialData.getCompoundDescription().isEmpty())) { %>
+            <tr>
+                <td class="label">
+                    Compound&nbsp;Description
+                </td>
+                <td>
+                    <% if(isEditMode) { %>
+                    <textarea name="compoundDescription" class="form-control" rows="1"><%= clinicalTrialData.getCompoundDescription() != null ? clinicalTrialData.getCompoundDescription() : "" %></textarea>
+                    <% } else { %>
+                    <%= clinicalTrialData.getCompoundDescription() %>
+                    <% } %>
+                </td>
+            </tr>
+            <% } %>
             <tr>
                 <td class="label">
                     Sponsor
