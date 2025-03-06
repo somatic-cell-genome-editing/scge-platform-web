@@ -116,6 +116,36 @@
             </tr>
             <tr>
                 <td class="label">
+                    Disease&nbsp;Ontology&nbsp;Term
+                </td>
+                <td>
+                    <% if(isEditMode) { %>
+                    <textarea name="indicationDOID" class="form-control" rows="1"><%=clinicalTrialData.getIndicationDOID()!=null?clinicalTrialData.getIndicationDOID():""%></textarea>
+                    <% } else { %>
+                    <%
+                        String doidString = clinicalTrialData.getIndicationDOID()!=null?clinicalTrialData.getIndicationDOID():"";
+                        if (doidString != null && !doidString.isEmpty()) {
+                            String[] doids = doidString.split("/");
+                            StringBuilder formattedDoids = new StringBuilder();
+                            for (int i = 0; i < doids.length; i++) {
+                                String doid = doids[i].trim();
+                                formattedDoids
+                                        .append(" <a href=\"https://www.disease-ontology.org/term/DOID:").append(doid)
+                                        .append("\" target=\"_blank\">DOID:").append(doid).append("</a>");
+                                if (i < doids.length - 1) {
+                                    formattedDoids.append("; ");
+                                }
+                            }
+                    %>
+                    <%=formattedDoids.toString()%>
+                    <% } else { %>
+
+                    <% } %>
+                    <% } %>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
                     Compound&nbsp;Name
                 </td>
                 <td>
@@ -174,7 +204,7 @@
             </tr>
             <tr>
                 <td class="label">
-                    Status
+                    Recruitment&nbsp;Status
                 </td>
                 <%
                     String status = clinicalTrialData.getStudyStatus();
@@ -194,36 +224,6 @@
 
                 <td>
                     <%=clinicalTrialData.getEnrorllmentCount()!=0?clinicalTrialData.getEnrorllmentCount():""%>
-                </td>
-            </tr>
-            <tr>
-                <td class="label">
-                    DOID&nbsp;Indication
-                </td>
-                <td>
-                    <% if(isEditMode) { %>
-                    <textarea name="indicationDOID" class="form-control" rows="1"><%=clinicalTrialData.getIndicationDOID()!=null?clinicalTrialData.getIndicationDOID():""%></textarea>
-                    <% } else { %>
-                    <%
-                        String doidString = clinicalTrialData.getIndicationDOID()!=null?clinicalTrialData.getIndicationDOID():"";
-                        if (doidString != null && !doidString.isEmpty()) {
-                            String[] doids = doidString.split("/");
-                            StringBuilder formattedDoids = new StringBuilder();
-                            for (int i = 0; i < doids.length; i++) {
-                                String doid = doids[i].trim();
-                                formattedDoids
-                                        .append(" <a href=\"https://www.disease-ontology.org/term/DOID:").append(doid)
-                                        .append("\" target=\"_blank\">DOID:").append(doid).append("</a>");
-                                if (i < doids.length - 1) {
-                                    formattedDoids.append("; ");
-                                }
-                            }
-                    %>
-                    <%=formattedDoids.toString()%>
-                    <% } else { %>
-
-                    <% } %>
-                    <% } %>
                 </td>
             </tr>
         </table>
