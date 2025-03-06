@@ -12,6 +12,7 @@
 <%@ page import="edu.mcw.scge.services.SCGEContext" %>
 <%@ page import="edu.mcw.scge.datamodel.Person" %>
 <%@ page import="edu.mcw.scge.configuration.Access" %>
+<%@ page import="edu.mcw.scge.datamodel.Alias" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -24,6 +25,7 @@
 <%
    ClinicalTrialRecord clinicalTrialData = (ClinicalTrialRecord) request.getAttribute("clinicalTrialData");
     List<ClinicalTrialExternalLink> clinicalExtLinkData = (List<ClinicalTrialExternalLink>) request.getAttribute("clinicalExtLinkData");
+    List<Alias>aliasData = (List<Alias>) request.getAttribute("aliasData");
 //    String successMessage = (String)session.getAttribute("successMessage");
     Access access= new Access();
     Person p = null;
@@ -90,6 +92,18 @@
             </tr>
             <tr>
                 <td class="label">
+                    Development&nbsp;Status
+                </td>
+                <td>
+                    <% if(isEditMode) { %>
+                    <textarea name="developmentStatus" class="form-control" rows="1"><%=clinicalTrialData.getDevelopmentStatus()!=null?clinicalTrialData.getDevelopmentStatus():""%></textarea>
+                    <% } else { %>
+                    <strong><%=clinicalTrialData.getDevelopmentStatus()!=null?clinicalTrialData.getDevelopmentStatus():""%></strong>
+                    <% } %>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
                     Indication
                 </td>
                 <td>
@@ -112,6 +126,34 @@
                     <% } %>
                 </td>
             </tr>
+            <% if(isEditMode || (aliasData!=null && !aliasData.isEmpty() && aliasData.get(0).getAlias()!=null && !aliasData.get(0).getAlias().isEmpty())) { %>
+            <tr>
+                <td class="label">
+                    Compound&nbsp;Alias
+                </td>
+                <td>
+                    <% if(isEditMode) { %>
+                    <textarea name="compoundAlias" class="form-control" rows="1"><%= (aliasData!=null && !aliasData.isEmpty() && aliasData.get(0).getAlias()!=null) ? aliasData.get(0).getAlias() : "" %></textarea>
+                    <% } else { %>
+                    <%= aliasData.get(0).getAlias() %>
+                    <% } %>
+                </td>
+            </tr>
+            <% } %>
+            <% if(isEditMode || (clinicalTrialData.getCompoundDescription() != null && !clinicalTrialData.getCompoundDescription().isEmpty())) { %>
+            <tr>
+                <td class="label">
+                    Compound&nbsp;Description
+                </td>
+                <td>
+                    <% if(isEditMode) { %>
+                    <textarea name="compoundDescription" class="form-control" rows="1"><%= clinicalTrialData.getCompoundDescription() != null ? clinicalTrialData.getCompoundDescription() : "" %></textarea>
+                    <% } else { %>
+                    <%= clinicalTrialData.getCompoundDescription() %>
+                    <% } %>
+                </td>
+            </tr>
+            <% } %>
             <tr>
                 <td class="label">
                     Sponsor
@@ -152,6 +194,36 @@
 
                 <td>
                     <%=clinicalTrialData.getEnrorllmentCount()!=0?clinicalTrialData.getEnrorllmentCount():""%>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                    DOID&nbsp;Indication
+                </td>
+                <td>
+                    <% if(isEditMode) { %>
+                    <textarea name="indicationDOID" class="form-control" rows="1"><%=clinicalTrialData.getIndicationDOID()!=null?clinicalTrialData.getIndicationDOID():""%></textarea>
+                    <% } else { %>
+                    <%
+                        String doidString = clinicalTrialData.getIndicationDOID()!=null?clinicalTrialData.getIndicationDOID():"";
+                        if (doidString != null && !doidString.isEmpty()) {
+                            String[] doids = doidString.split("/");
+                            StringBuilder formattedDoids = new StringBuilder();
+                            for (int i = 0; i < doids.length; i++) {
+                                String doid = doids[i].trim();
+                                formattedDoids
+                                        .append(" <a href=\"https://www.disease-ontology.org/term/DOID:").append(doid)
+                                        .append("\" target=\"_blank\">DOID:").append(doid).append("</a>");
+                                if (i < doids.length - 1) {
+                                    formattedDoids.append("; ");
+                                }
+                            }
+                    %>
+                    <%=formattedDoids.toString()%>
+                    <% } else { %>
+
+                    <% } %>
+                    <% } %>
                 </td>
             </tr>
         </table>
@@ -475,9 +547,20 @@
             </tr>
             <tr>
                 <td class="label">
+                    FDA&nbsp;Designations
+                </td>
+                <td>
+                    <% if(isEditMode) { %>
+                    <textarea name="fdaDesignations" class="form-control" rows="1"><%=clinicalTrialData.getFdaDesignation()!=null?clinicalTrialData.getFdaDesignation():""%></textarea>
+                    <% } else { %>
+                    <%=clinicalTrialData.getFdaDesignation()!=null?clinicalTrialData.getFdaDesignation():""%>
+                    <% } %>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
                     Recent&nbsp;Updates
                 </td>
-
                 <td>
                     <% if(isEditMode) { %>
                     <textarea name="recentUpdates" class="form-control" rows="1"><%=clinicalTrialData.getRecentUpdates()!=null?clinicalTrialData.getRecentUpdates():""%></textarea>
@@ -536,6 +619,7 @@
                             <option value="Preclinical Publications" <%=cext.getType()!=null&&cext.getType().equalsIgnoreCase("Preclinical Publications")?"selected":""%>>Preclinical Publications</option>
                             <option value="News and Press Releases" <%=cext.getType()!=null&&cext.getType().equalsIgnoreCase("News and Press Releases")?"selected":""%>>News and Press Releases</option>
                             <option value="Clinical Publications" <%=cext.getType()!=null&&cext.getType().equalsIgnoreCase("Clinical Publications")?"selected":""%>>Clinical Publications</option>
+                            <option value="Related NCTID" <%=cext.getType()!=null&&cext.getType().equalsIgnoreCase("Related NCTID")?"selected":""%>>Related NCTID</option>
                         </select>
                     </td>
                     <td><textarea name="linkName" class="form-control" rows="1"><%=cext.getName()!=null?cext.getName():""%></textarea></td>
@@ -560,7 +644,7 @@
         <%if(!clinicalTrialData.getPatents().isEmpty()&&clinicalTrialData.getPatents()!=null){
 //            String[] patents = clinicalTrialData.getPatents().split(";");
         %>
-        <h5 class="link-type-heading">Patents</h5>
+<%--        <h5 class="link-type-heading">Patents</h5>--%>
 <%--        <ul class="external-links-list">--%>
 <%--            <%for(String patent:patents){%>--%>
 <%--            <%if(patent.trim()!=null&&!patent.trim().isEmpty()){%>--%>
