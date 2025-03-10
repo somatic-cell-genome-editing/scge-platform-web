@@ -550,11 +550,11 @@
                     FDA&nbsp;Designations
                 </td>
                 <td>
-                    <% if(isEditMode) { %>
-                    <textarea name="fdaDesignations" class="form-control" rows="1"><%=clinicalTrialData.getFdaDesignation()!=null?clinicalTrialData.getFdaDesignation():""%></textarea>
-                    <% } else { %>
-                    <%=clinicalTrialData.getFdaDesignation()!=null?clinicalTrialData.getFdaDesignation():""%>
-                    <% } %>
+<%--                    <% if(isEditMode) { %>--%>
+<%--                    <textarea name="fdaDesignations" class="form-control" rows="1"><%=clinicalTrialData.getFdaDesignation()!=null?clinicalTrialData.getFdaDesignation():""%></textarea>--%>
+<%--                    <% } else { %>--%>
+<%--                    <%=clinicalTrialData.getFdaDesignation()!=null?clinicalTrialData.getFdaDesignation():""%>--%>
+<%--                    <% } %>--%>
                 </td>
             </tr>
             <tr>

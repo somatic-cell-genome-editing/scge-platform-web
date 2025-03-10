@@ -8,7 +8,7 @@
 <%@ page import="edu.mcw.scge.configuration.Access" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page import="java.time.LocalDateTime" %>
-<%@ page import="edu.mcw.scge.datamodel.clinicalTrialModel.Study" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: jthota
   Date: 3/26/2024
@@ -64,7 +64,14 @@
 <%}%>
 </div>
 <div class="container-fluid">
+    <div class="d-flex justify-content-end">
+        <%
+            if(category!=null && !category.equals("")){%>
 
+        <%@include file="../searchByCategory.jsp"%>
+        <%}%>
+    </div>
+   <br>
   <div class="row">
     <!-- BEGIN SEARCH RESULT -->
     <div class="col-md-12">
@@ -83,29 +90,21 @@
 
                     <div class="col-6 d-flex justify-content-end">
                         <div class="row">
+
                             <div class="col">
-                                <%
-                                    if(category!=null && !category.equals("")){%>
-                               
-                                <%@include file="../searchByCategory.jsp"%>
-                                <%}%>
-                            </div>
-                            <div class="col-4">
-                                <div id="downloadGTCT" width="100"><button class="btn btn-sm btn-primary text-nowrap"  onclick="download()">Export table to (.CSV) file</button></div>
                                 <%
                                     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
                                     LocalDateTime now = LocalDateTime.now();
 
                                 %>
-                                <div id="fileCitation" style="display:none;">SCGE Platform Gene Therapy Clinical Trials downloaded on: <%=dtf.format(now)%>; Please cite the Somatic Cell Genome Editing Consortium Platform when using publicly accessible data in formal presentation or publication.</div>
-                            </div>
-                            <div class="col-3">
                                 <%@include file="../../definitions/modal.jsp"%>
-                                <div class="btn-group">
-                                    <button class="btn btn-info btn-sm text-nowrap" data-toggle="modal" data-target="#definitionsModal">Help Doc&nbsp;&nbsp;<i class="fa fa-question-circle" aria-hidden="true" style="color:whitesmoke"></i></button>
+                                <div id="fileCitation" style="display:none;">SCGE Platform Gene Therapy Clinical Trials downloaded on: <%=dtf.format(now)%>; Please cite the Somatic Cell Genome Editing Consortium Platform when using publicly accessible data in formal presentation or publication.</div>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-sm btn-primary text-nowrap"  onclick="download()">Export table to (.CSV) file</button>
+                                    <button type="button" class="btn btn-info btn-sm text-nowrap" data-toggle="modal" data-target="#definitionsModal">Help Doc&nbsp;&nbsp;<i class="fa fa-question-circle" aria-hidden="true" style="color:whitesmoke"></i></button>
                                     <% if (request.getServerName().equals("localhost") || request.getServerName().equals("dev.scge.mcw.edu") || request.getServerName().equals("stage.scge.mcw.edu") ) { %>
                                     <%try {if (p!=null && access.isAdmin(p) && !SCGEContext.isProduction()) {%>&nbsp;&nbsp;
-                                    <a style="margin-left: 20px" href="/platform/clinicalTrialEdit/home/" class="btn btn-warning btn-sm">Add</a>
+                                    <a style="margin-left: 20px" href="/platform/clinicalTrialEdit/home/" ><button type="button" class="btn btn-warning btn-sm">Add</button></a>
                                     <%}} catch (Exception e) {e.printStackTrace();}}%>
                                 </div>
                             </div>

@@ -148,20 +148,20 @@ $(this).off('mouseleave');
             </button>
         </a>
     </td>
-    <td class="manual">
-        <%
-            if(sourceFields.get("indicationDOID")!=null && !sourceFields.get("indicationDOID").toString().contains("?")){
-                for(String doid:sourceFields.get("indicationDOID").toString().split("/")){
-        %>
-        <a href="https://www.disease-ontology.org/term/DOID:<%=doid%>" target="_blank">DOID:<%=doid%></a>&nbsp;
-        <%}}%>
-    </td>
+<%--    <td class="manual">--%>
+<%--        <%--%>
+<%--            if(sourceFields.get("indicationDOID")!=null && !sourceFields.get("indicationDOID").toString().contains("?")){--%>
+<%--                for(String doid:sourceFields.get("indicationDOID").toString().split("/")){--%>
+<%--        %>--%>
+<%--        <a href="https://www.disease-ontology.org/term/DOID:<%=doid%>" target="_blank">DOID:<%=doid%></a>&nbsp;--%>
+<%--        <%}}%>--%>
+<%--    </td>--%>
         <td class="manual"><%=sourceFields.get("indication")%></td>
     <td class="manual">
         <%
-            if(sourceFields.get("fdaDesignation")!=null){
+            if(sourceFields.get("fdaDesignations")!=null){
         %>
-        <%=sourceFields.get("fdaDesignation")%>
+        <%=((List<String>)sourceFields.get("fdaDesignations")).stream().collect(Collectors.joining(", "))%>
         <%}%>
     </td>
         <td class="manual"><%=sourceFields.get("compoundName")%></td>

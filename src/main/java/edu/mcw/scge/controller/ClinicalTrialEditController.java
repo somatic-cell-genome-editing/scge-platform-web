@@ -53,7 +53,7 @@ public class ClinicalTrialEditController {
             ctRecord.setIndication(req.getParameter("indication"));
             ctRecord.setDevelopmentStatus(req.getParameter("developmentStatus"));
             ctRecord.setIndicationDOID(req.getParameter("indicationDOID"));
-            ctRecord.setFdaDesignation(req.getParameter("fdaDesignations"));
+         //   ctRecord.setFdaDesignation(req.getParameter("fdaDesignations"));
             ctRecord.setCompoundDescription(req.getParameter("compoundDescription"));
             ctRecord.setNctId(nctId);
 
