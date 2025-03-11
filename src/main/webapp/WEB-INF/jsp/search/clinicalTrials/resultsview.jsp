@@ -25,7 +25,10 @@
     Gson gson=new Gson();
     SearchResponse sr= (SearchResponse) request.getAttribute("sr");
     SearchHit[] hitsArray=sr.getHits().getHits();
-    List<SearchHit> hits=(Arrays.asList(hitsArray));
+    List<SearchHit> hits=new ArrayList<>();
+    if(hitsArray!=null && hitsArray.length>0) {
+        hits = (Arrays.asList(hitsArray));
+    }
     Map<String, List<String>> filterMap= (Map<String, List<String>>) request.getAttribute("filterMap");
     List<String> filtersSelected= (List<String>) request.getAttribute("filtersSelected");
     request.setAttribute("filtersSelected", filtersSelected);
@@ -79,15 +82,23 @@
         <div class="grid-body">
           <div class="row">
             <!-- BEGIN FILTERS -->
+              <%
+                  if(hits.size()>1){
+              %>
             <div class="col-md-2">
+
                 <%@include file="facets.jsp"%>
+
             </div>
+              <%}%>
             <!-- END FILTERS -->
             <!-- BEGIN RESULT -->
             <div class="col-md-10">
                 <div class="row">
                     <div class="col-6"> <span>Showing all  <%=hits.size()%> results ... <%=searchTerm%><%=dCategory%></span></div>
-
+                    <%
+                        if(hits.size()>1){
+                    %>
                     <div class="col-6 d-flex justify-content-end">
                         <div class="row">
 
@@ -110,6 +121,7 @@
                             </div>
                         </div>
                     </div>
+                    <%}%>
                 </div>
 
     <%@include file="filtersApplied.jsp"%>
