@@ -1,6 +1,7 @@
 package edu.mcw.scge.controller;
 import edu.mcw.scge.dao.implementation.ClinicalTrailDAO;
 import edu.mcw.scge.datamodel.Alias;
+import edu.mcw.scge.datamodel.ClinicalTrialAdditionalInfo;
 import edu.mcw.scge.datamodel.ClinicalTrialExternalLink;
 import edu.mcw.scge.datamodel.ClinicalTrialRecord;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,8 @@ public class ClinicalTrialReportController {
             System.out.println("NCTID:"+ nctId);
             ClinicalTrialRecord clinicalTrialData = ctDAO.getSingleClinicalTrailRecordByNctId(nctId);
             List<Alias> aliasData = ctDAO.getAliases(nctId,"compound");
+            List<ClinicalTrialAdditionalInfo>fdaInfo = ctDAO.getAdditionalInfo(nctId,"fda_designation");
+            List<String>propertyValues = ctDAO.getDistinctPropertyValues("fda_designation");
             if(clinicalTrialData==null){
                 req.setAttribute("errorMessage","Clinical Trial Data not found for NCT ID: "+nctId);
                 req.setAttribute("page","/WEB-INF/jsp/report/clinicalTrial/error");
@@ -36,6 +39,8 @@ public class ClinicalTrialReportController {
             req.setAttribute("clinicalTrialData",clinicalTrialData);
             req.setAttribute("clinicalExtLinkData",clinicalExtLinkData);
             req.setAttribute("aliasData",aliasData);
+            req.setAttribute("fdaInfo",fdaInfo);
+            req.setAttribute("propertyValues",propertyValues);
             req.setAttribute("page","/WEB-INF/jsp/report/clinicalTrial/main");
             req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
             return null;

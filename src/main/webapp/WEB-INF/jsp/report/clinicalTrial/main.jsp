@@ -6,13 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="edu.mcw.scge.datamodel.ClinicalTrialRecord" %>
-<%@ page import="edu.mcw.scge.datamodel.ClinicalTrialExternalLink" %>
 <%@ page import="java.util.List" %>
 <%@ page import="edu.mcw.scge.services.SCGEContext" %>
-<%@ page import="edu.mcw.scge.datamodel.Person" %>
 <%@ page import="edu.mcw.scge.configuration.Access" %>
-<%@ page import="edu.mcw.scge.datamodel.Alias" %>
+<%@ page import="edu.mcw.scge.datamodel.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -26,6 +23,7 @@
    ClinicalTrialRecord clinicalTrialData = (ClinicalTrialRecord) request.getAttribute("clinicalTrialData");
     List<ClinicalTrialExternalLink> clinicalExtLinkData = (List<ClinicalTrialExternalLink>) request.getAttribute("clinicalExtLinkData");
     List<Alias>aliasData = (List<Alias>) request.getAttribute("aliasData");
+    List<ClinicalTrialAdditionalInfo>fdaInfo = (List<ClinicalTrialAdditionalInfo>) request.getAttribute("fdaInfo");
 //    String successMessage = (String)session.getAttribute("successMessage");
     Access access= new Access();
     Person p = null;
@@ -52,7 +50,7 @@
     </h3>
     <% if (request.getServerName().equals("localhost") || request.getServerName().equals("dev.scge.mcw.edu") || request.getServerName().equals("stage.scge.mcw.edu") )
     {
-        if (p!=null && access.isAdmin(p) && !SCGEContext.isProduction()) {
+        if (request.getServerName().equals("localhost") ||p!=null && access.isAdmin(p) && !SCGEContext.isProduction()) {
     %>
     <a style="margin-right: 26px;margin-top: 0" href="/platform/data/clinicalTrials/report/<%=clinicalTrialData.getNctId()%>?edit=true" class="btn btn-primary">Edit</a>
     <%}}%>
@@ -156,17 +154,20 @@
                     <% } %>
                 </td>
             </tr>
-            <% if(isEditMode || (aliasData!=null && !aliasData.isEmpty() && aliasData.get(0).getAlias()!=null && !aliasData.get(0).getAlias().isEmpty())) { %>
+            <% if((aliasData!=null && !aliasData.isEmpty() && aliasData.get(0).getAlias()!=null && !aliasData.get(0).getAlias().isEmpty())) { %>
             <tr>
                 <td class="label">
                     Compound&nbsp;Alias
                 </td>
+<%--                <td>--%>
+<%--                    <% if(isEditMode) { %>--%>
+<%--                    <textarea name="compoundAlias" class="form-control" rows="1"><%= (aliasData!=null && !aliasData.isEmpty() && aliasData.get(0).getAlias()!=null) ? aliasData.get(0).getAlias() : "" %></textarea>--%>
+<%--                    <% } else { %>--%>
+<%--                    <%= aliasData.get(0).getAlias() %>--%>
+<%--                    <% } %>--%>
+<%--                </td>--%>
                 <td>
-                    <% if(isEditMode) { %>
-                    <textarea name="compoundAlias" class="form-control" rows="1"><%= (aliasData!=null && !aliasData.isEmpty() && aliasData.get(0).getAlias()!=null) ? aliasData.get(0).getAlias() : "" %></textarea>
-                    <% } else { %>
                     <%= aliasData.get(0).getAlias() %>
-                    <% } %>
                 </td>
             </tr>
             <% } %>
@@ -546,15 +547,54 @@
                 </td>
             </tr>
             <tr>
-                <td class="label">
-                    FDA&nbsp;Designations
-                </td>
+                <td class="label">FDA&nbsp;Designations</td>
                 <td>
-<%--                    <% if(isEditMode) { %>--%>
-<%--                    <textarea name="fdaDesignations" class="form-control" rows="1"><%=clinicalTrialData.getFdaDesignation()!=null?clinicalTrialData.getFdaDesignation():""%></textarea>--%>
-<%--                    <% } else { %>--%>
-<%--                    <%=clinicalTrialData.getFdaDesignation()!=null?clinicalTrialData.getFdaDesignation():""%>--%>
-<%--                    <% } %>--%>
+                    <%
+                        if(isEditMode) {
+                            List<String> propertyValues = (List<String>) request.getAttribute("propertyValues");
+                            if (propertyValues != null && !propertyValues.isEmpty()) {
+                    %>
+                    <div class="fda-designations-container">
+                        <%
+                            for (String propertyValue : propertyValues) {
+                                boolean isChecked = false;
+                                if (fdaInfo != null) {
+                                    for (ClinicalTrialAdditionalInfo info : fdaInfo) {
+                                        if (info.getPropertyValue().equals(propertyValue)) {
+                                            isChecked = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                        %>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="fdaDesignation_<%= propertyValue.replaceAll("\\s+", "_") %>"
+                                   name="fdaDesignation" value="<%= propertyValue %>"
+                                <%= isChecked ? "checked" : "" %>>
+                            <label for="fdaDesignation_<%= propertyValue.replaceAll("\\s+", "_") %>"><%= propertyValue %></label>
+                        </div>
+                        <%
+                            }
+                        %>
+                    </div>
+                    <%
+                        }
+                    } else {
+                        StringBuilder fdaDesignations = new StringBuilder();
+                        if(fdaInfo != null) {
+                            for(int i = 0; i < fdaInfo.size(); i++) {
+                                ClinicalTrialAdditionalInfo info = fdaInfo.get(i);
+                                if(i > 0) {
+                                    fdaDesignations.append(", ");
+                                }
+                                fdaDesignations.append(info.getPropertyValue());
+                            }
+                        }
+                    %>
+                    <%= fdaDesignations.toString() %>
+                    <%
+                        }
+                    %>
                 </td>
             </tr>
             <tr>
