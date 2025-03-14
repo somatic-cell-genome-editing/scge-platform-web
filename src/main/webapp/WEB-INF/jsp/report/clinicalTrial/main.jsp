@@ -154,22 +154,78 @@
                     <% } %>
                 </td>
             </tr>
-            <% if((aliasData!=null && !aliasData.isEmpty() && aliasData.get(0).getAlias()!=null && !aliasData.get(0).getAlias().isEmpty())) { %>
+            <%
+                boolean hasExistingAlias = (aliasData != null && !aliasData.isEmpty());
+                Alias existingAlias = hasExistingAlias ? aliasData.get(0) : new Alias();
+            %>
+
+            <% if(isEditMode) { %>
             <tr>
                 <td class="label">
                     Compound&nbsp;Alias
                 </td>
-<%--                <td>--%>
-<%--                    <% if(isEditMode) { %>--%>
-<%--                    <textarea name="compoundAlias" class="form-control" rows="1"><%= (aliasData!=null && !aliasData.isEmpty() && aliasData.get(0).getAlias()!=null) ? aliasData.get(0).getAlias() : "" %></textarea>--%>
-<%--                    <% } else { %>--%>
-<%--                    <%= aliasData.get(0).getAlias() %>--%>
-<%--                    <% } %>--%>
-<%--                </td>--%>
+
                 <td>
-                    <%= aliasData.get(0).getAlias() %>
+                    <input type="hidden" name="aliasNctId" value="<%= clinicalTrialData.getNctId() %>">
+                    <input type="hidden" name="aliasFieldName" value="compound">
+                    <% if(hasExistingAlias) { %>
+                    <input type="hidden" name="aliasKey" value="<%= existingAlias.getKey() %>">
+                    <% } %>
+                    <textarea name="aliasValue" class="form-control" rows="1"><%= hasExistingAlias && existingAlias.getAlias() != null ? existingAlias.getAlias() : "" %></textarea>
                 </td>
             </tr>
+            <tr>
+                <td class="label">
+                    Alias&nbsp;Type
+                </td>
+
+                <td>
+                    <textarea name="aliasType" placeholder="For example, proper name or proprietary name etc" class="form-control" rows="1"><%= hasExistingAlias && existingAlias.getAliasTypeLC() != null ? existingAlias.getAliasTypeLC() : "" %></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                    Alias&nbsp;Notes
+                </td>
+
+                <td>
+                    <textarea name="aliasNotes" class="form-control" rows="1"><%= hasExistingAlias && existingAlias.getNotes() != null ? existingAlias.getNotes() : "" %></textarea>
+                </td>
+            </tr>
+            <% } else { %>
+            <% if(hasExistingAlias && existingAlias.getAlias() != null && !existingAlias.getAlias().isEmpty()) { %>
+            <tr>
+                <td class="label">
+                    Compound&nbsp;Alias
+                </td>
+
+                <td>
+                    <%= existingAlias.getAlias() %>
+                </td>
+            </tr>
+            <% } %>
+<%--            <% if(hasExistingAlias && existingAlias.getAliasTypeLC() != null && !existingAlias.getAliasTypeLC().isEmpty()) { %>--%>
+<%--            <tr>--%>
+<%--                <td class="label">--%>
+<%--                    Alias&nbsp;Type--%>
+<%--                </td>--%>
+
+<%--                <td>--%>
+<%--                    <%= existingAlias.getAliasTypeLC() %>--%>
+<%--                </td>--%>
+<%--            </tr>--%>
+<%--            <% } %>--%>
+<%--            <% if(hasExistingAlias && existingAlias.getNotes() != null && !existingAlias.getNotes().isEmpty()) { %>--%>
+<%--            <tr>--%>
+<%--                <td class="label">--%>
+<%--                    Alias&nbsp;Notes--%>
+<%--                </td>--%>
+
+<%--                <td>--%>
+<%--                    <%= existingAlias.getNotes() %>--%>
+<%--                </td>--%>
+<%--            </tr>--%>
+<%--            <% } %>--%>
             <% } %>
             <% if(isEditMode || (clinicalTrialData.getCompoundDescription() != null && !clinicalTrialData.getCompoundDescription().isEmpty())) { %>
             <tr>
