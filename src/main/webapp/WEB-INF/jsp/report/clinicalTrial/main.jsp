@@ -123,13 +123,14 @@
                     <%
                         String doidString = clinicalTrialData.getIndicationDOID()!=null?clinicalTrialData.getIndicationDOID():"";
                         if (doidString != null && !doidString.isEmpty()) {
-                            String[] doids = doidString.split("/");
+                            String[] doids = doidString.split("[/,;]+\\s*");
                             StringBuilder formattedDoids = new StringBuilder();
                             for (int i = 0; i < doids.length; i++) {
                                 String doid = doids[i].trim();
+                                String doidNumber = doid.startsWith("DOID:") ? doid.substring(5) : doid;
                                 formattedDoids
-                                        .append(" <a href=\"https://www.disease-ontology.org/term/DOID:").append(doid)
-                                        .append("\" target=\"_blank\">DOID:").append(doid).append("</a>");
+                                        .append(" <a href=\"https://www.disease-ontology.org/term/DOID:").append(doidNumber)
+                                        .append("\" target=\"_blank\">DOID:").append(doidNumber).append("</a>");
                                 if (i < doids.length - 1) {
                                     formattedDoids.append("; ");
                                 }
