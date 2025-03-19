@@ -6,13 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="edu.mcw.scge.datamodel.ClinicalTrialRecord" %>
-<%@ page import="edu.mcw.scge.datamodel.ClinicalTrialExternalLink" %>
 <%@ page import="java.util.List" %>
 <%@ page import="edu.mcw.scge.services.SCGEContext" %>
-<%@ page import="edu.mcw.scge.datamodel.Person" %>
 <%@ page import="edu.mcw.scge.configuration.Access" %>
-<%@ page import="edu.mcw.scge.datamodel.Alias" %>
+<%@ page import="edu.mcw.scge.datamodel.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -26,6 +23,7 @@
    ClinicalTrialRecord clinicalTrialData = (ClinicalTrialRecord) request.getAttribute("clinicalTrialData");
     List<ClinicalTrialExternalLink> clinicalExtLinkData = (List<ClinicalTrialExternalLink>) request.getAttribute("clinicalExtLinkData");
     List<Alias>aliasData = (List<Alias>) request.getAttribute("aliasData");
+    List<ClinicalTrialAdditionalInfo>fdaInfo = (List<ClinicalTrialAdditionalInfo>) request.getAttribute("fdaInfo");
 //    String successMessage = (String)session.getAttribute("successMessage");
     Access access= new Access();
     Person p = null;
@@ -52,7 +50,7 @@
     </h3>
     <% if (request.getServerName().equals("localhost") || request.getServerName().equals("dev.scge.mcw.edu") || request.getServerName().equals("stage.scge.mcw.edu") )
     {
-        if (p!=null && access.isAdmin(p) && !SCGEContext.isProduction()) {
+        if (request.getServerName().equals("localhost") ||p!=null && access.isAdmin(p) && !SCGEContext.isProduction()) {
     %>
     <a style="margin-right: 26px;margin-top: 0" href="/platform/data/clinicalTrials/report/<%=clinicalTrialData.getNctId()%>?edit=true" class="btn btn-primary">Edit</a>
     <%}}%>
@@ -116,6 +114,37 @@
             </tr>
             <tr>
                 <td class="label">
+                    Disease&nbsp;Ontology&nbsp;Term
+                </td>
+                <td>
+                    <% if(isEditMode) { %>
+                    <textarea name="indicationDOID" class="form-control" rows="1"><%=clinicalTrialData.getIndicationDOID()!=null?clinicalTrialData.getIndicationDOID():""%></textarea>
+                    <% } else { %>
+                    <%
+                        String doidString = clinicalTrialData.getIndicationDOID()!=null?clinicalTrialData.getIndicationDOID():"";
+                        if (doidString != null && !doidString.isEmpty()) {
+                            String[] doids = doidString.split("[/,;]+\\s*");
+                            StringBuilder formattedDoids = new StringBuilder();
+                            for (int i = 0; i < doids.length; i++) {
+                                String doid = doids[i].trim();
+                                String doidNumber = doid.startsWith("DOID:") ? doid.substring(5) : doid;
+                                formattedDoids
+                                        .append(" <a href=\"https://www.disease-ontology.org/term/DOID:").append(doidNumber)
+                                        .append("\" target=\"_blank\">DOID:").append(doidNumber).append("</a>");
+                                if (i < doids.length - 1) {
+                                    formattedDoids.append("; ");
+                                }
+                            }
+                    %>
+                    <%=formattedDoids.toString()%>
+                    <% } else { %>
+
+                    <% } %>
+                    <% } %>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
                     Compound&nbsp;Name
                 </td>
                 <td>
@@ -126,19 +155,78 @@
                     <% } %>
                 </td>
             </tr>
-            <% if(isEditMode || (aliasData!=null && !aliasData.isEmpty() && aliasData.get(0).getAlias()!=null && !aliasData.get(0).getAlias().isEmpty())) { %>
+            <%
+                boolean hasExistingAlias = (aliasData != null && !aliasData.isEmpty());
+                Alias existingAlias = hasExistingAlias ? aliasData.get(0) : new Alias();
+            %>
+
+            <% if(isEditMode) { %>
             <tr>
                 <td class="label">
                     Compound&nbsp;Alias
                 </td>
+
                 <td>
-                    <% if(isEditMode) { %>
-                    <textarea name="compoundAlias" class="form-control" rows="1"><%= (aliasData!=null && !aliasData.isEmpty() && aliasData.get(0).getAlias()!=null) ? aliasData.get(0).getAlias() : "" %></textarea>
-                    <% } else { %>
-                    <%= aliasData.get(0).getAlias() %>
+                    <input type="hidden" name="aliasNctId" value="<%= clinicalTrialData.getNctId() %>">
+                    <input type="hidden" name="aliasFieldName" value="compound">
+                    <% if(hasExistingAlias) { %>
+                    <input type="hidden" name="aliasKey" value="<%= existingAlias.getKey() %>">
                     <% } %>
+                    <textarea name="aliasValue" class="form-control" rows="1"><%= hasExistingAlias && existingAlias.getAlias() != null ? existingAlias.getAlias() : "" %></textarea>
                 </td>
             </tr>
+            <tr>
+                <td class="label">
+                    Alias&nbsp;Type
+                </td>
+
+                <td>
+                    <textarea name="aliasType" placeholder="For example, proper name or proprietary name etc" class="form-control" rows="1"><%= hasExistingAlias && existingAlias.getAliasTypeLC() != null ? existingAlias.getAliasTypeLC() : "" %></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                    Alias&nbsp;Notes
+                </td>
+
+                <td>
+                    <textarea name="aliasNotes" class="form-control" rows="1"><%= hasExistingAlias && existingAlias.getNotes() != null ? existingAlias.getNotes() : "" %></textarea>
+                </td>
+            </tr>
+            <% } else { %>
+            <% if(hasExistingAlias && existingAlias.getAlias() != null && !existingAlias.getAlias().isEmpty()) { %>
+            <tr>
+                <td class="label">
+                    Compound&nbsp;Alias
+                </td>
+
+                <td>
+                    <%= existingAlias.getAlias() %>
+                </td>
+            </tr>
+            <% } %>
+<%--            <% if(hasExistingAlias && existingAlias.getAliasTypeLC() != null && !existingAlias.getAliasTypeLC().isEmpty()) { %>--%>
+<%--            <tr>--%>
+<%--                <td class="label">--%>
+<%--                    Alias&nbsp;Type--%>
+<%--                </td>--%>
+
+<%--                <td>--%>
+<%--                    <%= existingAlias.getAliasTypeLC() %>--%>
+<%--                </td>--%>
+<%--            </tr>--%>
+<%--            <% } %>--%>
+<%--            <% if(hasExistingAlias && existingAlias.getNotes() != null && !existingAlias.getNotes().isEmpty()) { %>--%>
+<%--            <tr>--%>
+<%--                <td class="label">--%>
+<%--                    Alias&nbsp;Notes--%>
+<%--                </td>--%>
+
+<%--                <td>--%>
+<%--                    <%= existingAlias.getNotes() %>--%>
+<%--                </td>--%>
+<%--            </tr>--%>
+<%--            <% } %>--%>
             <% } %>
             <% if(isEditMode || (clinicalTrialData.getCompoundDescription() != null && !clinicalTrialData.getCompoundDescription().isEmpty())) { %>
             <tr>
@@ -174,7 +262,7 @@
             </tr>
             <tr>
                 <td class="label">
-                    Status
+                    Recruitment&nbsp;Status
                 </td>
                 <%
                     String status = clinicalTrialData.getStudyStatus();
@@ -194,36 +282,6 @@
 
                 <td>
                     <%=clinicalTrialData.getEnrorllmentCount()!=0?clinicalTrialData.getEnrorllmentCount():""%>
-                </td>
-            </tr>
-            <tr>
-                <td class="label">
-                    DOID&nbsp;Indication
-                </td>
-                <td>
-                    <% if(isEditMode) { %>
-                    <textarea name="indicationDOID" class="form-control" rows="1"><%=clinicalTrialData.getIndicationDOID()!=null?clinicalTrialData.getIndicationDOID():""%></textarea>
-                    <% } else { %>
-                    <%
-                        String doidString = clinicalTrialData.getIndicationDOID()!=null?clinicalTrialData.getIndicationDOID():"";
-                        if (doidString != null && !doidString.isEmpty()) {
-                            String[] doids = doidString.split("/");
-                            StringBuilder formattedDoids = new StringBuilder();
-                            for (int i = 0; i < doids.length; i++) {
-                                String doid = doids[i].trim();
-                                formattedDoids
-                                        .append(" <a href=\"https://www.disease-ontology.org/term/DOID:").append(doid)
-                                        .append("\" target=\"_blank\">DOID:").append(doid).append("</a>");
-                                if (i < doids.length - 1) {
-                                    formattedDoids.append("; ");
-                                }
-                            }
-                    %>
-                    <%=formattedDoids.toString()%>
-                    <% } else { %>
-
-                    <% } %>
-                    <% } %>
                 </td>
             </tr>
         </table>
@@ -546,15 +604,54 @@
                 </td>
             </tr>
             <tr>
-                <td class="label">
-                    FDA&nbsp;Designations
-                </td>
+                <td class="label">FDA&nbsp;Designations</td>
                 <td>
-                    <% if(isEditMode) { %>
-                    <textarea name="fdaDesignations" class="form-control" rows="1"><%=clinicalTrialData.getFdaDesignation()!=null?clinicalTrialData.getFdaDesignation():""%></textarea>
-                    <% } else { %>
-                    <%=clinicalTrialData.getFdaDesignation()!=null?clinicalTrialData.getFdaDesignation():""%>
-                    <% } %>
+                    <%
+                        if(isEditMode) {
+                            List<String> propertyValues = (List<String>) request.getAttribute("propertyValues");
+                            if (propertyValues != null && !propertyValues.isEmpty()) {
+                    %>
+                    <div class="fda-designations-container">
+                        <%
+                            for (String propertyValue : propertyValues) {
+                                boolean isChecked = false;
+                                if (fdaInfo != null) {
+                                    for (ClinicalTrialAdditionalInfo info : fdaInfo) {
+                                        if (info.getPropertyValue().equals(propertyValue)) {
+                                            isChecked = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                        %>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="fdaDesignation_<%= propertyValue.replaceAll("\\s+", "_") %>"
+                                   name="fdaDesignation" value="<%= propertyValue %>"
+                                <%= isChecked ? "checked" : "" %>>
+                            <label for="fdaDesignation_<%= propertyValue.replaceAll("\\s+", "_") %>"><%= propertyValue %></label>
+                        </div>
+                        <%
+                            }
+                        %>
+                    </div>
+                    <%
+                        }
+                    } else {
+                        StringBuilder fdaDesignations = new StringBuilder();
+                        if(fdaInfo != null) {
+                            for(int i = 0; i < fdaInfo.size(); i++) {
+                                ClinicalTrialAdditionalInfo info = fdaInfo.get(i);
+                                if(i > 0) {
+                                    fdaDesignations.append(", ");
+                                }
+                                fdaDesignations.append(info.getPropertyValue());
+                            }
+                        }
+                    %>
+                    <%= fdaDesignations.toString() %>
+                    <%
+                        }
+                    %>
                 </td>
             </tr>
             <tr>

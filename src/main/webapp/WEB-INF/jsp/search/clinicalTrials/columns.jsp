@@ -8,9 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <th class="firstColumn"style="position: sticky;left: 0px;z-index: 3">Trial ID&nbsp;<sup><span title="Unique identification code given to each clinical study upon registration at ClinicalTrials.gov" class="column-header-description"></span></sup></th>
 <%--<th class="firstColumn">Trial ID</th>--%>
-<th class="manual">Indication DOID&nbsp;<sup><span title="" class="column-header-description"></span></sup></th>
+<%--<th class="manual">Indication DOID&nbsp;<sup><span title="" class="column-header-description"></span></sup></th>--%>
 <th>Indication&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Indication")%>" class="column-header-description"></span></sup></th>
-<th class="manual">FDA Designation&nbsp;<sup><span title="" class="column-header-description"></span></sup></th>
+<th class="manual">FDA Designation&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("FDA Designations")%>" class="column-header-description"></span></sup></th>
 
 <th>Compound Name&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Compound Name")%>" class="column-header-description"></span></sup></th>
 <th>Sponsor&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Sponsor")%>" class="column-header-description"></span></sup></th>
@@ -30,7 +30,7 @@
 <%--<th class="manual">Dose 5&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Dose levels (up to 5)")%>" class="column-header-description"></span></sup></th>--%>
 <%--<th>Treatment</th>--%>
 <th>Current Stage&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Current Stage")%>" class="column-header-description"></span></sup></th>
-<th>Status&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Study Status")%>" class="column-header-description"></span></sup></th>
+<th>Recruitment Status&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Study Status")%>" class="column-header-description"></span></sup></th>
 <th class="manual">Development Status&nbsp;<sup><span title="" class="column-header-description"></span></sup></th>
 
 <th>Submit Date&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Actual Study Start Date (m/d/y)")%>" class="column-header-description">></span></sup></th>

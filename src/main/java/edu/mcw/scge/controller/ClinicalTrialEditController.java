@@ -1,6 +1,8 @@
 package edu.mcw.scge.controller;
 
 import edu.mcw.scge.dao.implementation.ClinicalTrailDAO;
+import edu.mcw.scge.datamodel.Alias;
+import edu.mcw.scge.datamodel.ClinicalTrialAdditionalInfo;
 import edu.mcw.scge.datamodel.ClinicalTrialExternalLink;
 import edu.mcw.scge.datamodel.ClinicalTrialRecord;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @RequestMapping("/clinicalTrialEdit")
@@ -53,7 +56,7 @@ public class ClinicalTrialEditController {
             ctRecord.setIndication(req.getParameter("indication"));
             ctRecord.setDevelopmentStatus(req.getParameter("developmentStatus"));
             ctRecord.setIndicationDOID(req.getParameter("indicationDOID"));
-            ctRecord.setFdaDesignation(req.getParameter("fdaDesignations"));
+
             ctRecord.setCompoundDescription(req.getParameter("compoundDescription"));
             ctRecord.setNctId(nctId);
 
@@ -95,6 +98,94 @@ public class ClinicalTrialEditController {
                 }
             }
 
+            //Handle FDA designations
+            List<ClinicalTrialAdditionalInfo> existingFdaDesignations = ctDAO.getAdditionalInfo(nctId,"fda_designation");
+            List<String>allFdaDesignations = ctDAO.getDistinctPropertyValues("fda_designation");
+            String[] selectedFdaDesignations = req.getParameterValues("fdaDesignation");
+
+            for(String designationValue:allFdaDesignations){
+                boolean isSelected = false;
+
+                if (selectedFdaDesignations != null) {
+                    for (String selected : selectedFdaDesignations) {
+                        if (selected.equals(designationValue)) {
+                            isSelected = true;
+                            break;
+                        }
+                    }
+                }
+                ClinicalTrialAdditionalInfo info = new ClinicalTrialAdditionalInfo();
+                info.setNctId(nctId);
+                info.setPropertyName("fda_designation");
+                info.setPropertyValue(designationValue);
+
+                boolean exists = false;
+                for (ClinicalTrialAdditionalInfo existing : existingFdaDesignations) {
+                    if (existing.getPropertyValue().equals(designationValue)) {
+                        exists = true;
+                        break;
+                    }
+                }
+                // Insert or delete based on selection status and existence
+                if (isSelected && !exists) {
+                    // Selected but doesn't exist - insert it
+                    ctDAO.insertAdditionalInfo(info);
+                } else if (!isSelected && exists) {
+                    // Not selected but exists - delete it
+                    for (ClinicalTrialAdditionalInfo existing : existingFdaDesignations) {
+                        if (existing.getPropertyValue().equals(designationValue)) {
+                            ctDAO.deleteAdditionalInfo(existing.getNctId(),existing.getPropertyName(),existing.getPropertyValue());
+                            break;
+                        }
+                    }
+                }
+            }
+
+            //Handle Alias fields
+            String aliasValue = req.getParameter("aliasValue");
+            String aliasKeyStr = req.getParameter("aliasKey");
+
+            List<Alias> existingAliases = ctDAO.getAliases(nctId, "compound");
+            boolean hasExistingAlias = (existingAliases != null && !existingAliases.isEmpty());
+
+            if (aliasValue == null || aliasValue.trim().isEmpty()) {
+                // If alias value is empty and there's an existing record, delete it
+                if (hasExistingAlias) {
+                    int aliasKey = 0;
+                    if (aliasKeyStr != null && !aliasKeyStr.trim().isEmpty()) {
+                        aliasKey = Integer.parseInt(aliasKeyStr);
+                    } else {
+                        aliasKey = existingAliases.get(0).getKey();
+                    }
+                    ctDAO.deleteAlias(aliasKey);
+                }
+            } else {
+                String aliasType = req.getParameter("aliasType");
+                String aliasNotes = req.getParameter("aliasNotes");
+                String aliasFieldName = req.getParameter("aliasFieldName");
+
+                if (aliasFieldName == null || aliasFieldName.isEmpty()) {
+                    aliasFieldName = "compound";
+                }
+
+                Alias alias = new Alias();
+                alias.setAlias(aliasValue);
+                alias.setAliasTypeLC(aliasType);
+                alias.setNotes(aliasNotes);
+                alias.setIdentifier(nctId);
+                alias.setFieldName(aliasFieldName);
+
+                if (hasExistingAlias) {
+                    if (aliasKeyStr != null && !aliasKeyStr.trim().isEmpty()) {
+                        alias.setKey(Integer.parseInt(aliasKeyStr));
+                    } else {
+                        alias.setKey(existingAliases.get(0).getKey());
+                    }
+                    ctDAO.updateAlias(alias);
+                } else {
+                    ctDAO.insertAlias(alias);
+                }
+            }
             //update the clinical_trial_record table
             ctDAO.updateCuratedDataFields(ctRecord);
             ctDAO.updateSomeNewFieldsDataFields(ctRecord);

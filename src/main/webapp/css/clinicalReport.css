@@ -235,16 +235,26 @@ html{
     box-sizing: border-box;
 }
 
-/*.form-control.modified {*/
-/*    background-color: #e3f2fd;*/
-/*    border-color: #42a5f5;*/
-/*    transition: background-color 0.3s ease;*/
-/*}*/
+.fda-designations-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
 
-/*.form-control.modified:focus {*/
-/*    border-color: #1e88e5;*/
-/*    box-shadow: 0 0 0 0.2rem rgba(66, 165, 245, 0.25);*/
-/*}*/
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.checkbox-item input[type="checkbox"] {
+    margin: 0;
+}
+
+.checkbox-item label {
+    margin: 0;
+    font-weight: normal;
+}
 
 @media (max-width: 600px){
     .sidenav{
