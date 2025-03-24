@@ -3,6 +3,7 @@ package edu.mcw.scge.controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import edu.mcw.scge.datamodel.Definition;
 import edu.mcw.scge.datamodel.web.ClinicalTrials;
 import edu.mcw.scge.service.es.clinicalTrials.ClinicalTrialsService;
@@ -83,6 +84,16 @@ public class SearchController{
         req.setAttribute("page", "/WEB-INF/jsp/search/clinicalTrials/resultsview");
         req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
 
+        return null;
+    }
+    @RequestMapping(value="/autocomplete")
+    public String getAutocompleteTerms(HttpServletRequest req, HttpServletResponse res, Model model,
+                                               @RequestParam(required = false) String searchTerm) throws Exception {
+        ClinicalTrialsService services = new ClinicalTrialsService();
+        Set<String> autocompleteList=services.getAutocompleteList(searchTerm);
+        Gson gson = new Gson();
+        String autoList = gson.toJson(autocompleteList);
+        res.getWriter().write(autoList);
         return null;
     }
     public LinkedHashMap<String,  List<String>> getFiltersMap(HttpServletRequest request) throws IOException {

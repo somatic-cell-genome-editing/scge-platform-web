@@ -14,6 +14,9 @@ import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.BucketOrder;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.sort.SortOrder;
+import org.elasticsearch.search.suggest.Suggest;
+import org.elasticsearch.search.suggest.SuggestBuilder;
+import org.elasticsearch.search.suggest.completion.CompletionSuggestionBuilder;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
@@ -75,6 +78,31 @@ public class ClinicalTrialsService {
         SearchResponse sr= ESClient.getClient().search(searchRequest, RequestOptions.DEFAULT);
         return sr;
 
+    }
+    public Set<String> getAutocompleteList(String term) throws IOException {
+        Set<String> autocompleteList=new HashSet<>();
+        CompletionSuggestionBuilder suggestionBuilder=new CompletionSuggestionBuilder("suggest");
+        suggestionBuilder.text(term);
+        //   suggestionBuilder.prefix(term, Fuzziness.TWO);
+        suggestionBuilder.size(10000);
+        SearchSourceBuilder srb=new SearchSourceBuilder();
+        srb.suggest(new SuggestBuilder().addSuggestion("autocomplete-suggest", suggestionBuilder));
+
+        SearchRequest searchRequest=new SearchRequest(SCGEContext.getESIndexName());
+        searchRequest.source(srb);
+        SearchResponse sr= ESClient.getClient().search(searchRequest, RequestOptions.DEFAULT);
+
+        if(sr!=null){
+            // Process the response
+            sr.getSuggest().getSuggestion("autocomplete-suggest").getEntries().stream().map(Suggest.Suggestion.Entry::getOptions)
+                    .forEach(options -> {
+                        options.forEach(option -> {
+                            autocompleteList.add(String.valueOf(option.getText()));
+                        });
+                    });
+
+        }
+        return autocompleteList;
     }
     public BoolQueryBuilder filter(Map<String, List<String>> filters){
         BoolQueryBuilder q=new BoolQueryBuilder();

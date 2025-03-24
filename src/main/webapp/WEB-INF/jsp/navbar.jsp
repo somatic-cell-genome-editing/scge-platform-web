@@ -19,8 +19,12 @@
                 </ul>
                 <!-- Separator -->
                 <div class="navbar-separator"></div>
-                <%@include file="search/search.jsp"%>
             </div>
+
+
+
+            <%@include file="search/search.jsp"%>
+
         </div>
     </nav>
 

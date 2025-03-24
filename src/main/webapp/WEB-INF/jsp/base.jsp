@@ -21,10 +21,7 @@
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet" type="text/css"/>
     <link href="/platform/common/css/sticky-footer-navbar.css" rel="stylesheet">
-    <script
-            src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
-            integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
-            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <link href="/platform/common/tablesorter-master/dist/css/filter.formatter.min.css" rel="stylesheet" type="text/css"/>
     <link href="/platform/common/tablesorter-master/dist/css/theme.jui.min.css" rel="stylesheet" type="text/css"/>
     <link href="/platform/common/tablesorter-master/dist/css/theme.blue.css" rel="stylesheet" type="text/css"/>
@@ -37,7 +34,7 @@
 
     <script src="/platform/js/scge.js"></script>
     <link href="/platform/css/base.css" type="text/css" rel="stylesheet">
-
+    <script src="/platform/js/search/autocomplete.js"></script>
 </head>
 
 <body>

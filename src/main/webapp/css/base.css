@@ -259,3 +259,15 @@ input[type="email"] {
     height: 30px; /* Adjust height */
     margin: 0 15px; /* Spacing around separator */
 }
+
+ .ui-autocomplete {
+     max-height: 200px; overflow-y: auto; overflow-x: hidden;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); z-index: 9999;  background-color: white;}
+.ui-menu-item {
+    padding: 5px;
+    cursor: pointer;
+}
+
+.ui-menu-item:hover {
+    background-color:cadetblue;
+    color:whitesmoke;
+}

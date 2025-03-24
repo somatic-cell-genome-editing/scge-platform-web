@@ -6,6 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<style>
+  .autocomplete-container {
+    width: 300px;
+  }
+</style>
+<div class="autocomplete-container">
 <form id="searchForm" class="form-inline my-2 my-lg-0 " action="/platform/data/search/">
   <div class="input-group md-form form-sm form-2 pl-0">
 
@@ -15,3 +21,4 @@
     </div>
   </div>
 </form>
+</div>
