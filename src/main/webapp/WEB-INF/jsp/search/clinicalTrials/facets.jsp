@@ -14,17 +14,16 @@
   /*.standardAges{*/
   /*  color:red;*/
   /*}*/
-  .tooltip-inner {
-    word-break: break-all;
-  }
+
 </style>
 <script>
-$(function () {
-$('[data-toggle="tooltip"]').tooltip()
-})
+// $(function () {
+// $('[data-toggle="tooltip"]').tooltip()
+// })
 expandFilterVal="<%=request.getAttribute("expandAllFilters")%>"
 
 </script>
+
 <%--<div class="input-group">--%>
 <%--  <input class="search selectable form-control form-control-sm" type="search" placeholder="Search Gene Therapy Trials.." data-column="all">--%>
 <%--  <div class="input-group-append">&nbsp;<span class="input-group-text reset" title="Reset"><i class="fa fa-refresh" aria-hidden="true"></i></span>--%>
@@ -64,7 +63,7 @@ expandFilterVal="<%=request.getAttribute("expandAllFilters")%>"
 <%--        <span class="<%=aggName%>"><%=ClinicalTrialsService.fieldDisplayNames.get(aggName)%></span><span class="float-right"><i class="fas fa-angle-up"></i></span>--%>
         <span class="<%=aggName%>"><%=value%>&nbsp;
           <sup>
-            <span title="<%=ClinicalTrialsService.facetDefinitions.get(value)%>">
+            <span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get(value)%>">
              <%@include file="infoSvg.jsp"%>
             </span>
           </sup>

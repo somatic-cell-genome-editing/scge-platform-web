@@ -271,3 +271,6 @@ input[type="email"] {
     background-color:cadetblue;
     color:whitesmoke;
 }
+.tooltip-inner{
+    word-break: normal;
+}
