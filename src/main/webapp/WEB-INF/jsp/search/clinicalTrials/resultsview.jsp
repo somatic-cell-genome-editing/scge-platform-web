@@ -82,22 +82,20 @@
         <div class="grid-body">
           <div class="row">
             <!-- BEGIN FILTERS -->
-              <%
-                  if(hits.size()>1){
-              %>
+
             <div class="col-md-2">
 
                 <%@include file="facets.jsp"%>
 
             </div>
-              <%}%>
+
             <!-- END FILTERS -->
             <!-- BEGIN RESULT -->
             <div class="col-md-10">
                 <div class="row">
                     <div class="col-6"> <span>Showing all  <%=hits.size()%> results ... <%=searchTerm%><%=dCategory%></span></div>
                     <%
-                        if(hits.size()>1){
+                        if(hits.size()>0){
                     %>
                     <div class="col-6 d-flex justify-content-end">
                         <div class="row">
