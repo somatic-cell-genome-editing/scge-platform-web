@@ -2,10 +2,10 @@ package edu.mcw.scge.controller;
 
 
 
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import edu.mcw.scge.datamodel.Definition;
+import edu.mcw.scge.datamodel.web.ClinicalTrials;
 import edu.mcw.scge.service.es.clinicalTrials.ClinicalTrialsService;
 import edu.mcw.scge.service.es.clinicalTrials.ClinicalTrialApiIndexServices;
 
@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.PathParam;
 import java.io.IOException;
 import java.util.*;
 
@@ -81,15 +80,26 @@ public class SearchController{
         Map<String,List<Definition>> definitions=service.getAllDefinitionsMap();
         req.setAttribute("expandAllFilters", req.getParameter("expandAllFilters"));
         req.setAttribute("definitions", definitions);
+        req.setAttribute("category", category);
         req.setAttribute("page", "/WEB-INF/jsp/search/clinicalTrials/resultsview");
         req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
 
         return null;
     }
+    @RequestMapping(value="/autocomplete")
+    public String getAutocompleteTerms(HttpServletRequest req, HttpServletResponse res, Model model,
+                                               @RequestParam(required = false) String searchTerm) throws Exception {
+        ClinicalTrialsService services = new ClinicalTrialsService();
+        Set<String> autocompleteList=services.getAutocompleteList(searchTerm);
+        Gson gson = new Gson();
+        String autoList = gson.toJson(autocompleteList);
+        res.getWriter().write(autoList);
+        return null;
+    }
     public LinkedHashMap<String,  List<String>> getFiltersMap(HttpServletRequest request) throws IOException {
 
         LinkedHashMap<String,  List<String>> filterMap=new LinkedHashMap<>();
-        for(String filterField:ClinicalTrialsService.aggregationFields) {
+        for(String filterField: ClinicalTrials.facets) {
             if (request.getParameterValues(filterField) != null) {
                 List<String> filterValues = Arrays.asList(request.getParameterValues(filterField));
                 filterMap.put(filterField, filterValues);

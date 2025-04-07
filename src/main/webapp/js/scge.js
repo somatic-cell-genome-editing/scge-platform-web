@@ -1,4 +1,7 @@
 $(function() {
+
+        $('[data-toggle="tooltip"]').tooltip()
+
     // $('.tablesorter').tablesorter({
     //     theme: 'blue',
     //     showProcessing: true,

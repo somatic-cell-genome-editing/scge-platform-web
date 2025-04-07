@@ -130,6 +130,7 @@ $(this).off('mouseleave');
 </script>
 <div id="resultsTable"  style="display: none">
 <table  id="myTable">
+    <caption>SCGE Platform GTCT</caption>
     <thead><tr><%@include file="columns.jsp"%></tr></thead>
     <tfoot><tr><%@include file="columns.jsp"%></tr></tfoot>
     <tbody>
@@ -147,7 +148,22 @@ $(this).off('mouseleave');
             </button>
         </a>
     </td>
+<%--    <td class="manual">--%>
+<%--        <%--%>
+<%--            if(sourceFields.get("indicationDOID")!=null && !sourceFields.get("indicationDOID").toString().contains("?")){--%>
+<%--                for(String doid:sourceFields.get("indicationDOID").toString().split("/")){--%>
+<%--        %>--%>
+<%--        <a href="https://www.disease-ontology.org/term/DOID:<%=doid%>" target="_blank">DOID:<%=doid%></a>&nbsp;--%>
+<%--        <%}}%>--%>
+<%--    </td>--%>
         <td class="manual"><%=sourceFields.get("indication")%></td>
+    <td class="manual">
+        <%
+            if(sourceFields.get("fdaDesignations")!=null){
+        %>
+        <%=((List<String>)sourceFields.get("fdaDesignations")).stream().collect(Collectors.joining(", "))%>
+        <%}%>
+    </td>
         <td class="manual"><%=sourceFields.get("compoundName")%></td>
         <td><%=sourceFields.get("sponsor")%></td>
         <td ><%=sourceFields.get("sponsorClass")%></td>
@@ -199,9 +215,9 @@ $(this).off('mouseleave');
             <%=dosage%>
             <%}%>
         </td>
-<%--        <td class="manual"><%=sourceFields.get("dose2")%></td>--%>
-<%--        <td class="manual"><%=sourceFields.get("dose3")%></td>--%>
-<%--        <td class="manual"><%=sourceFields.get("dose4")%></td>--%>
+
+
+
 <%--        <td class="manual"><%=sourceFields.get("dose5")%></td>--%>
         <td class="text-nowrap">
             <%
@@ -217,6 +233,13 @@ $(this).off('mouseleave');
         %>
             <%=status%>
         <%}%></td>
+    <td class="manual">
+        <%
+            if(sourceFields.get("developmentStatus")!=null){
+        %>
+        <%=sourceFields.get("developmentStatus")%>
+        <%}%>
+    </td>
         <td class="text-nowrap"><%=sourceFields.get("firstSubmitDate")%></td>
         <td><%=sourceFields.get("estimatedCompleteDate")%></td>
         <td class="text-nowrap"><%=sourceFields.get("lastUpdatePostDate")%></td>

@@ -5,7 +5,7 @@ $(function () {
         //    delay:500,
         source: function(request, response) {
             $.ajax({
-                url:"/platform/data/autocomplete",
+                url:"/platform/data/search/autocomplete",
                 type: "GET",
                 data: {searchTerm: request.term
                 },
