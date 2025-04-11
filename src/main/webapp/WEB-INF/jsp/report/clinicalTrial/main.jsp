@@ -572,7 +572,7 @@
             </tr>
             <tr>
                 <td class="label">
-                    Eligible&nbsp;Sex
+                    Sexes&nbsp;Eligible&nbsp;for&nbsp;Study
                 </td>
 
                 <td>
