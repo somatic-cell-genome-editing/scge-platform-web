@@ -284,6 +284,19 @@
                     <%=clinicalTrialData.getEnrorllmentCount()!=0?clinicalTrialData.getEnrorllmentCount():""%>
                 </td>
             </tr>
+            <tr>
+                <td class="label">Results&nbsp;Posted</td>
+                <td>
+                    <% if(clinicalTrialData.getWithHasResults() != null) { %>
+                    <% if(clinicalTrialData.getWithHasResults().equals("True")) { %>
+                    <a style="color: #1E90FF; font-weight: 600" href="https://www.clinicaltrials.gov/study/<%= clinicalTrialData.getNctId() %>?tab=results" target="_blank">View&nbsp;Results</a>
+                    <% } else { %>
+                    <%= clinicalTrialData.getWithHasResults() %>
+                    <% } %>
+                    <% } else { %>
+                    <% } %>
+                </td>
+            </tr>
         </table>
 
         <div class="dynamic-heading" id="therapy-info"><h3 class="ctSubHeading">Therapy&nbsp;Information</h3></div>
