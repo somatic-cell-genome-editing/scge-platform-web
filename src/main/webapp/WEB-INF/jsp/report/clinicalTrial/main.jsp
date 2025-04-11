@@ -291,7 +291,7 @@
                     <% if(clinicalTrialData.getWithHasResults().equals("True")) { %>
                     <a style="color: #1E90FF; font-weight: 600" href="https://www.clinicaltrials.gov/study/<%= clinicalTrialData.getNctId() %>?tab=results" target="_blank">View&nbsp;Results</a>
                     <% } else { %>
-                    <%= clinicalTrialData.getWithHasResults() %>
+                    <%= clinicalTrialData.getWithHasResults().equalsIgnoreCase("False")?"Not Available":"" %>
                     <% } %>
                     <% } else { %>
                     <% } %>
