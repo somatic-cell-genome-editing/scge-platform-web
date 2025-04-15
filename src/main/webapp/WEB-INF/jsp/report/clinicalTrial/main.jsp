@@ -10,6 +10,7 @@
 <%@ page import="edu.mcw.scge.services.SCGEContext" %>
 <%@ page import="edu.mcw.scge.configuration.Access" %>
 <%@ page import="edu.mcw.scge.datamodel.*" %>
+<%@ page import="org.apache.commons.text.StringEscapeUtils" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -106,7 +107,7 @@
                 </td>
                 <td>
                     <% if(isEditMode) { %>
-                    <textarea name="indication" class="form-control" rows="1"><%= clinicalTrialData.getIndication()!= null ? clinicalTrialData.getIndication() : "" %></textarea>
+                    <textarea name="indication" class="form-control" rows="1"><%= clinicalTrialData.getIndication()!= null ? StringEscapeUtils.escapeHtml4(clinicalTrialData.getIndication()) : "" %></textarea>
                     <% } else { %>
                     <%= clinicalTrialData.getIndication() != null ? clinicalTrialData.getIndication() : "" %>
                     <% } %>
@@ -149,7 +150,7 @@
                 </td>
                 <td>
                     <% if(isEditMode) { %>
-                    <textarea name="compoundName" class="form-control" rows="1"><%= clinicalTrialData.getCompoundName() != null ? clinicalTrialData.getCompoundName() : "" %></textarea>
+                    <textarea name="compoundName" class="form-control" rows="1"><%= clinicalTrialData.getCompoundName() != null ? StringEscapeUtils.escapeHtml4(clinicalTrialData.getCompoundName()) : "" %></textarea>
                     <% } else { %>
                     <%= clinicalTrialData.getCompoundName() != null ? clinicalTrialData.getCompoundName() : "" %>
                     <% } %>
@@ -172,7 +173,7 @@
                     <% if(hasExistingAlias) { %>
                     <input type="hidden" name="aliasKey" value="<%= existingAlias.getKey() %>">
                     <% } %>
-                    <textarea name="aliasValue" class="form-control" rows="1"><%= hasExistingAlias && existingAlias.getAlias() != null ? existingAlias.getAlias() : "" %></textarea>
+                    <textarea name="aliasValue" class="form-control" rows="1"><%= hasExistingAlias && existingAlias.getAlias() != null ? StringEscapeUtils.escapeHtml4(existingAlias.getAlias()) : "" %></textarea>
                 </td>
             </tr>
             <tr>
@@ -190,7 +191,7 @@
                 </td>
 
                 <td>
-                    <textarea name="aliasNotes" class="form-control" rows="1"><%= hasExistingAlias && existingAlias.getNotes() != null ? existingAlias.getNotes() : "" %></textarea>
+                    <textarea name="aliasNotes" class="form-control" rows="1"><%= hasExistingAlias && existingAlias.getNotes() != null ? StringEscapeUtils.escapeHtml4(existingAlias.getNotes()) : "" %></textarea>
                 </td>
             </tr>
             <% } else { %>
@@ -235,7 +236,7 @@
                 </td>
                 <td>
                     <% if(isEditMode) { %>
-                    <textarea name="compoundDescription" class="form-control" rows="1"><%= clinicalTrialData.getCompoundDescription() != null ? clinicalTrialData.getCompoundDescription() : "" %></textarea>
+                    <textarea name="compoundDescription" class="form-control" rows="1"><%= clinicalTrialData.getCompoundDescription() != null ? StringEscapeUtils.escapeHtml4(clinicalTrialData.getCompoundDescription()) : "" %></textarea>
                     <% } else { %>
                     <%= clinicalTrialData.getCompoundDescription() %>
                     <% } %>
@@ -309,7 +310,7 @@
 
                 <td>
                     <% if(isEditMode) { %>
-                    <textarea name="targetGeneOrVariant" class="form-control" rows="1"><%=clinicalTrialData.getTargetGeneOrVariant()!=null?clinicalTrialData.getTargetGeneOrVariant():""%></textarea>
+                    <textarea name="targetGeneOrVariant" class="form-control" rows="1"><%=clinicalTrialData.getTargetGeneOrVariant()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getTargetGeneOrVariant()):""%></textarea>
                     <% } else { %>
                     <%=clinicalTrialData.getTargetGeneOrVariant()!=null?clinicalTrialData.getTargetGeneOrVariant():""%>
                     <% } %>
@@ -322,7 +323,7 @@
 
                 <td>
                     <% if(isEditMode) { %>
-                    <textarea name="therapyType" class="form-control" rows="1"><%=clinicalTrialData.getTherapyType()!=null?clinicalTrialData.getTherapyType():""%></textarea>
+                    <textarea name="therapyType" class="form-control" rows="1"><%=clinicalTrialData.getTherapyType()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getTherapyType()):""%></textarea>
                     <% } else { %>
                     <%=clinicalTrialData.getTherapyType()!=null?clinicalTrialData.getTherapyType():""%>
                     <% } %>
@@ -335,7 +336,7 @@
 
                 <td>
                     <% if(isEditMode) { %>
-                    <textarea name="therapyRoute" class="form-control" rows="1"><%=clinicalTrialData.getTherapyRoute()!=null?clinicalTrialData.getTherapyRoute():""%></textarea>
+                    <textarea name="therapyRoute" class="form-control" rows="1"><%=clinicalTrialData.getTherapyRoute()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getTherapyRoute()):""%></textarea>
                     <% } else { %>
                     <%=clinicalTrialData.getTherapyRoute()!=null?clinicalTrialData.getTherapyRoute():""%>
                     <% } %>
@@ -348,7 +349,7 @@
 
                 <td>
                     <% if(isEditMode) { %>
-                    <textarea name="mechanismOfAction" class="form-control" rows="1"><%=clinicalTrialData.getMechanismOfAction()!=null?clinicalTrialData.getMechanismOfAction():""%></textarea>
+                    <textarea name="mechanismOfAction" class="form-control" rows="1"><%=clinicalTrialData.getMechanismOfAction()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getMechanismOfAction()):""%></textarea>
                     <% } else { %>
                     <%=clinicalTrialData.getMechanismOfAction()!=null?clinicalTrialData.getMechanismOfAction():""%>
                     <% } %>
@@ -361,7 +362,7 @@
 
                 <td>
                     <% if(isEditMode) { %>
-                    <textarea name="routeOfAdministration" class="form-control" rows="1"><%=clinicalTrialData.getRouteOfAdministration()!=null?clinicalTrialData.getRouteOfAdministration():""%></textarea>
+                    <textarea name="routeOfAdministration" class="form-control" rows="1"><%=clinicalTrialData.getRouteOfAdministration()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getRouteOfAdministration()):""%></textarea>
                     <% } else { %>
                     <%=clinicalTrialData.getRouteOfAdministration()!=null?clinicalTrialData.getRouteOfAdministration():""%>
                     <% } %>
@@ -374,7 +375,7 @@
 
                 <td>
                     <% if(isEditMode) { %>
-                    <textarea name="drugProductType" class="form-control" rows="1"><%=clinicalTrialData.getDrugProductType()!=null?clinicalTrialData.getDrugProductType():""%></textarea>
+                    <textarea name="drugProductType" class="form-control" rows="1"><%=clinicalTrialData.getDrugProductType()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getDrugProductType()):""%></textarea>
                     <% } else { %>
                     <%=clinicalTrialData.getDrugProductType()!=null?clinicalTrialData.getDrugProductType():""%>
                     <% } %>
@@ -387,7 +388,7 @@
 
                 <td>
                     <% if(isEditMode) { %>
-                    <textarea name="targetTissueOrCell" class="form-control" rows="1"><%=clinicalTrialData.getTargetTissueOrCell()!=null?clinicalTrialData.getTargetTissueOrCell():""%></textarea>
+                    <textarea name="targetTissueOrCell" class="form-control" rows="1"><%=clinicalTrialData.getTargetTissueOrCell()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getTargetTissueOrCell()):""%></textarea>
                     <% } else { %>
                     <%=clinicalTrialData.getTargetTissueOrCell()!=null?clinicalTrialData.getTargetTissueOrCell():""%>
                     <% } %>
@@ -400,7 +401,7 @@
 
                 <td>
                     <% if(isEditMode) { %>
-                    <textarea name="deliverySystem" class="form-control" rows="1"><%=clinicalTrialData.getDeliverySystem()!=null?clinicalTrialData.getDeliverySystem():""%></textarea>
+                    <textarea name="deliverySystem" class="form-control" rows="1"><%=clinicalTrialData.getDeliverySystem()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getDeliverySystem()):""%></textarea>
                     <% } else { %>
                     <%=clinicalTrialData.getDeliverySystem()!=null?clinicalTrialData.getDeliverySystem():""%>
                     <% } %>
@@ -413,7 +414,7 @@
 
                 <td>
                     <% if(isEditMode) { %>
-                    <textarea name="vectorType" class="form-control" rows="1"><%=clinicalTrialData.getVectorType()!=null?clinicalTrialData.getVectorType():""%></textarea>
+                    <textarea name="vectorType" class="form-control" rows="1"><%=clinicalTrialData.getVectorType()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getVectorType()):""%></textarea>
                     <% } else { %>
                     <%=clinicalTrialData.getVectorType()!=null?clinicalTrialData.getVectorType():""%>
                     <% } %>
@@ -426,7 +427,7 @@
 
                 <td>
                     <% if(isEditMode) { %>
-                    <textarea name="editorType" class="form-control" rows="1"><%=clinicalTrialData.getEditorType()!=null?clinicalTrialData.getEditorType():""%></textarea>
+                    <textarea name="editorType" class="form-control" rows="1"><%=clinicalTrialData.getEditorType()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getEditorType()):""%></textarea>
                     <% } else { %>
                     <%=clinicalTrialData.getEditorType()!=null?clinicalTrialData.getEditorType():""%>
                     <% } %>
@@ -673,7 +674,8 @@
                 </td>
                 <td>
                     <% if(isEditMode) { %>
-                    <textarea name="recentUpdates" class="form-control" rows="1"><%=clinicalTrialData.getRecentUpdates()!=null?clinicalTrialData.getRecentUpdates():""%></textarea>
+<%--                    <textarea name="recentUpdates" class="form-control" rows="1"><%=clinicalTrialData.getRecentUpdates()!=null?clinicalTrialData.getRecentUpdates():""%></textarea>--%>
+                    <textarea name="recentUpdates" class="form-control" rows="1"><%=clinicalTrialData.getRecentUpdates()!=null? StringEscapeUtils.escapeHtml4(clinicalTrialData.getRecentUpdates()):""%></textarea>
                     <% } else { %>
                     <%=clinicalTrialData.getRecentUpdates()!=null?clinicalTrialData.getRecentUpdates():""%>
                     <% } %>
@@ -732,7 +734,7 @@
                             <option value="Related NCTID" <%=cext.getType()!=null&&cext.getType().equalsIgnoreCase("Related NCTID")?"selected":""%>>Related NCTID</option>
                         </select>
                     </td>
-                    <td><textarea name="linkName" class="form-control" rows="1"><%=cext.getName()!=null?cext.getName():""%></textarea></td>
+                    <td><textarea name="linkName" class="form-control" rows="1"><%=cext.getName()!=null?StringEscapeUtils.escapeHtml4(cext.getName()):""%></textarea></td>
                     <td><textarea name="link" class="form-control" rows="1"><%=cext.getLink()!=null?cext.getLink():""%></textarea></td>
                     <td><button type="button" class="btn btn-danger" onclick="deleteExtLink(<%=cext.getId()%>)">Delete</button></td>
                 </tr>
