@@ -15,12 +15,12 @@
 </style>
 <h4 style=" font-family: 'Roboto Slab', serif; font-weight: 400;">Somatic Cell Genome Editing (SCGE) Platform </h4>
 <p class="text-justify">The National Institutes of Health (NIH) is leading an effort to help accelerate genome editing approaches from the lab to the clinic through the Somatic Cell Genome Editing (SCGE) Program.
-    <b>Phase I</b> of the program included the SCGE Toolkit to disseminate the outcomes focused on translating safe and effective genome editing therapeutics into the clinic. During <b>Phase 2</b> the <b>Translational Coordination and Dissemination Center (TCDC)</b> will support and work cooperatively with all initiatives, projects, and members to facilitate the objectives of the entire SCGE Consortium and the broader gene editing therapy field through development of the SCGE Platform, consisting of multiple initiatives.
+    <b>Phase I</b> of the program included the <a href="https://scge.mcw.edu/platform/home" target="_blank"><b>SCGE Toolkit</b></a> to disseminate the outcomes focused on translating safe and effective genome editing therapeutics into the clinic. During <b>Phase 2</b> the <b>Translational Coordination and Dissemination Center (TCDC)</b> will support and work cooperatively with all initiatives, projects, and members to facilitate the objectives of the entire SCGE Consortium and the broader gene editing therapy field through development of the <b>SCGE Platform</b>, consisting of multiple initiatives.
 </p>
 <div class="text-justify">
 <ul>
-    <li>The SCGE Platform is tracking and curating information on current and past Gene Therapy and Gene Editing clinical trials to help investigators leverage other successful trials </li>
-    <li>The Platform will help investigators accelerate their efforts to get their therapies to the clinic by:
+    <li>The <b>SCGE Platform</b> is tracking and curating information on current and past Gene Therapy and Gene Editing clinical trials to help investigators leverage other successful trials </li>
+    <li>The <b>Platform</b> will help investigators accelerate their efforts to get their therapies to the clinic by:
         <ul>
             <li>Collecting and collating useful resources and form templates specific to gene editing therapies and products to help investigators work with and submit Investigational New Drug (IND) applications to the Federal Drug Administration (FDA) </li>
             <li>Learning and communicating best practices regarding a successful IND application </li>
