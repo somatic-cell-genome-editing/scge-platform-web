@@ -33,9 +33,10 @@
                 <%
 
                     for(Definition d:defs){
+                        if(d!=null && d.getDefinition()!=null && d.getTerm()!=null){
                 %>
                      <tr><td class="col-md-2"><%=StringUtils.capitalize(d.getTerm())%></td><td class="col-md"><%=StringUtils.capitalize(d.getDefinition())%></td></tr>
-                    <%}%>
+                    <%}}%>
                 </table>
                 <%}}%>
             </div>
