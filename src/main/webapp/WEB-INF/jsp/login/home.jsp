@@ -42,6 +42,13 @@
     </style>
 </head>
 <body>
+<%
+    Map<Integer, List<Application>> applicationsMap= (Map<Integer, List<Application>>) request.getAttribute("applicationsMap");
+    int applicationsCount=0;
+    for(int key:applicationsMap.keySet()){
+        applicationsCount+=((List<Application>)applicationsMap.get(key)).size();
+    }
+%>
 
 <div class="container-fluid">
     <div class="row">
@@ -69,6 +76,16 @@
                     <li class="nav-item">&nbsp;</li>
                     <li class="nav-item">
                         <a href="/platform/ind/application/new"><button class="btn btn-primary">Create Application</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"> <i class="fa-solid fa-folder-open"></i>  Applications</a>
+                        <ul class="nav flex-column">
+                            <%
+                                for(int key:applicationsMap.keySet()){
+                                    for(Application app:applicationsMap.get(key)){%>
+                            <li class="nav-item"><a class="nav-link" href="/platform/ind/application/<%=app.getApplicationId()%>"><%=app.getApplicationId()%>_<%=app.getSponsorName()%></a> </li>
+                            <%}}%>
+                        </ul>
                     </li>
                     <%--                    <li class="nav-item">--%>
                     <%--                        <a class="nav-link" href="#">--%>
@@ -123,68 +140,21 @@
                     <div class="card">
                         <h5 class="card-header">Applications</h5>
                         <div class="card-body">
-                            <h5 class="card-title">0</h5>
+                            <h5 class="card-title"><%=applicationsCount%></h5>
                             <p class="card-text">05 June 2024</p>
-                            <p class="card-text text-danger">0 Applications in progress</p>
+                            <%
+                                if(applicationsCount>0){
+                            %>
+                            <p class="card-text text-success" style="font-weight: bold"><%=applicationsCount%> Applications in progress</p>
+                            <%}else{%>
+                            <p class="card-text text-danger"><%=applicationsCount%> Applications in progress</p>
+                            <%}%>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
                     <div class="card">
                         <h5 class="card-header">Documents</h5>
-                        <div class="card-body">
-                            <h5 class="card-title">0</h5>
-                            <p class="card-text">05 June 2024</p>
-                            <p class="card-text text-danger">0 documents uploaded</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
-                    <div class="card">
-                        <h5 class="card-header">Module 1</h5>
-                        <div class="card-body">
-                            <h5 class="card-title">0</h5>
-                            <p class="card-text">05 June 2024</p>
-                            <p class="card-text text-danger">0 documents uploaded</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
-                    <div class="card">
-                        <h5 class="card-header">Module 2</h5>
-                        <div class="card-body">
-                            <h5 class="card-title">0</h5>
-                            <p class="card-text">05 June 2024</p>
-                            <p class="card-text text-danger">0 documents uploaded</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row my-4">
-
-                <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
-                    <div class="card">
-                        <h5 class="card-header">Module 3</h5>
-                        <div class="card-body">
-                            <h5 class="card-title">0</h5>
-                            <p class="card-text">05 June 2024</p>
-                            <p class="card-text text-danger">0 documents uploaded</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
-                    <div class="card">
-                        <h5 class="card-header">Module 4</h5>
-                        <div class="card-body">
-                            <h5 class="card-title">0</h5>
-                            <p class="card-text">05 June 2024</p>
-                            <p class="card-text text-danger">0 documents uploaded</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
-                    <div class="card">
-                        <h5 class="card-header">Module 5</h5>
                         <div class="card-body">
                             <h5 class="card-title">0</h5>
                             <p class="card-text">05 June 2024</p>
@@ -202,7 +172,70 @@
                         </div>
                     </div>
                 </div>
+                <%--                <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">--%>
+                <%--                    <div class="card">--%>
+                <%--                        <h5 class="card-header">Module 1</h5>--%>
+                <%--                        <div class="card-body">--%>
+                <%--                            <h5 class="card-title">0</h5>--%>
+                <%--                            <p class="card-text">05 June 2024</p>--%>
+                <%--                            <p class="card-text text-danger">0 documents uploaded</p>--%>
+                <%--                        </div>--%>
+                <%--                    </div>--%>
+                <%--                </div>--%>
+                <%--                <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">--%>
+                <%--                    <div class="card">--%>
+                <%--                        <h5 class="card-header">Module 2</h5>--%>
+                <%--                        <div class="card-body">--%>
+                <%--                            <h5 class="card-title">0</h5>--%>
+                <%--                            <p class="card-text">05 June 2024</p>--%>
+                <%--                            <p class="card-text text-danger">0 documents uploaded</p>--%>
+                <%--                        </div>--%>
+                <%--                    </div>--%>
+                <%--                </div>--%>
             </div>
+            <%--            <div class="row my-4">--%>
+
+            <%--                <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">--%>
+            <%--                    <div class="card">--%>
+            <%--                        <h5 class="card-header">Module 3</h5>--%>
+            <%--                        <div class="card-body">--%>
+            <%--                            <h5 class="card-title">0</h5>--%>
+            <%--                            <p class="card-text">05 June 2024</p>--%>
+            <%--                            <p class="card-text text-danger">0 documents uploaded</p>--%>
+            <%--                        </div>--%>
+            <%--                    </div>--%>
+            <%--                </div>--%>
+            <%--                <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">--%>
+            <%--                    <div class="card">--%>
+            <%--                        <h5 class="card-header">Module 4</h5>--%>
+            <%--                        <div class="card-body">--%>
+            <%--                            <h5 class="card-title">0</h5>--%>
+            <%--                            <p class="card-text">05 June 2024</p>--%>
+            <%--                            <p class="card-text text-danger">0 documents uploaded</p>--%>
+            <%--                        </div>--%>
+            <%--                    </div>--%>
+            <%--                </div>--%>
+            <%--                <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">--%>
+            <%--                    <div class="card">--%>
+            <%--                        <h5 class="card-header">Module 5</h5>--%>
+            <%--                        <div class="card-body">--%>
+            <%--                            <h5 class="card-title">0</h5>--%>
+            <%--                            <p class="card-text">05 June 2024</p>--%>
+            <%--                            <p class="card-text text-danger">0 documents uploaded</p>--%>
+            <%--                        </div>--%>
+            <%--                    </div>--%>
+            <%--                </div>--%>
+            <%--                <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">--%>
+            <%--                    <div class="card">--%>
+            <%--                        <h5 class="card-header">FDA Responses</h5>--%>
+            <%--                        <div class="card-body">--%>
+            <%--                            <h5 class="card-title">0</h5>--%>
+            <%--                            <p class="card-text">05 June 2024</p>--%>
+            <%--                            <p class="card-text text-danger">0 documents uploaded</p>--%>
+            <%--                        </div>--%>
+            <%--                    </div>--%>
+            <%--                </div>--%>
+            <%--            </div>--%>
 
             <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-lg-0">
