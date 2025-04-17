@@ -15,7 +15,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script> <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+<%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script> <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">--%>
     <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
@@ -72,8 +72,8 @@
 
             <!-- About Us -->
             <div class="col-md-4">
-                <h5>About Us</h5>
-                <p>Translational Coordination and Dissemination Center (TCDC) is to support the SCGE Consortium and work cooperatively with all initiatives, projects, and members to facilitate the objectives of the entire SCGE Consortium. The Medical College of Wisconsin (MCW) TCDC will create the infrastructure to develop policies, track progress within the consortium, communicate within and beyond the consortium, develop outreach and educational activities to support the process of moving pre-clinical studies through the regulatory process, into clinical trials, and eventually to the patient. To disseminate data and resources developed within the SCGE Consortium, the SCGE Platform will be assembled to store, query, visualize, and analyze the outcomes of the SCGE initiatives. The MCW TCDC team will facilitate the administrative and management activities to support the overall success of the program.</p>
+<%--                <h5>About Us</h5>--%>
+<%--                <p>Translational Coordination and Dissemination Center (TCDC) is to support the SCGE Consortium and work cooperatively with all initiatives, projects, and members to facilitate the objectives of the entire SCGE Consortium. The Medical College of Wisconsin (MCW) TCDC will create the infrastructure to develop policies, track progress within the consortium, communicate within and beyond the consortium, develop outreach and educational activities to support the process of moving pre-clinical studies through the regulatory process, into clinical trials, and eventually to the patient. To disseminate data and resources developed within the SCGE Consortium, the SCGE Platform will be assembled to store, query, visualize, and analyze the outcomes of the SCGE initiatives. The MCW TCDC team will facilitate the administrative and management activities to support the overall success of the program.</p>--%>
             </div>
 
             <!-- Quick Links -->
@@ -102,10 +102,14 @@
             Copyright &copy; This website is hosted by the SCGE Platform | Copyright 2024 SCGE | All Rights Reserved
         </div>
     </div>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<%--  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">--%>
+<%--    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>--%>
+<%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script> <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">--%>
+<%--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">--%>
+<%--        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>--%>
+
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script> <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
 
 </body>
 </html>

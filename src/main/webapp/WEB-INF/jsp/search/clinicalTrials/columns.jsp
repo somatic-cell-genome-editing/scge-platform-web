@@ -36,8 +36,8 @@
 <%--<th class="manual">Dose 5&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Dose levels (up to 5)")%>" class="column-header-description"></span></sup></th>--%>
 <%--<th>Treatment</th>--%>
 <th>Current Stage&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Current Stage")%>" class="column-header-description"></span></sup></th>
-<th>Recruitment Status&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Study Status")%>" class="column-header-description"></span></sup></th>
-<th class="manual">Development Status&nbsp;<sup><span data-toggle="tooltip" title="" class="column-header-description"></span></sup></th>
+<th>Recruitment Status&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Recruitment Status")%>" class="column-header-description"></span></sup></th>
+<th class="manual">Development Status&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Development Status")%>" class="column-header-description"></span></sup></th>
 
 <th>Submit Date&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Actual Study Start Date (m/d/y)")%>" class="column-header-description">></span></sup></th>
 <th>Completion Date&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Estimated Primary Completion Date (m/d/y)")%>" class="column-header-description"></span></sup></th>

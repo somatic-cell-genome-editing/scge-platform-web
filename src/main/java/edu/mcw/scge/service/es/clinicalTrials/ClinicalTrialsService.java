@@ -32,9 +32,15 @@ public class ClinicalTrialsService {
                 if(displayName.toLowerCase().startsWith("fda")) {
                   String name=  displayName.substring(0,3).toUpperCase()+displayName.substring(3);
                     fieldDisplayNames.put(field, StringUtils.capitalize(name));
-                }else  if(displayName.equalsIgnoreCase("status")) {
+                }else  if(field.equalsIgnoreCase("status")) {
                     String name=  "Recruitment Status";
                     fieldDisplayNames.put(field, StringUtils.capitalize(name));
+                }else  if(field.equalsIgnoreCase("withHasResults")) {
+                    String name=  "Results Posted";
+                    fieldDisplayNames.put(field, name);
+                }else if(field.equalsIgnoreCase("eligibilitySex")){
+                    String name=  "Sexes Eligible for Study";
+                    fieldDisplayNames.put(field, name);
                 }
                 else{
                     fieldDisplayNames.put(field, StringUtils.capitalize(displayName));
