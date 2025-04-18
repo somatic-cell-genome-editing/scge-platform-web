@@ -101,7 +101,39 @@
     #myTable td:nth-child(26) {
         padding-right: 15px;
     }
+    #resultsTable {
+        max-height: 500px;   /* control vertical scroll */
+        overflow: auto;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+    }
+    table {
+        border-collapse: collapse;
+        min-width: 1000px; /* force horizontal scroll on small screens */
+    }
 
+    th, td {
+        padding: 0.75rem 1rem;
+        border: 1px solid #eee;
+        white-space: nowrap;
+        text-align: left;
+    }
+
+    thead th {
+        background-color: #f5f5f5;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+    }
+
+    /* Optional: sticky first column */
+    tbody td:first-child,
+    thead th:first-child {
+        position: sticky;
+        left: 0;
+        background-color: #fff;
+        z-index: 1;
+    }
 </style>
 <script>
 $(function () {
