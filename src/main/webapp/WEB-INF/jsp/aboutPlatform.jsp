@@ -13,14 +13,19 @@
         margin-left:1em;
     }
 </style>
-<h4 style=" font-family: 'Roboto Slab', serif; font-weight: 400;">Somatic Cell Genome Editing (SCGE) Platform </h4>
-<p class="text-justify">The National Institutes of Health (NIH) is leading an effort to help accelerate genome editing approaches from the lab to the clinic through the Somatic Cell Genome Editing (SCGE) Program.
-    <b>Phase I</b> of the program included the <a href="https://scge.mcw.edu/toolkit" target="_blank"><b>SCGE Toolkit</b></a> to disseminate the outcomes focused on translating safe and effective genome editing therapeutics into the clinic. During <b>Phase 2</b> the <b>Translational Coordination and Dissemination Center (TCDC)</b> will support and work cooperatively with all initiatives, projects, and members to facilitate the objectives of the entire SCGE Consortium and the broader gene editing therapy field through development of the <b>SCGE Platform</b>, consisting of multiple initiatives.
-</p>
+<h2>Somatic Cell Genome Editing (SCGE) Platform </h2>
+<div class=" jumbotron shadow" style="background-color: transparent">
 <div class="text-justify">
+    <p>The National Institutes of Health (NIH) is leading an effort to help accelerate genome editing approaches from the lab to the clinic through the <a href="https://scge.mcw.edu/">Somatic Cell Genome Editing (SCGE) Program</a>.
+        <a href="https://scge.mcw.edu/phase-1-project-goals/">Phase I</a> of the program included the <a href="https://scge.mcw.edu/toolkit" target="_blank">SCGE Toolkit</a> to disseminate the outcomes focused on translating safe and effective genome editing therapeutics into the clinic. During <a href="https://scge.mcw.edu/about-the-scge-phase-2/">Phase 2</a> the <a href="https://scge.mcw.edu/phase-2-tcdc/">Translational Coordination and Dissemination Center (TCDC)</a> will support and work cooperatively with all initiatives, projects, and members to facilitate the objectives of the entire SCGE Consortium and the broader gene editing therapy field through development of the SCGE Platform, consisting of multiple initiatives.
+    </p>
 <ul>
-    <li>The <b>SCGE Platform</b> is tracking and curating information on current and past Gene Therapy and Gene Editing clinical trials to help investigators leverage other successful trials </li>
-    <li>The <b>Platform</b> will help investigators accelerate their efforts to get their therapies to the clinic by:
+    <li>The SCGE Platform is tracking and curating information on current and past <a href="https://dev.scge.mcw.edu/platform/data/search/ClinicalTrial">Gene Therapy and Gene Editing clinical trials</a> to help investigators leverage other successful trials
+        <ul>
+            <li>Explore the <a href="https://dev.scge.mcw.edu/platform/data/search/ClinicalTrial">Gene Therapy Trial Browser</a></li>
+        </ul>
+    </li>
+    <li>The Platform will help investigators accelerate their efforts to get their therapies to the clinic by:
         <ul>
             <li>Collecting and collating useful resources and form templates specific to gene editing therapies and products to help investigators work with and submit Investigational New Drug (IND) applications to the Federal Drug Administration (FDA) </li>
             <li>Learning and communicating best practices regarding a successful IND application </li>
@@ -28,4 +33,5 @@
         </ul>
     </li>
 </ul>
+</div>
 </div>
