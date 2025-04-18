@@ -7,14 +7,14 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <style>
-    ul {
+    .about-text ul {
         /*list-style-type: disc !important;*/
         padding-left:1em !important;
         margin-left:1em;
     }
 </style>
 <h2>Somatic Cell Genome Editing (SCGE) Platform </h2>
-<div class=" jumbotron shadow" style="background-color: transparent">
+<div class=" jumbotron shadow about-text" style="background-color: transparent">
 <div class="text-justify">
     <p>The National Institutes of Health (NIH) is leading an effort to help accelerate genome editing approaches from the lab to the clinic through the <a href="https://scge.mcw.edu/">Somatic Cell Genome Editing (SCGE) Program</a>.
         <a href="https://scge.mcw.edu/phase-1-project-goals/">Phase I</a> of the program included the <a href="https://scge.mcw.edu/toolkit" target="_blank">SCGE Toolkit</a> to disseminate the outcomes focused on translating safe and effective genome editing therapeutics into the clinic. During <a href="https://scge.mcw.edu/about-the-scge-phase-2/">Phase 2</a> the <a href="https://scge.mcw.edu/phase-2-tcdc/">Translational Coordination and Dissemination Center (TCDC)</a> will support and work cooperatively with all initiatives, projects, and members to facilitate the objectives of the entire SCGE Consortium and the broader gene editing therapy field through development of the SCGE Platform, consisting of multiple initiatives.
