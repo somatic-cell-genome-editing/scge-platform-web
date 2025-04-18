@@ -63,7 +63,7 @@
     </p>
 
 <%}else{%>
-    <h3 style="color: #1a80b6; font-family: 'Roboto Slab', serif; font-weight: 400;">SCGE Platform - General Search Results</h3>
+    <h3 style="color: #1a80b6;">SCGE Platform - General Search Results</h3>
 <%}%>
 </div>
 <div class="container-fluid">
