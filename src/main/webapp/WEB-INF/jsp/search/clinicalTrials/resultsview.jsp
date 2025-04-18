@@ -19,7 +19,7 @@
 <link href="/platform/css/resultTable.css" rel="stylesheet" type="text/css"/>
 <link href="/platform/css/referencesModal.css" rel="stylesheet" type="text/css"/>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap" rel="stylesheet">
-
+<script src="/platform/js/scge.js"></script>
 <script src="/platform/common/js/jquery.tabletoCSV.js"> </script>
 <%
     Gson gson=new Gson();

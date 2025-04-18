@@ -19,6 +19,10 @@
     <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet" type="text/css"/>
     <link href="/platform/common/css/sticky-footer-navbar.css" rel="stylesheet">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -32,7 +36,7 @@
     <script src="/platform/common/tablesorter-master/dist/js/widgets/widget-scroller.min.js"></script>
 <%--    <script src="/platform/common/tablesorter-master/dist/js/widgets/widget-uitheme.min.js"></script>--%>
 
-    <script src="/platform/js/scge.js"></script>
+
     <link href="/platform/css/base.css" type="text/css" rel="stylesheet">
     <script src="/platform/js/search/autocomplete.js"></script>
 </head>
