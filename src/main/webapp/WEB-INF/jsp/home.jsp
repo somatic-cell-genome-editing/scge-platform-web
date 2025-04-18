@@ -137,10 +137,10 @@
             <%--            </div>--%>
 
             <div class="p-3">
-                <h4 class="font-italic">Resources/links</h4>
+                <h4 class="font-italic">External Resources/links</h4>
                 <ol class="list-unstyled mb-0">
-                    <li><a href="https://www.fda.gov/drugs/investigational-new-drug-ind-application/ind-forms-and-instructions" target="_blank">IND Forms and Instructions</a></li>
-                    <li><a href="https://www.fda.gov/drugs/types-applications/investigational-new-drug-ind-application#FDA%20Guidances%20for%20Investigational%20New%20Drugs" target="_blank">Guidance Documents for INDs</a></li>
+                    <li><a href="https://www.fda.gov/drugs/investigational-new-drug-ind-application/ind-forms-and-instructions" target="_blank">FDA IND Forms and Instructions</a></li>
+                    <li><a href="https://www.fda.gov/drugs/types-applications/investigational-new-drug-ind-application#FDA%20Guidances%20for%20Investigational%20New%20Drugs" target="_blank">FDA Guidance Documents for INDs</a></li>
 
                 </ol>
             </div>
