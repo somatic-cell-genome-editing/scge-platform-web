@@ -20,7 +20,7 @@
         <a href="https://scge.mcw.edu/phase-1-project-goals/">Phase I</a> of the program included the <a href="https://scge.mcw.edu/toolkit" target="_blank">SCGE Toolkit</a> to disseminate the outcomes focused on translating safe and effective genome editing therapeutics into the clinic. During <a href="https://scge.mcw.edu/about-the-scge-phase-2/">Phase 2</a> the <a href="https://scge.mcw.edu/phase-2-tcdc/">Translational Coordination and Dissemination Center (TCDC)</a> will support and work cooperatively with all initiatives, projects, and members to facilitate the objectives of the entire SCGE Consortium and the broader gene editing therapy field through development of the SCGE Platform, consisting of multiple initiatives.
     </p>
 <ul>
-    <li>The SCGE Platform is tracking and curating information on current and past Gene Therapy and Gene Editing clinical trials to help investigators leverage other successful trials
+    <li>The SCGE Platform is tracking and curating information on current and past gene therapy and gene editing clinical trials to help investigators leverage other successful trials
         <ul>
             <li>Explore the <a href="/platform/data/search/ClinicalTrial">Gene Therapy Trial Browser</a></li>
         </ul>
