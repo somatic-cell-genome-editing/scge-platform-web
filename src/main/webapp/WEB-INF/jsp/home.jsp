@@ -28,7 +28,7 @@
         <div class="col" align="center">
             <div style="width: 90%" align="center">
                 <%--            <img class="img-fluid" src="/platform/images/platform-overview.png" />--%>
-                <img class="img-fluid" src="/platform/common/images/Platform_Home_Page_V1.png" width="100%"/>
+                <img class="img-fluid" src="/platform/common/images/Platform_Home_Page_V2.png" width="100%"/>
             </div>
 
         </div>
