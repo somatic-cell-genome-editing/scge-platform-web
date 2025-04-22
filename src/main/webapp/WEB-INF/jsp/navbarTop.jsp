@@ -5,52 +5,54 @@
   Time: 1:00 PM
   To change this template use File | Settings | File Templates.
 --%>
-<nav class="navbar navbar-expand-lg flex-md-nowrap  shadow" style="background-color: rgb(27, 128, 182)" >
-  <div class="container-fluid">
-
-    <button class="navbar-toggler btn-sm" type="button" data-toggle="collapse" data-target="#navbarResponsiveTop" aria-controls="navbarResponsiveTop" aria-expanded="false" aria-label="Toggle navigation">
-      <!--span class="navbar-toggler-icon"></span-->
-      <span style="color:white"><i class="fa fa-user" aria-hidden="true"></i></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarResponsiveTop">
-        <ul class="navbar-nav mr-auto" >
-<%--        <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link text-light" href=""><i class="fab fa-facebook mr-1"></i></a></li>--%>
-<%--        <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link text-light" href=""><i class="fab fa-instagram mr-1"></i></a></li>--%>
-        <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link text-light" href="https://twitter.com/somaticediting" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
-        <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link text-light" href="https://www.linkedin.com/company/somatic-cell-genome-editing-consortium/about/" target="_blank"><i class="fab fa-linkedin mr-1"></i></a></li>
-        <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link text-light" href="https://www.youtube.com/channel/UCnMSf_YZdv1gIuqPmB6vrYw" target="_blank"><i class="fab fa-youtube mr-1"></i></a></li>
-        </ul>
-        <ul class="navbar-nav ml-auto" >
 
 
-<%--            <div style="text-align:right; color:white;padding-right:12px;">--%>
-            <li class="nav-item text-nowrap text-light" ><a href="https://scge.mcw.edu" style="color:white;font-size: 0.9rem" >SCGE Consortium Home</a>&nbsp;|&nbsp;</li>
-    <li class="nav-item text-nowrap text-light" ><a style="color:white;font-size: 0.9rem" href="https://scge.mcw.edu/phase-2-tcdc/">About SCGE TCDC</a>&nbsp;|&nbsp;</li>
-    <li class="nav-item text-nowrap text-light"><a style="color:white;font-size: 0.9rem"  href="https://scge.mcw.edu/contact/">Contact Us</a>&nbsp;|&nbsp;</li>
-<%--    <li class="nav-item text-nowrap text-light" ><a style="color:white;font-size: 0.9rem" href="">Citing the SCGE Platform</a>&nbsp;|&nbsp;</li>--%>
-    <li class="nav-item text-nowrap text-light"><a style="color:white;font-size: 0.9rem" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">License</a></li>
-<%--            </div>--%>
+<nav class="navbar navbar-expand-lg navbar-dark justify-content-end" style="background-color: rgb(27, 128, 182)">
+    <div class="container-fluid justify-content-end">
+        <!-- Brand Logo -->
 
-        </ul>
-<%--    <ul class="navbar-nav" style="margin-left: 2%">--%>
+        <!--Toggle Button for Mobile -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavTop">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-<%--          <c:choose>--%>
-<%--            <c:when test="${userAttributes.get('name')!=null}">--%>
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavTop">
+            <ul class="navbar-nav mr-auto" >
+                <%--        <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link text-light" href=""><i class="fab fa-facebook mr-1"></i></a></li>--%>
+                <%--        <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link text-light" href=""><i class="fab fa-instagram mr-1"></i></a></li>--%>
+                <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link text-light" href="https://twitter.com/somaticediting" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
+                <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link text-light" href="https://www.linkedin.com/company/somatic-cell-genome-editing-consortium/about/" target="_blank"><i class="fab fa-linkedin mr-1"></i></a></li>
+                <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link text-light" href="https://www.youtube.com/channel/UCnMSf_YZdv1gIuqPmB6vrYw" target="_blank"><i class="fab fa-youtube mr-1"></i></a></li>
 
-<%--                <li class="nav-item text-nowrap" style="padding-right: 2%"><a href="/platform/dashboard"> <button class="btn btn-primary btn-sm">My Dashboard</button></a></li>--%>
-<%--                <li class="nav-item"><img class="rounded-circle" src="${userAttributes.get('picture')}" width="20" alt=""></li>--%>
-<%--                <li class="nav-item text-nowrap"  style="padding-right: 2%"><span class="text-light" >&nbsp;${userAttributes.get('name')}&nbsp;&nbsp;</span></li>--%>
-<%--                <li class="nav-item"  style="padding-right: 2%"><a href="/platform/logout" title="Sign out"><button class="btn btn-light btn-sm">Logout</button></a></li>--%>
-<%--      </c:when>--%>
-<%--            <c:otherwise>--%>
-<%--               <li class="nav-item"  style="padding-right: 2%"><a href="/platform/login.jsp" title="Consortium Member Sign In"><button class="btn btn-light btn-sm" style="padding-top:0;padding-bottom: 0">Login</button></a></li>--%>
-<%--                </c:otherwise>--%>
-<%--          </c:choose>--%>
+            </ul>
+            <ul class="navbar-nav ml-auto justify-content-end">
+                <li class="nav-item text-nowrap"><a class="nav-link" href="https://scge.mcw.edu">SCGE Consortium Home</a></li>
+                <li class="nav-item text-nowrap"><a class="nav-link" href="https://scge.mcw.edu/phase-2-tcdc/">About SCGE TCDC</a></li>
+                <li class="nav-item text-nowrap"><a class="nav-link" href="https://scge.mcw.edu/contact/">Contact Us</a></li>
+                <li class="nav-item text-nowrap"><a class="nav-link" href="https://creativecommons.org/licenses/by/4.0/">License</a></li>
 
-
-<%--      </ul>--%>
+                <li class="nav-item">&nbsp;</li>
+                <li class="nav-item text-nowrap">
+                    <% if (request.getServerName().equals("localhost") || request.getServerName().equals("dev.scge.mcw.edu") || request.getServerName().equals("stage.scge.mcw.edu") ) { %>
+                    <c:choose>
+                        <c:when test="${userAttributes.name!=null}">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item text-nowrap" style="padding-right: 2%"><a href="/platform/dashboard"> <button class="btn btn-sm btn-warning">My Dashboard</button></a></li>
+                                <li class="nav-item"><img class="rounded-circle " width="40" height="40" src='${userAttributes.picture}' alt=""></li>
+                                <li class="nav-item text-nowrap text-light"  style="padding-right: 2%">${userAttributes.name}</li>
+                                <li class="nav-item" ><a href="/platform/logout" title="Sign out"><button class="btn btn-light btn-sm"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout</button></a></li>
+                            </ul>
+                        </c:when>
+                        <c:otherwise>
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item"><a href="/platform/login.jsp" title="Consortium Member Sign In"><button class="btn btn-light btn-sm" >Login</button></a></li>
+                            </ul>
+                            </c:otherwise>
+                        </c:choose>
+                    <%}%>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>
-
