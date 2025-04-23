@@ -78,6 +78,19 @@
                     <%=clinicalTrialData.getNctId()%>&nbsp;<a style="color: #1E90FF;font-weight: 600" href="https://www.clinicaltrials.gov/study/<%=clinicalTrialData.getNctId()%>" target="_blank">(View at clinicaltrials.gov)</a>
                 </td>
             </tr>
+            <%if(isEditMode){%>
+            <tr>
+                <td class="label">
+                    Record&nbsp;Status
+                </td>
+                <td>
+                    <select name="recordStatus" style="width: 10%" class="form-control">
+                        <option value="Active" <%=clinicalTrialData.getRecordStatus()!=null&&clinicalTrialData.getRecordStatus().equalsIgnoreCase("Active")?"selected":""%>>Active</option>
+                        <option value="Inactive" <%=clinicalTrialData.getRecordStatus()!=null&&clinicalTrialData.getRecordStatus().equalsIgnoreCase("Inactive")?"selected":""%>>Inactive</option>
+                    </select>
+                </td>
+            </tr>
+            <% } %>
             <tr>
                 <td class="label">
                     Description
