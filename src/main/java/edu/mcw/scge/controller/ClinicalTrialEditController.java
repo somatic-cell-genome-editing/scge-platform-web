@@ -32,7 +32,6 @@ public class ClinicalTrialEditController {
     ) throws Exception {
 
         try {
-            req.setCharacterEncoding("UTF-8");
             ClinicalTrialRecord ctRecord = new ClinicalTrialRecord();
 
             ctRecord.setnCTNumber(nctId);
@@ -52,7 +51,6 @@ public class ClinicalTrialEditController {
             ctRecord.setDose4(req.getParameter("dose4"));
             ctRecord.setDose5(req.getParameter("dose5"));
             ctRecord.setRecentUpdates(req.getParameter("recentUpdates"));
-            System.out.println("Recent updates"+req.getParameter("recentUpdates"));
             ctRecord.setPatents(req.getParameter("patents"));
             ctRecord.setCompoundName(req.getParameter("compoundName"));
             ctRecord.setIndication(req.getParameter("indication"));
