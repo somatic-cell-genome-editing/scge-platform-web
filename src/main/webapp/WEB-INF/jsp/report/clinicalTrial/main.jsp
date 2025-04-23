@@ -84,7 +84,7 @@
                     Record&nbsp;Status
                 </td>
                 <td>
-                    <select name="recordStatus" style="width: 10%" class="form-control">
+                    <select name="recordStatus" style="width: 11%" class="form-control">
                         <option value="Active" <%=clinicalTrialData.getRecordStatus()!=null&&clinicalTrialData.getRecordStatus().equalsIgnoreCase("Active")?"selected":""%>>Active</option>
                         <option value="Inactive" <%=clinicalTrialData.getRecordStatus()!=null&&clinicalTrialData.getRecordStatus().equalsIgnoreCase("Inactive")?"selected":""%>>Inactive</option>
                     </select>
