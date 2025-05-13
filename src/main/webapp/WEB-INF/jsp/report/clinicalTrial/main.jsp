@@ -298,7 +298,7 @@
                 <td>
                     <%
                         String enrollmentType = clinicalTrialData.getEnrollmentType()!=null?clinicalTrialData.getEnrollmentType():"";
-                        Serializable enrollmentCount = clinicalTrialData.getEnrorllmentCount()!=0?clinicalTrialData.getEnrorllmentCount():"";
+                        String enrollmentCount = Integer.toString(clinicalTrialData.getEnrorllmentCount()!=0?clinicalTrialData.getEnrorllmentCount(): Integer.parseInt(""));
                     %>
                     <%=!enrollmentCount.equals("")?(!(enrollmentType.isEmpty())?enrollmentCount+" ("+enrollmentType+")":enrollmentCount):""%>
                 </td>
