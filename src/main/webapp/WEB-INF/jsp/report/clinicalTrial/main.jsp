@@ -11,6 +11,7 @@
 <%@ page import="edu.mcw.scge.configuration.Access" %>
 <%@ page import="edu.mcw.scge.datamodel.*" %>
 <%@ page import="org.apache.commons.text.StringEscapeUtils" %>
+<%@ page import="java.io.Serializable" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -295,7 +296,11 @@
                 </td>
 
                 <td>
-                    <%=clinicalTrialData.getEnrorllmentCount()!=0?clinicalTrialData.getEnrorllmentCount():""%>
+                    <%
+                        String enrollmentType = clinicalTrialData.getEnrollmentType()!=null?clinicalTrialData.getEnrollmentType():"";
+                        Serializable enrollmentCount = clinicalTrialData.getEnrorllmentCount()!=0?clinicalTrialData.getEnrorllmentCount():"";
+                    %>
+                    <%=!enrollmentCount.equals("")?(!(enrollmentType.isEmpty())?enrollmentCount+" ("+enrollmentType+")":enrollmentCount):""%>
                 </td>
             </tr>
             <tr>
