@@ -1,6 +1,5 @@
 package edu.mcw.scge.uploadFiles;
 
-import java.io.IOException;
 import java.net.FileNameMap;
 import java.net.URLConnection;
 
@@ -12,7 +11,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 
-import com.google.gson.Gson;
 import edu.mcw.scge.dao.implementation.ctd.SectionDAO;
 import edu.mcw.scge.datamodel.Application;
 import edu.mcw.scge.datamodel.Document;
@@ -21,6 +19,7 @@ import edu.mcw.scge.uploadFiles.storage.FileSystemStorageService;
 import edu.mcw.scge.uploadFiles.storage.StorageFileNotFoundException;
 import edu.mcw.scge.uploadFiles.storage.StorageProperties;
 import edu.mcw.scge.uploadFiles.storage.StorageService;
+import jakarta.servlet.annotation.MultipartConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -35,10 +34,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
+@MultipartConfig(fileSizeThreshold = 20971520) // 20MB
 @RequestMapping(value="/secure/store")
 public class FileUploadController {
 

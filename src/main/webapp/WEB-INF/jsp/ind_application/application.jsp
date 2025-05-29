@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: jthota
@@ -8,18 +9,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="container">
     <h2>Investigational New Drug (IND) Application</h2>
-    <form action="">
+    <form:form action="/platform/ind/application/create/" method="post" modelAttribute="application">
     <div class="card">
         <div class="card-header">Sponsor Information</div>
         <div class="card-body">
 
             <label>Sponsor Name:
-                <input class="form-control form-control-sm" type="text" name="sponsor_name" required>
+                <input class="form-control form-control-sm" type="text" name="sponsorName" required>
             </label>
 
 
             <label>Contact Person:
-                <input class="form-control form-control-sm" type="text" name="contact_person" required>
+                <input class="form-control form-control-sm" type="text" name="contactPerson" required>
             </label>
 
 
@@ -35,19 +36,19 @@
 </div>
 </div>
     <div class="card">
-        <div class="card-header">Drug Information</div>
+        <div class="card-header">Drug Product Information</div>
         <div class="card-body">
             <label for="drug_name">Investigational Drug Name:
-            <input class="form-control form-control-sm" type="text" name="drug_name" id="drug_name" required>
+            <input class="form-control form-control-sm" type="text" name="productName" id="drug_name" required>
             </label>
             <label for="dosage_form">Dosage Form:
-            <input class="form-control form-control-sm" type="text" name="dosage_form" id="dosage_form">
+            <input class="form-control form-control-sm" type="text" name="dosageForm" id="dosage_form">
             </label>
             <label>Route of Administration:
-            <input class="form-control form-control-sm" type="text" name="route_admin">
+            <input class="form-control form-control-sm" type="text" name="routeOfAdministration">
             </label>
             <label>Therapeutic Area:
-            <input class="form-control form-control-sm" type="text" name="therapeutic_area"></label>
+            <input class="form-control form-control-sm" type="text" name="indication"></label>
 
         </div>
     </div>
@@ -55,10 +56,10 @@
         <div class="card-header">Clinical Trial Information</div>
         <div class="card-body">
             <label>Study Title:
-            <input class="form-control form-control-sm" type="text" name="study_title" required>
+            <input class="form-control form-control-sm" type="text" name="studyTitle" required>
             </label>
             <label>Study Phase:
-            <select class="form-control form-control-sm" name="study_phase">
+            <select class="form-control form-control-sm" name="studyPhase">
                 <option value="1">Phase 1</option>
                 <option value="2">Phase 2</option>
                 <option value="3">Phase 3</option>
@@ -66,7 +67,7 @@
             </select>
             </label>
             <label for="ind_number">IND Number (if known):
-            <input class="form-control form-control-sm" type="text" name="ind_number" id="ind_number"></label>
+            <input class="form-control form-control-sm" type="text" name="indNumber" id="ind_number"></label>
 
         </div>
     </div>
@@ -74,10 +75,10 @@
         <div class="card-header">Submission Details</div>
         <div class="card-body">
             <label>Submission Date:
-            <input class="form-control form-control-sm"  type="date" name="submission_date">
+            <input class="form-control form-control-sm"  type="date" name="submissionDate">
             </label>
             <label>Submission Type:
-            <select class="form-control form-control-sm" name="submission_type">
+            <select class="form-control form-control-sm" name="submissionType">
                 <option value="initial">Initial IND</option>
                 <option value="amendment">Amendment</option>
                 <option value="annual_report">Annual Report</option>
@@ -92,10 +93,10 @@
         <div class="card-header">Drug Safety Information</div>
         <div class="card-body">
             <label>Known Adverse Effects:</label>
-            <textarea class="form-control form-control-sm" name="adverse_effects" rows="4"></textarea>
+            <textarea class="form-control form-control-sm" name="adverseEffects" rows="4"></textarea>
 
             <label>Preclinical Data Summary:</label>
-            <textarea class="form-control form-control-sm" name="preclinical_data" rows="4"></textarea>
+            <textarea class="form-control form-control-sm" name="preclinicalData" rows="4"></textarea>
 
         </div>
     </div>
@@ -103,14 +104,14 @@
         <div class="card-header">IRB Information</div>
         <div class="card-body">
             <label>IRB Approval Number:
-            <input class="form-control form-control-sm" type="text" name="irb_approval">
+            <input class="form-control form-control-sm" type="text" name="irbApproval">
             </label>
             <label>IRB Approval Date:
-            <input class="form-control form-control-sm" type="date" name="irb_approval_date">
+            <input class="form-control form-control-sm" type="date" name="irbApprovalDate">
             </label>
         </div>
     </div>
     <button type="submit">Submit Application</button>
     <button type="reset">Reset</button>
-    </form>
+    </form:form>
 </div>
