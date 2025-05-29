@@ -4,9 +4,6 @@ version ''
 apply plugin: 'java'
 apply plugin: 'war'
 
-
-sourceCompatibility = 17
-
 repositories {
     mavenCentral()
 }
