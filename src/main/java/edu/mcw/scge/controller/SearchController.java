@@ -67,7 +67,7 @@ public class SearchController{
     }
     @RequestMapping(value="/{category}")
     public String getClinicalTrialsFileResults(HttpServletRequest req, HttpServletResponse res, Model model,
-                                               @PathVariable(required = true) String category, @RequestParam(required = false) String searchTerm) throws Exception {
+                                               @PathVariable("category") String category, @RequestParam(name="searchTerm", required = false) String searchTerm) throws Exception {
         ClinicalTrialsService services = new ClinicalTrialsService();
         LinkedHashMap<String, List<String>> filterMap=getFiltersMap(req);
         SearchResponse sr=services.getSearchResults(searchTerm ,category,getFiltersMap(req));
