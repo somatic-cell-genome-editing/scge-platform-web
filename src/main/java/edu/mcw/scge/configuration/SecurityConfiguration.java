@@ -117,22 +117,23 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
                 .permitAll()
                 .anyRequest().authenticated());
 
-        http.oauth2Login(auth2 -> auth2
-                        .loginPage("/dashboard").permitAll()
-                        .failureUrl("/loginFailure")
-                        .defaultSuccessUrl("/dashboard", true)
-                        .clientRegistrationRepository(clientRegistrationRepository())
-                        .authorizedClientService(authorizedClientService(clientRegistrationRepository()))
-                        .authorizationEndpoint(authorization -> authorization.baseUri("/login"))
-                        .tokenEndpoint(tokenEndpointConfig -> tokenEndpointConfig.accessTokenResponseClient(accessTokenResponseClient())))
-                .logout(logout -> logout
-                        .logoutRequestMatcher(PathPatternRequestMatcher.withDefaults().matcher("/logout"))
-                        .logoutSuccessUrl("/") // Redirect after logout
-                        .invalidateHttpSession(true) // Invalidate the session
-                        .deleteCookies("JSESSIONID") // Delete cookies
-                ).csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()));
-    }
-        http.headers(headers -> headers.cacheControl(HeadersConfigurer.CacheControlConfig::disable));
+        }
+    http.oauth2Login(auth2 -> auth2
+                    .loginPage("/dashboard").permitAll()
+                    .failureUrl("/loginFailure")
+                    .defaultSuccessUrl("/dashboard", true)
+                    .clientRegistrationRepository(clientRegistrationRepository())
+                    .authorizedClientService(authorizedClientService(clientRegistrationRepository()))
+                    .authorizationEndpoint(authorization -> authorization.baseUri("/login"))
+                    .tokenEndpoint(tokenEndpointConfig -> tokenEndpointConfig.accessTokenResponseClient(accessTokenResponseClient())))
+            .logout(logout -> logout
+                    .logoutRequestMatcher(PathPatternRequestMatcher.withDefaults().matcher("/logout"))
+                    .logoutSuccessUrl("/") // Redirect after logout
+                    .invalidateHttpSession(true) // Invalidate the session
+                    .deleteCookies("JSESSIONID") // Delete cookies
+            ).csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()));
+
+    http.headers(headers -> headers.cacheControl(HeadersConfigurer.CacheControlConfig::disable));
 
     return http.build();
 }
