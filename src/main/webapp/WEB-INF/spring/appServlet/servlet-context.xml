@@ -20,11 +20,11 @@
         <beans:property name="prefix" value="/WEB-INF/jsp/" />
         <beans:property name="suffix" value=".jsp" />
     </beans:bean>
-    <beans:bean id="filterMultipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!-- setting maximum upload size -->
-        <beans:property name="maxUploadSize" value="200000" />
+<!--    <beans:bean id="filterMultipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
+<!--        &lt;!&ndash; setting maximum upload size &ndash;&gt;-->
+<!--        <beans:property name="maxUploadSize" value="200000" />-->
 
-    </beans:bean>
+<!--    </beans:bean>-->
     <context:component-scan base-package="edu.mcw.scge.controller" />
     <context:component-scan base-package="edu.mcw.scge.uploadFiles" />
 
