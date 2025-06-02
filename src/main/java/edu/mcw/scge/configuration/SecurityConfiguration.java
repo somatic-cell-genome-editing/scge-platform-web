@@ -46,9 +46,9 @@ import java.util.stream.Collectors;
  * Created by jthota on 11/12/2019.
  */
 
-@Configuration
-@EnableWebSecurity
-@PropertySource("classpath:application.properties")
+//@Configuration
+//@EnableWebSecurity
+//@PropertySource("classpath:application.properties")
 
 public class SecurityConfiguration {
 
@@ -105,10 +105,10 @@ public class SecurityConfiguration {
 //    }
 @Bean
 public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-   // if(System.getenv("HOSTNAME")!=null && System.getenv("HOSTNAME").equals("localhost")) {
-     if(!SCGEContext.isProduction() && !SCGEContext.isTest() && !SCGEContext.isDev()){
+    if(System.getenv("HOSTNAME")!=null && System.getenv("HOSTNAME").equals("localhost")) {
+   //  if(!SCGEContext.isProduction() && !SCGEContext.isTest() && !SCGEContext.isDev()){
             http.authorizeHttpRequests(authorize->
-                    authorize.requestMatchers("/","/**")
+                    authorize.requestMatchers("/**")
                             .permitAll());
     }else {
         http.authorizeHttpRequests(authorize -> authorize
