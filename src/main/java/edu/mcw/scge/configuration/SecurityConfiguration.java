@@ -107,32 +107,32 @@ public class SecurityConfiguration {
 public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 //    if(System.getenv("HOSTNAME")!=null && System.getenv("HOSTNAME").equals("localhost")) {
 //   //  if(!SCGEContext.isProduction() && !SCGEContext.isTest() && !SCGEContext.isDev()){
-//            http.authorizeHttpRequests(authorize->
-//                    authorize.requestMatchers("/**")
-//                            .permitAll());
+            http.authorizeHttpRequests(authorize->
+                    authorize.requestMatchers("/**")
+                            .permitAll());
 //    }else {
-        http.authorizeHttpRequests(authorize -> authorize.requestMatchers("/", "/home", "/logout", "/oauth_login", "/common/**", "/data/requestAccount", "/loginFailure",
-                        "/images/**", "/css/**", "/js/**", "/forms_public/**", "/data/**", "/login.jsp", "/login")
-                .permitAll()
-                .anyRequest().authenticated());
-
-               http. oauth2Login(auth2 -> auth2
-                    .loginPage("/dashboard").permitAll()
-                    .failureUrl("/loginFailure")
-                    .defaultSuccessUrl("/dashboard", true)
-                    .clientRegistrationRepository(clientRegistrationRepository())
-                    .authorizedClientService(authorizedClientService(clientRegistrationRepository()))
-                    .authorizationEndpoint(authorization -> authorization.baseUri("/login"))
-                    .tokenEndpoint(tokenEndpointConfig -> tokenEndpointConfig.accessTokenResponseClient(accessTokenResponseClient())))
-            .logout(logout -> logout
-                    .logoutRequestMatcher(PathPatternRequestMatcher.withDefaults().matcher("/logout"))
-                    .logoutSuccessUrl("/") // Redirect after logout
-                    .invalidateHttpSession(true) // Invalidate the session
-                    .deleteCookies("JSESSIONID") // Delete cookies
-            ).csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()));
-
-    http.headers(headers -> headers.cacheControl(HeadersConfigurer.CacheControlConfig::disable));
-//    }
+//        http.authorizeHttpRequests(authorize -> authorize.requestMatchers("/", "/home", "/logout", "/oauth_login", "/common/**", "/data/requestAccount", "/loginFailure",
+//                        "/images/**", "/css/**", "/js/**", "/forms_public/**", "/data/**", "/login.jsp", "/login")
+//                .permitAll()
+//                .anyRequest().authenticated());
+//
+//               http. oauth2Login(auth2 -> auth2
+//                    .loginPage("/dashboard").permitAll()
+//                    .failureUrl("/loginFailure")
+//                    .defaultSuccessUrl("/dashboard", true)
+//                    .clientRegistrationRepository(clientRegistrationRepository())
+//                    .authorizedClientService(authorizedClientService(clientRegistrationRepository()))
+//                    .authorizationEndpoint(authorization -> authorization.baseUri("/login"))
+//                    .tokenEndpoint(tokenEndpointConfig -> tokenEndpointConfig.accessTokenResponseClient(accessTokenResponseClient())))
+//            .logout(logout -> logout
+//                    .logoutRequestMatcher(PathPatternRequestMatcher.withDefaults().matcher("/logout"))
+//                    .logoutSuccessUrl("/") // Redirect after logout
+//                    .invalidateHttpSession(true) // Invalidate the session
+//                    .deleteCookies("JSESSIONID") // Delete cookies
+//            ).csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()));
+//
+//    http.headers(headers -> headers.cacheControl(HeadersConfigurer.CacheControlConfig::disable));
+////    }
     return http.build();
 }
 
