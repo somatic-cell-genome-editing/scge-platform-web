@@ -59,85 +59,24 @@ public class SecurityConfiguration {
     private static List<String> clients = Arrays.asList("google");
 
 
-//    @Bean
-//    public ClientRegistrationRepository clientRegistrationRepository() {
-//        List<ClientRegistration> registrations = clients.stream()
-//                .map(this::getRegistration)
-//                .filter(registration -> registration != null)
-//                .collect(Collectors.toList());
-//
-//        return new InMemoryClientRegistrationRepository(registrations);
-//    }
 
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        if(System.getenv("HOSTNAME")!=null && System.getenv("HOSTNAME").equals("localhost")) {
-//            http.authorizeRequests().requestMatchers("/**").permitAll();
-//        }else{
-//            http.authorizeRequests()
-//                    .requestMatchers("/", "/home", "/logout", "/oauth_login", "/common/**", "/data/requestAccount", "/loginFailure",
-//                            "/images/**", "/css/**", "/js/**", "/forms_public/**", "/data/**", "/login.jsp").permitAll()
-//                    .anyRequest().authenticated()
-//                    .and()
-//                    .logout()
-//                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//                    .logoutSuccessUrl("/")
-//                    .deleteCookies("JSESSIONID")
-//                    .invalidateHttpSession(true)
-//                    .permitAll()
-//                    .and()
-//                    .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-//                    .and()
-//                    .oauth2Login()
-//                    .loginPage("/dashboard")
-//                    .permitAll()
-//                    .defaultSuccessUrl("/dashboard", true)
-//                    .failureUrl("/loginFailure")
-//                    .clientRegistrationRepository(clientRegistrationRepository())
-//                    .authorizedClientService(authorizedClientService())
-//                    .authorizationEndpoint()
-//                    .baseUri("/login")
-//                    .and()
-//                    .tokenEndpoint()
-//                    .accessTokenResponseClient(accessTokenResponseClient());
-//
-//            http.headers().defaultsDisabled().cacheControl();
-//        }
-//    }
 @Bean
 public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     System.out.println("HOSTNAME"+ System.getenv("HOSTNAME"));
-//    if(System.getenv("HOSTNAME")!=null && System.getenv("HOSTNAME").equals("localhost")) {
-//// if(!SCGEContext.isProduction() && !SCGEContext.isTest()){
-//            http.authorizeHttpRequests(authorize->
-//                    authorize.requestMatchers("/**")
-//                            .permitAll())
-//                             .oauth2Login(auth2 -> auth2
-//                            .loginPage("/dashboard").permitAll()
-//                            .failureUrl("/loginFailure")
-//                            .defaultSuccessUrl("/dashboard", true)
-//                            .clientRegistrationRepository(clientRegistrationRepository())
-//                            .authorizedClientService(authorizedClientService(clientRegistrationRepository()))
-//                            .authorizationEndpoint(authorization -> authorization.baseUri("/login"))
-//                            .tokenEndpoint(tokenEndpointConfig -> tokenEndpointConfig.accessTokenResponseClient(accessTokenResponseClient())))
-//                            .logout(logout -> logout
-//                                    .logoutRequestMatcher(PathPatternRequestMatcher.withDefaults().matcher("/logout"))
-//                                    .logoutSuccessUrl("/") // Redirect after logout
-//                                    .invalidateHttpSession(true) // Invalidate the session
-//                                    .deleteCookies("JSESSIONID") // Delete cookies
-//                            ).csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()));
-//
-//
-//  } else {
-        http.authorizeHttpRequests(authorize -> authorize.requestMatchers("/", "/home","/logout", "/common/**", "/loginFailure",
-                        "/images/**", "/css/**", "/js/**", "/forms_public/**","/data/**", "/login.jsp", "/index.jsp","/WEB-INF/jsp/**"
-                              )
-                        .permitAll()
-                        .anyRequest()
-                        .authenticated()).
+ if(!SCGEContext.isProduction() && !SCGEContext.isTest() && !SCGEContext.isDev()){
+            http.authorizeHttpRequests(authorize->
+                    authorize.requestMatchers("/**")
+                            .permitAll());
+ } else {
+        http.authorizeHttpRequests(authorize -> authorize.requestMatchers("/", "/home", "/logout", "/common/**", "/loginFailure",
+                        "/images/**", "/css/**", "/js/**", "/forms_public/**", "/data/**", "/login.jsp", "/index.jsp", "/WEB-INF/jsp/**")
+                .permitAll()
+                .anyRequest()
+                .authenticated());
+    }
 
-                        oauth2Login(auth2 -> auth2
-
+    http.oauth2Login(auth2 -> auth2
+                    .loginPage("/dashboard")
                     .failureUrl("/loginFailure")
                     .defaultSuccessUrl("/dashboard", true)
                     .clientRegistrationRepository(clientRegistrationRepository())
@@ -151,7 +90,7 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
                     .deleteCookies("JSESSIONID") // Delete cookies
             ).csrf(AbstractHttpConfigurer::disable);
 
-//    }
+
     http.headers(headers -> headers.cacheControl(HeadersConfigurer.CacheControlConfig::disable));
 
     return http.build();
