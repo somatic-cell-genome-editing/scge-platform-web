@@ -1,11 +1,20 @@
-<%--
+<%@ page import="org.springframework.security.core.userdetails.memory.UserAttribute" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="edu.mcw.scge.configuration.UserService" %>
+<%@ page import="edu.mcw.scge.configuration.Access" %>
+<%@ page import="org.checkerframework.checker.units.qual.A" %>
+<%@ page import="org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken" %>
+<%@ page import="java.util.HashMap" %><%--
   Created by IntelliJ IDEA.
   User: jthota
   Date: 1/5/2024
   Time: 1:00 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%
+    Map userAttributes = (Map) request.getSession().getAttribute("userAttributes");;
 
+%>
 
 <nav class="navbar navbar-expand-lg navbar-dark justify-content-end" style="background-color: rgb(27, 128, 182)">
     <div class="container-fluid justify-content-end">
@@ -34,22 +43,21 @@
 
                 <li class="nav-item">&nbsp;</li>
                 <li class="nav-item text-nowrap">
-                    <% if (request.getServerName().equals("localhost") || request.getServerName().equals("dev.scge.mcw.edu") || request.getServerName().equals("stage.scge.mcw.edu") ) { %>
-                    <c:choose>
-                        <c:when test="${userAttributes.name!=null}">
-                            <ul class="navbar-nav ml-auto">
-                                <li class="nav-item text-nowrap" style="padding-right: 2%"><a href="/platform/dashboard"> <button class="btn btn-sm btn-warning">My Dashboard</button></a></li>
-                                <li class="nav-item"><img class="rounded-circle " width="40" height="40" src='${userAttributes.picture}' alt=""></li>
-                                <li class="nav-item text-nowrap text-light"  style="padding-right: 2%">${userAttributes.name}</li>
-                                <li class="nav-item" ><a href="/platform/logout" title="Sign out"><button class="btn btn-light btn-sm"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout</button></a></li>
-                            </ul>
-                        </c:when>
-                        <c:otherwise>
-                            <ul class="navbar-nav ml-auto">
-                                <li class="nav-item"><a href="/platform/login.jsp" title="Consortium Member Sign In"><button class="btn btn-light btn-sm" >Login</button></a></li>
-                            </ul>
-                            </c:otherwise>
-                        </c:choose>
+                    <% if (request.getServerName().equals("localhost") || request.getServerName().equals("dev.scge.mcw.edu") || request.getServerName().equals("stage.scge.mcw.edu") )
+                    {if(userAttributes!=null && userAttributes.get("name")!=null){%>
+                
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item text-nowrap" style="padding-right: 2%"><a href="/platform/dashboard"> <button class="btn btn-sm btn-warning">My Dashboard</button></a></li>
+                        <li class="nav-item"><img class="rounded-circle " width="40" height="40" src='<%=userAttributes.get("picture")%>' alt=""></li>
+                        <li class="nav-item text-nowrap text-light"  style="padding-right: 2%"><%=userAttributes.get("name")%></li>
+                        <li class="nav-item" ><a href="/platform/logout" title="Sign out"><button class="btn btn-light btn-sm"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout</button></a></li>
+                    </ul>
+                       <% }else{%>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="/platform/login.jsp" title="Consortium Member Sign In"><button class="btn btn-light btn-sm" >Login</button></a></li>
+                    </ul>
+                       <%}%>
+
                     <%}%>
                 </li>
             </ul>
