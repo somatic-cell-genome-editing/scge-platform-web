@@ -29,8 +29,12 @@ import org.springframework.security.oauth2.client.registration.InMemoryClientReg
 import org.springframework.security.oauth2.client.web.AuthenticatedPrincipalOAuth2AuthorizedClientRepository;
 
 
+import org.springframework.security.oauth2.client.web.AuthorizationRequestRepository;
+import org.springframework.security.oauth2.client.web.HttpSessionOAuth2AuthorizationRequestRepository;
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepository;
+import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher;
 import org.springframework.web.multipart.MultipartResolver;
@@ -76,7 +80,7 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     }
 
     http.oauth2Login(auth2 -> auth2
-                    .loginPage("/dashboard")
+                    .loginPage("/login/google")
                     .failureUrl("/loginFailure")
                     .defaultSuccessUrl("/dashboard", true)
                     .clientRegistrationRepository(clientRegistrationRepository())
@@ -155,27 +159,6 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 //        return new HttpSessionOAuth2AuthorizationRequestRepository();
 //    }
 //
-//
-
-
-//    private ClientRegistration getRegistration(String client) {
-//        String clientId = env.getProperty(
-//                CLIENT_PROPERTY_KEY + client + ".client-id");
-//
-//        if (clientId == null) {
-//            return null;
-//        }
-//
-//        String clientSecret = env.getProperty(
-//                CLIENT_PROPERTY_KEY + client + ".client-secret");
-//
-//        if (client.equals("google")) {
-//            return CommonOAuth2Provider.GOOGLE.getBuilder(client)
-//                    .clientId(clientId).clientSecret(clientSecret).build();
-//        }
-//
-//        return null;
-//    }
 
 //    @Bean(name = "filterMultipartResolver")
 //    public CommonsMultipartResolver multipartResolver() {
