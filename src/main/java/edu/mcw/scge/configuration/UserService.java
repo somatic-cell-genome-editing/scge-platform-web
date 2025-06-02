@@ -20,23 +20,23 @@ public class UserService {
         if (session.getAttribute("person") != null) {
             return (Person) session.getAttribute("person");
         }else {
-//            Authentication authToken = SecurityContextHolder.getContext().getAuthentication();
-//            if (authToken != null) {
-//                Map<String, Object> attributes;
-//                if (authToken instanceof OAuth2AuthenticationToken) {
-//                    attributes = ((OAuth2AuthenticationToken) authToken).getPrincipal().getAttributes();
-//                    if (attributes != null && !authToken.getName().equalsIgnoreCase("anonymous")) {
-//                        String userEmail = (String) attributes.get("email");
-//                        List<Person> pList = pdao.getPersonByEmail(userEmail);
-//                        if (pList != null && pList.size() > 0) {
-//                            session.setAttribute("userAttributes", attributes);
-//                            session.setAttribute("person", pList.get(0));
-//                            return pList.get(0);
-//                        }
-//
-//                    }
-//                }
-//            }
+            Authentication authToken = SecurityContextHolder.getContext().getAuthentication();
+            if (authToken != null) {
+                Map<String, Object> attributes;
+                if (authToken instanceof OAuth2AuthenticationToken) {
+                    attributes = ((OAuth2AuthenticationToken) authToken).getPrincipal().getAttributes();
+                    if (attributes != null && !authToken.getName().equalsIgnoreCase("anonymous")) {
+                        String userEmail = (String) attributes.get("email");
+                        List<Person> pList = pdao.getPersonByEmail(userEmail);
+                        if (pList != null && pList.size() > 0) {
+                            session.setAttribute("userAttributes", attributes);
+                            session.setAttribute("person", pList.get(0));
+                            return pList.get(0);
+                        }
+
+                    }
+                }
+            }
         }
 
         return null;

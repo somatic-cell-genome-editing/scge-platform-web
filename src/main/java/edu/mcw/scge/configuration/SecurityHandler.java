@@ -22,7 +22,7 @@ import java.util.Set;
  * Created by jthota on 12/6/2019.
  */
 
-//@Component
+@Component
 public class SecurityHandler implements AuthenticationSuccessHandler {
 
 

@@ -46,9 +46,9 @@ import java.util.stream.Collectors;
  * Created by jthota on 11/12/2019.
  */
 
-//@Configuration
-//@EnableWebSecurity
-//@PropertySource("classpath:application.properties")
+@Configuration
+@EnableWebSecurity
+@PropertySource("classpath:application.properties")
 
 public class SecurityConfiguration {
 
