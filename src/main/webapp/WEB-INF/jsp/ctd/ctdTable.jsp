@@ -88,9 +88,24 @@
 
         for(int module: modules.keySet()){
             List<Section> sections=modules.get(module);
-            List<Section> level2Sections=sectionDAO.getLevel2SectionsOfModule(module);
-            List<Section> level3Sections=sectionDAO.getLevel3SectionsOfModule(module);
-            List<Section> level4Sections=sectionDAO.getLevel4SectionsOfModule(module);
+            List<Section> level2Sections= null;
+            try {
+                level2Sections = sectionDAO.getSectionsOfModuleByLevel(module,2);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            List<Section> level3Sections= null;
+            try {
+                level3Sections = sectionDAO.getSectionsOfModuleByLevel(module,3);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            List<Section> level4Sections= null;
+            try {
+                level4Sections = sectionDAO.getSectionsOfModuleByLevel(module,4);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
 
             String activeTab="";
             if(module==1){
