@@ -65,8 +65,14 @@
 <%}else{%>
     <h3 style="color: #1a80b6;">SCGE Platform - General Search Results</h3>
 <%}%>
+
 </div>
+
 <div class="container-fluid">
+    <div>
+        <small><strong>Disclaimer:</strong> The information on this dashboard has been collected for the convenience of patients and researchers. The information contained within this table does not make use of any confidential or privileged information-all data is collected from publicly available sources. The SCGE team are not medical doctors and cannot provide medical advice. The SCGE makes no comment as to the efficacy and safety of the items listed, as these are not known at the time of publication. Please discuss with your provider the risks/benefits of participating in a clinical trial. For the most up to date information, or to inquire about enrollment, please refer to <a href="https://clinicaltrials.gov/">clinicaltrials.gov</a> or the Sponsor's website for contact information.</small>
+
+    </div>
     <div class="d-flex justify-content-end">
         <%
             if(category!=null && !category.equals("")){%>
@@ -145,13 +151,6 @@
   </div>
 </div>
 <div style="padding-top:2%;padding-bottom:  5%">
-<small><strong>Disclaimer:</strong> The information on this dashboard has been collected for the convenience of patients and researchers. Please discuss with your provider the risks/benefits of participating in a clinical trial.
-    The SCGE makes no comment as to the efficacy and safety of the items listed, as these are not known at the time of publication.
-    For the most up to date information, please refer to clinicaltrials.gov or the Sponsor's website.
-
-    The information contained within this table does not make use of any confidential or privileged information-all data is collected from publicly available sources.</small>
-<%--<%}%>--%>
-
 </div>
 <script>
     function download(){
