@@ -284,9 +284,23 @@
                     boolean recStatus = "Recruiting".equalsIgnoreCase(status)||"Not yet recruiting".equalsIgnoreCase(status);
                     String cssClass = recStatus?"status-recruiting":"status-other";
                 %>
+<%--                <td>--%>
+<%--                    <div class="status-container <%=cssClass%>">--%>
+<%--                    <%=clinicalTrialData.getStudyStatus()!=null?clinicalTrialData.getStudyStatus():""%>--%>
+<%--                    </div>--%>
+<%--                </td>--%>
                 <td>
-                    <div class="status-container <%=cssClass%>">
-                    <%=clinicalTrialData.getStudyStatus()!=null?clinicalTrialData.getStudyStatus():""%>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <div class="status-container <%=cssClass%>">
+                            <%=clinicalTrialData.getStudyStatus()!=null?clinicalTrialData.getStudyStatus():""%>
+                        </div>
+                        <%if("Recruiting".equalsIgnoreCase(status)){%>
+                        <a style="color: #1E90FF; font-weight: 600; text-decoration: none;"
+                           href="https://www.clinicaltrials.gov/study/<%=clinicalTrialData.getNctId()%>#contacts-and-locations"
+                           target="_blank">
+                            (Click here for study contact information)
+                        </a>
+                        <%}%>
                     </div>
                 </td>
             </tr>
