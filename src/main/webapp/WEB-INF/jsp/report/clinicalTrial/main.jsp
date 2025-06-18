@@ -285,24 +285,34 @@
                     String cssClass = recStatus?"status-recruiting":"status-other";
                 %>
                 <td>
-                    <div class="status-container <%=cssClass%>">
-                    <%=clinicalTrialData.getStudyStatus()!=null?clinicalTrialData.getStudyStatus():""%>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <div class="status-container <%=cssClass%>">
+                            <%=clinicalTrialData.getStudyStatus()!=null?clinicalTrialData.getStudyStatus():""%>
+                        </div>
+                        <%if("Recruiting".equalsIgnoreCase(status)){%>
+                        <a style="color: #1E90FF; font-weight: 600; text-decoration: none;"
+                           href="https://www.clinicaltrials.gov/study/<%=clinicalTrialData.getNctId()%>#contacts-and-locations"
+                           target="_blank">
+                            (Click here for study contact information)
+                        </a>
+                        <%}%>
                     </div>
                 </td>
             </tr>
+            <% if(clinicalTrialData.getEnrorllmentCount() != 0) { %>
             <tr>
                 <td class="label">
                     Enrollment&nbsp;Count
                 </td>
-
                 <td>
                     <%
                         String enrollmentType = clinicalTrialData.getEnrollmentType()!=null?clinicalTrialData.getEnrollmentType():"";
-                        String enrollmentCount = Integer.toString(clinicalTrialData.getEnrorllmentCount()!=0?clinicalTrialData.getEnrorllmentCount(): Integer.parseInt(""));
+                        String enrollmentCount = Integer.toString(clinicalTrialData.getEnrorllmentCount());
                     %>
-                    <%=!enrollmentCount.equals("")?(!(enrollmentType.isEmpty())?enrollmentCount+" ("+enrollmentType+")":enrollmentCount):""%>
+                    <%=!(enrollmentType.isEmpty())?enrollmentCount+" ("+enrollmentType+")":enrollmentCount%>
                 </td>
             </tr>
+            <% } %>
             <tr>
                 <td class="label">Results&nbsp;Posted</td>
                 <td>
