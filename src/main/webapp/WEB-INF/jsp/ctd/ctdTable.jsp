@@ -5,19 +5,35 @@
 <%@ page import="org.springframework.ui.Model" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="edu.mcw.scge.datamodel.Document" %>
-<%@ page import="edu.mcw.scge.datamodel.Application" %><%--
+<%@ page import="edu.mcw.scge.datamodel.Application" %>
+<%@ page import="org.apache.commons.lang.StringUtils" %><%--
   Created by IntelliJ IDEA.
   User: jthota
   Date: 6/26/2024
   Time: 1:12 PM
   To change this template use File | Settings | File Templates.
 --%>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
 <style>
     table thead tr th{
         color:whitesmoke;
     }
     .ctd-modules button{
         color:black
+    }
+    .Y{
+        color:green;
+        font-weight: bold;
+    }
+    .N{
+        color:red;
+    }
+    .M{
+        color:orange;
     }
 </style>
 <%
@@ -124,18 +140,20 @@
                     <th style="width: 5%;background-color: cadetblue">Module</th>
                     <th colspan="4" style="text-align: center;width: 10%;background-color: cadetblue">Section</th>
                     <th style="background-color: cadetblue;">Section_Name</th>
-                    <th style="background-color: cadetblue">Required for Initial IND submission <br>[<strong>Y</strong>(Yes)/<strong>N</strong>(No)/<strong>M</strong>(May Be)]</th>
-                    <%
-                        if(application1!=null){
-                    %>
-                    <th style="background-color: cadetblue">Documents Uploaded</th>
+                    <th colspan=3 style="background-color: cadetblue">Required for submission <br>[<strong>Y</strong>(Yes)/<strong>N</strong>(No)/<strong>M</strong>(May Be)]
 
-                    <th style="background-color: cadetblue;text-align: center;">Action</th>
-<%}%>
+
+                    </th>
+                    <th style="width: 5%;background-color: cadetblue">Resources</th>
+                    <%if(application1!=null){%>
+                    <th style="background-color: cadetblue">Documents Uploaded</th>
+                    <th style="background-color: cadetblue;text-align: center;">Action</th><%}%>
                 </tr>
+                <tr><th></th><th colspan="4"></th><th></th> <th class="text-nowrap"><small style="color: black;"><b>Initial IND</b></small></th><th><small style="color: black;"><b>Marketing</b></small></th><th><small style="color: black;"><b>Amendment</b></small></th><th></th></tr>
                 </thead>
                 <tr>
                     <td style="text-wrap: none"><strong>Module<%=module%></strong></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -171,13 +189,16 @@
                     <td></td>
                     <td></td>
                     <td><strong><%=section.getSectionName()%></strong>
+
                         <%@include file="sectionDocuments.jsp"%>
                     </td>
-                    <td> <%
-                        if(section.getRequiredForInitialIND()!=null){
-                    %>
-                        <%=section.getRequiredForInitialIND()%>
-                        <%}%></td>
+                    <td> <%if(section.getRequiredForInitialIND()!=null){%>
+                        <span class="<%=section.getRequiredForInitialIND().trim()%>"><%=section.getRequiredForInitialIND()%></span>
+                        <%}%>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <%
                         if(application1!=null){
                     %>
@@ -213,16 +234,32 @@
                         <%
                             if(module==1 || module==2){%>
                         <%=l2.getSectionName()%>
+                        <%if(l2.getSectionDescription()!=null && !l2.getSectionDescription().equals("")){%>
+                        <sup>
+            <span data-toggle="tooltip" title="<%=StringUtils.capitalize( l2.getSectionDescription())%>" style="color: lightseagreen">
+               <i class="fa-solid fa-circle-info"></i>
+            </span>
+                        </sup>
+                        <%}%>
                         <%}else{%>
                         <strong><%=l2.getSectionName()%></strong>
                         <%}%>
                         <%@include file="sectionDocuments.jsp"%>
                     </td>
-                    <td> <%
-                        if(l2.getRequiredForInitialIND()!=null){
-                    %>
-                        <%=l2.getRequiredForInitialIND()%>
-                        <%}%></td>
+                    <td> <%if(l2.getRequiredForInitialIND()!=null){%>
+                        <span class="<%=l2.getRequiredForInitialIND().trim()%>"><%=l2.getRequiredForInitialIND()%></span>
+                        <%}%>
+                    </td>
+
+                    <td> <%if(l2.getRequiredForMarketingApplicationOnly()!=null){%>
+                        <span class="<%=l2.getRequiredForMarketingApplicationOnly().trim()%>"><%=l2.getRequiredForMarketingApplicationOnly()%></span>
+                        <%}%>
+                    </td>
+                    <td> <%if(l2.getSubmissionTiming()!=null){%>
+                        <span class="<%=l2.getSubmissionTiming().trim()%>"><%=l2.getSubmissionTiming()%></span>
+                        <%}%>
+                    </td>
+                    <td><%@include file="resources.jsp"%></td>
                     <%
                         if(application1!=null){
                     %>
@@ -255,14 +292,37 @@
                         <strong><%=l3.getSectionName()%></strong>
                         <%}else{%>
                         <%=l3.getSectionName()%>
-                        <%}%>
+                        <%if(l3.getSectionDescription()!=null && !l3.getSectionDescription().equals("")){%>
+
+                        <sup>
+            <span data-toggle="tooltip" title="<%=StringUtils.capitalize( l3.getSectionDescription())%>" style="color: lightseagreen">
+               <i class="fa-solid fa-circle-info"></i>
+            </span>
+                        <%}}%>
                         <%@include file="sectionDocuments.jsp"%>
                     </td>
                     <td> <%
                         if(l3.getRequiredForInitialIND()!=null){
                     %>
-                        <%=l3.getRequiredForInitialIND()%>
-                        <%}%></td>
+                        <span class="<%=l3.getRequiredForInitialIND().trim()%>"><%=l3.getRequiredForInitialIND()%></span>
+                        <%}%>
+
+                    </td>
+                    <td> <%
+                        if(l3.getRequiredForMarketingApplicationOnly()!=null){
+                    %>
+                        <span class="<%=l3.getRequiredForMarketingApplicationOnly().trim()%>"><%=l3.getRequiredForMarketingApplicationOnly()%></span>
+                        <%}%>
+
+                    </td>
+                    <td> <%
+                        if(l3.getSubmissionTiming()!=null){
+                    %>
+                        <span class="<%=l3.getSubmissionTiming().trim()%>"><%=l3.getSubmissionTiming()%></span>
+                        <%}%>
+
+                    </td>
+                    <td><%@include file="resources.jsp"%></td>
                     <%
                         if(application1!=null){
                     %>
@@ -293,15 +353,37 @@
                     <td></td>
                     <td><%=l4.getSectionCode()%></td>
                     <td><%=l4.getSectionName()%>
+                        <%if(l4.getSectionDescription()!=null && !l4.getSectionDescription().equals("")){%>
+
+                        <sup>
+            <span data-toggle="tooltip" title="<%=StringUtils.capitalize( l4.getSectionDescription())%>" style="color: lightseagreen">
+               <i class="fa-solid fa-circle-info"></i>
+            </span>
+                            <%}%>
                         <%@include file="sectionDocuments.jsp"%>
                     </td>
                     <td>
                         <%
                             if(l4.getRequiredForInitialIND()!=null){
                         %>
-                        <%=l4.getRequiredForInitialIND()%>
+                        <span class="<%=l4.getRequiredForInitialIND().trim()%>"><%=l4.getRequiredForInitialIND()%></span>
                         <%}%>
                     </td>
+                    <td>
+                        <%
+                            if(l4.getRequiredForMarketingApplicationOnly()!=null){
+                        %>
+                        <span class="<%=l4.getRequiredForMarketingApplicationOnly().trim()%>"><%=l4.getRequiredForMarketingApplicationOnly()%></span>
+                        <%}%>
+                    </td>
+                    <td>
+                        <%
+                            if(l4.getSubmissionTiming()!=null){
+                        %>
+                        <span class="<%=l4.getSubmissionTiming().trim()%>"><%=l4.getSubmissionTiming()%></span>
+                        <%}%>
+                    </td>
+                    <td><%@include file="resources.jsp"%></td>
                     <%
                         if(application1!=null){
                     %>
