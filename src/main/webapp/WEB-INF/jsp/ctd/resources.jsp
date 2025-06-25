@@ -16,7 +16,7 @@
 </div>
 <div class="row">
   <div class="col">
-    <a href="">Template</a>
+    <a href=""><!--div style="border:1px solid red;background-color: darkseagreen;color:red;width: 20px;height: 20px;text-align: center;font-weight: bold">T</div-->Template</a>
   </div>
   <div class="col">
 
