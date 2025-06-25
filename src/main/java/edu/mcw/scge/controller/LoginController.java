@@ -27,7 +27,7 @@ import java.util.*;
  */
 @Controller
 
-public class LoginController{
+public class LoginController extends ModulesController{
     PersonDao pdao=new PersonDao();
     Access access=new Access();
     DBService dbService=new DBService();
@@ -85,13 +85,13 @@ public class LoginController{
      }
      return null;
  }
-    public  Map<Integer, List<Section>> getCTDModules() throws Exception {
-        SectionDAO sectionDAO=new SectionDAO();
-        Map<Integer, List<Section>> modules=new HashMap<>();
-        for(int module: Arrays.asList(1,2,3,4,5)) {
-            List<Section> sections = sectionDAO.getTopLevelSectionsOfModule(module);
-            modules.put(module, sections);
-        }
-        return modules;
-    }
+//    public  Map<Integer, List<Section>> getCTDModules() throws Exception {
+//        SectionDAO sectionDAO=new SectionDAO();
+//        Map<Integer, List<Section>> modules=new HashMap<>();
+//        for(int module: Arrays.asList(1,2,3,4,5)) {
+//            List<Section> sections = sectionDAO.getTopLevelSectionsOfModule(module);
+//            modules.put(module, sections);
+//        }
+//        return modules;
+//    }
 }

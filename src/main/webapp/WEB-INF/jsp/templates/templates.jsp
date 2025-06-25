@@ -41,6 +41,14 @@
 
     </div>
 </div>
+    <div class="card" style="margin-top: 1%;margin-bottom: 1%">
+        <div class="card-header"><h5>FDA Submission Checklist</h5></div>
+        <div class="card-body">
+
+            <%@include file="../ctd/ctdTable.jsp"%>
+
+        </div>
+    </div>
 <div class="card">
     <div class="card-header"><h5>Templates</h5></div>
     <div class="card-body">

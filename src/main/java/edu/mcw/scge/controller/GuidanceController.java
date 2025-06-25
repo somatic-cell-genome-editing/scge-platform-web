@@ -20,7 +20,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping(value="/data/ind")
-public class GuidanceController {
+public class GuidanceController extends ModulesController{
     @RequestMapping(value="/forms")
     public String getINDForms(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
@@ -31,7 +31,7 @@ public class GuidanceController {
     }
     @RequestMapping(value="/templates")
     public String getINDTemplates(HttpServletRequest req, HttpServletResponse res) throws Exception {
-
+        req.setAttribute("modules", getCTDModules());
         req.setAttribute("page", "/WEB-INF/jsp/templates/templates");
         req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
 

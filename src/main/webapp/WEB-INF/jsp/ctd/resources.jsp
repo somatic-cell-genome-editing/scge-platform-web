@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="row">
   <div class="col text-nowrap">
-    FDA Download:
+   <a href="">FDA Download</a>
   </div>
   <div class="col">
 
@@ -16,7 +16,7 @@
 </div>
 <div class="row">
   <div class="col">
-    Template:
+    <a href="">Template</a>
   </div>
   <div class="col">
 
@@ -24,7 +24,7 @@
 </div>
 <div class="row">
   <div class="col">
-    Example:
+    <a href="">Example</a>
   </div>
   <div class="col">
 
