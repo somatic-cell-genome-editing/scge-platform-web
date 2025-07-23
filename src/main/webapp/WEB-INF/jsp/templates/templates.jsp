@@ -42,6 +42,14 @@
     </div>
 </div>
     <div class="card" style="margin-top: 1%;margin-bottom: 1%">
+        <div class="card-header"><h5>FDA Submission Template Folder</h5></div>
+        <div class="card-body">
+
+            <i class="fa-solid fa-download" style="color:darkorange;font-size: 30px;font-weight: bold"></i>&nbsp;<a href="/platform/download/ctd-XXXXX.zip">Download Zip folder</a>
+
+        </div>
+    </div>
+    <div class="card" style="margin-top: 1%;margin-bottom: 1%">
         <div class="card-header"><h5>FDA Submission Checklist</h5></div>
         <div class="card-body">
 
