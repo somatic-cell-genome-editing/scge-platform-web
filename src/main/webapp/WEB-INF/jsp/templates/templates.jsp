@@ -29,8 +29,16 @@
                 <p><a href="#module4-tab" id="go-to-module4"><strong>Module 4</strong></a> references non-clinical information.</p>
 
                 <p><a href="#module5-tab" id="go-to-module5"><strong>Module 5</strong></a> references clinical information.</p>
-                <a href="/platform/forms_public/USFDA_eCTDv4_0_CTOC_v1.pdf" target="_blank"><h5>Comprehensive Table of Contents Headings and Hierarchy</h5></a>
+                <div class="card" style="margin-top: 1%;margin-bottom: 1%">
+                    <div class="card-header">                <a href="/platform/forms_public/USFDA_eCTDv4_0_CTOC_v1.pdf" target="_blank"><h5>Comprehensive Table of Contents Headings and Hierarchy</h5></a>
+                    </div>
 
+                </div>
+                <div class="card" style="margin-top: 1%;margin-bottom: 1%">
+                    <div class="card-header"><h5>FDA Submission Template Folder                         <i class="fa-solid fa-download" style="color:darkorange;font-size: 30px;font-weight: bold"></i>&nbsp;<a href="/platform/download/ctd-XXXXX.zip">Download Zip folder</a>
+                    </h5></div>
+
+                </div>
             </div>
             <div class="col">
                 <img src="/platform/images/CTD_triangle.png" alt="CTD triangle" usemap="#ctdmap">
@@ -42,14 +50,7 @@
 
     </div>
 </div>
-    <div class="card" style="margin-top: 1%;margin-bottom: 1%">
-        <div class="card-header"><h5>FDA Submission Template Folder</h5></div>
-        <div class="card-body">
 
-            <i class="fa-solid fa-download" style="color:darkorange;font-size: 30px;font-weight: bold"></i>&nbsp;<a href="/platform/download/ctd-XXXXX.zip">Download Zip folder</a>
-
-        </div>
-    </div>
     <div class="card" style="margin-top: 1%;margin-bottom: 1%">
         <div class="card-header"><h5>FDA Submission Checklist</h5></div>
         <div class="card-body">
