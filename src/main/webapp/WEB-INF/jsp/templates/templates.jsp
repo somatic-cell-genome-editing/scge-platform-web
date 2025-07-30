@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<script src="/js/ctdModules.js"></script>
+<script src="/platform/js/ctdModules.js"></script>
 <div class="page-header">
     <h3>IND (Investigational New Drug) Application</h3>
 </div>
