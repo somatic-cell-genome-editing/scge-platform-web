@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.min.js" type="text/javascript"></script>
+
 <script src="/platform/js/ctdModules.js"></script>
 <div class="page-header">
     <h3>IND (Investigational New Drug) Application</h3>
@@ -43,7 +45,11 @@
             <div class="col">
                 <img src="/platform/images/CTD_triangle.png" alt="CTD triangle" usemap="#ctdmap">
                 <map name="ctdmap">
-                    <area shape="rect" coords="234,42,395,164" alt="CTD triangle" href="/platform/forms_public/USFDA_eCTDv4_0_CTOC_v1.pdf">
+                    <area shape="rect" coords="234,42,395,164" alt="CTD triangle" href="#module1-tab" id="module1-map">
+                    <area shape="rect" coords="224,165,510,335" alt="CTD triangle" href="#module2-tab" id="module2-map">
+                    <area shape="rect" coords="102,335,246,444" alt="CTD triangle" href="#module3-tab" id="module3-map">
+                    <area shape="rect" coords="248,337,372,446" alt="CTD triangle" href="#module4-tab" id="module4-map">
+                    <area shape="rect" coords="372,337,590,446" alt="CTD triangle" href="#module5-tab" id="module5-map">
                 </map>
             </div>
         </div>

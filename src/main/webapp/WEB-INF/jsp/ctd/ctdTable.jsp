@@ -441,5 +441,4 @@
     <%}%>
 
 </div>
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.min.js" type="text/javascript"></script>
 
