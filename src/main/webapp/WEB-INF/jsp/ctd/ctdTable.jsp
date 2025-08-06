@@ -140,13 +140,14 @@
                     <th style="width: 5%;background-color: cadetblue">Module</th>
                     <th colspan="4" style="text-align: center;width: 10%;background-color: cadetblue">Section</th>
                     <th style="background-color: cadetblue;">Section_Name</th>
-                    <th colspan=3 style="background-color: cadetblue">Required for submission</th>
+                    <th colspan=2 style="background-color: cadetblue;white-space: nowrap;">Required for submission</th>
+                    <th style="background-color: cadetblue;">Submission Timing</th>
                     <th style="width: 5%;background-color: cadetblue">Resources</th>
                     <%if(application1!=null){%>
                     <th style="background-color: cadetblue">Documents Uploaded</th>
                     <th style="background-color: cadetblue;text-align: center;">Action</th><%}%>
                 </tr>
-                <tr><th></th><th colspan="4"></th><th></th> <th class="text-nowrap"><small style="color: black;"><b>Initial IND</b></small></th><th><small style="color: black;"><b>Marketing</b></small></th><th><small style="color: black;"><b>Amendment</b></small></th><th></th></tr>
+                <tr><th></th><th colspan="4"></th><th></th> <th class="text-nowrap"><small style="color: black;"><b>Initial IND</b></small></th><th><small style="color: black;"><b>Marketing</b></small></th><th></th><th></th></tr>
                 </thead>
                 <tr>
                     <td style="text-wrap: none"><strong>Module<%=module%></strong></td>
