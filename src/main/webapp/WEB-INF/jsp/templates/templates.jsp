@@ -31,12 +31,12 @@
 
                 <p><a href="#module5-tab" id="go-to-module5"><strong>Module 5</strong></a> references clinical information.</p>
                 <div class="card" style="margin-top: 1%;margin-bottom: 1%">
-                    <div class="card-header">                <a href="/platform/forms_public/USFDA_eCTDv4_0_CTOC_v1.pdf" target="_blank"><h5>Comprehensive Table of Contents Headings and Hierarchy</h5></a>
+                    <div class="card-header"><a href="/platform/forms_public/USFDA_eCTDv4_0_CTOC_v1.pdf" target="_blank"><h5>Comprehensive Table of Contents Headings and Hierarchy</h5></a>
                     </div>
 
                 </div>
                 <div class="card" style="margin-top: 1%;margin-bottom: 1%">
-                    <div class="card-header"><h5>FDA Submission Template Folder                         <i class="fa-solid fa-download" style="color:darkorange;font-size: 30px;font-weight: bold"></i>&nbsp;<a href="/platform/download/ctd-XXXXX.zip">Download Zip folder</a>
+                    <div class="card-header"><h5>ICH and FDA Guidance on eCTD Organization and Specifications                        <i class="fa-solid fa-download" style="color:darkorange;font-size: 30px;font-weight: bold"></i>&nbsp;<a href="/platform/download/ctd-XXXXX.zip">Download Zip folder</a>
                     </h5></div>
 
                 </div>
@@ -57,7 +57,7 @@
 </div>
 
     <div class="card" style="margin-top: 1%;margin-bottom: 1%">
-        <div class="card-header"><h5>FDA Submission Checklist</h5></div>
+        <div class="card-header"><h5>FDA Submission Elements</h5></div>
         <div class="card-body">
 
             <%@include file="../ctd/ctdTable.jsp"%>
