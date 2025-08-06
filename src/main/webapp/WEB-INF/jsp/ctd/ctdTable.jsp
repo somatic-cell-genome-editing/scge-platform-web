@@ -140,10 +140,7 @@
                     <th style="width: 5%;background-color: cadetblue">Module</th>
                     <th colspan="4" style="text-align: center;width: 10%;background-color: cadetblue">Section</th>
                     <th style="background-color: cadetblue;">Section_Name</th>
-                    <th colspan=3 style="background-color: cadetblue">Required for submission <br>[<strong>Y</strong>(Yes)/<strong>N</strong>(No)/<strong>M</strong>(May Be)]
-
-
-                    </th>
+                    <th colspan=3 style="background-color: cadetblue">Required for submission</th>
                     <th style="width: 5%;background-color: cadetblue">Resources</th>
                     <%if(application1!=null){%>
                     <th style="background-color: cadetblue">Documents Uploaded</th>
