@@ -25,14 +25,14 @@
     .ctd-modules button{
         color:black
     }
-    .Y{
+    .Yes{
         color:green;
         font-weight: bold;
     }
-    .N{
+    .No{
         color:red;
     }
-    .M{
+    .Maybe{
         color:orange;
     }
 </style>
