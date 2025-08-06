@@ -258,15 +258,15 @@
                     </td>
 
                     <td>
-                        <%
-                            if(l2.getResources()!=null && !l2.getResources().equals("")){
-                                String[] links=l2.getResources().split(";");
-                                for(int i=0;i<links.length;i++){%>
-                        <p><a href="<%=links[i]%>">External Link</a> </p>
-                                <%}}%>
-                        <%if(l2.getTemplateLinkText()!=null && !l2.getTemplateLinkText().equals("")){%>
-                        <p><a href=""><%=l2.getTemplateLinkText()%></a></p>
-                        <%}%>
+<%--                        <%--%>
+<%--                            if(l2.getResources()!=null && !l2.getResources().equals("")){--%>
+<%--                                String[] links=l2.getResources().split(";");--%>
+<%--                                for(int i=0;i<links.length;i++){%>--%>
+<%--                        <p><a href="<%=links[i]%>">External Link</a> </p>--%>
+<%--                                <%}}%>--%>
+<%--                        <%if(l2.getTemplateLinkText()!=null && !l2.getTemplateLinkText().equals("")){%>--%>
+<%--                        <p><a href=""><%=l2.getTemplateLinkText()%></a></p>--%>
+<%--                        <%}%>--%>
 <%--                        <%@include file="resources.jsp"%>--%>
                     </td>
                     <%
@@ -332,15 +332,15 @@
 
                     </td>
                     <td>
-                        <%
-                            if(l3.getResources()!=null && !l3.getResources().equals("")){
-                                String[] links=l3.getResources().split(";");
-                                for(int i=0;i<links.length;i++){%>
-                        <p class="text-nowrap"><a href="<%=links[i]%>">External Link</a></p>
-                        <%}}%>
-                        <%if(l3.getTemplateLinkText()!=null && !l3.getTemplateLinkText().equals("")){%>
-                        <p><a href=""><%=l3.getTemplateLinkText()%>></a></p>
-                        <%}%>
+<%--                        <%--%>
+<%--                            if(l3.getResources()!=null && !l3.getResources().equals("")){--%>
+<%--                                String[] links=l3.getResources().split(";");--%>
+<%--                                for(int i=0;i<links.length;i++){%>--%>
+<%--                        <p class="text-nowrap"><a href="<%=links[i]%>">External Link</a></p>--%>
+<%--                        <%}}%>--%>
+<%--                        <%if(l3.getTemplateLinkText()!=null && !l3.getTemplateLinkText().equals("")){%>--%>
+<%--                        <p><a href=""><%=l3.getTemplateLinkText()%>></a></p>--%>
+<%--                        <%}%>--%>
 <%--                        <%@include file="resources.jsp"%>--%>
                     </td>
                     <%
@@ -404,15 +404,15 @@
                         <%}%>
                     </td>
                     <td>
-                        <%
-                            if(l4.getResources()!=null && !l4.getResources().equals("")){
-                                String[] links=l4.getResources().split(";");
-                                for(int i=0;i<links.length;i++){%>
-                        <p><a href="<%=links[i]%>">External Link</a></p>
-                        <%}}%>
-                       <%if(l4.getTemplateLinkText()!=null && !l4.getTemplateLinkText().equals("")){%>
-                        <p><a href=""><%=l4.getTemplateLinkText()%>></a></p>
-                        <%}%>
+<%--                        <%--%>
+<%--                            if(l4.getResources()!=null && !l4.getResources().equals("")){--%>
+<%--                                String[] links=l4.getResources().split(";");--%>
+<%--                                for(int i=0;i<links.length;i++){%>--%>
+<%--                        <p><a href="<%=links[i]%>">External Link</a></p>--%>
+<%--                        <%}}%>--%>
+<%--                       <%if(l4.getTemplateLinkText()!=null && !l4.getTemplateLinkText().equals("")){%>--%>
+<%--                        <p><a href=""><%=l4.getTemplateLinkText()%>></a></p>--%>
+<%--                        <%}%>--%>
 <%--                        <%@include file="resources.jsp"%>--%>
                     </td>
                     <%
