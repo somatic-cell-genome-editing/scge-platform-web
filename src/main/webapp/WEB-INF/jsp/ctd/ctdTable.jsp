@@ -190,7 +190,7 @@
                         <%@include file="sectionDocuments.jsp"%>
                     </td>
                     <td> <%if(section.getRequiredForInitialIND()!=null){%>
-                        <span class="<%=section.getRequiredForInitialIND().trim()%>"><%=section.getRequiredForInitialIND()%></span>
+                        <span class="<%=section.getRequiredForInitialIND().trim()%>" title="Submission Requirement"><%=section.getRequiredForInitialIND()%></span>
                         <%}%>
                     </td>
                     <td></td>
@@ -244,12 +244,12 @@
                         <%@include file="sectionDocuments.jsp"%>
                     </td>
                     <td> <%if(l2.getRequiredForInitialIND()!=null){%>
-                        <span class="<%=l2.getRequiredForInitialIND().trim()%>"><%=l2.getRequiredForInitialIND()%></span>
+                        <span class="<%=l2.getRequiredForInitialIND().trim()%>" title="Submission Requirement"><%=l2.getRequiredForInitialIND()%></span>
                         <%}%>
                     </td>
 
                     <td> <%if(l2.getRequiredForMarketingApplicationOnly()!=null){%>
-                        <span class="<%=l2.getRequiredForMarketingApplicationOnly().trim()%>"><%=l2.getRequiredForMarketingApplicationOnly()%></span>
+                        <span class="<%=l2.getRequiredForMarketingApplicationOnly().trim()%>" title="Submission Requirement"><%=l2.getRequiredForMarketingApplicationOnly()%></span>
                         <%}%>
                     </td>
                     <td> <%if(l2.getSubmissionTiming()!=null){%>
@@ -313,14 +313,14 @@
                     <td> <%
                         if(l3.getRequiredForInitialIND()!=null){
                     %>
-                        <span class="<%=l3.getRequiredForInitialIND().trim()%>"><%=l3.getRequiredForInitialIND()%></span>
+                        <span class="<%=l3.getRequiredForInitialIND().trim()%>" title="Submission Requirement"><%=l3.getRequiredForInitialIND()%></span>
                         <%}%>
 
                     </td>
                     <td> <%
                         if(l3.getRequiredForMarketingApplicationOnly()!=null){
                     %>
-                        <span class="<%=l3.getRequiredForMarketingApplicationOnly().trim()%>"><%=l3.getRequiredForMarketingApplicationOnly()%></span>
+                        <span class="<%=l3.getRequiredForMarketingApplicationOnly().trim()%>" title="Submission Requirement"><%=l3.getRequiredForMarketingApplicationOnly()%></span>
                         <%}%>
 
                     </td>
@@ -386,14 +386,14 @@
                         <%
                             if(l4.getRequiredForInitialIND()!=null){
                         %>
-                        <span class="<%=l4.getRequiredForInitialIND().trim()%>"><%=l4.getRequiredForInitialIND()%></span>
+                        <span class="<%=l4.getRequiredForInitialIND().trim()%>" title="Submission Requirement"><%=l4.getRequiredForInitialIND()%></span>
                         <%}%>
                     </td>
                     <td>
                         <%
                             if(l4.getRequiredForMarketingApplicationOnly()!=null){
                         %>
-                        <span class="<%=l4.getRequiredForMarketingApplicationOnly().trim()%>"><%=l4.getRequiredForMarketingApplicationOnly()%></span>
+                        <span class="<%=l4.getRequiredForMarketingApplicationOnly().trim()%>" title="Submission Requirement"><%=l4.getRequiredForMarketingApplicationOnly()%></span>
                         <%}%>
                     </td>
                     <td>
