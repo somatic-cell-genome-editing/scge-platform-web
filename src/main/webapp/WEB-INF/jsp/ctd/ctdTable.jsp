@@ -253,7 +253,7 @@
                         <%}%>
                     </td>
                     <td> <%if(l2.getSubmissionTiming()!=null){%>
-                        <span class="<%=l2.getSubmissionTiming().trim()%>"><%=l2.getSubmissionTiming()%></span>
+                        <span class="<%=l2.getSubmissionTiming().trim()%>"><%=StringUtils.capitalize(l2.getSubmissionTiming().trim())%></span>
                         <%}%>
                     </td>
 
@@ -327,7 +327,7 @@
                     <td> <%
                         if(l3.getSubmissionTiming()!=null){
                     %>
-                        <span class="<%=l3.getSubmissionTiming().trim()%>"><%=l3.getSubmissionTiming()%></span>
+                        <span class="<%=l3.getSubmissionTiming().trim()%>"><%=StringUtils.capitalize(l3.getSubmissionTiming())%></span>
                         <%}%>
 
                     </td>
@@ -400,7 +400,7 @@
                         <%
                             if(l4.getSubmissionTiming()!=null){
                         %>
-                        <span class="<%=l4.getSubmissionTiming().trim()%>"><%=l4.getSubmissionTiming()%></span>
+                        <span class="<%=l4.getSubmissionTiming().trim()%>"><%=StringUtils.capitalize(l4.getSubmissionTiming())%></span>
                         <%}%>
                     </td>
                     <td>
