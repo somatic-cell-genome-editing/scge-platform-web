@@ -9,7 +9,7 @@
 
 <script src="/platform/js/ctdModules.js"></script>
 <div class="page-header">
-    <h3>IND (Investigational New Drug) Application</h3>
+    <h3>IND (Investigational New Drug) Application for gene therapy </h3>
 </div>
 <div style="margin-bottom: 10%">
 <div class="card">

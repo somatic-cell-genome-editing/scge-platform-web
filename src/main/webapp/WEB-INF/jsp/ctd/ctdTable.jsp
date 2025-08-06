@@ -137,7 +137,7 @@
             <table class="table table-sm " >
                 <thead>
                 <tr>
-                    <th style="width: 5%;background-color: cadetblue">Module</th>
+<%--                    <th style="width: 5%;background-color: cadetblue">Module</th>--%>
                     <th colspan="4" style="text-align: center;width: 10%;background-color: cadetblue">Section</th>
                     <th style="background-color: cadetblue;">Section_Name</th>
                     <th colspan=2 style="background-color: cadetblue;white-space: nowrap;">Required for submission</th>
@@ -147,11 +147,11 @@
                     <th style="background-color: cadetblue">Documents Uploaded</th>
                     <th style="background-color: cadetblue;text-align: center;">Action</th><%}%>
                 </tr>
-                <tr><th></th><th colspan="4"></th><th></th> <th class="text-nowrap"><small style="color: black;"><b>Initial IND</b></small></th><th><small style="color: black;"><b>Marketing</b></small></th><th></th><th></th></tr>
+                <tr><th colspan="4"></th><th></th> <th class="text-nowrap"><small style="color: black;"><b>Initial IND</b></small></th><th><small style="color: black;"><b>Marketing</b></small></th><th></th><th></th></tr>
                 </thead>
                 <tr>
+<%--                    <td style="text-wrap: none"><strong>Module<%=module%></strong></td>--%>
                     <td style="text-wrap: none"><strong>Module<%=module%></strong></td>
-                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -181,7 +181,7 @@
                             sectionName = l1SectionName;
                         }
                 %>
-                <tr><td></td>
+                <tr>
                     <td><%=section.getSectionCode()%></td>
                     <td></td>
                     <td></td>
@@ -223,7 +223,8 @@
                         }
                 %>
 
-                <tr><td></td>
+                <tr>
+<%--                    <td></td>--%>
                     <td></td>
                     <td><%=l2.getSectionCode()%></td>
                     <td></td>
@@ -292,7 +293,8 @@
                             }
 
                 %>
-                <tr><td></td>
+                <tr>
+<%--                    <td></td>--%>
                     <td></td>
                     <td></td>
                     <td><%=l3.getSectionCode()%></td>
@@ -368,7 +370,8 @@
 
 
                 %>
-                <tr><td></td>
+                <tr>
+<%--                    <td></td>--%>
                     <td></td>
                     <td></td>
                     <td></td>
