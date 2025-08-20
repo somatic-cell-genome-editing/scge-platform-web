@@ -31,7 +31,7 @@
 
                 <p><a href="#module5-tab" id="go-to-module5"><strong>Module 5</strong></a> references clinical information.</p>
                 <div class="card" style="margin-top: 1%;margin-bottom: 1%">
-                    <div class="card-header"><a href="/platform/forms_public/USFDA_eCTDv4_0_CTOC_v1.pdf" target="_blank"><h5>Comprehensive Table of Contents Headings and Hierarchy</h5></a>
+                    <div class="card-header"><a href="/platform/forms_public/USFDA_eCTDv4_0_CTOC_v1.pdf" target="_blank"><h5 style="text-decoration: underline">Comprehensive Table of Contents Headings and Hierarchy</h5></a>
                     </div>
 
                 </div>

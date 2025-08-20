@@ -78,6 +78,8 @@
 
 <%
     SectionDAO sectionDAO=new SectionDAO();
+    CTDResourceDAO resourceDAO=new CTDResourceDAO();
+
 %>
 <ul class="nav nav-tabs ctd-modules" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
@@ -172,6 +174,7 @@
                         String l1SectionName =section.getSectionName();
                         String sectionCode=null;
                         String sectionName=null;
+                        List<CTDResource> externalResources=null;
                         if(!section.getSectionCode().trim().isEmpty()) {
                             l1SectionCode = section.getSectionCode().replaceAll("\\.", "_");
 
@@ -270,6 +273,7 @@
 <%--                        <p><a href=""><%=l2.getTemplateLinkText()%></a></p>--%>
 <%--                        <%}%>--%>
 <%--                        <%@include file="resources.jsp"%>--%>
+                        <%@include file="externalResourceLinks.jsp" %>
                     </td>
                     <%
                         if(application1!=null){
@@ -345,6 +349,8 @@
 <%--                        <p><a href=""><%=l3.getTemplateLinkText()%>></a></p>--%>
 <%--                        <%}%>--%>
 <%--                        <%@include file="resources.jsp"%>--%>
+    <%@include file="externalResourceLinks.jsp"%>
+
                     </td>
                     <%
                         if(application1!=null){
@@ -418,6 +424,8 @@
 <%--                        <p><a href=""><%=l4.getTemplateLinkText()%>></a></p>--%>
 <%--                        <%}%>--%>
 <%--                        <%@include file="resources.jsp"%>--%>
+    <%@include file="externalResourceLinks.jsp"%>
+
                     </td>
                     <%
                         if(application1!=null){
