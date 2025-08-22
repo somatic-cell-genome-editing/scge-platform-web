@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <p><strong>Filter By Application Type</strong></p>
+<button id="clearFiltersBtn" class="btn btn-secondary btn-sm mt-2">Clear All Filters</button>
 <form>
     <!-- Group 1: Initial IND -->
     <div class="mb-3">
@@ -54,10 +55,13 @@
     const initialINDCheckboxes=document.querySelectorAll('.filter-checkbox-initial-ind')
     const marketingCheckboxes=document.querySelectorAll('.filter-checkbox-marketing')
     const initialINDColumnIndex=5;
-    const marketingColumnIndex=3;
+    const marketingColumnIndex=6;
 
     function filterAllTables() {
-        const selectedValues = Array.from(initialINDCheckboxes)
+        const initialIndselectedFilters = Array.from(initialINDCheckboxes)
+            .filter(cb => cb.checked)
+            .map(cb => cb.value.toLowerCase());
+        const marketingSelectedFilters = Array.from(marketingCheckboxes)
             .filter(cb => cb.checked)
             .map(cb => cb.value.toLowerCase());
 
@@ -65,16 +69,35 @@
         tables.forEach(table => {
             const rows = table.querySelectorAll('tbody tr');
             rows.forEach(row => {
-                console.log("cell val:"+row.cells[initialINDColumnIndex].textContent)
-                const status = row.cells[initialINDColumnIndex].textContent.toLowerCase(); // column index 1 = Status
-                row.style.display = selectedValues.includes(status.toLowerCase().trim()) ? '' : 'none';
+                const indStatus = row.cells[initialINDColumnIndex].textContent.toLowerCase().trim(); // column index 5 = IND
+                const marketingStatus = row.cells[marketingColumnIndex].textContent.toLowerCase().trim(); // column index 6 = marketing
+
+                const matchIndStatus=initialIndselectedFilters.includes(indStatus);
+                const matchMarketingStatus=marketingSelectedFilters.includes(marketingStatus);
+                if(initialIndselectedFilters.length===0 && marketingSelectedFilters.length===0){
+                    row.style.display =  '';
+                }else {
+                    row.style.display = (matchIndStatus || matchMarketingStatus) ? '' : 'none';
+
+                }
             });
         });
+
+
     }
 
-    // Attach to checkbox change
+    // Attach event listeners
     initialINDCheckboxes.forEach(cb => cb.addEventListener('change', filterAllTables));
+    marketingCheckboxes.forEach(cb => cb.addEventListener('change', filterAllTables));
 
-    // Run on page load
-    // document.addEventListener('DOMContentLoaded', filterAllTables);
+    // Clear All Filters
+    document.getElementById('clearFiltersBtn').addEventListener('click', function () {
+        // Uncheck all filter checkboxes
+        document.querySelectorAll('.filter-checkbox').forEach(cb => cb.checked = false);
+
+        // Show all rows in all tables
+        document.querySelectorAll('.filterable-table tbody tr').forEach(row => {
+            row.style.display = '';
+        });
+    });
 </script>
