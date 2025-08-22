@@ -19,22 +19,41 @@
     })
 </script>
 <style>
-    table thead tr th{
-        color:whitesmoke;
+    .sticky-header {
+        position: sticky;
+        background-color: #f8f9fa; /* or your preferred color */
+        z-index: 2;
+        white-space: nowrap;
+    }
+
+    /* Top-level header row */
+    .sticky-top-row {
+        top: 0;
+        z-index: 3; /* Make sure top row stays above second */
+        background-color: #e9ecef; /* Slightly different for contrast */
+    }
+
+    /* Second header row (stacked below first) */
+    .sticky-second-row {
+        top: 40px; /* Adjust if your first row is taller or uses padding */
     }
     .ctd-modules button{
         color:black
     }
-    .Yes{
-        color:green;
-        font-weight: bold;
-    }
-    .No{
-        color:red;
-    }
-    .Maybe{
-        color:orange;
-    }
+
+
+    /* .table-responsive {*/
+    /*     max-height: 300px; !* or any height you want *!*/
+    /*     overflow-y: auto;*/
+    /* }*/
+
+    /*thead th {*/
+    /*    position: sticky;*/
+    /*    top: 0;*/
+    /*    background-color: #fff; !* Required to avoid see-through headers *!*/
+    /*    z-index: 1;*/
+    /*}*/
+
 </style>
 <%
     String docLocationURI=new String();
@@ -135,21 +154,40 @@
             <%=sectionDAO.getModuleDescription(module)%>
         </div>
 
-        <div class="container card" style="height:600px;overflow-y: auto;">
-            <table class="table table-sm " >
+        <div class=" card" style="max-height:600px;overflow-y: auto;">
+            <table class="table table-bordered table-hover filterable-table">
                 <thead>
                 <tr>
-<%--                    <th style="width: 5%;background-color: cadetblue">Module</th>--%>
-                    <th colspan="4" style="text-align: center;width: 10%;background-color: cadetblue">Section</th>
-                    <th style="background-color: cadetblue;">Section_Name</th>
-                    <th colspan=2 style="background-color: cadetblue;white-space: nowrap;">Required for submission</th>
-                    <th style="background-color: cadetblue;">Submission Timing</th>
-                    <th style="width: 5%;background-color: cadetblue">Resources</th>
-                    <%if(application1!=null){%>
-                    <th style="background-color: cadetblue">Documents Uploaded</th>
-                    <th style="background-color: cadetblue;text-align: center;">Action</th><%}%>
+                    <th colspan="4" class="sticky-header sticky-top-row text-center" style="width: 10%;">Section</th>
+                    <th class="sticky-header sticky-top-row">Section Name</th>
+                    <th colspan="2" class="sticky-header sticky-top-row">Required for submission</th>
+                    <th class="sticky-header sticky-top-row">Submission Timing</th>
+                    <th class="sticky-header sticky-top-row" style="width: 5%;">Resources</th>
+                    <%
+                        if(application1!=null){
+                    %>
+                    <th class="sticky-header sticky-top-row">Documents Uploaded</th>
+                    <th class="sticky-header sticky-top-row text-center">Action</th>
+                    <%}%>
                 </tr>
-                <tr><th colspan="4"></th><th></th> <th class="text-nowrap"><small style="color: black;"><b>Initial IND</b></small></th><th><small style="color: black;"><b>Marketing</b></small></th><th></th><th></th></tr>
+                <tr>
+                    <th colspan="4" class="sticky-header sticky-second-row"></th>
+                    <th class="sticky-header sticky-second-row"></th>
+                    <th class="sticky-header sticky-second-row text-nowrap">
+                        <small style="color: black;"><b>Initial IND</b></small>
+                    </th>
+                    <th class="sticky-header sticky-second-row">
+                        <small style="color: black;"><b>Marketing</b></small>
+                    </th>
+                    <th class="sticky-header sticky-second-row"></th>
+                    <th class="sticky-header sticky-second-row"></th>
+                    <%
+                        if(application1!=null){
+                    %>
+                    <th class="sticky-header sticky-second-row"></th>
+                    <th class="sticky-header sticky-second-row"></th>
+                    <%}%>
+                </tr>
                 </thead>
                 <tr>
 <%--                    <td style="text-wrap: none"><strong>Module<%=module%></strong></td>--%>

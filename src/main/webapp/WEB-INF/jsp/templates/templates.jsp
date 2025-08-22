@@ -59,8 +59,13 @@
     <div class="card" style="margin-top: 1%;margin-bottom: 1%">
         <div class="card-header"><h5>FDA Submission Elements</h5></div>
         <div class="card-body">
+            <div class="row">
+                <div class="col-2"><%@include file="../ctd/rquirementsFilter.jsp"%></div>
+                <div class="col-10"> <%@include file="../ctd/ctdTable.jsp"%></div>
+            </div>
 
-            <%@include file="../ctd/ctdTable.jsp"%>
+            
+           
 
         </div>
     </div>

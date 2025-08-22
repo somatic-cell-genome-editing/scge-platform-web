@@ -282,3 +282,13 @@ input[type="email"] {
 .tooltip-inner{
     word-break: normal;
 }
+.Yes{
+    color:green;
+    font-weight: bold;
+}
+.No{
+    color:red;
+}
+.Maybe{
+    color:orange;
+}

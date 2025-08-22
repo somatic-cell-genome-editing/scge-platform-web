@@ -24,5 +24,6 @@
             <li><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a>
             </li>
 <%}%>
+            <li><a href="/platform/download/module?filename=hello.pdf">m1_1_FORM1571_fillablePDF.pdf</a></li>
 </ul>
     <%}%>
