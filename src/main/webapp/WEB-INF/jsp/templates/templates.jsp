@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
 <script src="/platform/js/ctdModules.js"></script>
 <div class="page-header">
@@ -57,8 +58,10 @@
 </div>
 
     <div class="card" style="margin-top: 1%;margin-bottom: 1%">
-        <div class="card-header"><h5>FDA Submission Elements</h5></div>
+        <div class="card-header"><h5>FDA Submission Elements <div style="float:right;"><button id="downloadExcelBtn" class="btn btn-success btn-sm mb-3">Download Excel</button> </div></h5>
+        </div>
         <div class="card-body">
+
             <div class="row">
                 <div class="col-2"><%@include file="../ctd/rquirementsFilter.jsp"%></div>
                 <div class="col-10"> <%@include file="../ctd/ctdTable.jsp"%></div>
@@ -104,3 +107,26 @@
     </div>
 </div>
 
+<script>
+    document.getElementById('downloadExcelBtn').addEventListener('click', function () {
+        const wb = XLSX.utils.book_new(); // Create a new workbook
+
+        const tableConfigs = [
+            { id: 'module1', name: 'Module_1' },
+            { id: 'module2', name: 'Module_2' },
+            { id: 'module3', name: 'Module_3' },
+            { id: 'module4', name: 'Module_4' },
+            { id: 'module5', name: 'Module_5' }
+        ];
+
+        tableConfigs.forEach(config => {
+            const tableElement = document.getElementById(config.id);
+            if (tableElement) {
+                const ws = XLSX.utils.table_to_sheet(tableElement, { raw: true });
+                XLSX.utils.book_append_sheet(wb, ws, config.name);
+            }
+        });
+
+        XLSX.writeFile(wb, 'FDA_Submission_elements.xlsx');
+    });
+</script>
