@@ -6,8 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<p><strong>Filter By Application Type</strong></p>
-<button id="clearFiltersBtn" class="btn btn-secondary btn-sm mt-2">Clear All Filters</button>
+<p><strong>Filter By Application Type</strong>&nbsp;<button id="clearFiltersBtn" class="btn btn-sm" title="Clear All Filters"><i class="fa fa-refresh" aria-hidden="true"></i></button></p>
+<%--<button id="clearFiltersBtn" class="btn btn-secondary btn-sm mt-2">Clear All Filters</button>--%>
 <form>
     <!-- Group 1: Initial IND -->
     <div class="mb-3">
