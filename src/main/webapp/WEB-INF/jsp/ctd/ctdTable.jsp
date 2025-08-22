@@ -340,7 +340,7 @@
 <%--                    <td></td>--%>
                     <td></td>
                     <td></td>
-                    <td><%=l3.getSectionCode()%></td>
+    <td><a href="/platform/data/report/ctdSection/<%=l3.getSectionCode()%>"><%=l3.getSectionCode()%></a></td>
                     <td></td>
                     <td>
                         <%if(module==3){%>
@@ -420,7 +420,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td><%=l4.getSectionCode()%></td>
+    <td><a href="/platform/data/report/ctdSection/<%=l4.getSectionCode()%>"><%=l4.getSectionCode()%></a></td>
                     <td><%=l4.getSectionName()%>
                         <%if(l4.getSectionDescription()!=null && !l4.getSectionDescription().equals("")){%>
 
