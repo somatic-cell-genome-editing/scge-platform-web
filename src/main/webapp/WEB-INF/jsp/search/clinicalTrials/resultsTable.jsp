@@ -174,7 +174,7 @@ $(this).off('mouseleave');
 <%--        <td style="font-weight: bold"><a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nctId")%>" target="_blank"><%=sourceFields.get("nctId")%></a></td>--%>
     <td style="font-weight: bold" class="firstColumn">
         <%=sourceFields.get("nctId")%>&nbsp;
-        <a href="/platform/data/clinicalTrials/report/<%=sourceFields.get("nctId")%>" target="_blank" style="text-decoration: none;">
+        <a href="/platform/data/report/clinicalTrials/<%=sourceFields.get("nctId")%>" target="_blank" style="text-decoration: none;">
             <button style="font-size:0.75rem;font-weight: normal;padding:2px 5px;border: none; background-color: #007bff; color: white; border-radius: 4px; cursor: pointer;">
                 View Report
             </button>

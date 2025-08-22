@@ -54,7 +54,7 @@
     {
         if (request.getServerName().equals("localhost") ||p!=null && access.isAdmin(p) && !SCGEContext.isProduction()) {
     %>
-    <a style="margin-right: 26px;margin-top: 0" href="/platform/data/clinicalTrials/report/<%=clinicalTrialData.getNctId()%>?edit=true" class="btn btn-primary">Edit</a>
+    <a style="margin-right: 26px;margin-top: 0" href="/platform/data/report/clinicalTrials/<%=clinicalTrialData.getNctId()%>?edit=true" class="btn btn-primary">Edit</a>
     <%}}%>
 </div>
 <%
@@ -858,7 +858,7 @@
         <% if(isEditMode) { %>
         <div style="margin-top: 20px; text-align: center;">
             <button type="submit" class="btn btn-primary" onclick="return validateForm()" >Save Changes</button>
-            <a href="/platform/data/clinicalTrials/report/<%=clinicalTrialData.getNctId()%>" class="btn btn-secondary">Cancel</a>
+            <a href="/platform/data/report/clinicalTrials/<%=clinicalTrialData.getNctId()%>" class="btn btn-secondary">Cancel</a>
         </div>
         <% } %>
     </form>

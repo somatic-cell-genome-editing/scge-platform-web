@@ -268,7 +268,7 @@
                 <tr>
 <%--                    <td></td>--%>
                     <td></td>
-                    <td><%=l2.getSectionCode()%></td>
+    <td><a href="/platform/data/report/ctdSection/<%=l2.getSectionCode()%>"><%=l2.getSectionCode()%></a></td>
                     <td></td>
                     <td></td>
                     <td>
