@@ -93,7 +93,8 @@
     // Clear All Filters
     document.getElementById('clearFiltersBtn').addEventListener('click', function () {
         // Uncheck all filter checkboxes
-        document.querySelectorAll('.filter-checkbox').forEach(cb => cb.checked = false);
+        document.querySelectorAll('.filter-checkbox-marketing').forEach(cb => cb.checked = false);
+        document.querySelectorAll('.filter-checkbox-initial-ind').forEach(cb => cb.checked = false);
 
         // Show all rows in all tables
         document.querySelectorAll('.filterable-table tbody tr').forEach(row => {
