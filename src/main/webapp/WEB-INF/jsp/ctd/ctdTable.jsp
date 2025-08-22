@@ -6,7 +6,8 @@
 <%@ page import="java.util.HashMap" %>
 <%@ page import="edu.mcw.scge.datamodel.Document" %>
 <%@ page import="edu.mcw.scge.datamodel.Application" %>
-<%@ page import="org.apache.commons.lang.StringUtils" %><%--
+<%@ page import="org.apache.commons.lang.StringUtils" %>
+<%@ page import="edu.mcw.scge.dao.implementation.ctd.CTDResourceDAO" %><%--
   Created by IntelliJ IDEA.
   User: jthota
   Date: 6/26/2024

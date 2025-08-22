@@ -1,5 +1,4 @@
-<%@ page import="edu.mcw.scge.dao.implementation.ctd.CTDResourceDAO" %>
-<%@ page import="org.checkerframework.checker.units.qual.C" %>
+
 <%@ page import="edu.mcw.scge.datamodel.ctd.CTDResource" %>
 <%@ page import="java.util.ArrayList" %>
 <%--
@@ -24,6 +23,6 @@
             <li><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a>
             </li>
 <%}%>
-            <li><a href="/platform/download/module?filename=hello.pdf">m1_1_FORM1571_fillablePDF.pdf</a></li>
+<%--            <li><a href="/platform/download/module?filename=hello.pdf">m1_1_FORM1571_fillablePDF.pdf</a></li>--%>
 </ul>
     <%}%>
