@@ -9,12 +9,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Section section= (Section) request.getAttribute("section");
-    String indCheckbox="";
-    String marketingCheckbox="";
-    if(section.getRequiredForInitialIND()!=null && section.getRequiredForInitialIND().equalsIgnoreCase("yes"))
-        indCheckbox+="checked";
-    if(section.getRequiredForMarketingApplicationOnly()!=null && section.getRequiredForMarketingApplicationOnly().equalsIgnoreCase("yes"))
-        marketingCheckbox+="checked";
+    String indYes="";  String indNo="";  String indMaybe="";
+    String marketingYes=""; String marketingNo=""; String marketingMaybe="";
+    if(section.getRequiredForInitialIND()!=null ) {
+      indYes+=  section.getRequiredForInitialIND().equalsIgnoreCase("yes")?  "checked":"";
+        indNo+=  section.getRequiredForInitialIND().equalsIgnoreCase("no")?  "checked":"";
+        indMaybe+=  section.getRequiredForInitialIND().equalsIgnoreCase("maybe")?  "checked":"";
+    }
+    if(section.getRequiredForMarketingApplicationOnly()!=null ) {
+      marketingYes+=   section.getRequiredForMarketingApplicationOnly().equalsIgnoreCase("yes")?"checked":"";
+        marketingNo+=   section.getRequiredForMarketingApplicationOnly().equalsIgnoreCase("no")?"checked":"";
+        marketingMaybe+=   section.getRequiredForMarketingApplicationOnly().equalsIgnoreCase("maybe")?"checked":"";
+
+    }
 %>
 <div class="container my-5">
     <h2 class="mb-4">CTD Section <%=section.getSectionCode()%> Report</h2>
@@ -67,15 +74,15 @@
             <div class="form-group">
                 <label style="margin-right:1%">1. Initial IND:</label>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="q1[]" id="q1_yes" value="yes">
+                    <input class="form-check-input" type="checkbox" name="q1[]" id="q1_yes" value="yes" <%=indYes%>>
                     <label class="form-check-label" for="q1_yes">Yes</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="q1[]" id="q1_no" value="no">
+                    <input class="form-check-input" type="checkbox" name="q1[]" id="q1_no" value="no" <%=indNo%>>
                     <label class="form-check-label" for="q1_no">No</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="q1[]" id="q1_maybe" value="maybe">
+                    <input class="form-check-input" type="checkbox" name="q1[]" id="q1_maybe" value="maybe" <%=indMaybe%>>
                     <label class="form-check-label" for="q1_maybe">Maybe</label>
                 </div>
             </div>
@@ -84,15 +91,15 @@
             <div class="form-group">
                 <label style="margin-right:1%">2. Marketing:</label>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="q2[]" id="q2_yes" value="yes">
+                    <input class="form-check-input" type="checkbox" name="q2[]" id="q2_yes" value="yes" <%=marketingYes%>>
                     <label class="form-check-label" for="q2_yes">Yes</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="q2[]" id="q2_no" value="no">
+                    <input class="form-check-input" type="checkbox" name="q2[]" id="q2_no" value="no" <%=marketingNo%>>
                     <label class="form-check-label" for="q2_no">No</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="q2[]" id="q2_maybe" value="maybe">
+                    <input class="form-check-input" type="checkbox" name="q2[]" id="q2_maybe" value="maybe" <%=marketingMaybe%>>
                     <label class="form-check-label" for="q2_maybe">Maybe</label>
                 </div>
             </div>
