@@ -17,12 +17,12 @@
         throw new RuntimeException(e);
     }
     if(externalResources!=null && externalResources.size()>0){%>
-        <ul>
+
         <%for(CTDResource resource:externalResources){
 %>
-            <li><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a>
-            </li>
+            <span class="chip"><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></span>
+
 <%}%>
 <%--            <li><a href="/platform/download/module?filename=hello.pdf">m1_1_FORM1571_fillablePDF.pdf</a></li>--%>
-</ul>
+
     <%}%>

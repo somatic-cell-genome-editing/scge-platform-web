@@ -17,7 +17,7 @@
         marketingCheckbox+="checked";
 %>
 <div class="container my-5">
-    <h2 class="mb-4">CTD Section Report</h2>
+    <h2 class="mb-4">CTD Section <%=section.getSectionCode()%> Report</h2>
 
     <div class="card mb-4">
         <div class="card-header">Summary</div>
@@ -65,7 +65,7 @@
         <div class="card-body">
             <!-- Question 1 -->
             <div class="form-group">
-                <label>1. Initial IND</label><br>
+                <label style="margin-right:1%">1. Initial IND:</label>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" name="q1[]" id="q1_yes" value="yes">
                     <label class="form-check-label" for="q1_yes">Yes</label>
@@ -82,7 +82,7 @@
 
             <!-- Question 2 -->
             <div class="form-group">
-                <label>2. Marketing</label><br>
+                <label style="margin-right:1%">2. Marketing:</label>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" name="q2[]" id="q2_yes" value="yes">
                     <label class="form-check-label" for="q2_yes">Yes</label>
