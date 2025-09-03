@@ -20,7 +20,7 @@
 
         <%for(CTDResource resource:externalResources){
 %>
-            <span class="chip"><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></span>
+            <span class="chip"><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></span><br>
 
 <%}%>
 <%--            <li><a href="/platform/download/module?filename=hello.pdf">m1_1_FORM1571_fillablePDF.pdf</a></li>--%>

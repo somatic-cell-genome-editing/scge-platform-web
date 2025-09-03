@@ -1,5 +1,8 @@
 <%@ page import="edu.mcw.scge.datamodel.ctd.Section" %>
-<%@ page import="org.apache.commons.lang.StringUtils" %><%--
+<%@ page import="org.apache.commons.lang.StringUtils" %>
+<%@ page import="edu.mcw.scge.dao.implementation.ctd.CTDResourceDAO" %>
+<%@ page import="edu.mcw.scge.dao.implementation.ctd.SectionDAO" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: jthota
   Date: 8/22/2025
@@ -8,7 +11,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
+    SectionDAO sectionDAO=new SectionDAO();
+    CTDResourceDAO resourceDAO=new CTDResourceDAO();
+    List<CTDResource> externalResources=null;
+%>
+<%
     Section section= (Section) request.getAttribute("section");
+    String sectionCode=section.getSectionCode();
     String indYes="";  String indNo="";  String indMaybe="";
     String marketingYes=""; String marketingNo=""; String marketingMaybe="";
     if(section.getRequiredForInitialIND()!=null ) {
@@ -113,22 +122,23 @@
         <div class="card-body">
 
 
+
             <div class="row mb-3">
-                <div class="col-sm-4 font-weight-bold">Templates:</div>
+                <div class="col-sm-4 font-weight-bold">Templates</div>
                 <div class="col-sm-8"></div>
             </div>
 
             <div class="row mb-3">
-                <div class="col-sm-4 font-weight-bold">Example:</div>
+                <div class="col-sm-4 font-weight-bold">Example</div>
                 <div class="col-sm-8"></div>
             </div>
             <div class="row mb-3">
-                <div class="col-sm-4 font-weight-bold">Instructions:</div>
-                <div class="col-sm-8"></div>
+                <div class="col-sm-3 font-weight-bold">Instructions</div>
+                <div class="col-sm-9"></div>
             </div>
             <div class="row mb-3">
-                <div class="col-sm-4 font-weight-bold">External Links:</div>
-                <div class="col-sm-8"></div>
+                <div class="col-sm-2 font-weight-bold">External Links</div>
+                <div class="col-sm-10"> <%@include file="../../ctd/externalResourceLinks.jsp"%></div>
             </div>
 
         </div>
