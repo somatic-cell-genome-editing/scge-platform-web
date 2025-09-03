@@ -38,15 +38,15 @@
             <label class="form-check-label Yes" for="marketing-yes">Yes</label>
         </div>
 
-        <div class="form-check">
-            <input class="form-check-input filter-checkbox-marketing" type="checkbox" value="no" id="marketing-no">
-            <label class="form-check-label No" for="marketing-no">No</label>
-        </div>
+<%--        <div class="form-check">--%>
+<%--            <input class="form-check-input filter-checkbox-marketing" type="checkbox" value="no" id="marketing-no">--%>
+<%--            <label class="form-check-label No" for="marketing-no">No</label>--%>
+<%--        </div>--%>
 
-        <div class="form-check">
-            <input class="form-check-input filter-checkbox-marketing" type="checkbox" value="maybe" id="marketing-maybe">
-            <label class="form-check-label Maybe" for="marketing-maybe">Maybe</label>
-        </div>
+<%--        <div class="form-check">--%>
+<%--            <input class="form-check-input filter-checkbox-marketing" type="checkbox" value="maybe" id="marketing-maybe">--%>
+<%--            <label class="form-check-label Maybe" for="marketing-maybe">Maybe</label>--%>
+<%--        </div>--%>
     </div>
 
 </form>
