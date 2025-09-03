@@ -127,6 +127,8 @@
             }
         });
 
+        const instructionsWorkSheet= XLSX.utils.json_to_sheet([]);
+        XLSX.utils.book_append_sheet(wb, instructionsWorkSheet, "Instructions");
         XLSX.writeFile(wb, 'FDA_Submission_elements.xlsx');
     });
 </script>
