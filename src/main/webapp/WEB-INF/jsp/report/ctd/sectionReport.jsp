@@ -14,6 +14,9 @@
     SectionDAO sectionDAO=new SectionDAO();
     CTDResourceDAO resourceDAO=new CTDResourceDAO();
     List<CTDResource> externalResources=null;
+    List<CTDResource> templates=null;
+    List<CTDResource> examples=null;
+    List<CTDResource> other=null;
 %>
 <%
     Section section= (Section) request.getAttribute("section");
@@ -123,23 +126,22 @@
 
 
 
-            <div class="row mb-3">
-                <div class="col-sm-4 font-weight-bold">Templates</div>
-                <div class="col-sm-8"></div>
-            </div>
+<%--            <div class="row mb-3">--%>
+<%--                <div class="col-sm-4 font-weight-bold">Templates</div>--%>
+<%--                <div class="col-sm-8"></div>--%>
+<%--            </div>--%>
 
-            <div class="row mb-3">
-                <div class="col-sm-4 font-weight-bold">Example</div>
-                <div class="col-sm-8"></div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-sm-3 font-weight-bold">Instructions</div>
-                <div class="col-sm-9"></div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-sm-2 font-weight-bold">External Links</div>
+<%--            <div class="row mb-3">--%>
+<%--                <div class="col-sm-4 font-weight-bold">Example</div>--%>
+<%--                <div class="col-sm-8"></div>--%>
+<%--            </div>--%>
+<%--            <div class="row mb-3">--%>
+<%--                <div class="col-sm-3 font-weight-bold">Instructions</div>--%>
+<%--                <div class="col-sm-9"></div>--%>
+<%--            </div>--%>
+
                 <div class="col-sm-10"> <%@include file="../../ctd/externalResourceLinks.jsp"%></div>
-            </div>
+          
 
         </div>
     </div>

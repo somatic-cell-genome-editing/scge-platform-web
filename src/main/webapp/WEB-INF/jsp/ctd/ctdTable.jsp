@@ -214,6 +214,9 @@
                         String sectionCode=null;
                         String sectionName=null;
                         List<CTDResource> externalResources=null;
+                        List<CTDResource> templates=null;
+                        List<CTDResource> examples=null;
+                        List<CTDResource> other=null;
                         if(!section.getSectionCode().trim().isEmpty()) {
                             l1SectionCode = section.getSectionCode().replaceAll("\\.", "_");
 
