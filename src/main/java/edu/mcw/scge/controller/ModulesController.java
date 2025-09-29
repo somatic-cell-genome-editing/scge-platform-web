@@ -18,7 +18,7 @@ public class ModulesController {
         Map<Integer, List<Section>> modules=new HashMap<>();
         for(int module: Arrays.asList(1,2,3,4,5)) {
             List<Section> sections = sectionDAO.getTopLevelSectionsOfModule(module);
-            modules.put(module, sections);
+            modules.put(module, sectionDAO.sort(sections));
         }
         return modules;
     }
