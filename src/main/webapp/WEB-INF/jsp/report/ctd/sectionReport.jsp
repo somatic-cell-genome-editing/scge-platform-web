@@ -10,6 +10,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%
     SectionDAO sectionDAO=new SectionDAO();
     CTDResourceDAO resourceDAO=new CTDResourceDAO();
@@ -86,15 +87,15 @@
             <div class="form-group">
                 <label style="margin-right:1%">1. Initial IND:</label>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="q1[]" id="q1_yes" value="yes" <%=indYes%>>
+                    <input class="form-check-input" type="checkbox" name="q1[]" id="q1_yes" value="yes" <%=indYes%> disabled>
                     <label class="form-check-label" for="q1_yes">Yes</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="q1[]" id="q1_no" value="no" <%=indNo%>>
+                    <input class="form-check-input" type="checkbox" name="q1[]" id="q1_no" value="no" <%=indNo%> disabled>
                     <label class="form-check-label" for="q1_no">No</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="q1[]" id="q1_maybe" value="maybe" <%=indMaybe%>>
+                    <input class="form-check-input" type="checkbox" name="q1[]" id="q1_maybe" value="maybe" <%=indMaybe%> disabled>
                     <label class="form-check-label" for="q1_maybe">Maybe</label>
                 </div>
             </div>
@@ -103,15 +104,15 @@
             <div class="form-group">
                 <label style="margin-right:1%">2. Marketing:</label>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="q2[]" id="q2_yes" value="yes" <%=marketingYes%>>
+                    <input class="form-check-input" type="checkbox" name="q2[]" id="q2_yes" value="yes" <%=marketingYes%> disabled>
                     <label class="form-check-label" for="q2_yes">Yes</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="q2[]" id="q2_no" value="no" <%=marketingNo%>>
+                    <input class="form-check-input" type="checkbox" name="q2[]" id="q2_no" value="no" <%=marketingNo%> disabled>
                     <label class="form-check-label" for="q2_no">No</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="q2[]" id="q2_maybe" value="maybe" <%=marketingMaybe%>>
+                    <input class="form-check-input" type="checkbox" name="q2[]" id="q2_maybe" value="maybe" <%=marketingMaybe%> disabled>
                     <label class="form-check-label" for="q2_maybe">Maybe</label>
                 </div>
             </div>
@@ -148,3 +149,13 @@
 
 </div>
 
+<script>
+    $(function () {
+        $('.form-check-input').each(function () {
+
+            if ($(this).is(':checked')) {
+                $(this).prop('disabled', false)
+            }
+        })
+    })
+</script>
