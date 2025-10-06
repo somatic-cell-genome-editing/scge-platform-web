@@ -23,7 +23,7 @@ import java.util.Map;
 public class GuidanceController extends ModulesController{
     @RequestMapping(value="/forms")
     public String getINDForms(HttpServletRequest req, HttpServletResponse res) throws Exception {
-
+        req.setAttribute("title","Investigational New Drug (IND) forms");
         req.setAttribute("page", "/WEB-INF/jsp/forms/forms");
         req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
 
@@ -32,7 +32,16 @@ public class GuidanceController extends ModulesController{
     @RequestMapping(value="/templates")
     public String getINDTemplates(HttpServletRequest req, HttpServletResponse res) throws Exception {
         req.setAttribute("modules", getCTDModules());
+        req.setAttribute("title","Investigational New Drug (IND) Templates");
         req.setAttribute("page", "/WEB-INF/jsp/templates/templates");
+        req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
+
+        return null;
+    }
+    @RequestMapping(value="/regulatoryDocuments")
+    public String getRegulatoryDocuments(HttpServletRequest req, HttpServletResponse res) throws Exception {
+        req.setAttribute("page", "/WEB-INF/jsp/regulatoryDocuments/regulatoryDocuments");
+        req.setAttribute("title", "Regulatory Documents, Investigational New Drug (IND)");
         req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
 
         return null;

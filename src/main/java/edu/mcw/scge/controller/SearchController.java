@@ -81,6 +81,9 @@ public class SearchController{
         req.setAttribute("expandAllFilters", req.getParameter("expandAllFilters"));
         req.setAttribute("definitions", definitions);
         req.setAttribute("category", category);
+        if(category.equalsIgnoreCase("clinicalTrial"))
+        req.setAttribute("title", "Gene Therapy Clinical Trials");
+        else  req.setAttribute("title", category);
         req.setAttribute("page", "/WEB-INF/jsp/search/clinicalTrials/resultsview");
         req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
 

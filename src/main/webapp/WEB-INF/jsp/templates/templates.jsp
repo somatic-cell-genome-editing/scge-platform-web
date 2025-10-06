@@ -37,7 +37,7 @@
 
                 </div>
                 <div class="card" style="margin-top: 1%;margin-bottom: 1%">
-                    <div class="card-header"><h5>ICH and FDA Guidance on eCTD Organization and Specifications                        <i class="fa-solid fa-download" style="color:darkorange;font-size: 30px;font-weight: bold"></i>&nbsp;<a href="/platform/download/ctd-XXXXX.zip">Download .zip file</a>
+                    <div class="card-header"><h5>ICH and FDA Guidance on eCTD Organization and Specifications                        <i class="fa-solid fa-download" style="color:darkorange;font-size: 30px;font-weight: bold"></i>&nbsp;<a href="/platform/download/IND######.zip">Download .zip file</a>
                     </h5></div>
 
                 </div>
