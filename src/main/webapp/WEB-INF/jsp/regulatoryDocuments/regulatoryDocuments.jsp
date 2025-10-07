@@ -159,10 +159,6 @@
                     </p>
                 </div>
 
-                <div class="note-text">
-                    → Where Kiran's documents should live on our site
-                </div>
-
                 <!-- Gantt Chart Table -->
                 <table class="gantt-table">
                     <thead>
