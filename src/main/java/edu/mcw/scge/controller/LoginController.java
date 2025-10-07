@@ -41,6 +41,14 @@ public class LoginController extends ModulesController{
         return "base";
     }
 
+    @RequestMapping("privacy")
+    public String getPrivacyPage(HttpServletRequest req) throws Exception {
+        req.setAttribute("seoDescription","SCGE Platform Privacy Policy");
+        req.setAttribute("seoTitle","Privacy Policy");
+        req.setAttribute("page", "/WEB-INF/jsp/privacy");
+        return "base";
+    }
+
     @RequestMapping("dashboard")
     public String verifyAuthentication(OAuth2AuthenticationToken authentication, HttpServletRequest req) throws Exception {
         Map userAttributes=getUserAttributes(authentication);

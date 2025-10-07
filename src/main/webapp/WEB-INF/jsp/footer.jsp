@@ -23,6 +23,7 @@
           <li><a href="/platform/home" class="text-white">Home</a></li>
           <li><a href="https://scge.mcw.edu/phase-2-tcdc/" class="text-white">About TCDC</a></li>
           <li><a href="https://scge.mcw.edu/contact/" class="text-white">Contact</a></li>
+          <li><a href="/platform/privacy" class="text-white">Privacy Policy</a></li>
         </ul>
       </div>
 

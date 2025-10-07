@@ -58,3 +58,5 @@
 <%@include file="navbarTop.jsp"%>
 <%@include file="navbar.jsp"%>
 
+<%@include file="cookieNotice.jsp"%>
+
