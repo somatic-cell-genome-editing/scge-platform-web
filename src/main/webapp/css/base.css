@@ -21,7 +21,9 @@ body {
             "wdth" 100;
     font-size: 1rem;
 }
-
+.wrapper{
+    min-height: 500px;
+}
 
 
 /* Responsive typography */
@@ -63,9 +65,9 @@ img {
 @media
 only screen and (-webkit-min-device-pixel-ratio: 2),
 only screen and (min-resolution: 192dpi) {
-    .high-res-image {
-        background-image: url('high-res-image@2x.png');
-    }
+    /*.high-res-image {*/
+    /*    background-image: url('high-res-image@2x.png');*/
+    /*}*/
     body {
         font-size: 1rem;
     }
