@@ -14,21 +14,21 @@
 
     try {
          externalResources=resourceDAO.getResourcesBySection(sectionCode.trim().replaceAll("_", "."));
-        templates=externalResources!=null ? externalResources.stream().filter(r ->r.getType()!=null && r.getType().equalsIgnoreCase("template")&& r.getResourceName()!=null && !r.getResourceName().trim().equals("")).toList():null;
-        examples= externalResources!=null ?externalResources.stream().filter(r ->r.getType()!=null && r.getType().equalsIgnoreCase("example")&& r.getResourceName()!=null && !r.getResourceName().trim().equals("")).toList():null;
-        other= externalResources!=null ?externalResources.stream().filter(r -> ((r.getType()==null || r.getType().equals("")) && (r.getResourceName()!=null && !r.getResourceName().trim().equals("")))).toList():null;
 
+        templates= externalResources!=null?externalResources.stream().filter(r -> r.getType() != null && r.getType().equalsIgnoreCase("template") && r.getResourceName() != null && !r.getResourceName().trim().equals("")).toList():null;
+        examples= externalResources!=null ?externalResources.stream().filter(r ->r.getType()!=null && r.getType().equalsIgnoreCase("example")&& r.getResourceName()!=null && !r.getResourceName().trim().equals("")).toList():null;
+        other= externalResources!=null ?externalResources.stream().filter(r -> ((r.getType()==null || r.getType().equals("") || !r.getType().equalsIgnoreCase("example") || !r.getType().equalsIgnoreCase("template")) && (r.getResourceName()!=null && !r.getResourceName().trim().equals("")))).toList():null;
+        System.out.println(sectionCode+" resources:"+ externalResources.size());
     } catch (Exception e) {
         throw new RuntimeException(e);
     }
     if(other!=null && other.size()>0){
 %>
     <b>FDA/Other Links:</b>
-        <%for(CTDResource resource:other){
-            if(resource.getType()==null || resource.getType().equals("")){%>
+        <%for(CTDResource resource:other){%>
             <span class="chip"><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></span><br>
 
-<%}}}
+<%}}
     if(templates!=null && templates.size()>0){%>
         <b>Templates:</b>
 <%for(CTDResource resource:templates){

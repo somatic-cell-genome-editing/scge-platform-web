@@ -14,19 +14,19 @@
         <label class="form-label d-block"><strong>Initial IND Application</strong></label>
 
         <div class="form-check">
-            <input class="form-check-input filter-checkbox-initial-ind " type="checkbox" value="yes" id="initial-ind-yes">
+            <input class="form-check-input filter-checkbox-initial-ind " type="checkbox" value="yes" id="initial-ind-yes" checked>
             <label class="form-check-label Yes" for="initial-ind-yes">Yes</label>
         </div>
-
+        <div class="form-check">
+            <input class="form-check-input filter-checkbox-initial-ind " type="checkbox" value="maybe" id="initial-ind-maybe" checked>
+            <label class="form-check-label Maybe" for="initial-ind-maybe">Maybe</label>
+        </div>
         <div class="form-check">
             <input class="form-check-input filter-checkbox-initial-ind" type="checkbox" value="no" id="initial-ind-no">
             <label class="form-check-label  No" for="initial-ind-no">No</label>
         </div>
 
-        <div class="form-check">
-            <input class="form-check-input filter-checkbox-initial-ind " type="checkbox" value="maybe" id="initial-ind-maybe">
-            <label class="form-check-label Maybe" for="initial-ind-maybe">Maybe</label>
-        </div>
+
     </div>
 
     <!-- Group 2: Marketing Application -->
@@ -52,6 +52,9 @@
 </form>
 
 <script>
+    $(function () {
+        filterAllTables()
+    })
     const initialINDCheckboxes=document.querySelectorAll('.filter-checkbox-initial-ind')
     const marketingCheckboxes=document.querySelectorAll('.filter-checkbox-marketing')
     const initialINDColumnIndex=5;
