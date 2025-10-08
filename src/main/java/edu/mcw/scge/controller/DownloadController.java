@@ -74,8 +74,8 @@ public class DownloadController {
     public void downloadFile(HttpServletResponse response, @RequestParam String filename,@RequestParam String path) throws IOException {
         System.out.println("FILENAME:"+ filename+"\n"+ "PATH:"+ path);
       // String MODULE_DIRECTORY = "C:\\Users\\jthota\\Downloads\\ctd-XXXXX\\ctd-XXXXX\\0000\\m1\\us";
-       String MODULE_DIRECTORY = "C:\\Users\\jthota\\Downloads\\IND######\\IND######\\"+path.replaceAll("'","");
-
+//       String MODULE_DIRECTORY = "C:\\Users\\jthota\\Downloads\\IND######\\IND######\\"+path.replaceAll("'","");
+        String MODULE_DIRECTORY = "/data/download/IND######/IND######/";
         // Path to the directory where files are stored
         Path filePath = Paths.get(MODULE_DIRECTORY, filename);
 
