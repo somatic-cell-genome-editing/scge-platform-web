@@ -27,8 +27,9 @@ public class DownloadController {
     public ResponseEntity<Resource> downloadFile(@PathVariable String filename) {
         try {
             //   private final String FILE_DIRECTORY = "/data/download"; // Configure your file directory
-            // Configure your file directory
-            String FILE_DIRECTORY = "C:\\Users\\jthota\\Downloads\\IND######";
+//            // Configure your file directory
+//            String FILE_DIRECTORY = "C:\\Users\\jthota\\Downloads\\IND######";
+            String FILE_DIRECTORY = "/data/download/IND######";
             Path filePath = Paths.get(FILE_DIRECTORY).resolve(filename).normalize();
             Resource resource = new UrlResource(filePath.toUri());
 
@@ -50,7 +51,8 @@ public class DownloadController {
     public ResponseEntity<Resource> downloadModuleFile(@PathVariable String filename) {
 
         try {
-            String MODULE_DIRECTORY = "C:\\Users\\jthota\\Downloads\\IND######\\IND######\\1";
+//            String MODULE_DIRECTORY = "C:\\Users\\jthota\\Downloads\\IND######\\IND######\\1";
+            String MODULE_DIRECTORY = "/data/download/IND######/IND######/1";
             Path filePath = Paths.get(MODULE_DIRECTORY +"\\"+"m1"+"\\us").resolve(filename).normalize();
             Resource resource = new UrlResource(filePath.toUri());
 

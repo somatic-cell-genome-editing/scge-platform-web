@@ -13,7 +13,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav" style="padding-right: 1%" >
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="/platform/home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/platform/data/ind/regulatoryDocuments">Regulatory Documents</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/platform/data/documents/regulatoryDocuments">Regulatory Documents</a></li>
                     <li class="nav-item"><a class="nav-link" href="/platform/data/search/ClinicalTrial">Gene Therapy Trial Browser</a></li>
                     <%
                         if(!SCGEContext.isProduction()){
