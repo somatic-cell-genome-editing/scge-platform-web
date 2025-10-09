@@ -73,7 +73,7 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
                             .permitAll());
  } else {
         http.authorizeHttpRequests(authorize -> authorize.requestMatchers("/", "/home", "/logout", "/privacy", "/common/**", "/loginFailure",
-                        "/images/**", "/css/**", "/js/**", "/forms_public/**", "/data/**", "/login.jsp", "/index.jsp", "/WEB-INF/jsp/**")
+                        "/images/**", "/css/**", "/js/**", "/forms_public/**", "/data/**","/public/**", "/login.jsp", "/index.jsp", "/WEB-INF/jsp/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated());
