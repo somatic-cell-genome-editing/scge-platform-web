@@ -25,66 +25,73 @@
     .sidebar-content a:hover {
         text-decoration: underline;
     }
-    .sidebar-note {
-        color: #dc3545;
-        font-weight: bold;
-        margin-top: 30px;
-        font-size: 14px;
-    }
     .gantt-table {
         width: 100%;
-        border-collapse: separate;
-        border-spacing: 0;
+        border-collapse: collapse;
         margin-top: 30px;
+        border: 1px solid #ddd;
     }
     .gantt-table th {
-        background-color: #2c3e50;
+        background-color: #3b4a6b;
         color: white;
-        padding: 12px 8px;
+        padding: 15px 10px;
         text-align: center;
-        font-size: 12px;
-        font-weight: normal;
-        border: 1px solid #34495e;
+        font-size: 14px;
+        font-weight: 600;
+        border: 1px solid #2c3858;
     }
     .gantt-table td {
-        padding: 8px;
+        padding: 10px;
         border: 1px solid #ddd;
         position: relative;
-        height: 35px;
+        height: 50px;
+        background-color: white;
+    }
+    .phase-column {
+        border-left: 2px dashed #999 !important;
+    }
+    .disease-area-cell {
+        background-color: #f8f9fa;
+        vertical-align: middle;
+        text-align: center;
+    }
+    .disease-icon-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
     .disease-icon {
-        width: 60px;
-        height: 60px;
+        width: 70px;
+        height: 70px;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 auto;
-        color: white;
-        font-weight: bold;
+        margin-bottom: 8px;
+        font-size: 28px;
     }
     .disease-label {
         text-align: center;
-        font-size: 11px;
-        margin-top: 5px;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.3;
+        color: #2c3858;
     }
-    .gantt-bar {
+    .program-name {
+        font-size: 13px;
+        color: #333;
+        text-align: center;
+        line-height: 1.3;
+    }
+    .timeline-bar {
         position: absolute;
-        height: 25px;
-        background-color: #87ceeb;
-        border-radius: 4px;
+        height: 35px;
+        background: linear-gradient(90deg, #7eb3c7 0%, #8fc4d4 50%, #7eb3c7 100%);
         top: 50%;
         transform: translateY(-50%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 10px;
-        color: #333;
-        white-space: nowrap;
-        padding: 0 5px;
-    }
-    .phase-column {
-        border-left: 2px dotted #999 !important;
+        clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%);
+        border-radius: 3px 0 0 3px;
     }
     .main-content-area {
         padding: 20px;
@@ -99,20 +106,17 @@
         line-height: 1.6;
         margin-bottom: 30px;
     }
-    .note-text {
-        color: #dc3545;
-        font-weight: bold;
-        font-size: 18px;
-        margin: 20px 0;
+    .inborn-errors-icon {
+        background-color: #3b4a6b;
+        color: white;
     }
-    .inborn-errors {
-        background-color: #6c5ce7;
+    .neurological-icon {
+        background-color: #3b4a6b;
+        color: white;
     }
-    .neurological {
-        background-color: #00b894;
-    }
-    .retinal {
-        background-color: #fdcb6e;
+    .retinal-icon {
+        background-color: #3b4a6b;
+        color: white;
     }
 </style>
 
@@ -140,10 +144,6 @@
                         <li>• <a href="#">Pre-IND Annotated Feedback</a></li>
                     </ul>
                 </div>
-
-                <div class="sidebar-note">
-                    We can add more in this sidebar list as they become available
-                </div>
             </div>
         </div>
 
@@ -154,8 +154,7 @@
 
                 <div class="intro-text">
                     <p>
-                        Text blurb about the documents, what was shared, short bio on the
-                        projects, can be added to as more documents become available
+                        The Somatic Cell Genome Editing (SCGE) Consortium is an NIH Common Fund program created to accelerate translational research in genome editing. In furtherance of our mission, the SCGE Translational Coordination and Dissemination Center (TCDC) will disseminate documents generated through regulatory interactions between the U.S. Food and Drug Administration (FDA) and consortium laboratories. Historically, these documents have been closely guarded trade secrets; it is our hope that by making this vital information public, we will be able to help the rare disease communities and the providers and researchers that serve them.
                     </p>
                 </div>
 
@@ -163,79 +162,85 @@
                 <table class="gantt-table">
                     <thead>
                         <tr>
-                            <th style="width: 120px;">Disease Area</th>
-                            <th style="width: 100px;">Program</th>
+                            <th style="width: 140px;">Disease Area</th>
+                            <th style="width: 180px;">Program</th>
                             <th>Lead<br>Optimization</th>
                             <th class="phase-column">INTERACT<br>Meeting</th>
-                            <th>Pre-IND<br>Meeting</th>
+                            <th class="phase-column">Pre-IND<br>Meeting</th>
                             <th class="phase-column">IND Enabling<br>Studies</th>
-                            <th>Clinical Trial<br>Initiated</th>
+                            <th class="phase-column">Clinical Trial<br>Initiated</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!-- Inborn Errors of Metabolism -->
                         <tr>
-                            <td rowspan="3" style="vertical-align: middle;">
-                                <div class="disease-icon inborn-errors">IE</div>
-                                <div class="disease-label">Inborn<br>Errors of<br>Metabolism</div>
+                            <td rowspan="3" class="disease-area-cell">
+                                <div class="disease-icon-container">
+                                    <div class="disease-icon inborn-errors-icon">
+                                        <i class="fas fa-dna" style="color: white !important;"></i>
+                                    </div>
+                                    <div class="disease-label">Inborn<br>Errors of<br>Metabolism</div>
+                                </div>
                             </td>
-                            <td style="font-size: 11px;">Phenylketonuria<br>(PKU)</td>
+                            <td class="program-name">Phenylketonuria<br>(PKU)</td>
                             <td colspan="5" style="position: relative;">
-                                <div class="gantt-bar" style="left: 0; width: 85%;">PKU Timeline</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="font-size: 11px;">CPSI Deficiency</td>
-                            <td colspan="5" style="position: relative;">
-                                <div class="gantt-bar" style="left: 0; width: 100%;">CPSI Timeline</div>
+                                <div class="timeline-bar" style="left: 5px; width: 55%;"></div>
                             </td>
                         </tr>
                         <tr>
-                            <td style="font-size: 11px;">Urea Cycle Disorders</td>
+                            <td class="program-name">Carbamoyl<br>Phosphate<br>Synthetase I (CPS1)<br>Deficiency</td>
                             <td colspan="5" style="position: relative;">
-                                <div class="gantt-bar" style="left: 0; width: 60%;">UCD Timeline</div>
+                                <div class="timeline-bar" style="left: 5px; width: 85%;"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="program-name">Urea Cycle Disorders<br>(UCDs)</td>
+                            <td colspan="5" style="position: relative;">
+                                <div class="timeline-bar" style="left: 5px; width: 55%;"></div>
                             </td>
                         </tr>
 
                         <!-- Neurological Disorders -->
                         <tr>
-                            <td rowspan="3" style="vertical-align: middle;">
-                                <div class="disease-icon neurological">ND</div>
-                                <div class="disease-label">Neurological<br>Disorders</div>
+                            <td rowspan="3" class="disease-area-cell">
+                                <div class="disease-icon-container">
+                                    <div class="disease-icon neurological-icon">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                    <div class="disease-label">Neurological<br>Disorders</div>
+                                </div>
                             </td>
-                            <td style="font-size: 11px;">Spinal Muscular<br>Atrophy (SMA)</td>
+                            <td class="program-name">Spinal Muscular<br>Atrophy (SMA)</td>
                             <td colspan="5" style="position: relative;">
-                                <div class="gantt-bar" style="left: 0; width: 35%;">SMA Timeline</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="font-size: 11px;">Angelman Syndrome</td>
-                            <td colspan="5" style="position: relative;">
-                                <div class="gantt-bar" style="left: 0; width: 30%;">Angelman Timeline</div>
+                                <div class="timeline-bar" style="left: 5px; width: 40%;"></div>
                             </td>
                         </tr>
                         <tr>
-                            <td style="font-size: 11px;">Prion Disease</td>
+                            <td class="program-name">Angelman Syndrome</td>
                             <td colspan="5" style="position: relative;">
-                                <div class="gantt-bar" style="left: 0; width: 45%;">Prion Timeline</div>
+                                <div class="timeline-bar" style="left: 5px; width: 35%;"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="program-name">Prion Disease</td>
+                            <td colspan="5" style="position: relative;">
+                                <div class="timeline-bar" style="left: 5px; width: 30%;"></div>
                             </td>
                         </tr>
 
                         <!-- Retinal Diseases -->
                         <tr>
-                            <td rowspan="2" style="vertical-align: middle;">
-                                <div class="disease-icon retinal">RD</div>
-                                <div class="disease-label">Retinal<br>Diseases</div>
+                            <td class="disease-area-cell">
+                                <div class="disease-icon-container">
+                                    <div class="disease-icon retinal-icon">
+                                        <i class="fas fa-eye"></i>
+                                    </div>
+                                    <div class="disease-label">Retinal<br>Diseases</div>
+                                </div>
                             </td>
-                            <td style="font-size: 11px;">Leber Congenital<br>Amaurosis (XCNJ13)</td>
+                            <td class="program-name">Leber Congenital<br>Amaurosis (KCNJ13)</td>
                             <td colspan="5" style="position: relative;">
-                                <div class="gantt-bar" style="left: 0; width: 35%;">LCA Timeline</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="font-size: 11px;">Best Disease</td>
-                            <td colspan="5" style="position: relative;">
-                                <div class="gantt-bar" style="left: 0; width: 30%;">Best Disease Timeline</div>
+                                <div class="timeline-bar" style="left: 5px; width: 40%;"></div>
                             </td>
                         </tr>
                     </tbody>
