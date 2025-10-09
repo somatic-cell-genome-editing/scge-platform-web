@@ -128,7 +128,7 @@
                 <h5>Contents</h5>
 
                 <div style="margin-bottom: 25px;">
-                    <h6 style="color: #007bff; text-decoration: underline; font-weight: bold;">CHOP/UPENN (PKU Program)</h6>
+                    <h6 style="color: #007bff; text-decoration: underline; font-weight: bold;"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#peranteau" target="_blank" style="color: #007bff; text-decoration: underline;">CHOP/UPENN (PKU Program)</a></h6>
                     <ul>
                         <li>• <a href="#">Pre-IND Briefing Book</a></li>
                         <li>• <a href="#">Pre-IND Preliminary Feedback</a></li>
@@ -137,7 +137,7 @@
                 </div>
 
                 <div style="margin-bottom: 25px;">
-                    <h6 style="color: #007bff; text-decoration: underline; font-weight: bold;">CHOP/UPENN (UCD Program)</h6>
+                    <h6 style="color: #007bff; text-decoration: underline; font-weight: bold;"><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#ahrens-nicklas" target="_blank" style="color: #007bff; text-decoration: underline;">CHOP/UPENN (UCD Program)</a></h6>
                     <ul>
                         <li>• <a href="#">Pre-IND Briefing Book</a></li>
                         <li>• <a href="#">Pre-IND Preliminary Feedback</a></li>
