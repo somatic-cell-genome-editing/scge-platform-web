@@ -154,7 +154,7 @@
 
                 <div class="intro-text">
                     <p>
-                        The Somatic Cell Genome Editing (SCGE) Consortium is an NIH Common Fund program created to accelerate translational research in genome editing. In furtherance of our mission, the SCGE Translational Coordination and Dissemination Center (TCDC) will disseminate documents generated through regulatory interactions between the U.S. Food and Drug Administration (FDA) and consortium laboratories. Historically, these documents have been closely guarded trade secrets; it is our hope that by making this vital information public, we will be able to help the rare disease communities and the providers and researchers that serve them.
+                        The Somatic Cell Genome Editing (SCGE) Consortium is an NIH Common Fund program created to accelerate translational research in genome editing. A primary goal is to disseminate documents generated through regulatory interactions between the U.S. Food and Drug Administration (FDA) and consortium projects to help the rare disease communities and the providers and researchers that serve them.
                     </p>
                 </div>
 
