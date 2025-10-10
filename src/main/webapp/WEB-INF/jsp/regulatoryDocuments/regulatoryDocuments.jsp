@@ -128,7 +128,7 @@
                 <h5>Contents</h5>
 
                 <div style="margin-bottom: 25px;">
-                    <h6 style="color: #007bff; text-decoration: underline; font-weight: bold;">CHOP/UPENN (PKU Program)</h6>
+                    <h6 style="color: #007bff; text-decoration: underline; font-weight: bold;"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#peranteau" target="_blank" style="color: #007bff; text-decoration: underline;">CHOP/UPENN (PKU Program)</a></h6>
                     <ul>
                         <li>• <a href="#">Pre-IND Briefing Book</a></li>
                         <li>• <a href="#">Pre-IND Preliminary Feedback</a></li>
@@ -137,7 +137,7 @@
                 </div>
 
                 <div style="margin-bottom: 25px;">
-                    <h6 style="color: #007bff; text-decoration: underline; font-weight: bold;">CHOP/UPENN (UCD Program)</h6>
+                    <h6 style="color: #007bff; text-decoration: underline; font-weight: bold;"><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#ahrens-nicklas" target="_blank" style="color: #007bff; text-decoration: underline;">CHOP/UPENN (UCD Program)</a></h6>
                     <ul>
                         <li>• <a href="#">Pre-IND Briefing Book</a></li>
                         <li>• <a href="#">Pre-IND Preliminary Feedback</a></li>
@@ -154,7 +154,7 @@
 
                 <div class="intro-text">
                     <p>
-                        The Somatic Cell Genome Editing (SCGE) Consortium is an NIH Common Fund program created to accelerate translational research in genome editing. In furtherance of our mission, the SCGE Translational Coordination and Dissemination Center (TCDC) will disseminate documents generated through regulatory interactions between the U.S. Food and Drug Administration (FDA) and consortium laboratories. Historically, these documents have been closely guarded trade secrets; it is our hope that by making this vital information public, we will be able to help the rare disease communities and the providers and researchers that serve them.
+                        The Somatic Cell Genome Editing (SCGE) Consortium is an NIH Common Fund program created to accelerate translational research in genome editing. A primary goal is to disseminate documents generated through regulatory interactions between the U.S. Food and Drug Administration (FDA) and consortium projects to help the rare disease communities and the providers and researchers that serve them.
                     </p>
                 </div>
 
