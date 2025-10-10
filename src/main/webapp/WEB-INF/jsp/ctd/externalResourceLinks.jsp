@@ -17,7 +17,7 @@
 
         templates= externalResources!=null?externalResources.stream().filter(r -> r.getType() != null && r.getType().equalsIgnoreCase("template") && r.getResourceName() != null && !r.getResourceName().trim().equals("")).toList():null;
         examples= externalResources!=null ?externalResources.stream().filter(r ->r.getType()!=null && r.getType().equalsIgnoreCase("example")&& r.getResourceName()!=null && !r.getResourceName().trim().equals("")).toList():null;
-        other= externalResources!=null ?externalResources.stream().filter(r -> ((r.getType()==null || r.getType().equals("") || !r.getType().equalsIgnoreCase("example") || !r.getType().equalsIgnoreCase("template")) && (r.getResourceName()!=null && !r.getResourceName().trim().equals("")))).toList():null;
+        other= externalResources!=null ?externalResources.stream().filter(r -> ((r.getType()==null || r.getType().equals("") || (!r.getType().equalsIgnoreCase("example") && !r.getType().equalsIgnoreCase("template"))) && (r.getResourceName()!=null && !r.getResourceName().trim().equals("")))).toList():null;
         System.out.println(sectionCode+" resources:"+ externalResources.size());
     } catch (Exception e) {
         throw new RuntimeException(e);
