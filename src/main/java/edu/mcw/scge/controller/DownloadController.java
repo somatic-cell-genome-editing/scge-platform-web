@@ -1,5 +1,6 @@
 package edu.mcw.scge.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -7,10 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,37 +21,14 @@ import java.nio.file.Paths;
 @RequestMapping(value = "/download")
 public class DownloadController {
 
-    @GetMapping("/{filename:.+}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable String filename) {
+  //  @RequestMapping(value = "/{filename:.+}", method = RequestMethod.POST)
+    @RequestMapping(value = "/zipFile", method = RequestMethod.POST)
+    public ResponseEntity<Resource> downloadFile(HttpServletRequest request) {
+        String filename=request.getParameter("filename");
         try {
-            //   private final String FILE_DIRECTORY = "/data/download"; // Configure your file directory
-//            // Configure your file directory
-//            String FILE_DIRECTORY = "C:\\Users\\jthota\\Downloads\\IND######";
-            String FILE_DIRECTORY = "/data/download/IND######";
+          // Configure your file directory
+            String FILE_DIRECTORY = "/data/download/IND000000";
             Path filePath = Paths.get(FILE_DIRECTORY).resolve(filename).normalize();
-            Resource resource = new UrlResource(filePath.toUri());
-
-            if (resource.exists() && resource.isReadable()) {
-                String contentType = "application/octet-stream"; // Default content type, determine dynamically if possible
-
-                return ResponseEntity.ok()
-                        .contentType(MediaType.parseMediaType(contentType))
-                        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
-                        .body(resource);
-            } else {
-                return ResponseEntity.notFound().build();
-            }
-        } catch (Exception e) {
-            return ResponseEntity.internalServerError().build();
-        }
-    }
-//  @GetMapping("/module/{filename}")
-    public ResponseEntity<Resource> downloadModuleFile(@PathVariable String filename) {
-
-        try {
-//            String MODULE_DIRECTORY = "C:\\Users\\jthota\\Downloads\\IND######\\IND######\\1";
-            String MODULE_DIRECTORY = "/data/download/IND######/IND######/1";
-            Path filePath = Paths.get(MODULE_DIRECTORY +"\\"+"m1"+"\\us").resolve(filename).normalize();
             Resource resource = new UrlResource(filePath.toUri());
 
             if (resource.exists() && resource.isReadable()) {
@@ -72,11 +47,9 @@ public class DownloadController {
     }
     @GetMapping("/module")
     public void downloadFile(HttpServletResponse response, @RequestParam String filename,@RequestParam String path) throws IOException {
-        System.out.println("FILENAME:"+ filename+"\n"+ "PATH:"+ path);
-      // String MODULE_DIRECTORY = "C:\\Users\\jthota\\Downloads\\ctd-XXXXX\\ctd-XXXXX\\0000\\m1\\us";
-//       String MODULE_DIRECTORY = "C:\\Users\\jthota\\Downloads\\IND######\\IND######\\"+path.replaceAll("'","");
-        String MODULE_DIRECTORY = "/data/download/IND######/IND######/";
-        // Path to the directory where files are stored
+
+     String MODULE_DIRECTORY = "/data/download/IND000000/"+path.replaceAll("'","");;
+ //        Path to the directory where files are stored
         Path filePath = Paths.get(MODULE_DIRECTORY, filename);
 
         if (!Files.exists(filePath)) {

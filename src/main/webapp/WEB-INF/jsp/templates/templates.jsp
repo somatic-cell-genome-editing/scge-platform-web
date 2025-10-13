@@ -37,8 +37,13 @@
 
                 </div>
                 <div class="card" style="margin-top: 1%;margin-bottom: 1%">
-                    <div class="card-header"><h5>ICH and FDA Guidance on eCTD Organization and Specifications                        <i class="fa-solid fa-download" style="color:darkorange;font-size: 30px;font-weight: bold"></i>&nbsp;<a href="/platform/download/IND######.zip">Download .zip file</a>
-                    </h5></div>
+                    <div class="card-header"><h5>ICH and FDA Guidance on eCTD Organization and Specifications
+                        <form action="/platform/download/zipFile" method="post">
+                            <input type="hidden" name="filename" value="IND000000.zip">
+                            <button class="btn btn-primary btn-sm"> <i class="fa-solid fa-download" style="font-weight: bold"></i>&nbsp;Download .zip file</button>
+                        </form>
+                    </h5>
+                    </div>
 
                 </div>
             </div>
