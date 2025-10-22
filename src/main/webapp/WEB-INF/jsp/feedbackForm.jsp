@@ -1,5 +1,17 @@
 <div id="hiddenBtns" class="hiddenBtns" style="display: block;">
+    <button type="button" class="aiAssistantBtn" onclick="window.open('https://dev.scge.mcw.edu/spring-ai-chat-rag/chat-openai', '_blank')" title="AI Assistant">
+        <i class="fas fa-robot"></i>
+    </button>
     <button type="button" class="openLikeBtn" onclick="openForm()"></button>
+
+    <!-- AI Assistant Speech Bubble -->
+    <div id="aiSpeechBubble" class="ai-speech-bubble" style="display: none;">
+        <button class="ai-speech-close" onclick="closeAISpeech()">&times;</button>
+        <div class="ai-speech-content">
+            <strong><span style="font-size: 18px;">&#128075;</span> Hi there!</strong><br>
+            I'm your AI assistant. Ask me anything about clinical trials, fda documents!
+        </div>
+    </div>
 </div>
 
 <div class="chat-popup" id="messageVue">
@@ -91,6 +103,24 @@
         //setTimeout("openForm()",4000);
     }
 
+    // AI Speech Bubble functionality
+    function closeAISpeech() {
+        document.getElementById("aiSpeechBubble").style.display = "none";
+        sessionStorage.setItem('sawAISpeech', 'true');
+    }
+
+    // Show AI speech bubble after 2 seconds (only once per session)
+    if (sessionStorage.getItem("sawAISpeech") !== "true") {
+        setTimeout(function() {
+            document.getElementById("aiSpeechBubble").style.display = "block";
+            // Auto-hide after 10 seconds
+            setTimeout(function() {
+                if (document.getElementById("aiSpeechBubble").style.display === "block") {
+                    closeAISpeech();
+                }
+            }, 10000);
+        }, 2000);
+    }
 
 
 </script>
