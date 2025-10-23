@@ -85,8 +85,7 @@ public class DownloadController {
     public void downloadRegulatoryDocument(HttpServletResponse response, @RequestParam String documentName) throws IOException {
 
         System.out.println("filename:" + documentName);
-        //    String MODULE_DIRECTORY = "/data/download/IND000000/"+path.replaceAll("'","");;
-        String MODULE_DIRECTORY = "C:\\Users\\jthota\\Downloads\\regulatory\\documents\\";
+         String MODULE_DIRECTORY = "/data/download/regulatory/documents";
         //        Path to the directory where files are stored
         Path filePath = Paths.get(MODULE_DIRECTORY, documentName.replaceAll("'", ""));
 
