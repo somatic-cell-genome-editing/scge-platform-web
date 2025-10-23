@@ -188,7 +188,7 @@
                         <tr>
                             <td class="program-name">Carbamoyl<br>Phosphate<br>Synthetase I (CPS1)<br>Deficiency</td>
                             <td colspan="5" style="position: relative;">
-                                <div class="timeline-bar" style="left: 5px; width: 85%;"></div>
+<%--                                <div class="timeline-bar" style="left: 5px; width: 85%;"></div>--%>
                             </td>
                         </tr>
                         <tr>
@@ -210,19 +210,19 @@
                             </td>
                             <td class="program-name">Spinal Muscular<br>Atrophy (SMA)</td>
                             <td colspan="5" style="position: relative;">
-                                <div class="timeline-bar" style="left: 5px; width: 40%;"></div>
+<%--                                <div class="timeline-bar" style="left: 5px; width: 40%;"></div>--%>
                             </td>
                         </tr>
                         <tr>
                             <td class="program-name">Angelman Syndrome</td>
                             <td colspan="5" style="position: relative;">
-                                <div class="timeline-bar" style="left: 5px; width: 35%;"></div>
+<%--                                <div class="timeline-bar" style="left: 5px; width: 35%;"></div>--%>
                             </td>
                         </tr>
                         <tr>
                             <td class="program-name">Prion Disease</td>
                             <td colspan="5" style="position: relative;">
-                                <div class="timeline-bar" style="left: 5px; width: 30%;"></div>
+<%--                                <div class="timeline-bar" style="left: 5px; width: 30%;"></div>--%>
                             </td>
                         </tr>
 
@@ -238,7 +238,7 @@
                             </td>
                             <td class="program-name">Leber Congenital<br>Amaurosis (KCNJ13)</td>
                             <td colspan="5" style="position: relative;">
-                                <div class="timeline-bar" style="left: 5px; width: 40%;"></div>
+<%--                                <div class="timeline-bar" style="left: 5px; width: 40%;"></div>--%>
                             </td>
                         </tr>
                     </tbody>
