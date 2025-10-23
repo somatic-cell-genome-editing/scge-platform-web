@@ -81,5 +81,43 @@ public class DownloadController {
             out.flush();
         }
     }
+    @GetMapping("/regulatory")
+    public void downloadRegulatoryDocument(HttpServletResponse response, @RequestParam String documentName) throws IOException {
 
-}
+        System.out.println("filename:" + documentName);
+        //    String MODULE_DIRECTORY = "/data/download/IND000000/"+path.replaceAll("'","");;
+        String MODULE_DIRECTORY = "C:\\Users\\jthota\\Downloads\\regulatory\\documents\\";
+        //        Path to the directory where files are stored
+        Path filePath = Paths.get(MODULE_DIRECTORY, documentName.replaceAll("'", ""));
+
+        if (!Files.exists(filePath)) {
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            response.getWriter().write("File not found");
+            return;
+        }
+
+// Try to detect the file's content type
+        String contentType = Files.probeContentType(filePath);
+        if (contentType == null) {
+            contentType = "application/octet-stream"; // Fallback for unknown types
+        }
+
+// Set response headers
+        response.setContentType(contentType);
+// Use "inline" to open in browser instead of downloading
+        response.setHeader("Content-Disposition", "inline; filename=\"" + documentName.replaceAll("'", "") + "\"");
+        response.setContentLengthLong(Files.size(filePath));
+
+// Stream the file
+        try (InputStream in = Files.newInputStream(filePath);
+             OutputStream out = response.getOutputStream()) {
+
+            byte[] buffer = new byte[8192];
+            int bytesRead;
+            while ((bytesRead = in.read(buffer)) != -1) {
+                out.write(buffer, 0, bytesRead);
+            }
+            out.flush();
+        }
+    }
+    }
