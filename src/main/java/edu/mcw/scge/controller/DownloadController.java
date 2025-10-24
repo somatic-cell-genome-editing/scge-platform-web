@@ -18,7 +18,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @Controller
-@RequestMapping(value = "/download")
+@RequestMapping(value = "/public/download")
 public class DownloadController {
 
   //  @RequestMapping(value = "/{filename:.+}", method = RequestMethod.POST)

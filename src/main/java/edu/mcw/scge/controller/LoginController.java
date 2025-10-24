@@ -64,6 +64,7 @@ public class LoginController extends ModulesController{
                   //  session.setAttribute("personInfoList", getPerson(userAttributes));
                     req.setAttribute("personInfoList", access.getPersonInfoRecords(userAttributes));
                     req.setAttribute("applicationsMap",dbService.getApplicationsByUserId(p.getId()) );
+                    req.setAttribute("documentsCount",dbService.getDocumentsCountByUserId(p.getId()) );
                     req.setAttribute("modules", getCTDModules());
                     System.out.println("USER_LOGIN_SUCCESS " + userAttributes.get("email").toString()+ " " +  new Date().toString());
                     req.setAttribute("page", "/WEB-INF/jsp/login/home");
@@ -93,13 +94,4 @@ public class LoginController extends ModulesController{
      }
      return null;
  }
-//    public  Map<Integer, List<Section>> getCTDModules() throws Exception {
-//        SectionDAO sectionDAO=new SectionDAO();
-//        Map<Integer, List<Section>> modules=new HashMap<>();
-//        for(int module: Arrays.asList(1,2,3,4,5)) {
-//            List<Section> sections = sectionDAO.getTopLevelSectionsOfModule(module);
-//            modules.put(module, sections);
-//        }
-//        return modules;
-//    }
 }
