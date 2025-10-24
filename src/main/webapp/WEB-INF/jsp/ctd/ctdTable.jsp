@@ -20,26 +20,127 @@
     })
 </script>
 <style>
+    /* CTD Table Modern Styling */
+    .ctd-modules {
+        background: #ffffff;
+        border-radius: 12px 12px 0 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        border: none;
+        padding: 10px 15px 0 15px;
+        margin-top: 20px;
+    }
+
+    .ctd-modules .nav-item {
+        margin-right: 5px;
+    }
+
+    .ctd-modules button {
+        color: #495057;
+        background: transparent;
+        border: none;
+        border-radius: 8px 8px 0 0;
+        padding: 12px 20px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .ctd-modules button:hover {
+        background: #f8f9fa;
+        color: #0066cc;
+    }
+
+    .ctd-modules button.active {
+        background: #0066cc;
+        color: #ffffff;
+    }
+
+    .tab-content {
+        background: #ffffff;
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        padding: 20px;
+    }
+
+    .tab-pane {
+        padding: 20px;
+    }
+
+    /* Table Styling */
+    .filterable-table {
+        font-size: 0.9rem;
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+
+    .filterable-table thead th {
+        background: #f8f9fa;
+        color: #003366;
+        font-weight: 600;
+        padding: 12px;
+        border: 1px solid #dee2e6;
+        font-size: 0.85rem;
+    }
+
+    .filterable-table tbody tr {
+        transition: background-color 0.2s ease;
+    }
+
+    .filterable-table tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    .filterable-table tbody td {
+        padding: 10px 12px;
+        border: 1px solid #dee2e6;
+        vertical-align: middle;
+    }
+
+    .filterable-table tbody td a {
+        color: #0066cc;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s ease;
+    }
+
+    .filterable-table tbody td a:hover {
+        color: #004499;
+        text-decoration: underline;
+    }
+
+    /* Status badges */
+    .filterable-table .Yes {
+        color: #28a745;
+        font-weight: 600;
+    }
+
+    .filterable-table .Maybe {
+        color: #ffc107;
+        font-weight: 600;
+    }
+
+    .filterable-table .No {
+        color: #dc3545;
+        font-weight: 600;
+    }
+
+    /* Sticky headers */
     .sticky-header {
         position: sticky;
-        background-color: #f8f9fa; /* or your preferred color */
+        background-color: #f8f9fa;
         z-index: 2;
         white-space: nowrap;
+        font-weight: 600;
     }
 
-    /* Top-level header row */
     .sticky-top-row {
         top: 0;
-        z-index: 3; /* Make sure top row stays above second */
-        background-color: #e9ecef; /* Slightly different for contrast */
+        z-index: 3;
+        background-color: #e9ecef;
     }
 
-    /* Second header row (stacked below first) */
     .sticky-second-row {
-        top: 40px; /* Adjust if your first row is taller or uses padding */
-    }
-    .ctd-modules button{
-        color:black
+        top: 40px;
     }
 
 

@@ -9,10 +9,224 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
 <script src="/platform/js/ctdModules.js"></script>
+
+<style>
+    /* Templates Page Modern Styling */
+    .templates-container {
+        margin-bottom: 60px;
+        margin-top: 20px;
+    }
+
+    .page-header {
+        background: #ffffff;
+        padding: 25px 35px;
+        border-radius: 0;
+        margin-bottom: 35px;
+        border-bottom: 1px solid #e9ecef;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .page-header h3 {
+        color: #003366;
+        font-size: 1.7rem;
+        font-weight: 700;
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.4;
+    }
+
+    /* Card Styling */
+    .templates-container .card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        margin-bottom: 25px;
+        overflow: visible;
+        transition: all 0.3s ease;
+    }
+
+    .templates-container .card:hover {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    .templates-container .card-header {
+        background: #ffffff;
+        border-bottom: 3px solid #0066cc;
+        border-left: 5px solid #0066cc;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .templates-container .card-header h5 {
+        color: #003366;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .templates-container .card-header a {
+        color: #003366;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .templates-container .card-header a:hover {
+        color: #0066cc;
+    }
+
+    .templates-container .card-body {
+        padding: 30px;
+        background: #ffffff;
+    }
+
+    .templates-container .card-body p {
+        line-height: 1.7;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+    .templates-container .card-body p a {
+        color: #0066cc;
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .templates-container .card-body p a:hover {
+        color: #004499;
+        text-decoration: underline;
+    }
+
+    /* Nested Cards */
+    .templates-container .card .card {
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .templates-container .card .card .card-header {
+        background: #f8f9fa;
+        border-bottom: 2px solid #e9ecef;
+        border-left: 4px solid #6c757d;
+        padding: 12px 18px;
+    }
+
+    .templates-container .card .card .card-header h5 {
+        color: #495057;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    /* Buttons */
+    .templates-container .btn-primary {
+        background: #0066cc;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 16px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .templates-container .btn-primary:hover {
+        background: #004499;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 102, 204, 0.3);
+    }
+
+    .templates-container .btn-success {
+        background: #28a745;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 16px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .templates-container .btn-success:hover {
+        background: #218838;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+    }
+
+    /* CTD Triangle Image */
+    .templates-container img[usemap] {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .templates-container img[usemap]:hover {
+        transform: scale(1.02);
+    }
+
+    /* Lists */
+    .templates-container ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .templates-container ul li {
+        padding: 10px 0;
+        border-bottom: 1px solid #f1f1f1;
+        transition: all 0.2s ease;
+    }
+
+    .templates-container ul li:last-child {
+        border-bottom: none;
+    }
+
+    .templates-container ul li:hover {
+        padding-left: 10px;
+        background: #f8f9fa;
+    }
+
+    .templates-container ul li a {
+        color: #0066cc;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s ease;
+    }
+
+    .templates-container ul li a::before {
+        content: '📄';
+        margin-right: 10px;
+    }
+
+    .templates-container ul li a:hover {
+        color: #004499;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .page-header {
+            padding: 15px 20px;
+        }
+
+        .page-header h3 {
+            font-size: 1.3rem;
+        }
+
+        .templates-container .card-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .templates-container .card-body {
+            padding: 20px;
+        }
+    }
+</style>
+
 <div class="page-header">
     <h3>IND (Investigational New Drug) Application for gene therapy </h3>
 </div>
-<div style="margin-bottom: 10%">
+<div class="templates-container">
 <div class="card">
     <div class="card-header"><h5>Common Technical Document (CTD)</h5></div>
     <div class="card-body">
@@ -37,12 +251,12 @@
 
                 </div>
                 <div class="card" style="margin-top: 1%;margin-bottom: 1%">
-                    <div class="card-header"><h5>ICH and FDA Guidance on eCTD Organization and Specifications
-                        <form action="/platform/public/download/zipFile" method="post">
+                    <div class="card-header">
+                        <h5>ICH and FDA Guidance on eCTD Organization and Specifications</h5>
+                        <form action="/platform/public/download/zipFile" method="post" style="margin: 0;">
                             <input type="hidden" name="filename" value="IND000000.zip">
-                            <button class="btn btn-primary btn-sm"> <i class="fa-solid fa-download" style="font-weight: bold"></i>&nbsp;Download .zip file</button>
+                            <button class="btn btn-primary btn-sm"><i class="fa-solid fa-download" style="font-weight: bold"></i>&nbsp;Download .zip file</button>
                         </form>
-                    </h5>
                     </div>
 
                 </div>
@@ -63,7 +277,9 @@
 </div>
 
     <div class="card" style="margin-top: 1%;margin-bottom: 1%">
-        <div class="card-header"><h5>FDA Submission Elements <div style="float:right;"><button id="downloadExcelBtn" class="btn btn-success btn-sm mb-3">Download Excel</button> </div></h5>
+        <div class="card-header">
+            <h5>FDA Submission Elements</h5>
+            <button id="downloadExcelBtn" class="btn btn-success btn-sm">Download Excel</button>
         </div>
         <div class="card-body">
 
