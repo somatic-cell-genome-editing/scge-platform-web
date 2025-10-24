@@ -1,5 +1,5 @@
 <div id="hiddenBtns" class="hiddenBtns" style="display: block;">
-    <button type="button" class="aiAssistantBtn" onclick="window.open('https://dev.scge.mcw.edu/spring-ai-chat-rag/chat-openai', '_blank')" title="AI Assistant">
+    <button type="button" class="aiAssistantBtn" onclick="window.open('/assistant/chat', '_blank')" title="AI Assistant">
         <i class="fas fa-robot"></i>
     </button>
     <button type="button" class="openLikeBtn" onclick="openForm()"></button>
