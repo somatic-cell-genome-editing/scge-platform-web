@@ -1,4 +1,84 @@
 <%@ page import="edu.mcw.scge.services.SCGEContext" %>
+
+<style>
+    /* Logo Blending and Styling */
+    .navbar-brand {
+        padding: 0;
+        margin: 0;
+        background: transparent;
+    }
+
+    .navbar-brand img {
+        max-height: 80px;
+        width: auto;
+        padding: 10px;
+        background: transparent;
+        mix-blend-mode: darken;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .navbar-brand:hover img {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+
+    /* Make the navbar background seamless with logo */
+    nav.navbar.bg-light {
+        background-color: #ffffff !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Navbar Dropdown Styling */
+    .navbar .dropdown-menu {
+        border: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
+        padding: 10px 0;
+        margin-top: 8px;
+        min-width: 250px;
+    }
+
+    .navbar .dropdown-item {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+        color: #333;
+        transition: all 0.2s ease;
+    }
+
+    .navbar .dropdown-item:hover {
+        background-color: #0066cc;
+        color: #ffffff;
+        padding-left: 25px;
+    }
+
+    .navbar .dropdown-divider {
+        margin: 8px 0;
+        border-top-color: #e9ecef;
+    }
+
+    .navbar .nav-link.dropdown-toggle {
+        font-weight: 500;
+    }
+
+    .navbar .nav-link.dropdown-toggle:hover {
+        color: #0066cc;
+    }
+
+    /* Mobile responsiveness for dropdowns */
+    @media (max-width: 991px) {
+        .navbar .dropdown-menu {
+            border: none;
+            box-shadow: none;
+            padding-left: 15px;
+        }
+
+        .navbar-brand img {
+            max-height: 60px;
+            padding: 8px;
+        }
+    }
+</style>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding:0">
         <div class="container-fluid" style="padding: 0">
             <!-- Brand Logo (Left) -->
@@ -13,14 +93,72 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav" style="padding-right: 1%" >
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="/platform/home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/platform/public/documents/regulatory">Regulatory Documents</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/platform/data/search/ClinicalTrial">Gene Therapy Trial Browser</a></li>
+
+                    <!-- Regulatory Documents Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="regulatoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Regulatory Documents
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="regulatoryDropdown">
+                            <a class="dropdown-item" href="/platform/public/documents/regulatory">All Documents</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/platform/public/documents/regulatory?type=FDA">FDA Guidelines</a>
+                            <a class="dropdown-item" href="/platform/public/documents/regulatory?type=IND">IND Documents</a>
+                            <a class="dropdown-item" href="/platform/public/documents/regulatory?type=Safety">Safety Standards</a>
+                            <a class="dropdown-item" href="/platform/public/documents/regulatory?type=Compliance">Compliance</a>
+                        </div>
+                    </li>
+
+                    <!-- Gene Therapy Trial Browser Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="trialsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Gene Therapy Trial Browser
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="trialsDropdown">
+                            <a class="dropdown-item" href="/platform/data/search/ClinicalTrial">Search All Trials</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/platform/data/search/ClinicalTrial?status=Active">Active Trials</a>
+                            <a class="dropdown-item" href="/platform/data/search/ClinicalTrial?status=Recruiting">Recruiting</a>
+                            <a class="dropdown-item" href="/platform/data/search/ClinicalTrial?status=Completed">Completed Trials</a>
+                            <a class="dropdown-item" href="/platform/data/search/ClinicalTrial?phase=1">Phase I</a>
+                            <a class="dropdown-item" href="/platform/data/search/ClinicalTrial?phase=2">Phase II</a>
+                            <a class="dropdown-item" href="/platform/data/search/ClinicalTrial?phase=3">Phase III</a>
+                        </div>
+                    </li>
+
                     <%
                         if(!SCGEContext.isProduction()){
                     %>
-                    <li class="nav-item"><a class="nav-link" href="/platform/data/ind/templates">Templates & Forms</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/platform/data/ind/forms">Guidance</a></li>
-               <%}%>
+                    <!-- Templates & Forms Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="templatesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Templates & Forms
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="templatesDropdown">
+                            <a class="dropdown-item" href="/platform/data/ind/templates">All Templates</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/platform/data/ind/templates?type=IND">IND Application Forms</a>
+                            <a class="dropdown-item" href="/platform/data/ind/templates?type=Protocol">Protocol Templates</a>
+                            <a class="dropdown-item" href="/platform/data/ind/templates?type=Safety">Safety Reporting Forms</a>
+                            <a class="dropdown-item" href="/platform/data/ind/templates?type=CMC">CMC Documents</a>
+                        </div>
+                    </li>
+
+                    <!-- Guidance Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="guidanceDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Guidance
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="guidanceDropdown">
+                            <a class="dropdown-item" href="/platform/data/ind/forms">All Guidance</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/platform/data/ind/forms?type=Preclinical">Preclinical Studies</a>
+                            <a class="dropdown-item" href="/platform/data/ind/forms?type=Manufacturing">Manufacturing</a>
+                            <a class="dropdown-item" href="/platform/data/ind/forms?type=Clinical">Clinical Trial Design</a>
+                            <a class="dropdown-item" href="/platform/data/ind/forms?type=Regulatory">Regulatory Strategy</a>
+                        </div>
+                    </li>
+                    <%}%>
                 </ul>
                 <!-- Separator -->
                 <div class="navbar-separator"></div>

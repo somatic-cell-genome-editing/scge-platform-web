@@ -16,7 +16,104 @@
 
 %>
 
-<nav class="navbar navbar-expand-lg navbar-dark justify-content-end" style="background-color: rgb(27, 128, 182)">
+<style>
+    /* Top Navbar Styling */
+    .navbar-top {
+        background: linear-gradient(135deg, rgb(27, 128, 182) 0%, rgb(20, 100, 150) 100%) !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 8px 0;
+    }
+
+    .navbar-top .nav-link {
+        color: rgba(255, 255, 255, 0.95) !important;
+        transition: color 0.3s ease, transform 0.2s ease;
+        font-size: 0.9rem;
+        padding: 6px 12px;
+    }
+
+    .navbar-top .nav-link:hover {
+        color: #ffffff !important;
+        transform: translateY(-1px);
+    }
+
+    /* Social Media Icons in Top Navbar - Match Home Page Style */
+    .navbar-top .collapse-social-icons-dropdown {
+        padding: 0 5px;
+    }
+
+    .navbar-top .collapse-social-icons-dropdown .nav-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background: rgba(248, 249, 250, 0.2);
+        color: #ffffff;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+        padding: 0;
+    }
+
+    .navbar-top .collapse-social-icons-dropdown .nav-link:hover {
+        background: #0066cc;
+        color: #ffffff;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 102, 204, 0.4);
+    }
+
+    .navbar-top .btn-warning {
+        background-color: #ffc107;
+        border: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar-top .btn-warning:hover {
+        background-color: #ffb300;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar-top .btn-light {
+        background-color: #ffffff;
+        color: rgb(27, 128, 182);
+        border: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar-top .btn-light:hover {
+        background-color: #f8f9fa;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar-top .rounded-circle {
+        border: 2px solid #ffffff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+    }
+
+    .navbar-top .rounded-circle:hover {
+        transform: scale(1.1);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 991px) {
+        .navbar-top {
+            padding: 12px 0;
+        }
+
+        .navbar-top .nav-link {
+            padding: 8px 12px;
+        }
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark justify-content-end navbar-top" style="background-color: rgb(27, 128, 182)">
     <div class="container-fluid justify-content-end">
         <!-- Brand Logo -->
 
@@ -28,11 +125,11 @@
         <!-- Navbar Links -->
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavTop">
             <ul class="navbar-nav mr-auto" >
-                <%--        <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link text-light" href=""><i class="fab fa-facebook mr-1"></i></a></li>--%>
-                <%--        <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link text-light" href=""><i class="fab fa-instagram mr-1"></i></a></li>--%>
-                <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link text-light" href="https://twitter.com/somaticediting" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
-                <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link text-light" href="https://www.linkedin.com/company/somatic-cell-genome-editing-consortium/about/" target="_blank"><i class="fab fa-linkedin mr-1"></i></a></li>
-                <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link text-light" href="https://www.youtube.com/channel/UCnMSf_YZdv1gIuqPmB6vrYw" target="_blank"><i class="fab fa-youtube mr-1"></i></a></li>
+                <%--        <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link" href=""><i class="fab fa-facebook"></i></a></li>--%>
+                <%--        <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link" href=""><i class="fab fa-instagram"></i></a></li>--%>
+                <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link" href="https://twitter.com/somaticediting" target="_blank" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a></li>
+                <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link" href="https://www.linkedin.com/company/somatic-cell-genome-editing-consortium/about/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
+                <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link" href="https://www.youtube.com/channel/UCnMSf_YZdv1gIuqPmB6vrYw" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a></li>
 
             </ul>
             <ul class="navbar-nav ml-auto justify-content-end">

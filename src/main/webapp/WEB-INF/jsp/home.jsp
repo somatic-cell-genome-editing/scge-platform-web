@@ -327,41 +327,41 @@
                     <a href="#" class="news-item-link">Read more &rarr;</a>
                 </div>
 
-                <div class="news-item">
-                    <div class="news-item-date">September 28, 2025</div>
-                    <h4 class="news-item-title">
-                        <a href="#">NIH Awards $140M for Genome Editing Research</a>
-                    </h4>
-                    <p class="news-item-excerpt">
-                        The National Institutes of Health has awarded over $140 million to accelerate genome editing approaches
-                        from the lab to the clinic, building upon five years of groundbreaking SCGE Program research.
-                    </p>
-                    <a href="#" class="news-item-link">Read more &rarr;</a>
-                </div>
+<%--                <div class="news-item">--%>
+<%--                    <div class="news-item-date">September 28, 2025</div>--%>
+<%--                    <h4 class="news-item-title">--%>
+<%--                        <a href="#">NIH Awards $140M for Genome Editing Research</a>--%>
+<%--                    </h4>--%>
+<%--                    <p class="news-item-excerpt">--%>
+<%--                        The National Institutes of Health has awarded over $140 million to accelerate genome editing approaches--%>
+<%--                        from the lab to the clinic, building upon five years of groundbreaking SCGE Program research.--%>
+<%--                    </p>--%>
+<%--                    <a href="#" class="news-item-link">Read more &rarr;</a>--%>
+<%--                </div>--%>
 
-                <div class="news-item">
-                    <div class="news-item-date">August 12, 2025</div>
-                    <h4 class="news-item-title">
-                        <a href="#">SCGE Annual Meeting Registration Now Open</a>
-                    </h4>
-                    <p class="news-item-excerpt">
-                        Join us for the annual SCGE Consortium Meeting where leading researchers will present the latest
-                        advances in somatic cell genome editing technologies and therapeutic applications.
-                    </p>
-                    <a href="#" class="news-item-link">Read more &rarr;</a>
-                </div>
+<%--                <div class="news-item">--%>
+<%--                    <div class="news-item-date">August 12, 2025</div>--%>
+<%--                    <h4 class="news-item-title">--%>
+<%--                        <a href="#">SCGE Annual Meeting Registration Now Open</a>--%>
+<%--                    </h4>--%>
+<%--                    <p class="news-item-excerpt">--%>
+<%--                        Join us for the annual SCGE Consortium Meeting where leading researchers will present the latest--%>
+<%--                        advances in somatic cell genome editing technologies and therapeutic applications.--%>
+<%--                    </p>--%>
+<%--                    <a href="#" class="news-item-link">Read more &rarr;</a>--%>
+<%--                </div>--%>
 
-                <div class="news-item">
-                    <div class="news-item-date">July 5, 2025</div>
-                    <h4 class="news-item-title">
-                        <a href="#">New Safety Guidelines for Genome Editing Published</a>
-                    </h4>
-                    <p class="news-item-excerpt">
-                        SCGE researchers have collaborated with the FDA to develop comprehensive safety guidelines for
-                        genome editing therapeutics, advancing the path toward clinical applications.
-                    </p>
-                    <a href="#" class="news-item-link">Read more &rarr;</a>
-                </div>
+<%--                <div class="news-item">--%>
+<%--                    <div class="news-item-date">July 5, 2025</div>--%>
+<%--                    <h4 class="news-item-title">--%>
+<%--                        <a href="#">New Safety Guidelines for Genome Editing Published</a>--%>
+<%--                    </h4>--%>
+<%--                    <p class="news-item-excerpt">--%>
+<%--                        SCGE researchers have collaborated with the FDA to develop comprehensive safety guidelines for--%>
+<%--                        genome editing therapeutics, advancing the path toward clinical applications.--%>
+<%--                    </p>--%>
+<%--                    <a href="#" class="news-item-link">Read more &rarr;</a>--%>
+<%--                </div>--%>
             </div>
         </div><!-- /.col-md-8 -->
 
