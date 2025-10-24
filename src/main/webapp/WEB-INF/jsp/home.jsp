@@ -316,7 +316,7 @@
                 <h3>Latest News & Updates</h3>
 
                 <div class="news-item">
-                    <div class="news-item-date">October 15, 2025</div>
+                    <div class="news-item-date">January 15, 2025</div>
                     <h4 class="news-item-title">
                         <a href="#">New Gene Therapy Trial Browser Launched</a>
                     </h4>

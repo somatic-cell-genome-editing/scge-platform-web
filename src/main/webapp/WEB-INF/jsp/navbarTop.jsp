@@ -36,30 +36,24 @@
         transform: translateY(-1px);
     }
 
-    /* Social Media Icons in Top Navbar - Match Home Page Style */
+    /* Social Media Icons in Top Navbar - No Background */
     .navbar-top .collapse-social-icons-dropdown {
         padding: 0 5px;
     }
 
     .navbar-top .collapse-social-icons-dropdown .nav-link {
-        display: flex;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 35px;
-        height: 35px;
-        border-radius: 50%;
-        background: rgba(248, 249, 250, 0.2);
-        color: #ffffff;
+        color: rgba(255, 255, 255, 0.9);
         transition: all 0.3s ease;
-        font-size: 1rem;
-        padding: 0;
+        font-size: 1.1rem;
+        padding: 6px 10px;
     }
 
     .navbar-top .collapse-social-icons-dropdown .nav-link:hover {
-        background: #0066cc;
         color: #ffffff;
-        transform: translateY(-3px);
-        box-shadow: 0 4px 8px rgba(0, 102, 204, 0.4);
+        transform: scale(1.2);
     }
 
     .navbar-top .btn-warning {
