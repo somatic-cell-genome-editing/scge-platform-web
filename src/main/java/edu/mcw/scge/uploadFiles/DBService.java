@@ -94,16 +94,29 @@ public class DBService {
     public Map<Integer, List<Application>> getApplicationsByUserId(int userId) throws Exception {
         List<PersonInfo> personInfoList=personDao.getPersonInfo(userId);
         Map<Integer, List<Application>> applicationsMap=new HashMap<>();
-        for(PersonInfo personInfo:personInfoList){
-            int groupId=personInfo.getGroupId();
-            List<Application> applications=new ArrayList<>();
-           if( applicationsMap.get(groupId)!=null){
-               applications.addAll(applicationsMap.get(groupId));
-           }
-           applications.addAll(getApplicationByGroupId(groupId));
-           applicationsMap.put(groupId, applications);
+        for(PersonInfo personInfo:personInfoList) {
+            int groupId = personInfo.getGroupId();
+            if (groupId == 1412) {
+                List<Application> applications = new ArrayList<>();
+                if (applicationsMap.get(groupId) != null) {
+                    applications.addAll(applicationsMap.get(groupId));
+                }
+                applications.addAll(getApplicationByGroupId(groupId));
+                applicationsMap.put(groupId, applications);
+            }
         }
         return applicationsMap;
+    }
+    public Integer getDocumentsCountByUserId(int userId) throws Exception {
+        List<PersonInfo> personInfoList=personDao.getPersonInfo(userId);
+        int docCount=0;
+        for(PersonInfo personInfo:personInfoList) {
+            int groupId = personInfo.getGroupId();
+            if (groupId == 1412) {
+               docCount= documentDAO.getAllDocumentsCount();
+            }
+        }
+        return docCount;
     }
     public Map<String, List<Document>> getApplicationDocuments(int applicationId) throws Exception {
         List<Document> documents=  documentDAO.getDocumentsByApplicationId(applicationId);
