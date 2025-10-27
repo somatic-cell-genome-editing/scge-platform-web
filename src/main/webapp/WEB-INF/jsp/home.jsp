@@ -233,15 +233,6 @@
 
 <div class="container home-container">
 
-<%--    <div style="text-align: center; margin-bottom: 20px; font-family: Arial, sans-serif; font-size: 25px; color: #003366;">--%>
-<%--        <strong>--%>
-<%--            <span>The new Gene Therapy Trial Browser</span> is live!</strong>&nbsp;&nbsp;--%>
-<%--        </strong>--%>
-<%--        <a href="/platform/data/search/ClinicalTrial" style="color: red; font-weight: bold; display: inline-block;">--%>
-<%--            Click here to explore it now.--%>
-<%--        </a>--%>
-<%--    </div>--%>
-
         <div align="center">
             <%@include file="aboutPlatform.jsp"%>
         </div>
@@ -256,60 +247,11 @@
         </div>
     </div>
 
-<%--    <div class="row mb-2">--%>
-<%--        <div class="col-md-6" style="display: table-cell;" >--%>
-<%--            <div class="card  flex-md-row mb-4 box-shadow h-100">--%>
-<%--                <div class="card-body d-flex flex-column align-items-start">--%>
-<%--                    <strong class="d-inline-block mb-2 text-primary">SCGE Program Background</strong>--%>
-<%--                    &lt;%&ndash;                    <h3 class="mb-0">&ndash;%&gt;--%>
-<%--                    &lt;%&ndash;&lt;%&ndash;                        <a class="text-dark" href="#">SCGE Program Background</a>&ndash;%&gt;&ndash;%&gt;--%>
-<%--                    &lt;%&ndash;                    </h3>&ndash;%&gt;--%>
-<%--                    &lt;%&ndash;                    <div class="mb-1 text-muted"></div>&ndash;%&gt;--%>
-<%--                    &lt;%&ndash;                    <p class="card-text mb-auto"></p>&ndash;%&gt;--%>
-<%--                    <ul>--%>
-<%--                        <li>Genome Editing allows precise corrections to be made in patients DNA and RNA</li>--%>
-<%--                        <li>CRISPR-Cas9 catalyzed development of experimental genomed editing therapeutics.</li>--%>
-<%--                        <li>Thousands of genetic diseases are amenable to targeted in vivo genome editing approaches</li>--%>
 
-<%--                    </ul>--%>
-
-<%--                </div>--%>
-<%--                &lt;%&ndash;                <img class="card-img-right flex-auto" src="/platform/images/body-image.png" alt="SCGE Program Background">&ndash;%&gt;--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        <div class="col-md-6" style="display: table-cell;">--%>
-<%--            <div class="card flex-md-row mb-4 box-shadow h-100">--%>
-<%--                <div class="card-body d-flex flex-column align-items-start">--%>
-<%--                    <strong class="d-inline-block mb-2 text-success">SCGE Phase 1</strong>--%>
-<%--                    &lt;%&ndash;                    <h3 class="mb-0">&ndash;%&gt;--%>
-<%--                    &lt;%&ndash;&lt;%&ndash;                        <a class="text-dark" href="#">SCGE Phase I</a>&ndash;%&gt;&ndash;%&gt;--%>
-<%--                    &lt;%&ndash;                    </h3>&ndash;%&gt;--%>
-<%--                    &lt;%&ndash;                    <div class="mb-1 text-muted">Nov 11</div>&ndash;%&gt;--%>
-
-<%--                    <p class="card-text mb-auto">Gaps and Opportunities from 2017 Common Fund Planning Workshop</p>--%>
-<%--                    <ul>--%>
-<%--                        <li>Improved animal models to detect editing</li>--%>
-<%--                        <li>Human Cell Systems for measuring adverse events</li>--%>
-<%--                        <li>Delivery Systems for in vivo targeting</li>--%>
-<%--                        <li>Methods to track edited cells in vivo.</li>--%>
-<%--                        <li>Safer and more effective editors</li>--%>
-<%--                    </ul>--%>
-<%--                    <p class="card-text mb-auto">SCGE Phase I addressed these gaps.</p>--%>
-
-<%--                    <a href="https://scge.mcw.edu/toolkit">SCGE Toolkit</a>--%>
-<%--                    &lt;%&ndash;                    <a href="#">Continue reading</a>&ndash;%&gt;--%>
-<%--                </div>--%>
-<%--                &lt;%&ndash;                <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Card image cap">&ndash;%&gt;--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
 </div>
 
 <main role="main" class="container">
-<%--    <div class="p-3 mb-3 bg-light rounded">--%>
-<%--        <h4 class="font-italic">About</h4>--%>
-<%--        <p class="mb-0">The National Institutes of Health (NIH) has awarded over $140 million to help accelerate genome editing approaches from the lab to the clinic. The newly funded projects build upon the work performed though the Somatic Cell Genome Editing (SCGE) Program over the past five years and will focus on translating safe and effective genome editing therapeutics into the clinic.</p>--%>
-<%--    </div>--%>
+
     <div class="row">
         <div class="col-md-8">
             <div class="news-section">
@@ -326,50 +268,10 @@
                     </p>
                     <a href="/platform/data/search/ClinicalTrial" class="news-item-link">Explore &rarr;</a>
                 </div>
-
-<%--                <div class="news-item">--%>
-<%--                    <div class="news-item-date">September 28, 2025</div>--%>
-<%--                    <h4 class="news-item-title">--%>
-<%--                        <a href="#">NIH Awards $140M for Genome Editing Research</a>--%>
-<%--                    </h4>--%>
-<%--                    <p class="news-item-excerpt">--%>
-<%--                        The National Institutes of Health has awarded over $140 million to accelerate genome editing approaches--%>
-<%--                        from the lab to the clinic, building upon five years of groundbreaking SCGE Program research.--%>
-<%--                    </p>--%>
-<%--                    <a href="#" class="news-item-link">Read more &rarr;</a>--%>
-<%--                </div>--%>
-
-<%--                <div class="news-item">--%>
-<%--                    <div class="news-item-date">August 12, 2025</div>--%>
-<%--                    <h4 class="news-item-title">--%>
-<%--                        <a href="#">SCGE Annual Meeting Registration Now Open</a>--%>
-<%--                    </h4>--%>
-<%--                    <p class="news-item-excerpt">--%>
-<%--                        Join us for the annual SCGE Consortium Meeting where leading researchers will present the latest--%>
-<%--                        advances in somatic cell genome editing technologies and therapeutic applications.--%>
-<%--                    </p>--%>
-<%--                    <a href="#" class="news-item-link">Read more &rarr;</a>--%>
-<%--                </div>--%>
-
-<%--                <div class="news-item">--%>
-<%--                    <div class="news-item-date">July 5, 2025</div>--%>
-<%--                    <h4 class="news-item-title">--%>
-<%--                        <a href="#">New Safety Guidelines for Genome Editing Published</a>--%>
-<%--                    </h4>--%>
-<%--                    <p class="news-item-excerpt">--%>
-<%--                        SCGE researchers have collaborated with the FDA to develop comprehensive safety guidelines for--%>
-<%--                        genome editing therapeutics, advancing the path toward clinical applications.--%>
-<%--                    </p>--%>
-<%--                    <a href="#" class="news-item-link">Read more &rarr;</a>--%>
-<%--                </div>--%>
             </div>
         </div><!-- /.col-md-8 -->
 
         <aside class="col-md-4 blog-sidebar">
-            <%--            <div class="p-3 mb-3 bg-light rounded">--%>
-            <%--                <h4 class="font-italic">About</h4>--%>
-            <%--                <p class="mb-0">The National Institutes of Health (NIH) has awarded over $140 million to help accelerate genome editing approaches from the lab to the clinic. The newly funded projects build upon the work performed though the Somatic Cell Genome Editing (SCGE) Program over the past five years and will focus on translating safe and effective genome editing therapeutics into the clinic.</p>--%>
-            <%--            </div>--%>
 
             <div class="sidebar-section">
                 <h4>External Resources/Links</h4>
@@ -382,8 +284,6 @@
             <div class="social-links-wrapper">
                 <h4>Follow us on</h4>
                 <ul class="list-group list-group-horizontal">
-                    <%--                    <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link" href=""><i class="fab fa-facebook mr-1"></i></a></li>--%>
-                    <%--                    <li class="nav-item collapse-social-icons-dropdown"><a class="nav-link " href=""><i class="fab fa-instagram mr-1"></i></a></li>--%>
                     <li class="list-group-item"><a href="https://twitter.com/somaticediting" target="_blank" title="twitter"><i class="fa-brands fa-x-twitter"></i></a></li>
                     <li class="list-group-item"><a href="https://www.linkedin.com/company/somatic-cell-genome-editing-consortium/about/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin mr-1"></i></a></li>
                     <li class="list-group-item"><a href="https://www.youtube.com/channel/UCnMSf_YZdv1gIuqPmB6vrYw" target="_blank" title="YouTube"><i class="fab fa-youtube mr-1"></i></a></li>
