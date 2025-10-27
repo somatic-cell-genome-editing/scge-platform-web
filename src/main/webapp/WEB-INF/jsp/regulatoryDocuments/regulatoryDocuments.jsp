@@ -353,7 +353,7 @@
                                 <div class="disease-icon-container">
                                     <div class="disease-icon inborn-errors-icon">
 <%--                                        <i class="fas fa-dna" style="color: white !important;"></i>--%>
-                                        <img src="/platform/common/images/liver_100_noBorder.jpg"/>
+                                        <img src="/platform/common/images/liver_100_noBorder_blue1.png"/>
                                     </div>
                                     <div class="disease-label">Inborn<br>Errors of<br>Metabolism</div>
                                 </div>
