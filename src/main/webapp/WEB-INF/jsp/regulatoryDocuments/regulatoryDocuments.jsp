@@ -300,16 +300,16 @@
                 <div style="margin-bottom: 25px;">
                     <h6 style="color: #007bff; text-decoration: underline; font-weight: bold;"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#peranteau" target="_blank" style="color: #007bff; text-decoration: underline;">CHOP/UPENN (PKU Program)</a></h6>
                     <ul>
-                        <li>• <a href="/platform/public/download/regulatory?documentName='PKU Pre-IND briefing book redacted.pdf'">Pre-IND Briefing Book</a></li>
-                        <li>• <a href="/platform/public/download/regulatory?documentName='PKU FDA Preliminary Responses_PS008879_4 redacted.pdf'">Pre-IND Official Responses/Meeting Summary</a></li>
+                        <li>• <a href="/platform/public/download/regulatory?documentName='PKU Pre-IND briefing book redacted.pdf'" target="_blank">Pre-IND Briefing Book</a></li>
+                        <li>• <a href="/platform/public/download/regulatory?documentName='PKU FDA Preliminary Responses_PS008879_4 redacted.pdf'" target="_blank" >Pre-IND Official Responses/Meeting Summary</a></li>
                     </ul>
                 </div>
 
                 <div style="margin-bottom: 25px;">
                     <h6 style="color: #007bff; text-decoration: underline; font-weight: bold;"><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#ahrens-nicklas" target="_blank" style="color: #007bff; text-decoration: underline;">CHOP/UPENN (UCD Program)</a></h6>
                     <ul>
-                        <li>• <a href="/platform/public/download/regulatory?documentName='UCD Pre-IND briefing book redacted.pdf'">Pre-IND Briefing Book</a></li>
-                        <li>• <a href="/platform/public/download/regulatory?documentName='UCD FDA Signed_a_Meeting Summary_PS010343-CHOP redacted.pdf'">Pre-IND Official Responses/Meeting Summary</a></li>
+                        <li>• <a href="/platform/public/download/regulatory?documentName='UCD Pre-IND briefing book redacted.pdf'" target="_blank">Pre-IND Briefing Book</a></li>
+                        <li>• <a href="/platform/public/download/regulatory?documentName='UCD FDA Signed_a_Meeting Summary_PS010343-CHOP redacted.pdf'" target="_blank">Pre-IND Official Responses/Meeting Summary</a></li>
                     </ul>
                 </div>
             </div>
