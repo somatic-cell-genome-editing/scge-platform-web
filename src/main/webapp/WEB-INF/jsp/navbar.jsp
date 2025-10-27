@@ -94,6 +94,21 @@
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="/platform/home">Home</a></li>
 
+                    <!-- Projects Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="projectsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Projects
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="projectsDropdown">
+                            <a class="dropdown-item" href="/platform/projects">All Projects</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/platform/projects?category=IND">IND Enabling Studies</a>
+                            <a class="dropdown-item" href="/platform/projects?category=Clinical">Clinical Programs</a>
+                            <a class="dropdown-item" href="/platform/projects?category=Research">Research Initiatives</a>
+                            <a class="dropdown-item" href="/platform/projects?category=Collaboration">Collaborations</a>
+                        </div>
+                    </li>
+
                     <!-- Regulatory Documents Dropdown -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="regulatoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
