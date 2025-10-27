@@ -229,7 +229,14 @@
     /* Disease Icon Colors */
     .inborn-errors-icon {
         background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         color: white;
+    }
+
+    .inborn-errors-icon img {
+        width: 60%;
+        height: 60%;
+        object-fit: contain;
     }
 
     .neurological-icon {
@@ -346,7 +353,7 @@
                                 <div class="disease-icon-container">
                                     <div class="disease-icon inborn-errors-icon">
 <%--                                        <i class="fas fa-dna" style="color: white !important;"></i>--%>
-                                        <img src="/platform/common/images/liver.png"/>
+                                        <img src="/platform/common/images/liver_100_noBorder.jpg"/>
                                     </div>
                                     <div class="disease-label">Inborn<br>Errors of<br>Metabolism</div>
                                 </div>
