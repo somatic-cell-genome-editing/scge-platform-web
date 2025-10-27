@@ -324,7 +324,7 @@
                         The SCGE Consortium is excited to announce the launch of our comprehensive Gene Therapy Trial Browser,
                         providing researchers and clinicians with access to the latest clinical trial information in genome editing.
                     </p>
-                    <a href="#" class="news-item-link">Read more &rarr;</a>
+                    <a href="/platform/data/search/ClinicalTrial" class="news-item-link">Explore &rarr;</a>
                 </div>
 
 <%--                <div class="news-item">--%>
