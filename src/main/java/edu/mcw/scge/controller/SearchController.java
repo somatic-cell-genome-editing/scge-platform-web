@@ -108,7 +108,22 @@ public class SearchController{
                 filterMap.put(filterField, filterValues);
             }
         }
-
+        List<String> status=new ArrayList<>();
+        if(filterMap.get("status")!=null) {
+            status.addAll(filterMap.get("status"));
+            boolean activeFlag = false;
+            for (String stat : status) {
+                if (stat.equalsIgnoreCase("Active")) {
+                    activeFlag = true;
+                    break;
+                }
+            }
+            if (activeFlag) {
+                status.add("Active not recruiting");
+                status.add("Recruiting");
+                filterMap.put("status", status);
+            }
+        }
         return filterMap;
     }
     public List<String> getSelectedOrderedFilters(HttpServletRequest request) throws IOException {

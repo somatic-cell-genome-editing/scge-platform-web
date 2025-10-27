@@ -102,10 +102,10 @@
                         <div class="dropdown-menu" aria-labelledby="projectsDropdown">
                             <a class="dropdown-item" href="/platform/projects">All Projects</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/platform/projects?category=IND">IND Enabling Studies</a>
-                            <a class="dropdown-item" href="/platform/projects?category=Clinical">Clinical Programs</a>
-                            <a class="dropdown-item" href="/platform/projects?category=Research">Research Initiatives</a>
-                            <a class="dropdown-item" href="/platform/projects?category=Collaboration">Collaborations</a>
+<%--                            <a class="dropdown-item" href="/platform/projects?category=IND">IND Enabling Studies</a>--%>
+<%--                            <a class="dropdown-item" href="/platform/projects?category=Clinical">Clinical Programs</a>--%>
+<%--                            <a class="dropdown-item" href="/platform/projects?category=Research">Research Initiatives</a>--%>
+<%--                            <a class="dropdown-item" href="/platform/projects?category=Collaboration">Collaborations</a>--%>
                         </div>
                     </li>
 
@@ -117,10 +117,10 @@
                         <div class="dropdown-menu" aria-labelledby="regulatoryDropdown">
                             <a class="dropdown-item" href="/platform/public/documents/regulatory">All Documents</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/platform/public/documents/regulatory?type=FDA">FDA Guidelines</a>
-                            <a class="dropdown-item" href="/platform/public/documents/regulatory?type=IND">IND Documents</a>
-                            <a class="dropdown-item" href="/platform/public/documents/regulatory?type=Safety">Safety Standards</a>
-                            <a class="dropdown-item" href="/platform/public/documents/regulatory?type=Compliance">Compliance</a>
+<%--                            <a class="dropdown-item" href="/platform/public/documents/regulatory?type=FDA">FDA Guidelines</a>--%>
+<%--                            <a class="dropdown-item" href="/platform/public/documents/regulatory?type=IND">IND Documents</a>--%>
+<%--                            <a class="dropdown-item" href="/platform/public/documents/regulatory?type=Safety">Safety Standards</a>--%>
+<%--                            <a class="dropdown-item" href="/platform/public/documents/regulatory?type=Compliance">Compliance</a>--%>
                         </div>
                     </li>
 
@@ -135,9 +135,9 @@
                             <a class="dropdown-item" href="/platform/data/search/ClinicalTrial?status=Active">Active Trials</a>
                             <a class="dropdown-item" href="/platform/data/search/ClinicalTrial?status=Recruiting">Recruiting</a>
                             <a class="dropdown-item" href="/platform/data/search/ClinicalTrial?status=Completed">Completed Trials</a>
-                            <a class="dropdown-item" href="/platform/data/search/ClinicalTrial?phase=1">Phase I</a>
-                            <a class="dropdown-item" href="/platform/data/search/ClinicalTrial?phase=2">Phase II</a>
-                            <a class="dropdown-item" href="/platform/data/search/ClinicalTrial?phase=3">Phase III</a>
+                            <a class="dropdown-item" href="/platform/data/search/ClinicalTrial?phases=Phase1">Phase I</a>
+                            <a class="dropdown-item" href="/platform/data/search/ClinicalTrial?phases=Phase2">Phase II</a>
+                            <a class="dropdown-item" href="/platform/data/search/ClinicalTrial?phases=Phase3">Phase III</a>
                         </div>
                     </li>
 
@@ -152,10 +152,10 @@
                         <div class="dropdown-menu" aria-labelledby="templatesDropdown">
                             <a class="dropdown-item" href="/platform/data/ind/templates">All Templates</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/platform/data/ind/templates?type=IND">IND Application Forms</a>
-                            <a class="dropdown-item" href="/platform/data/ind/templates?type=Protocol">Protocol Templates</a>
-                            <a class="dropdown-item" href="/platform/data/ind/templates?type=Safety">Safety Reporting Forms</a>
-                            <a class="dropdown-item" href="/platform/data/ind/templates?type=CMC">CMC Documents</a>
+<%--                            <a class="dropdown-item" href="/platform/data/ind/templates?type=IND">IND Application Forms</a>--%>
+<%--                            <a class="dropdown-item" href="/platform/data/ind/templates?type=Protocol">Protocol Templates</a>--%>
+<%--                            <a class="dropdown-item" href="/platform/data/ind/templates?type=Safety">Safety Reporting Forms</a>--%>
+<%--                            <a class="dropdown-item" href="/platform/data/ind/templates?type=CMC">CMC Documents</a>--%>
                         </div>
                     </li>
 
@@ -167,10 +167,10 @@
                         <div class="dropdown-menu" aria-labelledby="guidanceDropdown">
                             <a class="dropdown-item" href="/platform/data/ind/forms">All Guidance</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/platform/data/ind/forms?type=Preclinical">Preclinical Studies</a>
-                            <a class="dropdown-item" href="/platform/data/ind/forms?type=Manufacturing">Manufacturing</a>
-                            <a class="dropdown-item" href="/platform/data/ind/forms?type=Clinical">Clinical Trial Design</a>
-                            <a class="dropdown-item" href="/platform/data/ind/forms?type=Regulatory">Regulatory Strategy</a>
+<%--                            <a class="dropdown-item" href="/platform/data/ind/forms?type=Preclinical">Preclinical Studies</a>--%>
+<%--                            <a class="dropdown-item" href="/platform/data/ind/forms?type=Manufacturing">Manufacturing</a>--%>
+<%--                            <a class="dropdown-item" href="/platform/data/ind/forms?type=Clinical">Clinical Trial Design</a>--%>
+<%--                            <a class="dropdown-item" href="/platform/data/ind/forms?type=Regulatory">Regulatory Strategy</a>--%>
                         </div>
                     </li>
                     <%}%>
