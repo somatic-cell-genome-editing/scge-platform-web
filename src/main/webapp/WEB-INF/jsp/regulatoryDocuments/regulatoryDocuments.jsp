@@ -228,14 +228,14 @@
 
     /* Disease Icon Colors */
     .inborn-errors-icon {
-        background: transparent;
-        box-shadow: none;
+        background: #0073CF;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         color: white;
     }
 
     .inborn-errors-icon img {
-        width: 100%;
-        height: 100%;
+        width: 95%;
+        height: 95%;
         object-fit: contain;
     }
 
