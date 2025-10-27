@@ -52,7 +52,7 @@
     .templates-container .card-header {
         background: #ffffff;
         border-bottom: 3px solid #0066cc;
-        border-left: 5px solid #0066cc;
+        /*border-left: 5px solid #0066cc;*/
         padding: 15px 20px;
         display: flex;
         justify-content: space-between;
@@ -110,7 +110,7 @@
     .templates-container .card .card .card-header {
         background: #f8f9fa;
         border-bottom: 2px solid #e9ecef;
-        border-left: 4px solid #6c757d;
+        /*border-left: 4px solid #6c757d;*/
         padding: 12px 18px;
     }
 
