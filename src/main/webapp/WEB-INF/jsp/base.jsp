@@ -3,10 +3,14 @@
 
 
 <%@include file="header.jsp"%>
+
+
+
 <div  id="main" class="container-fluid" style="padding-top: 0;">
     <div class="container-fluid" style=";padding-top: 0;margin-top: 10px">
         <div>
             <div style="margin-top: 0;padding-top:0;">
+
                 <c:if test="${page!=null}">
                     <c:import url="${page}.jsp" />
                 </c:if>
