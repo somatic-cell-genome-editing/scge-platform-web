@@ -13,14 +13,9 @@
 <%@ page import="org.apache.commons.text.StringEscapeUtils" %>
 <%@ page import="java.io.Serializable" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Clinical Trial Report</title>
+
     <link rel="stylesheet" href="/platform/css/clinicalReport.css" type="text/css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap" rel="stylesheet">
-</head>
-<body>
+
 <%
    ClinicalTrialRecord clinicalTrialData = (ClinicalTrialRecord) request.getAttribute("clinicalTrialData");
     List<ClinicalTrialExternalLink> clinicalExtLinkData = (List<ClinicalTrialExternalLink>) request.getAttribute("clinicalExtLinkData");
@@ -875,5 +870,4 @@
     });
 
 </script>
-</body>
-</html>
+
