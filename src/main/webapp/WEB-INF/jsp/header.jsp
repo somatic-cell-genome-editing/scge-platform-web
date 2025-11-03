@@ -62,7 +62,7 @@
 
 <!-- Site Outage Message Banner -->
     <%
-//    if(SCGEContext.isProduction()){
+    if(SCGEContext.isProduction()){
 %>
 <%@include file="disclaimer.jsp"%>
-<%--<%}%>--%>
+<%}%>
