@@ -9,49 +9,70 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <style>
-    #resultsTable{
+    /* ================================================
+       MODERN TABLE DESIGN - CLINICAL TRIALS
+       ================================================ */
+
+    /* Results Table Container */
+    #resultsTable {
         height: auto;
         min-height: 50px;
-        max-height: 580px;
+        max-height: 600px;
         overflow: auto;
         position: relative;
-        width:100%;
-        margin-top: 10px;
+        width: 100%;
+        margin-top: 0;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        background: white;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
     }
-    #myTable{
+
+    /* Table Styling */
+    #myTable {
         position: relative;
-        /*top:-8px;*/
-        bottom:1px;
-        left:-0.75px;
-        margin-top: 0px;
-        margin-bottom: 0px;
+        margin: 0;
         border-collapse: separate;
         border-spacing: 0;
-        border-left: 1px;
-        /*border-right: 0.5px;*/
-    }
-    #myTable td.firstColumn{
-        position: sticky;
-        /*left:-1px;*/
-        left:0;
-        z-index: 2;
-        background-color: white;
+        width: 100%;
+        min-width: 1000px;
     }
 
-    #myTable td.firstColumn:hover{
-        background-color: #ddd;
+    /* Enhanced Scrollbar */
+    #resultsTable::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
     }
 
-    #myTable thead th{
-        position: sticky;
-        top:0px;
-        z-index: 2;
+    #resultsTable::-webkit-scrollbar-track {
+        background: #f1f5f9;
     }
 
-    #myTable tfoot th{
+    #resultsTable::-webkit-scrollbar-thumb {
+        background: #94a3b8;
+        border-radius: 4px;
+    }
+
+    #resultsTable::-webkit-scrollbar-thumb:hover {
+        background: #64748b;
+    }
+
+    #resultsTable::-webkit-scrollbar-corner {
+        background: #f1f5f9;
+    }
+
+    /* Sticky First Column */
+    #myTable td.firstColumn {
         position: sticky;
-        bottom:-1px;
-        z-index: 2;
+        left: 0;
+        z-index: 10;
+        background: white;
+        border-right: 2px solid #e2e8f0;
+        font-weight: 600;
+    }
+
+    #myTable td.firstColumn:hover {
+        background: #f8fafc;
     }
 
     #myTable td.firstColumn:before {
@@ -60,26 +81,153 @@
         left: 0;
         top: 0;
         bottom: 0;
-        width: 0.5px;
-        background-color: lightgrey;
-        /*z-index: -1; */
-    }
-    /*#myTable td.lastColumn:after {*/
-    /*    content: "";*/
-    /*    position: absolute;*/
-    /*    right: 0;*/
-    /*    top: 0;*/
-    /*    bottom: 0;*/
-    /*    width: 0.5px;*/
-    /*    background-color: #ddd;*/
-    /*    z-index: -1; !* Behind the content but still part of the cell *!*/
-    /*}*/
-
-    #resultsTable {
-        scrollbar-color: #ff6b00 #f1f1f1;  /* thumb and track color */
+        width: 1px;
+        background-color: #e2e8f0;
     }
 
+    /* Table Headers - Sticky */
+    #myTable thead th {
+        position: sticky;
+        top: 0;
+        z-index: 15;
+        background: #f8fafc;
+        font-weight: 700;
+        color: #1e293b;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.05em;
+        padding: 1rem;
+        border-bottom: 2px solid #cbd5e1;
+        white-space: nowrap;
+        cursor: pointer;
+        user-select: none;
+    }
 
+    #myTable thead th:first-child {
+        position: sticky;
+        left: 0;
+        z-index: 20;
+        border-right: 2px solid #cbd5e1;
+        background: #f8fafc;
+    }
+
+    /* Sort Arrow Styling */
+    #myTable thead th:not(.sorter-false)::after {
+        content: '\2195';
+        display: inline-block;
+        margin-left: 0.5rem;
+        color: #64748b;
+        font-size: 1.125rem;
+        font-weight: bold;
+        vertical-align: middle;
+    }
+
+    #myTable thead th:not(.sorter-false):hover::after {
+        color: #1a80b6;
+    }
+
+    #myTable thead th.tablesorter-headerAsc::after,
+    #myTable thead th.headerSortUp::after {
+        content: '\2191';
+        color: #1a80b6;
+        font-weight: bold;
+        font-size: 1.25rem;
+    }
+
+    #myTable thead th.tablesorter-headerDesc::after,
+    #myTable thead th.headerSortDown::after {
+        content: '\2193';
+        color: #1a80b6;
+        font-weight: bold;
+        font-size: 1.25rem;
+    }
+
+    #myTable thead th.tablesorter-header:hover,
+    #myTable thead th:not(.sorter-false):hover {
+        background: #f1f5f9;
+        color: #1a80b6;
+    }
+
+    /* Table Footer */
+    #myTable tfoot th {
+        position: sticky;
+        bottom: -1px;
+        z-index: 15;
+        background: #f8fafc;
+        font-weight: 600;
+        color: #475569;
+        border-top: 2px solid #cbd5e1;
+    }
+
+    #myTable tfoot th:first-child {
+        position: sticky;
+        left: 0;
+        z-index: 20;
+        border-right: 2px solid #cbd5e1;
+        background: #f8fafc;
+    }
+
+    /* Table Cells */
+    #myTable th,
+    #myTable td {
+        padding: 0.875rem 1rem;
+        border: 1px solid #e2e8f0;
+        white-space: nowrap;
+        text-align: left;
+        color: #475569;
+        font-size: 0.875rem;
+        vertical-align: top;
+    }
+
+    /* Row Styles */
+    #myTable tbody tr {
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    #myTable tbody tr:hover {
+        background-color: #f8fafc;
+    }
+
+    #myTable tbody tr:nth-child(even) {
+        background-color: #fafbfc;
+    }
+
+    #myTable tbody tr:nth-child(even):hover {
+        background-color: #f1f5f9;
+    }
+
+    /* Links in Table */
+    #myTable tbody td a {
+        color: #1a80b6;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    #myTable tbody td a:hover {
+        color: #0891b2;
+        text-decoration: underline;
+    }
+
+    /* Buttons in Table */
+    #myTable tbody td button {
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 0.375rem 0.75rem;
+        border: none;
+        background: #1a80b6;
+        color: white;
+        border-radius: 0.375rem;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: 0.025em;
+        transition: background 0.2s;
+    }
+
+    #myTable tbody td button:hover {
+        background: #0891b2;
+    }
+
+    /* Specific Column Padding */
     #myTable td:nth-child(2),
     #myTable td:nth-child(3),
     #myTable td:nth-child(4),
@@ -101,38 +249,160 @@
     #myTable td:nth-child(26) {
         padding-right: 15px;
     }
-    #resultsTable {
-        max-height: 500px;   /* control vertical scroll */
-        overflow: auto;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-    }
-    table {
-        border-collapse: collapse;
-        min-width: 1000px; /* force horizontal scroll on small screens */
+
+    /* Icons */
+    .fa-check {
+        color: #10b981 !important;
+        font-size: 1.125rem;
     }
 
-    th, td {
+    .fa-xmark {
+        color: #ef4444 !important;
+        font-size: 1.125rem;
+    }
+
+    .fa-eye {
+        color: #1a80b6;
+        cursor: pointer;
+        font-size: 1.125rem;
+    }
+
+    .fa-eye:hover {
+        color: #0891b2;
+    }
+
+    /* Popover */
+    .popover {
+        border: 1px solid #e2e8f0;
+        max-width: 400px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .popover-header {
+        background: #1a80b6;
+        color: white;
+        font-weight: 600;
         padding: 0.75rem 1rem;
-        border: 1px solid #eee;
-        white-space: nowrap;
+    }
+
+    .popover-body {
+        padding: 1rem;
+        color: #475569;
+        font-size: 0.875rem;
+        line-height: 1.6;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .popover-body::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .popover-body::-webkit-scrollbar-thumb {
+        background: #94a3b8;
+    }
+
+    /* Modal */
+    .modal-content {
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+    .modal-header {
+        background: #1a80b6;
+        color: white;
+        padding: 1.25rem 1.5rem;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .modal-header .modal-title {
+        font-weight: 700;
+        font-size: 1.25rem;
+    }
+
+    .modal-header .btn {
+        color: white;
+        padding: 0.5rem;
+    }
+
+    .modal-header .btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+    }
+
+    .modal-body {
+        padding: 1.5rem;
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+
+    .modal-body::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .modal-body::-webkit-scrollbar-thumb {
+        background: #94a3b8;
+    }
+
+    .modal-footer {
+        border-top: 1px solid #e2e8f0;
+        padding: 1rem 1.5rem;
+        background: #f8fafc;
+    }
+
+    .modal-footer .btn {
+        padding: 0.625rem 1.25rem;
+        font-weight: 600;
+        border-radius: 6px;
+    }
+
+    /* Caption */
+    #myTable caption {
+        caption-side: top;
+        color: #64748b;
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 0.75rem 1rem;
         text-align: left;
     }
 
-    thead th {
-        background-color: #f5f5f5;
-        position: sticky;
-        top: 0;
-        z-index: 2;
+    /* Responsive */
+    @media (max-width: 768px) {
+        #resultsTable {
+            max-height: 400px;
+        }
+
+        #myTable th,
+        #myTable td {
+            padding: 0.625rem 0.75rem;
+            font-size: 0.8125rem;
+        }
+
+        #myTable thead th {
+            font-size: 0.7rem;
+        }
     }
 
-    /* Optional: sticky first column */
-    tbody td:first-child,
-    thead th:first-child {
-        position: sticky;
-        left: 0;
-        background-color: #fff;
-        z-index: 1;
+    /* Print Styles */
+    @media print {
+        #resultsTable {
+            max-height: none;
+            overflow: visible;
+            border: none;
+        }
+
+        #myTable tbody tr:hover {
+            background-color: transparent;
+        }
+
+        #myTable td.firstColumn {
+            position: relative;
+        }
+
+        #myTable thead th,
+        #myTable tfoot th {
+            position: relative;
+        }
     }
 </style>
 <script>

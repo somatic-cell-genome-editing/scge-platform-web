@@ -12,7 +12,7 @@
 <style>
 
 </style>
-<th class="firstColumn"style="position: sticky;left: 0px;z-index: 3">Trial ID&nbsp;<sup><span data-toggle="tooltip" data-html="true" title="Unique identification code given to each clinical study upon registration at ClinicalTrials.gov" class="column-header-description"></span></sup></th>
+<th class="firstColumn" style="position: sticky;left: 0px;z-index: 20;background: #f8fafc;">Trial ID&nbsp;<sup><span data-toggle="tooltip" data-html="true" title="Unique identification code given to each clinical study upon registration at ClinicalTrials.gov" class="column-header-description"></span></sup></th>
 <%--<th class="firstColumn">Trial ID</th>--%>
 <%--<th class="manual">Indication DOID&nbsp;<sup><span title="" class="column-header-description"></span></sup></th>--%>
 <th>Indication&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Indication")%>" class="column-header-description"></span></sup></th>

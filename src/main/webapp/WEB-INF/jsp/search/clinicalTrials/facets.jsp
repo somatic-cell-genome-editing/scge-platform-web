@@ -10,11 +10,417 @@
   To change this template use File | Settings | File Templates.
 --%>
 <style>
-  /*.sponsorClass,.therapyType,.therapyRoute,.mechanismOfAction,.routeOfAdministration, .drugProductType,.deliverySystem,.locations,*/
-  /*.standardAges{*/
-  /*  color:red;*/
-  /*}*/
+  /* =============================================
+     MODERN FACETS DESIGN - ENHANCED FOR LONG LISTS
+     ============================================= */
 
+  /* Facets Container */
+  #facetForm {
+    position: relative;
+    max-height: calc(100vh - 350px);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  /* Custom Scrollbar for Facets Container */
+  #facetForm::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  #facetForm::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+
+  #facetForm::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+  }
+
+  #facetForm::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+  }
+
+  /* Make facets sidebar stick to viewport */
+  .grid-body .row > .col-md-2 {
+    position: sticky;
+    top: 20px;
+    align-self: flex-start;
+  }
+
+  /* Search Within Filters */
+  .facet-search-container {
+    padding: 0.75rem 1rem;
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .facet-search-input {
+    width: 100%;
+    padding: 0.5rem 2.5rem 0.5rem 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    background: white;
+  }
+
+  .facet-search-input:focus {
+    outline: none;
+    border-color: #1a80b6;
+  }
+
+  .facet-search-input::placeholder {
+    color: #94a3b8;
+  }
+
+  /* Grid Title */
+  .grid-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+
+  .grid-title i.fa-filter {
+    color: #1a80b6;
+    font-size: 1rem;
+  }
+
+  .grid-title-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .grid-title .plus,
+  .grid-title .minus {
+    padding: 0.25rem;
+  }
+
+  .grid-title .plus:hover,
+  .grid-title .minus:hover {
+    color: #1a80b6;
+  }
+
+  #clearFilters {
+    background: #ef4444;
+    border: none;
+    border-radius: 0.375rem;
+    padding: 0.375rem 0.75rem;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+  }
+
+  #clearFilters:hover {
+    background: #dc2626;
+  }
+
+  hr {
+    display: none; /* Remove old HR */
+  }
+
+  /* Accordion Group */
+  .accordion-group {
+    margin-bottom: 0;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .accordion-group:last-child {
+    border-bottom: none;
+  }
+
+  .accordion-group:hover {
+    background: #f8fafc;
+  }
+
+  /* Accordion Heading */
+  .accordion-heading {
+    background: transparent;
+    padding: 0;
+  }
+
+  .accordion-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: #334155;
+    font-weight: 600;
+    font-size: 0.875rem;
+    width: 100%;
+    position: relative;
+  }
+
+  .accordion-toggle:hover {
+    color: #1a80b6;
+    text-decoration: none;
+    background: #f1f5f9;
+  }
+
+  .accordion-toggle span:first-child {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+    position: relative;
+  }
+
+  .accordion-toggle span:first-child > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: relative;
+  }
+
+  /* Tooltip for truncated accordion headings */
+  .accordion-toggle:hover span:first-child > span[data-title]::after {
+    content: attr(data-title);
+    position: absolute;
+    left: 0;
+    top: 100%;
+    margin-top: 0.5rem;
+    background: #1e293b;
+    color: white;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.8125rem;
+    white-space: normal;
+    word-wrap: break-word;
+    max-width: 300px;
+    z-index: 1000;
+    pointer-events: none;
+    line-height: 1.4;
+  }
+
+  /* Count Badge */
+  .facet-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5rem;
+    height: 1.25rem;
+    padding: 0 0.375rem;
+    background: #1a80b6;
+    color: white;
+    border-radius: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    margin-left: 0.5rem;
+  }
+
+  .accordion-toggle[aria-expanded="true"] .facet-count {
+    background: #0891b2;
+  }
+
+  /* Arrow Icon */
+  .accordion-toggle .float-right {
+    margin-left: auto;
+    color: #64748b;
+    font-size: 0.875rem;
+  }
+
+  .accordion-toggle[aria-expanded="true"] .float-right i {
+    color: #1a80b6;
+  }
+
+  /* Accordion Body - Enhanced Scrolling */
+  .accordion-body {
+    background: white;
+  }
+
+  .accordion-inner {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Custom Scrollbar for Facets */
+  .accordion-inner::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .accordion-inner::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+
+  .accordion-inner::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+  }
+
+  .accordion-inner::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+  }
+
+  /* Form Check */
+  .form-check {
+    margin-bottom: 0.375rem;
+    padding-left: 1.875rem;
+    display: block;
+    position: relative;
+    min-height: 1.25rem;
+  }
+
+  .form-check:last-child {
+    margin-bottom: 0;
+  }
+
+  .form-check:hover {
+    background: #f8fafc;
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+    padding-left: 2.375rem;
+    padding-right: 0.5rem;
+    border-radius: 0.375rem;
+  }
+
+  /* Checkbox */
+  .form-check-input {
+    position: absolute;
+    left: 0;
+    top: 0.125rem;
+    width: 1rem;
+    height: 1rem;
+    margin: 0;
+    cursor: pointer;
+    border: 2px solid #cbd5e1;
+    border-radius: 0.25rem;
+    flex-shrink: 0;
+    appearance: none;
+    background: white;
+  }
+
+  .form-check-input:checked {
+    background: #1a80b6;
+    border-color: #1a80b6;
+    position: relative;
+  }
+
+  .form-check-input:checked::after {
+    content: '\2713';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+  }
+
+  .form-check-input:hover {
+    border-color: #1a80b6;
+  }
+
+  .form-check-input:focus {
+    border-color: #1a80b6;
+    outline: 2px solid rgba(26, 128, 182, 0.3);
+  }
+
+  /* Label */
+  .form-check-label {
+    cursor: pointer;
+    color: #475569;
+    font-size: 0.875rem;
+    margin-bottom: 0;
+    user-select: none;
+    display: inline-block;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    position: relative;
+  }
+
+  /* Tooltip for truncated labels */
+  .form-check-label[data-title]:hover::after {
+    content: attr(data-title);
+    position: absolute;
+    left: 0;
+    top: 100%;
+    margin-top: 0.5rem;
+    background: #1e293b;
+    color: white;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.8125rem;
+    white-space: normal;
+    word-wrap: break-word;
+    max-width: 280px;
+    z-index: 1000;
+    pointer-events: none;
+    line-height: 1.4;
+  }
+
+  .form-check-input:checked + .form-check-label {
+    color: #1a80b6;
+    font-weight: 500;
+  }
+
+  .form-check-label:hover {
+    color: #1a80b6;
+  }
+
+  /* Empty State */
+  .facet-empty {
+    padding: 1.5rem 1rem;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 0.875rem;
+  }
+
+  /* Active Filters Counter */
+  .active-filters-badge {
+    position: absolute;
+    top: -0.25rem;
+    right: -0.25rem;
+    background: #ef4444;
+    color: white;
+    border-radius: 9999px;
+    width: 1.25rem;
+    height: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 700;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .grid-title {
+      font-size: 1rem;
+      padding: 0.75rem;
+    }
+
+    .accordion-inner {
+      max-height: 300px;
+    }
+
+    .accordion-toggle {
+      padding: 0.75rem 0.875rem;
+      font-size: 0.8125rem;
+    }
+  }
 </style>
 <script>
 // $(function () {
@@ -61,7 +467,7 @@ expandFilterVal="<%=request.getAttribute("expandAllFilters")%>"
           }
         %>
 <%--        <span class="<%=aggName%>"><%=ClinicalTrialsService.fieldDisplayNames.get(aggName)%></span><span class="float-right"><i class="fas fa-angle-up"></i></span>--%>
-        <span class="<%=aggName%>"><%=value%>&nbsp;
+        <span class="<%=aggName%>" data-title="<%=value%>"><%=value%>&nbsp;
           <sup>
             <span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get(value)%>">
              <%@include file="infoSvg.jsp"%>
@@ -81,7 +487,7 @@ expandFilterVal="<%=request.getAttribute("expandAllFilters")%>"
         %>
         <div class="form-check">
           <input class="form-check-input" type="checkbox" name="<%=aggName%>" value="<%=bkt.getKey()%>" id="<%=bkt.getKey()%>">
-          <label class="form-check-label" for="<%=bkt.getKey()%>">
+          <label class="form-check-label" for="<%=bkt.getKey()%>" data-title="<%=bkt.getKey()%>">
             <%=bkt.getKey()%>&nbsp;<!--(<%--=bkt.getDocCount()--%>)-->
           </label>
         </div>
