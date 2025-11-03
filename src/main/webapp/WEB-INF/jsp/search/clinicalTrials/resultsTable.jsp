@@ -49,12 +49,12 @@
     }
 
     #resultsTable::-webkit-scrollbar-thumb {
-        background: #94a3b8;
+        background: #fb923c;
         border-radius: 4px;
     }
 
     #resultsTable::-webkit-scrollbar-thumb:hover {
-        background: #64748b;
+        background: #f97316;
     }
 
     #resultsTable::-webkit-scrollbar-corner {
