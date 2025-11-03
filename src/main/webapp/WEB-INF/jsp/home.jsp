@@ -258,6 +258,16 @@
                 <h3>Latest News & Updates</h3>
 
                 <div class="news-item">
+                    <div class="news-item-date">October 31, 2025</div>
+                    <h4 class="news-item-title">
+                        <a href="#">SCGE Regulatory Documents – First Set Released</a>
+                    </h4>
+                    <p class="news-item-excerpt">
+                        Full set of pre-IND briefing books and the FDA’s written responses of projects “Postnatal and Prenatal Therapeutic Base Editing for Metabolic Diseases” and “Personalized prime editing as a platform for hepatic inborn errors of metabolism“ are available on the SCGE Translational Coordination and Dissemination Center
+                    </p>
+                    <a href="/platform/public/documents/regulatory" class="news-item-link">Explore &rarr;</a>
+                </div>
+                <div class="news-item">
                     <div class="news-item-date">January 15, 2025</div>
                     <h4 class="news-item-title">
                         <a href="#">New Gene Therapy Trial Browser Launched</a>
