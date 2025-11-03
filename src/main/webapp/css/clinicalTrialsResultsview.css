@@ -1,0 +1,293 @@
+/* ================================================
+   CLINICAL TRIALS RESULTS VIEW - MODERN CSS
+   ================================================ */
+
+/* Modern Header Section */
+.jumbotron {
+    background: white !important;
+    padding: 2rem !important;
+    margin-bottom: 1.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+}
+
+.jumbotron h3 {
+    color: #003366 !important;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #0066cc;
+}
+
+.jumbotron p {
+    color: #495057;
+    font-size: 1rem;
+    line-height: 1.8;
+    margin: 0;
+}
+
+/* Modern Disclaimer Section */
+.disclaimer-card {
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-left: 4px solid #f97316;
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.disclaimer-card::before {
+    content: '\26A0';
+    position: absolute;
+    left: 1rem;
+    top: 1.25rem;
+    font-size: 1.25rem;
+    color: #f97316;
+}
+
+.disclaimer-card small {
+    color: #78350f;
+    line-height: 1.6;
+    display: block;
+    font-size: 0.875rem;
+    padding-left: 2rem;
+}
+
+.disclaimer-card strong {
+    color: #9a3412;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    margin-bottom: 0.25rem;
+}
+
+.disclaimer-card b {
+    color: #9a3412;
+    font-weight: 600;
+}
+
+.disclaimer-card a {
+    color: #1a80b6;
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid #1a80b6;
+    transition: color 0.2s;
+}
+
+.disclaimer-card a:hover {
+    color: #0891b2;
+    border-bottom-color: #0891b2;
+}
+
+/* Card Shadows */
+.jumbotron,
+.disclaimer-card {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* Results Count Section */
+.results-count-section {
+    background: white;
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.results-count-section span {
+    color: #475569;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* Search Box Styling */
+#searchFormByCategory {
+    width: 100%;
+}
+
+#searchFormByCategory .input-group {
+    width: 100%;
+}
+
+#categorySearchTerm {
+    border: 1px solid #cbd5e1;
+    border-radius: 6px 0 0 6px;
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+    height: auto;
+}
+
+#categorySearchTerm:focus {
+    border-color: #1a80b6;
+    box-shadow: 0 0 0 3px rgba(26, 128, 182, 0.1);
+}
+
+#categorySearchTerm::placeholder {
+    color: #94a3b8;
+}
+
+#basic-text-category {
+    background: #1a80b6;
+    color: white;
+    border: 1px solid #1a80b6;
+    border-radius: 0 6px 6px 0;
+    padding: 0.5rem 0.75rem;
+    transition: all 0.2s;
+}
+
+#basic-text-category:hover {
+    background: #0891b2;
+    border-color: #0891b2;
+}
+
+#basic-text-category i {
+    color: white !important;
+}
+
+/* Export and Help Buttons */
+.action-buttons .btn {
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.2s;
+    border: none;
+    text-transform: none;
+}
+
+.action-buttons .btn-primary {
+    background: #1a80b6;
+}
+
+.action-buttons .btn-primary:hover {
+    background: #0891b2;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(26, 128, 182, 0.3);
+}
+
+.action-buttons .btn-info {
+    background: #06b6d4;
+}
+
+.action-buttons .btn-info:hover {
+    background: #0891b2;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(6, 182, 212, 0.3);
+}
+
+.action-buttons .btn-warning {
+    background: #f59e0b;
+    color: white;
+}
+
+.action-buttons .btn-warning:hover {
+    background: #d97706;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(245, 158, 11, 0.3);
+}
+
+/* No Results Message */
+.no-results-message {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.no-results-message h4 {
+    color: #64748b;
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+/* Grid Body Container */
+.grid-body {
+    background: transparent;
+}
+
+.grid-body .col-md-2 {
+    background: white;
+    padding: 1.25rem;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.grid-body .col-md-10 {
+    padding-left: 1.5rem;
+}
+
+/* Filter Citation Text */
+#fileCitation {
+    font-size: 0.875rem;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+/* Spacing Improvements */
+.padding {
+    height: 1rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .jumbotron h3 {
+        font-size: 1.5rem;
+    }
+
+    .jumbotron p {
+        font-size: 0.9rem;
+    }
+
+    .results-count-section {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .results-count-section .col-lg-3,
+    .results-count-section .col-lg-6 {
+        margin-bottom: 0.5rem;
+    }
+
+    .action-buttons {
+        justify-content: center !important;
+    }
+
+    .action-buttons .btn {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .grid-body .col-md-2 {
+        margin-bottom: 1rem;
+    }
+
+    .grid-body .col-md-10 {
+        padding-left: 15px;
+    }
+
+    #categorySearchTerm {
+        font-size: 0.8rem;
+    }
+}
+
+/* Print Support */
+@media print {
+    .disclaimer-card {
+        page-break-inside: avoid;
+    }
+
+    .action-buttons,
+    #searchFormByCategory {
+        display: none;
+    }
+}
