@@ -15,6 +15,7 @@
   Time: 2:59 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="/platform/css/resultTable.css" rel="stylesheet" type="text/css"/>
 <link href="/platform/css/referencesModal.css" rel="stylesheet" type="text/css"/>

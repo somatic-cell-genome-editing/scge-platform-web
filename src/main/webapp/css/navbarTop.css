@@ -1,0 +1,88 @@
+/* Top Navbar Styling */
+.navbar-top {
+    background: linear-gradient(135deg, rgb(27, 128, 182) 0%, rgb(20, 100, 150) 100%) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 8px 0;
+}
+
+.navbar-top .nav-link {
+    color: rgba(255, 255, 255, 0.95) !important;
+    transition: color 0.3s ease, transform 0.2s ease;
+    font-size: 0.9rem;
+    padding: 6px 12px;
+}
+
+.navbar-top .nav-link:hover {
+    color: #ffffff !important;
+    transform: translateY(-1px);
+}
+
+/* Social Media Icons in Top Navbar - No Background */
+.navbar-top .collapse-social-icons-dropdown {
+    padding: 0 5px;
+}
+
+.navbar-top .collapse-social-icons-dropdown .nav-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    padding: 6px 10px;
+}
+
+.navbar-top .collapse-social-icons-dropdown .nav-link:hover {
+    color: #ffffff;
+    transform: scale(1.2);
+}
+
+.navbar-top .btn-warning {
+    background-color: #ffc107;
+    border: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-top .btn-warning:hover {
+    background-color: #ffb300;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-top .btn-light {
+    background-color: #ffffff;
+    color: rgb(27, 128, 182);
+    border: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-top .btn-light:hover {
+    background-color: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-top .rounded-circle {
+    border: 2px solid #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.navbar-top .rounded-circle:hover {
+    transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+    .navbar-top {
+        padding: 12px 0;
+    }
+
+    .navbar-top .nav-link {
+        padding: 8px 12px;
+    }
+}
