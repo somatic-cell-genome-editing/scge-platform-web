@@ -60,3 +60,9 @@
 
 <%@include file="cookieNotice.jsp"%>
 
+<!-- Site Outage Message Banner -->
+    <%
+//    if(SCGEContext.isProduction()){
+%>
+<%@include file="disclaimer.jsp"%>
+<%--<%}%>--%>
