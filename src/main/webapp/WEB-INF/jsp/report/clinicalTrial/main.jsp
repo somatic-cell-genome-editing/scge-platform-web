@@ -46,15 +46,15 @@
 </script>
 <% } %>
 
-<div style="display: flex; justify-content: space-between; align-items: flex-end;">
-    <h3 style="color: #1a80b6; font-family: 'Roboto Slab', serif; font-weight: 400;">
+<div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.5rem;">
+    <h3 style="color: #003366; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 700; font-size: 1.8rem; margin: 0; padding-bottom: 1rem; border-bottom: 3px solid #0066cc; flex-grow: 1;">
         Gene Therapy Trial Report
     </h3>
     <% if (request.getServerName().equals("localhost") || request.getServerName().equals("dev.scge.mcw.edu") || request.getServerName().equals("stage.scge.mcw.edu") )
     {
         if (request.getServerName().equals("localhost") ||p!=null && access.isAdmin(p) && !SCGEContext.isProduction()) {
     %>
-    <a style="margin-right: 26px;margin-top: 0" href="/platform/data/report/clinicalTrials/<%=clinicalTrialData.getNctId()%>?edit=true" class="btn btn-primary">Edit</a>
+    <a style="margin-left: 1rem; margin-bottom: 1rem;" href="/platform/data/report/clinicalTrials/<%=clinicalTrialData.getNctId()%>?edit=true" class="btn btn-primary">Edit</a>
     <%}}%>
 </div>
 <%
@@ -76,7 +76,7 @@
                     NCTID
                 </td>
                 <td>
-                    <%=clinicalTrialData.getNctId()%>&nbsp;<a style="color: #1E90FF;font-weight: 600" href="https://www.clinicaltrials.gov/study/<%=clinicalTrialData.getNctId()%>" target="_blank">(View at clinicaltrials.gov)</a>
+                    <%=clinicalTrialData.getNctId()%>&nbsp;<a style="color: #1a80b6; font-weight: 600; text-decoration: none; border-bottom: 1px solid #1a80b6;" href="https://www.clinicaltrials.gov/study/<%=clinicalTrialData.getNctId()%>" target="_blank">(View at clinicaltrials.gov)</a>
                 </td>
             </tr>
             <%if(isEditMode){%>
@@ -295,7 +295,7 @@
                             <%=clinicalTrialData.getStudyStatus()!=null?clinicalTrialData.getStudyStatus():""%>
                         </div>
                         <%if("Recruiting".equalsIgnoreCase(status)){%>
-                        <a style="color: #1E90FF; font-weight: 600; text-decoration: none;"
+                        <a style="color: #1a80b6; font-weight: 600; text-decoration: none; border-bottom: 1px solid #1a80b6;"
                            href="https://www.clinicaltrials.gov/study/<%=clinicalTrialData.getNctId()%>#contacts-and-locations"
                            target="_blank">
                             (Click here for study contact information)
@@ -323,7 +323,7 @@
                 <td>
                     <% if(clinicalTrialData.getWithHasResults() != null) { %>
                     <% if(clinicalTrialData.getWithHasResults().equals("True")) { %>
-                    <a style="color: #1E90FF; font-weight: 600" href="https://www.clinicaltrials.gov/study/<%= clinicalTrialData.getNctId() %>?tab=results" target="_blank">View&nbsp;Results</a>
+                    <a style="color: #1a80b6; font-weight: 600; text-decoration: none; border-bottom: 1px solid #1a80b6;" href="https://www.clinicaltrials.gov/study/<%= clinicalTrialData.getNctId() %>?tab=results" target="_blank">View&nbsp;Results</a>
                     <% } else { %>
                     <%= clinicalTrialData.getWithHasResults().equalsIgnoreCase("False")?"Not Available":"" %>
                     <% } %>
@@ -841,7 +841,7 @@
         %>
         <% } else { %>
         <div class="dynamic-heading" id="Resources">
-            <h4 style="color:grey;">Resources/Links</h4>
+            <h4 style="color: #94a3b8; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Resources/Links</h4>
         </div>
         <hr>
         <table class="ctReportTable">
