@@ -4,11 +4,7 @@
 
 <%@include file="header.jsp"%>
 
-<!-- Site Outage Message Banner -->
-<%
-    if(SCGEContext.isProduction()){%>
-<%@include file="disclaimer.jsp"%>
-<%}%>
+
 
 <div  id="main" class="container-fluid" style="padding-top: 0;">
     <div class="container-fluid" style=";padding-top: 0;margin-top: 10px">
