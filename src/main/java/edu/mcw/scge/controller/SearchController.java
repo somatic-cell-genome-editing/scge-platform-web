@@ -124,6 +124,7 @@ public class SearchController{
                 filterMap.put("status", status);
             }
         }
+        status.remove("Active");
         return filterMap;
     }
     public List<String> getSelectedOrderedFilters(HttpServletRequest request) throws IOException {
@@ -141,7 +142,16 @@ public class SearchController{
         if(request.getParameter("checked")!=null && !request.getParameter("checked").equals("") && filters!=null){
             return addFilter(request, filters);
         }
-
+        if(request.getParameter("unchecked")==null && request.getParameter("checked")==null)
+        {
+            LinkedHashMap<String,  List<String>> filterMap=   getFiltersMap(request);
+            if(filterMap!=null && filterMap.size()>0){
+                for(String key:filterMap.keySet()){
+                    List<String> filterValues=filterMap.get(key);
+                    filters.addAll(filterValues);
+                }
+            }
+        }
         return filters;
     }
     public List<String> removeFilter(HttpServletRequest request,  List<String> filters){
