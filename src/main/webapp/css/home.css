@@ -152,16 +152,24 @@
     max-width: 90%;
     margin: 0 auto;
     border-radius: 8px;
-    overflow: hidden;
+    overflow: visible;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    position: relative;
+    cursor: zoom-in;
 }
 
 .hero-image-wrapper img {
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    display: block;
 }
 
 .hero-image-wrapper:hover img {
-    transform: scale(1.02);
+    transform: scale(1.5);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1000;
+    border-radius: 8px;
 }
 
 .sidebar-section {
@@ -261,7 +269,7 @@
 
 .news-section h3 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     font-weight: 700;
     color: #003366;
     margin-bottom: 25px;
