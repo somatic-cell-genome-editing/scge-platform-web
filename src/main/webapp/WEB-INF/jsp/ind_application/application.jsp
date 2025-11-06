@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="container">
     <h2>Investigational New Drug (IND) Application</h2>
-    <form:form action="/platform/ind/application/create/" method="post" modelAttribute="application">
+    <form:form action="/platform/ind/application/create" method="post" modelAttribute="application">
     <div class="card">
         <div class="card-header">Sponsor Information</div>
         <div class="card-body">

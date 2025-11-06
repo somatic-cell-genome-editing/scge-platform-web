@@ -95,7 +95,7 @@ public class DBService {
         List<PersonInfo> personInfoList=personDao.getPersonInfo(userId);
         Map<Integer, List<Application>> applicationsMap=new HashMap<>();
         for(PersonInfo personInfo:personInfoList) {
-            int groupId = personInfo.getGroupId();
+            int groupId = personInfo.getProjectId();
             if (groupId == 1412) {
                 List<Application> applications = new ArrayList<>();
                 if (applicationsMap.get(groupId) != null) {
@@ -111,7 +111,7 @@ public class DBService {
         List<PersonInfo> personInfoList=personDao.getPersonInfo(userId);
         int docCount=0;
         for(PersonInfo personInfo:personInfoList) {
-            int groupId = personInfo.getGroupId();
+            int groupId = personInfo.getProjectId();
             if (groupId == 1412) {
                docCount= documentDAO.getAllDocumentsCount();
             }

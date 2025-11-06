@@ -312,27 +312,6 @@ PersonDao pdao=new PersonDao();
 
     }
 
-    @RequestMapping(value = "/removeGroup")
-    public void getRemoveGroup(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception {
-        UserService userService=new UserService();
-        Access access= new Access();
-        if (!access.isAdmin(userService.getCurrentUser(req.getSession()))) {
-            req.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(req, res);
-        }
-
-        int groupId=Integer.parseInt(req.getParameter("gid"));
-
-        PersonDao pdao = new PersonDao();
-        Person p = pdao.getPersonById(Integer.parseInt(req.getParameter("id"))).get(0);
-
-        pdao.deletePersonInfo(p.getId(),groupId);
-
-        req.setAttribute("action", "Manage Groups");
-        req.setAttribute("page", "/WEB-INF/jsp/admin/groups");
-        req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
-
-    }
-
 
 }
 
