@@ -7,49 +7,9 @@
             <div class="sidebar-content">
                 <h5>Contents</h5>
 
-                <div style="margin-bottom: 25px;">
-                    <h6 style="color: #007bff; text-decoration: underline; font-weight: bold;"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#peranteau" target="_blank" style="color: #007bff; text-decoration: underline;">CHOP/UPENN (PKU Program)</a></h6>
-                    <ul>
-                        <li>• <a href="/platform/public/download/regulatory?documentName='PKU Pre-IND briefing book redacted.pdf'" target="_blank">Pre-IND Briefing Book</a></li>
-                        <li>• <a href="/platform/public/download/regulatory?documentName='PKU FDA Preliminary Responses_PS008879_4 redacted.pdf'" target="_blank" >Pre-IND Official Responses/Meeting Summary</a></li>
-                    </ul>
-                    <div class="sidebar-publications">
-                        <button class="sidebar-pub-toggle" onclick="toggleSidebarPublications('sidebar-pku-pubs')">
-                            <i class="fas fa-file-alt"></i>
-                            <span>Publications (4)</span>
-                            <i class="fas fa-chevron-down sidebar-toggle-icon"></i>
-                        </button>
-                        <div class="sidebar-pub-content" id="sidebar-pku-pubs">
-                            <ul>
-                                <li>• <a href="https://pubmed.ncbi.nlm.nih.gov/41175865/" target="_blank">How to create personalized gene editing platforms: Next steps towards interventional genetics (2025)</a></li>
-                                <li>• <a href="https://pubmed.ncbi.nlm.nih.gov/37924808/" target="_blank">Efficient in vivo prime editing corrects the most frequent phenylketonuria variant, associated with high unmet medical need (2023)</a></li>
-                                <li>• <a href="https://pubmed.ncbi.nlm.nih.gov/37301931/" target="_blank">Rapid and definitive treatment of phenylketonuria in variant-humanized mice with corrective editing (2023)</a></li>
-                                <li>• <a href="https://pubmed.ncbi.nlm.nih.gov/37922902/" target="_blank">A base editing strategy using mRNA-LNPs for in vivo correction of the most frequent phenylketonuria variant (2024)</a></li>
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="margin-bottom: 25px;">
-                    <h6 style="color: #007bff; text-decoration: underline; font-weight: bold;"><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#ahrens-nicklas" target="_blank" style="color: #007bff; text-decoration: underline;">CHOP/UPENN (UCD Program)</a></h6>
-                    <ul>
-                        <li>• <a href="/platform/public/download/regulatory?documentName='UCD Pre-IND briefing book redacted.pdf'" target="_blank">Pre-IND Briefing Book</a></li>
-                        <li>• <a href="/platform/public/download/regulatory?documentName='UCD FDA Signed_a_Meeting Summary_PS010343-CHOP redacted.pdf'" target="_blank">Pre-IND Official Responses/Meeting Summary</a></li>
-                    </ul>
-                    <div class="sidebar-publications">
-                        <button class="sidebar-pub-toggle" onclick="toggleSidebarPublications('sidebar-ucd-pubs')">
-                            <i class="fas fa-file-alt"></i>
-                            <span>Publications (1)</span>
-                            <i class="fas fa-chevron-down sidebar-toggle-icon"></i>
-                        </button>
-                        <div class="sidebar-pub-content" id="sidebar-ucd-pubs">
-                            <ul>
-                                <li>• <a href="https://pubmed.ncbi.nlm.nih.gov/41175865/" target="_blank">How to create personalized gene editing platforms: Next steps towards interventional genetics (2025)</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <%@include file="pku_docs.jsp"%>
+                <%@include file="ucd_docs.jsp"%>
+                <%@include file="cps1_docs.jsp"%>
             </div>
         </div>
 
@@ -136,11 +96,29 @@
                         <tr>
                             <td class="program-name">Carbamoyl<br>Phosphate<br>Synthetase I (CPS1)<br>Deficiency</td>
                             <td colspan="5" style="position: relative;">
-<%--                                <div class="timeline-bar" style="left: 5px; width: 85%;"></div>--%>
-                                <div class="coming-soon-text">Coming Soon..</div>
+                                <div class="timeline-bar" style="left: 5px; width: 85%;"></div>
                             </td>
                             <td class="publications-cell">
-                                <div class="no-publications">—</div>
+                                <button class="publications-toggle" onclick="togglePublications('cps1-publications')">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span class="pub-count">1</span>
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="publications-row" id="cps1-publications">
+                            <td colspan="8" class="publications-content">
+                                <div class="publications-container">
+                                    <h5 class="publications-title">
+                                        <i class="fas fa-file-alt"></i> CPS1 Program Publications
+                                    </h5>
+                                    <ul class="publications-list">
+                                        <li>
+                                            <a href="https://pubmed.ncbi.nlm.nih.gov/40373211/" target="_blank">
+                                                Patient-Specific In Vivo Gene Editing to Treat a Rare Genetic Disease (2025)</a>                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -156,6 +134,7 @@
                                 </button>
                             </td>
                         </tr>
+
                         <tr class="publications-row" id="ucd-publications">
                             <td colspan="8" class="publications-content">
                                 <div class="publications-container">
@@ -225,8 +204,8 @@
                             </td>
                             <td class="program-name">Leber Congenital<br>Amaurosis (KCNJ13)</td>
                             <td colspan="5" style="position: relative;">
-<%--                                <div class="timeline-bar" style="left: 5px; width: 40%;"></div>--%>
-                                <div class="coming-soon-text">Coming Soon..</div>
+                                <div class="timeline-bar" style="left: 5px; width: 40%;"></div>
+<%--                                <div class="coming-soon-text">Coming Soon..</div>--%>
                             </td>
                             <td class="publications-cell">
                                 <div class="no-publications">—</div>
