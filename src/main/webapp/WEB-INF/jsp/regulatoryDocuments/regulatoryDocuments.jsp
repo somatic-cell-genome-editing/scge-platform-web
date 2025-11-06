@@ -13,6 +13,22 @@
                         <li>• <a href="/platform/public/download/regulatory?documentName='PKU Pre-IND briefing book redacted.pdf'" target="_blank">Pre-IND Briefing Book</a></li>
                         <li>• <a href="/platform/public/download/regulatory?documentName='PKU FDA Preliminary Responses_PS008879_4 redacted.pdf'" target="_blank" >Pre-IND Official Responses/Meeting Summary</a></li>
                     </ul>
+                    <div class="sidebar-publications">
+                        <button class="sidebar-pub-toggle" onclick="toggleSidebarPublications('sidebar-pku-pubs')">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Publications (4)</span>
+                            <i class="fas fa-chevron-down sidebar-toggle-icon"></i>
+                        </button>
+                        <div class="sidebar-pub-content" id="sidebar-pku-pubs">
+                            <ul>
+                                <li>• <a href="https://pubmed.ncbi.nlm.nih.gov/41175865/" target="_blank">How to create personalized gene editing platforms: Next steps towards interventional genetics (2025)</a></li>
+                                <li>• <a href="https://pubmed.ncbi.nlm.nih.gov/37924808/" target="_blank">Efficient in vivo prime editing corrects the most frequent phenylketonuria variant, associated with high unmet medical need (2023)</a></li>
+                                <li>• <a href="https://pubmed.ncbi.nlm.nih.gov/37301931/" target="_blank">Rapid and definitive treatment of phenylketonuria in variant-humanized mice with corrective editing (2023)</a></li>
+                                <li>• <a href="https://pubmed.ncbi.nlm.nih.gov/37922902/" target="_blank">A base editing strategy using mRNA-LNPs for in vivo correction of the most frequent phenylketonuria variant (2024)</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
                 <div style="margin-bottom: 25px;">
@@ -21,6 +37,18 @@
                         <li>• <a href="/platform/public/download/regulatory?documentName='UCD Pre-IND briefing book redacted.pdf'" target="_blank">Pre-IND Briefing Book</a></li>
                         <li>• <a href="/platform/public/download/regulatory?documentName='UCD FDA Signed_a_Meeting Summary_PS010343-CHOP redacted.pdf'" target="_blank">Pre-IND Official Responses/Meeting Summary</a></li>
                     </ul>
+                    <div class="sidebar-publications">
+                        <button class="sidebar-pub-toggle" onclick="toggleSidebarPublications('sidebar-ucd-pubs')">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Publications (1)</span>
+                            <i class="fas fa-chevron-down sidebar-toggle-icon"></i>
+                        </button>
+                        <div class="sidebar-pub-content" id="sidebar-ucd-pubs">
+                            <ul>
+                                <li>• <a href="https://pubmed.ncbi.nlm.nih.gov/41175865/" target="_blank">How to create personalized gene editing platforms: Next steps towards interventional genetics (2025)</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -28,7 +56,7 @@
         <!-- Main Content -->
         <div class="col-md-9">
             <div class="main-content-area">
-                <h1 class="page-title">SCGE Regulatory Documents</h1>
+                <h1 class="page-title">SCGE Documents</h1>
 
                 <div class="intro-text">
                     <p>
@@ -47,6 +75,7 @@
                             <th class="phase-column">Pre-IND<br>Meeting</th>
                             <th class="phase-column">IND Enabling<br>Studies</th>
                             <th class="phase-column">Clinical Trial<br>Initiated</th>
+                            <th style="width: 80px;">Publications</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -65,6 +94,44 @@
                             <td colspan="5" style="position: relative;">
                                 <div class="timeline-bar" style="left: 5px; width: 55%;"></div>
                             </td>
+                            <td class="publications-cell">
+                                <button class="publications-toggle" onclick="togglePublications('pku-publications')">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span class="pub-count">4</span>
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="publications-row" id="pku-publications">
+                            <td colspan="8" class="publications-content">
+                                <div class="publications-container">
+                                    <h5 class="publications-title">
+                                        <i class="fas fa-file-alt"></i> PKU Program Publications
+                                    </h5>
+                                    <ul class="publications-list">
+                                        <li>
+                                            <a href="https://pubmed.ncbi.nlm.nih.gov/41175865/" target="_blank">
+                                                How to create personalized gene editing platforms: Next steps towards interventional genetics (2025)
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="https://pubmed.ncbi.nlm.nih.gov/37924808/" target="_blank">
+                                                Efficient in vivo prime editing corrects the most frequent phenylketonuria variant, associated with high unmet medical need (2023)
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="https://pubmed.ncbi.nlm.nih.gov/37301931/" target="_blank">
+                                                Rapid and definitive treatment of phenylketonuria in variant-humanized mice with corrective editing (2023)
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="https://pubmed.ncbi.nlm.nih.gov/37922902/" target="_blank">
+                                                A base editing strategy using mRNA-LNPs for in vivo correction of the most frequent phenylketonuria variant (2024)
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td class="program-name">Carbamoyl<br>Phosphate<br>Synthetase I (CPS1)<br>Deficiency</td>
@@ -72,11 +139,37 @@
 <%--                                <div class="timeline-bar" style="left: 5px; width: 85%;"></div>--%>
                                 <div class="coming-soon-text">Coming Soon..</div>
                             </td>
+                            <td class="publications-cell">
+                                <div class="no-publications">—</div>
+                            </td>
                         </tr>
                         <tr>
                             <td class="program-name">Urea Cycle Disorders<br>(UCDs)</td>
                             <td colspan="5" style="position: relative;">
                                 <div class="timeline-bar" style="left: 5px; width: 55%;"></div>
+                            </td>
+                            <td class="publications-cell">
+                                <button class="publications-toggle" onclick="togglePublications('ucd-publications')">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span class="pub-count">1</span>
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="publications-row" id="ucd-publications">
+                            <td colspan="8" class="publications-content">
+                                <div class="publications-container">
+                                    <h5 class="publications-title">
+                                        <i class="fas fa-file-alt"></i> UCD Program Publications
+                                    </h5>
+                                    <ul class="publications-list">
+                                        <li>
+                                            <a href="https://pubmed.ncbi.nlm.nih.gov/41175865/" target="_blank">
+                                                How to create personalized gene editing platforms: Next steps towards interventional genetics (2025)
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </td>
                         </tr>
 
@@ -95,6 +188,9 @@
 <%--                                <div class="timeline-bar" style="left: 5px; width: 40%;"></div>--%>
                                 <div class="coming-soon-text">Coming Soon..</div>
                             </td>
+                            <td class="publications-cell">
+                                <div class="no-publications">—</div>
+                            </td>
                         </tr>
                         <tr>
                             <td class="program-name">Angelman Syndrome</td>
@@ -102,12 +198,18 @@
 <%--                                <div class="timeline-bar" style="left: 5px; width: 35%;"></div>--%>
                                 <div class="coming-soon-text">Coming Soon..</div>
                             </td>
+                            <td class="publications-cell">
+                                <div class="no-publications">—</div>
+                            </td>
                         </tr>
                         <tr>
                             <td class="program-name">Prion Disease</td>
                             <td colspan="5" style="position: relative;">
 <%--                                <div class="timeline-bar" style="left: 5px; width: 30%;"></div>--%>
                                 <div class="coming-soon-text">Coming Soon..</div>
+                            </td>
+                            <td class="publications-cell">
+                                <div class="no-publications">—</div>
                             </td>
                         </tr>
 
@@ -126,6 +228,9 @@
 <%--                                <div class="timeline-bar" style="left: 5px; width: 40%;"></div>--%>
                                 <div class="coming-soon-text">Coming Soon..</div>
                             </td>
+                            <td class="publications-cell">
+                                <div class="no-publications">—</div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -133,3 +238,44 @@
         </div>
     </div>
 </div>
+
+<script>
+function togglePublications(rowId) {
+    const row = document.getElementById(rowId);
+    const button = event.currentTarget;
+    const icon = button.querySelector('.toggle-icon');
+
+    if (row.classList.contains('active')) {
+        row.classList.remove('active');
+        icon.classList.remove('fa-chevron-up');
+        icon.classList.add('fa-chevron-down');
+    } else {
+        // Close all other open publications
+        document.querySelectorAll('.publications-row.active').forEach(openRow => {
+            openRow.classList.remove('active');
+        });
+        document.querySelectorAll('.toggle-icon.fa-chevron-up').forEach(openIcon => {
+            openIcon.classList.remove('fa-chevron-up');
+            openIcon.classList.add('fa-chevron-down');
+        });
+
+        // Open clicked publication
+        row.classList.add('active');
+        icon.classList.remove('fa-chevron-down');
+        icon.classList.add('fa-chevron-up');
+    }
+}
+
+function toggleSidebarPublications(contentId) {
+    const content = document.getElementById(contentId);
+    const button = event.currentTarget;
+
+    if (content.classList.contains('active')) {
+        content.classList.remove('active');
+        button.classList.remove('active');
+    } else {
+        content.classList.add('active');
+        button.classList.add('active');
+    }
+}
+</script>
