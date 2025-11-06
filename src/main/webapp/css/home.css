@@ -340,6 +340,121 @@
     text-decoration: underline;
 }
 
+/* Tool Card Styles */
+.tools-resources-section {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 30px 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.tools-resources-section h4 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #003366;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.tool-cards-container {
+    margin-top: 20px;
+}
+
+.tool-card {
+    background: #ffffff;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 25px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    color: #003366;
+    text-align: center;
+    height: 100%;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.tool-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #0066cc, #004499);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.tool-card:hover::before {
+    transform: scaleX(1);
+}
+
+.tool-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0, 102, 204, 0.15);
+    border-color: #0066cc;
+    cursor: pointer;
+}
+
+.tool-card-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: #0066cc;
+    transition: all 0.3s ease;
+}
+
+.tool-card:hover .tool-card-icon {
+    color: #004499;
+    transform: scale(1.1);
+}
+
+.tool-card-title {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #003366;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.tool-card-description {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #6c757d;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.tool-card-link {
+    display: inline-block;
+    background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+    color: #ffffff;
+    padding: 10px 24px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.2);
+}
+
+.tool-card-link:hover {
+    background: linear-gradient(135deg, #004499 0%, #003366 100%);
+    color: #ffffff;
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .hero-section {
@@ -360,5 +475,35 @@
 
     .news-item-title {
         font-size: 1.1rem;
+    }
+
+    .tools-resources-section {
+        padding: 20px 15px;
+    }
+
+    .tools-resources-section h4 {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+
+    .tool-card {
+        padding: 20px 15px;
+        min-height: 280px;
+    }
+
+    .tool-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .tool-card-icon {
+        font-size: 2.5rem;
+    }
+
+    .tool-card-title {
+        font-size: 1.1rem;
+    }
+
+    .tool-card-description {
+        font-size: 0.85rem;
     }
 }

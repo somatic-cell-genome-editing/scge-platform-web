@@ -184,7 +184,7 @@
           <li><a href="/platform/home">Home</a></li>
           <li><a href="https://scge.mcw.edu/phase-2-tcdc/">About TCDC</a></li>
           <li><a href="https://scge.mcw.edu/contact/">Contact</a></li>
-          <li><a href="/platform/privacy">Privacy Policy</a></li>
+          <li><a class="nav-link" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">License</a></li>
         </ul>
       </div>
 

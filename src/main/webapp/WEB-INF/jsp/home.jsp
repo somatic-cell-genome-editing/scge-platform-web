@@ -50,6 +50,60 @@
                 </div>
             </div>
 
+            <div class="tools-resources-section">
+                <h4>SCGE Platform Tools & Resources</h4>
+                <div class="row tool-cards-container">
+                <div class="col-md-3 col-sm-6">
+                    <div class="tool-card">
+                        <div class="tool-card-icon">
+                            <i class="fas fa-dna"></i>
+                        </div>
+                        <h3 class="tool-card-title">Gene Therapy Trial Browser</h3>
+                        <p class="tool-card-description">
+                            Explore our comprehensive database of current and past gene therapy and gene editing clinical trials.
+                        </p>
+                        <a href="/platform/data/search/ClinicalTrial" class="tool-card-link">Explore Trials</a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="tool-card">
+                        <div class="tool-card-icon">
+                            <i class="fas fa-file-medical"></i>
+                        </div>
+                        <h3 class="tool-card-title">SCGE Regulatory Documents</h3>
+                        <p class="tool-card-description">
+                            Access pre-IND briefing books, FDA responses, and regulatory guidance documents.
+                        </p>
+                        <a href="/platform/public/documents/regulatory" class="tool-card-link">View Documents</a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="tool-card">
+                        <div class="tool-card-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3 class="tool-card-title">Templates & Forms</h3>
+                        <p class="tool-card-description">
+                            Download IND application templates, forms, and resources to streamline your regulatory submission process.
+                        </p>
+                        <a href="/platform/data/ind/templates" class="tool-card-link">Access Templates</a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="tool-card">
+                        <div class="tool-card-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <h3 class="tool-card-title">Projects</h3>
+                        <p class="tool-card-description">
+                            Explore Phase 2 IND-enabling studies and collaborative research projects in genome editing.
+                        </p>
+                        <a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/" target="_blank" class="tool-card-link">View Projects</a>
+                    </div>
+                </div>
+                </div>
+            </div>
+
             <div class="sidebar-section">
                 <h4>External Resources/Links</h4>
                 <ol class="list-unstyled mb-0">
