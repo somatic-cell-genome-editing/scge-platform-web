@@ -19,9 +19,10 @@
             <i class="fas fa-chevron-down sidebar-toggle-icon"></i>
         </button>
         <div class="sidebar-pub-content" id="sidebar-cps1-pubs">
-            <ul>
-                <li>• <a href="https://pubmed.ncbi.nlm.nih.gov/40373211/" target="_blank">Patient-Specific In Vivo Gene Editing to Treat a Rare Genetic Disease (2025)</a></li>
-            </ul>
+<%--            <ul>--%>
+<%--                <li>• <a href="https://pubmed.ncbi.nlm.nih.gov/40373211/" target="_blank">Patient-Specific In Vivo Gene Editing to Treat a Rare Genetic Disease (2025)</a></li>--%>
+<%--            </ul>--%>
+            <%@include file="cps1_publications.jsp"%>
         </div>
     </div>
 </div>
