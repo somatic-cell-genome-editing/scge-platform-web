@@ -24,7 +24,7 @@
                             Projects
                         </a>
                         <div class="dropdown-menu" aria-labelledby="projectsDropdown">
-                            <a class="dropdown-item" href="/platform/projects">All Projects</a>
+                            <a class="dropdown-item" href="https://scge.mcw.edu/phase-2-ind-enabling-studies/">All Projects</a>
                             <div class="dropdown-divider"></div>
 <%--                            <a class="dropdown-item" href="/platform/projects?category=IND">IND Enabling Studies</a>--%>
 <%--                            <a class="dropdown-item" href="/platform/projects?category=Clinical">Clinical Programs</a>--%>
@@ -54,7 +54,7 @@
                             Gene Therapy Trial Browser
                         </a>
                         <div class="dropdown-menu" aria-labelledby="trialsDropdown">
-                            <a class="dropdown-item" href="/platform/data/search/ClinicalTrial">Search All Trials</a>
+                            <a class="dropdown-item" href="/platform/data/search/ClinicalTrial">All Trials</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/platform/data/search/ClinicalTrial?status=Active">Active Trials</a>
                             <a class="dropdown-item" href="/platform/data/search/ClinicalTrial?status=Recruiting">Recruiting</a>
@@ -71,12 +71,12 @@
                     <!-- Templates & Forms Dropdown -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="templatesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Templates & Forms
+                            Guidance & Forms
                         </a>
                         <div class="dropdown-menu" aria-labelledby="templatesDropdown">
-                            <a class="dropdown-item" href="/platform/data/ind/templates">All Templates</a>
+                            <a class="dropdown-item" href="/platform/data/ind/templates">SCGE IND Templates</a>
                             <div class="dropdown-divider"></div>
-<%--                            <a class="dropdown-item" href="/platform/data/ind/templates?type=IND">IND Application Forms</a>--%>
+                            <a class="dropdown-item" href="/platform/data/ind/forms">General IND Guidance</a>
 <%--                            <a class="dropdown-item" href="/platform/data/ind/templates?type=Protocol">Protocol Templates</a>--%>
 <%--                            <a class="dropdown-item" href="/platform/data/ind/templates?type=Safety">Safety Reporting Forms</a>--%>
 <%--                            <a class="dropdown-item" href="/platform/data/ind/templates?type=CMC">CMC Documents</a>--%>
@@ -84,19 +84,19 @@
                     </li>
 
                     <!-- Guidance Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="guidanceDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Guidance
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="guidanceDropdown">
-                            <a class="dropdown-item" href="/platform/data/ind/forms">All Guidance</a>
-                            <div class="dropdown-divider"></div>
-<%--                            <a class="dropdown-item" href="/platform/data/ind/forms?type=Preclinical">Preclinical Studies</a>--%>
-<%--                            <a class="dropdown-item" href="/platform/data/ind/forms?type=Manufacturing">Manufacturing</a>--%>
-<%--                            <a class="dropdown-item" href="/platform/data/ind/forms?type=Clinical">Clinical Trial Design</a>--%>
-<%--                            <a class="dropdown-item" href="/platform/data/ind/forms?type=Regulatory">Regulatory Strategy</a>--%>
-                        </div>
-                    </li>
+<%--                    <li class="nav-item dropdown">--%>
+<%--                        <a class="nav-link dropdown-toggle" href="#" id="guidanceDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
+<%--                            Guidance--%>
+<%--                        </a>--%>
+<%--                        <div class="dropdown-menu" aria-labelledby="guidanceDropdown">--%>
+<%--                            <a class="dropdown-item" href="/platform/data/ind/forms">All Guidance</a>--%>
+<%--                            <div class="dropdown-divider"></div>--%>
+<%--&lt;%&ndash;                            <a class="dropdown-item" href="/platform/data/ind/forms?type=Preclinical">Preclinical Studies</a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                            <a class="dropdown-item" href="/platform/data/ind/forms?type=Manufacturing">Manufacturing</a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                            <a class="dropdown-item" href="/platform/data/ind/forms?type=Clinical">Clinical Trial Design</a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                            <a class="dropdown-item" href="/platform/data/ind/forms?type=Regulatory">Regulatory Strategy</a>&ndash;%&gt;--%>
+<%--                        </div>--%>
+<%--                    </li>--%>
                     <%}%>
                 </ul>
                 <!-- Separator -->
