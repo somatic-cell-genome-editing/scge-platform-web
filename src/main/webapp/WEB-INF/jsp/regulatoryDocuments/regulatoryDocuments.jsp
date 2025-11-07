@@ -194,7 +194,7 @@
 
                         <!-- Retinal Diseases -->
                         <tr>
-                            <td class="disease-area-cell">
+                            <td rowspan="2" class="disease-area-cell">
                                 <div class="disease-icon-container">
                                     <div class="disease-icon retinal-icon">
                                         <i class="fas fa-eye"></i>
@@ -210,7 +210,17 @@
                             <td class="publications-cell">
                                 <div class="no-publications">—</div>
                             </td>
+
                         </tr>
+                    <tr>
+                        <td class="program-name">Best Vitelliform Macular Dystrophy (BVMD, Best’s Disease)</td>
+                        <td colspan="5" style="position: relative;">
+                            <div class="timeline-bar" style="left: 5px; width: 20%;"></div>
+                        </td>
+                        <td class="publications-cell">
+                            <div class="no-publications">—</div>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
