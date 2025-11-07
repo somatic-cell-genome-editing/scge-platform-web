@@ -62,37 +62,37 @@
                                 </button>
                             </td>
                         </tr>
-                        <tr class="publications-row" id="pku-publications">
-                            <td colspan="8" class="publications-content">
-                                <div class="publications-container">
-                                    <h5 class="publications-title">
-                                        <i class="fas fa-file-alt"></i> PKU Program Publications
-                                    </h5>
-                                    <ul class="publications-list">
-                                        <li>
-                                            <a href="https://pubmed.ncbi.nlm.nih.gov/41175865/" target="_blank">
-                                                How to create personalized gene editing platforms: Next steps towards interventional genetics (2025)
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://pubmed.ncbi.nlm.nih.gov/37924808/" target="_blank">
-                                                Efficient in vivo prime editing corrects the most frequent phenylketonuria variant, associated with high unmet medical need (2023)
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://pubmed.ncbi.nlm.nih.gov/37301931/" target="_blank">
-                                                Rapid and definitive treatment of phenylketonuria in variant-humanized mice with corrective editing (2023)
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://pubmed.ncbi.nlm.nih.gov/37922902/" target="_blank">
-                                                A base editing strategy using mRNA-LNPs for in vivo correction of the most frequent phenylketonuria variant (2024)
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
+<%--                        <tr class="publications-row" id="pku-publications">--%>
+<%--                            <td colspan="8" class="publications-content">--%>
+<%--                                <div class="publications-container">--%>
+<%--                                    <h5 class="publications-title">--%>
+<%--                                        <i class="fas fa-file-alt"></i> PKU Program Publications--%>
+<%--                                    </h5>--%>
+<%--                                    <ul class="publications-list">--%>
+<%--                                        <li>--%>
+<%--                                            <a href="https://pubmed.ncbi.nlm.nih.gov/41175865/" target="_blank">--%>
+<%--                                                How to create personalized gene editing platforms: Next steps towards interventional genetics (2025)--%>
+<%--                                            </a>--%>
+<%--                                        </li>--%>
+<%--                                        <li>--%>
+<%--                                            <a href="https://pubmed.ncbi.nlm.nih.gov/37924808/" target="_blank">--%>
+<%--                                                Efficient in vivo prime editing corrects the most frequent phenylketonuria variant, associated with high unmet medical need (2023)--%>
+<%--                                            </a>--%>
+<%--                                        </li>--%>
+<%--                                        <li>--%>
+<%--                                            <a href="https://pubmed.ncbi.nlm.nih.gov/37301931/" target="_blank">--%>
+<%--                                                Rapid and definitive treatment of phenylketonuria in variant-humanized mice with corrective editing (2023)--%>
+<%--                                            </a>--%>
+<%--                                        </li>--%>
+<%--                                        <li>--%>
+<%--                                            <a href="https://pubmed.ncbi.nlm.nih.gov/37922902/" target="_blank">--%>
+<%--                                                A base editing strategy using mRNA-LNPs for in vivo correction of the most frequent phenylketonuria variant (2024)--%>
+<%--                                            </a>--%>
+<%--                                        </li>--%>
+<%--                                    </ul>--%>
+<%--                                </div>--%>
+<%--                            </td>--%>
+<%--                        </tr>--%>
                         <tr>
                             <td class="program-name">Carbamoyl<br>Phosphate<br>Synthetase I (CPS1)<br>Deficiency</td>
                             <td colspan="5" style="position: relative;">
@@ -106,21 +106,21 @@
                                 </button>
                             </td>
                         </tr>
-                        <tr class="publications-row" id="cps1-publications">
-                            <td colspan="8" class="publications-content">
-                                <div class="publications-container">
-                                    <h5 class="publications-title">
-                                        <i class="fas fa-file-alt"></i> CPS1 Program Publications
-                                    </h5>
-                                    <ul class="publications-list">
-                                        <li>
-                                            <a href="https://pubmed.ncbi.nlm.nih.gov/40373211/" target="_blank">
-                                                Patient-Specific In Vivo Gene Editing to Treat a Rare Genetic Disease (2025)</a>                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
+<%--                        <tr class="publications-row" id="cps1-publications">--%>
+<%--                            <td colspan="8" class="publications-content">--%>
+<%--                                <div class="publications-container">--%>
+<%--                                    <h5 class="publications-title">--%>
+<%--                                        <i class="fas fa-file-alt"></i> CPS1 Program Publications--%>
+<%--                                    </h5>--%>
+<%--                                    <ul class="publications-list">--%>
+<%--                                        <li>--%>
+<%--                                            <a href="https://pubmed.ncbi.nlm.nih.gov/40373211/" target="_blank">--%>
+<%--                                                Patient-Specific In Vivo Gene Editing to Treat a Rare Genetic Disease (2025)</a>                                            </a>--%>
+<%--                                        </li>--%>
+<%--                                    </ul>--%>
+<%--                                </div>--%>
+<%--                            </td>--%>
+<%--                        </tr>--%>
                         <tr>
                             <td class="program-name">Urea Cycle Disorders<br>(UCDs)</td>
                             <td colspan="5" style="position: relative;">
@@ -135,22 +135,22 @@
                             </td>
                         </tr>
 
-                        <tr class="publications-row" id="ucd-publications">
-                            <td colspan="8" class="publications-content">
-                                <div class="publications-container">
-                                    <h5 class="publications-title">
-                                        <i class="fas fa-file-alt"></i> UCD Program Publications
-                                    </h5>
-                                    <ul class="publications-list">
-                                        <li>
-                                            <a href="https://pubmed.ncbi.nlm.nih.gov/41175865/" target="_blank">
-                                                How to create personalized gene editing platforms: Next steps towards interventional genetics (2025)
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
+<%--                        <tr class="publications-row" id="ucd-publications">--%>
+<%--                            <td colspan="8" class="publications-content">--%>
+<%--                                <div class="publications-container">--%>
+<%--                                    <h5 class="publications-title">--%>
+<%--                                        <i class="fas fa-file-alt"></i> UCD Program Publications--%>
+<%--                                    </h5>--%>
+<%--&lt;%&ndash;                                    <ul class="publications-list">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        <li>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                            <a href="https://pubmed.ncbi.nlm.nih.gov/41175865/" target="_blank">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                How to create personalized gene editing platforms: Next steps towards interventional genetics (2025)&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                            </a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        </li>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                    </ul>&ndash;%&gt;--%>
+<%--                                </div>--%>
+<%--                            </td>--%>
+<%--                        </tr>--%>
 
                         <!-- Neurological Disorders -->
                         <tr>
@@ -202,25 +202,25 @@
                                     <div class="disease-label">Retinal<br>Diseases</div>
                                 </div>
                             </td>
-                            <td class="program-name">Leber Congenital<br>Amaurosis (KCNJ13)</td>
-                            <td colspan="5" style="position: relative;">
-                                <div class="timeline-bar" style="left: 5px; width: 40%;"></div>
-<%--                                <div class="coming-soon-text">Coming Soon..</div>--%>
-                            </td>
-                            <td class="publications-cell">
-                                <div class="no-publications">—</div>
-                            </td>
+<%--                            <td class="program-name">Leber Congenital<br>Amaurosis (KCNJ13)</td>--%>
+<%--                            <td colspan="5" style="position: relative;">--%>
+<%--                                <div class="timeline-bar" style="left: 5px; width: 40%;"></div>--%>
+<%--&lt;%&ndash;                                <div class="coming-soon-text">Coming Soon..</div>&ndash;%&gt;--%>
+<%--                            </td>--%>
+<%--                            <td class="publications-cell">--%>
+<%--                                <div class="no-publications">—</div>--%>
+<%--                            </td>--%>
 
                         </tr>
-                    <tr>
-                        <td class="program-name">Best Vitelliform Macular Dystrophy (BVMD, Best’s Disease)</td>
-                        <td colspan="5" style="position: relative;">
-                            <div class="timeline-bar" style="left: 5px; width: 20%;"></div>
-                        </td>
-                        <td class="publications-cell">
-                            <div class="no-publications">—</div>
-                        </td>
-                    </tr>
+<%--                    <tr>--%>
+<%--                        <td class="program-name">Best Vitelliform Macular Dystrophy (BVMD, Best’s Disease)</td>--%>
+<%--                        <td colspan="5" style="position: relative;">--%>
+<%--                            <div class="timeline-bar" style="left: 5px; width: 20%;"></div>--%>
+<%--                        </td>--%>
+<%--                        <td class="publications-cell">--%>
+<%--                            <div class="no-publications">—</div>--%>
+<%--                        </td>--%>
+<%--                    </tr>--%>
                     </tbody>
                 </table>
             </div>
