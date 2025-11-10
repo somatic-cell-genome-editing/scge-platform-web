@@ -102,25 +102,27 @@
         color: #0066cc;
     }
 
-    .filter-sidebar .form-check-label.Yes::before {
+    .filter-sidebar .form-check-label.Yes::before,.Yes::before {
         content: '✓';
         margin-right: 5px;
         color: #28a745;
         font-weight: bold;
     }
 
-    .filter-sidebar .form-check-label.Maybe::before {
+    .filter-sidebar .form-check-label.Maybe::before, .Maybe::before {
         content: '?';
         margin-right: 5px;
-        color: #ffc107;
+        color: darkorange;
         font-weight: bold;
+        background-color: yellow;
     }
 
-    .filter-sidebar .form-check-label.No::before {
+    .filter-sidebar .form-check-label.No::before, .No::before {
         content: '✗';
         margin-right: 5px;
         color: #dc3545;
         font-weight: bold;
+
     }
 
     .filter-sidebar .mb-3 {
