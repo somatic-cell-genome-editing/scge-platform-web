@@ -113,7 +113,7 @@
                                     <%@include file="modal.jsp"%>
                                     <% if (request.getServerName().equals("localhost") || request.getServerName().equals("dev.scge.mcw.edu") || request.getServerName().equals("stage.scge.mcw.edu") ) { %>
                                     <%try {if (p!=null && access.isAdmin(p) && !SCGEContext.isProduction()) {%>
-                                    <a href="/platform/clinicalTrialEdit/home/" ><button type="button" class="btn btn-warning btn-sm">Add</button></a>
+                                    <a href="/platform/clinicalTrialEdit/home" ><button type="button" class="btn btn-warning btn-sm">Add</button></a>
                                     <%}} catch (Exception e) {e.printStackTrace();}}%>
                                 </div>
                             </div>
