@@ -190,7 +190,7 @@ public class ClinicalTrialEditController {
             ctDAO.updateCuratedDataFields(ctRecord);
             ctDAO.updateSomeNewFieldsDataFields(ctRecord);
             req.getSession().setAttribute("showAlert", "true");
-            res.sendRedirect("/platform/data/clinicalTrials/report/" + nctId);
+            res.sendRedirect("/platform/data/report/clinicalTrials/" + nctId);
             return null;
         } catch (Exception e) {
             e.printStackTrace();
@@ -211,11 +211,11 @@ public class ClinicalTrialEditController {
                 case "updated":
                     req.getSession().setAttribute("result",result.equals("inserted")?"Clinical trial data successfully inserted":
                             "Clinical trial data already exists, and got successfully updated");
-                    res.sendRedirect("/platform/data/clinicalTrials/report/"+nctId+"?edit=true");
+                    res.sendRedirect("/platform/data/report/clinicalTrials/"+nctId+"?edit=true");
                     return null;
                 default:
                     req.getSession().setAttribute("result","Error processing clinical trial data: " + result);
-                    res.sendRedirect("/platform/clinicalTrialEdit/home/");
+                    res.sendRedirect("/platform/clinicalTrialEdit/home");
             }
         }
         return null;
