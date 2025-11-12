@@ -215,7 +215,7 @@ public class ClinicalTrialEditController {
                     return null;
                 default:
                     req.getSession().setAttribute("result","Error processing clinical trial data: " + result);
-                    res.sendRedirect("/platform/clinicalTrialEdit/home/");
+                    res.sendRedirect("/platform/clinicalTrialEdit/home");
             }
         }
         return null;
