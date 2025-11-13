@@ -53,6 +53,23 @@ nav.navbar.bg-light {
     border-top-color: #e9ecef;
 }
 
+.navbar .dropdown-header {
+    font-weight: 600;
+    color: #0066cc;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 8px 20px 5px 20px;
+}
+
+.navbar .dropdown-header + .dropdown-item {
+    padding-left: 35px;
+}
+
+.navbar .dropdown-item.indented {
+    padding-left: 35px;
+}
+
 .navbar .nav-link.dropdown-toggle {
     font-weight: 500;
 }

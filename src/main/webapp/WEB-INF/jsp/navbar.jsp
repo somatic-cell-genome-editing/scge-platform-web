@@ -24,29 +24,32 @@
                             Projects
                         </a>
                         <div class="dropdown-menu" aria-labelledby="projectsDropdown">
-                            <a class="dropdown-item" href="https://scge.mcw.edu/phase-2-ind-enabling-studies/">All Projects</a>
+<%--                            <a class="dropdown-item" href="https://scge.mcw.edu/phase-2-ind-enabling-studies/">All Projects</a>--%>
+<%--                            <div class="dropdown-divider"></div>--%>
+                            <h6 class="dropdown-header">IND-Enabling Studies</h6>
+                            <a class="dropdown-item indented" href="https://scge.mcw.edu/phase-2-ind-enabling-studies/">Therapeutic Leads</a>
+                            <a class="dropdown-item indented" href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/">Multiple Disease Platforms</a>
                             <div class="dropdown-divider"></div>
-<%--                            <a class="dropdown-item" href="/platform/projects?category=IND">IND Enabling Studies</a>--%>
-<%--                            <a class="dropdown-item" href="/platform/projects?category=Clinical">Clinical Programs</a>--%>
-<%--                            <a class="dropdown-item" href="/platform/projects?category=Research">Research Initiatives</a>--%>
+                            <a class="dropdown-item" href="https://scge.mcw.edu/phase-2-platform-clinical-trials/">Platform Clinical Programs</a>
 <%--                            <a class="dropdown-item" href="/platform/projects?category=Collaboration">Collaborations</a>--%>
                         </div>
                     </li>
 
                     <!-- Regulatory Documents Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="regulatoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Regulatory Documents
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="regulatoryDropdown">
-                            <a class="dropdown-item" href="/platform/public/documents/regulatory">All Documents</a>
-                            <div class="dropdown-divider"></div>
-<%--                            <a class="dropdown-item" href="/platform/public/documents/regulatory?type=FDA">FDA Guidelines</a>--%>
-<%--                            <a class="dropdown-item" href="/platform/public/documents/regulatory?type=IND">IND Documents</a>--%>
-<%--                            <a class="dropdown-item" href="/platform/public/documents/regulatory?type=Safety">Safety Standards</a>--%>
-<%--                            <a class="dropdown-item" href="/platform/public/documents/regulatory?type=Compliance">Compliance</a>--%>
-                        </div>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/platform/public/documents/regulatory">Regulatory Documents</a></li>
+<%--                    <li class="nav-item dropdown">--%>
+<%--                        <a class="nav-link dropdown-toggle" href="#" id="regulatoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
+<%--                            Regulatory Documents--%>
+<%--                        </a>--%>
+<%--                        <div class="dropdown-menu" aria-labelledby="regulatoryDropdown">--%>
+<%--                            <a class="dropdown-item" href="/platform/public/documents/regulatory">All Documents</a>--%>
+<%--                            <div class="dropdown-divider"></div>--%>
+<%--&lt;%&ndash;                            <a class="dropdown-item" href="/platform/public/documents/regulatory?type=FDA">FDA Guidelines</a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                            <a class="dropdown-item" href="/platform/public/documents/regulatory?type=IND">IND Documents</a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                            <a class="dropdown-item" href="/platform/public/documents/regulatory?type=Safety">Safety Standards</a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                            <a class="dropdown-item" href="/platform/public/documents/regulatory?type=Compliance">Compliance</a>&ndash;%&gt;--%>
+<%--                        </div>--%>
+<%--                    </li>--%>
 
                     <!-- Gene Therapy Trial Browser Dropdown -->
                     <li class="nav-item dropdown">
@@ -84,19 +87,19 @@
                     </li>
 
                     <!-- Guidance Dropdown -->
-<%--                    <li class="nav-item dropdown">--%>
-<%--                        <a class="nav-link dropdown-toggle" href="#" id="guidanceDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
-<%--                            Guidance--%>
-<%--                        </a>--%>
-<%--                        <div class="dropdown-menu" aria-labelledby="guidanceDropdown">--%>
-<%--                            <a class="dropdown-item" href="/platform/data/ind/forms">All Guidance</a>--%>
-<%--                            <div class="dropdown-divider"></div>--%>
-<%--&lt;%&ndash;                            <a class="dropdown-item" href="/platform/data/ind/forms?type=Preclinical">Preclinical Studies</a>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                            <a class="dropdown-item" href="/platform/data/ind/forms?type=Manufacturing">Manufacturing</a>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                            <a class="dropdown-item" href="/platform/data/ind/forms?type=Clinical">Clinical Trial Design</a>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                            <a class="dropdown-item" href="/platform/data/ind/forms?type=Regulatory">Regulatory Strategy</a>&ndash;%&gt;--%>
-<%--                        </div>--%>
-<%--                    </li>--%>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="guidanceDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Publications
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="guidanceDropdown">
+                            <a class="dropdown-item" href="https://scge.mcw.edu/phase-2-publications/">All Publications</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="https://scge.mcw.edu/publications-by-project/#peranteau">PKU Program</a>
+                            <a class="dropdown-item" href="https://scge.mcw.edu/publications-by-project/#ahrens-nicklas">UCD Program</a>
+                            <a class="dropdown-item" href="https://scge.mcw.edu/publications-by-project/#ahrens-nicklas">CPS1 Program</a>
+
+                        </div>
+                    </li>
                     <%}%>
                 </ul>
                 <!-- Separator -->
