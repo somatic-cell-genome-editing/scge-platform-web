@@ -6,42 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Dashboard</title>
+<link href="/platform/css/loginHome.css" rel="stylesheet">
 
-    <style>
-
-        @media (max-width: 767.98px) {
-            .sidebar {
-                top: 11.5rem;
-                padding: 0;
-            }
-        }
-
-        .navbar {
-            box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1);
-        }
-
-        @media (min-width: 767.98px) {
-            .navbar {
-                top: 0;
-                position: sticky;
-                z-index: 999;
-            }
-        }
-
-        .sidebar .nav-link {
-            color: #333;
-        }
-
-        .sidebar .nav-link.active {
-            color: #0d6efd;
-        }
-
-    </style>
-</head>
-<body>
 <%
     Map<Integer, List<Application>> applicationsMap= (Map<Integer, List<Application>>) request.getAttribute("applicationsMap");
     int applicationsCount=0;
@@ -49,7 +15,6 @@
         applicationsCount+=((List<Application>)applicationsMap.get(key)).size();
     }
 %>
-
 <div class="container-fluid">
     <div class="row">
         <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
@@ -281,5 +246,4 @@
         showArea: true
     });
 </script>
-</body>
-</html>
+

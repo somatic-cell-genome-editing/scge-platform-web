@@ -5,11 +5,7 @@
   Time: 1:56 PM
   To change this template use File | Settings | File Templates.
 --%>
-<style>
-    .paragraph-heading{
-        font-weight: bold;
-    }
-</style>
+
 <div class="section" id="312.23">
     <div class="card">
         <div class="card-header">

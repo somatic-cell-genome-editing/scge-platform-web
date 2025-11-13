@@ -5,20 +5,7 @@
   Time: 11:38 AM
   To change this template use File | Settings | File Templates.
 --%>
-<style>
-  .paragraph-hierarchy {
-    font-weight: bold;
-  }
-  .ind-content-paragraph{
-    margin-left:2%;
-  }
-  .ind-package{
-    margin-left:2%
-  }
-  summary{
-    font-weight: bold;
-  }
-</style>
+
 <div id="p-312.23(a)">
   <p class="indent-1" data-title="312.23(a)"><span class="paragraph-hierarchy"><span class="paren">(</span>a<span class="paren">)</span></span> A sponsor who intends to conduct a clinical investigation subject to this part shall submit an <strong>Investigational New Drug Application (IND)</strong> including, in the following order:</p>
   <div class="ind-package">
