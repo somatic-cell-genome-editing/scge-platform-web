@@ -213,7 +213,6 @@
             const rows = table.querySelectorAll('tbody tr');
             rows.forEach(row => {
                 const labelRowText=row.cells[moduleLabelColumnIndex].textContent;
-                console.log("labelRowTExt:"+ labelRowText);
                 if(labelRowText==null || labelRowText===""){
 
                 const indStatus = row.cells[initialINDColumnIndex].textContent.toLowerCase().trim(); // column index 5 = IND
