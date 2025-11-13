@@ -198,9 +198,10 @@
     const marketingCheckboxes=document.querySelectorAll('.filter-checkbox-marketing')
     const initialINDColumnIndex=5;
     const marketingColumnIndex=6;
+    const moduleLabelColumnIndex=0;
 
     function filterAllTables() {
-        const initialIndselectedFilters = Array.from(initialINDCheckboxes)
+        const initialIndSelectedFilters = Array.from(initialINDCheckboxes)
             .filter(cb => cb.checked)
             .map(cb => cb.value.toLowerCase());
         const marketingSelectedFilters = Array.from(marketingCheckboxes)
@@ -211,18 +212,22 @@
         tables.forEach(table => {
             const rows = table.querySelectorAll('tbody tr');
             rows.forEach(row => {
+                const labelRowText=row.cells[moduleLabelColumnIndex].textContent;
+                console.log("labelRowTExt:"+ labelRowText);
+                if(labelRowText==null || labelRowText===""){
+
                 const indStatus = row.cells[initialINDColumnIndex].textContent.toLowerCase().trim(); // column index 5 = IND
                 const marketingStatus = row.cells[marketingColumnIndex].textContent.toLowerCase().trim(); // column index 6 = marketing
 
-                const matchIndStatus=initialIndselectedFilters.includes(indStatus);
+                const matchIndStatus=initialIndSelectedFilters.includes(indStatus);
                 const matchMarketingStatus=marketingSelectedFilters.includes(marketingStatus);
-                if(initialIndselectedFilters.length===0 && marketingSelectedFilters.length===0){
+                if(initialIndSelectedFilters.length===0 && marketingSelectedFilters.length===0){
                     row.style.display =  '';
                 }else {
                     row.style.display = (matchIndStatus || matchMarketingStatus) ? '' : 'none';
 
                 }
-            });
+            }});
         });
 
 
