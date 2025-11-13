@@ -16,7 +16,7 @@
         <!-- Main Content -->
         <div class="col-md-9">
             <div class="main-content-area">
-                <h1 class="page-title">SCGE Documents</h1>
+                <h1 class="page-title">SCGE Shared Regulatory Documents</h1>
 
                 <div class="intro-text">
                     <p>
