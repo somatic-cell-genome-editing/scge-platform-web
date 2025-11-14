@@ -134,3 +134,23 @@
 /*    background-color: #fff; !* Required to avoid see-through headers *!*/
 /*    z-index: 1;*/
 /*}*/
+
+/* Tooltip icon styling - prevent overlap */
+.filterable-table tbody td sup {
+    margin-left: 5px;
+    line-height: 1;
+    vertical-align: super;
+    position: relative;
+    top: -0.3em;
+}
+
+.filterable-table tbody td sup span[data-toggle="tooltip"] {
+    display: inline-block;
+    cursor: help;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.filterable-table tbody td sup .fa-circle-info {
+    vertical-align: middle;
+}

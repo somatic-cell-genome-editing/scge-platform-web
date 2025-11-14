@@ -243,11 +243,9 @@
                             if(module==1 || module==2){%>
                         <%=l2.getSectionName()%>
                         <%if(l2.getSectionDescription()!=null && !l2.getSectionDescription().equals("")){%>
-                        <sup>
-            <span data-toggle="tooltip" title="<%=StringUtils.capitalize( l2.getSectionDescription())%>" style="color: lightseagreen">
-               <i class="fa-solid fa-circle-info"></i>
-            </span>
-                        </sup>
+                        <span data-toggle="tooltip" title="<%=StringUtils.capitalize( l2.getSectionDescription())%>" style="color: lightseagreen; margin-left: 5px;">
+                           <i class="fa-solid fa-circle-info"></i>
+                        </span>
                         <%}%>
                         <%}else{%>
                         <strong><%=l2.getSectionName()%></strong>
@@ -315,11 +313,9 @@
                         <%}else{%>
                         <%=l3.getSectionName()%>
                         <%if(l3.getSectionDescription()!=null && !l3.getSectionDescription().equals("")){%>
-
-                        <sup>
-            <span data-toggle="tooltip" title="<%=StringUtils.capitalize( l3.getSectionDescription())%>" style="color: lightseagreen">
-               <i class="fa-solid fa-circle-info"></i>
-            </span>
+                        <span data-toggle="tooltip" title="<%=StringUtils.capitalize( l3.getSectionDescription())%>" style="color: lightseagreen; margin-left: 5px;">
+                           <i class="fa-solid fa-circle-info"></i>
+                        </span>
                         <%}}%>
                         <%@include file="sectionDocuments.jsp"%>
                     </td>
@@ -390,12 +386,10 @@
     <td><a href="/platform/data/report/ctdSection/<%=l4.getSectionCode()%>"><%=l4.getSectionCode()%></a></td>
                     <td><%=l4.getSectionName()%>
                         <%if(l4.getSectionDescription()!=null && !l4.getSectionDescription().equals("")){%>
-
-                        <sup>
-            <span data-toggle="tooltip" title="<%=StringUtils.capitalize( l4.getSectionDescription())%>" style="color: lightseagreen">
-               <i class="fa-solid fa-circle-info"></i>
-            </span>
-                            <%}%>
+                        <span data-toggle="tooltip" title="<%=StringUtils.capitalize( l4.getSectionDescription())%>" style="color: lightseagreen; margin-left: 5px;">
+                           <i class="fa-solid fa-circle-info"></i>
+                        </span>
+                        <%}%>
                         <%@include file="sectionDocuments.jsp"%>
                     </td>
                     <td>
