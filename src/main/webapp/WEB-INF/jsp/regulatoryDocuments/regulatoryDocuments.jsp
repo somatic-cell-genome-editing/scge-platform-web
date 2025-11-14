@@ -10,6 +10,7 @@
                 <%@include file="pku/pku_docs.jsp"%>
                 <%@include file="ucd/ucd_docs.jsp"%>
                 <%@include file="cps1/cps1_docs.jsp"%>
+                <%@include file="prion/prion_docs.jsp"%>
             </div>
         </div>
 
@@ -137,14 +138,22 @@
                         <tr>
                             <td class="program-name">Prion Disease</td>
                             <td colspan="5" style="position: relative;">
-<%--                                <div class="timeline-bar" style="left: 5px; width: 30%;"></div>--%>
-                                <div class="coming-soon-text">Coming Soon..</div>
+                                <div class="timeline-bar" style="left: 5px; width: 30%;"></div>
+
                             </td>
                             <td class="publications-cell">
-                                <div class="no-publications">—</div>
+                                <button class="publications-toggle" onclick="togglePublications('prion-publications')">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span class="pub-count">2</span>
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
+                                </button>
                             </td>
                         </tr>
-
+                        <tr class="publications-row" id="prion-publications">
+                            <td colspan="8" class="publications-content">
+                                <%@include file="prion/prion_publications.jsp"%>
+                            </td>
+                        </tr>
                         <!-- Retinal Diseases -->
                         <tr>
                             <td rowspan="2" class="disease-area-cell">
