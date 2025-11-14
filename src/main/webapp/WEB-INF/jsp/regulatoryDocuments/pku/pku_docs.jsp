@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div style="margin-bottom: 25px;">
-    <h6 style="color: #007bff; text-decoration: underline; font-weight: bold;"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#peranteau" target="_blank" style="color: #007bff; text-decoration: underline;">PKU Program (CHOP/UPENN )</a></h6>
+    <h6 style="color: #007bff; text-decoration: underline; font-weight: bold;"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#peranteau" target="_blank" style="color: #007bff; text-decoration: underline;">PKU Program (CHOP/UPENN)</a></h6>
     <ul>
         <li>• <a href="/platform/public/download/regulatory?documentName='PKU Pre-IND briefing book redacted.pdf'" target="_blank">Pre-IND Briefing Book</a></li>
         <li>• <a href="/platform/public/download/regulatory?documentName='PKU FDA Preliminary Responses_PS008879_4 redacted.pdf'" target="_blank" >Pre-IND Official Responses/Meeting Summary</a></li>
