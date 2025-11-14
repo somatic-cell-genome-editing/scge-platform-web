@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="publications-container">
     <h5 class="publications-title">
-        <i class="fas fa-file-alt"></i> UCD Program Publications
+        <i class="fas fa-file-alt"></i> Prion Disease Program Publications
     </h5>
     <ul class="publications-list">
         <li>
