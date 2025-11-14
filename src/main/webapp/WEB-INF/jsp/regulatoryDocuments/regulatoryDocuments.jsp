@@ -57,7 +57,7 @@
                             <td class="publications-cell">
                                 <button class="publications-toggle" onclick="togglePublications('pku-publications')">
                                     <i class="fas fa-file-alt"></i>
-                                    <span class="pub-count">4</span>
+                                    <span class="pub-count">5</span>
                                     <i class="fas fa-chevron-down toggle-icon"></i>
                                 </button>
                             </td>

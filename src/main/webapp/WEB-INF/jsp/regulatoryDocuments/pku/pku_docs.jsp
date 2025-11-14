@@ -15,7 +15,7 @@
     <div class="sidebar-publications">
         <button class="sidebar-pub-toggle" onclick="toggleSidebarPublications('sidebar-pku-pubs')">
             <i class="fas fa-file-alt"></i>
-            <span>Publications (4)</span>
+            <span>Publications (5)</span>
             <i class="fas fa-chevron-down sidebar-toggle-icon"></i>
         </button>
         <div class="sidebar-pub-content" id="sidebar-pku-pubs">
