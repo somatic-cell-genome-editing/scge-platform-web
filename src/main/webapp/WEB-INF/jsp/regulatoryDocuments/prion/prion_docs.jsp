@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div style="margin-bottom: 25px;">
-    <h6 style="color: #007bff; text-decoration: underline; font-weight: bold;"><a href="#" target="_blank" style="color: #007bff; text-decoration: underline;">Broad Institute (Prion Disease Program)</a></h6>
+    <h6 style="color: #007bff; text-decoration: underline; font-weight: bold;"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#vallabh" target="_blank" style="color: #007bff; text-decoration: underline;">Prion Disease Program (Broad Institute)</a></h6>
     <ul>
         <li>• <a href="/platform/public/download/regulatory?documentName='2025-02-10_PRNP-CHARM-001_INTERACT-noncon-v2.pdf'" target="_blank">INTERACT Meeting Briefing Book</a></li>
         <li>• <a href="/platform/public/download/regulatory?documentName='2025-02-10-PRNP-CHARM-INTERACT-feedback-CBER-noncon-v2.pdf'" target="_blank">Official FDA Responses</a></li>
