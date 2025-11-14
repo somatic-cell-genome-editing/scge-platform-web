@@ -95,6 +95,7 @@
 .filterable-table .Maybe {
     color: #ffc107;
     font-weight: 600;
+    font-size: 1.2rem;
 }
 
 .filterable-table .No {
