@@ -17,13 +17,13 @@
             </a>
         </li>
         <li>
-            <a href="https://pubmed.ncbi.nlm.nih.gov/37924808/" target="_blank">
-                Efficient in vivo prime editing corrects the most frequent phenylketonuria variant, associated with high unmet medical need (2023)
+            <a href="https://www.nature.com/articles/s41551-025-01545-y" target="_blank">
+                Improved specificity and efficiency of in vivo adenine base editing therapies with hybrid guide RNAs (2025)
             </a>
         </li>
         <li>
-            <a href="https://pubmed.ncbi.nlm.nih.gov/37301931/" target="_blank">
-                Rapid and definitive treatment of phenylketonuria in variant-humanized mice with corrective editing (2023)
+            <a href="https://pubmed.ncbi.nlm.nih.gov/37924808/" target="_blank">
+                Efficient in vivo prime editing corrects the most frequent phenylketonuria variant, associated with high unmet medical need (2023)
             </a>
         </li>
         <li>
@@ -31,5 +31,12 @@
                 A base editing strategy using mRNA-LNPs for in vivo correction of the most frequent phenylketonuria variant (2024)
             </a>
         </li>
+        <li>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/37301931/" target="_blank">
+                Rapid and definitive treatment of phenylketonuria in variant-humanized mice with corrective editing (2023)
+            </a>
+        </li>
+
+
     </ul>
 </div>
