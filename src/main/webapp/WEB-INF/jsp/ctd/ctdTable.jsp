@@ -7,7 +7,9 @@
 <%@ page import="edu.mcw.scge.datamodel.Document" %>
 <%@ page import="edu.mcw.scge.datamodel.Application" %>
 <%@ page import="org.apache.commons.lang.StringUtils" %>
-<%@ page import="edu.mcw.scge.dao.implementation.ctd.CTDResourceDAO" %><%--
+<%@ page import="edu.mcw.scge.dao.implementation.ctd.CTDResourceDAO" %>
+<%@ page import="java.util.Comparator" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: jthota
   Date: 6/26/2024
@@ -85,6 +87,32 @@
 
 <div class="tab-content" id="myTabContent">
 
+    <%!
+        // Comparator to sort sections by prefix: .I, .S, .P, .A
+        private int getSectionOrder(String sectionCode) {
+            if (sectionCode == null || sectionCode.isEmpty()) {
+                return 999; // Put empty codes at the end
+            }
+            if (sectionCode.contains(".I")) return 1;
+            if (sectionCode.contains(".S")) return 2;
+            if (sectionCode.contains(".P")) return 3;
+            if (sectionCode.contains(".A")) return 4;
+            return 5; // Other codes after the main four
+        }
+
+        private Comparator<Section> sectionComparator = new Comparator<Section>() {
+            @Override
+            public int compare(Section s1, Section s2) {
+                int order1 = getSectionOrder(s1.getSectionCode());
+                int order2 = getSectionOrder(s2.getSectionCode());
+                if (order1 != order2) {
+                    return order1 - order2;
+                }
+                // If same prefix, sort by section code
+                return s1.getSectionCode().compareTo(s2.getSectionCode());
+            }
+        };
+    %>
     <%
         Map<Integer, List<Section>> modules= (Map<Integer, List<Section>>) request.getAttribute("modules");
 
@@ -107,6 +135,24 @@
                 level4Sections = sectionDAO.getSectionsOfModuleByLevel(module,4);
             } catch (Exception e) {
                 throw new RuntimeException(e);
+            }
+
+            // Sort all section lists
+            if(sections != null) {
+                sections = new ArrayList<>(sections);
+                sections.sort(sectionComparator);
+            }
+            if(level2Sections != null) {
+                level2Sections = new ArrayList<>(level2Sections);
+                level2Sections.sort(sectionComparator);
+            }
+            if(level3Sections != null) {
+                level3Sections = new ArrayList<>(level3Sections);
+                level3Sections.sort(sectionComparator);
+            }
+            if(level4Sections != null) {
+                level4Sections = new ArrayList<>(level4Sections);
+                level4Sections.sort(sectionComparator);
             }
 
             String activeTab="";
