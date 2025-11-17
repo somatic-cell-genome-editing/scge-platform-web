@@ -100,6 +100,40 @@
             return 5; // Other codes after the main four
         }
 
+        // Natural/numeric comparison for section codes
+        private int compareNaturally(String s1, String s2) {
+            if (s1 == null && s2 == null) return 0;
+            if (s1 == null) return -1;
+            if (s2 == null) return 1;
+
+            // Split by dots and compare each part numerically
+            String[] parts1 = s1.split("\\.");
+            String[] parts2 = s2.split("\\.");
+
+            int minLength = Math.min(parts1.length, parts2.length);
+            for (int i = 0; i < minLength; i++) {
+                String part1 = parts1[i];
+                String part2 = parts2[i];
+
+                // Try to compare numerically first
+                try {
+                    int num1 = Integer.parseInt(part1);
+                    int num2 = Integer.parseInt(part2);
+                    if (num1 != num2) {
+                        return num1 - num2;
+                    }
+                } catch (NumberFormatException e) {
+                    // If not numeric, compare as strings
+                    int cmp = part1.compareTo(part2);
+                    if (cmp != 0) {
+                        return cmp;
+                    }
+                }
+            }
+            // If all parts are equal, the shorter one comes first
+            return parts1.length - parts2.length;
+        }
+
         private Comparator<Section> sectionComparator = new Comparator<Section>() {
             @Override
             public int compare(Section s1, Section s2) {
@@ -108,8 +142,8 @@
                 if (order1 != order2) {
                     return order1 - order2;
                 }
-                // If same prefix, sort by section code
-                return s1.getSectionCode().compareTo(s2.getSectionCode());
+                // If same prefix, sort by section code numerically
+                return compareNaturally(s1.getSectionCode(), s2.getSectionCode());
             }
         };
     %>
