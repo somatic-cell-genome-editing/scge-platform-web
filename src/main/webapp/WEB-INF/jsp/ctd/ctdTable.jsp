@@ -156,7 +156,7 @@
                 </thead>
                 <tr>
 <%--                    <td style="text-wrap: none"><strong>Module<%=module%></strong></td>--%>
-                    <td style="text-wrap: none"><strong>Module<%=module%></strong></td>
+                    <td style="text-wrap: none"><span class="labelText"><strong>Module<%=module%></strong></span></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -195,7 +195,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td><strong><%=section.getSectionName()%></strong>
+                    <td><span class="labelText"><strong><%=section.getSectionName()%></strong></span>
 
                         <%@include file="sectionDocuments.jsp"%>
                     </td>
@@ -248,7 +248,7 @@
                         </span>
                         <%}%>
                         <%}else{%>
-                        <strong><%=l2.getSectionName()%></strong>
+                        <span class="labelText"><strong><%=l2.getSectionName()%></strong></span>
                         <%}%>
                         <%@include file="sectionDocuments.jsp"%>
                     </td>
@@ -309,7 +309,7 @@
                     <td></td>
                     <td>
                         <%if(module==3){%>
-                        <strong><%=l3.getSectionName()%></strong>
+                        <span class="labelText"><strong><%=l3.getSectionName()%></strong></span>
                         <%}else{%>
                         <%=l3.getSectionName()%>
                         <%if(l3.getSectionDescription()!=null && !l3.getSectionDescription().equals("")){%>

@@ -76,21 +76,39 @@
         tables.forEach(table => {
             const rows = table.querySelectorAll('tbody tr');
             rows.forEach(row => {
-                const labelRowText=row.cells[moduleLabelColumnIndex].textContent;
-                if(labelRowText==null || labelRowText===""){
+                // Check if the row contains a labelText element - these rows should be excluded from filtering
+                const hasLabelText = row.querySelector('.labelText') !== null;
 
-                const indStatus = row.cells[initialINDColumnIndex].textContent.toLowerCase().trim(); // column index 5 = IND
-                const marketingStatus = row.cells[marketingColumnIndex].textContent.toLowerCase().trim(); // column index 6 = marketing
+                if(hasLabelText) {
+                    // Always show rows with labelText (section headers)
+                    row.style.display = '';
+                } else {
+                    // Check if the cells have Yes/No/Maybe classes - only filter rows that have these
+                    const indCell = row.cells[initialINDColumnIndex];
+                    const marketingCell = row.cells[marketingColumnIndex];
 
-                const matchIndStatus=initialIndSelectedFilters.includes(indStatus);
-                const matchMarketingStatus=marketingSelectedFilters.includes(marketingStatus);
-                if(initialIndSelectedFilters.length===0 && marketingSelectedFilters.length===0){
-                    row.style.display =  '';
-                }else {
-                    row.style.display = (matchIndStatus || matchMarketingStatus) ? '' : 'none';
+                    const hasFilterableClass = (indCell && (indCell.querySelector('.Yes') || indCell.querySelector('.No') || indCell.querySelector('.Maybe'))) ||
+                                              (marketingCell && (marketingCell.querySelector('.Yes') || marketingCell.querySelector('.No') || marketingCell.querySelector('.Maybe')));
 
+                    if(!hasFilterableClass) {
+                        // Rows without Yes/No/Maybe classes should always be visible
+                        row.style.display = '';
+                    } else {
+                        // Apply filtering logic for rows with Yes/No/Maybe classes
+                        const indStatus = indCell.textContent.toLowerCase().trim(); // column index 5 = IND
+                        const marketingStatus = marketingCell.textContent.toLowerCase().trim(); // column index 6 = marketing
+
+                        const matchIndStatus=initialIndSelectedFilters.includes(indStatus);
+                        const matchMarketingStatus=marketingSelectedFilters.includes(marketingStatus);
+
+                        if(initialIndSelectedFilters.length===0 && marketingSelectedFilters.length===0){
+                            row.style.display =  '';
+                        }else {
+                            row.style.display = (matchIndStatus || matchMarketingStatus) ? '' : 'none';
+                        }
+                    }
                 }
-            }});
+            });
         });
 
 
