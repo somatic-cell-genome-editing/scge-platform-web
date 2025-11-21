@@ -83,6 +83,7 @@
                     <select name="recordStatus" style="width: 11%" class="form-control">
                         <option value="Active" <%=clinicalTrialData.getRecordStatus()!=null&&clinicalTrialData.getRecordStatus().equalsIgnoreCase("Active")?"selected":""%>>Active</option>
                         <option value="Inactive" <%=clinicalTrialData.getRecordStatus()!=null&&clinicalTrialData.getRecordStatus().equalsIgnoreCase("Inactive")?"selected":""%>>Inactive</option>
+                        <option value="Draft" <%=clinicalTrialData.getRecordStatus()!=null&&clinicalTrialData.getRecordStatus().equalsIgnoreCase("Draft")?"selected":""%>>Draft</option>
                     </select>
                 </td>
             </tr>
