@@ -37,6 +37,7 @@
           <li><a href="https://twitter.com/somaticediting" target="_blank" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a></li>
           <li><a href="https://www.linkedin.com/company/somatic-cell-genome-editing-consortium/about/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
           <li><a href="https://www.youtube.com/channel/UCnMSf_YZdv1gIuqPmB6vrYw" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a></li>
+          <li><a href="https://bsky.app/profile/scge.bsky.social" target="_blank" title="Bluesky"><i class="fab fa-bluesky"></i></a></li>
         </ul>
       </div>
 

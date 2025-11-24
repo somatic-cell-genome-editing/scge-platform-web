@@ -114,6 +114,7 @@
         </div><!-- /.col-md-8 -->
 
         <aside class="col-md-4 blog-sidebar">
+
             <div class="news-section">
                 <h3>Latest News & Updates</h3>
 
@@ -140,12 +141,15 @@
                 </div>
             </div>
 
+            <%@include file="bsky_feeds.jsp"%>
+
             <div class="social-links-wrapper">
                 <h4>Follow us on</h4>
                 <ul class="list-group list-group-horizontal">
                     <li class="list-group-item"><a href="https://twitter.com/somaticediting" target="_blank" title="twitter"><i class="fa-brands fa-x-twitter"></i></a></li>
                     <li class="list-group-item"><a href="https://www.linkedin.com/company/somatic-cell-genome-editing-consortium/about/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin mr-1"></i></a></li>
                     <li class="list-group-item"><a href="https://www.youtube.com/channel/UCnMSf_YZdv1gIuqPmB6vrYw" target="_blank" title="YouTube"><i class="fab fa-youtube mr-1"></i></a></li>
+                    <li class="list-group-item"><a href="https://bsky.app/profile/scge.bsky.social" target="_blank" title="Bluesky"><i class="fab fa-bluesky mr-1"></i></a></li>
                 </ul>
             </div>
         </aside><!-- /.blog-sidebar -->
