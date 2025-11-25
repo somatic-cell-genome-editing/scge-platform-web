@@ -105,11 +105,15 @@
             </div>
 
             <div class="sidebar-section">
+                <div>
+                    <%@include file="fdaNews.jsp"%>
+                </div>
                 <h4>External Resources/Links</h4>
                 <ol class="list-unstyled mb-0">
                     <li><a href="https://www.fda.gov/drugs/investigational-new-drug-ind-application/ind-forms-and-instructions" target="_blank">FDA IND Forms and Instructions</a></li>
                     <li><a href="https://www.fda.gov/drugs/types-applications/investigational-new-drug-ind-application#FDA%20Guidances%20for%20Investigational%20New%20Drugs" target="_blank">FDA Guidance Documents for INDs</a></li>
                 </ol>
+
             </div>
         </div><!-- /.col-md-8 -->
 
@@ -152,7 +156,35 @@
                     <li class="list-group-item"><a href="https://bsky.app/profile/scge.bsky.social" target="_blank" title="Bluesky"><i class="fab fa-bluesky mr-1"></i></a></li>
                 </ul>
             </div>
+
         </aside><!-- /.blog-sidebar -->
 
     </div><!-- /.row -->
+
+
+<%--    <script>--%>
+
+<%--        async function loadFDAFeed() {--%>
+<%--            const rssUrl = "https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/press-releases/rss.xml";--%>
+
+<%--            const response = await fetch(rssUrl);   // may fail due to CORS--%>
+<%--            const xmlText = await response.text();  // ✔ treat response as text--%>
+
+<%--            const parser = new DOMParser();--%>
+<%--            const xml = parser.parseFromString(xmlText, "text/xml");--%>
+
+<%--            const items = xml.querySelectorAll("item");--%>
+
+<%--            items.forEach(item => {--%>
+<%--                let title=item.querySelector("title").textContent;--%>
+<%--                let titleLc=title.toLowerCase();--%>
+<%--                if(titleLc.substring("gene therapy"))--%>
+<%--                console.log(item.querySelector("title").textContent);--%>
+<%--            });--%>
+<%--        }--%>
+
+
+<%--        loadFDAFeed();--%>
+<%--    </script>--%>
+
 </div><!-- /.container -->
