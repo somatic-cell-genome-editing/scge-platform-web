@@ -21,16 +21,16 @@
                     <!-- Projects Dropdown -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="projectsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Projects
+                            Initiatives
                         </a>
                         <div class="dropdown-menu" aria-labelledby="projectsDropdown">
 <%--                            <a class="dropdown-item" href="https://scge.mcw.edu/phase-2-ind-enabling-studies/">All Projects</a>--%>
 <%--                            <div class="dropdown-divider"></div>--%>
-                            <h6 class="dropdown-header">IND-Enabling Studies</h6>
-                            <a class="dropdown-item indented" href="https://scge.mcw.edu/phase-2-ind-enabling-studies/">Therapeutic Leads</a>
-                            <a class="dropdown-item indented" href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/">Multiple Disease Platforms</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="https://scge.mcw.edu/phase-2-platform-clinical-trials/">Platform Clinical Programs</a>
+<%--                            <h6 class="dropdown-header" style="color:black">IND-Enabling Studies</h6>--%>
+                            <a class="dropdown-item" href="https://scge.mcw.edu/phase-2-ind-enabling-studies/" target="_blank">Therapeutic Leads</a>
+                            <a class="dropdown-item" href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/" target="_blank">Multiple Disease Platforms</a>
+<%--                            <div class="dropdown-divider"></div>--%>
+                            <a class="dropdown-item" href="https://scge.mcw.edu/phase-2-platform-clinical-trials/" target="_blank">Platform Clinical Programs</a>
 <%--                            <a class="dropdown-item" href="/platform/projects?category=Collaboration">Collaborations</a>--%>
                         </div>
                     </li>
