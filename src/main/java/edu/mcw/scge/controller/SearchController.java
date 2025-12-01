@@ -4,7 +4,9 @@ package edu.mcw.scge.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import edu.mcw.scge.configuration.Access;
 import edu.mcw.scge.datamodel.Definition;
+import edu.mcw.scge.datamodel.Person;
 import edu.mcw.scge.datamodel.web.ClinicalTrials;
 import edu.mcw.scge.service.es.clinicalTrials.ClinicalTrialsService;
 import edu.mcw.scge.service.es.clinicalTrials.ClinicalTrialApiIndexServices;
@@ -12,6 +14,7 @@ import edu.mcw.scge.service.es.clinicalTrials.ClinicalTrialApiIndexServices;
 import edu.mcw.scge.uploadFiles.DBService;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,19 +24,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+
 import java.util.*;
 
 @Controller
 @RequestMapping(value="/data/search")
 public class SearchController{
     DBService service=new DBService();
+    Access access=new Access();
     @RequestMapping(value="/clinicalTrialsapi")
     public String getClinicalTrialsAPIResults(HttpServletRequest req, HttpServletResponse res, Model model,
-                                       @PathVariable(required = false) String category, @RequestParam(required = false) String searchTerm) throws Exception {
+                                       @PathVariable(required = false) String category, @RequestParam(required = false) String searchTerm,
+                                       OAuth2AuthenticationToken authentication) throws Exception {
         ClinicalTrialApiIndexServices services = new ClinicalTrialApiIndexServices();
-        Map<String, List<String>> filterMap=getFiltersMap(req);
-        SearchResponse sr=services.getSearchResults(searchTerm ,getFiltersMap(req));
+        Map<String, List<String>> filterMap=getFiltersMap(req, authentication);
+        SearchResponse sr=services.getSearchResults(searchTerm ,getFiltersMap(req, authentication));
         req.setAttribute("searchTerm", searchTerm);
         req.setAttribute("sr", sr);
         req.setAttribute("filterMap", filterMap);
@@ -46,16 +52,17 @@ public class SearchController{
 
     @RequestMapping(value="/")
     public String getSearchResultsResults(HttpServletRequest req, HttpServletResponse res, Model model,
-                                               @RequestParam(required = true) String searchTerm) throws Exception {
+                                               @RequestParam(required = true) String searchTerm,
+                                               OAuth2AuthenticationToken authentication) throws Exception {
         if(searchTerm==null)
             return null;
         ClinicalTrialsService services = new ClinicalTrialsService();
-        LinkedHashMap<String, List<String>> filterMap=getFiltersMap(req);
-        SearchResponse sr=services.getSearchResults(searchTerm ,null,getFiltersMap(req));
+        LinkedHashMap<String, List<String>> filterMap=getFiltersMap(req, authentication);
+        SearchResponse sr=services.getSearchResults(searchTerm ,null,getFiltersMap(req, authentication));
         req.setAttribute("searchTerm", searchTerm);
         req.setAttribute("sr", sr);
         req.setAttribute("filterMap", filterMap);
-        req.setAttribute("filtersSelected", getSelectedOrderedFilters(req));
+        req.setAttribute("filtersSelected", getSelectedOrderedFilters(req, authentication));
         model.addAttribute("searchTerm", searchTerm);
 //        Terms terms=sr.getAggregations().get("organization");
         Map<String,List<Definition>> definitions=service.getAllDefinitionsMap();
@@ -67,14 +74,15 @@ public class SearchController{
     }
     @RequestMapping(value="/{category}")
     public String getClinicalTrialsFileResults(HttpServletRequest req, HttpServletResponse res, Model model,
-                                               @PathVariable("category") String category, @RequestParam(name="searchTerm", required = false) String searchTerm) throws Exception {
+                                               @PathVariable("category") String category, @RequestParam(name="searchTerm", required = false) String searchTerm,
+                                               OAuth2AuthenticationToken authentication) throws Exception {
         ClinicalTrialsService services = new ClinicalTrialsService();
-        LinkedHashMap<String, List<String>> filterMap=getFiltersMap(req);
-        SearchResponse sr=services.getSearchResults(searchTerm ,category,getFiltersMap(req));
+        LinkedHashMap<String, List<String>> filterMap=getFiltersMap(req, authentication);
+        SearchResponse sr=services.getSearchResults(searchTerm ,category,getFiltersMap(req, authentication));
         req.setAttribute("searchTerm", searchTerm);
         req.setAttribute("sr", sr);
         req.setAttribute("filterMap", filterMap);
-        req.setAttribute("filtersSelected", getSelectedOrderedFilters(req));
+        req.setAttribute("filtersSelected", getSelectedOrderedFilters(req, authentication));
         model.addAttribute("searchTerm", searchTerm);
 //        Terms terms=sr.getAggregations().get("organization");
         Map<String,List<Definition>> definitions=service.getAllDefinitionsMap();
@@ -99,7 +107,7 @@ public class SearchController{
         res.getWriter().write(autoList);
         return null;
     }
-    public LinkedHashMap<String,  List<String>> getFiltersMap(HttpServletRequest request) throws IOException {
+    public LinkedHashMap<String,  List<String>> getFiltersMap(HttpServletRequest request, OAuth2AuthenticationToken authentication) throws Exception {
 
         LinkedHashMap<String,  List<String>> filterMap=new LinkedHashMap<>();
         for(String filterField: ClinicalTrials.facets) {
@@ -125,9 +133,43 @@ public class SearchController{
             }
         }
         status.remove("Active");
+        List<String> recordStatus=new ArrayList<>();
+        Person person = getPersonFromAuth(authentication, request);
+        if(filterMap.get("recordStatus")!=null && person!=null && access.isAdmin(person)){
+            recordStatus.addAll(filterMap.get("recordStatus"));
+        }
+        else{
+            if(person==null){
+            recordStatus.add("Active");}
+        }
+
+        filterMap.put("recordStatus", recordStatus);
         return filterMap;
     }
-    public List<String> getSelectedOrderedFilters(HttpServletRequest request) throws IOException {
+
+    private Person getPersonFromAuth(OAuth2AuthenticationToken authentication, HttpServletRequest request) throws Exception {
+        // First try to get from session (cached)
+        if (request.getSession().getAttribute("person") != null) {
+            return (Person) request.getSession().getAttribute("person");
+        }
+        // If not in session, get from OAuth2 token
+        if (authentication != null && authentication.getPrincipal() != null) {
+            Map<String, Object> attributes = authentication.getPrincipal().getAttributes();
+            if (attributes != null && attributes.get("email") != null) {
+                String email = (String) attributes.get("email");
+                edu.mcw.scge.dao.implementation.PersonDao pdao = new edu.mcw.scge.dao.implementation.PersonDao();
+                List<Person> personList = pdao.getPersonByEmail(email);
+                if (personList != null && !personList.isEmpty()) {
+                    Person person = personList.get(0);
+                    // Cache in session for future requests
+                    request.getSession().setAttribute("person", person);
+                    return person;
+                }
+            }
+        }
+        return null;
+    }
+    public List<String> getSelectedOrderedFilters(HttpServletRequest request, OAuth2AuthenticationToken authentication) throws Exception {
 
         ObjectMapper mapper=new ObjectMapper();
         List<String> filters=new ArrayList<>();
@@ -144,7 +186,7 @@ public class SearchController{
         }
         if(request.getParameter("unchecked")==null && request.getParameter("checked")==null)
         {
-            LinkedHashMap<String,  List<String>> filterMap=   getFiltersMap(request);
+            LinkedHashMap<String,  List<String>> filterMap=   getFiltersMap(request, authentication);
             if(filterMap!=null && filterMap.size()>0){
                 for(String key:filterMap.keySet()){
                     List<String> filterValues=filterMap.get(key);
