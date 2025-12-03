@@ -21,6 +21,9 @@
 <%--    </p>--%>
 
     <div class="bluesky-posts-container">
+        <blockquote class="bluesky-embed" data-bluesky-uri="at://did:plc:dinjynbbn4gwctbpyptaynjf/app.bsky.feed.post/3m73u74tzis2c" data-bluesky-cid="bafyreibhzqrhlpygr4ur3klmd2i7srifoygopohgxfqsckiww7gcuynpke" data-bluesky-embed-color-mode="system"><p lang="en">SCGE researcher Dr. Sonia Vallabh will be presenting at the NIH Director&#x27;s Wednesday Afternoon Lecture Series (WALS) today at 2:00pm ET. The series is available for the public at: videocast.nih.gov/watch=57108
+
+            #RareDisease #PatientScientist #MedicalResearch #Biotech<br><br><a href="https://bsky.app/profile/did:plc:dinjynbbn4gwctbpyptaynjf/post/3m73u74tzis2c?ref_src=embed">[image or embed]</a></p>&mdash; SCGE (<a href="https://bsky.app/profile/did:plc:dinjynbbn4gwctbpyptaynjf?ref_src=embed">@scge.bsky.social</a>) <a href="https://bsky.app/profile/did:plc:dinjynbbn4gwctbpyptaynjf/post/3m73u74tzis2c?ref_src=embed">December 3, 2025 at 10:16 AM</a></blockquote><script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
         <blockquote class="bluesky-embed" data-bluesky-uri="at://did:plc:dinjynbbn4gwctbpyptaynjf/app.bsky.feed.post/3m6zafcrvck2s" data-bluesky-cid="bafyreibbnm7smwz3sl2vlwbn76kvmxgnw3qqf4uu2gcswdivzzpk5ums3u" data-bluesky-embed-color-mode="system"><p lang="en">A team of SCGE researchers demonstrate the utility of kidney organoids as a preclinical testing platform for genome editing that may inform clinical trials.
 
             www.nature.com/articles/s41...

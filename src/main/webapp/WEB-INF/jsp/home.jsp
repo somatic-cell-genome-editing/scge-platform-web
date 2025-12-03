@@ -145,7 +145,8 @@
                 </div>
             </div>
 
-<%--            <%@include file="bsky_feeds.jsp"%>--%>
+            <%@include file="bsky_feeds.jsp"%>
+
 
             <div class="social-links-wrapper">
                 <h4>Follow us on</h4>
