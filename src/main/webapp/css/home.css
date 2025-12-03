@@ -486,6 +486,148 @@
     box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
 }
 
+/* Bluesky Feed Section Styles */
+.bluesky-section {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 0;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border: 1px solid #e1e8ed;
+}
+
+.bluesky-section h3 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #003366;
+    margin: 0;
+    padding: 20px 25px 15px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border-bottom: 3px solid #1185fe;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bluesky-section h3::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 24px;
+    background: linear-gradient(180deg, #1185fe 0%, #0066cc 100%);
+    border-radius: 2px;
+}
+
+.bluesky-profile-header {
+    padding: 15px 25px;
+    background: linear-gradient(135deg, #f0f7ff 0%, #e8f4fd 100%);
+    border-bottom: 1px solid #e1e8ed;
+}
+
+.bluesky-profile-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #1185fe;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 25px;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(17, 133, 254, 0.15);
+}
+
+.bluesky-profile-link:hover {
+    color: #0066cc;
+    background: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(17, 133, 254, 0.25);
+    text-decoration: none;
+}
+
+.bluesky-profile-link i {
+    font-size: 1.3rem;
+    color: #1185fe;
+}
+
+.bluesky-feed-container {
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 15px 20px;
+    background: linear-gradient(180deg, #fafbfc 0%, #ffffff 100%);
+    scroll-behavior: smooth;
+}
+
+/* Modern scrollbar styling */
+.bluesky-feed-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.bluesky-feed-container::-webkit-scrollbar-track {
+    background: linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 100%);
+    border-radius: 10px;
+    margin: 5px 0;
+}
+
+.bluesky-feed-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #1185fe 0%, #0066cc 100%);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    transition: background 0.3s ease;
+}
+
+.bluesky-feed-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #0066cc 0%, #004499 100%);
+    background-clip: padding-box;
+}
+
+/* Firefox scrollbar */
+.bluesky-feed-container {
+    scrollbar-width: thin;
+    scrollbar-color: #1185fe #f1f5f9;
+}
+
+/* Style the bsky-embed component */
+.bluesky-feed-container bsky-embed {
+    display: block;
+    width: 100%;
+}
+
+.bluesky-view-all-btn {
+    display: block;
+    text-align: center;
+    padding: 15px 25px;
+    background: linear-gradient(135deg, #1185fe 0%, #0066cc 100%);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    border-top: 1px solid #e1e8ed;
+}
+
+.bluesky-view-all-btn:hover {
+    background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.bluesky-view-all-btn i {
+    margin-left: 8px;
+    font-size: 0.85rem;
+    transition: transform 0.3s ease;
+}
+
+.bluesky-view-all-btn:hover i {
+    transform: translateX(3px);
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .hero-section {
@@ -536,5 +678,30 @@
 
     .tool-card-description {
         font-size: 0.85rem;
+    }
+
+    /* Bluesky section responsive */
+    .bluesky-section h3 {
+        font-size: 1.1rem;
+        padding: 15px 20px 12px;
+    }
+
+    .bluesky-profile-header {
+        padding: 12px 20px;
+    }
+
+    .bluesky-profile-link {
+        font-size: 1rem;
+        padding: 6px 12px;
+    }
+
+    .bluesky-feed-container {
+        max-height: 400px;
+        padding: 12px 15px;
+    }
+
+    .bluesky-view-all-btn {
+        padding: 12px 20px;
+        font-size: 0.9rem;
     }
 }
