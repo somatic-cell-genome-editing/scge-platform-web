@@ -105,11 +105,15 @@
             </div>
 
             <div class="sidebar-section">
+                <div>
+                    <%@include file="fdaNews.jsp"%>
+                </div>
                 <h4>External Resources/Links</h4>
                 <ol class="list-unstyled mb-0">
                     <li><a href="https://www.fda.gov/drugs/investigational-new-drug-ind-application/ind-forms-and-instructions" target="_blank">FDA IND Forms and Instructions</a></li>
                     <li><a href="https://www.fda.gov/drugs/types-applications/investigational-new-drug-ind-application#FDA%20Guidances%20for%20Investigational%20New%20Drugs" target="_blank">FDA Guidance Documents for INDs</a></li>
                 </ol>
+
             </div>
         </div><!-- /.col-md-8 -->
 
@@ -141,7 +145,46 @@
                 </div>
             </div>
 
-            <%@include file="bsky_feeds.jsp"%>
+<%--            <%@include file="bsky_feeds.jsp"%>--%>
+            <div class="bluesky-section">
+                <h3>Latest from Bluesky</h3>
+                <div class="bluesky-profile-header">
+                    <a href="https://bsky.app/profile/scge.bsky.social" target="_blank" class="bluesky-profile-link">
+                        <i class="fab fa-bluesky"></i>
+                        <span>@scge.bsky.social</span>
+                    </a>
+                </div>
+                <div class="bluesky-feed-container">
+                    <script type="module" src="https://cdn.jsdelivr.net/npm/bsky-embed/dist/bsky-embed.es.js" async></script>
+                    <bsky-embed
+                            username="scge.bsky.social"
+                            mode="light"
+                            limit="10"
+                            link-target="_blank"
+                            custom-styles="
+                                article { padding: 12px !important; margin-bottom: 8px !important; }
+                                .p-4 { padding: 12px !important; }
+                                .p-3 { padding: 8px !important; }
+                                .py-4 { padding-top: 12px !important; padding-bottom: 12px !important; }
+                                .px-4 { padding-left: 12px !important; padding-right: 12px !important; }
+                                .mb-4 { margin-bottom: 8px !important; }
+                                .mt-4 { margin-top: 8px !important; }
+                                .my-4 { margin-top: 8px !important; margin-bottom: 8px !important; }
+                                .gap-4 { gap: 8px !important; }
+                                .gap-3 { gap: 6px !important; }
+                                .space-y-4 > * + * { margin-top: 8px !important; }
+                                .text-base { font-size: 14px !important; line-height: 1.4 !important; }
+                                .leading-relaxed { line-height: 1.4 !important; }
+                                img { max-height: 200px !important; object-fit: cover !important; }
+                                .rounded-xl { border-radius: 8px !important; }
+                            "
+                    >
+                    </bsky-embed>
+                </div>
+                <a href="https://bsky.app/profile/scge.bsky.social" target="_blank" class="bluesky-view-all-btn">
+                    View All Posts <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
 
             <div class="social-links-wrapper">
                 <h4>Follow us on</h4>
@@ -152,7 +195,35 @@
                     <li class="list-group-item"><a href="https://bsky.app/profile/scge.bsky.social" target="_blank" title="Bluesky"><i class="fab fa-bluesky mr-1"></i></a></li>
                 </ul>
             </div>
+
         </aside><!-- /.blog-sidebar -->
 
     </div><!-- /.row -->
+
+
+<%--    <script>--%>
+
+<%--        async function loadFDAFeed() {--%>
+<%--            const rssUrl = "https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/press-releases/rss.xml";--%>
+
+<%--            const response = await fetch(rssUrl);   // may fail due to CORS--%>
+<%--            const xmlText = await response.text();  // ✔ treat response as text--%>
+
+<%--            const parser = new DOMParser();--%>
+<%--            const xml = parser.parseFromString(xmlText, "text/xml");--%>
+
+<%--            const items = xml.querySelectorAll("item");--%>
+
+<%--            items.forEach(item => {--%>
+<%--                let title=item.querySelector("title").textContent;--%>
+<%--                let titleLc=title.toLowerCase();--%>
+<%--                if(titleLc.substring("gene therapy"))--%>
+<%--                console.log(item.querySelector("title").textContent);--%>
+<%--            });--%>
+<%--        }--%>
+
+
+<%--        loadFDAFeed();--%>
+<%--    </script>--%>
+
 </div><!-- /.container -->

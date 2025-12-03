@@ -65,7 +65,8 @@ public class ClinicalTrialsService {
     public SearchResponse getSearchResults(String searchTerm,String category, Map<String, List<String>> filtersMap) throws IOException {
         String searchIndex= SCGEContext.getESIndexName();
         SearchSourceBuilder srb=new SearchSourceBuilder();
-        srb.query(this.buildBoolQuery(searchTerm, category));
+        BoolQueryBuilder q=this.buildBoolQuery(searchTerm, category);
+        srb.query(q);
         for(String fieldName:ClinicalTrials.facets) {
             srb.aggregation(buildAggregations(fieldName));
         }
@@ -80,9 +81,8 @@ public class ClinicalTrialsService {
 
         SearchRequest searchRequest=new SearchRequest(searchIndex);
         searchRequest.source(srb);
+       return ESClient.getClient().search(searchRequest, RequestOptions.DEFAULT);
 
-        SearchResponse sr= ESClient.getClient().search(searchRequest, RequestOptions.DEFAULT);
-        return sr;
 
     }
     public Set<String> getAutocompleteList(String term) throws IOException {
@@ -114,6 +114,7 @@ public class ClinicalTrialsService {
         BoolQueryBuilder q=new BoolQueryBuilder();
         for(String filter:filters.keySet()) {
             List<String> filterValues=filters.get(filter);
+            if(filterValues.size()>0)
             q.filter().add(QueryBuilders.termsQuery(filter + ".keyword", filterValues.toArray()));
         }
       //  q.must(dqb);

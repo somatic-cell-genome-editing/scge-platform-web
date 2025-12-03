@@ -7,10 +7,10 @@
             <div class="sidebar-content">
                 <h5>Contents</h5>
 
-                <%@include file="pku/pku_docs.jsp"%>
-                <%@include file="ucd/ucd_docs.jsp"%>
+                <%@include file="pku/pku_sidebar.jsp"%>
+                <%@include file="ucd/ucd_sidebar.jsp"%>
                 <%@include file="cps1/cps1_docs.jsp"%>
-                <%@include file="prion/prion_docs.jsp"%>
+                <%@include file="prion/prion_sidebar.jsp"%>
             </div>
         </div>
 
@@ -37,6 +37,7 @@
                             <th class="phase-column">IND Enabling<br>Studies</th>
                             <th class="phase-column">Clinical Trial<br>Initiated</th>
                             <th style="width: 80px;">Publications</th>
+                            <th style="width: 80px;">Documents</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,10 +63,22 @@
                                     <i class="fas fa-chevron-down toggle-icon"></i>
                                 </button>
                             </td>
+                            <td class="publications-cell">
+                                <button class="publications-toggle" onclick="togglePublications('pku-documents')">
+                                    <i class="fas fa-folder-open"></i>
+                                    <span class="pub-count">2</span>
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
+                                </button>
+                            </td>
                         </tr>
                         <tr class="publications-row" id="pku-publications">
-                            <td colspan="8" class="publications-content">
+                            <td colspan="9" class="publications-content">
                                <%@include file="pku/pku_publications.jsp"%>
+                            </td>
+                        </tr>
+                        <tr class="publications-row" id="pku-documents">
+                            <td colspan="9" class="publications-content">
+                               <%@include file="pku/pku_docs.jsp"%>
                             </td>
                         </tr>
                         <tr>
@@ -80,10 +93,18 @@
                                     <i class="fas fa-chevron-down toggle-icon"></i>
                                 </button>
                             </td>
+                            <td class="publications-cell">
+                                <div class="no-publications">—</div>
+                            </td>
                         </tr>
                         <tr class="publications-row" id="cps1-publications">
-                            <td colspan="8" class="publications-content">
+                            <td colspan="9" class="publications-content">
                                 <%@include file="cps1/cps1_publications.jsp"%>
+                            </td>
+                        </tr>
+                        <tr class="publications-row" id="cps1-documents">
+                            <td colspan="9" class="publications-content">
+                                <%@include file="cps1/cps1_docs.jsp"%>
                             </td>
                         </tr>
                         <tr>
@@ -98,11 +119,23 @@
                                     <i class="fas fa-chevron-down toggle-icon"></i>
                                 </button>
                             </td>
+                            <td class="publications-cell">
+                                <button class="publications-toggle" onclick="togglePublications('ucd-documents')">
+                                    <i class="fas fa-folder-open"></i>
+                                    <span class="pub-count">2</span>
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
+                                </button>
+                            </td>
                         </tr>
 
                         <tr class="publications-row" id="ucd-publications">
-                            <td colspan="8" class="publications-content">
+                            <td colspan="9" class="publications-content">
                                 <%@include file="ucd/ucd_publications.jsp"%>
+                            </td>
+                        </tr>
+                        <tr class="publications-row" id="ucd-documents">
+                            <td colspan="9" class="publications-content">
+                                <%@include file="ucd/ucd_docs.jsp"%>
                             </td>
                         </tr>
 
@@ -124,6 +157,9 @@
                             <td class="publications-cell">
                                 <div class="no-publications">—</div>
                             </td>
+                            <td class="publications-cell">
+                                <div class="no-publications">—</div>
+                            </td>
                         </tr>
                         <tr>
                             <td class="program-name">Angelman Syndrome</td>
@@ -134,11 +170,14 @@
                             <td class="publications-cell">
                                 <div class="no-publications">—</div>
                             </td>
+                            <td class="publications-cell">
+                                <div class="no-publications">—</div>
+                            </td>
                         </tr>
                         <tr>
                             <td class="program-name">Prion Disease</td>
                             <td colspan="5" style="position: relative;">
-                                <div class="timeline-bar" style="left: 5px; width: 30%;"></div>
+                                <div class="timeline-bar" style="left: 5px; width: 40%;"></div>
 
                             </td>
                             <td class="publications-cell">
@@ -148,10 +187,22 @@
                                     <i class="fas fa-chevron-down toggle-icon"></i>
                                 </button>
                             </td>
+                            <td class="publications-cell">
+                                <button class="publications-toggle" onclick="togglePublications('prion-documents')">
+                                    <i class="fas fa-folder-open"></i>
+                                    <span class="pub-count">2</span>
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
+                                </button>
+                            </td>
                         </tr>
                         <tr class="publications-row" id="prion-publications">
-                            <td colspan="8" class="publications-content">
+                            <td colspan="9" class="publications-content">
                                 <%@include file="prion/prion_publications.jsp"%>
+                            </td>
+                        </tr>
+                        <tr class="publications-row" id="prion-documents">
+                            <td colspan="9" class="publications-content">
+                                <%@include file="prion/prion_docs.jsp"%>
                             </td>
                         </tr>
                         <!-- Retinal Diseases -->
@@ -172,12 +223,18 @@
                             <td class="publications-cell">
                                 <div class="no-publications">—</div>
                             </td>
+                            <td class="publications-cell">
+                                <div class="no-publications">—</div>
+                            </td>
 
                         </tr>
                     <tr>
-                        <td class="program-name">Best Vitelliform Macular Dystrophy (BVMD, Best’s Disease)</td>
+                        <td class="program-name">Best Vitelliform Macular Dystrophy (BVMD, Best's Disease)</td>
                         <td colspan="5" style="position: relative;">
                             <div class="timeline-bar" style="left: 5px; width: 20%;"></div>
+                        </td>
+                        <td class="publications-cell">
+                            <div class="no-publications">—</div>
                         </td>
                         <td class="publications-cell">
                             <div class="no-publications">—</div>
