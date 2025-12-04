@@ -84,6 +84,8 @@
                         <option value="Active" <%=clinicalTrialData.getRecordStatus()!=null&&clinicalTrialData.getRecordStatus().equalsIgnoreCase("Active")?"selected":""%>>Active</option>
                         <option value="Inactive" <%=clinicalTrialData.getRecordStatus()!=null&&clinicalTrialData.getRecordStatus().equalsIgnoreCase("Inactive")?"selected":""%>>Inactive</option>
                         <option value="Draft" <%=clinicalTrialData.getRecordStatus()!=null&&clinicalTrialData.getRecordStatus().equalsIgnoreCase("Draft")?"selected":""%>>Draft</option>
+                        <option value="Provisional" <%=clinicalTrialData.getRecordStatus()!=null&&clinicalTrialData.getRecordStatus().equalsIgnoreCase("Provisional")?"selected":""%>>Provisional</option>
+                        <option value="NotForCuration" <%=clinicalTrialData.getRecordStatus()!=null&&clinicalTrialData.getRecordStatus().equalsIgnoreCase("NotForCuration")?"selected":""%>>NotForCuration</option>
                     </select>
                 </td>
             </tr>
