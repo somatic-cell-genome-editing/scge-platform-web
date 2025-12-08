@@ -5,7 +5,7 @@
     </button>
     <%}%>
     <button type="button" class="openLikeBtn" onclick="openForm()"></button>
-
+    <%if(request.getServerName().equals("localhost")||SCGEContext.isDev()){%>
     <!-- AI Assistant Speech Bubble -->
     <div id="aiSpeechBubble" class="ai-speech-bubble" style="display: none;">
         <button class="ai-speech-close" onclick="closeAISpeech()">&times;</button>
@@ -14,6 +14,7 @@
             I'm your AI assistant. Ask me anything about clinical trials, fda documents!
         </div>
     </div>
+    <%}%>
 </div>
 <div class="chat-popup" id="messageVue">
     <form class="form-container">
