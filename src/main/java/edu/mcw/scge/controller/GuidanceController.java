@@ -32,12 +32,12 @@ public class GuidanceController extends ModulesController{
     }
     @RequestMapping(value="/templates")
     public String getINDTemplates(HttpServletRequest req, HttpServletResponse res) throws Exception {
-        if(!SCGEContext.isProduction()) {
+      //  if(!SCGEContext.isProduction()) {
             req.setAttribute("modules", getCTDModules());
             req.setAttribute("title", "Investigational New Drug (IND) Templates");
             req.setAttribute("page", "/WEB-INF/jsp/templates/templates");
             req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
-        }
+    //    }
         return null;
     }
 

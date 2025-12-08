@@ -77,9 +77,9 @@
                         <a href="/platform/public/documents/regulatory" class="tool-card-link">View Documents</a>
                     </div>
                 </div>
-                    <%
-                        if(!SCGEContext.isProduction()){
-                    %>
+                <%
+                    if(SCGEContext.isDev() || SCGEContext.isTest()){
+                %>
                 <div class="col-md-3 col-sm-6">
                     <div class="tool-card">
                         <div class="tool-card-icon">
@@ -93,6 +93,7 @@
                     </div>
                 </div>
                     <%}%>
+
                 <div class="col-md-3 col-sm-6">
                     <div class="tool-card">
                         <div class="tool-card-icon">
