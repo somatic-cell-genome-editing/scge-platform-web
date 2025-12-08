@@ -1,7 +1,9 @@
 <div id="hiddenBtns" class="hiddenBtns" style="display: block;">
+    <%if(request.getServerName().equals("localhost")||SCGEContext.isDev()){%>
     <button type="button" class="aiAssistantBtn" onclick="window.open('/assistant/chat', '_blank')" title="AI Assistant">
         <i class="fas fa-robot"></i>
     </button>
+    <%}%>
     <button type="button" class="openLikeBtn" onclick="openForm()"></button>
 
     <!-- AI Assistant Speech Bubble -->
@@ -13,7 +15,6 @@
         </div>
     </div>
 </div>
-
 <div class="chat-popup" id="messageVue">
     <form class="form-container">
         <img src="/platform/images/close30.png" id="close" onclick="closeForm()" class="closeForm"/>
