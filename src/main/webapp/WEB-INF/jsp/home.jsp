@@ -7,7 +7,6 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <link href="/platform/css/home.css" rel="stylesheet" type="text/css"/>
 
 <div class="container">
@@ -78,7 +77,7 @@
                     </div>
                 </div>
                 <%
-                    if(SCGEContext.isDev() || SCGEContext.isTest()){
+                    if(!edu.mcw.scge.services.SCGEContext.isProduction()){
                 %>
                 <div class="col-md-3 col-sm-6">
                     <div class="tool-card">
