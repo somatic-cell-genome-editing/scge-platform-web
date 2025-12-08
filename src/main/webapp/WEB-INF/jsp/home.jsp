@@ -77,22 +77,20 @@
                         <a href="/platform/public/documents/regulatory" class="tool-card-link">View Documents</a>
                     </div>
                 </div>
-                    <%
-                        if(!SCGEContext.isProduction()){
-                    %>
-                <div class="col-md-3 col-sm-6">
-                    <div class="tool-card">
-                        <div class="tool-card-icon">
-                            <i class="fas fa-file-alt"></i>
-                        </div>
-                        <h3 class="tool-card-title">Templates & Forms</h3>
-                        <p class="tool-card-description">
-                            Download IND application templates, forms, and resources to streamline your regulatory submission process.
-                        </p>
-                        <a href="/platform/data/ind/templates" class="tool-card-link">Access Templates</a>
-                    </div>
-                </div>
-                    <%}%>
+
+<%--                <div class="col-md-3 col-sm-6">--%>
+<%--                    <div class="tool-card">--%>
+<%--                        <div class="tool-card-icon">--%>
+<%--                            <i class="fas fa-file-alt"></i>--%>
+<%--                        </div>--%>
+<%--                        <h3 class="tool-card-title">Templates & Forms</h3>--%>
+<%--                        <p class="tool-card-description">--%>
+<%--                            Download IND application templates, forms, and resources to streamline your regulatory submission process.--%>
+<%--                        </p>--%>
+<%--                        <a href="/platform/data/ind/templates" class="tool-card-link">Access Templates</a>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+
                 <div class="col-md-3 col-sm-6">
                     <div class="tool-card">
                         <div class="tool-card-icon">
