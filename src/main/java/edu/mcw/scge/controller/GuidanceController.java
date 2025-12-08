@@ -3,6 +3,7 @@ package edu.mcw.scge.controller;
 
 import edu.mcw.scge.dao.implementation.ctd.SectionDAO;
 import edu.mcw.scge.datamodel.ctd.Section;
+import edu.mcw.scge.services.SCGEContext;
 import edu.mcw.scge.uploadFiles.storage.FileSystemStorageService;
 import edu.mcw.scge.uploadFiles.storage.StorageProperties;
 import org.springframework.stereotype.Controller;
@@ -31,11 +32,12 @@ public class GuidanceController extends ModulesController{
     }
     @RequestMapping(value="/templates")
     public String getINDTemplates(HttpServletRequest req, HttpServletResponse res) throws Exception {
-        req.setAttribute("modules", getCTDModules());
-        req.setAttribute("title","Investigational New Drug (IND) Templates");
-        req.setAttribute("page", "/WEB-INF/jsp/templates/templates");
-        req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
-
+      //  if(!SCGEContext.isProduction()) {
+            req.setAttribute("modules", getCTDModules());
+            req.setAttribute("title", "Investigational New Drug (IND) Templates");
+            req.setAttribute("page", "/WEB-INF/jsp/templates/templates");
+            req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
+    //    }
         return null;
     }
 

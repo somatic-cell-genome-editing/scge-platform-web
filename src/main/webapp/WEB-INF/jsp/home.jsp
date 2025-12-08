@@ -77,6 +77,9 @@
                         <a href="/platform/public/documents/regulatory" class="tool-card-link">View Documents</a>
                     </div>
                 </div>
+                <%
+                    if(SCGEContext.isDev() || SCGEContext.isTest()){
+                %>
                 <div class="col-md-3 col-sm-6">
                     <div class="tool-card">
                         <div class="tool-card-icon">
@@ -89,6 +92,8 @@
                         <a href="/platform/data/ind/templates" class="tool-card-link">Access Templates</a>
                     </div>
                 </div>
+                    <%}%>
+
                 <div class="col-md-3 col-sm-6">
                     <div class="tool-card">
                         <div class="tool-card-icon">
