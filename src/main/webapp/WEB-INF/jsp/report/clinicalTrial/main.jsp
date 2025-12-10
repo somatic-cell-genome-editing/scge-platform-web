@@ -779,7 +779,7 @@
         </div>
 <%--        <% } %>--%>
         <%}else{%>
-        <% if (clinicalExtLinkData != null && clinicalExtLinkData.size() > 0||(!clinicalTrialData.getPatents().isEmpty()&&clinicalTrialData.getPatents()!=null)) { %>
+        <% if (clinicalExtLinkData != null && clinicalExtLinkData.size() > 0||(clinicalTrialData.getPatents()!=null && !clinicalTrialData.getPatents().isEmpty()&&clinicalTrialData.getPatents()!=null)) { %>
         <div class="dynamic-heading" id="resources">
             <h3 class="ctSubHeading">Resources/Links</h3>
         </div>
