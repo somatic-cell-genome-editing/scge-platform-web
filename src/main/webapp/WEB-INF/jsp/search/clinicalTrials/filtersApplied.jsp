@@ -6,13 +6,20 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%if(filtersSelected!=null && filtersSelected.size()>0){
+<%if(filtersSelected!=null && filtersSelected.size()>0) {
+    if (filtersSelected.size() == 1 && filtersSelected.get(0).equalsIgnoreCase("Active")){
+
+}else{
   boolean first=true;
 %>
 <strong>Remove Filters:</strong>
 
-<%for(String filter: filtersSelected){
+<%
+  loop:  for(String filter: filtersSelected){
 //  List<String> values=filterMap.get(key);
+    if(filter.equalsIgnoreCase("Active") && (p==null || !access.isAdmin(p))){
+        continue loop;
+    }
 
     if(first){first=false;
 %>
@@ -25,4 +32,4 @@
 <% }
 %>
 
-<%}}%>
+<%}}}%>

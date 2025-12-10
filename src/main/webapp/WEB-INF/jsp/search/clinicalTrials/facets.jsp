@@ -43,8 +43,10 @@ expandFilterVal="<%=request.getAttribute("expandAllFilters")%>"
   <input type="hidden"  name="searchTerm" value="<%=request.getAttribute("searchTerm")%>">
 
   <%
-
-  for(String aggName:ClinicalTrials.facets){
+      loop: for(String aggName:ClinicalTrials.facets){
+      if(aggName.equalsIgnoreCase("recordStatus") && (p==null || !access.isAdmin(p))){
+          continue loop;
+      }
 %>
   <div class="accordion-group">
     <div class="pl-3  accordion-heading">
