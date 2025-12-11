@@ -66,7 +66,6 @@ public class SecurityConfiguration {
 
 @Bean
 public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    System.out.println("HOSTNAME"+ System.getenv("HOSTNAME"));
  if(!SCGEContext.isProduction() && !SCGEContext.isTest() && !SCGEContext.isDev()){
             http.authorizeHttpRequests(authorize->
                     authorize.requestMatchers("/**")
