@@ -4,6 +4,7 @@ import edu.mcw.scge.dao.implementation.ClinicalTrailDAO;
 import edu.mcw.scge.datamodel.Alias;
 import edu.mcw.scge.datamodel.ClinicalTrialAdditionalInfo;
 import edu.mcw.scge.datamodel.ClinicalTrialExternalLink;
+import edu.mcw.scge.datamodel.ClinicalTrialFieldChange;
 import edu.mcw.scge.datamodel.ClinicalTrialRecord;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/clinicalTrialEdit")
@@ -102,6 +105,23 @@ public class ClinicalTrialEditController {
             List<ClinicalTrialAdditionalInfo> existingFdaDesignations = ctDAO.getAdditionalInfo(nctId,"fda_designation");
             List<String>allFdaDesignations = ctDAO.getDistinctPropertyValues("fda_designation");
             String[] selectedFdaDesignations = req.getParameterValues("fdaDesignation");
+
+            // Track FDA designation changes
+            String oldFdaValue = existingFdaDesignations.stream()
+                    .map(ClinicalTrialAdditionalInfo::getPropertyValue)
+                    .sorted()
+                    .collect(Collectors.joining(", "));
+            String newFdaValue = selectedFdaDesignations != null
+                    ? Arrays.stream(selectedFdaDesignations).sorted().collect(Collectors.joining(", "))
+                    : "";
+            if (!oldFdaValue.equals(newFdaValue)) {
+                String today = java.time.LocalDate.now().toString();
+                ClinicalTrialFieldChange fdaChange = new ClinicalTrialFieldChange(nctId, "fda_designation", oldFdaValue, newFdaValue, "curator");
+                fdaChange.setUpdateDate(today);
+                List<ClinicalTrialFieldChange> fdaChanges = new ArrayList<>();
+                fdaChanges.add(fdaChange);
+                ctDAO.insertFieldChanges(fdaChanges);
+            }
 
             for(String designationValue:allFdaDesignations){
                 boolean isSelected = false;

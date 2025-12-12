@@ -779,12 +779,12 @@
         </div>
 <%--        <% } %>--%>
         <%}else{%>
-        <% if (clinicalExtLinkData != null && clinicalExtLinkData.size() > 0||(clinicalTrialData.getPatents()!=null && !clinicalTrialData.getPatents().isEmpty()&&clinicalTrialData.getPatents()!=null)) { %>
+        <% if (clinicalExtLinkData != null && clinicalExtLinkData.size() > 0||(clinicalTrialData.getPatents()!=null && !clinicalTrialData.getPatents().isEmpty())) { %>
         <div class="dynamic-heading" id="resources">
             <h3 class="ctSubHeading">Resources/Links</h3>
         </div>
         <hr>
-        <%if(!clinicalTrialData.getPatents().isEmpty()&&clinicalTrialData.getPatents()!=null){
+        <%if(clinicalTrialData.getPatents()!=null&&!clinicalTrialData.getPatents().isEmpty()){
 //            String[] patents = clinicalTrialData.getPatents().split(";");
         %>
 <%--        <h5 class="link-type-heading">Patents</h5>--%>
