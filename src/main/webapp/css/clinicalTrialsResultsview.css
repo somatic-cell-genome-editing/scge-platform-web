@@ -280,6 +280,279 @@
     }
 }
 
+/* ================================================
+   CLINICAL TRIALS DAILY DIGEST
+   ================================================ */
+
+/* Daily Digest Card Container */
+.daily-digest-card {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border: 1px solid #7dd3fc;
+    border-left: 4px solid #0284c7;
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.1);
+}
+
+/* Digest Header */
+.digest-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.digest-header i {
+    font-size: 1.5rem;
+    color: #0284c7;
+}
+
+.digest-header h4 {
+    color: #0c4a6e;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.digest-badge {
+    background: #0284c7;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.digest-subtitle {
+    color: #64748b;
+    font-size: 0.875rem;
+    margin: 0 0 1rem 0;
+    padding-left: 2.25rem;
+}
+
+/* Digest Toggle Button */
+.digest-toggle {
+    margin-left: auto;
+    color: #0284c7;
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.digest-toggle:hover {
+    color: #0369a1;
+}
+
+/* Collapsible Content */
+.digest-collapsible {
+    max-height: 1000px;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out, padding 0.3s ease-in-out;
+    opacity: 1;
+}
+
+.digest-collapsible.collapsed {
+    max-height: 0;
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/* Digest Items Container */
+.digest-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Individual Digest Item */
+.digest-item {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 1rem;
+    transition: all 0.2s ease;
+}
+
+.digest-item:hover {
+    border-color: #0284c7;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15);
+    transform: translateY(-1px);
+}
+
+.digest-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.digest-nct-link {
+    color: #0284c7;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.digest-nct-link:hover {
+    color: #0369a1;
+    text-decoration: underline;
+}
+
+.digest-date {
+    color: #64748b;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.digest-date i {
+    margin-right: 0.25rem;
+    color: #94a3b8;
+}
+
+/* Digest Item Body */
+.digest-item-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.digest-indication {
+    color: #334155;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.digest-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+}
+
+.digest-sponsor {
+    color: #64748b;
+    font-size: 0.8rem;
+}
+
+.digest-sponsor i {
+    margin-right: 0.25rem;
+    color: #94a3b8;
+}
+
+.digest-status {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+/* Status Colors */
+.digest-status.status-recruiting {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.digest-status.status-active,
+.digest-status.status-active\,\ not\ recruiting {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.digest-status.status-completed {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.digest-status.status-terminated,
+.digest-status.status-withdrawn,
+.digest-status.status-suspended {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.digest-status.status-not\ yet\ recruiting,
+.digest-status.status-enrolling\ by\ invitation {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+/* Update Note */
+.digest-update-note {
+    background: #f8fafc;
+    border-left: 3px solid #0284c7;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+    color: #475569;
+    border-radius: 0 4px 4px 0;
+    margin-top: 0.25rem;
+}
+
+.digest-update-note i {
+    color: #0284c7;
+    margin-right: 0.5rem;
+}
+
+/* Digest Footer */
+.digest-footer {
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed #cbd5e1;
+}
+
+.digest-more-info {
+    color: #64748b;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+.digest-more-info i {
+    color: #0284c7;
+    margin-right: 0.25rem;
+}
+
+/* Responsive Adjustments for Daily Digest */
+@media (max-width: 768px) {
+    .daily-digest-card {
+        padding: 1rem;
+    }
+
+    .digest-header {
+        flex-wrap: wrap;
+    }
+
+    .digest-header h4 {
+        font-size: 1.1rem;
+    }
+
+    .digest-badge {
+        font-size: 0.7rem;
+    }
+
+    .digest-subtitle {
+        padding-left: 0;
+    }
+
+    .digest-item-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+
+    .digest-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
+
 /* Print Support */
 @media print {
     .disclaimer-card {
@@ -289,5 +562,12 @@
     .action-buttons,
     #searchFormByCategory {
         display: none;
+    }
+
+    .daily-digest-card {
+        page-break-inside: avoid;
+        background: #f0f9ff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
     }
 }
