@@ -6,6 +6,7 @@ import edu.mcw.scge.dao.implementation.ctd.SectionDAO;
 import edu.mcw.scge.datamodel.Alias;
 import edu.mcw.scge.datamodel.ClinicalTrialAdditionalInfo;
 import edu.mcw.scge.datamodel.ClinicalTrialExternalLink;
+import edu.mcw.scge.datamodel.ClinicalTrialFieldChange;
 import edu.mcw.scge.datamodel.ClinicalTrialRecord;
 import edu.mcw.scge.datamodel.ctd.Section;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,7 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value="/data/report")
@@ -37,11 +40,25 @@ public class ReportController {
                 return null;
             }
             List<ClinicalTrialExternalLink> clinicalExtLinkData = ctDAO.getExtLinksByNctIdSorted(nctId);
+
+            // Fetch field changes for curator highlight in edit mode
+            List<ClinicalTrialFieldChange> fieldChangesList = ctDAO.getFieldChangesByNctId(nctId);
+            Map<String, ClinicalTrialFieldChange> fieldChanges = new HashMap<>();
+            Map<Integer, ClinicalTrialFieldChange> extLinkChanges = new HashMap<>();
+            for (ClinicalTrialFieldChange change : fieldChangesList) {
+                fieldChanges.put(change.getFieldName(), change);
+                if (change.getExtLinkId() != null) {
+                    extLinkChanges.put(change.getExtLinkId(), change);
+                }
+            }
+
             req.setAttribute("clinicalTrialData",clinicalTrialData);
             req.setAttribute("clinicalExtLinkData",clinicalExtLinkData);
             req.setAttribute("aliasData",aliasData);
             req.setAttribute("fdaInfo",fdaInfo);
             req.setAttribute("propertyValues",propertyValues);
+            req.setAttribute("fieldChanges", fieldChanges);
+            req.setAttribute("extLinkChanges", extLinkChanges);
             req.setAttribute("page","/WEB-INF/jsp/report/clinicalTrial/main");
             req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
             return null;

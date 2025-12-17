@@ -492,3 +492,100 @@ hr {
         box-shadow: none;
     }
 }
+
+/* Curator Updated Field Highlight */
+.ctReportTable tr.curator-updated td {
+    /*border-left: 1px solid #8b5cf6;*/
+    background-color: #f5f3ff;
+}
+
+.ctReportTable tr.curator-updated td.label {
+    background-color: #ede9fe;
+}
+
+/* External Links Table Curator Updated Highlight */
+.ext-links-table tr.curator-updated td {
+    background-color: #f5f3ff;
+}
+
+/* External Links Table Popover - position from right */
+.ext-links-table .change-popover {
+    right: 5px;
+    left: auto;
+}
+
+/* Change Info Icon */
+.change-info-icon {
+    cursor: pointer;
+    margin-left: 6px;
+    font-size: 0.85rem;
+    vertical-align: baseline;
+    position: relative;
+}
+
+.change-info-icon:hover {
+    opacity: 0.8;
+}
+
+/* Show popover on hover*/
+.change-info-icon:hover + .change-popover {
+    display: block;
+}
+
+/* Change Popover */
+.change-popover {
+    position: absolute;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    min-width: 250px;
+    max-width: 350px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    display: none;
+}
+
+.change-popover.show {
+    display: block;
+}
+
+.change-popover-header {
+    font-weight: 600;
+    color: #8b5cf6;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.change-popover-row {
+    margin-bottom: 6px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.change-popover-label {
+    font-weight: 600;
+    color: #64748b;
+    display: inline-block;
+    /*min-width: 70px;*/
+    margin-right: 6px;
+}
+
+.change-popover-value {
+    color: #334155;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    display: inline;
+}
+
+.change-popover-old {
+    color: #dc2626;
+}
+
+.change-popover-new {
+    color: #059669;
+}

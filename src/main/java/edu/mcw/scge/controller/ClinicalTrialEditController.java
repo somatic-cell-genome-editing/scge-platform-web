@@ -116,7 +116,12 @@ public class ClinicalTrialEditController {
                     : "";
             if (!oldFdaValue.equals(newFdaValue)) {
                 String today = java.time.LocalDate.now().toString();
-                ClinicalTrialFieldChange fdaChange = new ClinicalTrialFieldChange(nctId, "fda_designation", oldFdaValue, newFdaValue, "curator");
+                ClinicalTrialFieldChange fdaChange = new ClinicalTrialFieldChange();
+                fdaChange.setNctId(nctId);
+                fdaChange.setFieldName("fda_designation");
+                fdaChange.setOldValue(oldFdaValue);
+                fdaChange.setNewValue(newFdaValue);
+                fdaChange.setUpdateBy("curator");
                 fdaChange.setUpdateDate(today);
                 List<ClinicalTrialFieldChange> fdaChanges = new ArrayList<>();
                 fdaChanges.add(fdaChange);
