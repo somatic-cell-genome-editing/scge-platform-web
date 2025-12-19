@@ -52,8 +52,8 @@
 <%--                    </li>--%>
 
                     <!-- Gene Therapy Trial Browser Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="trialsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <li class="nav-item dropdown hover-dropdown">
+                        <a class="nav-link dropdown-toggle" href="/platform/data/search/ClinicalTrial" id="trialsDropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             Gene Therapy Trial Browser
                         </a>
                         <div class="dropdown-menu" aria-labelledby="trialsDropdown">
