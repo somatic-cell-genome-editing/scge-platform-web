@@ -75,7 +75,7 @@ public class ClinicalTrialsService {
         srb.size(pageSize);
         srb.trackTotalHits(true); // Ensure total hits are tracked for pagination
         try {
-            srb.sort("sponsor.keyword", SortOrder.ASC);
+            srb.sort("recordModifiedDate", SortOrder.DESC);
         }catch (Exception e){
             e.printStackTrace();
         }

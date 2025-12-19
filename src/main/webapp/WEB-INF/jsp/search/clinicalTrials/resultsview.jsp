@@ -160,7 +160,29 @@
                               <h4>No results found</h4>
                           </div>
                       <%}else{%>
+                <!-- View Tabs -->
+                <ul class="nav nav-tabs results-view-tabs" id="resultsViewTabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="table-view-tab" data-toggle="tab" href="#tableView" role="tab" aria-controls="tableView" aria-selected="true">
+                            <i class="fa fa-table"></i> Table View
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="list-view-tab" data-toggle="tab" href="#listView" role="tab" aria-controls="listView" aria-selected="false">
+                            <i class="fa fa-list"></i> List View
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="resultsViewTabContent">
+                    <!-- Table View Tab -->
+                    <div class="tab-pane fade show active" id="tableView" role="tabpanel" aria-labelledby="table-view-tab">
                <%@include file="resultsTable.jsp"%>
+                    </div>
+                    <!-- List View Tab -->
+                    <div class="tab-pane fade" id="listView" role="tabpanel" aria-labelledby="list-view-tab">
+                        <%@include file="resultsListView.jsp"%>
+                    </div>
+                </div>
 
                 <!-- PAGINATION CONTROLS -->
                 <% if(totalPages > 1) { %>

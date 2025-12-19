@@ -747,6 +747,226 @@
 }
 
 /* Print Support */
+/* Results View Tabs */
+.results-view-tabs {
+    border-bottom: 2px solid #e2e8f0;
+    margin-bottom: 1rem;
+}
+
+.results-view-tabs .nav-item {
+    margin-bottom: -2px;
+}
+
+.results-view-tabs .nav-link {
+    color: #64748b;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.75rem 1.25rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.results-view-tabs .nav-link:hover {
+    color: #0284c7;
+    border-bottom-color: #0284c7;
+}
+
+.results-view-tabs .nav-link.active {
+    color: #0284c7;
+    background: transparent;
+    border-bottom: 2px solid #0284c7;
+}
+
+.results-view-tabs .nav-link i {
+    margin-right: 0.5rem;
+}
+
+/* List View Styles */
+.results-list-view {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.list-view-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1.25rem;
+    transition: all 0.2s ease;
+}
+
+.list-view-card:hover {
+    border-color: #0284c7;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.1);
+}
+
+.list-view-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.list-view-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.list-view-nct-link {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0284c7;
+    text-decoration: none;
+}
+
+.list-view-nct-link:hover {
+    color: #0369a1;
+    text-decoration: underline;
+}
+
+.list-view-status {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    text-transform: uppercase;
+}
+
+.list-view-status.status-recruiting {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.list-view-status.status-active {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.list-view-status.status-completed {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.list-view-status.status-terminated,
+.list-view-status.status-withdrawn,
+.list-view-status.status-suspended {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.list-view-status.status-not-yet-recruiting,
+.list-view-status.status-enrolling-by-invitation {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.list-view-phase {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.2rem 0.5rem;
+    background: #f1f5f9;
+    color: #475569;
+    border-radius: 4px;
+}
+
+.list-view-indication {
+    font-size: 1rem;
+    color: #334155;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.list-view-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.list-view-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.list-view-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 150px;
+}
+
+.list-view-field.full-width {
+    width: 100%;
+}
+
+.list-view-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.list-view-value {
+    font-size: 0.875rem;
+    color: #334155;
+}
+
+.list-view-footer {
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #f1f5f9;
+}
+
+.list-view-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+.list-view-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.list-view-meta i {
+    color: #94a3b8;
+}
+
+.list-view-actions .btn {
+    font-size: 0.8rem;
+}
+
+/* Responsive adjustments for list view */
+@media (max-width: 768px) {
+    .list-view-header {
+        flex-direction: column;
+    }
+
+    .list-view-row {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .list-view-field {
+        min-width: 100%;
+    }
+
+    .list-view-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
 @media print {
     .disclaimer-card {
         page-break-inside: avoid;
@@ -762,5 +982,9 @@
         background: #f0f9ff !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
+    }
+
+    .results-view-tabs {
+        display: none;
     }
 }
