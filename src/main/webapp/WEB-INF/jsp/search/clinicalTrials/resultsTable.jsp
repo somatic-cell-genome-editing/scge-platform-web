@@ -301,12 +301,10 @@ $(this).off('mouseleave');
 // Synchronized Top Scrollbar
 function updateTopScrollWidth() {
     var topScrollContent = document.getElementById('topScrollContent');
-    var myTable = document.getElementById('myTable');
-    if (myTable && topScrollContent) {
-        var tableWidth = myTable.scrollWidth || myTable.offsetWidth;
-        if (tableWidth > 0) {
-            topScrollContent.style.width = tableWidth + 'px';
-        }
+    var resultsTable = document.getElementById('resultsTable');
+    if (topScrollContent && resultsTable) {
+        // Set content to same scrollWidth as table
+        topScrollContent.style.width = resultsTable.scrollWidth + 'px';
     }
 }
 
@@ -314,14 +312,24 @@ $(document).ready(function() {
     var topScroll = document.getElementById('topScrollWrapper');
     var resultsTable = document.getElementById('resultsTable');
 
-    // Sync scroll positions
+    // Sync scroll positions using percentage
     if (topScroll && resultsTable) {
         topScroll.addEventListener('scroll', function() {
-            resultsTable.scrollLeft = topScroll.scrollLeft;
+            var topMaxScroll = topScroll.scrollWidth - topScroll.clientWidth;
+            var tableMaxScroll = resultsTable.scrollWidth - resultsTable.clientWidth;
+            if (topMaxScroll > 0) {
+                var scrollPercent = topScroll.scrollLeft / topMaxScroll;
+                resultsTable.scrollLeft = scrollPercent * tableMaxScroll;
+            }
         });
 
         resultsTable.addEventListener('scroll', function() {
-            topScroll.scrollLeft = resultsTable.scrollLeft;
+            var topMaxScroll = topScroll.scrollWidth - topScroll.clientWidth;
+            var tableMaxScroll = resultsTable.scrollWidth - resultsTable.clientWidth;
+            if (tableMaxScroll > 0) {
+                var scrollPercent = resultsTable.scrollLeft / tableMaxScroll;
+                topScroll.scrollLeft = scrollPercent * topMaxScroll;
+            }
         });
     }
 
