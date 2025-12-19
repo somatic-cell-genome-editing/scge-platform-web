@@ -78,6 +78,18 @@ nav.navbar.bg-light {
     color: #0066cc;
 }
 
+/* Hover Dropdown - shows dropdown on hover, click navigates */
+@media (min-width: 992px) {
+    .navbar .hover-dropdown:hover > .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+
+    .navbar .hover-dropdown > .dropdown-toggle:after {
+        margin-left: 0.5rem;
+    }
+}
+
 /* Mobile responsiveness for dropdowns */
 @media (max-width: 991px) {
     .navbar .dropdown-menu {
@@ -89,5 +101,10 @@ nav.navbar.bg-light {
     .navbar-brand img {
         max-height: 60px;
         padding: 8px;
+    }
+
+    /* On mobile, keep click behavior for dropdown */
+    .navbar .hover-dropdown > .dropdown-toggle {
+        pointer-events: auto;
     }
 }
