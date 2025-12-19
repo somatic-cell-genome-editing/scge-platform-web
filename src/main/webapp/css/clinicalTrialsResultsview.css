@@ -397,6 +397,12 @@
     border-radius: 6px;
     padding: 1rem;
     transition: all 0.2s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.digest-item:has(.digest-updates-header.active) {
+    z-index: 1000;
 }
 
 .digest-item:hover {
@@ -514,61 +520,104 @@
 
 /* Field Updates Section */
 .digest-updates-section {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
-    margin-top: 0.75rem;
-    max-height: 200px;
-    overflow: auto;
+    display: inline-block;
+    position: relative;
+}
+
+.digest-updates-header.active {
+    z-index: 1001;
+}
+
+.digest-updates-section:has(.digest-updates-header.active) {
+    z-index: 1001;
 }
 
 .digest-updates-header {
-    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-    color: #475569;
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 0.5rem 0.75rem;
-    border-bottom: 1px solid #e2e8f0;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+    transition: all 0.2s ease;
+}
+
+.digest-updates-header:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.5);
 }
 
 .digest-updates-header i {
-    color: #64748b;
-    margin-right: 0.5rem;
+    color: white;
+    font-size: 0.6rem;
 }
 
-.digest-updates-list {
-    padding: 0.5rem;
+.digest-updates-tooltip {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    width: max-content;
+    max-width: 550px;
+    max-height: 300px;
+    overflow: auto;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin-top: 0.5rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.digest-updates-tooltip::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 20px;
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-left: 1px solid #e2e8f0;
+    border-top: 1px solid #e2e8f0;
+    transform: rotate(45deg);
+}
+
+.digest-updates-header.active .digest-updates-tooltip {
+    display: block;
 }
 
 .digest-update-item {
     display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.5rem 0.5rem;
-    border-radius: 4px;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.35rem 0;
     font-size: 0.8rem;
-    flex-wrap: wrap;
+    white-space: nowrap;
+    line-height: 1.4;
 }
 
 .digest-update-item:not(:last-child) {
-    border-bottom: 1px dashed #e2e8f0;
-}
-
-.digest-update-item:hover {
-    background: #f1f5f9;
+    border-bottom: 1px solid #f1f5f9;
 }
 
 .digest-field-name {
-    background: #0284c7;
-    color: white;
+    color: #64748b;
     font-weight: 600;
-    font-size: 0.7rem;
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
+    font-size: 0.8rem;
     text-transform: capitalize;
     white-space: nowrap;
+    min-width: 80px;
 }
 
 .digest-field-change {
@@ -586,31 +635,17 @@
 }
 
 .digest-old-value {
-    background: #fee2e2;
-    color: #991b1b;
-    font-size: 0.75rem;
-    padding: 0.15rem 0.4rem;
-    border-radius: 3px;
+    color: #dc2626;
+    font-size: 0.8rem;
     text-decoration: line-through;
-    max-width: 150px;
-    overflow: hidden;
-    text-overflow: ellipsis;
     white-space: nowrap;
-    cursor: help;
 }
 
 .digest-new-value {
-    background: #dcfce7;
-    color: #166534;
-    font-size: 0.75rem;
-    padding: 0.15rem 0.4rem;
-    border-radius: 3px;
+    color: #059669;
+    font-size: 0.8rem;
     font-weight: 500;
-    max-width: 150px;
-    overflow: hidden;
-    text-overflow: ellipsis;
     white-space: nowrap;
-    cursor: help;
 }
 
 .digest-update-by {
@@ -697,7 +732,7 @@
     .digest-update-item {
         flex-direction: column;
         align-items: flex-start;
-        gap: 0.5rem;
+        gap: 0.25rem;
     }
 
     .digest-field-change {
@@ -708,12 +743,6 @@
     .digest-old-value,
     .digest-new-value {
         max-width: 100%;
-    }
-
-    .digest-update-by {
-        margin-left: 0;
-        width: 100%;
-        text-align: right;
     }
 }
 

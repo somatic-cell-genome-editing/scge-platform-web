@@ -43,18 +43,45 @@
                     List<String> statusList = item.get("status") != null ? (List<String>) item.get("status") : new ArrayList<>();
                     String status = statusList.size() > 0 ? statusList.get(0) : "N/A";
                     List<ClinicalTrialFieldChange> updatedFields=null;
+                    List<ClinicalTrialFieldChange> filteredUpdates = new ArrayList<>();
                     try {
                         updatedFields=clinicalTrailDAO.getFieldChangesByNctId(nctId);
-
+                        if(updatedFields!=null && updatedFields.size()>0){
+                            for(ClinicalTrialFieldChange update : updatedFields) {
+                              //  if(!update.getFieldName().equalsIgnoreCase("last_update_post_date")) {
+                                    filteredUpdates.add(update);
+                             //   }
+                            }
+                        }
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
 
             %>
-            <div class="digest-item" style="overflow: auto">
+            <div class="digest-item">
                 <div class="digest-item-header">
                     <span class="digest-nct-wrapper">
                         <a href="/platform/data/report/clinicalTrials/<%=nctId%>" target="_blank" class="digest-nct-link"><%=nctId%></a><% if(isNew) { %><span class="digest-new-badge">NEW</span><% } %>
+                        <% if(filteredUpdates.size() > 0) { %>
+                        <div class="digest-updates-section">
+                            <div class="digest-updates-header" onclick="toggleUpdatesPopover(event, this)">
+                                <i class="fa fa-pencil-square-o"></i> Updates
+                                <div class="digest-updates-tooltip">
+                                    <% for(ClinicalTrialFieldChange update : filteredUpdates) { %>
+                                    <div class="digest-update-item">
+                                        <span class="digest-field-name"><%=StringUtils.capitalize(update.getFieldName().toLowerCase().trim().replaceAll("_", " "))%></span>
+                                        <span class="digest-field-change">
+                                            <span class="digest-old-value" title="<%=update.getOldValue()%>"><%=update.getOldValue() != null && update.getOldValue().length() > 50 ? update.getOldValue().substring(0, 50) + "..." : update.getOldValue()%></span>
+                                            <i class="fa fa-arrow-right"></i>
+                                            <span class="digest-new-value" title="<%=update.getNewValue()%>"><%=update.getNewValue() != null && update.getNewValue().length() > 50 ? update.getNewValue().substring(0, 50) + "..." : update.getNewValue()%></span>
+                                        </span>
+                                        <span class="digest-update-by"><%=update.getUpdateBy()%></span>
+                                    </div>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
                     </span>
                     <span class="digest-date"><i class="fa fa-calendar"></i> <%=updateDate%></span>
                 </div>
@@ -64,36 +91,6 @@
                         <span class="digest-sponsor"><i class="fa fa-building"></i> <%=sponsor%></span>
                         <span class="digest-status status-<%=status.toLowerCase().replace(" ", "-")%>"><%=status%></span>
                     </div>
-                    <%
-                        if(updatedFields!=null && updatedFields.size()>0){
-                            // Filter out last_update_post_date entries
-                            List<ClinicalTrialFieldChange> filteredUpdates = new ArrayList<>();
-                            for(ClinicalTrialFieldChange update : updatedFields) {
-                                if(!update.getFieldName().equalsIgnoreCase("last_update_post_date")) {
-                                    filteredUpdates.add(update);
-                                }
-                            }
-                            if(filteredUpdates.size() > 0) {
-                    %>
-                    <div class="digest-updates-section">
-                        <div class="digest-updates-header">
-                            <i class="fa fa-pencil-square-o"></i> Field Updates
-                        </div>
-                        <div class="digest-updates-list">
-                            <% for(ClinicalTrialFieldChange update : filteredUpdates) { %>
-                            <div class="digest-update-item">
-                                <span class="digest-field-name"><%=StringUtils.capitalize(update.getFieldName().toLowerCase().trim().replaceAll("_", " "))%></span>
-                                <span class="digest-field-change">
-                                    <span class="digest-old-value" title="<%=update.getOldValue()%>"><%=update.getOldValue() != null && update.getOldValue().length() > 50 ? update.getOldValue().substring(0, 50) + "..." : update.getOldValue()%></span>
-                                    <i class="fa fa-arrow-right"></i>
-                                    <span class="digest-new-value" title="<%=update.getNewValue()%>"><%=update.getNewValue() != null && update.getNewValue().length() > 50 ? update.getNewValue().substring(0, 50) + "..." : update.getNewValue()%></span>
-                                </span>
-                                <span class="digest-update-by"><%=update.getUpdateBy()%></span>
-                            </div>
-                            <% } %>
-                        </div>
-                    </div>
-                    <% }} %>
                     <% if(recentUpdateNote != null && !recentUpdateNote.isEmpty() && !recentUpdateNote.equals("null")) { %>
                     <div class="digest-update-note"><i class="fa fa-info-circle"></i> <%=recentUpdateNote.length() > 150 ? recentUpdateNote.substring(0, 150) + "..." : recentUpdateNote%></div>
                     <% } %>
@@ -122,5 +119,26 @@
             icon.classList.add('fa-chevron-down');
         }
     }
+
+    function toggleUpdatesPopover(event, element) {
+        event.stopPropagation();
+        // Close all other open popovers
+        document.querySelectorAll('.digest-updates-header.active').forEach(function(el) {
+            if (el !== element) {
+                el.classList.remove('active');
+            }
+        });
+        // Toggle this popover
+        element.classList.toggle('active');
+    }
+
+    // Close popover when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.digest-updates-header')) {
+            document.querySelectorAll('.digest-updates-header.active').forEach(function(el) {
+                el.classList.remove('active');
+            });
+        }
+    });
 </script>
 <% } %>
