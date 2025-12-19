@@ -213,7 +213,7 @@ public class ClinicalTrialsService {
     }
 
     /**
-     * Get recent updates for daily digest (last 7 days, max 5 results)
+     * Get recent updates for daily digest (last 7 days)
      */
     public SearchResponse getRecentUpdatesForDigest(String category, Map<String, List<String>> filtersMap) throws IOException {
         String searchIndex = SCGEContext.getESIndexName();
@@ -233,7 +233,7 @@ public class ClinicalTrialsService {
                 .lte("now/d"));
 
         srb.query(q);
-        srb.size(5); // Only need 5 for digest
+        srb.size(10000); // Get all updates from past 7 days, display limited in UI
         srb.sort("recordModifiedDate", SortOrder.DESC);
 
         if (filtersMap != null && filtersMap.size() > 0) {

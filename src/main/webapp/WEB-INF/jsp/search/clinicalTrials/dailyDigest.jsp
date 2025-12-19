@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    // Get digest hits from controller (already filtered and sorted)
+    // Get digest hits from controller (all updates from past 7 days)
     SearchHit[] digestHitsArray = (SearchHit[]) request.getAttribute("digestHits");
     List<Map<String, Object>> recentUpdates = new ArrayList<>();
 
@@ -17,14 +17,16 @@
         }
     }
 
-    int maxDigestItems = recentUpdates.size(); // Already limited to 5 in the query
+    int totalUpdates = recentUpdates.size();
+    int displayLimit = 5;
+    int maxDigestItems = Math.min(totalUpdates, displayLimit);
 %>
-<% if(maxDigestItems > 0) { %>
+<% if(totalUpdates > 0) { %>
 <div class="daily-digest-card">
     <div class="digest-header" onclick="toggleDigest()" style="cursor: pointer;">
         <i class="fa fa-newspaper-o"></i>
         <h4>Clinical Trials Daily Digest</h4>
-        <span class="digest-badge"><%=maxDigestItems%> Recent Update<%=maxDigestItems > 1 ? "s" : ""%></span>
+        <span class="digest-badge"><%=totalUpdates%> Recent Update<%=totalUpdates > 1 ? "s" : ""%></span>
         <span class="digest-toggle"><i id="digestToggleIcon" class="fa fa-chevron-down"></i></span>
     </div>
     <div id="digestContent" class="digest-collapsible collapsed">
@@ -98,9 +100,9 @@
             </div>
             <% } %>
         </div>
-        <% if(recentUpdates.size() > 5) { %>
+        <% if(totalUpdates > displayLimit) { %>
         <div class="digest-footer">
-            <span class="digest-more-info"><i class="fa fa-info-circle"></i> <%=recentUpdates.size() - 5%> more trial(s) updated recently. Use filters or search to find them.</span>
+            <span class="digest-more-info"><i class="fa fa-info-circle"></i> <%=totalUpdates - displayLimit%> more trial(s) updated or added recently. Use filters or search to find them.</span>
         </div>
         <% } %>
     </div><!-- end digestContent -->
