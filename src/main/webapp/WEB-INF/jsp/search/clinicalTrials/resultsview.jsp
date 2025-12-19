@@ -37,6 +37,15 @@
     Map<String, List<String>> filterMap= (Map<String, List<String>>) request.getAttribute("filterMap");
     List<String> filtersSelected= (List<String>) request.getAttribute("filtersSelected");
     request.setAttribute("filtersSelected", filtersSelected);
+
+    // Pagination attributes
+    int currentPage = request.getAttribute("currentPage") != null ? (Integer) request.getAttribute("currentPage") : 0;
+    int pageSize = request.getAttribute("pageSize") != null ? (Integer) request.getAttribute("pageSize") : 100;
+    long totalHits = request.getAttribute("totalHits") != null ? (Long) request.getAttribute("totalHits") : hits.size();
+    int totalPages = request.getAttribute("totalPages") != null ? (Integer) request.getAttribute("totalPages") : 1;
+    int startRecord = currentPage * pageSize + 1;
+    int endRecord = (int) Math.min((currentPage + 1) * pageSize, totalHits);
+
     String category= "";
     String dCategory="";
     String searchTerm="";
@@ -79,126 +88,7 @@
     </div>
 
     <!-- Clinical Trials Daily Digest Section -->
-    <%
-        // Get trials updated in the last 7 days with recordStatus = 'Active'
-        java.time.LocalDate today = java.time.LocalDate.now();
-        java.time.LocalDate sevenDaysAgo = today.minusDays(7);
-        java.time.format.DateTimeFormatter dateFormatter = java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-        List<Map<String, Object>> recentUpdates = new ArrayList<>();
-        for(SearchHit hit : hits) {
-            Map<String, Object> source = hit.getSourceAsMap();
-
-//            // Filter for Active record status only
-//            String recordStatus = source.get("recordStatus") != null ? source.get("recordStatus").toString() : "";
-//            if(!"Active".equalsIgnoreCase(recordStatus)) {
-//                continue;
-//            }
-
-            String lastUpdate = source.get("recordModifiedDate") != null ? source.get("recordModifiedDate").toString() : null;
-            if(lastUpdate != null && !lastUpdate.isEmpty()) {
-                try {
-                    java.time.LocalDate updateDate = java.time.LocalDate.parse(lastUpdate, dateFormatter);
-                    if(!updateDate.isBefore(sevenDaysAgo)) {
-                        recentUpdates.add(source);
-                    }
-                } catch(Exception e) {
-                    // Skip entries with invalid date format
-                }
-            }
-        }
-        // Sort by date descending and limit to 5
-        recentUpdates.sort((a, b) -> {
-            String dateA = a.get("recordModifiedDate") != null ? a.get("recordModifiedDate").toString() : "";
-            String dateB = b.get("recordModifiedDate") != null ? b.get("recordModifiedDate").toString() : "";
-            return dateB.compareTo(dateA);
-        });
-        int maxDigestItems = Math.min(5, recentUpdates.size());
-    %>
-    <% if(maxDigestItems > 0) { %>
-    <div class="daily-digest-card">
-        <div class="digest-header" onclick="toggleDigest()" style="cursor: pointer;">
-            <i class="fa fa-newspaper-o"></i>
-            <h4>Clinical Trials Daily Digest</h4>
-            <span class="digest-badge"><%=maxDigestItems%> Recent Update<%=maxDigestItems > 1 ? "s" : ""%></span>
-            <span class="digest-toggle"><i id="digestToggleIcon" class="fa fa-chevron-down"></i></span>
-        </div>
-        <div id="digestContent" class="digest-collapsible collapsed">
-        <p class="digest-subtitle">Clinical trials with updates in the last 7 days</p>
-        <div class="digest-items">
-            <%
-                for(int i = 0; i < maxDigestItems; i++) {
-                Map<String, Object> item = recentUpdates.get(i);
-                String nctId = item.get("nctId") != null ? item.get("nctId").toString() : "";
-                String indication = item.get("indication") != null ? item.get("indication").toString() : "N/A";
-                String sponsor = item.get("sponsor") != null ? item.get("sponsor").toString() : "N/A";
-                String updateDate = item.get("recordModifiedDate") != null ? item.get("recordModifiedDate").toString() : "";
-                String recentUpdateNote = item.get("recentUpdates") != null ? item.get("recentUpdates").toString() : "";
-                List<String> statusList = item.get("status") != null ? (List<String>) item.get("status") : new ArrayList<>();
-                String status = statusList.size() > 0 ? statusList.get(0) : "N/A";
-                    List<ClinicalTrialFieldChange> updatedFields=null;
-                    try {
-                        updatedFields=clinicalTrailDAO.getFieldChangesByNctId(nctId);
-
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-
-            %>
-            <div class="digest-item">
-                <div class="digest-item-header">
-                    <a href="/platform/data/report/clinicalTrials/<%=nctId%>" target="_blank" class="digest-nct-link"><%=nctId%></a>
-                    <span class="digest-date"><i class="fa fa-calendar"></i> <%=updateDate%></span>
-                </div>
-                <div class="digest-item-body">
-                    <div class="digest-indication" title="<%=indication%>"><%=indication.length() > 80 ? indication.substring(0, 80) + "..." : indication%></div>
-                    <div class="digest-meta">
-                        <span class="digest-sponsor"><i class="fa fa-building"></i> <%=sponsor%></span>
-                        <span class="digest-status status-<%=status.toLowerCase().replace(" ", "-")%>"><%=status%></span>
-                        <%
-                            if(updatedFields!=null && updatedFields.size()>0){%>
-                        <span class="digest-sponsor"><i class="fa fa-building"></i> Updates:</span>
-                        <% boolean first=true;
-                            for(ClinicalTrialFieldChange update:updatedFields){
-                            if(!update.getFieldName().equalsIgnoreCase("last_update_post_date")){
-                                if(first){
-                                    first=false;
-                        %>
-                        <%=update.getFieldName()%> from "<%=update.getOldValue()%>" -> "<%=update.getNewValue()%>"<small class="text-muted">(By <%=update.getUpdateBy()%>)</small>
-                        <%}else{%>
-                       | <%=update.getFieldName()%> from <%=update.getOldValue()%> -> <%=update.getNewValue()%><small class="text-muted">(By <%=update.getUpdateBy()%>)</small>
-                        <%}}}}%>
-                    </div>
-                    <% if(recentUpdateNote != null && !recentUpdateNote.isEmpty() && !recentUpdateNote.equals("null")) { %>
-                    <div class="digest-update-note"><i class="fa fa-info-circle"></i> <%=recentUpdateNote.length() > 150 ? recentUpdateNote.substring(0, 150) + "..." : recentUpdateNote%></div>
-                    <% } %>
-                </div>
-            </div>
-            <% } %>
-        </div>
-        <% if(recentUpdates.size() > 5) { %>
-        <div class="digest-footer">
-            <span class="digest-more-info"><i class="fa fa-info-circle"></i> <%=recentUpdates.size() - 5%> more trial(s) updated recently. Use filters or search to find them.</span>
-        </div>
-        <% } %>
-        </div><!-- end digestContent -->
-    </div>
-    <script>
-        function toggleDigest() {
-            var content = document.getElementById('digestContent');
-            var icon = document.getElementById('digestToggleIcon');
-            if (content.classList.contains('collapsed')) {
-                content.classList.remove('collapsed');
-                icon.classList.remove('fa-chevron-down');
-                icon.classList.add('fa-chevron-up');
-            } else {
-                content.classList.add('collapsed');
-                icon.classList.remove('fa-chevron-up');
-                icon.classList.add('fa-chevron-down');
-            }
-        }
-    </script>
-    <% } %>
+    <%@include file="dailyDigest.jsp"%>
 
   <div class="row" style="margin-top: 1.5rem;">
     <!-- BEGIN SEARCH RESULT -->
@@ -218,7 +108,13 @@
             <!-- BEGIN RESULT -->
             <div class="col-md-10">
                 <div class="row results-count-section align-items-center">
-                    <div class="col-lg-3 col-md-6 col-12 mb-2 mb-lg-0"> <span>Showing all  <strong><%=hits.size()%></strong> results <%=searchTerm%><%=dCategory%></span></div>
+                    <div class="col-lg-3 col-md-6 col-12 mb-2 mb-lg-0">
+                        <% if(totalHits > 0) { %>
+                        <span>Showing <strong><%=startRecord%>-<%=endRecord%></strong> of <strong><%=totalHits%></strong> results <%=searchTerm%><%=dCategory%></span>
+                        <% } else { %>
+                        <span>Showing <strong>0</strong> results <%=searchTerm%><%=dCategory%></span>
+                        <% } %>
+                    </div>
                     <%
                         if(hits.size()>0){
                     %>
@@ -265,6 +161,58 @@
                           </div>
                       <%}else{%>
                <%@include file="resultsTable.jsp"%>
+
+                <!-- PAGINATION CONTROLS -->
+                <% if(totalPages > 1) { %>
+                <nav aria-label="Page navigation" class="mt-4">
+                    <ul class="pagination justify-content-center">
+                        <!-- Previous button -->
+                        <li class="page-item <%=currentPage == 0 ? "disabled" : ""%>">
+                            <a class="page-link" href="javascript:void(0);" onclick="goToPage(<%=currentPage - 1%>)" aria-label="Previous">
+                                <span aria-hidden="true">&laquo; Previous</span>
+                            </a>
+                        </li>
+
+                        <!-- Page numbers -->
+                        <%
+                            int startPage = Math.max(0, currentPage - 2);
+                            int endPage = Math.min(totalPages - 1, currentPage + 2);
+
+                            if(startPage > 0) {
+                        %>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="goToPage(0)">1</a></li>
+                            <% if(startPage > 1) { %>
+                            <li class="page-item disabled"><span class="page-link">...</span></li>
+                            <% } %>
+                        <% } %>
+
+                        <% for(int i = startPage; i <= endPage; i++) { %>
+                            <li class="page-item <%=i == currentPage ? "active" : ""%>">
+                                <a class="page-link" href="javascript:void(0);" onclick="goToPage(<%=i%>)"><%=i + 1%></a>
+                            </li>
+                        <% } %>
+
+                        <% if(endPage < totalPages - 1) { %>
+                            <% if(endPage < totalPages - 2) { %>
+                            <li class="page-item disabled"><span class="page-link">...</span></li>
+                            <% } %>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="goToPage(<%=totalPages - 1%>)"><%=totalPages%></a></li>
+                        <% } %>
+
+                        <!-- Next button -->
+                        <li class="page-item <%=currentPage >= totalPages - 1 ? "disabled" : ""%>">
+                            <a class="page-link" href="javascript:void(0);" onclick="goToPage(<%=currentPage + 1%>)" aria-label="Next">
+                                <span aria-hidden="true">Next &raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="text-center text-muted">
+                        <small>Page <%=currentPage + 1%> of <%=totalPages%></small>
+                    </div>
+                </nav>
+                <% } %>
+                <!-- END PAGINATION CONTROLS -->
+
                   <%}%>
               </div>
 
@@ -282,5 +230,25 @@
 <script>
     function download(){
         $("#myTable").tableToCSV();
+    }
+
+    // Pagination navigation function
+    function goToPage(pageNum) {
+        if(pageNum < 0 || pageNum >= <%=totalPages%>) return;
+
+        // Get current URL and parameters
+        var url = new URL(window.location.href);
+        var params = url.searchParams;
+
+        // Update the page parameter
+        params.set('page', pageNum);
+
+        // Preserve pageSize if not default
+        if(!params.has('pageSize')) {
+            params.set('pageSize', '<%=pageSize%>');
+        }
+
+        // Navigate to the new URL
+        window.location.href = url.pathname + '?' + params.toString();
     }
 </script>

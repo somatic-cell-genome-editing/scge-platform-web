@@ -37,6 +37,8 @@
                     String indication = item.get("indication") != null ? item.get("indication").toString() : "N/A";
                     String sponsor = item.get("sponsor") != null ? item.get("sponsor").toString() : "N/A";
                     String updateDate = item.get("recordModifiedDate") != null ? item.get("recordModifiedDate").toString() : "";
+                    String creationDate = item.get("recordCreationDate") != null ? item.get("recordCreationDate").toString() : "";
+                    boolean isNew = !creationDate.isEmpty() && creationDate.equals(updateDate);
                     String recentUpdateNote = item.get("recentUpdates") != null ? item.get("recentUpdates").toString() : "";
                     List<String> statusList = item.get("status") != null ? (List<String>) item.get("status") : new ArrayList<>();
                     String status = statusList.size() > 0 ? statusList.get(0) : "N/A";
@@ -51,7 +53,9 @@
             %>
             <div class="digest-item" style="overflow: auto">
                 <div class="digest-item-header">
-                    <a href="/platform/data/report/clinicalTrials/<%=nctId%>" target="_blank" class="digest-nct-link"><%=nctId%></a>
+                    <span class="digest-nct-wrapper">
+                        <a href="/platform/data/report/clinicalTrials/<%=nctId%>" target="_blank" class="digest-nct-link"><%=nctId%></a><% if(isNew) { %><span class="digest-new-badge">NEW</span><% } %>
+                    </span>
                     <span class="digest-date"><i class="fa fa-calendar"></i> <%=updateDate%></span>
                 </div>
                 <div class="digest-item-body">
@@ -78,7 +82,7 @@
                         <div class="digest-updates-list">
                             <% for(ClinicalTrialFieldChange update : filteredUpdates) { %>
                             <div class="digest-update-item">
-                                <span class="digest-field-name"><%=update.getFieldName()%></span>
+                                <span class="digest-field-name"><%=StringUtils.capitalize(update.getFieldName().toLowerCase().trim().replaceAll("_", " "))%></span>
                                 <span class="digest-field-change">
                                     <span class="digest-old-value" title="<%=update.getOldValue()%>"><%=update.getOldValue() != null && update.getOldValue().length() > 50 ? update.getOldValue().substring(0, 50) + "..." : update.getOldValue()%></span>
                                     <i class="fa fa-arrow-right"></i>

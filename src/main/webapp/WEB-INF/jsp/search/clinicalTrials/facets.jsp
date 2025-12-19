@@ -41,6 +41,8 @@ expandFilterVal="<%=request.getAttribute("expandAllFilters")%>"
   <input type="hidden" id="expandAllFilters" name="expandAllFilters" value="<%=request.getAttribute("expandAllFilters")%>">
   <input type="hidden" id="category" name="category" value="<%=request.getAttribute("category")%>">
   <input type="hidden"  name="searchTerm" value="<%=request.getAttribute("searchTerm")%>">
+  <input type="hidden" id="page" name="page" value="0"/>
+  <input type="hidden" id="pageSize" name="pageSize" value="<%=pageSize%>"/>
 
   <%
       loop: for(String aggName:ClinicalTrials.facets){

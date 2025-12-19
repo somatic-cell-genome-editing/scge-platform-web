@@ -62,7 +62,7 @@ public class ClinicalTrialsService {
 
     }
 
-    public SearchResponse getSearchResults(String searchTerm,String category, Map<String, List<String>> filtersMap) throws IOException {
+    public SearchResponse getSearchResults(String searchTerm, String category, Map<String, List<String>> filtersMap, int page, int pageSize) throws IOException {
         String searchIndex= SCGEContext.getESIndexName();
         SearchSourceBuilder srb=new SearchSourceBuilder();
         BoolQueryBuilder q=this.buildBoolQuery(searchTerm, category);
@@ -70,7 +70,10 @@ public class ClinicalTrialsService {
         for(String fieldName:ClinicalTrials.facets) {
             srb.aggregation(buildAggregations(fieldName));
         }
-        srb.size(10000);
+        // Pagination: calculate offset and set page size
+        srb.from(page * pageSize);
+        srb.size(pageSize);
+        srb.trackTotalHits(true); // Ensure total hits are tracked for pagination
         try {
             srb.sort("sponsor.keyword", SortOrder.ASC);
         }catch (Exception e){
@@ -207,6 +210,39 @@ public class ClinicalTrialsService {
                 return true;
         }catch (Exception e){}
         return false;
+    }
+
+    /**
+     * Get recent updates for daily digest (last 7 days, max 5 results)
+     */
+    public SearchResponse getRecentUpdatesForDigest(String category, Map<String, List<String>> filtersMap) throws IOException {
+        String searchIndex = SCGEContext.getESIndexName();
+        SearchSourceBuilder srb = new SearchSourceBuilder();
+
+        // Build query with date range for last 7 days
+        BoolQueryBuilder q = new BoolQueryBuilder();
+        q.must(QueryBuilders.matchAllQuery());
+
+        if (category != null && !category.equals("")) {
+            q.filter(QueryBuilders.termQuery("category.keyword", category));
+        }
+
+        // Filter for records modified in last 7 days
+        q.filter(QueryBuilders.rangeQuery("recordModifiedDate")
+                .gte("now-7d/d")
+                .lte("now/d"));
+
+        srb.query(q);
+        srb.size(5); // Only need 5 for digest
+        srb.sort("recordModifiedDate", SortOrder.DESC);
+
+        if (filtersMap != null && filtersMap.size() > 0) {
+            srb.postFilter(filter(filtersMap));
+        }
+
+        SearchRequest searchRequest = new SearchRequest(searchIndex);
+        searchRequest.source(srb);
+        return ESClient.getClient().search(searchRequest, RequestOptions.DEFAULT);
     }
     public static List<String> searchFields(){
         return Arrays.asList(

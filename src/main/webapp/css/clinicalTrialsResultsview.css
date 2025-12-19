@@ -327,6 +327,28 @@
     letter-spacing: 0.5px;
 }
 
+.digest-new-badge {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+    animation: pulse-new 2s ease-in-out infinite;
+}
+
+@keyframes pulse-new {
+    0%, 100% {
+        box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+    }
+    50% {
+        box-shadow: 0 2px 8px rgba(16, 185, 129, 0.5);
+    }
+}
+
 .digest-subtitle {
     color: #64748b;
     font-size: 0.875rem;
@@ -348,8 +370,8 @@
 
 /* Collapsible Content */
 .digest-collapsible {
-    max-height: 1000px;
-    overflow: hidden;
+    max-height: 2500px;
+    overflow: scroll;
     transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out, padding 0.3s ease-in-out;
     opacity: 1;
 }
@@ -388,6 +410,12 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0.5rem;
+}
+
+.digest-nct-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .digest-nct-link {

@@ -9,11 +9,9 @@ import edu.mcw.scge.datamodel.Definition;
 import edu.mcw.scge.datamodel.Person;
 import edu.mcw.scge.datamodel.web.ClinicalTrials;
 import edu.mcw.scge.service.es.clinicalTrials.ClinicalTrialsService;
-import edu.mcw.scge.service.es.clinicalTrials.ClinicalTrialApiIndexServices;
 
 import edu.mcw.scge.uploadFiles.DBService;
 import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 
 
 import org.springframework.stereotype.Controller;
@@ -33,32 +31,33 @@ import java.util.*;
 public class SearchController{
     DBService service=new DBService();
     Access access=new Access();
-    @RequestMapping(value="/clinicalTrialsapi")
-    public String getClinicalTrialsAPIResults(HttpServletRequest req, HttpServletResponse res, Model model,
-                                       @PathVariable(required = false) String category, @RequestParam(required = false) String searchTerm,
-                                       OAuth2AuthenticationToken authentication) throws Exception {
-        ClinicalTrialApiIndexServices services = new ClinicalTrialApiIndexServices();
-        Map<String, List<String>> filterMap=getFiltersMap(req, authentication);
-        SearchResponse sr=services.getSearchResults(searchTerm ,getFiltersMap(req, authentication));
-        req.setAttribute("searchTerm", searchTerm);
-        req.setAttribute("sr", sr);
-        req.setAttribute("filterMap", filterMap);
-        Terms terms=sr.getAggregations().get("organization");
-        req.setAttribute("page", "/WEB-INF/jsp/search/clinicalTrials/resultsview");
-        req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
+    private static final int DEFAULT_PAGE_SIZE = 100;
 
-        return null;
-    }
 
     @RequestMapping(value="/")
     public String getSearchResultsResults(HttpServletRequest req, HttpServletResponse res, Model model,
                                                @RequestParam(required = true) String searchTerm,
+                                               @RequestParam(defaultValue = "0") int page,
+                                               @RequestParam(defaultValue = "100") int pageSize,
                                                OAuth2AuthenticationToken authentication) throws Exception {
         if(searchTerm==null)
             return null;
         ClinicalTrialsService services = new ClinicalTrialsService();
         LinkedHashMap<String, List<String>> filterMap=getFiltersMap(req, authentication);
-        SearchResponse sr=services.getSearchResults(searchTerm ,null,getFiltersMap(req, authentication));
+        SearchResponse sr=services.getSearchResults(searchTerm, null, getFiltersMap(req, authentication), page, pageSize);
+
+        // Set pagination attributes
+        long totalHits = sr.getHits().getTotalHits().value;
+        int totalPages = (int) Math.ceil((double) totalHits / pageSize);
+        req.setAttribute("currentPage", page);
+        req.setAttribute("pageSize", pageSize);
+        req.setAttribute("totalHits", totalHits);
+        req.setAttribute("totalPages", totalPages);
+
+        // Get recent updates for daily digest (separate query)
+        SearchResponse digestSr = services.getRecentUpdatesForDigest(null, getFiltersMap(req, authentication));
+        req.setAttribute("digestHits", digestSr.getHits().getHits());
+
         req.setAttribute("searchTerm", searchTerm);
         req.setAttribute("sr", sr);
         req.setAttribute("filterMap", filterMap);
@@ -75,10 +74,25 @@ public class SearchController{
     @RequestMapping(value="/{category}")
     public String getClinicalTrialsFileResults(HttpServletRequest req, HttpServletResponse res, Model model,
                                                @PathVariable("category") String category, @RequestParam(name="searchTerm", required = false) String searchTerm,
+                                               @RequestParam(defaultValue = "0") int page,
+                                               @RequestParam(defaultValue = "100") int pageSize,
                                                OAuth2AuthenticationToken authentication) throws Exception {
         ClinicalTrialsService services = new ClinicalTrialsService();
         LinkedHashMap<String, List<String>> filterMap=getFiltersMap(req, authentication);
-        SearchResponse sr=services.getSearchResults(searchTerm ,category,getFiltersMap(req, authentication));
+        SearchResponse sr=services.getSearchResults(searchTerm, category, getFiltersMap(req, authentication), page, pageSize);
+
+        // Set pagination attributes
+        long totalHits = sr.getHits().getTotalHits().value;
+        int totalPages = (int) Math.ceil((double) totalHits / pageSize);
+        req.setAttribute("currentPage", page);
+        req.setAttribute("pageSize", pageSize);
+        req.setAttribute("totalHits", totalHits);
+        req.setAttribute("totalPages", totalPages);
+
+        // Get recent updates for daily digest (separate query)
+        SearchResponse digestSr = services.getRecentUpdatesForDigest(category, getFiltersMap(req, authentication));
+        req.setAttribute("digestHits", digestSr.getHits().getHits());
+
         req.setAttribute("searchTerm", searchTerm);
         req.setAttribute("sr", sr);
         req.setAttribute("filterMap", filterMap);
