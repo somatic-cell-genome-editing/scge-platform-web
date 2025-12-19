@@ -494,12 +494,14 @@ hr {
 }
 
 /* Curator Updated Field Highlight */
-.ctReportTable tr.curator-updated td {
+.ctReportTable tr.curator-updated td,
+.ctReportTable tr.api-updated td {
     /*border-left: 1px solid #8b5cf6;*/
     background-color: #f5f3ff;
 }
 
-.ctReportTable tr.curator-updated td.label {
+.ctReportTable tr.curator-updated td.label,
+.ctReportTable tr.api-updated td.label {
     background-color: #ede9fe;
 }
 

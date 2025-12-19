@@ -98,9 +98,16 @@
                 </td>
             </tr>
             <% } %>
-            <tr>
+            <%
+                boolean descriptionChanged = fieldChanges != null && fieldChanges.containsKey("description");
+                ClinicalTrialFieldChange descriptionChange = descriptionChanged ? fieldChanges.get("description") : null;
+            %>
+            <tr class="<%= descriptionChanged ? "api-updated" : "" %>">
                 <td class="label">
                     Description
+                    <% if(descriptionChanged) { %>
+                    <span class="change-info-icon" data-old="<%= descriptionChange.getOldValue() != null ? descriptionChange.getOldValue() : "" %>" data-new="<%= descriptionChange.getNewValue() != null ? descriptionChange.getNewValue() : "" %>" data-updated="<%= descriptionChange.getChangedAt() != null ? descriptionChange.getChangedAt() : "" %>" data-by="<%= descriptionChange.getUpdateBy() != null ? descriptionChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
                 </td>
 
                 <td>
@@ -325,38 +332,52 @@
                 <td><%= clinicalTrialData.getCompoundDescription() %></td>
             </tr>
             <% } %>
-            <tr>
+            <%
+                boolean sponsorChanged = fieldChanges != null && fieldChanges.containsKey("sponsor");
+                ClinicalTrialFieldChange sponsorChange = sponsorChanged ? fieldChanges.get("sponsor") : null;
+            %>
+            <tr class="<%= sponsorChanged ? "api-updated" : "" %>">
                 <td class="label">
                     Sponsor
+                    <% if(sponsorChanged) { %>
+                    <span class="change-info-icon" data-old="<%= sponsorChange.getOldValue() != null ? sponsorChange.getOldValue() : "" %>" data-new="<%= sponsorChange.getNewValue() != null ? sponsorChange.getNewValue() : "" %>" data-updated="<%= sponsorChange.getChangedAt() != null ? sponsorChange.getChangedAt() : "" %>" data-by="<%= sponsorChange.getUpdateBy() != null ? sponsorChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
                 </td>
 
                 <td>
                     <%=clinicalTrialData.getSponsor()!=null?clinicalTrialData.getSponsor():""%>
                 </td>
             </tr>
-            <tr>
+            <%
+                boolean sponsorClassChanged = fieldChanges != null && fieldChanges.containsKey("sponsor_class");
+                ClinicalTrialFieldChange sponsorClassChange = sponsorClassChanged ? fieldChanges.get("sponsor_class") : null;
+            %>
+            <tr class="<%= sponsorClassChanged ? "api-updated" : "" %>">
                 <td class="label">
                     Funder&nbsp;Type
+                    <% if(sponsorClassChanged) { %>
+                    <span class="change-info-icon" data-old="<%= sponsorClassChange.getOldValue() != null ? sponsorClassChange.getOldValue() : "" %>" data-new="<%= sponsorClassChange.getNewValue() != null ? sponsorClassChange.getNewValue() : "" %>" data-updated="<%= sponsorClassChange.getChangedAt() != null ? sponsorClassChange.getChangedAt() : "" %>" data-by="<%= sponsorClassChange.getUpdateBy() != null ? sponsorClassChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
                 </td>
 
                 <td>
                     <%=clinicalTrialData.getSponsorClass()!=null?clinicalTrialData.getSponsorClass().equalsIgnoreCase("NIH")?"NIH":clinicalTrialData.getSponsorClass():""%>
                 </td>
             </tr>
-            <tr>
+            <%
+                boolean overallStatusChanged = fieldChanges != null && fieldChanges.containsKey("overall_status");
+                ClinicalTrialFieldChange overallStatusChange = overallStatusChanged ? fieldChanges.get("overall_status") : null;
+                String status = clinicalTrialData.getStudyStatus();
+                boolean recStatus = "Recruiting".equalsIgnoreCase(status)||"Not yet recruiting".equalsIgnoreCase(status);
+                String cssClass = recStatus?"status-recruiting":"status-other";
+            %>
+            <tr class="<%= overallStatusChanged ? "api-updated" : "" %>">
                 <td class="label">
                     Recruitment&nbsp;Status
+                    <% if(overallStatusChanged) { %>
+                    <span class="change-info-icon" data-old="<%= overallStatusChange.getOldValue() != null ? overallStatusChange.getOldValue() : "" %>" data-new="<%= overallStatusChange.getNewValue() != null ? overallStatusChange.getNewValue() : "" %>" data-updated="<%= overallStatusChange.getChangedAt() != null ? overallStatusChange.getChangedAt() : "" %>" data-by="<%= overallStatusChange.getUpdateBy() != null ? overallStatusChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
                 </td>
-                <%
-                    String status = clinicalTrialData.getStudyStatus();
-                    boolean recStatus = "Recruiting".equalsIgnoreCase(status)||"Not yet recruiting".equalsIgnoreCase(status);
-                    String cssClass = recStatus?"status-recruiting":"status-other";
-                %>
-<%--                <td>--%>
-<%--                    <div class="status-container <%=cssClass%>">--%>
-<%--                    <%=clinicalTrialData.getStudyStatus()!=null?clinicalTrialData.getStudyStatus():""%>--%>
-<%--                    </div>--%>
-<%--                </td>--%>
                 <td>
                     <div style="display: flex; align-items: center; gap: 8px;">
                         <div class="status-container <%=cssClass%>">
@@ -372,10 +393,17 @@
                     </div>
                 </td>
             </tr>
+            <%
+                boolean enrollmentCountChanged = fieldChanges != null && fieldChanges.containsKey("enrollment_count");
+                ClinicalTrialFieldChange enrollmentCountChange = enrollmentCountChanged ? fieldChanges.get("enrollment_count") : null;
+            %>
             <% if(clinicalTrialData.getEnrorllmentCount() != 0) { %>
-            <tr>
+            <tr class="<%= enrollmentCountChanged ? "api-updated" : "" %>">
                 <td class="label">
                     Enrollment&nbsp;Count
+                    <% if(enrollmentCountChanged) { %>
+                    <span class="change-info-icon" data-old="<%= enrollmentCountChange.getOldValue() != null ? enrollmentCountChange.getOldValue() : "" %>" data-new="<%= enrollmentCountChange.getNewValue() != null ? enrollmentCountChange.getNewValue() : "" %>" data-updated="<%= enrollmentCountChange.getChangedAt() != null ? enrollmentCountChange.getChangedAt() : "" %>" data-by="<%= enrollmentCountChange.getUpdateBy() != null ? enrollmentCountChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
                 </td>
                 <td>
                     <%
@@ -386,8 +414,17 @@
                 </td>
             </tr>
             <% } %>
-            <tr>
-                <td class="label">Results&nbsp;Posted</td>
+            <%
+                boolean withHasResultsChanged = fieldChanges != null && fieldChanges.containsKey("with_has_results");
+                ClinicalTrialFieldChange withHasResultsChange = withHasResultsChanged ? fieldChanges.get("with_has_results") : null;
+            %>
+            <tr class="<%= withHasResultsChanged ? "api-updated" : "" %>">
+                <td class="label">
+                    Results&nbsp;Posted
+                    <% if(withHasResultsChanged) { %>
+                    <span class="change-info-icon" data-old="<%= withHasResultsChange.getOldValue() != null ? withHasResultsChange.getOldValue() : "" %>" data-new="<%= withHasResultsChange.getNewValue() != null ? withHasResultsChange.getNewValue() : "" %>" data-updated="<%= withHasResultsChange.getChangedAt() != null ? withHasResultsChange.getChangedAt() : "" %>" data-by="<%= withHasResultsChange.getUpdateBy() != null ? withHasResultsChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
+                </td>
                 <td>
                     <% if(clinicalTrialData.getWithHasResults() != null) { %>
                     <% if(clinicalTrialData.getWithHasResults().equals("True")) { %>
@@ -724,36 +761,64 @@
         <div class="dynamic-heading" id="study-record-dates"><h3 class="ctSubHeading">Study&nbsp;Record&nbsp;Dates</h3></div>
         <hr>
         <table class="ctReportTable">
-            <tr>
+            <%
+                boolean phasesChanged = fieldChanges != null && fieldChanges.containsKey("phases");
+                ClinicalTrialFieldChange phasesChange = phasesChanged ? fieldChanges.get("phases") : null;
+            %>
+            <tr class="<%= phasesChanged ? "api-updated" : "" %>">
                 <td class="label">
                     Current&nbsp;Stage
+                    <% if(phasesChanged) { %>
+                    <span class="change-info-icon" data-old="<%= phasesChange.getOldValue() != null ? phasesChange.getOldValue() : "" %>" data-new="<%= phasesChange.getNewValue() != null ? phasesChange.getNewValue() : "" %>" data-updated="<%= phasesChange.getChangedAt() != null ? phasesChange.getChangedAt() : "" %>" data-by="<%= phasesChange.getUpdateBy() != null ? phasesChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
                 </td>
 
                 <td>
                     <%=clinicalTrialData.getPhase()!=null?clinicalTrialData.getPhase():""%>
                 </td>
             </tr>
-            <tr>
+            <%
+                boolean firstSubmitDateChanged = fieldChanges != null && fieldChanges.containsKey("first_submit_date");
+                ClinicalTrialFieldChange firstSubmitDateChange = firstSubmitDateChanged ? fieldChanges.get("first_submit_date") : null;
+            %>
+            <tr class="<%= firstSubmitDateChanged ? "api-updated" : "" %>">
                 <td class="label">
                     Submit&nbsp;Date
+                    <% if(firstSubmitDateChanged) { %>
+                    <span class="change-info-icon" data-old="<%= firstSubmitDateChange.getOldValue() != null ? firstSubmitDateChange.getOldValue() : "" %>" data-new="<%= firstSubmitDateChange.getNewValue() != null ? firstSubmitDateChange.getNewValue() : "" %>" data-updated="<%= firstSubmitDateChange.getChangedAt() != null ? firstSubmitDateChange.getChangedAt() : "" %>" data-by="<%= firstSubmitDateChange.getUpdateBy() != null ? firstSubmitDateChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
                 </td>
 
                 <td>
                     <%=clinicalTrialData.getFirstSubmitDate()!=null?clinicalTrialData.getFirstSubmitDate():""%>
                 </td>
             </tr>
-            <tr>
+            <%
+                boolean completionDateChanged = fieldChanges != null && fieldChanges.containsKey("estimated_completion_date");
+                ClinicalTrialFieldChange completionDateChange = completionDateChanged ? fieldChanges.get("estimated_completion_date") : null;
+            %>
+            <tr class="<%= completionDateChanged ? "api-updated" : "" %>">
                 <td class="label">
                     Completion&nbsp;Date
+                    <% if(completionDateChanged) { %>
+                    <span class="change-info-icon" data-old="<%= completionDateChange.getOldValue() != null ? completionDateChange.getOldValue() : "" %>" data-new="<%= completionDateChange.getNewValue() != null ? completionDateChange.getNewValue() : "" %>" data-updated="<%= completionDateChange.getChangedAt() != null ? completionDateChange.getChangedAt() : "" %>" data-by="<%= completionDateChange.getUpdateBy() != null ? completionDateChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
                 </td>
 
                 <td>
                     <%=clinicalTrialData.getEstimatedCompleteDate()!=null?clinicalTrialData.getEstimatedCompleteDate():""%>
                 </td>
             </tr>
-            <tr>
+            <%
+                boolean lastUpdateChanged = fieldChanges != null && fieldChanges.containsKey("last_update_post_date");
+                ClinicalTrialFieldChange lastUpdateChange = lastUpdateChanged ? fieldChanges.get("last_update_post_date") : null;
+            %>
+            <tr class="<%= lastUpdateChanged ? "api-updated" : "" %>">
                 <td class="label">
                     Last&nbsp;Update
+                    <% if(lastUpdateChanged) { %>
+                    <span class="change-info-icon" data-old="<%= lastUpdateChange.getOldValue() != null ? lastUpdateChange.getOldValue() : "" %>" data-new="<%= lastUpdateChange.getNewValue() != null ? lastUpdateChange.getNewValue() : "" %>" data-updated="<%= lastUpdateChange.getChangedAt() != null ? lastUpdateChange.getChangedAt() : "" %>" data-by="<%= lastUpdateChange.getUpdateBy() != null ? lastUpdateChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
                 </td>
 
                 <td>
@@ -765,36 +830,77 @@
         <div class="dynamic-heading" id="participation-criteria"><h3 class="ctSubHeading">Participation&nbsp;Criteria</h3></div>
         <hr>
         <table class="ctReportTable">
-            <tr>
+            <%
+                boolean minAgeChanged = fieldChanges != null && fieldChanges.containsKey("eligibility_min_age");
+                boolean maxAgeChanged = fieldChanges != null && fieldChanges.containsKey("eligibility_max_age");
+                boolean ageChanged = minAgeChanged || maxAgeChanged;
+                ClinicalTrialFieldChange minAgeChange = minAgeChanged ? fieldChanges.get("eligibility_min_age") : null;
+                ClinicalTrialFieldChange maxAgeChange = maxAgeChanged ? fieldChanges.get("eligibility_max_age") : null;
+                String minAge = clinicalTrialData.getElibilityMinAge();
+                String maxAge = clinicalTrialData.getElibilityMaxAge();
+                String age = (minAge != null && maxAge != null) ? minAge + " - " + maxAge
+                        : (minAge != null) ? ">=" + minAge
+                        : (maxAge != null) ? "<=" + maxAge
+                        : null;
+                // Build combined old/new values for age
+                StringBuilder ageOldVal = new StringBuilder();
+                StringBuilder ageNewVal = new StringBuilder();
+                StringBuilder ageUpdated = new StringBuilder();
+                String ageBy = "";
+                if (minAgeChanged) {
+                    ageOldVal.append("Min Age: ").append(minAgeChange.getOldValue() != null ? minAgeChange.getOldValue() : "");
+                    ageNewVal.append("Min Age: ").append(minAgeChange.getNewValue() != null ? minAgeChange.getNewValue() : "");
+                    ageUpdated.append("Min Age: ").append(minAgeChange.getChangedAt() != null ? minAgeChange.getChangedAt().toString() : "");
+                    ageBy = minAgeChange.getUpdateBy() != null ? minAgeChange.getUpdateBy() : "";
+                }
+                if (maxAgeChanged) {
+                    if (minAgeChanged) { ageOldVal.append(", "); ageNewVal.append(", "); ageUpdated.append(", "); }
+                    ageOldVal.append("Max Age: ").append(maxAgeChange.getOldValue() != null ? maxAgeChange.getOldValue() : "");
+                    ageNewVal.append("Max Age: ").append(maxAgeChange.getNewValue() != null ? maxAgeChange.getNewValue() : "");
+                    ageUpdated.append("Max Age: ").append(maxAgeChange.getChangedAt() != null ? maxAgeChange.getChangedAt().toString() : "");
+                    if (!minAgeChanged) {
+                        ageBy = maxAgeChange.getUpdateBy() != null ? maxAgeChange.getUpdateBy() : "";
+                    }
+                }
+            %>
+            <tr class="<%= ageChanged ? "api-updated" : "" %>">
                 <td class="label">
                     Eligible&nbsp;Age
+                    <% if(ageChanged) { %>
+                    <span class="change-info-icon" data-old="<%= ageOldVal.toString() %>" data-new="<%= ageNewVal.toString() %>" data-updated="<%= ageUpdated.toString() %>" data-by="<%= ageBy %>">🔄</span>
+                    <% } %>
                 </td>
-                <%
-                    String minAge = clinicalTrialData.getElibilityMinAge();
-                    String maxAge = clinicalTrialData.getElibilityMaxAge();
-
-                    String age = (minAge != null && maxAge != null) ? minAge + " - " + maxAge
-                            : (minAge != null) ? ">=" + minAge
-                            : (maxAge != null) ? "<=" + maxAge
-                            : null;
-                %>
 
                 <td>
                     <%=age!=null?age:""%>
                 </td>
             </tr>
-            <tr>
+            <%
+                boolean stdAgeChanged = fieldChanges != null && fieldChanges.containsKey("eligibility_std_age");
+                ClinicalTrialFieldChange stdAgeChange = stdAgeChanged ? fieldChanges.get("eligibility_std_age") : null;
+            %>
+            <tr class="<%= stdAgeChanged ? "api-updated" : "" %>">
                 <td class="label">
                     Standard&nbsp;Ages
+                    <% if(stdAgeChanged) { %>
+                    <span class="change-info-icon" data-old="<%= stdAgeChange.getOldValue() != null ? stdAgeChange.getOldValue() : "" %>" data-new="<%= stdAgeChange.getNewValue() != null ? stdAgeChange.getNewValue() : "" %>" data-updated="<%= stdAgeChange.getChangedAt() != null ? stdAgeChange.getChangedAt() : "" %>" data-by="<%= stdAgeChange.getUpdateBy() != null ? stdAgeChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
                 </td>
 
                 <td>
                     <%=clinicalTrialData.getStandardAge()!=null?clinicalTrialData.getStandardAge():""%>
                 </td>
             </tr>
-            <tr>
+            <%
+                boolean eligibilitySexChanged = fieldChanges != null && fieldChanges.containsKey("eligibility_sex");
+                ClinicalTrialFieldChange eligibilitySexChange = eligibilitySexChanged ? fieldChanges.get("eligibility_sex") : null;
+            %>
+            <tr class="<%= eligibilitySexChanged ? "api-updated" : "" %>">
                 <td class="label">
                     Sexes&nbsp;Eligible&nbsp;for&nbsp;Study
+                    <% if(eligibilitySexChanged) { %>
+                    <span class="change-info-icon" data-old="<%= eligibilitySexChange.getOldValue() != null ? eligibilitySexChange.getOldValue() : "" %>" data-new="<%= eligibilitySexChange.getNewValue() != null ? eligibilitySexChange.getNewValue() : "" %>" data-updated="<%= eligibilitySexChange.getChangedAt() != null ? eligibilitySexChange.getChangedAt() : "" %>" data-by="<%= eligibilitySexChange.getUpdateBy() != null ? eligibilitySexChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
                 </td>
 
                 <td>
@@ -806,18 +912,32 @@
         <div class="dynamic-heading" id="location"><h3 class="ctSubHeading">Locations</h3></div>
         <hr>
         <table class="ctReportTable">
-            <tr>
+            <%
+                boolean numLocationsChanged = fieldChanges != null && fieldChanges.containsKey("number_of_locations");
+                ClinicalTrialFieldChange numLocationsChange = numLocationsChanged ? fieldChanges.get("number_of_locations") : null;
+            %>
+            <tr class="<%= numLocationsChanged ? "api-updated" : "" %>">
                 <td class="label">
                     No.of&nbsp;Trial&nbsp;Sites
+                    <% if(numLocationsChanged) { %>
+                    <span class="change-info-icon" data-old="<%= numLocationsChange.getOldValue() != null ? numLocationsChange.getOldValue() : "" %>" data-new="<%= numLocationsChange.getNewValue() != null ? numLocationsChange.getNewValue() : "" %>" data-updated="<%= numLocationsChange.getChangedAt() != null ? numLocationsChange.getChangedAt() : "" %>" data-by="<%= numLocationsChange.getUpdateBy() != null ? numLocationsChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
                 </td>
 
                 <td>
                     <%=clinicalTrialData.getNumberOfLocations()!=0?clinicalTrialData.getNumberOfLocations():""%>
                 </td>
             </tr>
-            <tr>
+            <%
+                boolean locationsChanged = fieldChanges != null && fieldChanges.containsKey("locations");
+                ClinicalTrialFieldChange locationsChange = locationsChanged ? fieldChanges.get("locations") : null;
+            %>
+            <tr class="<%= locationsChanged ? "api-updated" : "" %>">
                 <td class="label">
                     Locations
+                    <% if(locationsChanged) { %>
+                    <span class="change-info-icon" data-old="<%= locationsChange.getOldValue() != null ? locationsChange.getOldValue() : "" %>" data-new="<%= locationsChange.getNewValue() != null ? locationsChange.getNewValue() : "" %>" data-updated="<%= locationsChange.getChangedAt() != null ? locationsChange.getChangedAt() : "" %>" data-by="<%= locationsChange.getUpdateBy() != null ? locationsChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
                 </td>
 
                 <td>
@@ -829,9 +949,16 @@
         <div class="dynamic-heading" id="regulatory-info"><h3 class="ctSubHeading">Regulatory&nbsp;Information</h3></div>
         <hr>
         <table class="ctReportTable">
-            <tr>
+            <%
+                boolean isFdaRegulatedChanged = fieldChanges != null && fieldChanges.containsKey("is_fda_regulated");
+                ClinicalTrialFieldChange isFdaRegulatedChange = isFdaRegulatedChanged ? fieldChanges.get("is_fda_regulated") : null;
+            %>
+            <tr class="<%= isFdaRegulatedChanged ? "api-updated" : "" %>">
                 <td class="label">
                     Has&nbsp;US&nbsp;IND
+                    <% if(isFdaRegulatedChanged) { %>
+                    <span class="change-info-icon" data-old="<%= isFdaRegulatedChange.getOldValue() != null ? isFdaRegulatedChange.getOldValue() : "" %>" data-new="<%= isFdaRegulatedChange.getNewValue() != null ? isFdaRegulatedChange.getNewValue() : "" %>" data-updated="<%= isFdaRegulatedChange.getChangedAt() != null ? isFdaRegulatedChange.getChangedAt() : "" %>" data-by="<%= isFdaRegulatedChange.getUpdateBy() != null ? isFdaRegulatedChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
                 </td>
 
                 <td>
