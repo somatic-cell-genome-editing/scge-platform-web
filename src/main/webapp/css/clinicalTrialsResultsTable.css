@@ -4,14 +4,16 @@
 
 /* Top Scrollbar */
 .top-scroll-wrapper {
-    overflow-x: auto;
+    overflow-x: scroll;
     overflow-y: hidden;
-    height: 12px;
+    height: 18px;
     margin-bottom: 0;
     border: 1px solid #e2e8f0;
     border-bottom: none;
     border-radius: 8px 8px 0 0;
-    background: #f8fafc;
+    background: #f1f5f9;
+    scrollbar-width: auto;
+    scrollbar-color: #fb923c #f1f5f9;
 }
 
 .top-scroll-content {
@@ -19,17 +21,17 @@
 }
 
 .top-scroll-wrapper::-webkit-scrollbar {
-    height: 10px;
+    height: 14px;
 }
 
 .top-scroll-wrapper::-webkit-scrollbar-track {
     background: #f1f5f9;
-    border-radius: 8px 8px 0 0;
 }
 
 .top-scroll-wrapper::-webkit-scrollbar-thumb {
     background: #fb923c;
     border-radius: 4px;
+    border: 2px solid #f1f5f9;
 }
 
 .top-scroll-wrapper::-webkit-scrollbar-thumb:hover {

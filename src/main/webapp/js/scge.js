@@ -63,10 +63,22 @@ $(function() {
         $('#resultsTable').animate({ scrollTop: 0 }, 'fast');
     });
     $('#resultsTable').show();
-    // Update top scrollbar width after table is visible
-    if (typeof updateTopScrollWidth === 'function') {
-        setTimeout(updateTopScrollWidth, 100);
+    $('#topScrollWrapper').show();
+    // Update top scrollbar width after table is visible - retry until width is set
+    function tryUpdateScrollWidth(attempts) {
+        if (typeof updateTopScrollWidth === 'function') {
+            updateTopScrollWidth();
+            var content = document.getElementById('topScrollContent');
+            var table = document.getElementById('myTable');
+            if (content && table && attempts > 0) {
+                var tableWidth = table.scrollWidth || table.offsetWidth;
+                if (tableWidth <= 0 || content.style.width === '' || content.style.width === '0px') {
+                    setTimeout(function() { tryUpdateScrollWidth(attempts - 1); }, 100);
+                }
+            }
+        }
     }
+    tryUpdateScrollWidth(10);
     addDescription()
 });
 
