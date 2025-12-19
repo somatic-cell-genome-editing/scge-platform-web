@@ -35,7 +35,7 @@ $(this).off('mouseleave');
 })
 </script>
 <!-- Top Scrollbar -->
-<div id="topScrollWrapper" class="top-scroll-wrapper">
+<div id="topScrollWrapper" class="top-scroll-wrapper" style="display: none">
     <div id="topScrollContent" class="top-scroll-content"></div>
 </div>
 <!-- Table Container -->
@@ -299,46 +299,35 @@ $(this).off('mouseleave');
 }
 
 // Synchronized Top Scrollbar
-var updateTopScrollWidth; // Global function
+function updateTopScrollWidth() {
+    var topScrollContent = document.getElementById('topScrollContent');
+    var myTable = document.getElementById('myTable');
+    if (myTable && topScrollContent) {
+        var tableWidth = myTable.scrollWidth || myTable.offsetWidth;
+        if (tableWidth > 0) {
+            topScrollContent.style.width = tableWidth + 'px';
+        }
+    }
+}
 
 $(document).ready(function() {
     var topScroll = document.getElementById('topScrollWrapper');
-    var topScrollContent = document.getElementById('topScrollContent');
     var resultsTable = document.getElementById('resultsTable');
-    var myTable = document.getElementById('myTable');
-
-    // Set the width of the top scroll content to match the table
-    updateTopScrollWidth = function() {
-        if (myTable && topScrollContent && resultsTable) {
-            var tableWidth = myTable.scrollWidth || myTable.offsetWidth;
-            if (tableWidth > 0) {
-                topScrollContent.style.width = tableWidth + 'px';
-            }
-        }
-    };
 
     // Sync scroll positions
-    var isSyncing = false;
-
     if (topScroll && resultsTable) {
         topScroll.addEventListener('scroll', function() {
-            if (!isSyncing) {
-                isSyncing = true;
-                resultsTable.scrollLeft = topScroll.scrollLeft;
-                isSyncing = false;
-            }
+            resultsTable.scrollLeft = topScroll.scrollLeft;
         });
 
         resultsTable.addEventListener('scroll', function() {
-            if (!isSyncing) {
-                isSyncing = true;
-                topScroll.scrollLeft = resultsTable.scrollLeft;
-                isSyncing = false;
-            }
+            topScroll.scrollLeft = resultsTable.scrollLeft;
         });
     }
 
     // Update on window resize
-    $(window).on('resize', updateTopScrollWidth);
+    $(window).on('resize', function() {
+        setTimeout(updateTopScrollWidth, 50);
+    });
 });
 </script>
