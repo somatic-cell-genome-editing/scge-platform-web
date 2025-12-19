@@ -63,6 +63,10 @@ $(function() {
         $('#resultsTable').animate({ scrollTop: 0 }, 'fast');
     });
     $('#resultsTable').show();
+    // Update top scrollbar width after table is visible
+    if (typeof updateTopScrollWidth === 'function') {
+        setTimeout(updateTopScrollWidth, 100);
+    }
     addDescription()
 });
 

@@ -2,6 +2,40 @@
    MODERN TABLE DESIGN - CLINICAL TRIALS
    ================================================ */
 
+/* Top Scrollbar */
+.top-scroll-wrapper {
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 12px;
+    margin-bottom: 0;
+    border: 1px solid #e2e8f0;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    background: #f8fafc;
+}
+
+.top-scroll-content {
+    height: 1px;
+}
+
+.top-scroll-wrapper::-webkit-scrollbar {
+    height: 10px;
+}
+
+.top-scroll-wrapper::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 8px 8px 0 0;
+}
+
+.top-scroll-wrapper::-webkit-scrollbar-thumb {
+    background: #fb923c;
+    border-radius: 4px;
+}
+
+.top-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #f97316;
+}
+
 /* Results Table Container */
 #resultsTable {
     height: auto;
@@ -12,7 +46,8 @@
     width: 100%;
     margin-top: 0;
     border: 1px solid #e2e8f0;
-    border-radius: 8px;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
     background: white;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
@@ -374,10 +409,15 @@
 
 /* Print Styles */
 @media print {
+    .top-scroll-wrapper {
+        display: none;
+    }
+
     #resultsTable {
         max-height: none;
         overflow: visible;
-        border: none;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
     }
 
     #myTable tbody tr:hover {
