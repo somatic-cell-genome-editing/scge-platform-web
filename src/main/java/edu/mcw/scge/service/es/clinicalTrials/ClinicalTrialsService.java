@@ -129,7 +129,10 @@ public class ClinicalTrialsService {
         if(category!=null && !category.equals("")){
             q.filter(QueryBuilders.termQuery("category.keyword", category));
         }
-        q.filter(QueryBuilders.termsQuery("recordStatus.keyword", filtersMap.get("recordStatus")));
+        if (filtersMap != null && filtersMap.size() > 0 && (filtersMap.get("recordStatus")!=null && filtersMap.get("recordStatus").size()>0) ) {
+            q.filter(QueryBuilders.termsQuery("recordStatus.keyword", filtersMap.get("recordStatus")));
+        }
+//        q.filter(QueryBuilders.termsQuery("recordStatus.keyword", filtersMap.get("recordStatus")));
         return q;
     }
 
@@ -232,7 +235,7 @@ public class ClinicalTrialsService {
         q.filter(QueryBuilders.rangeQuery("recordModifiedDate")
                 .gte("now-7d/d")
                 .lte("now/d"));
-        if (filtersMap != null && filtersMap.size() > 0) {
+        if (filtersMap != null && filtersMap.size() > 0 && (filtersMap.get("recordStatus")!=null && filtersMap.get("recordStatus").size()>0) ) {
            q.filter(QueryBuilders.termsQuery("recordStatus.keyword", filtersMap.get("recordStatus")));
         }
 

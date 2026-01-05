@@ -296,12 +296,6 @@
     position: relative;
 }
 
-/* Allow tooltip to overflow when active */
-.daily-digest-sidebar:has(.digest-updates-header.active) {
-    overflow: visible;
-    z-index: 1001;
-}
-
 /* Sidebar Header */
 .digest-sidebar-header {
     display: flex;
@@ -376,10 +370,6 @@
     max-height: 450px;
 }
 
-/* Allow tooltip to overflow when active */
-.digest-sidebar-content:has(.digest-updates-header.active) {
-    overflow: visible;
-}
 
 .digest-sidebar-content::-webkit-scrollbar {
     width: 6px;
@@ -576,10 +566,8 @@
 
 .digest-updates-tooltip {
     display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    z-index: 1000;
+    position: fixed;
+    z-index: 9999;
     width: max-content;
     max-width: 550px;
     max-height: 300px;
@@ -587,24 +575,10 @@
     background: white;
     border: 1px solid #e2e8f0;
     border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    margin-top: 0.5rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     padding: 0.75rem 1rem;
     font-size: 0.85rem;
     line-height: 1.5;
-}
-
-.digest-updates-tooltip::before {
-    content: '';
-    position: absolute;
-    top: -6px;
-    right: 20px;
-    width: 12px;
-    height: 12px;
-    background: white;
-    border-left: 1px solid #e2e8f0;
-    border-top: 1px solid #e2e8f0;
-    transform: rotate(45deg);
 }
 
 .digest-updates-header.active .digest-updates-tooltip {
