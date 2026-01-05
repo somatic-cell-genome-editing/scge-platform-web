@@ -116,10 +116,11 @@
                 </td>
 
             </tr>
-            <% if(isEditMode) {
+            <%
                 boolean devStatusChanged = fieldChanges != null && fieldChanges.containsKey("development_status");
                 ClinicalTrialFieldChange devStatusChange = devStatusChanged ? fieldChanges.get("development_status") : null;
             %>
+            <% if(isEditMode) { %>
             <tr class="<%= devStatusChanged ? "curator-updated" : "" %>">
                 <td class="label">
                     Development&nbsp;Status
@@ -131,16 +132,22 @@
                     <textarea name="developmentStatus" class="form-control" rows="1"><%=clinicalTrialData.getDevelopmentStatus()!=null?clinicalTrialData.getDevelopmentStatus():""%></textarea>
                 </td>
             </tr>
-            <% } else { %>
-            <tr>
-                <td class="label">Development&nbsp;Status</td>
-                <td><strong><%=clinicalTrialData.getDevelopmentStatus()!=null?clinicalTrialData.getDevelopmentStatus():""%></strong></td>
+            <% } else if(clinicalTrialData.getDevelopmentStatus() != null && !clinicalTrialData.getDevelopmentStatus().isEmpty()) { %>
+            <tr class="<%= devStatusChanged ? "curator-updated" : "" %>">
+                <td class="label">
+                    Development&nbsp;Status
+                    <% if(devStatusChanged) { %>
+                    <span class="change-info-icon" data-old="<%= devStatusChange.getOldValue() != null ? devStatusChange.getOldValue() : "" %>" data-new="<%= devStatusChange.getNewValue() != null ? devStatusChange.getNewValue() : "" %>" data-updated="<%= devStatusChange.getChangedAt() != null ? devStatusChange.getChangedAt() : "" %>" data-by="<%= devStatusChange.getUpdateBy() != null ? devStatusChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
+                </td>
+                <td><strong><%= clinicalTrialData.getDevelopmentStatus() %></strong></td>
             </tr>
             <% } %>
-            <% if(isEditMode) {
+            <%
                 boolean indicationChanged = fieldChanges != null && fieldChanges.containsKey("indication");
                 ClinicalTrialFieldChange indicationChange = indicationChanged ? fieldChanges.get("indication") : null;
             %>
+            <% if(isEditMode) { %>
             <tr class="<%= indicationChanged ? "curator-updated" : "" %>">
                 <td class="label">
                     Indication
@@ -152,15 +159,47 @@
                     <textarea name="indication" class="form-control" rows="1"><%= clinicalTrialData.getIndication()!= null ? StringEscapeUtils.escapeHtml4(clinicalTrialData.getIndication()) : "" %></textarea>
                 </td>
             </tr>
-            <% } else { %>
-            <tr>
-                <td class="label">Indication</td>
-                <td><%= clinicalTrialData.getIndication() != null ? clinicalTrialData.getIndication() : "" %></td>
+            <% } else if(clinicalTrialData.getIndication() != null && !clinicalTrialData.getIndication().isEmpty()) { %>
+            <tr class="<%= indicationChanged ? "curator-updated" : "" %>">
+                <td class="label">
+                    Indication
+                    <% if(indicationChanged) { %>
+                    <span class="change-info-icon" data-old="<%= indicationChange.getOldValue() != null ? indicationChange.getOldValue() : "" %>" data-new="<%= indicationChange.getNewValue() != null ? indicationChange.getNewValue() : "" %>" data-updated="<%= indicationChange.getChangedAt() != null ? indicationChange.getChangedAt() : "" %>" data-by="<%= indicationChange.getUpdateBy() != null ? indicationChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
+                </td>
+                <td><%= clinicalTrialData.getIndication() %></td>
             </tr>
             <% } %>
-            <% if(isEditMode) {
+            <%
                 boolean doidChanged = fieldChanges != null && fieldChanges.containsKey("indication_doid");
                 ClinicalTrialFieldChange doidChange = doidChanged ? fieldChanges.get("indication_doid") : null;
+                String doidString = clinicalTrialData.getIndicationDOID()!=null?clinicalTrialData.getIndicationDOID():"";
+            %>
+            <% if(isEditMode) { %>
+            <tr class="<%= doidChanged ? "curator-updated" : "" %>">
+                <td class="label">
+                    Disease&nbsp;Ontology&nbsp;Term
+                    <% if(doidChanged) { %>
+                    <span class="change-info-icon" data-old="<%= doidChange.getOldValue() != null ? doidChange.getOldValue() : "" %>" data-new="<%= doidChange.getNewValue() != null ? doidChange.getNewValue() : "" %>" data-updated="<%= doidChange.getChangedAt() != null ? doidChange.getChangedAt() : "" %>" data-by="<%= doidChange.getUpdateBy() != null ? doidChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
+                </td>
+                <td>
+                    <textarea name="indicationDOID" class="form-control" rows="1"><%=doidString%></textarea>
+                </td>
+            </tr>
+            <% } else if(doidString != null && !doidString.isEmpty()) {
+                String[] doids = doidString.split("[/,;]+\\s*");
+                StringBuilder formattedDoids = new StringBuilder();
+                for (int i = 0; i < doids.length; i++) {
+                    String doid = doids[i].trim();
+                    String doidNumber = doid.startsWith("DOID:") ? doid.substring(5) : doid;
+                    formattedDoids
+                            .append(" <a href=\"https://www.disease-ontology.org/term/DOID:").append(doidNumber)
+                            .append("\" target=\"_blank\">DOID:").append(doidNumber).append("</a>");
+                    if (i < doids.length - 1) {
+                        formattedDoids.append("; ");
+                    }
+                }
             %>
             <tr class="<%= doidChanged ? "curator-updated" : "" %>">
                 <td class="label">
@@ -170,44 +209,19 @@
                     <% } %>
                 </td>
                 <td>
-                    <textarea name="indicationDOID" class="form-control" rows="1"><%=clinicalTrialData.getIndicationDOID()!=null?clinicalTrialData.getIndicationDOID():""%></textarea>
-                </td>
-            </tr>
-            <% } else { %>
-            <tr>
-                <td class="label">Disease&nbsp;Ontology&nbsp;Term</td>
-                <td>
-                    <%
-                        String doidString = clinicalTrialData.getIndicationDOID()!=null?clinicalTrialData.getIndicationDOID():"";
-                        if (doidString != null && !doidString.isEmpty()) {
-                            String[] doids = doidString.split("[/,;]+\\s*");
-                            StringBuilder formattedDoids = new StringBuilder();
-                            for (int i = 0; i < doids.length; i++) {
-                                String doid = doids[i].trim();
-                                String doidNumber = doid.startsWith("DOID:") ? doid.substring(5) : doid;
-                                formattedDoids
-                                        .append(" <a href=\"https://www.disease-ontology.org/term/DOID:").append(doidNumber)
-                                        .append("\" target=\"_blank\">DOID:").append(doidNumber).append("</a>");
-                                if (i < doids.length - 1) {
-                                    formattedDoids.append("; ");
-                                }
-                            }
-                    %>
                     <%=formattedDoids.toString()%>
-                    <% } else { %>
-
-                    <% } %>
-                    <% } %>
                 </td>
             </tr>
+            <% } %>
             <%
                 boolean hasExistingAlias = (aliasData != null && !aliasData.isEmpty());
                 Alias existingAlias = hasExistingAlias ? aliasData.get(0) : new Alias();
             %>
-            <% if(isEditMode) {
+            <%
                 boolean compoundNameChanged = fieldChanges != null && fieldChanges.containsKey("compound_name");
                 ClinicalTrialFieldChange compoundNameChange = compoundNameChanged ? fieldChanges.get("compound_name") : null;
             %>
+            <% if(isEditMode) { %>
             <tr class="<%= compoundNameChanged ? "curator-updated" : "" %>">
                 <td class="label">
                     Compound&nbsp;Name
@@ -219,17 +233,23 @@
                     <textarea name="compoundName" class="form-control" rows="1"><%= clinicalTrialData.getCompoundName() != null ? StringEscapeUtils.escapeHtml4(clinicalTrialData.getCompoundName()) : "" %></textarea>
                 </td>
             </tr>
-            <% } else { %>
-            <tr>
-                <td class="label">Compound&nbsp;Name</td>
-                <td><%= clinicalTrialData.getCompoundName() != null ? clinicalTrialData.getCompoundName() : "" %></td>
+            <% } else if(clinicalTrialData.getCompoundName() != null && !clinicalTrialData.getCompoundName().isEmpty()) { %>
+            <tr class="<%= compoundNameChanged ? "curator-updated" : "" %>">
+                <td class="label">
+                    Compound&nbsp;Name
+                    <% if(compoundNameChanged) { %>
+                    <span class="change-info-icon" data-old="<%= compoundNameChange.getOldValue() != null ? compoundNameChange.getOldValue() : "" %>" data-new="<%= compoundNameChange.getNewValue() != null ? compoundNameChange.getNewValue() : "" %>" data-updated="<%= compoundNameChange.getChangedAt() != null ? compoundNameChange.getChangedAt() : "" %>" data-by="<%= compoundNameChange.getUpdateBy() != null ? compoundNameChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
+                </td>
+                <td><%= clinicalTrialData.getCompoundName() %></td>
             </tr>
             <% } %>
 
-            <% if(isEditMode) {
+            <%
                 boolean aliasValueChanged = fieldChanges != null && fieldChanges.containsKey("alias_value");
                 ClinicalTrialFieldChange aliasValueChange = aliasValueChanged ? fieldChanges.get("alias_value") : null;
             %>
+            <% if(isEditMode) { %>
             <tr class="<%= aliasValueChanged ? "curator-updated" : "" %>">
                 <td class="label">
                     Compound&nbsp;Alias
@@ -276,13 +296,14 @@
                     <textarea name="aliasNotes" class="form-control" rows="1"><%= hasExistingAlias && existingAlias.getNotes() != null ? StringEscapeUtils.escapeHtml4(existingAlias.getNotes()) : "" %></textarea>
                 </td>
             </tr>
-            <% } else { %>
-            <% if(hasExistingAlias && existingAlias.getAlias() != null && !existingAlias.getAlias().isEmpty()) { %>
-            <tr>
+            <% } else if(hasExistingAlias && existingAlias.getAlias() != null && !existingAlias.getAlias().isEmpty()) { %>
+            <tr class="<%= aliasValueChanged ? "curator-updated" : "" %>">
                 <td class="label">
                     Compound&nbsp;Alias
+                    <% if(aliasValueChanged) { %>
+                    <span class="change-info-icon" data-old="<%= aliasValueChange.getOldValue() != null ? aliasValueChange.getOldValue() : "" %>" data-new="<%= aliasValueChange.getNewValue() != null ? aliasValueChange.getNewValue() : "" %>" data-updated="<%= aliasValueChange.getChangedAt() != null ? aliasValueChange.getChangedAt() : "" %>" data-by="<%= aliasValueChange.getUpdateBy() != null ? aliasValueChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
                 </td>
-
                 <td>
                     <%= existingAlias.getAlias() %>
                 </td>
@@ -310,11 +331,11 @@
 <%--                </td>--%>
 <%--            </tr>--%>
 <%--            <% } %>--%>
-            <% } %>
-            <% if(isEditMode) {
+            <%
                 boolean compoundDescChanged = fieldChanges != null && fieldChanges.containsKey("compound_description");
                 ClinicalTrialFieldChange compoundDescChange = compoundDescChanged ? fieldChanges.get("compound_description") : null;
             %>
+            <% if(isEditMode) { %>
             <tr class="<%= compoundDescChanged ? "curator-updated" : "" %>">
                 <td class="label">
                     Compound&nbsp;Description
@@ -327,8 +348,13 @@
                 </td>
             </tr>
             <% } else if(clinicalTrialData.getCompoundDescription() != null && !clinicalTrialData.getCompoundDescription().isEmpty()) { %>
-            <tr>
-                <td class="label">Compound&nbsp;Description</td>
+            <tr class="<%= compoundDescChanged ? "curator-updated" : "" %>">
+                <td class="label">
+                    Compound&nbsp;Description
+                    <% if(compoundDescChanged) { %>
+                    <span class="change-info-icon" data-old="<%= compoundDescChange.getOldValue() != null ? compoundDescChange.getOldValue() : "" %>" data-new="<%= compoundDescChange.getNewValue() != null ? compoundDescChange.getNewValue() : "" %>" data-updated="<%= compoundDescChange.getChangedAt() != null ? compoundDescChange.getChangedAt() : "" %>" data-by="<%= compoundDescChange.getUpdateBy() != null ? compoundDescChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
+                </td>
                 <td><%= clinicalTrialData.getCompoundDescription() %></td>
             </tr>
             <% } %>
@@ -441,10 +467,11 @@
         <div class="dynamic-heading" id="therapy-info"><h3 class="ctSubHeading">Therapy&nbsp;Information</h3></div>
         <hr>
         <table class="ctReportTable">
-            <% if(isEditMode) {
+            <%
                 boolean targetGeneChanged = fieldChanges != null && fieldChanges.containsKey("target_gene");
                 ClinicalTrialFieldChange targetGeneChange = targetGeneChanged ? fieldChanges.get("target_gene") : null;
             %>
+            <% if(isEditMode) { %>
             <tr class="<%= targetGeneChanged ? "curator-updated" : "" %>">
                 <td class="label">
                     Target&nbsp;Gene/Variant
@@ -456,16 +483,22 @@
                     <textarea name="targetGeneOrVariant" class="form-control" rows="1"><%=clinicalTrialData.getTargetGeneOrVariant()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getTargetGeneOrVariant()):""%></textarea>
                 </td>
             </tr>
-            <% } else { %>
-            <tr>
-                <td class="label">Target&nbsp;Gene/Variant</td>
-                <td><%=clinicalTrialData.getTargetGeneOrVariant()!=null?clinicalTrialData.getTargetGeneOrVariant():""%></td>
+            <% } else if(clinicalTrialData.getTargetGeneOrVariant() != null && !clinicalTrialData.getTargetGeneOrVariant().isEmpty()) { %>
+            <tr class="<%= targetGeneChanged ? "curator-updated" : "" %>">
+                <td class="label">
+                    Target&nbsp;Gene/Variant
+                    <% if(targetGeneChanged) { %>
+                    <span class="change-info-icon" data-old="<%= targetGeneChange.getOldValue() != null ? targetGeneChange.getOldValue() : "" %>" data-new="<%= targetGeneChange.getNewValue() != null ? targetGeneChange.getNewValue() : "" %>" data-updated="<%= targetGeneChange.getChangedAt() != null ? targetGeneChange.getChangedAt() : "" %>" data-by="<%= targetGeneChange.getUpdateBy() != null ? targetGeneChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
+                </td>
+                <td><%= clinicalTrialData.getTargetGeneOrVariant() %></td>
             </tr>
             <% } %>
-            <% if(isEditMode) {
+            <%
                 boolean therapyTypeChanged = fieldChanges != null && fieldChanges.containsKey("therapy_type");
                 ClinicalTrialFieldChange therapyTypeChange = therapyTypeChanged ? fieldChanges.get("therapy_type") : null;
             %>
+            <% if(isEditMode) { %>
             <tr class="<%= therapyTypeChanged ? "curator-updated" : "" %>">
                 <td class="label">
                     Therapy&nbsp;Type
@@ -477,16 +510,22 @@
                     <textarea name="therapyType" class="form-control" rows="1"><%=clinicalTrialData.getTherapyType()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getTherapyType()):""%></textarea>
                 </td>
             </tr>
-            <% } else { %>
-            <tr>
-                <td class="label">Therapy&nbsp;Type</td>
-                <td><%=clinicalTrialData.getTherapyType()!=null?clinicalTrialData.getTherapyType():""%></td>
+            <% } else if(clinicalTrialData.getTherapyType() != null && !clinicalTrialData.getTherapyType().isEmpty()) { %>
+            <tr class="<%= therapyTypeChanged ? "curator-updated" : "" %>">
+                <td class="label">
+                    Therapy&nbsp;Type
+                    <% if(therapyTypeChanged) { %>
+                    <span class="change-info-icon" data-old="<%= therapyTypeChange.getOldValue() != null ? therapyTypeChange.getOldValue() : "" %>" data-new="<%= therapyTypeChange.getNewValue() != null ? therapyTypeChange.getNewValue() : "" %>" data-updated="<%= therapyTypeChange.getChangedAt() != null ? therapyTypeChange.getChangedAt() : "" %>" data-by="<%= therapyTypeChange.getUpdateBy() != null ? therapyTypeChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
+                </td>
+                <td><%= clinicalTrialData.getTherapyType() %></td>
             </tr>
             <% } %>
-            <% if(isEditMode) {
+            <%
                 boolean therapyRouteChanged = fieldChanges != null && fieldChanges.containsKey("therapy_route");
                 ClinicalTrialFieldChange therapyRouteChange = therapyRouteChanged ? fieldChanges.get("therapy_route") : null;
             %>
+            <% if(isEditMode) { %>
             <tr class="<%= therapyRouteChanged ? "curator-updated" : "" %>">
                 <td class="label">
                     Therapy&nbsp;Route
@@ -498,16 +537,22 @@
                     <textarea name="therapyRoute" class="form-control" rows="1"><%=clinicalTrialData.getTherapyRoute()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getTherapyRoute()):""%></textarea>
                 </td>
             </tr>
-            <% } else { %>
-            <tr>
-                <td class="label">Therapy&nbsp;Route</td>
-                <td><%=clinicalTrialData.getTherapyRoute()!=null?clinicalTrialData.getTherapyRoute():""%></td>
+            <% } else if(clinicalTrialData.getTherapyRoute() != null && !clinicalTrialData.getTherapyRoute().isEmpty()) { %>
+            <tr class="<%= therapyRouteChanged ? "curator-updated" : "" %>">
+                <td class="label">
+                    Therapy&nbsp;Route
+                    <% if(therapyRouteChanged) { %>
+                    <span class="change-info-icon" data-old="<%= therapyRouteChange.getOldValue() != null ? therapyRouteChange.getOldValue() : "" %>" data-new="<%= therapyRouteChange.getNewValue() != null ? therapyRouteChange.getNewValue() : "" %>" data-updated="<%= therapyRouteChange.getChangedAt() != null ? therapyRouteChange.getChangedAt() : "" %>" data-by="<%= therapyRouteChange.getUpdateBy() != null ? therapyRouteChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
+                </td>
+                <td><%= clinicalTrialData.getTherapyRoute() %></td>
             </tr>
             <% } %>
-            <% if(isEditMode) {
+            <%
                 boolean moaChanged = fieldChanges != null && fieldChanges.containsKey("mechanism_of_action");
                 ClinicalTrialFieldChange moaChange = moaChanged ? fieldChanges.get("mechanism_of_action") : null;
             %>
+            <% if(isEditMode) { %>
             <tr class="<%= moaChanged ? "curator-updated" : "" %>">
                 <td class="label">
                     Mechanism&nbsp;of&nbsp;Action
@@ -519,16 +564,22 @@
                     <textarea name="mechanismOfAction" class="form-control" rows="1"><%=clinicalTrialData.getMechanismOfAction()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getMechanismOfAction()):""%></textarea>
                 </td>
             </tr>
-            <% } else { %>
-            <tr>
-                <td class="label">Mechanism&nbsp;of&nbsp;Action</td>
-                <td><%=clinicalTrialData.getMechanismOfAction()!=null?clinicalTrialData.getMechanismOfAction():""%></td>
+            <% } else if(clinicalTrialData.getMechanismOfAction() != null && !clinicalTrialData.getMechanismOfAction().isEmpty()) { %>
+            <tr class="<%= moaChanged ? "curator-updated" : "" %>">
+                <td class="label">
+                    Mechanism&nbsp;of&nbsp;Action
+                    <% if(moaChanged) { %>
+                    <span class="change-info-icon" data-old="<%= moaChange.getOldValue() != null ? moaChange.getOldValue() : "" %>" data-new="<%= moaChange.getNewValue() != null ? moaChange.getNewValue() : "" %>" data-updated="<%= moaChange.getChangedAt() != null ? moaChange.getChangedAt() : "" %>" data-by="<%= moaChange.getUpdateBy() != null ? moaChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
+                </td>
+                <td><%= clinicalTrialData.getMechanismOfAction() %></td>
             </tr>
             <% } %>
-            <% if(isEditMode) {
+            <%
                 boolean roaChanged = fieldChanges != null && fieldChanges.containsKey("route_of_administration");
                 ClinicalTrialFieldChange roaChange = roaChanged ? fieldChanges.get("route_of_administration") : null;
             %>
+            <% if(isEditMode) { %>
             <tr class="<%= roaChanged ? "curator-updated" : "" %>">
                 <td class="label">
                     Route&nbsp;of&nbsp;Administration
@@ -540,16 +591,22 @@
                     <textarea name="routeOfAdministration" class="form-control" rows="1"><%=clinicalTrialData.getRouteOfAdministration()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getRouteOfAdministration()):""%></textarea>
                 </td>
             </tr>
-            <% } else { %>
-            <tr>
-                <td class="label">Route&nbsp;of&nbsp;Administration</td>
-                <td><%=clinicalTrialData.getRouteOfAdministration()!=null?clinicalTrialData.getRouteOfAdministration():""%></td>
+            <% } else if(clinicalTrialData.getRouteOfAdministration() != null && !clinicalTrialData.getRouteOfAdministration().isEmpty()) { %>
+            <tr class="<%= roaChanged ? "curator-updated" : "" %>">
+                <td class="label">
+                    Route&nbsp;of&nbsp;Administration
+                    <% if(roaChanged) { %>
+                    <span class="change-info-icon" data-old="<%= roaChange.getOldValue() != null ? roaChange.getOldValue() : "" %>" data-new="<%= roaChange.getNewValue() != null ? roaChange.getNewValue() : "" %>" data-updated="<%= roaChange.getChangedAt() != null ? roaChange.getChangedAt() : "" %>" data-by="<%= roaChange.getUpdateBy() != null ? roaChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
+                </td>
+                <td><%= clinicalTrialData.getRouteOfAdministration() %></td>
             </tr>
             <% } %>
-            <% if(isEditMode) {
+            <%
                 boolean drugProductTypeChanged = fieldChanges != null && fieldChanges.containsKey("drug_product_type");
                 ClinicalTrialFieldChange drugProductTypeChange = drugProductTypeChanged ? fieldChanges.get("drug_product_type") : null;
             %>
+            <% if(isEditMode) { %>
             <tr class="<%= drugProductTypeChanged ? "curator-updated" : "" %>">
                 <td class="label">
                     Drug&nbsp;Product&nbsp;Type
@@ -561,16 +618,22 @@
                     <textarea name="drugProductType" class="form-control" rows="1"><%=clinicalTrialData.getDrugProductType()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getDrugProductType()):""%></textarea>
                 </td>
             </tr>
-            <% } else { %>
-            <tr>
-                <td class="label">Drug&nbsp;Product&nbsp;Type</td>
-                <td><%=clinicalTrialData.getDrugProductType()!=null?clinicalTrialData.getDrugProductType():""%></td>
+            <% } else if(clinicalTrialData.getDrugProductType() != null && !clinicalTrialData.getDrugProductType().isEmpty()) { %>
+            <tr class="<%= drugProductTypeChanged ? "curator-updated" : "" %>">
+                <td class="label">
+                    Drug&nbsp;Product&nbsp;Type
+                    <% if(drugProductTypeChanged) { %>
+                    <span class="change-info-icon" data-old="<%= drugProductTypeChange.getOldValue() != null ? drugProductTypeChange.getOldValue() : "" %>" data-new="<%= drugProductTypeChange.getNewValue() != null ? drugProductTypeChange.getNewValue() : "" %>" data-updated="<%= drugProductTypeChange.getChangedAt() != null ? drugProductTypeChange.getChangedAt() : "" %>" data-by="<%= drugProductTypeChange.getUpdateBy() != null ? drugProductTypeChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
+                </td>
+                <td><%= clinicalTrialData.getDrugProductType() %></td>
             </tr>
             <% } %>
-            <% if(isEditMode) {
+            <%
                 boolean targetTissueChanged = fieldChanges != null && fieldChanges.containsKey("target_tissue");
                 ClinicalTrialFieldChange targetTissueChange = targetTissueChanged ? fieldChanges.get("target_tissue") : null;
             %>
+            <% if(isEditMode) { %>
             <tr class="<%= targetTissueChanged ? "curator-updated" : "" %>">
                 <td class="label">
                     Target&nbsp;Tissue/Cell
@@ -582,16 +645,22 @@
                     <textarea name="targetTissueOrCell" class="form-control" rows="1"><%=clinicalTrialData.getTargetTissueOrCell()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getTargetTissueOrCell()):""%></textarea>
                 </td>
             </tr>
-            <% } else { %>
-            <tr>
-                <td class="label">Target&nbsp;Tissue/Cell</td>
-                <td><%=clinicalTrialData.getTargetTissueOrCell()!=null?clinicalTrialData.getTargetTissueOrCell():""%></td>
+            <% } else if(clinicalTrialData.getTargetTissueOrCell() != null && !clinicalTrialData.getTargetTissueOrCell().isEmpty()) { %>
+            <tr class="<%= targetTissueChanged ? "curator-updated" : "" %>">
+                <td class="label">
+                    Target&nbsp;Tissue/Cell
+                    <% if(targetTissueChanged) { %>
+                    <span class="change-info-icon" data-old="<%= targetTissueChange.getOldValue() != null ? targetTissueChange.getOldValue() : "" %>" data-new="<%= targetTissueChange.getNewValue() != null ? targetTissueChange.getNewValue() : "" %>" data-updated="<%= targetTissueChange.getChangedAt() != null ? targetTissueChange.getChangedAt() : "" %>" data-by="<%= targetTissueChange.getUpdateBy() != null ? targetTissueChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
+                </td>
+                <td><%= clinicalTrialData.getTargetTissueOrCell() %></td>
             </tr>
             <% } %>
-            <% if(isEditMode) {
+            <%
                 boolean deliverySystemChanged = fieldChanges != null && fieldChanges.containsKey("delivery_system");
                 ClinicalTrialFieldChange deliverySystemChange = deliverySystemChanged ? fieldChanges.get("delivery_system") : null;
             %>
+            <% if(isEditMode) { %>
             <tr class="<%= deliverySystemChanged ? "curator-updated" : "" %>">
                 <td class="label">
                     Delivery&nbsp;System
@@ -603,16 +672,22 @@
                     <textarea name="deliverySystem" class="form-control" rows="1"><%=clinicalTrialData.getDeliverySystem()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getDeliverySystem()):""%></textarea>
                 </td>
             </tr>
-            <% } else { %>
-            <tr>
-                <td class="label">Delivery&nbsp;System</td>
-                <td><%=clinicalTrialData.getDeliverySystem()!=null?clinicalTrialData.getDeliverySystem():""%></td>
+            <% } else if(clinicalTrialData.getDeliverySystem() != null && !clinicalTrialData.getDeliverySystem().isEmpty()) { %>
+            <tr class="<%= deliverySystemChanged ? "curator-updated" : "" %>">
+                <td class="label">
+                    Delivery&nbsp;System
+                    <% if(deliverySystemChanged) { %>
+                    <span class="change-info-icon" data-old="<%= deliverySystemChange.getOldValue() != null ? deliverySystemChange.getOldValue() : "" %>" data-new="<%= deliverySystemChange.getNewValue() != null ? deliverySystemChange.getNewValue() : "" %>" data-updated="<%= deliverySystemChange.getChangedAt() != null ? deliverySystemChange.getChangedAt() : "" %>" data-by="<%= deliverySystemChange.getUpdateBy() != null ? deliverySystemChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
+                </td>
+                <td><%= clinicalTrialData.getDeliverySystem() %></td>
             </tr>
             <% } %>
-            <% if(isEditMode) {
+            <%
                 boolean vectorTypeChanged = fieldChanges != null && fieldChanges.containsKey("vector_type");
                 ClinicalTrialFieldChange vectorTypeChange = vectorTypeChanged ? fieldChanges.get("vector_type") : null;
             %>
+            <% if(isEditMode) { %>
             <tr class="<%= vectorTypeChanged ? "curator-updated" : "" %>">
                 <td class="label">
                     Vector&nbsp;Type
@@ -624,16 +699,22 @@
                     <textarea name="vectorType" class="form-control" rows="1"><%=clinicalTrialData.getVectorType()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getVectorType()):""%></textarea>
                 </td>
             </tr>
-            <% } else { %>
-            <tr>
-                <td class="label">Vector&nbsp;Type</td>
-                <td><%=clinicalTrialData.getVectorType()!=null?clinicalTrialData.getVectorType():""%></td>
+            <% } else if(clinicalTrialData.getVectorType() != null && !clinicalTrialData.getVectorType().isEmpty()) { %>
+            <tr class="<%= vectorTypeChanged ? "curator-updated" : "" %>">
+                <td class="label">
+                    Vector&nbsp;Type
+                    <% if(vectorTypeChanged) { %>
+                    <span class="change-info-icon" data-old="<%= vectorTypeChange.getOldValue() != null ? vectorTypeChange.getOldValue() : "" %>" data-new="<%= vectorTypeChange.getNewValue() != null ? vectorTypeChange.getNewValue() : "" %>" data-updated="<%= vectorTypeChange.getChangedAt() != null ? vectorTypeChange.getChangedAt() : "" %>" data-by="<%= vectorTypeChange.getUpdateBy() != null ? vectorTypeChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
+                </td>
+                <td><%= clinicalTrialData.getVectorType() %></td>
             </tr>
             <% } %>
-            <% if(isEditMode) {
+            <%
                 boolean editorTypeChanged = fieldChanges != null && fieldChanges.containsKey("editor_type");
                 ClinicalTrialFieldChange editorTypeChange = editorTypeChanged ? fieldChanges.get("editor_type") : null;
             %>
+            <% if(isEditMode) { %>
             <tr class="<%= editorTypeChanged ? "curator-updated" : "" %>">
                 <td class="label">
                     Editor&nbsp;Type
@@ -645,16 +726,22 @@
                     <textarea name="editorType" class="form-control" rows="1"><%=clinicalTrialData.getEditorType()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getEditorType()):""%></textarea>
                 </td>
             </tr>
-            <% } else { %>
-            <tr>
-                <td class="label">Editor&nbsp;Type</td>
-                <td><%=clinicalTrialData.getEditorType()!=null?clinicalTrialData.getEditorType():""%></td>
+            <% } else if(clinicalTrialData.getEditorType() != null && !clinicalTrialData.getEditorType().isEmpty()) { %>
+            <tr class="<%= editorTypeChanged ? "curator-updated" : "" %>">
+                <td class="label">
+                    Editor&nbsp;Type
+                    <% if(editorTypeChanged) { %>
+                    <span class="change-info-icon" data-old="<%= editorTypeChange.getOldValue() != null ? editorTypeChange.getOldValue() : "" %>" data-new="<%= editorTypeChange.getNewValue() != null ? editorTypeChange.getNewValue() : "" %>" data-updated="<%= editorTypeChange.getChangedAt() != null ? editorTypeChange.getChangedAt() : "" %>" data-by="<%= editorTypeChange.getUpdateBy() != null ? editorTypeChange.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
+                </td>
+                <td><%= clinicalTrialData.getEditorType() %></td>
             </tr>
             <% } %>
-            <% if(isEditMode) {
+            <%
                 boolean dose1Changed = fieldChanges != null && fieldChanges.containsKey("dose_1");
                 ClinicalTrialFieldChange dose1Change = dose1Changed ? fieldChanges.get("dose_1") : null;
             %>
+            <% if(isEditMode) { %>
             <tr class="<%= dose1Changed ? "curator-updated" : "" %>">
                 <td class="label">
                     Dose&nbsp;1
@@ -666,16 +753,22 @@
                     <textarea name="dose1" class="form-control" rows="1"><%=clinicalTrialData.getDose1()!=null?clinicalTrialData.getDose1():""%></textarea>
                 </td>
             </tr>
-            <% } else { %>
-            <tr>
-                <td class="label">Dose&nbsp;1</td>
-                <td><%=clinicalTrialData.getDose1()!=null?clinicalTrialData.getDose1():""%></td>
+            <% } else if(clinicalTrialData.getDose1() != null && !clinicalTrialData.getDose1().isEmpty()) { %>
+            <tr class="<%= dose1Changed ? "curator-updated" : "" %>">
+                <td class="label">
+                    Dose&nbsp;1
+                    <% if(dose1Changed) { %>
+                    <span class="change-info-icon" data-old="<%= dose1Change.getOldValue() != null ? dose1Change.getOldValue() : "" %>" data-new="<%= dose1Change.getNewValue() != null ? dose1Change.getNewValue() : "" %>" data-updated="<%= dose1Change.getChangedAt() != null ? dose1Change.getChangedAt() : "" %>" data-by="<%= dose1Change.getUpdateBy() != null ? dose1Change.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
+                </td>
+                <td><%= clinicalTrialData.getDose1() %></td>
             </tr>
             <% } %>
-            <% if(isEditMode) {
+            <%
                 boolean dose2Changed = fieldChanges != null && fieldChanges.containsKey("dose_2");
                 ClinicalTrialFieldChange dose2Change = dose2Changed ? fieldChanges.get("dose_2") : null;
             %>
+            <% if(isEditMode) { %>
             <tr class="<%= dose2Changed ? "curator-updated" : "" %>">
                 <td class="label">
                     Dose&nbsp;2
@@ -687,16 +780,22 @@
                     <textarea name="dose2" class="form-control" rows="1"><%=clinicalTrialData.getDose2()!=null?clinicalTrialData.getDose2():""%></textarea>
                 </td>
             </tr>
-            <% } else { %>
-            <tr>
-                <td class="label">Dose&nbsp;2</td>
-                <td><%=clinicalTrialData.getDose2()!=null?clinicalTrialData.getDose2():""%></td>
+            <% } else if(clinicalTrialData.getDose2() != null && !clinicalTrialData.getDose2().isEmpty()) { %>
+            <tr class="<%= dose2Changed ? "curator-updated" : "" %>">
+                <td class="label">
+                    Dose&nbsp;2
+                    <% if(dose2Changed) { %>
+                    <span class="change-info-icon" data-old="<%= dose2Change.getOldValue() != null ? dose2Change.getOldValue() : "" %>" data-new="<%= dose2Change.getNewValue() != null ? dose2Change.getNewValue() : "" %>" data-updated="<%= dose2Change.getChangedAt() != null ? dose2Change.getChangedAt() : "" %>" data-by="<%= dose2Change.getUpdateBy() != null ? dose2Change.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
+                </td>
+                <td><%= clinicalTrialData.getDose2() %></td>
             </tr>
             <% } %>
-            <% if(isEditMode) {
+            <%
                 boolean dose3Changed = fieldChanges != null && fieldChanges.containsKey("dose_3");
                 ClinicalTrialFieldChange dose3Change = dose3Changed ? fieldChanges.get("dose_3") : null;
             %>
+            <% if(isEditMode) { %>
             <tr class="<%= dose3Changed ? "curator-updated" : "" %>">
                 <td class="label">
                     Dose&nbsp;3
@@ -708,16 +807,22 @@
                     <textarea name="dose3" class="form-control" rows="1"><%=clinicalTrialData.getDose3()!=null?clinicalTrialData.getDose3():""%></textarea>
                 </td>
             </tr>
-            <% } else { %>
-            <tr>
-                <td class="label">Dose&nbsp;3</td>
-                <td><%=clinicalTrialData.getDose3()!=null?clinicalTrialData.getDose3():""%></td>
+            <% } else if(clinicalTrialData.getDose3() != null && !clinicalTrialData.getDose3().isEmpty()) { %>
+            <tr class="<%= dose3Changed ? "curator-updated" : "" %>">
+                <td class="label">
+                    Dose&nbsp;3
+                    <% if(dose3Changed) { %>
+                    <span class="change-info-icon" data-old="<%= dose3Change.getOldValue() != null ? dose3Change.getOldValue() : "" %>" data-new="<%= dose3Change.getNewValue() != null ? dose3Change.getNewValue() : "" %>" data-updated="<%= dose3Change.getChangedAt() != null ? dose3Change.getChangedAt() : "" %>" data-by="<%= dose3Change.getUpdateBy() != null ? dose3Change.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
+                </td>
+                <td><%= clinicalTrialData.getDose3() %></td>
             </tr>
             <% } %>
-            <% if(isEditMode) {
+            <%
                 boolean dose4Changed = fieldChanges != null && fieldChanges.containsKey("dose_4");
                 ClinicalTrialFieldChange dose4Change = dose4Changed ? fieldChanges.get("dose_4") : null;
             %>
+            <% if(isEditMode) { %>
             <tr class="<%= dose4Changed ? "curator-updated" : "" %>">
                 <td class="label">
                     Dose&nbsp;4
@@ -729,16 +834,22 @@
                     <textarea name="dose4" class="form-control" rows="1"><%=clinicalTrialData.getDose4()!=null?clinicalTrialData.getDose4():""%></textarea>
                 </td>
             </tr>
-            <% } else { %>
-            <tr>
-                <td class="label">Dose&nbsp;4</td>
-                <td><%=clinicalTrialData.getDose4()!=null?clinicalTrialData.getDose4():""%></td>
+            <% } else if(clinicalTrialData.getDose4() != null && !clinicalTrialData.getDose4().isEmpty()) { %>
+            <tr class="<%= dose4Changed ? "curator-updated" : "" %>">
+                <td class="label">
+                    Dose&nbsp;4
+                    <% if(dose4Changed) { %>
+                    <span class="change-info-icon" data-old="<%= dose4Change.getOldValue() != null ? dose4Change.getOldValue() : "" %>" data-new="<%= dose4Change.getNewValue() != null ? dose4Change.getNewValue() : "" %>" data-updated="<%= dose4Change.getChangedAt() != null ? dose4Change.getChangedAt() : "" %>" data-by="<%= dose4Change.getUpdateBy() != null ? dose4Change.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
+                </td>
+                <td><%= clinicalTrialData.getDose4() %></td>
             </tr>
             <% } %>
-            <% if(isEditMode) {
+            <%
                 boolean dose5Changed = fieldChanges != null && fieldChanges.containsKey("dose_5");
                 ClinicalTrialFieldChange dose5Change = dose5Changed ? fieldChanges.get("dose_5") : null;
             %>
+            <% if(isEditMode) { %>
             <tr class="<%= dose5Changed ? "curator-updated" : "" %>">
                 <td class="label">
                     Dose&nbsp;5
@@ -750,10 +861,15 @@
                     <textarea name="dose5" class="form-control" rows="1"><%=clinicalTrialData.getDose5()!=null?clinicalTrialData.getDose5():""%></textarea>
                 </td>
             </tr>
-            <% } else { %>
-            <tr>
-                <td class="label">Dose&nbsp;5</td>
-                <td><%=clinicalTrialData.getDose5()!=null?clinicalTrialData.getDose5():""%></td>
+            <% } else if(clinicalTrialData.getDose5() != null && !clinicalTrialData.getDose5().isEmpty()) { %>
+            <tr class="<%= dose5Changed ? "curator-updated" : "" %>">
+                <td class="label">
+                    Dose&nbsp;5
+                    <% if(dose5Changed) { %>
+                    <span class="change-info-icon" data-old="<%= dose5Change.getOldValue() != null ? dose5Change.getOldValue() : "" %>" data-new="<%= dose5Change.getNewValue() != null ? dose5Change.getNewValue() : "" %>" data-updated="<%= dose5Change.getChangedAt() != null ? dose5Change.getChangedAt() : "" %>" data-by="<%= dose5Change.getUpdateBy() != null ? dose5Change.getUpdateBy() : "" %>">🔄</span>
+                    <% } %>
+                </td>
+                <td><%= clinicalTrialData.getDose5() %></td>
             </tr>
             <% } %>
         </table>
@@ -972,7 +1088,7 @@
             <tr>
                 <td class="label">
                     FDA&nbsp;Designations
-                    <% if(isEditMode && fdaDesignationChanged) { %>
+                    <% if(fdaDesignationChanged) { %>
                     <span class="change-info-icon" data-old="<%= fdaDesignationChange.getOldValue() != null ? fdaDesignationChange.getOldValue() : "" %>" data-new="<%= fdaDesignationChange.getNewValue() != null ? fdaDesignationChange.getNewValue() : "" %>" data-updated="<%= fdaDesignationChange.getChangedAt() != null ? fdaDesignationChange.getChangedAt() : "" %>" data-by="<%= fdaDesignationChange.getUpdateBy() != null ? fdaDesignationChange.getUpdateBy() : "" %>">🔄</span>
                     <% } %>
                 </td>
@@ -1138,6 +1254,36 @@
 <%--        </ul>--%>
         <%}%>
         <%
+            // Build maps of link types that have changes (numbered format)
+            java.util.Map<String, StringBuilder> typeOldValues = new java.util.HashMap<>();
+            java.util.Map<String, StringBuilder> typeNewValues = new java.util.HashMap<>();
+            java.util.Map<String, String> typeUpdatedAt = new java.util.HashMap<>();
+            java.util.Map<String, String> typeUpdatedBy = new java.util.HashMap<>();
+            java.util.Map<String, Integer> typeChangeCount = new java.util.HashMap<>();
+
+            for (ClinicalTrialExternalLink link : clinicalExtLinkData) {
+                if (link.getType() != null && extLinkChanges != null && extLinkChanges.containsKey(link.getId())) {
+                    ClinicalTrialFieldChange change = extLinkChanges.get(link.getId());
+                    String linkType = link.getType();
+
+                    int count = typeChangeCount.getOrDefault(linkType, 0) + 1;
+                    typeChangeCount.put(linkType, count);
+
+                    if (!typeOldValues.containsKey(linkType)) {
+                        typeOldValues.put(linkType, new StringBuilder());
+                        typeNewValues.put(linkType, new StringBuilder());
+                    } else {
+                        typeOldValues.get(linkType).append(" ");
+                        typeNewValues.get(linkType).append(" ");
+                    }
+
+                    typeOldValues.get(linkType).append("[").append(count).append("] ").append(change.getOldValue() != null ? change.getOldValue() : "");
+                    typeNewValues.get(linkType).append("[").append(count).append("] ").append(change.getNewValue() != null ? change.getNewValue() : "");
+                    typeUpdatedAt.put(linkType, change.getChangedAt() != null ? change.getChangedAt().toString() : "");
+                    typeUpdatedBy.put(linkType, change.getUpdateBy() != null ? change.getUpdateBy() : "");
+                }
+            }
+
             String currentLinkType = "";
             for (int i = 0; i < clinicalExtLinkData.size(); i++) {
                 ClinicalTrialExternalLink cte = clinicalExtLinkData.get(i);
@@ -1150,8 +1296,14 @@
                     if (!currentLinkType.equals("")) { %>
         </ul>
         <% }
-            currentLinkType = cte.getType(); %>
-        <h5 class="link-type-heading"><%= currentLinkType %></h5>
+            currentLinkType = cte.getType();
+            boolean typeHasChanges = typeOldValues.containsKey(currentLinkType);
+        %>
+        <h5 class="link-type-heading"><%= currentLinkType %>
+            <% if(typeHasChanges) { %>
+            <span class="change-info-icon" data-old="<%= typeOldValues.get(currentLinkType).toString() %>" data-new="<%= typeNewValues.get(currentLinkType).toString() %>" data-updated="<%= typeUpdatedAt.get(currentLinkType) %>" data-by="<%= typeUpdatedBy.get(currentLinkType) %>">🔄</span>
+            <% } %>
+        </h5>
         <ul class="external-links-list">
             <% }
                 String linkName = cte.getName();
@@ -1262,6 +1414,25 @@
             });
         }
     });
+
+    // Remove purple background for changes older than 7 days
+    function removeOldHighlights() {
+        var sevenDaysAgo = new Date();
+        sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+
+        document.querySelectorAll('.curator-updated, .api-updated').forEach(function(row) {
+            var icon = row.querySelector('.change-info-icon[data-updated]');
+            if (icon && icon.dataset.updated) {
+                var changedAt = new Date(icon.dataset.updated);
+                if (changedAt < sevenDaysAgo) {
+                    row.classList.remove('curator-updated', 'api-updated');
+                }
+            }
+        });
+    }
+
+    // Run after DOM is loaded
+    removeOldHighlights();
 
 </script>
 
