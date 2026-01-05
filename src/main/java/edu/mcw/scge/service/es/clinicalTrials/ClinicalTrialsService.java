@@ -65,7 +65,7 @@ public class ClinicalTrialsService {
     public SearchResponse getSearchResults(String searchTerm, String category, Map<String, List<String>> filtersMap, int page, int pageSize) throws IOException {
         String searchIndex= SCGEContext.getESIndexName();
         SearchSourceBuilder srb=new SearchSourceBuilder();
-        BoolQueryBuilder q=this.buildBoolQuery(searchTerm, category);
+        BoolQueryBuilder q=this.buildBoolQuery(searchTerm, category, filtersMap);
         srb.query(q);
         for(String fieldName:ClinicalTrials.facets) {
             srb.aggregation(buildAggregations(fieldName));
@@ -123,12 +123,13 @@ public class ClinicalTrialsService {
       //  q.must(dqb);
         return q;
     }
-    public BoolQueryBuilder buildBoolQuery( String searchTerm, String category){
+    public BoolQueryBuilder buildBoolQuery( String searchTerm, String category, Map<String, List<String>> filtersMap){
         BoolQueryBuilder q=new BoolQueryBuilder();
         q.must(buildQuery(searchTerm));
         if(category!=null && !category.equals("")){
             q.filter(QueryBuilders.termQuery("category.keyword", category));
         }
+        q.filter(QueryBuilders.termsQuery("recordStatus.keyword", filtersMap.get("recordStatus")));
         return q;
     }
 
@@ -231,14 +232,15 @@ public class ClinicalTrialsService {
         q.filter(QueryBuilders.rangeQuery("recordModifiedDate")
                 .gte("now-7d/d")
                 .lte("now/d"));
+        if (filtersMap != null && filtersMap.size() > 0) {
+           q.filter(QueryBuilders.termsQuery("recordStatus.keyword", filtersMap.get("recordStatus")));
+        }
+
 
         srb.query(q);
         srb.size(10000); // Get all updates from past 7 days, display limited in UI
         srb.sort("recordModifiedDate", SortOrder.DESC);
 
-        if (filtersMap != null && filtersMap.size() > 0) {
-            srb.postFilter(filter(filtersMap));
-        }
 
         SearchRequest searchRequest = new SearchRequest(searchIndex);
         searchRequest.source(srb);

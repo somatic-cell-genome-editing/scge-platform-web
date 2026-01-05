@@ -43,8 +43,9 @@ public class SearchController{
         if(searchTerm==null)
             return null;
         ClinicalTrialsService services = new ClinicalTrialsService();
-        LinkedHashMap<String, List<String>> filterMap=getFiltersMap(req, authentication);
-        SearchResponse sr=services.getSearchResults(searchTerm, null, getFiltersMap(req, authentication), page, pageSize);
+        Person person = getPersonFromAuth(authentication, req);
+        LinkedHashMap<String, List<String>> filterMap=getFiltersMap(req, person);
+        SearchResponse sr=services.getSearchResults(searchTerm, null, filterMap, page, pageSize);
 
         // Set pagination attributes
         long totalHits = sr.getHits().getTotalHits().value;
@@ -55,13 +56,13 @@ public class SearchController{
         req.setAttribute("totalPages", totalPages);
 
         // Get recent updates for daily digest (separate query)
-        SearchResponse digestSr = services.getRecentUpdatesForDigest(null, getFiltersMap(req, authentication));
+        SearchResponse digestSr = services.getRecentUpdatesForDigest(null, getFiltersMap(req, person));
         req.setAttribute("digestHits", digestSr.getHits().getHits());
 
         req.setAttribute("searchTerm", searchTerm);
         req.setAttribute("sr", sr);
         req.setAttribute("filterMap", filterMap);
-        req.setAttribute("filtersSelected", getSelectedOrderedFilters(req, authentication));
+        req.setAttribute("filtersSelected", getSelectedOrderedFilters(req, person));
         model.addAttribute("searchTerm", searchTerm);
 //        Terms terms=sr.getAggregations().get("organization");
         Map<String,List<Definition>> definitions=service.getAllDefinitionsMap();
@@ -78,8 +79,9 @@ public class SearchController{
                                                @RequestParam(defaultValue = "100") int pageSize,
                                                OAuth2AuthenticationToken authentication) throws Exception {
         ClinicalTrialsService services = new ClinicalTrialsService();
-        LinkedHashMap<String, List<String>> filterMap=getFiltersMap(req, authentication);
-        SearchResponse sr=services.getSearchResults(searchTerm, category, getFiltersMap(req, authentication), page, pageSize);
+        Person person = getPersonFromAuth(authentication, req);
+        LinkedHashMap<String, List<String>> filterMap=getFiltersMap(req, person);
+        SearchResponse sr=services.getSearchResults(searchTerm, category, filterMap, page, pageSize);
 
         // Set pagination attributes
         long totalHits = sr.getHits().getTotalHits().value;
@@ -90,13 +92,13 @@ public class SearchController{
         req.setAttribute("totalPages", totalPages);
 
         // Get recent updates for daily digest (separate query)
-        SearchResponse digestSr = services.getRecentUpdatesForDigest(category, getFiltersMap(req, authentication));
+        SearchResponse digestSr = services.getRecentUpdatesForDigest(category, filterMap);
         req.setAttribute("digestHits", digestSr.getHits().getHits());
 
         req.setAttribute("searchTerm", searchTerm);
         req.setAttribute("sr", sr);
         req.setAttribute("filterMap", filterMap);
-        req.setAttribute("filtersSelected", getSelectedOrderedFilters(req, authentication));
+        req.setAttribute("filtersSelected", getSelectedOrderedFilters(req, person));
         model.addAttribute("searchTerm", searchTerm);
 //        Terms terms=sr.getAggregations().get("organization");
         Map<String,List<Definition>> definitions=service.getAllDefinitionsMap();
@@ -121,7 +123,7 @@ public class SearchController{
         res.getWriter().write(autoList);
         return null;
     }
-    public LinkedHashMap<String,  List<String>> getFiltersMap(HttpServletRequest request, OAuth2AuthenticationToken authentication) throws Exception {
+    public LinkedHashMap<String,  List<String>> getFiltersMap(HttpServletRequest request, Person person) throws Exception {
 
         LinkedHashMap<String,  List<String>> filterMap=new LinkedHashMap<>();
         for(String filterField: ClinicalTrials.facets) {
@@ -148,7 +150,7 @@ public class SearchController{
         }
         status.remove("Active");
         List<String> recordStatus=new ArrayList<>();
-        Person person = getPersonFromAuth(authentication, request);
+
         if(filterMap.get("recordStatus")!=null && person!=null && access.isAdmin(person)){
             recordStatus.addAll(filterMap.get("recordStatus"));
         }
@@ -183,7 +185,7 @@ public class SearchController{
         }
         return null;
     }
-    public List<String> getSelectedOrderedFilters(HttpServletRequest request, OAuth2AuthenticationToken authentication) throws Exception {
+    public List<String> getSelectedOrderedFilters(HttpServletRequest request, Person person) throws Exception {
 
         ObjectMapper mapper=new ObjectMapper();
         List<String> filters=new ArrayList<>();
@@ -200,7 +202,7 @@ public class SearchController{
         }
         if(request.getParameter("unchecked")==null && request.getParameter("checked")==null)
         {
-            LinkedHashMap<String,  List<String>> filterMap=   getFiltersMap(request, authentication);
+            LinkedHashMap<String,  List<String>> filterMap=   getFiltersMap(request, person);
             if(filterMap!=null && filterMap.size()>0){
                 for(String key:filterMap.keySet()){
                     List<String> filterValues=filterMap.get(key);

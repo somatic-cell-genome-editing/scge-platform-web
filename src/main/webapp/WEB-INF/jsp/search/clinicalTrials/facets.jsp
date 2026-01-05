@@ -79,8 +79,8 @@ expandFilterVal="<%=request.getAttribute("expandAllFilters")%>"
             if(bkt.getKey()!=null && !bkt.getKey().equals("")){
         %>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="<%=aggName%>" value="<%=bkt.getKey()%>" id="<%=bkt.getKey()%>">
-          <label class="form-check-label" for="<%=bkt.getKey()%>" data-title="<%=bkt.getKey()%>">
+          <input class="form-check-input" type="checkbox" name="<%=aggName%>" value="<%=bkt.getKey()%>" id="<%=bkt.getKey()%>" >
+          <label class="form-check-label" for="<%=bkt.getKey()%>" data-title="<%=bkt.getKey()%>" title="<%=bkt.getKey()%>">
             <%=bkt.getKey()%>&nbsp;<!--(<%--=bkt.getDocCount()--%>)-->
           </label>
         </div>
