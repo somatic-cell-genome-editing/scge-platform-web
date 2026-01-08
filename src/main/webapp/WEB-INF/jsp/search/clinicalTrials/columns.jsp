@@ -45,7 +45,7 @@
 <th>Locations&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Countries")%>" class="column-header-description"></span></sup></th>
 <th>Has US IND&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Has US IND?")%>" class="column-header-description"></span></sup></th>
 
-<th class="manual">Patents&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Patents")%>" class="column-header-description"></span></sup></th>
+<%--<th class="manual">Patents&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Patents")%>" class="column-header-description"></span></sup></th>--%>
 <th class="manual">Recent Updates&nbsp;<sup><span  data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Recent Regulatory Updates")%>" class="column-header-description"></span></sup></th>
 <th class="manual sorter-false">Resources/Links&nbsp;<sup><span  data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("News and Press Releases")%>" class="column-header-description"></span></sup></th>
 
