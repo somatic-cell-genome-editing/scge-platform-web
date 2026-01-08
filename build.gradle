@@ -7,7 +7,10 @@ apply plugin: 'war'
 repositories {
     mavenCentral()
 }
-
+java {
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
+}
 dependencies {
     testImplementation group: 'junit', name: 'junit', version: '4.13.1'
     implementation fileTree(dir: 'lib', include: '*.jar')
