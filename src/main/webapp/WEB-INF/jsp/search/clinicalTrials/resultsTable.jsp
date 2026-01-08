@@ -218,7 +218,7 @@ $(this).off('mouseleave');
             }%>
             <%=isFDARegulated%>
         </td>
-        <td class="manual"><%=sourceFields.get("patents")%></td>
+<%--        <td class="manual"><%=sourceFields.get("patents")%></td>--%>
         <td class="manual"><%=sourceFields.get("recentUpdates")%></td>
         <td class="manual lastColumn">
             <% if (sourceFields.get("externalLinks")!=null){%>
