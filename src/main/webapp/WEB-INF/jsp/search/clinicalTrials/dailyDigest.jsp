@@ -7,30 +7,19 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    // Get digest hits from controller (all updates from past 7 days)
-    SearchHit[] digestHitsArray = (SearchHit[]) request.getAttribute("digestHits");
-    List<Map<String, Object>> recentUpdates = new ArrayList<>();
 
-    if(digestHitsArray != null) {
-        for(SearchHit hit : digestHitsArray) {
-            recentUpdates.add(hit.getSourceAsMap());
-        }
-    }
-
-    int totalUpdates = recentUpdates.size();
     int displayLimit = 5;
     int maxDigestItems = Math.min(totalUpdates, displayLimit);
 %>
 <% if(totalUpdates > 0) { %>
-<div class="daily-digest-card">
-    <div class="digest-header" onclick="toggleDigest()" style="cursor: pointer;">
+<div class="daily-digest-sidebar">
+    <div class="digest-sidebar-header">
         <i class="fa fa-newspaper-o"></i>
         <h4>Clinical Trials Daily Digest</h4>
-        <span class="digest-badge"><%=totalUpdates%> Recent Update<%=totalUpdates > 1 ? "s" : ""%></span>
-        <span class="digest-toggle"><i id="digestToggleIcon" class="fa fa-chevron-down"></i></span>
+        <span class="digest-badge"><%=totalUpdates%> Update<%=totalUpdates > 1 ? "s" : ""%></span>
     </div>
-    <div id="digestContent" class="digest-collapsible collapsed">
-        <p class="digest-subtitle">Clinical trials with updates in the last 7 days</p>
+    <p class="digest-subtitle">Updates in the last 7 days</p>
+    <div class="digest-sidebar-content">
         <div class="digest-items">
             <%
                 for(int i = 0; i < maxDigestItems; i++) {
@@ -67,7 +56,7 @@
                         <% if(filteredUpdates.size() > 0) { %>
                         <div class="digest-updates-section">
                             <div class="digest-updates-header" onclick="toggleUpdatesPopover(event, this)">
-                                <i class="fa fa-pencil-square-o"></i> Updates
+                                <span title="View Updates"><i class="fa fa-pencil-square-o"></i> </span>
                                 <div class="digest-updates-tooltip">
                                     <% for(ClinicalTrialFieldChange update : filteredUpdates) { %>
                                     <div class="digest-update-item">
@@ -102,26 +91,12 @@
         </div>
         <% if(totalUpdates > displayLimit) { %>
         <div class="digest-footer">
-            <span class="digest-more-info"><i class="fa fa-info-circle"></i> <%=totalUpdates - displayLimit%> more trial(s) updated or added recently. Use filters or search to find them.</span>
+            <span class="digest-more-info"><i class="fa fa-info-circle"></i> <%=totalUpdates - displayLimit%> more update(s) recently</span>
         </div>
         <% } %>
-    </div><!-- end digestContent -->
+    </div><!-- end digest-sidebar-content -->
 </div>
 <script>
-    function toggleDigest() {
-        var content = document.getElementById('digestContent');
-        var icon = document.getElementById('digestToggleIcon');
-        if (content.classList.contains('collapsed')) {
-            content.classList.remove('collapsed');
-            icon.classList.remove('fa-chevron-down');
-            icon.classList.add('fa-chevron-up');
-        } else {
-            content.classList.add('collapsed');
-            icon.classList.remove('fa-chevron-up');
-            icon.classList.add('fa-chevron-down');
-        }
-    }
-
     function toggleUpdatesPopover(event, element) {
         event.stopPropagation();
         // Close all other open popovers
@@ -131,7 +106,28 @@
             }
         });
         // Toggle this popover
-        element.classList.toggle('active');
+        var isActive = element.classList.toggle('active');
+
+        // Position the tooltip if active
+        if (isActive) {
+            var tooltip = element.querySelector('.digest-updates-tooltip');
+            if (tooltip) {
+                var rect = element.getBoundingClientRect();
+                var tooltipWidth = 550; // max-width from CSS
+
+                // Position below the button, aligned to the right edge
+                tooltip.style.top = (rect.bottom + 8) + 'px';
+                tooltip.style.right = (window.innerWidth - rect.right) + 'px';
+                tooltip.style.left = 'auto';
+
+                // Check if tooltip goes off left edge of screen
+                var tooltipRect = tooltip.getBoundingClientRect();
+                if (tooltipRect.left < 10) {
+                    tooltip.style.right = 'auto';
+                    tooltip.style.left = '10px';
+                }
+            }
+        }
     }
 
     // Close popover when clicking outside

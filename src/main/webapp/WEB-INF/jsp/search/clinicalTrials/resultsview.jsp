@@ -63,32 +63,52 @@
     } catch (Exception e) {
         e.printStackTrace();
     }
+    // Get digest hits from controller (all updates from past 7 days)
+    SearchHit[] digestHitsArray = (SearchHit[]) request.getAttribute("digestHits");
+    List<Map<String, Object>> recentUpdates = new ArrayList<>();
+
+    if(digestHitsArray != null) {
+        for(SearchHit hit : digestHitsArray) {
+            recentUpdates.add(hit.getSourceAsMap());
+        }
+    }
+
+    int totalUpdates = recentUpdates.size();
+    int divSize=12;
+    if(totalUpdates>0){
+        divSize=9;
+    }
 %>
 <script>
     var filterMap='<%=gson.toJson(filterMap)%>'
     var json=JSON.parse(filterMap)
 </script>
-<div class="jumbotron">
-<%
-    if(category!=null && !category.equals("")){%>
-    <h3>Clinical Trials - Gene Therapy Trial Browser</h3>
-    <p>The Gene Therapy Trial Browser represents a unique publicly accessible, free database for the benefit of users seeking information on gene therapy development. The information within integrates various sources, including clinicaltrials.gov, publications, sponsor press releases, patent applications, and more to give a comprehensive overview of the gene therapy clinical trial landscape.
-    </p>
-
-<%}else{%>
-    <h3>SCGE Platform - General Search Results</h3>
-<%}%>
-
-</div>
-
 <div class="container-fluid">
-    <div class="disclaimer-card">
-        <small><strong>Disclaimer:</strong> The information on this dashboard has been collected for the convenience of patients and researchers. <b>The SCGE team are not medical doctors and cannot provide medical advice. Please discuss with your provider the risks/benefits of participating in a clinical trial, and do not send us your personal medical information.</b> The information contained within this table does not make use of any confidential or privileged information-all data is collected from publicly available sources. The SCGE makes no comment as to the efficacy and safety of the items listed, as these are not known at the time of publication. For the most up to date information, or to inquire about enrollment, please refer to <a href="https://clinicaltrials.gov/">clinicaltrials.gov</a> or the Sponsor's website for contact information.</small>
-
+    <div class="row header-section">
+        <!-- Left Column: Description and Disclaimer -->
+        <div class="col-lg-<%=divSize%> col-md-12">
+            <div class="jumbotron">
+                <%
+                    if(category!=null && !category.equals("")){%>
+                <h3>Clinical Trials - Gene Therapy Trial Browser</h3>
+                <p>The Gene Therapy Trial Browser represents a unique publicly accessible, free database for the benefit of users seeking information on gene therapy development. The information within integrates various sources, including clinicaltrials.gov, publications, sponsor press releases, patent applications, and more to give a comprehensive overview of the gene therapy clinical trial landscape.</p>
+                <%}else{%>
+                <h3>SCGE Platform - General Search Results</h3>
+                <%}%>
+            </div>
+            <div class="disclaimer-card">
+                <small><strong>Disclaimer:</strong> The information on this dashboard has been collected for the convenience of patients and researchers. <b>The SCGE team are not medical doctors and cannot provide medical advice. Please discuss with your provider the risks/benefits of participating in a clinical trial, and do not send us your personal medical information.</b> The information contained within this table does not make use of any confidential or privileged information-all data is collected from publicly available sources. The SCGE makes no comment as to the efficacy and safety of the items listed, as these are not known at the time of publication. For the most up to date information, or to inquire about enrollment, please refer to <a href="https://clinicaltrials.gov/">clinicaltrials.gov</a> or the Sponsor's website for contact information.</small>
+            </div>
+        </div>
+        <!-- Right Column: Daily Digest -->
+        <%
+            if(totalUpdates>0){
+        %>
+        <div class="col-lg-3 col-md-12">
+            <%@include file="dailyDigest.jsp"%>
+        </div>
+        <%}%>
     </div>
-
-    <!-- Clinical Trials Daily Digest Section -->
-    <%@include file="dailyDigest.jsp"%>
 
   <div class="row" style="margin-top: 1.5rem;">
     <!-- BEGIN SEARCH RESULT -->
