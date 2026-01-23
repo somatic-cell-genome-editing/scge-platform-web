@@ -37,7 +37,7 @@
                             <th class="phase-column">IND Enabling<br>Studies</th>
                             <th class="phase-column">Clinical Trial<br>Initiated</th>
                             <th style="width: 80px;">Publications</th>
-                            <th style="width: 80px;">Documents</th>
+                            <th style="width: 80px;">Regulatory Documents</th>
                         </tr>
                     </thead>
                     <tbody>
