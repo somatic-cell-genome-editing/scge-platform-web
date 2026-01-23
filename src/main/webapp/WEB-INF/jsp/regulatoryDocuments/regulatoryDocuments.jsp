@@ -11,6 +11,8 @@
                 <%@include file="ucd/ucd_sidebar.jsp"%>
                 <%@include file="cps1/cps1_docs.jsp"%>
                 <%@include file="prion/prion_sidebar.jsp"%>
+                <%@include file="lca/docs.jsp"%>
+                <%@include file="best/docs.jsp"%>
             </div>
         </div>
 
@@ -221,12 +223,20 @@
 <%--                                <div class="coming-soon-text">Coming Soon..</div>--%>
                             </td>
                             <td class="publications-cell">
-                                <div class="no-publications">—</div>
-                            </td>
+                                <button class="publications-toggle" onclick="togglePublications('lca-publications')">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span class="pub-count">1</span>
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
+                                </button>                            </td>
                             <td class="publications-cell">
                                 <div class="no-publications">—</div>
                             </td>
 
+                        </tr>
+                        <tr class="publications-row" id="lca-publications">
+                            <td colspan="9" class="publications-content">
+                                <%@include file="lca/publications.jsp"%>
+                            </td>
                         </tr>
                     <tr>
                         <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#saha" target="_blank">Best Vitelliform Macular Dystrophy (BVMD, Best's Disease)</a></td>
@@ -234,12 +244,21 @@
                             <div class="timeline-bar" style="left: 5px; width: 20%;"></div>
                         </td>
                         <td class="publications-cell">
-                            <div class="no-publications">—</div>
+                            <button class="publications-toggle" onclick="togglePublications('best-publications')">
+                                <i class="fas fa-file-alt"></i>
+                                <span class="pub-count">2</span>
+                                <i class="fas fa-chevron-down toggle-icon"></i>
+                            </button>
                         </td>
                         <td class="publications-cell">
                             <div class="no-publications">—</div>
                         </td>
                     </tr>
+                        <tr class="publications-row" id="best-publications">
+                            <td colspan="9" class="publications-content">
+                                <%@include file="best/publications.jsp"%>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
