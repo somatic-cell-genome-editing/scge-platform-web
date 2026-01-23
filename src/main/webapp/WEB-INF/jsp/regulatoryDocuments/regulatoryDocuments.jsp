@@ -52,7 +52,7 @@
                                     <div class="disease-label">Inborn<br>Errors of<br>Metabolism</div>
                                 </div>
                             </td>
-                            <td class="program-name">Phenylketonuria<br>(PKU)</td>
+                            <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#peranteau" target="_blank">Phenylketonuria<br>(PKU)</a></td>
                             <td colspan="5" style="position: relative;">
                                 <div class="timeline-bar" style="left: 5px; width: 55%;"></div>
                             </td>
@@ -82,7 +82,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="program-name">Carbamoyl<br>Phosphate<br>Synthetase I (CPS1)<br>Deficiency</td>
+                            <td class="program-name"><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#ahrens-nicklas" target="_blank">Carbamoyl<br>Phosphate<br>Synthetase I (CPS1)<br>Deficiency</a></td>
                             <td colspan="5" style="position: relative;">
                                 <div class="timeline-bar" style="left: 5px; width: 85%;"></div>
                             </td>
@@ -108,7 +108,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="program-name">Urea Cycle Disorders<br>(UCDs)</td>
+                            <td class="program-name"><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#ahrens-nicklas" target="_blank">Urea Cycle Disorders<br>(UCDs)</a></td>
                             <td colspan="5" style="position: relative;">
                                 <div class="timeline-bar" style="left: 5px; width: 55%;"></div>
                             </td>
@@ -175,7 +175,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="program-name">Prion Disease</td>
+                            <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#vallabh" target="_blank">Prion Disease</a></td>
                             <td colspan="5" style="position: relative;">
                                 <div class="timeline-bar" style="left: 5px; width: 40%;"></div>
 
@@ -215,7 +215,7 @@
                                     <div class="disease-label">Retinal<br>Diseases</div>
                                 </div>
                             </td>
-                            <td class="program-name">Leber Congenital<br>Amaurosis (KCNJ13)</td>
+                            <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#saha" target="_blank">Leber Congenital<br>Amaurosis (KCNJ13)</a></td>
                             <td colspan="5" style="position: relative;">
                                 <div class="timeline-bar" style="left: 5px; width: 40%;"></div>
 <%--                                <div class="coming-soon-text">Coming Soon..</div>--%>
@@ -229,7 +229,7 @@
 
                         </tr>
                     <tr>
-                        <td class="program-name">Best Vitelliform Macular Dystrophy (BVMD, Best's Disease)</td>
+                        <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#saha" target="_blank">Best Vitelliform Macular Dystrophy (BVMD, Best's Disease)</a></td>
                         <td colspan="5" style="position: relative;">
                             <div class="timeline-bar" style="left: 5px; width: 20%;"></div>
                         </td>
