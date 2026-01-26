@@ -15,9 +15,9 @@
     try {
          externalResources=resourceDAO.getResourcesBySection(sectionCode.trim().replaceAll("_", "."));
 
-        templates= externalResources!=null?externalResources.stream().filter(r -> r.getType() != null && r.getType().equalsIgnoreCase("template") && r.getResourceName() != null && !r.getResourceName().trim().equals("")).toList():null;
-        examples= externalResources!=null ?externalResources.stream().filter(r ->r.getType()!=null && r.getType().equalsIgnoreCase("example")&& r.getResourceName()!=null && !r.getResourceName().trim().equals("")).toList():null;
-        other= externalResources!=null ?externalResources.stream().filter(r -> ((r.getType()==null || r.getType().equals("") || (!r.getType().equalsIgnoreCase("example") && !r.getType().equalsIgnoreCase("template"))) && (r.getResourceName()!=null && !r.getResourceName().trim().equals("")))).toList():null;
+        templates= externalResources!=null?externalResources.stream().filter(r -> r.getType() != null && r.getType().trim().equalsIgnoreCase("template") && r.getResourceName() != null && !r.getResourceName().trim().equals("")).toList():null;
+        examples= externalResources!=null ?externalResources.stream().filter(r ->r.getType()!=null && r.getType().trim().equalsIgnoreCase("example")&& r.getResourceName()!=null && !r.getResourceName().trim().equals("")).toList():null;
+        other= externalResources!=null ?externalResources.stream().filter(r -> ((r.getType()==null || r.getType().trim().equals("") || (!r.getType().trim().equalsIgnoreCase("example") && !r.getType().trim().equalsIgnoreCase("template"))) && (r.getResourceName()!=null && !r.getResourceName().trim().equals("")))).toList():null;
 //        System.out.println(sectionCode+" resources:"+ externalResources.size());
     } catch (Exception e) {
         throw new RuntimeException(e);
@@ -32,14 +32,15 @@
     if(templates!=null && templates.size()>0){%>
         <b>Templates:</b>
 <%for(CTDResource resource:templates){
-    if(resource.getType()!=null && resource.getType().equals("template")){%>
+    System.out.println("RES:"+ resource.getType());
+    if(resource.getType()!=null && resource.getType().trim().equalsIgnoreCase("template")){%>
 <span class="chip"><a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceName()%>" target="_blank"><%=resource.getResourceName()%></a></span><br>
 
 <%}}}
     if(examples!=null && examples.size()>0){%>
 <b>Examples:</b>
 <%for(CTDResource resource:examples){
-    if(resource.getType()!=null && resource.getType().equals("example")){%>
+    if(resource.getType()!=null && resource.getType().equalsIgnoreCase("example")){%>
 <span class="chip"><a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceName()%>" target="_blank"><%=resource.getResourceName()%></a></span><br>
 
 <%}}}%>
