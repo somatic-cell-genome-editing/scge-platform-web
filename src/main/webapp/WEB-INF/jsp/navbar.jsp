@@ -68,12 +68,10 @@
                         </div>
                     </li>
 
-                    <%
-                        if(!SCGEContext.isProduction()){
-                    %>
+
                     <!-- Templates & Forms Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="templatesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <li class="nav-item dropdown hover-dropdown">
+                        <a class="nav-link dropdown-toggle" href="/platform/data/ind/templates" id="templatesDropdown" role="button"  aria-haspopup="true" aria-expanded="false">
                             Guidance & Forms
                         </a>
                         <div class="dropdown-menu" aria-labelledby="templatesDropdown">
@@ -85,7 +83,9 @@
 <%--                            <a class="dropdown-item" href="/platform/data/ind/templates?type=CMC">CMC Documents</a>--%>
                         </div>
                     </li>
-
+                    <%
+                        if(!SCGEContext.isProduction() && !SCGEContext.isTest()){
+                    %>
                     <!-- Guidance Dropdown -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="guidanceDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
