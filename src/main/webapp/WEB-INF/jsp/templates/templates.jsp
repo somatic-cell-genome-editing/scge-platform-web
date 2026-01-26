@@ -121,8 +121,15 @@
             }
         });
 
-        const instructionsWorkSheet= XLSX.utils.json_to_sheet([{"created by":"Jthota"}]);
-        XLSX.utils.book_append_sheet(wb, instructionsWorkSheet, "Instructions");
-        XLSX.writeFile(wb, 'FDA_Submission_elements.xlsx');
+        // const instructionsWorkSheet= XLSX.utils.json_to_sheet([{"created by":"Jthota"}]);
+        // XLSX.utils.book_append_sheet(wb, instructionsWorkSheet, "Instructions");
+        const now = new Date();
+        const timestamp = now.getFullYear() +
+            String(now.getMonth() + 1).padStart(2, '0') +
+            String(now.getDate()).padStart(2, '0') + '_' +
+            String(now.getHours()).padStart(2, '0') +
+            String(now.getMinutes()).padStart(2, '0') +
+            String(now.getSeconds()).padStart(2, '0');
+        XLSX.writeFile(wb, 'FDA_Submission_elements_' + timestamp + '.xlsx');
     });
 </script>
