@@ -32,15 +32,28 @@
     if(templates!=null && templates.size()>0){%>
         <b>Templates:</b>
 <%for(CTDResource resource:templates){
-    if(resource.getType()!=null && resource.getType().trim().equalsIgnoreCase("template")){%>
+    if(resource.getType()!=null && resource.getType().trim().equalsIgnoreCase("template")){
+
+        if(resource.getSource().equalsIgnoreCase("External")){%>
+<span class="chip"><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></span><br>
+
+<%}else{%>
 <span class="chip"><a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></span><br>
+
+<%}%>
 
 <%}}}
     if(examples!=null && examples.size()>0){%>
 <b>Examples:</b>
 <%for(CTDResource resource:examples){
-    if(resource.getType()!=null && resource.getType().equalsIgnoreCase("example")){%>
+    if(resource.getType()!=null && resource.getType().equalsIgnoreCase("example")){
+        if(resource.getSource().equalsIgnoreCase("External")){%>
+<span class="chip"><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></span><br>
+
+<%}else {%>
 <span class="chip"><a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></span><br>
+
+<%}%>
 
 <%}}}%>
 <%--            <li><a href="/platform/download/module?filename=hello.pdf">m1_1_FORM1571_fillablePDF.pdf</a></li>--%>
