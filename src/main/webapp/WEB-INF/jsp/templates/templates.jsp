@@ -83,36 +83,19 @@
 
         </div>
     </div>
-<div class="card">
-    <div class="card-header"><h5>Templates</h5></div>
-    <div class="card-body">
 
-        <ul>
-            <li><a href="/platform/data/protected/GENERAL INVESTIGATIONAL PLAN_Template .docx">GENERAL INVESTIGATIONAL PLAN</a></li>
-            <li><a href="/platform/data/protected/INTERACT MEETING REQUEST_MEETING INFORMATION PACKAGE_Template.docx">INTERACT MEETING REQUEST</a></li>
-            <li><a href="/platform/data/protected/INVESTIGATOR'S BROCHURE_template.docx">INVESTIGATOR'S BROCHURE</a></li>
-            <li><a href="/platform/data/protected/Module 5_ CLINICAL PROTOCOL_Template.docx">Module 5 CLINICAL PROTOCOL</a></li>
-            <li><a href="/platform/data/protected/Module 5_ INFORMED CONSENT_Template.docx">Module 5 INFORMED CONSENT</a></li>
-            <li><a href="/platform/data/protected/Module4_Template.docx">Module 4</a></li>
-            <li><a href="/platform/data/protected/NON-CLINICAL OVERVIEW_Template.docx">NON-CLINICAL OVERVIEW</a></li>
-            <li><a href="/platform/data/protected/NON-CLINICAL WRITTEN AND TABULATED SUMMARIES_template.docx">NON-CLINICAL WRITTEN AND TABULATED SUMMARIES TEMPLATE</a></li>
-            <li><a href="/platform/data/protected/PRE_IND MEETING INFORMATION PACKAGE Template.docx">Pre-IND Meeting Information Package</a></li>
-            <li><a href="/platform/data/protected/PRE_IND MEETING REQUEST_template.docx">Pre-IND Meeting Request</a></li>
-        </ul>
-
-    </div>
-</div>
     <div class="card">
         <div class="card-header">
-            <h5>Resources/Links</h5>
+            <h5>External Resources/Links</h5>
         </div>
         <div class="card-body">
             <ul>
-            <li><a href="/platform/forms_public/eCTD Tech Guide v1.8 Final.pdf" target="_blank">eCTD TECHNICAL CONFORMANCE GUIDE </a>- Content current as of: 03/22/2023</li>
-            <li><a href="https://www.fda.gov/drugs/electronic-regulatory-submission-and-review/submit-using-ectd#review" target="_blank">Submit Using eCTD</a></li>
-                <li><a href="https://www.fda.gov/vaccines-blood-biologics/cellular-gene-therapy-products/otp-pre-ind-meetings" target="_blank">OTP Pre-IND Meetings</a></li>
-            <li><a href="https://www.fda.gov/vaccines-blood-biologics/cellular-gene-therapy-products/otp-interact-meeting" target="_blank">OTP INTERACT Meeting</a></li>
+            <li><a href="https://www.fda.gov/media/179700/download" target="_blank">eCTD v4.0 Technical Conformance Guide (FDA) </a>- Content current as of  March 2025</li>
+            <li><a href="https://www.fda.gov/drugs/electronic-regulatory-submission-and-review/submit-using-ectd#review" target="_blank">Submit Using eCTD (FDA)</a></li>
+                <li><a href="https://www.fda.gov/vaccines-blood-biologics/cellular-gene-therapy-products/otp-pre-ind-meetings" target="_blank">OTP Pre-IND Meetings (FDA)</a></li>
+            <li><a href="https://www.fda.gov/vaccines-blood-biologics/cellular-gene-therapy-products/otp-interact-meeting" target="_blank">OTP INTERACT Meeting (FDA)</a></li>
             <li><a href="https://www.elpidatx.com/documents" target="_blank">Elpida Therapeutics (SPG50 Phase I/II Regulatory Documents)</a></li>
+                <li><a href="https://bgtcplaybook.document360.io/docs/resources-regulatory-templates" target="_blank">BGTC Regulatory Templates</a></li>
             </ul>
         </div>
     </div>
