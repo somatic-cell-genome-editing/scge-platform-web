@@ -76,16 +76,18 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="templatesDropdown">
                             <a class="dropdown-item" href="/platform/data/ind/templates">SCGE IND Templates</a>
+                            <%
+                                if(!SCGEContext.isProduction() && !SCGEContext.isTest()){
+                            %>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/platform/data/ind/forms">General IND Guidance</a>
 <%--                            <a class="dropdown-item" href="/platform/data/ind/templates?type=Protocol">Protocol Templates</a>--%>
 <%--                            <a class="dropdown-item" href="/platform/data/ind/templates?type=Safety">Safety Reporting Forms</a>--%>
 <%--                            <a class="dropdown-item" href="/platform/data/ind/templates?type=CMC">CMC Documents</a>--%>
+                            <%}%>
                         </div>
                     </li>
-                    <%
-                        if(!SCGEContext.isProduction() && !SCGEContext.isTest()){
-                    %>
+                  
                     <!-- Guidance Dropdown -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="guidanceDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -100,7 +102,7 @@
 
                         </div>
                     </li>
-                    <%}%>
+
                 </ul>
                 <!-- Separator -->
                 <div class="navbar-separator"></div>
