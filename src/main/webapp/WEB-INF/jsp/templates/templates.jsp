@@ -72,15 +72,8 @@
             <button id="downloadExcelBtn" class="btn btn-success btn-sm">Download Excel</button>
         </div>
         <div class="card-body">
-
-            <div class="row">
-                <div class="col-2"><%@include file="../ctd/rquirementsFilter.jsp"%></div>
-                <div class="col-10"> <%@include file="../ctd/ctdTable.jsp"%></div>
-            </div>
-
-            
-           
-
+            <%@include file="../ctd/rquirementsFilter.jsp"%>
+            <%@include file="../ctd/ctdTable.jsp"%>
         </div>
     </div>
 
