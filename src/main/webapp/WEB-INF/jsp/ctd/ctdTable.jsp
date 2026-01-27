@@ -285,7 +285,7 @@
                     </td>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    <td>   <%@include file="externalResourceLinks.jsp" %></td>
                     <%
                         if(application1!=null){
                     %>
