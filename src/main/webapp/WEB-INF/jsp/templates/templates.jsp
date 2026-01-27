@@ -13,11 +13,22 @@
 
 
 
-<div class="page-header">
+<div class="page-header has-page-nav">
     <h3>IND (Investigational New Drug) Application for gene therapy </h3>
 </div>
-<div class="templates-container">
-<div class="card">
+
+<!-- Page Navigation Sidebar -->
+<nav class="page-nav-sidebar" id="pageNavSidebar">
+    <div class="page-nav-title">Page Navigation</div>
+    <ul class="page-nav-list">
+        <li><a href="#section-ctd-overview" class="page-nav-link active"><i class="fa-solid fa-file-lines"></i> CTD Overview</a></li>
+        <li><a href="#section-fda-elements" class="page-nav-link"><i class="fa-solid fa-table"></i> FDA Submission Elements</a></li>
+        <li><a href="#section-external-resources" class="page-nav-link"><i class="fa-solid fa-link"></i> External Resources</a></li>
+    </ul>
+</nav>
+
+<div class="templates-container has-page-nav">
+<div class="card" id="section-ctd-overview">
     <div class="card-header"><h5>Common Technical Document (CTD)</h5></div>
     <div class="card-body">
         <div class="row">
@@ -66,7 +77,7 @@
     </div>
 </div>
 
-    <div class="card" style="margin-top: 1%;margin-bottom: 1%">
+    <div class="card" id="section-fda-elements" style="margin-top: 1%;margin-bottom: 1%">
         <div class="card-header">
             <h5>FDA Submission Elements</h5>
             <button id="downloadExcelBtn" class="btn btn-success btn-sm">Download Excel</button>
@@ -77,7 +88,7 @@
         </div>
     </div>
 
-    <div class="card">
+    <div class="card" id="section-external-resources">
         <div class="card-header">
             <h5>External Resources/Links</h5>
         </div>
@@ -125,4 +136,44 @@
             String(now.getSeconds()).padStart(2, '0');
         XLSX.writeFile(wb, 'FDA_Submission_elements_' + timestamp + '.xlsx');
     });
+
+    // Page Navigation Sidebar functionality
+    (function() {
+        const navLinks = document.querySelectorAll('.page-nav-link');
+        const sections = document.querySelectorAll('[id^="section-"]');
+
+        // Smooth scroll on click
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Update active state on scroll
+        function updateActiveNav() {
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                if (window.scrollY >= sectionTop - 150) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNav);
+        updateActiveNav(); // Initial call
+    })();
 </script>
