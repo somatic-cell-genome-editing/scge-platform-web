@@ -207,7 +207,7 @@
                     <th class="sticky-header sticky-top-row">Section Name</th>
                     <th colspan="2" class="sticky-header sticky-top-row">Required for submission</th>
                     <th class="sticky-header sticky-top-row">Submission Timing</th>
-                    <th class="sticky-header sticky-top-row" style="width: 5%;">Resources</th>
+                    <th class="sticky-header sticky-top-row" style="width: 15%;">Resources</th>
                     <%
                         if(application1!=null){
                     %>
