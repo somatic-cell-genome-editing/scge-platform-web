@@ -34,7 +34,7 @@
 <%for(CTDResource resource:templates){
     if(resource.getType()!=null && resource.getType().trim().equalsIgnoreCase("template")){
 
-        if(resource.getSource().equalsIgnoreCase("External")){%>
+        if(resource.getSource().equalsIgnoreCase("External") || resource.getSource().equalsIgnoreCase("FDA")){%>
 <span class="chip"><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></span><br>
 
 <%}else{%>
@@ -46,8 +46,8 @@
     if(examples!=null && examples.size()>0){%>
 <b>Examples:</b>
 <%for(CTDResource resource:examples){
-    if(resource.getType()!=null && resource.getType().equalsIgnoreCase("example")){
-        if(resource.getSource().equalsIgnoreCase("External")){%>
+    if(resource.getType()!=null && resource.getType().equalsIgnoreCase("example") ){
+        if(resource.getSource().equalsIgnoreCase("External") || resource.getSource().equalsIgnoreCase("FDA")){%>
 <span class="chip"><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></span><br>
 
 <%}else {%>
