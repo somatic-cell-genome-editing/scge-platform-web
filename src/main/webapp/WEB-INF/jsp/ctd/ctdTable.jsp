@@ -276,7 +276,11 @@
                     <td></td>
                     <td></td>
                     <td><span class="labelText"><strong><%=section.getSectionName()%></strong></span>
-
+                        <%if(section.getSectionDescription()!=null && !section.getSectionDescription().equals("")){%>
+                        <span data-toggle="tooltip" title="<%=StringUtils.capitalize( section.getSectionDescription())%>" style="color: lightseagreen; margin-left: 5px;">
+                           <i class="fa-solid fa-circle-info"></i>
+                        </span>
+                        <%}%>
                         <%@include file="sectionDocuments.jsp"%>
                     </td>
                     <td> <%if(section.getRequiredForInitialIND()!=null){%>
