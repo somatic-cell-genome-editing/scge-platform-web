@@ -7,6 +7,7 @@
 <%@ page import="edu.mcw.scge.datamodel.Document" %>
 <%@ page import="edu.mcw.scge.datamodel.Application" %>
 <%@ page import="org.apache.commons.lang.StringUtils" %>
+<%@ page import="org.apache.commons.lang.StringEscapeUtils" %>
 <%@ page import="edu.mcw.scge.dao.implementation.ctd.CTDResourceDAO" %>
 <%@ page import="java.util.Comparator" %>
 <%@ page import="java.util.ArrayList" %><%--
@@ -292,7 +293,7 @@
                     <td></td>
                     <td><span class="labelText"><strong><%=section.getSectionName()%></strong></span>
                         <%if(section.getSectionDescription()!=null && !section.getSectionDescription().equals("")){%>
-                        <span data-toggle="tooltip" title="<%=StringUtils.capitalize( section.getSectionDescription())%>" style="color: lightseagreen; margin-left: 5px;">
+                        <span data-toggle="tooltip" title="<%=StringEscapeUtils.escapeHtml(StringUtils.capitalize( section.getSectionDescription()))%>" style="color: lightseagreen; margin-left: 5px;">
                            <i class="fa-solid fa-circle-info"></i>
                         </span>
                         <%}%>
@@ -402,7 +403,7 @@
                             if(module==1 || module==2){%>
                         <%=l2.getSectionName()%>
                         <%if(l2.getSectionDescription()!=null && !l2.getSectionDescription().equals("")){%>
-                        <span data-toggle="tooltip" title="<%=StringUtils.capitalize( l2.getSectionDescription())%>" style="color: lightseagreen; margin-left: 5px;">
+                        <span data-toggle="tooltip" title="<%=StringEscapeUtils.escapeHtml(StringUtils.capitalize( l2.getSectionDescription()))%>" style="color: lightseagreen; margin-left: 5px;">
                            <i class="fa-solid fa-circle-info"></i>
                         </span>
                         <%}%>
@@ -520,7 +521,7 @@
                         <%}else{%>
                         <%=l3.getSectionName()%>
                         <%if(l3.getSectionDescription()!=null && !l3.getSectionDescription().equals("")){%>
-                        <span data-toggle="tooltip" title="<%=StringUtils.capitalize( l3.getSectionDescription())%>" style="color: lightseagreen; margin-left: 5px;">
+                        <span data-toggle="tooltip" title="<%=StringEscapeUtils.escapeHtml(StringUtils.capitalize( l3.getSectionDescription()))%>" style="color: lightseagreen; margin-left: 5px;">
                            <i class="fa-solid fa-circle-info"></i>
                         </span>
                         <%}}%>
@@ -640,7 +641,7 @@
     <td><a href="/platform/data/report/ctdSection/<%=l4.getSectionCode()%>"><%=l4.getSectionCode()%></a></td>
                     <td><%=l4.getSectionName()%>
                         <%if(l4.getSectionDescription()!=null && !l4.getSectionDescription().equals("")){%>
-                        <span data-toggle="tooltip" title="<%=StringUtils.capitalize( l4.getSectionDescription())%>" style="color: lightseagreen; margin-left: 5px;">
+                        <span data-toggle="tooltip" title="<%=StringEscapeUtils.escapeHtml(StringUtils.capitalize( l4.getSectionDescription()))%>" style="color: lightseagreen; margin-left: 5px;">
                            <i class="fa-solid fa-circle-info"></i>
                         </span>
                         <%}%>
