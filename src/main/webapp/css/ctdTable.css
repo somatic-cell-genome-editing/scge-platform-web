@@ -154,3 +154,14 @@
 .filterable-table tbody td sup .fa-circle-info {
     vertical-align: middle;
 }
+
+/* Resource list styling */
+.resource-list {
+    list-style-type: disc;
+    margin: 0;
+    padding-left: 18px;
+}
+
+.resource-list li {
+    padding: 2px 0;
+}
