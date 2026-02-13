@@ -52,8 +52,8 @@
 
                 </div>
                 <div class="card" style="margin-top: 1%;margin-bottom: 1%">
-                    <div class="card-header">
-                        <a href="/platform/data/ind/resources" class="btn btn-primary btn-sm" style="color: #ffffff; text-transform: capitalize;"><i class="fa-solid fa-book-open" style="font-weight: bold"></i>&nbsp;General Resources For Formatting An IND</a>
+                    <div class="card-header" >
+                        <span class="btn btn-primary btn-sm" style="color: #ffffff; text-transform: capitalize; pointer-events: none;" ><i class="fa-solid fa-book-open" style="font-weight: bold"></i>&nbsp;General Resources For Formatting An IND</span>
                     </div>
 
                 </div>
