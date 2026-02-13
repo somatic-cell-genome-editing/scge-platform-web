@@ -89,10 +89,10 @@
                                                     <%=resource.getResourceName()%>
                                                 <% } %>
                                             </td>
-                                            <td class="description-cell"><%=resource.getResourceDescription() != null ? resource.getResourceDescription() : ""%></td>
-                                            <td><span class="type-badge type-<%=resource.getType() != null ? resource.getType().toLowerCase() : ""%>"><%=resource.getType() != null ? resource.getType() : ""%></span></td>
-                                            <td><%=resource.getSource() != null ? resource.getSource() : ""%></td>
-                                            <td class="date-cell"><%=resource.getDateIssued() != null ? resource.getDateIssued() : ""%></td>
+                                            <td class="description-cell"><%=resource.getResourceDescription() != null && !"null".equals(resource.getResourceDescription()) ? resource.getResourceDescription() : ""%></td>
+                                            <td><span class="type-badge type-<%=resource.getType() != null ? resource.getType().toLowerCase() : ""%>"><%=resource.getType() != null && !"null".equals(resource.getType()) ? resource.getType() : ""%></span></td>
+                                            <td><%=resource.getSource() != null && !"null".equals(resource.getSource()) ? resource.getSource() : ""%></td>
+                                            <td class="date-cell"><%=resource.getDateIssued() != null && !"null".equals(resource.getDateIssued()) ? resource.getDateIssued() : ""%></td>
                                         </tr>
                                     <% } %>
                                 </tbody>
@@ -133,10 +133,10 @@
                                             <%=resource.getResourceName()%>
                                         <% } %>
                                     </td>
-                                    <td class="description-cell"><%=resource.getResourceDescription() != null ? resource.getResourceDescription() : ""%></td>
-                                    <td><span class="type-badge type-<%=resource.getType() != null ? resource.getType().toLowerCase() : ""%>"><%=resource.getType() != null ? resource.getType() : ""%></span></td>
-                                    <td><%=resource.getSource() != null ? resource.getSource() : ""%></td>
-                                    <td class="date-cell"><%=resource.getDateIssued() != null ? resource.getDateIssued() : ""%></td>
+                                    <td class="description-cell"><%=resource.getResourceDescription() != null && !"null".equals(resource.getResourceDescription()) ? resource.getResourceDescription() : ""%></td>
+                                    <td><span class="type-badge type-<%=resource.getType() != null ? resource.getType().toLowerCase() : ""%>"><%=resource.getType() != null && !"null".equals(resource.getType()) ? resource.getType() : ""%></span></td>
+                                    <td><%=resource.getSource() != null && !"null".equals(resource.getSource()) ? resource.getSource() : ""%></td>
+                                    <td class="date-cell"><%=resource.getDateIssued() != null && !"null".equals(resource.getDateIssued()) ? resource.getDateIssued() : ""%></td>
                                 </tr>
                             <% } %>
                         </tbody>
