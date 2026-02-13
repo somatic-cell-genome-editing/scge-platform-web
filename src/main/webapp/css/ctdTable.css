@@ -78,12 +78,11 @@
     color: #0066cc;
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.2s ease;
 }
 
 .filterable-table tbody td a:hover {
-    color: #004499;
-    text-decoration: underline;
+    color: #0066cc;
+    text-decoration: none;
 }
 
 /* Status badges */
@@ -165,3 +164,4 @@
 .resource-list li {
     padding: 2px 0;
 }
+
