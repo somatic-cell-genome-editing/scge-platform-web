@@ -68,13 +68,7 @@ $(this).off('mouseleave');
 <%--        <%}}%>--%>
 <%--    </td>--%>
         <td class="manual"><%=sourceFields.get("indication")%></td>
-    <td class="manual">
-        <%
-            if(sourceFields.get("fdaDesignations")!=null){
-        %>
-        <%=((List<String>)sourceFields.get("fdaDesignations")).stream().collect(Collectors.joining(", "))%>
-        <%}%>
-    </td>
+
         <td class="manual"><%=sourceFields.get("compoundName")%></td>
         <td><%=sourceFields.get("sponsor")%></td>
         <td ><%=sourceFields.get("sponsorClass")%></td>
@@ -218,6 +212,13 @@ $(this).off('mouseleave');
             }%>
             <%=isFDARegulated%>
         </td>
+    <td class="manual">
+        <%
+            if(sourceFields.get("fdaDesignations")!=null){
+        %>
+        <%=((List<String>)sourceFields.get("fdaDesignations")).stream().collect(Collectors.joining(", "))%>
+        <%}%>
+    </td>
 <%--        <td class="manual"><%=sourceFields.get("patents")%></td>--%>
         <td class="manual"><%=sourceFields.get("recentUpdates")%></td>
         <td class="manual lastColumn">
