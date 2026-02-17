@@ -58,7 +58,7 @@
                     <div class="card-body" style="display: flex; ; gap: 10px; flex-wrap: wrap;">
                         <form action="/platform/public/download/zipFile" method="post" style="margin: 0;">
                             <input type="hidden" name="filename" value="IND000000.zip">
-                            <button class="btn btn-primary btn-sm"><i class="fa-solid fa-download" style="font-weight: bold"></i>&nbsp;Download Entire .zip file</button>
+                            <button class="btn btn-primary btn-sm"><i class="fa-solid fa-download" style="font-weight: bold"></i>&nbsp;Full IND Submission Template</button>
                         </form>
                         <a href="/platform/data/ind/resources" class="btn btn-primary btn-sm" style="color: #ffffff; text-transform: capitalize;"><i class="fa-solid fa-download" style="font-weight: bold"></i>&nbsp;Download Selected</a>
                 </div>
