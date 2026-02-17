@@ -55,64 +55,7 @@
                     if (sections == null || sections.isEmpty()) {
                 %>
                     <div class="empty-module">No resources available for Module <%=module%>.</div>
-                <% } else {
-                    for (Map.Entry<String, List<CTDResource>> sectionEntry : sections.entrySet()) {
-                        String sectionCode = sectionEntry.getKey();
-                        List<CTDResource> resources = sectionEntry.getValue();
-                        String sectionName = sectionNames.get(sectionCode);
-                %>
-                        <div class="section-block">
-                            <div class="section-header">
-                                <span class="section-code"><%=sectionCode%></span>
-                                <% if (sectionName != null && !sectionName.isEmpty()) { %>
-                                    <span class="section-name"><%=sectionName%></span>
-                                <% } %>
-                                <span class="resource-count"><%=resources.size()%> resource<%=resources.size() != 1 ? "s" : ""%></span>
-                            </div>
-                            <table class="table table-striped table-hover resource-table">
-                                <thead>
-                                    <tr>
-                                        <th>Resource Name</th>
-                                        <th>Description</th>
-                                        <th>Type</th>
-                                        <th>Source</th>
-                                        <th>Date Issued</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% for (CTDResource resource : resources) { %>
-                                        <tr>
-                                            <td>
-                                                <% if (resource.getResourceUrl() != null && !resource.getResourceUrl().isEmpty() && !"null".equals(resource.getResourceUrl())) { %>
-                                                    <a href="<%=resource.getResourceUrl()%>" target="_blank" rel="noopener noreferrer"><%=resource.getResourceName()%></a>
-                                                <% } else { %>
-                                                    <%=resource.getResourceName()%>
-                                                <% } %>
-                                            </td>
-                                            <td class="description-cell"><%=resource.getResourceDescription() != null && !"null".equals(resource.getResourceDescription()) ? resource.getResourceDescription() : ""%></td>
-                                            <td><span class="type-badge type-<%=resource.getType() != null ? resource.getType().toLowerCase() : ""%>"><%=resource.getType() != null && !"null".equals(resource.getType()) ? resource.getType() : ""%></span></td>
-                                            <td><%=resource.getSource() != null && !"null".equals(resource.getSource()) ? resource.getSource() : ""%></td>
-                                            <td class="date-cell"><%=resource.getDateIssued() != null && !"null".equals(resource.getDateIssued()) ? resource.getDateIssued() : ""%></td>
-                                        </tr>
-                                    <% } %>
-                                </tbody>
-                            </table>
-                        </div>
-                <%  }
-                } %>
-            </div>
-        <% } %>
-
-        <!-- General Resources Tab -->
-        <div class="tab-pane fade" id="general" role="tabpanel" aria-labelledby="general-tab">
-            <% if (generalResources == null || generalResources.isEmpty()) { %>
-                <div class="empty-module">No general resources available.</div>
-            <% } else { %>
-                <div class="section-block">
-                    <div class="section-header">
-                        <span class="section-name">Resources applicable across all CTD modules</span>
-                        <span class="resource-count"><%=generalResources.size()%> resource<%=generalResources.size() != 1 ? "s" : ""%></span>
-                    </div>
+                <% } else { %>
                     <table class="table table-striped table-hover resource-table">
                         <thead>
                             <tr>
@@ -121,10 +64,17 @@
                                 <th>Type</th>
                                 <th>Source</th>
                                 <th>Date Issued</th>
+                                <th>Download</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <% for (CTDResource resource : generalResources) { %>
+                    <%
+                        for (Map.Entry<String, List<CTDResource>> sectionEntry : sections.entrySet()) {
+                            String sectionCode = sectionEntry.getKey();
+                            List<CTDResource> resources = sectionEntry.getValue();
+                            String sectionName = sectionNames.get(sectionCode);
+                    %>
+                            <% for (CTDResource resource : resources) { %>
                                 <tr>
                                     <td>
                                         <% if (resource.getResourceUrl() != null && !resource.getResourceUrl().isEmpty() && !"null".equals(resource.getResourceUrl())) { %>
@@ -137,11 +87,59 @@
                                     <td><span class="type-badge type-<%=resource.getType() != null ? resource.getType().toLowerCase() : ""%>"><%=resource.getType() != null && !"null".equals(resource.getType()) ? resource.getType() : ""%></span></td>
                                     <td><%=resource.getSource() != null && !"null".equals(resource.getSource()) ? resource.getSource() : ""%></td>
                                     <td class="date-cell"><%=resource.getDateIssued() != null && !"null".equals(resource.getDateIssued()) ? resource.getDateIssued() : ""%></td>
+                                    <td>
+                                        <% if (resource.getFilePath() != null && !resource.getFilePath().isEmpty() && !"null".equals(resource.getFilePath())) { %>
+                                            <a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceDescription() != null && !"null".equals(resource.getResourceDescription()) ? resource.getResourceDescription() : resource.getResourceName()%>" class="btn btn-sm btn-outline-primary" target="_blank"><i class="fa-solid fa-download"></i></a>
+                                        <% } %>
+                                    </td>
                                 </tr>
                             <% } %>
+                    <%  } %>
                         </tbody>
                     </table>
-                </div>
+                <% } %>
+            </div>
+        <% } %>
+
+        <!-- General Resources Tab -->
+        <div class="tab-pane fade" id="general" role="tabpanel" aria-labelledby="general-tab">
+            <% if (generalResources == null || generalResources.isEmpty()) { %>
+                <div class="empty-module">No general resources available.</div>
+            <% } else { %>
+                <table class="table table-striped table-hover resource-table">
+                    <thead>
+                        <tr>
+                            <th>Resource Name</th>
+                            <th>Description</th>
+                            <th>Type</th>
+                            <th>Source</th>
+                            <th>Date Issued</th>
+                            <th>Download</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (CTDResource resource : generalResources) { %>
+                            <tr>
+                                <td>
+                                    <% if (resource.getResourceUrl() != null && !resource.getResourceUrl().isEmpty() && !"null".equals(resource.getResourceUrl())) { %>
+                                        <a href="<%=resource.getResourceUrl()%>" target="_blank" rel="noopener noreferrer"><%=resource.getResourceName()%></a>
+                                    <% } else { %>
+                                        <%=resource.getResourceName()%>
+                                    <% } %>
+                                </td>
+                                <td class="description-cell"><%=resource.getResourceDescription() != null && !"null".equals(resource.getResourceDescription()) ? resource.getResourceDescription() : ""%></td>
+                                <td><span class="type-badge type-<%=resource.getType() != null ? resource.getType().toLowerCase() : ""%>"><%=resource.getType() != null && !"null".equals(resource.getType()) ? resource.getType() : ""%></span></td>
+                                <td><%=resource.getSource() != null && !"null".equals(resource.getSource()) ? resource.getSource() : ""%></td>
+                                <td class="date-cell"><%=resource.getDateIssued() != null && !"null".equals(resource.getDateIssued()) ? resource.getDateIssued() : ""%></td>
+                                <td>
+                                    <% if (resource.getFilePath() != null && !resource.getFilePath().isEmpty() && !"null".equals(resource.getFilePath())) { %>
+                                        <a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceDescription() != null && !"null".equals(resource.getResourceDescription()) ? resource.getResourceDescription() : resource.getResourceName()%>" class="btn btn-sm btn-outline-primary" target="_blank"><i class="fa-solid fa-download"></i></a>
+                                    <% } %>
+                                </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
             <% } %>
         </div>
     </div>

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(value="/data/ind")
@@ -45,7 +46,8 @@ public class GuidanceController extends ModulesController{
         CTDResourceDAO resourceDAO = new CTDResourceDAO();
         SectionDAO sectionDAO = new SectionDAO();
 
-        List<CTDResource> allResources = resourceDAO.getAllResources();
+        List<CTDResource> resources = resourceDAO.getAllResources();
+        List<CTDResource> allResources = resources.stream().filter(r->r.getSource().equalsIgnoreCase("SCGE")).collect(Collectors.toList());
 
         // Group resources by module (1-5), with general resources separate
         Map<Integer, Map<String, List<CTDResource>>> moduleResources = new TreeMap<>();
