@@ -14,8 +14,8 @@
 <link href="/platform/css/resources.css" rel="stylesheet" type="text/css"/>
 
 <div class="page-header">
-    <h3>IND Resources</h3>
-    <p style="margin: 5px 0 0 0; color: #666;">Regulations, guidance documents, templates, and examples organized by CTD module and section</p>
+    <h3>General Resources For Formatting An IND</h3>
+    <p style="margin: 5px 0 0 0; color: #666;">Templates, and examples organized by CTD module and section</p>
 </div>
 
 <div class="resources-container">
