@@ -47,7 +47,7 @@ public class GuidanceController extends ModulesController{
         SectionDAO sectionDAO = new SectionDAO();
 
         List<CTDResource> resources = resourceDAO.getAllResources();
-        List<CTDResource> allResources = resources.stream().filter(r->r.getSource().equalsIgnoreCase("SCGE")).collect(Collectors.toList());
+        List<CTDResource> allResources = resources.stream().filter(r->r.getSource().equalsIgnoreCase("SCGE") || r.getCtdSection().equalsIgnoreCase("ALL")).collect(Collectors.toList());
 
         // Group resources by module (1-5), with general resources separate
         Map<Integer, Map<String, List<CTDResource>>> moduleResources = new TreeMap<>();
@@ -58,7 +58,7 @@ public class GuidanceController extends ModulesController{
 
         for (CTDResource resource : allResources) {
             String section = resource.getCtdSection();
-            if (section == null || section.isEmpty() || section.equals("null") || section.equals("ALL")) {
+            if (section == null || section.isEmpty() || section.equals("null") || section.trim().equals("ALL")) {
                 generalResources.add(resource);
             } else {
                 // Determine module from section code (first character before '.')
