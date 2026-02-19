@@ -47,20 +47,20 @@
 
                 <p><a href="#module5-tab" id="go-to-module5"><strong>Module 5</strong></a> references clinical information.</p>
                 <div class="card" style="margin-top: 1%;margin-bottom: 1%">
-                    <div class="card-header"><a href="/platform/forms_public/USFDA_eCTDv4_0_CTOC_v1.pdf" target="_blank"><h5 style="text-decoration: underline">Comprehensive Table of Contents Headings and Hierarchy</h5></a>
+                    <div class="card-header"><a href="/platform/forms_public/USFDA_eCTDv4_0_CTOC_v1.pdf" target="_blank"><strong>Comprehensive Table of Contents Headings and Hierarchy</strong></a>
                     </div>
 
                 </div>
                 <div class="card" style="margin-top: 1%;margin-bottom: 1%">
                     <div class="card-header">
-                        <h5>ICH and FDA Guidance on eCTD Organization and Specifications</h5>
+                        <a href="/platform/data/ind/resources#general-tab"><strong>General Resources for Formatting an IND</strong></a>
                     </div>
                     <div class="card-body" style="display: flex; ; gap: 10px; flex-wrap: wrap;">
                         <form action="/platform/public/download/zipFile" method="post" style="margin: 0;">
                             <input type="hidden" name="filename" value="IND000000.zip">
                             <button class="btn btn-primary btn-sm"><i class="fa-solid fa-download" style="font-weight: bold"></i>&nbsp;Full IND Submission Template</button>
                         </form>
-                        <a href="/platform/data/ind/resources" class="btn btn-primary btn-sm" style="color: #ffffff; text-transform: capitalize;"><i class="fa-solid fa-download" style="font-weight: bold"></i>&nbsp;Download Selected</a>
+                        <a href="/platform/data/ind/resources" class="btn btn-primary btn-sm" style="color: #ffffff; text-transform: capitalize;"><i class="fa-solid fa-download" style="font-weight: bold"></i>&nbsp;Individual Templates</a>
                 </div>
 
                 </div>

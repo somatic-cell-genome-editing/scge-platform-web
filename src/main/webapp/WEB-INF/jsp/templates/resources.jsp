@@ -156,5 +156,14 @@
             $(this).addClass('active');
             $($(this).data('tab-target')).addClass('show active');
         });
+
+        // Activate tab from URL hash (e.g. #general-tab)
+        var hash = window.location.hash;
+        if (hash) {
+            var $tab = $('#moduleTabs a' + hash);
+            if ($tab.length) {
+                $tab.trigger('click');
+            }
+        }
     });
 </script>
