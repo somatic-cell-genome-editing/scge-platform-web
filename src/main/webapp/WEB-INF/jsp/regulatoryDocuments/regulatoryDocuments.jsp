@@ -83,32 +83,7 @@
                                <%@include file="pku/pku_docs.jsp"%>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="program-name"><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#ahrens-nicklas" target="_blank">Carbamoyl<br>Phosphate<br>Synthetase I (CPS1)<br>Deficiency</a></td>
-                            <td colspan="5" style="position: relative;">
-                                <div class="timeline-bar" style="left: 5px; width: 85%;"></div>
-                            </td>
-                            <td class="publications-cell">
-                                <button class="publications-toggle" onclick="togglePublications('cps1-publications')">
-                                    <i class="fas fa-file-alt"></i>
-                                    <span class="pub-count">1</span>
-                                    <i class="fas fa-chevron-down toggle-icon"></i>
-                                </button>
-                            </td>
-                            <td class="publications-cell">
-                                <div class="no-publications">—</div>
-                            </td>
-                        </tr>
-                        <tr class="publications-row" id="cps1-publications">
-                            <td colspan="9" class="publications-content">
-                                <%@include file="cps1/cps1_publications.jsp"%>
-                            </td>
-                        </tr>
-                        <tr class="publications-row" id="cps1-documents">
-                            <td colspan="9" class="publications-content">
-                                <%@include file="cps1/cps1_docs.jsp"%>
-                            </td>
-                        </tr>
+
                         <tr>
                             <td class="program-name"><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#ahrens-nicklas" target="_blank">Urea Cycle Disorders<br>(UCDs)</a></td>
                             <td colspan="5" style="position: relative;">
@@ -140,7 +115,32 @@
                                 <%@include file="ucd/ucd_docs.jsp"%>
                             </td>
                         </tr>
-
+                        <tr>
+                            <td class="program-name"><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#ahrens-nicklas" target="_blank">Carbamoyl<br>Phosphate<br>Synthetase I (CPS1)<br>Deficiency</a></td>
+                            <td colspan="5" style="position: relative;">
+                                <div class="timeline-bar" style="left: 5px; width: 85%;"></div>
+                            </td>
+                            <td class="publications-cell">
+                                <button class="publications-toggle" onclick="togglePublications('cps1-publications')">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span class="pub-count">1</span>
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
+                                </button>
+                            </td>
+                            <td class="publications-cell">
+                                <div class="no-publications">—</div>
+                            </td>
+                        </tr>
+                        <tr class="publications-row" id="cps1-publications">
+                            <td colspan="9" class="publications-content">
+                                <%@include file="cps1/cps1_publications.jsp"%>
+                            </td>
+                        </tr>
+                        <tr class="publications-row" id="cps1-documents">
+                            <td colspan="9" class="publications-content">
+                                <%@include file="cps1/cps1_docs.jsp"%>
+                            </td>
+                        </tr>
                         <!-- Neurological Disorders -->
                         <tr>
                             <td rowspan="3" class="disease-area-cell">
