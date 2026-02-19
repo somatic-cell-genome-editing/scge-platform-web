@@ -12,7 +12,7 @@
     <div class="sidebar-publications">
         <button class="sidebar-pub-toggle" onclick="toggleSidebarPublications('sidebar-best-pubs')">
             <i class="fas fa-file-alt"></i>
-            <span>Publications (1)</span>
+            <span>Publications (2)</span>
             <i class="fas fa-chevron-down sidebar-toggle-icon"></i>
         </button>
         <div class="sidebar-pub-content" id="sidebar-best-pubs">

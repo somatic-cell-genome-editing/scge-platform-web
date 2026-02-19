@@ -66,7 +66,7 @@
                                 </button>
                             </td>
                             <td class="publications-cell">
-                                <button class="publications-toggle" onclick="togglePublications('pku-documents')">
+                                <button class="publications-toggle docs-toggle" onclick="togglePublications('pku-documents')">
                                     <i class="fas fa-folder-open"></i>
                                     <span class="pub-count">2</span>
                                     <i class="fas fa-chevron-down toggle-icon"></i>
@@ -122,7 +122,7 @@
                                 </button>
                             </td>
                             <td class="publications-cell">
-                                <button class="publications-toggle" onclick="togglePublications('ucd-documents')">
+                                <button class="publications-toggle docs-toggle" onclick="togglePublications('ucd-documents')">
                                     <i class="fas fa-folder-open"></i>
                                     <span class="pub-count">2</span>
                                     <i class="fas fa-chevron-down toggle-icon"></i>
@@ -190,7 +190,7 @@
                                 </button>
                             </td>
                             <td class="publications-cell">
-                                <button class="publications-toggle" onclick="togglePublications('prion-documents')">
+                                <button class="publications-toggle docs-toggle" onclick="togglePublications('prion-documents')">
                                     <i class="fas fa-folder-open"></i>
                                     <span class="pub-count">2</span>
                                     <i class="fas fa-chevron-down toggle-icon"></i>

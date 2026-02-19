@@ -427,6 +427,24 @@ h1.page-title {
     font-weight: 700;
 }
 
+/* Regulatory Documents toggle - purple variant */
+.docs-toggle {
+    background: #6b3fa0;
+    border-color: #6b3fa0;
+    color: #fff;
+}
+
+.docs-toggle:hover {
+    background: #52307a;
+    border-color: #52307a;
+    color: #fff;
+}
+
+.docs-toggle .pub-count {
+    background: #fff;
+    color: #6b3fa0;
+}
+
 .publications-toggle .toggle-icon {
     font-size: 0.75rem;
     transition: transform 0.3s ease;
