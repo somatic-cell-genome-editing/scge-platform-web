@@ -47,13 +47,13 @@
 
                 <p><a href="#module5-tab" id="go-to-module5"><strong>Module 5</strong></a> references clinical information.</p>
                 <div class="card" style="margin-top: 1%;margin-bottom: 1%">
-                    <div class="card-header"><a href="/platform/forms_public/USFDA_eCTDv4_0_CTOC_v1.pdf" target="_blank"><strong>Comprehensive Table of Contents Headings and Hierarchy</strong></a>
+                    <div class="card-header"><a href="/platform/forms_public/USFDA_eCTDv4_0_CTOC_v1.pdf" target="_blank" style="color:#0066cc;"><strong>Comprehensive Table of Contents Headings and Hierarchy</strong></a></p>
                     </div>
 
                 </div>
                 <div class="card" style="margin-top: 1%;margin-bottom: 1%">
                     <div class="card-header">
-                        <a href="/platform/data/ind/resources#general-tab"><strong>General Resources for Formatting an IND</strong></a>
+                        <a href="/platform/data/ind/resources#general-tab"  style="color:#0066cc;"><strong>General Resources for Formatting an IND</strong></a>
                     </div>
                     <div class="card-body" style="display: flex; ; gap: 10px; flex-wrap: wrap;">
                         <form action="/platform/public/download/zipFile" method="post" style="margin: 0;">
