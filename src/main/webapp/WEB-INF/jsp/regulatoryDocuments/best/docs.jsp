@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="sidebar-program">
-    <h6><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#saha" target="_blank">Best’s Disease (UW-Madison)</a></h6>
+    <h6><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#saha" target="_blank">Best Disease (UW-Madison)</a></h6>
     <div class="sidebar-publications">
         <button class="sidebar-pub-toggle" onclick="toggleSidebarPublications('sidebar-best-pubs')">
             <i class="fas fa-file-alt"></i>

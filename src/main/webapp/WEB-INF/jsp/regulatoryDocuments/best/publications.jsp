@@ -13,9 +13,9 @@
     <ul class="publications-list">
         <li>
             <a href="https://urldefense.com/v3/__https:/doi.org/10.1016/j.ajhg.2020.06.011__;!!H8mHWRdzp34!8Og7Y1iAc6-11jq2SlMGCdU_NK2HarbvmBuvbV0xfiuTk-Mx1DfdeVg_0K0LPVd8sukTXUdWPqUTHA54bOw$" target="_blank">
-                10.1016/j.ajhg.2020.06.011</a>
+                Human iPSC Modeling Reveals Mutation-Specific Responses to Gene Therapy in a Genotypically Diverse Dominant Maculopathy</a>
         </li>
-        <li><a href="https://urldefense.com/v3/__https:/doi.org/10.1371/journal.pone.0317387__;!!H8mHWRdzp34!8Og7Y1iAc6-11jq2SlMGCdU_NK2HarbvmBuvbV0xfiuTk-Mx1DfdeVg_0K0LPVd8sukTXUdWPqUTWggcPoc$">10.1371/journal.pone.0317387</a>
+        <li><a href="https://urldefense.com/v3/__https:/doi.org/10.1371/journal.pone.0317387__;!!H8mHWRdzp34!8Og7Y1iAc6-11jq2SlMGCdU_NK2HarbvmBuvbV0xfiuTk-Mx1DfdeVg_0K0LPVd8sukTXUdWPqUTWggcPoc$">Evaluation of subretinally delivered Cas9 ribonucleoproteins in murine and porcine animal models highlights key considerations for therapeutic translation of genetic medicines</a>
         </li>
     </ul>
 </div>

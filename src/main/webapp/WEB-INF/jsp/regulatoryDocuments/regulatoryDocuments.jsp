@@ -239,7 +239,7 @@
                             </td>
                         </tr>
                     <tr>
-                        <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#saha" target="_blank">Best Vitelliform Macular Dystrophy (BVMD, Best's Disease)</a></td>
+                        <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#saha" target="_blank">Best Vitelliform Macular Dystrophy (BVMD, Best Disease)</a></td>
                         <td colspan="5" style="position: relative;">
                             <div class="timeline-bar" style="left: 5px; width: 20%;"></div>
                         </td>
