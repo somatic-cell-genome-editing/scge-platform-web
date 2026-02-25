@@ -34,6 +34,25 @@ $(this).off('mouseleave');
 });
 })
 </script>
+<!-- Column Visibility Dropdown -->
+<div id="columnToggleWrapper" class="column-toggle-wrapper" style="display: none">
+    <div class="column-toggle-dropdown">
+        <button type="button" class="btn btn-outline-secondary btn-sm column-toggle-btn" id="columnToggleBtn">
+            <i class="fa-solid fa-table-columns"></i>&nbsp; Columns <span class="column-count-badge" id="columnCountBadge"></span>
+        </button>
+        <div class="column-toggle-menu" id="columnToggleMenu">
+            <div class="column-toggle-header">
+                <span>Show/Hide Columns</span>
+                <div>
+                    <a href="javascript:void(0)" id="colSelectAll" class="column-toggle-action">All</a>
+                    <a href="javascript:void(0)" id="colSelectNone" class="column-toggle-action">None</a>
+                </div>
+            </div>
+            <div class="column-toggle-list" id="columnToggleList"></div>
+        </div>
+    </div>
+</div>
+
 <!-- Top Scrollbar -->
 <div id="topScrollWrapper" class="top-scroll-wrapper" style="display: none">
     <div id="topScrollContent" class="top-scroll-content"></div>
@@ -68,13 +87,7 @@ $(this).off('mouseleave');
 <%--        <%}}%>--%>
 <%--    </td>--%>
         <td class="manual"><%=sourceFields.get("indication")%></td>
-    <td class="manual">
-        <%
-            if(sourceFields.get("fdaDesignations")!=null){
-        %>
-        <%=((List<String>)sourceFields.get("fdaDesignations")).stream().collect(Collectors.joining(", "))%>
-        <%}%>
-    </td>
+
         <td class="manual"><%=sourceFields.get("compoundName")%></td>
         <td><%=sourceFields.get("sponsor")%></td>
         <td ><%=sourceFields.get("sponsorClass")%></td>
@@ -218,6 +231,13 @@ $(this).off('mouseleave');
             }%>
             <%=isFDARegulated%>
         </td>
+    <td class="manual">
+        <%
+            if(sourceFields.get("fdaDesignations")!=null){
+        %>
+        <%=((List<String>)sourceFields.get("fdaDesignations")).stream().collect(Collectors.joining(", "))%>
+        <%}%>
+    </td>
 <%--        <td class="manual"><%=sourceFields.get("patents")%></td>--%>
         <td class="manual"><%=sourceFields.get("recentUpdates")%></td>
         <td class="manual lastColumn">
@@ -338,4 +358,95 @@ $(document).ready(function() {
         setTimeout(updateTopScrollWidth, 50);
     });
 });
+
+// Column Visibility Toggle
+(function() {
+    var columnNames = [];
+    var columnVisible = [];
+
+    function initColumnToggle() {
+        var $headerCells = $('#myTable thead tr:first th');
+        if ($headerCells.length === 0) return;
+
+        columnNames = [];
+        columnVisible = [];
+        var listHtml = '';
+
+        $headerCells.each(function(index) {
+            var name = $(this).clone().children('sup').remove().end().text().trim();
+            if (!name) name = 'Column ' + (index + 1);
+            columnNames.push(name);
+            columnVisible.push(true);
+            listHtml += '<label class="column-toggle-item">' +
+                '<input type="checkbox" checked data-col-index="' + index + '"> ' +
+                '<span>' + name + '</span></label>';
+        });
+
+        $('#columnToggleList').html(listHtml);
+        updateColumnCount();
+
+        // Toggle button
+        $('#columnToggleBtn').off('click').on('click', function(e) {
+            e.stopPropagation();
+            $('#columnToggleMenu').toggleClass('open');
+        });
+
+        // Close on outside click
+        $(document).off('click.colToggle').on('click.colToggle', function(e) {
+            if (!$(e.target).closest('.column-toggle-dropdown').length) {
+                $('#columnToggleMenu').removeClass('open');
+            }
+        });
+
+        // Checkbox change
+        $('#columnToggleList').off('change').on('change', 'input[type="checkbox"]', function() {
+            var colIndex = $(this).data('col-index');
+            var isVisible = $(this).is(':checked');
+            columnVisible[colIndex] = isVisible;
+            toggleColumn(colIndex, isVisible);
+            updateColumnCount();
+        });
+
+        // Select All
+        $('#colSelectAll').off('click').on('click', function() {
+            $('#columnToggleList input[type="checkbox"]').each(function() {
+                if (!$(this).is(':checked')) {
+                    $(this).prop('checked', true).trigger('change');
+                }
+            });
+        });
+
+        // Select None
+        $('#colSelectNone').off('click').on('click', function() {
+            $('#columnToggleList input[type="checkbox"]').each(function(index) {
+                if (index === 0) return; // keep Trial ID visible
+                if ($(this).is(':checked')) {
+                    $(this).prop('checked', false).trigger('change');
+                }
+            });
+        });
+
+        $('#columnToggleWrapper').show();
+    }
+
+    function toggleColumn(colIndex, show) {
+        var colNum = colIndex + 1;
+        var selector = '#myTable tr th:nth-child(' + colNum + '), #myTable tr td:nth-child(' + colNum + ')';
+        if (show) {
+            $(selector).show();
+        } else {
+            $(selector).hide();
+        }
+        setTimeout(updateTopScrollWidth, 50);
+    }
+
+    function updateColumnCount() {
+        var visible = columnVisible.filter(function(v) { return v; }).length;
+        var total = columnVisible.length;
+        $('#columnCountBadge').text(visible + '/' + total);
+    }
+
+    // Expose init function globally so it can be called after table loads
+    window.initColumnToggle = initColumnToggle;
+})();
 </script>

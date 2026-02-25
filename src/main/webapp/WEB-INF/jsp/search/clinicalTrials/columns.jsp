@@ -11,7 +11,6 @@
 <%--<th class="firstColumn">Trial ID</th>--%>
 <%--<th class="manual">Indication DOID&nbsp;<sup><span title="" class="column-header-description"></span></sup></th>--%>
 <th>Indication&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Indication")%>" class="column-header-description"></span></sup></th>
-<th class="manual">FDA Designation&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("FDA Designations")%>" class="column-header-description"></span></sup></th>
 
 <th>Compound Name&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Compound Name")%>" class="column-header-description"></span></sup></th>
 <th>Sponsor&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Sponsor")%>" class="column-header-description"></span></sup></th>
@@ -44,6 +43,7 @@
 <%--<th>Centers in USA</th>--%>
 <th>Locations&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Countries")%>" class="column-header-description"></span></sup></th>
 <th>Has US IND&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Has US IND?")%>" class="column-header-description"></span></sup></th>
+<th class="manual">FDA Designation&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("FDA Designations")%>" class="column-header-description"></span></sup></th>
 
 <%--<th class="manual">Patents&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Patents")%>" class="column-header-description"></span></sup></th>--%>
 <th class="manual">Recent Updates&nbsp;<sup><span  data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Recent Regulatory Updates")%>" class="column-header-description"></span></sup></th>

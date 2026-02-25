@@ -89,18 +89,18 @@
                     </li>
                   
                     <!-- Guidance Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="guidanceDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Publications
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" href="https://scge.mcw.edu/phase-2-publications/" id="pubDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Phase 2 Publications
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="guidanceDropdown">
-                            <a class="dropdown-item" href="https://scge.mcw.edu/phase-2-publications/">All SCGE Publications</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="https://scge.mcw.edu/publications-by-project/#peranteau">All PKU Program</a>
-                            <a class="dropdown-item" href="https://scge.mcw.edu/publications-by-project/#ahrens-nicklas">All UCD Program</a>
-                            <a class="dropdown-item" href="https://scge.mcw.edu/publications-by-project/#ahrens-nicklas">All CPS1 Program</a>
+<%--                        <div class="dropdown-menu" aria-labelledby="guidanceDropdown">--%>
+<%--                            <a class="dropdown-item" href="https://scge.mcw.edu/phase-2-publications/">All SCGE Publications</a>--%>
+<%--                            <div class="dropdown-divider"></div>--%>
+<%--                            <a class="dropdown-item" href="https://scge.mcw.edu/publications-by-project/#peranteau">All PKU Program</a>--%>
+<%--                            <a class="dropdown-item" href="https://scge.mcw.edu/publications-by-project/#ahrens-nicklas">All UCD Program</a>--%>
+<%--                            <a class="dropdown-item" href="https://scge.mcw.edu/publications-by-project/#ahrens-nicklas">All CPS1 Program</a>--%>
 
-                        </div>
+<%--                        </div>--%>
                     </li>
 
                 </ul>

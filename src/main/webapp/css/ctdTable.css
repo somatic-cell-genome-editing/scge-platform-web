@@ -78,12 +78,11 @@
     color: #0066cc;
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.2s ease;
 }
 
 .filterable-table tbody td a:hover {
-    color: #004499;
-    text-decoration: underline;
+    color: #0066cc;
+    text-decoration: none;
 }
 
 /* Status badges */
@@ -154,3 +153,15 @@
 .filterable-table tbody td sup .fa-circle-info {
     vertical-align: middle;
 }
+
+/* Resource list styling */
+.resource-list {
+    list-style-type: disc;
+    margin: 0;
+    padding-left: 18px;
+}
+
+.resource-list li {
+    padding: 2px 0;
+}
+

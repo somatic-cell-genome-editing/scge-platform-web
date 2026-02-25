@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="sidebar-program">
-    <h6><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#ahrens-nicklas" target="_blank">CPS1 Deficiency (Multiple Institutions)</a></h6>
+    <h6><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#ahrens-nicklas" target="_blank">CPS1 Deficiency (CHOP/UPENN + Industry Partners)</a></h6>
     <div class="sidebar-publications">
         <button class="sidebar-pub-toggle" onclick="toggleSidebarPublications('sidebar-cps1-pubs')">
             <i class="fas fa-file-alt"></i>

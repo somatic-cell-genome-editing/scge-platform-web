@@ -64,6 +64,7 @@ $(function() {
     });
     $('#resultsTable').show();
     $('#topScrollWrapper').show();
+    if (typeof initColumnToggle === 'function') { initColumnToggle(); }
     // Update top scrollbar width after table is visible - retry until width is set
     function tryUpdateScrollWidth(attempts) {
         if (typeof updateTopScrollWidth === 'function') {

@@ -66,7 +66,7 @@
                                 </button>
                             </td>
                             <td class="publications-cell">
-                                <button class="publications-toggle" onclick="togglePublications('pku-documents')">
+                                <button class="publications-toggle docs-toggle" onclick="togglePublications('pku-documents')">
                                     <i class="fas fa-folder-open"></i>
                                     <span class="pub-count">2</span>
                                     <i class="fas fa-chevron-down toggle-icon"></i>
@@ -81,6 +81,38 @@
                         <tr class="publications-row" id="pku-documents">
                             <td colspan="9" class="publications-content">
                                <%@include file="pku/pku_docs.jsp"%>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="program-name"><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#ahrens-nicklas" target="_blank">Urea Cycle Disorders<br>(UCDs)</a></td>
+                            <td colspan="5" style="position: relative;">
+                                <div class="timeline-bar" style="left: 5px; width: 55%;"></div>
+                            </td>
+                            <td class="publications-cell">
+                                <button class="publications-toggle" onclick="togglePublications('ucd-publications')">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span class="pub-count">1</span>
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
+                                </button>
+                            </td>
+                            <td class="publications-cell">
+                                <button class="publications-toggle docs-toggle" onclick="togglePublications('ucd-documents')">
+                                    <i class="fas fa-folder-open"></i>
+                                    <span class="pub-count">2</span>
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr class="publications-row" id="ucd-publications">
+                            <td colspan="9" class="publications-content">
+                                <%@include file="ucd/ucd_publications.jsp"%>
+                            </td>
+                        </tr>
+                        <tr class="publications-row" id="ucd-documents">
+                            <td colspan="9" class="publications-content">
+                                <%@include file="ucd/ucd_docs.jsp"%>
                             </td>
                         </tr>
                         <tr>
@@ -109,38 +141,6 @@
                                 <%@include file="cps1/cps1_docs.jsp"%>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="program-name"><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#ahrens-nicklas" target="_blank">Urea Cycle Disorders<br>(UCDs)</a></td>
-                            <td colspan="5" style="position: relative;">
-                                <div class="timeline-bar" style="left: 5px; width: 55%;"></div>
-                            </td>
-                            <td class="publications-cell">
-                                <button class="publications-toggle" onclick="togglePublications('ucd-publications')">
-                                    <i class="fas fa-file-alt"></i>
-                                    <span class="pub-count">1</span>
-                                    <i class="fas fa-chevron-down toggle-icon"></i>
-                                </button>
-                            </td>
-                            <td class="publications-cell">
-                                <button class="publications-toggle" onclick="togglePublications('ucd-documents')">
-                                    <i class="fas fa-folder-open"></i>
-                                    <span class="pub-count">2</span>
-                                    <i class="fas fa-chevron-down toggle-icon"></i>
-                                </button>
-                            </td>
-                        </tr>
-
-                        <tr class="publications-row" id="ucd-publications">
-                            <td colspan="9" class="publications-content">
-                                <%@include file="ucd/ucd_publications.jsp"%>
-                            </td>
-                        </tr>
-                        <tr class="publications-row" id="ucd-documents">
-                            <td colspan="9" class="publications-content">
-                                <%@include file="ucd/ucd_docs.jsp"%>
-                            </td>
-                        </tr>
-
                         <!-- Neurological Disorders -->
                         <tr>
                             <td rowspan="3" class="disease-area-cell">
@@ -190,7 +190,7 @@
                                 </button>
                             </td>
                             <td class="publications-cell">
-                                <button class="publications-toggle" onclick="togglePublications('prion-documents')">
+                                <button class="publications-toggle docs-toggle" onclick="togglePublications('prion-documents')">
                                     <i class="fas fa-folder-open"></i>
                                     <span class="pub-count">2</span>
                                     <i class="fas fa-chevron-down toggle-icon"></i>
@@ -239,7 +239,7 @@
                             </td>
                         </tr>
                     <tr>
-                        <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#saha" target="_blank">Best Vitelliform Macular Dystrophy (BVMD, Best's Disease)</a></td>
+                        <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#saha" target="_blank">Best Vitelliform Macular Dystrophy (BVMD, Best Disease)</a></td>
                         <td colspan="5" style="position: relative;">
                             <div class="timeline-bar" style="left: 5px; width: 20%;"></div>
                         </td>

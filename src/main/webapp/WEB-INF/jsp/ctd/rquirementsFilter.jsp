@@ -9,49 +9,37 @@
 
 <link href="/platform/css/requirementsFilter.css" rel="stylesheet">
 
-<div class="filter-sidebar">
-    <p>Filter By Requirement&nbsp;<button id="clearFiltersBtn" class="btn btn-sm" title="Clear All Filters"><i class="fa fa-refresh" aria-hidden="true"></i></button></p>
-    <form>
-    <!-- Group 1: Initial IND -->
-    <div class="mb-3">
-        <label class="form-label d-block"><strong>Initial IND Application</strong></label>
-
-        <div class="form-check">
-            <input class="form-check-input filter-checkbox-initial-ind " type="checkbox" value="yes" id="initial-ind-yes" checked>
-            <label class="form-check-label Yes" for="initial-ind-yes">Yes</label>
+<div class="filter-bar">
+    <span class="filter-title">Filter By Requirement</span>
+    <div class="filter-groups">
+        <div class="filter-group">
+            <span class="filter-group-label">Initial IND Application:</span>
+            <div class="filter-options">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input filter-checkbox-initial-ind" type="checkbox" value="yes" id="initial-ind-yes" checked>
+                    <label class="form-check-label Yes" for="initial-ind-yes">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input filter-checkbox-initial-ind" type="checkbox" value="maybe" id="initial-ind-maybe" checked>
+                    <label class="form-check-label Maybe" for="initial-ind-maybe">Maybe</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input filter-checkbox-initial-ind" type="checkbox" value="no" id="initial-ind-no">
+                    <label class="form-check-label No" for="initial-ind-no">No</label>
+                </div>
+            </div>
         </div>
-        <div class="form-check">
-            <input class="form-check-input filter-checkbox-initial-ind " type="checkbox" value="maybe" id="initial-ind-maybe" checked>
-            <label class="form-check-label Maybe" for="initial-ind-maybe">Maybe</label>
+        <div class="filter-group">
+            <span class="filter-group-label">Marketing:</span>
+            <div class="filter-options">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input filter-checkbox-marketing" type="checkbox" value="yes" id="marketing-yes">
+                    <label class="form-check-label Yes" for="marketing-yes">Yes</label>
+                </div>
+            </div>
         </div>
-        <div class="form-check">
-            <input class="form-check-input filter-checkbox-initial-ind" type="checkbox" value="no" id="initial-ind-no">
-            <label class="form-check-label  No" for="initial-ind-no">No</label>
-        </div>
-
-
     </div>
-
-    <!-- Group 2: Marketing Application -->
-    <div class="mb-3">
-        <label class="form-label d-block"><strong>Marketing</strong></label>
-
-        <div class="form-check">
-            <input class="form-check-input filter-checkbox-marketing" type="checkbox" value="yes" id="marketing-yes">
-            <label class="form-check-label Yes" for="marketing-yes">Yes</label>
-        </div>
-
-<%--        <div class="form-check">--%>
-<%--            <input class="form-check-input filter-checkbox-marketing" type="checkbox" value="no" id="marketing-no">--%>
-<%--            <label class="form-check-label No" for="marketing-no">No</label>--%>
-<%--        </div>--%>
-
-<%--        <div class="form-check">--%>
-<%--            <input class="form-check-input filter-checkbox-marketing" type="checkbox" value="maybe" id="marketing-maybe">--%>
-<%--            <label class="form-check-label Maybe" for="marketing-maybe">Maybe</label>--%>
-<%--        </div>--%>
-    </div>
-</form>
+    <button id="clearFiltersBtn" class="btn btn-sm btn-clear-filters" title="Clear All Filters"><i class="fa fa-refresh" aria-hidden="true"></i> Clear</button>
 </div>
 
 <script>
