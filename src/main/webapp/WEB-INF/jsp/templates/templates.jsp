@@ -54,10 +54,12 @@
                 <div class="card" style="margin-top: 1%;margin-bottom: 1%">
 
                     <div class="card-body" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <div>
                         <a href="/platform/data/ind/resources#general-tab" style="display: block; text-decoration: none; position: relative;">
                             <img src="/platform/images/SCGE-Platform-IND-Resources.png" alt="General Resources for Formatting an IND" style="width: 100%; border-radius: 6px 6px 0 0; cursor: pointer;">
                             <span style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0, 0, 0, 0.55); color: #fff; font-size: 1rem; font-weight: 700; padding: 8px 14px; border-radius: 0;">General Resources for Formatting an IND</span>
                         </a>
+                        </div>
                         <form action="/platform/public/download/zipFile" method="post" style="margin: 0;">
                             <input type="hidden" name="filename" value="IND000000.zip">
                             <button class="btn btn-primary btn-sm"><i class="fa-solid fa-folder-open" style="font-weight: bold"></i>&nbsp;<i class="fa-solid fa-download" style="font-weight: bold"></i>&nbsp;Full IND Submission Template</button>
