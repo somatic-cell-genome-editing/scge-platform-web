@@ -18,7 +18,13 @@
     <p style="margin: 5px 0 0 0; color: #666;">Templates, and examples organized by CTD module and section</p>
 </div>
 
-<div class="resources-container">
+<div class="resources-container" style="position: relative;">
+
+    <!-- AI Assistant Help Text -->
+    <div style="position: absolute; top: 0; right: 0; text-align: center; font-size: 16px; color: #333; white-space: nowrap;">
+        Need help finding a specific document?<br/>
+        Click <a href="/assistant/chat" target="_blank" style="color: #2196F3; text-decoration: none; font-weight: 500;">here</a> for AI assistant
+    </div>
 
     <!-- Back link -->
     <div style="margin-bottom: 15px;">
