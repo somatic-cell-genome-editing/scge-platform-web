@@ -151,32 +151,6 @@
                                     <div class="disease-label">Neurological<br>Disorders</div>
                                 </div>
                             </td>
-                            <td class="program-name">Spinal Muscular<br>Atrophy (SMA)</td>
-                            <td colspan="5" style="position: relative;">
-<%--                                <div class="timeline-bar" style="left: 5px; width: 40%;"></div>--%>
-                                <div class="coming-soon-text">Coming Soon..</div>
-                            </td>
-                            <td class="publications-cell">
-                                <div class="no-publications">—</div>
-                            </td>
-                            <td class="publications-cell">
-                                <div class="no-publications">—</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="program-name">Angelman Syndrome</td>
-                            <td colspan="5" style="position: relative;">
-<%--                                <div class="timeline-bar" style="left: 5px; width: 35%;"></div>--%>
-                                <div class="coming-soon-text">Coming Soon..</div>
-                            </td>
-                            <td class="publications-cell">
-                                <div class="no-publications">—</div>
-                            </td>
-                            <td class="publications-cell">
-                                <div class="no-publications">—</div>
-                            </td>
-                        </tr>
-                        <tr>
                             <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#vallabh" target="_blank">Prion Disease</a></td>
                             <td colspan="5" style="position: relative;">
                                 <div class="timeline-bar" style="left: 5px; width: 40%;"></div>
@@ -197,6 +171,33 @@
                                 </button>
                             </td>
                         </tr>
+                        <tr>
+<%--                            <td class="program-name">Angelman Syndrome</td>--%>
+<%--                            <td colspan="5" style="position: relative;">--%>
+<%--&lt;%&ndash;                                <div class="timeline-bar" style="left: 5px; width: 35%;"></div>&ndash;%&gt;--%>
+<%--                                <div class="coming-soon-text">Coming Soon..</div>--%>
+<%--                            </td>--%>
+<%--                            <td class="publications-cell">--%>
+<%--                                <div class="no-publications">—</div>--%>
+<%--                            </td>--%>
+<%--                            <td class="publications-cell">--%>
+<%--                                <div class="no-publications">—</div>--%>
+<%--                            </td>--%>
+                        </tr>
+                        <tr>
+
+                            <td class="program-name">Spinal Muscular<br>Atrophy (SMA)</td>
+                            <td colspan="5" style="position: relative;">
+                                <%--                                <div class="timeline-bar" style="left: 5px; width: 40%;"></div>--%>
+                                <div class="coming-soon-text">Coming Soon..</div>
+                            </td>
+                            <td class="publications-cell">
+                                <div class="no-publications">—</div>
+                            </td>
+                            <td class="publications-cell">
+                                <div class="no-publications">—</div>
+                            </td>
+                        </tr>
                         <tr class="publications-row" id="prion-publications">
                             <td colspan="9" class="publications-content">
                                 <%@include file="prion/prion_publications.jsp"%>
@@ -207,6 +208,7 @@
                                 <%@include file="prion/prion_docs.jsp"%>
                             </td>
                         </tr>
+
                         <!-- Retinal Diseases -->
                         <tr>
                             <td rowspan="2" class="disease-area-cell">
