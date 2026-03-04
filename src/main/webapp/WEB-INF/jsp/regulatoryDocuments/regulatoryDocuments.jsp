@@ -11,6 +11,7 @@
                 <%@include file="ucd/ucd_sidebar.jsp"%>
                 <%@include file="cps1/cps1_docs.jsp"%>
                 <%@include file="prion/prion_sidebar.jsp"%>
+                <%@include file="sma/sma_sidebar.jsp"%>
                 <%@include file="lca/docs.jsp"%>
                 <%@include file="best/docs.jsp"%>
             </div>
@@ -188,14 +189,22 @@
 
                             <td class="program-name">Spinal Muscular<br>Atrophy (SMA)</td>
                             <td colspan="5" style="position: relative;">
-                                <%--                                <div class="timeline-bar" style="left: 5px; width: 40%;"></div>--%>
-                                <div class="coming-soon-text">Coming Soon..</div>
+                                <div class="timeline-bar" style="left: 5px; width: 40%;"></div>
+                            </td>
+                            <td class="publications-cell">
+                                <button class="publications-toggle" onclick="togglePublications('sma-publications')">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span class="pub-count">1</span>
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
+                                </button>
                             </td>
                             <td class="publications-cell">
                                 <div class="no-publications">—</div>
                             </td>
-                            <td class="publications-cell">
-                                <div class="no-publications">—</div>
+                        </tr>
+                        <tr class="publications-row" id="sma-publications">
+                            <td colspan="9" class="publications-content">
+                                <%@include file="sma/sma_publications.jsp"%>
                             </td>
                         </tr>
                         <tr class="publications-row" id="prion-publications">
