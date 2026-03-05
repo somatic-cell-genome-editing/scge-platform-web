@@ -10,8 +10,12 @@
                 <%@include file="pku/pku_sidebar.jsp"%>
                 <%@include file="ucd/ucd_sidebar.jsp"%>
                 <%@include file="cps1/cps1_docs.jsp"%>
+
                 <%@include file="prion/prion_sidebar.jsp"%>
                 <%@include file="sma/sma_sidebar.jsp"%>
+                <%@include file="fa/fa_sidebar.jsp"%>
+                <%@include file="hd/hd_sidebar.jsp"%>
+                <%@include file="rtt/rtt_sidebar.jsp"%>
                 <%@include file="lca/docs.jsp"%>
                 <%@include file="best/docs.jsp"%>
             </div>
@@ -144,7 +148,7 @@
                         </tr>
                         <!-- Neurological Disorders -->
                         <tr>
-                            <td rowspan="3" class="disease-area-cell">
+                            <td rowspan="5" class="disease-area-cell">
                                 <div class="disease-icon-container">
                                     <div class="disease-icon neurological-icon">
                                         <i class="fas fa-brain"></i>
@@ -173,21 +177,7 @@
                             </td>
                         </tr>
                         <tr>
-<%--                            <td class="program-name">Angelman Syndrome</td>--%>
-<%--                            <td colspan="5" style="position: relative;">--%>
-<%--&lt;%&ndash;                                <div class="timeline-bar" style="left: 5px; width: 35%;"></div>&ndash;%&gt;--%>
-<%--                                <div class="coming-soon-text">Coming Soon..</div>--%>
-<%--                            </td>--%>
-<%--                            <td class="publications-cell">--%>
-<%--                                <div class="no-publications">—</div>--%>
-<%--                            </td>--%>
-<%--                            <td class="publications-cell">--%>
-<%--                                <div class="no-publications">—</div>--%>
-<%--                            </td>--%>
-                        </tr>
-                        <tr>
-
-                            <td class="program-name">Spinal Muscular<br>Atrophy (SMA)</td>
+                            <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#lutz" target="_blank">Spinal Muscular<br>Atrophy (SMA)</a></td>
                             <td colspan="5" style="position: relative;">
                                 <div class="timeline-bar" style="left: 5px; width: 40%;"></div>
                             </td>
@@ -205,6 +195,60 @@
                         <tr class="publications-row" id="sma-publications">
                             <td colspan="9" class="publications-content">
                                 <%@include file="sma/sma_publications.jsp"%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#lutz" target="_blank">Friedreich's<br>Ataxia (FA)</a></td>
+                            <td colspan="5" style="position: relative;">
+                                <div class="timeline-bar" style="left: 5px; width: 20%;"></div>
+                            </td>
+                            <td class="publications-cell">
+                                <button class="publications-toggle" onclick="togglePublications('fa-publications')">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span class="pub-count">1</span>
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
+                                </button>
+                            </td>
+                            <td class="publications-cell">
+                                <div class="no-publications">—</div>
+                            </td>
+                        </tr>
+                        <tr class="publications-row" id="fa-publications">
+                            <td colspan="9" class="publications-content">
+                                <%@include file="fa/fa_publications.jsp"%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#lutz" target="_blank">Huntington's<br>Disease (HD)</a></td>
+                            <td colspan="5" style="position: relative;">
+                                <div class="timeline-bar" style="left: 5px; width: 20%;"></div>
+                            </td>
+                            <td class="publications-cell">
+                                <button class="publications-toggle" onclick="togglePublications('hd-publications')">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span class="pub-count">1</span>
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
+                                </button>
+                            </td>
+                            <td class="publications-cell">
+                                <div class="no-publications">—</div>
+                            </td>
+                        </tr>
+                        <tr class="publications-row" id="hd-publications">
+                            <td colspan="9" class="publications-content">
+                                <%@include file="hd/hd_publications.jsp"%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#lutz" target="_blank">Rett Syndrome<br>(RTT)</a></td>
+                            <td colspan="5" style="position: relative;">
+                                <div class="timeline-bar" style="left: 5px; width: 20%;"></div>
+                            </td>
+                            <td class="publications-cell">
+                                <div class="no-publications">—</div>
+                            </td>
+                            <td class="publications-cell">
+                                <div class="no-publications">—</div>
                             </td>
                         </tr>
                         <tr class="publications-row" id="prion-publications">
