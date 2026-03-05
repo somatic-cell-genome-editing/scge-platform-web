@@ -12,12 +12,13 @@
                 <%@include file="cps1/cps1_docs.jsp"%>
 
                 <%@include file="prion/prion_sidebar.jsp"%>
+
+                <%@include file="lca/docs.jsp"%>
+                <%@include file="best/docs.jsp"%>
                 <%@include file="sma/sma_sidebar.jsp"%>
                 <%@include file="fa/fa_sidebar.jsp"%>
                 <%@include file="hd/hd_sidebar.jsp"%>
                 <%@include file="rtt/rtt_sidebar.jsp"%>
-                <%@include file="lca/docs.jsp"%>
-                <%@include file="best/docs.jsp"%>
             </div>
         </div>
 
