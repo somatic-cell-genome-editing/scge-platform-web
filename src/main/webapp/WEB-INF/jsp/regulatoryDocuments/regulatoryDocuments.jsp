@@ -178,7 +178,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#lutz" target="_blank">Spinal Muscular<br>Atrophy (SMA)</a></td>
+                            <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#jackson" target="_blank">Spinal Muscular<br>Atrophy (SMA)</a></td>
                             <td colspan="5" style="position: relative;">
                                 <div class="timeline-bar" style="left: 5px; width: 40%;"></div>
                             </td>
@@ -199,7 +199,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#lutz" target="_blank">Friedreich's<br>Ataxia (FA)</a></td>
+                            <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#jackson" target="_blank">Friedreich's<br>Ataxia (FA)</a></td>
                             <td colspan="5" style="position: relative;">
                                 <div class="timeline-bar" style="left: 5px; width: 20%;"></div>
                             </td>
@@ -220,7 +220,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#lutz" target="_blank">Huntington's<br>Disease (HD)</a></td>
+                            <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#jackson" target="_blank">Huntington's<br>Disease (HD)</a></td>
                             <td colspan="5" style="position: relative;">
                                 <div class="timeline-bar" style="left: 5px; width: 20%;"></div>
                             </td>
@@ -241,7 +241,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#lutz" target="_blank">Rett Syndrome<br>(RTT)</a></td>
+                            <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#jackson" target="_blank">Rett Syndrome<br>(RTT)</a></td>
                             <td colspan="5" style="position: relative;">
                                 <div class="timeline-bar" style="left: 5px; width: 20%;"></div>
                             </td>
