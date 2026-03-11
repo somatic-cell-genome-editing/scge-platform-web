@@ -1023,6 +1023,14 @@
                     <%=clinicalTrialData.getEligibilitySex()!=null?clinicalTrialData.getEligibilitySex():""%>
                 </td>
             </tr>
+            <tr>
+                <td class="label">
+                    Eligibility&nbsp;Criteria
+                </td>
+                <td>
+                    <a href="https://clinicaltrials.gov/study/<%=clinicalTrialData.getNctId()%>#participation-criteria" target="_blank" style="color: #1a80b6; font-weight: 600; text-decoration: none; border-bottom: 1px solid #1a80b6;">View Inclusion and Exclusion Criteria at ClinicalTrials.gov</a>
+                </td>
+            </tr>
         </table>
 
         <div class="dynamic-heading" id="location"><h3 class="ctSubHeading">Locations</h3></div>
