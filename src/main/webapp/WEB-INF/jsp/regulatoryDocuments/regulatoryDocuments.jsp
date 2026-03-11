@@ -177,6 +177,16 @@
                                 </button>
                             </td>
                         </tr>
+                        <tr class="publications-row" id="prion-publications">
+                            <td colspan="9" class="publications-content">
+                                <%@include file="prion/prion_publications.jsp"%>
+                            </td>
+                        </tr>
+                        <tr class="publications-row" id="prion-documents">
+                            <td colspan="9" class="publications-content">
+                                <%@include file="prion/prion_docs.jsp"%>
+                            </td>
+                        </tr>
                         <tr>
                             <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#jackson" target="_blank">Spinal Muscular<br>Atrophy (SMA)</a></td>
                             <td colspan="5" style="position: relative;">
@@ -252,16 +262,7 @@
                                 <div class="no-publications">—</div>
                             </td>
                         </tr>
-                        <tr class="publications-row" id="prion-publications">
-                            <td colspan="9" class="publications-content">
-                                <%@include file="prion/prion_publications.jsp"%>
-                            </td>
-                        </tr>
-                        <tr class="publications-row" id="prion-documents">
-                            <td colspan="9" class="publications-content">
-                                <%@include file="prion/prion_docs.jsp"%>
-                            </td>
-                        </tr>
+
 
                         <!-- Retinal Diseases -->
                         <tr>
