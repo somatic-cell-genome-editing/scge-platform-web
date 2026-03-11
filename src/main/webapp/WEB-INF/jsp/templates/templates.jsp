@@ -63,9 +63,9 @@
                         </div>
                         <form action="/platform/public/download/zipFile" method="post" style="margin: 0;">
                             <input type="hidden" name="filename" value="IND000000.zip">
-                            <button class="btn btn-primary btn-sm"><i class="fa-solid fa-folder-open" style="font-weight: bold"></i>&nbsp;<i class="fa-solid fa-download" style="font-weight: bold"></i>&nbsp;Full IND Submission Template</button>
+                            <button class="btn btn-primary btn-sm"><i class="fa-solid fa-folder-open" style="font-weight: bold"></i>&nbsp;<i class="fa-solid fa-download" style="font-weight: bold"></i>&nbsp;SCGE IND Template Bundle (.zip)</button>
                         </form>
-                        <a href="/platform/data/ind/resources" class="btn btn-primary btn-sm" style="color: #ffffff; text-transform: capitalize;"><i class="fa-solid fa-file-arrow-down" style="font-weight: bold"></i>&nbsp;Individual Templates</a>
+                        <a href="/platform/data/ind/resources" class="btn btn-primary btn-sm" style="color: #ffffff; text-transform: capitalize;"><i class="fa-solid fa-file-arrow-down" style="font-weight: bold"></i>&nbsp;Browse SCGE Module Resources</a>
                 </div>
 
                 </div>
