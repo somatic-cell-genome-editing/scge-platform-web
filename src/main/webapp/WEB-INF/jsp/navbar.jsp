@@ -70,25 +70,36 @@
 
 
                     <!-- Templates & Forms Dropdown -->
-                    <li class="nav-item dropdown hover-dropdown">
-                        <a class="nav-link dropdown-toggle" href="/platform/data/ind/templates" id="templatesDropdown" role="button"  aria-haspopup="true" aria-expanded="false">
-                            Guidance & Forms
+                    <li class="nav-item">
+                        <a class="nav-link" href="/platform/data/ind/templates" id="templatesDropdown" role="button"  aria-haspopup="true" aria-expanded="false">
+                            IND Templates
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="templatesDropdown">
-                            <a class="dropdown-item" href="/platform/data/ind/templates">SCGE IND Templates</a>
-                            <%
-                                if(!SCGEContext.isProduction() && !SCGEContext.isTest()){
-                            %>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/platform/data/ind/forms">General IND Guidance</a>
-<%--                            <a class="dropdown-item" href="/platform/data/ind/templates?type=Protocol">Protocol Templates</a>--%>
-<%--                            <a class="dropdown-item" href="/platform/data/ind/templates?type=Safety">Safety Reporting Forms</a>--%>
-<%--                            <a class="dropdown-item" href="/platform/data/ind/templates?type=CMC">CMC Documents</a>--%>
-                            <%}%>
-                        </div>
+<%--                        <div class="dropdown-menu" aria-labelledby="templatesDropdown">--%>
+<%--&lt;%&ndash;                            <a class="dropdown-item" href="/platform/data/ind/templates">SCGE IND Templates</a>&ndash;%&gt;--%>
+<%--                            <%--%>
+<%--                                if(!SCGEContext.isProduction() && !SCGEContext.isTest()){--%>
+<%--                            %>--%>
+<%--                            <div class="dropdown-divider"></div>--%>
+<%--                            <a class="dropdown-item" href="/platform/data/ind/forms">General IND Guidance</a>--%>
+<%--&lt;%&ndash;                            <a class="dropdown-item" href="/platform/data/ind/templates?type=Protocol">Protocol Templates</a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                            <a class="dropdown-item" href="/platform/data/ind/templates?type=Safety">Safety Reporting Forms</a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                            <a class="dropdown-item" href="/platform/data/ind/templates?type=CMC">CMC Documents</a>&ndash;%&gt;--%>
+<%--                            <%}%>--%>
+<%--                        </div>--%>
                     </li>
-                  
+                    <%
+                        if(!SCGEContext.isProduction() && !SCGEContext.isTest()){
+                    %>
                     <!-- Guidance Dropdown -->
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="/platform/data/ind/forms"  role="button"  aria-haspopup="true" aria-expanded="false">
+                            General IND Guidance
+                        </a>
+
+                    </li>
+                    <%}%>
+                    <!-- Publications Dropdown -->
                     <li class="nav-item">
                         <a class="nav-link" target="_blank" href="https://scge.mcw.edu/phase-2-publications/" id="pubDropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             Phase 2 Publications
