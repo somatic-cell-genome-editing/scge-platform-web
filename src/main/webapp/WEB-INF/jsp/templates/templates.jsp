@@ -14,7 +14,8 @@
 
 
 <div class="page-header has-page-nav">
-    <h3>IND (Investigational New Drug) Application for gene therapy </h3>
+    <h3>Investigational New Drug (IND) Application Toolkit for Gene Therapy</h3>
+    <p style="margin: 5px 0 0 0; color: #666; font-size: 0.95rem;">The Somatic Cell Genome Editing (SCGE) Consortium is an NIH Common Fund program created to accelerate translational research in genome editing, and a primary goal of this initiative is to submit IND applications for novel gene editing therapies. As part of this work, we have created a collection of useful resources, templates, and tools for filing out an IND application.</p>
 </div>
 
 <!-- Page Navigation Sidebar -->
