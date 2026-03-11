@@ -84,7 +84,7 @@
                 <td class="label">
                     Record&nbsp;Status
                     <% if(recordStatusChanged) { %>
-                    <span class="change-info-icon" data-old="<%= recordStatusChange.getOldValue() != null ? recordStatusChange.getOldValue() : "" %>" data-new="<%= recordStatusChange.getNewValue() != null ? recordStatusChange.getNewValue() : "" %>" data-updated="<%= recordStatusChange.getChangedAt() != null ? recordStatusChange.getChangedAt() : "" %>" data-by="<%= recordStatusChange.getUpdateBy() != null ? recordStatusChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= recordStatusChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(recordStatusChange.getOldValue()) : "" %>" data-new="<%= recordStatusChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(recordStatusChange.getNewValue()) : "" %>" data-updated="<%= recordStatusChange.getChangedAt() != null ? recordStatusChange.getChangedAt() : "" %>" data-by="<%= recordStatusChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(recordStatusChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -106,7 +106,7 @@
                 <td class="label">
                     Description
                     <% if(descriptionChanged) { %>
-                    <span class="change-info-icon" data-old="<%= descriptionChange.getOldValue() != null ? descriptionChange.getOldValue() : "" %>" data-new="<%= descriptionChange.getNewValue() != null ? descriptionChange.getNewValue() : "" %>" data-updated="<%= descriptionChange.getChangedAt() != null ? descriptionChange.getChangedAt() : "" %>" data-by="<%= descriptionChange.getUpdateBy() != null ? descriptionChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= descriptionChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(descriptionChange.getOldValue()) : "" %>" data-new="<%= descriptionChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(descriptionChange.getNewValue()) : "" %>" data-updated="<%= descriptionChange.getChangedAt() != null ? descriptionChange.getChangedAt() : "" %>" data-by="<%= descriptionChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(descriptionChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
 
@@ -125,7 +125,7 @@
                 <td class="label">
                     Development&nbsp;Status
                     <% if(devStatusChanged) { %>
-                    <span class="change-info-icon" data-old="<%= devStatusChange.getOldValue() != null ? devStatusChange.getOldValue() : "" %>" data-new="<%= devStatusChange.getNewValue() != null ? devStatusChange.getNewValue() : "" %>" data-updated="<%= devStatusChange.getChangedAt() != null ? devStatusChange.getChangedAt() : "" %>" data-by="<%= devStatusChange.getUpdateBy() != null ? devStatusChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= devStatusChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(devStatusChange.getOldValue()) : "" %>" data-new="<%= devStatusChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(devStatusChange.getNewValue()) : "" %>" data-updated="<%= devStatusChange.getChangedAt() != null ? devStatusChange.getChangedAt() : "" %>" data-by="<%= devStatusChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(devStatusChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -137,7 +137,7 @@
                 <td class="label">
                     Development&nbsp;Status
                     <% if(devStatusChanged) { %>
-                    <span class="change-info-icon" data-old="<%= devStatusChange.getOldValue() != null ? devStatusChange.getOldValue() : "" %>" data-new="<%= devStatusChange.getNewValue() != null ? devStatusChange.getNewValue() : "" %>" data-updated="<%= devStatusChange.getChangedAt() != null ? devStatusChange.getChangedAt() : "" %>" data-by="<%= devStatusChange.getUpdateBy() != null ? devStatusChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= devStatusChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(devStatusChange.getOldValue()) : "" %>" data-new="<%= devStatusChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(devStatusChange.getNewValue()) : "" %>" data-updated="<%= devStatusChange.getChangedAt() != null ? devStatusChange.getChangedAt() : "" %>" data-by="<%= devStatusChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(devStatusChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td><strong><%= clinicalTrialData.getDevelopmentStatus() %></strong></td>
@@ -152,7 +152,7 @@
                 <td class="label">
                     Indication
                     <% if(indicationChanged) { %>
-                    <span class="change-info-icon" data-old="<%= indicationChange.getOldValue() != null ? indicationChange.getOldValue() : "" %>" data-new="<%= indicationChange.getNewValue() != null ? indicationChange.getNewValue() : "" %>" data-updated="<%= indicationChange.getChangedAt() != null ? indicationChange.getChangedAt() : "" %>" data-by="<%= indicationChange.getUpdateBy() != null ? indicationChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= indicationChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(indicationChange.getOldValue()) : "" %>" data-new="<%= indicationChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(indicationChange.getNewValue()) : "" %>" data-updated="<%= indicationChange.getChangedAt() != null ? indicationChange.getChangedAt() : "" %>" data-by="<%= indicationChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(indicationChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -164,7 +164,7 @@
                 <td class="label">
                     Indication
                     <% if(indicationChanged) { %>
-                    <span class="change-info-icon" data-old="<%= indicationChange.getOldValue() != null ? indicationChange.getOldValue() : "" %>" data-new="<%= indicationChange.getNewValue() != null ? indicationChange.getNewValue() : "" %>" data-updated="<%= indicationChange.getChangedAt() != null ? indicationChange.getChangedAt() : "" %>" data-by="<%= indicationChange.getUpdateBy() != null ? indicationChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= indicationChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(indicationChange.getOldValue()) : "" %>" data-new="<%= indicationChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(indicationChange.getNewValue()) : "" %>" data-updated="<%= indicationChange.getChangedAt() != null ? indicationChange.getChangedAt() : "" %>" data-by="<%= indicationChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(indicationChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td><%= clinicalTrialData.getIndication() %></td>
@@ -180,7 +180,7 @@
                 <td class="label">
                     Disease&nbsp;Ontology&nbsp;Term
                     <% if(doidChanged) { %>
-                    <span class="change-info-icon" data-old="<%= doidChange.getOldValue() != null ? doidChange.getOldValue() : "" %>" data-new="<%= doidChange.getNewValue() != null ? doidChange.getNewValue() : "" %>" data-updated="<%= doidChange.getChangedAt() != null ? doidChange.getChangedAt() : "" %>" data-by="<%= doidChange.getUpdateBy() != null ? doidChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= doidChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(doidChange.getOldValue()) : "" %>" data-new="<%= doidChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(doidChange.getNewValue()) : "" %>" data-updated="<%= doidChange.getChangedAt() != null ? doidChange.getChangedAt() : "" %>" data-by="<%= doidChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(doidChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -205,7 +205,7 @@
                 <td class="label">
                     Disease&nbsp;Ontology&nbsp;Term
                     <% if(doidChanged) { %>
-                    <span class="change-info-icon" data-old="<%= doidChange.getOldValue() != null ? doidChange.getOldValue() : "" %>" data-new="<%= doidChange.getNewValue() != null ? doidChange.getNewValue() : "" %>" data-updated="<%= doidChange.getChangedAt() != null ? doidChange.getChangedAt() : "" %>" data-by="<%= doidChange.getUpdateBy() != null ? doidChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= doidChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(doidChange.getOldValue()) : "" %>" data-new="<%= doidChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(doidChange.getNewValue()) : "" %>" data-updated="<%= doidChange.getChangedAt() != null ? doidChange.getChangedAt() : "" %>" data-by="<%= doidChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(doidChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -226,7 +226,7 @@
                 <td class="label">
                     Compound&nbsp;Name
                     <% if(compoundNameChanged) { %>
-                    <span class="change-info-icon" data-old="<%= compoundNameChange.getOldValue() != null ? compoundNameChange.getOldValue() : "" %>" data-new="<%= compoundNameChange.getNewValue() != null ? compoundNameChange.getNewValue() : "" %>" data-updated="<%= compoundNameChange.getChangedAt() != null ? compoundNameChange.getChangedAt() : "" %>" data-by="<%= compoundNameChange.getUpdateBy() != null ? compoundNameChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= compoundNameChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(compoundNameChange.getOldValue()) : "" %>" data-new="<%= compoundNameChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(compoundNameChange.getNewValue()) : "" %>" data-updated="<%= compoundNameChange.getChangedAt() != null ? compoundNameChange.getChangedAt() : "" %>" data-by="<%= compoundNameChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(compoundNameChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -238,7 +238,7 @@
                 <td class="label">
                     Compound&nbsp;Name
                     <% if(compoundNameChanged) { %>
-                    <span class="change-info-icon" data-old="<%= compoundNameChange.getOldValue() != null ? compoundNameChange.getOldValue() : "" %>" data-new="<%= compoundNameChange.getNewValue() != null ? compoundNameChange.getNewValue() : "" %>" data-updated="<%= compoundNameChange.getChangedAt() != null ? compoundNameChange.getChangedAt() : "" %>" data-by="<%= compoundNameChange.getUpdateBy() != null ? compoundNameChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= compoundNameChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(compoundNameChange.getOldValue()) : "" %>" data-new="<%= compoundNameChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(compoundNameChange.getNewValue()) : "" %>" data-updated="<%= compoundNameChange.getChangedAt() != null ? compoundNameChange.getChangedAt() : "" %>" data-by="<%= compoundNameChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(compoundNameChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td><%= clinicalTrialData.getCompoundName() %></td>
@@ -254,7 +254,7 @@
                 <td class="label">
                     Compound&nbsp;Alias
                     <% if(aliasValueChanged) { %>
-                    <span class="change-info-icon" data-old="<%= aliasValueChange.getOldValue() != null ? aliasValueChange.getOldValue() : "" %>" data-new="<%= aliasValueChange.getNewValue() != null ? aliasValueChange.getNewValue() : "" %>" data-updated="<%= aliasValueChange.getChangedAt() != null ? aliasValueChange.getChangedAt() : "" %>" data-by="<%= aliasValueChange.getUpdateBy() != null ? aliasValueChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= aliasValueChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(aliasValueChange.getOldValue()) : "" %>" data-new="<%= aliasValueChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(aliasValueChange.getNewValue()) : "" %>" data-updated="<%= aliasValueChange.getChangedAt() != null ? aliasValueChange.getChangedAt() : "" %>" data-by="<%= aliasValueChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(aliasValueChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -274,7 +274,7 @@
                 <td class="label">
                     Alias&nbsp;Type
                     <% if(aliasTypeChanged) { %>
-                    <span class="change-info-icon" data-old="<%= aliasTypeChange.getOldValue() != null ? aliasTypeChange.getOldValue() : "" %>" data-new="<%= aliasTypeChange.getNewValue() != null ? aliasTypeChange.getNewValue() : "" %>" data-updated="<%= aliasTypeChange.getChangedAt() != null ? aliasTypeChange.getChangedAt() : "" %>" data-by="<%= aliasTypeChange.getUpdateBy() != null ? aliasTypeChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= aliasTypeChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(aliasTypeChange.getOldValue()) : "" %>" data-new="<%= aliasTypeChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(aliasTypeChange.getNewValue()) : "" %>" data-updated="<%= aliasTypeChange.getChangedAt() != null ? aliasTypeChange.getChangedAt() : "" %>" data-by="<%= aliasTypeChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(aliasTypeChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -289,7 +289,7 @@
                 <td class="label">
                     Alias&nbsp;Notes
                     <% if(aliasNotesChanged) { %>
-                    <span class="change-info-icon" data-old="<%= aliasNotesChange.getOldValue() != null ? aliasNotesChange.getOldValue() : "" %>" data-new="<%= aliasNotesChange.getNewValue() != null ? aliasNotesChange.getNewValue() : "" %>" data-updated="<%= aliasNotesChange.getChangedAt() != null ? aliasNotesChange.getChangedAt() : "" %>" data-by="<%= aliasNotesChange.getUpdateBy() != null ? aliasNotesChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= aliasNotesChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(aliasNotesChange.getOldValue()) : "" %>" data-new="<%= aliasNotesChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(aliasNotesChange.getNewValue()) : "" %>" data-updated="<%= aliasNotesChange.getChangedAt() != null ? aliasNotesChange.getChangedAt() : "" %>" data-by="<%= aliasNotesChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(aliasNotesChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -301,7 +301,7 @@
                 <td class="label">
                     Compound&nbsp;Alias
                     <% if(aliasValueChanged) { %>
-                    <span class="change-info-icon" data-old="<%= aliasValueChange.getOldValue() != null ? aliasValueChange.getOldValue() : "" %>" data-new="<%= aliasValueChange.getNewValue() != null ? aliasValueChange.getNewValue() : "" %>" data-updated="<%= aliasValueChange.getChangedAt() != null ? aliasValueChange.getChangedAt() : "" %>" data-by="<%= aliasValueChange.getUpdateBy() != null ? aliasValueChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= aliasValueChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(aliasValueChange.getOldValue()) : "" %>" data-new="<%= aliasValueChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(aliasValueChange.getNewValue()) : "" %>" data-updated="<%= aliasValueChange.getChangedAt() != null ? aliasValueChange.getChangedAt() : "" %>" data-by="<%= aliasValueChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(aliasValueChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -340,7 +340,7 @@
                 <td class="label">
                     Compound&nbsp;Description
                     <% if(compoundDescChanged) { %>
-                    <span class="change-info-icon" data-old="<%= compoundDescChange.getOldValue() != null ? compoundDescChange.getOldValue() : "" %>" data-new="<%= compoundDescChange.getNewValue() != null ? compoundDescChange.getNewValue() : "" %>" data-updated="<%= compoundDescChange.getChangedAt() != null ? compoundDescChange.getChangedAt() : "" %>" data-by="<%= compoundDescChange.getUpdateBy() != null ? compoundDescChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= compoundDescChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(compoundDescChange.getOldValue()) : "" %>" data-new="<%= compoundDescChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(compoundDescChange.getNewValue()) : "" %>" data-updated="<%= compoundDescChange.getChangedAt() != null ? compoundDescChange.getChangedAt() : "" %>" data-by="<%= compoundDescChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(compoundDescChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -352,7 +352,7 @@
                 <td class="label">
                     Compound&nbsp;Description
                     <% if(compoundDescChanged) { %>
-                    <span class="change-info-icon" data-old="<%= compoundDescChange.getOldValue() != null ? compoundDescChange.getOldValue() : "" %>" data-new="<%= compoundDescChange.getNewValue() != null ? compoundDescChange.getNewValue() : "" %>" data-updated="<%= compoundDescChange.getChangedAt() != null ? compoundDescChange.getChangedAt() : "" %>" data-by="<%= compoundDescChange.getUpdateBy() != null ? compoundDescChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= compoundDescChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(compoundDescChange.getOldValue()) : "" %>" data-new="<%= compoundDescChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(compoundDescChange.getNewValue()) : "" %>" data-updated="<%= compoundDescChange.getChangedAt() != null ? compoundDescChange.getChangedAt() : "" %>" data-by="<%= compoundDescChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(compoundDescChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td><%= clinicalTrialData.getCompoundDescription() %></td>
@@ -366,7 +366,7 @@
                 <td class="label">
                     Sponsor
                     <% if(sponsorChanged) { %>
-                    <span class="change-info-icon" data-old="<%= sponsorChange.getOldValue() != null ? sponsorChange.getOldValue() : "" %>" data-new="<%= sponsorChange.getNewValue() != null ? sponsorChange.getNewValue() : "" %>" data-updated="<%= sponsorChange.getChangedAt() != null ? sponsorChange.getChangedAt() : "" %>" data-by="<%= sponsorChange.getUpdateBy() != null ? sponsorChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= sponsorChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(sponsorChange.getOldValue()) : "" %>" data-new="<%= sponsorChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(sponsorChange.getNewValue()) : "" %>" data-updated="<%= sponsorChange.getChangedAt() != null ? sponsorChange.getChangedAt() : "" %>" data-by="<%= sponsorChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(sponsorChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
 
@@ -382,7 +382,7 @@
                 <td class="label">
                     Funder&nbsp;Type
                     <% if(sponsorClassChanged) { %>
-                    <span class="change-info-icon" data-old="<%= sponsorClassChange.getOldValue() != null ? sponsorClassChange.getOldValue() : "" %>" data-new="<%= sponsorClassChange.getNewValue() != null ? sponsorClassChange.getNewValue() : "" %>" data-updated="<%= sponsorClassChange.getChangedAt() != null ? sponsorClassChange.getChangedAt() : "" %>" data-by="<%= sponsorClassChange.getUpdateBy() != null ? sponsorClassChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= sponsorClassChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(sponsorClassChange.getOldValue()) : "" %>" data-new="<%= sponsorClassChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(sponsorClassChange.getNewValue()) : "" %>" data-updated="<%= sponsorClassChange.getChangedAt() != null ? sponsorClassChange.getChangedAt() : "" %>" data-by="<%= sponsorClassChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(sponsorClassChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
 
@@ -401,7 +401,7 @@
                 <td class="label">
                     Recruitment&nbsp;Status
                     <% if(overallStatusChanged) { %>
-                    <span class="change-info-icon" data-old="<%= overallStatusChange.getOldValue() != null ? overallStatusChange.getOldValue() : "" %>" data-new="<%= overallStatusChange.getNewValue() != null ? overallStatusChange.getNewValue() : "" %>" data-updated="<%= overallStatusChange.getChangedAt() != null ? overallStatusChange.getChangedAt() : "" %>" data-by="<%= overallStatusChange.getUpdateBy() != null ? overallStatusChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= overallStatusChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(overallStatusChange.getOldValue()) : "" %>" data-new="<%= overallStatusChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(overallStatusChange.getNewValue()) : "" %>" data-updated="<%= overallStatusChange.getChangedAt() != null ? overallStatusChange.getChangedAt() : "" %>" data-by="<%= overallStatusChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(overallStatusChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -428,7 +428,7 @@
                 <td class="label">
                     Enrollment&nbsp;Count
                     <% if(enrollmentCountChanged) { %>
-                    <span class="change-info-icon" data-old="<%= enrollmentCountChange.getOldValue() != null ? enrollmentCountChange.getOldValue() : "" %>" data-new="<%= enrollmentCountChange.getNewValue() != null ? enrollmentCountChange.getNewValue() : "" %>" data-updated="<%= enrollmentCountChange.getChangedAt() != null ? enrollmentCountChange.getChangedAt() : "" %>" data-by="<%= enrollmentCountChange.getUpdateBy() != null ? enrollmentCountChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= enrollmentCountChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(enrollmentCountChange.getOldValue()) : "" %>" data-new="<%= enrollmentCountChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(enrollmentCountChange.getNewValue()) : "" %>" data-updated="<%= enrollmentCountChange.getChangedAt() != null ? enrollmentCountChange.getChangedAt() : "" %>" data-by="<%= enrollmentCountChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(enrollmentCountChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -448,7 +448,7 @@
                 <td class="label">
                     Results&nbsp;Posted
                     <% if(withHasResultsChanged) { %>
-                    <span class="change-info-icon" data-old="<%= withHasResultsChange.getOldValue() != null ? withHasResultsChange.getOldValue() : "" %>" data-new="<%= withHasResultsChange.getNewValue() != null ? withHasResultsChange.getNewValue() : "" %>" data-updated="<%= withHasResultsChange.getChangedAt() != null ? withHasResultsChange.getChangedAt() : "" %>" data-by="<%= withHasResultsChange.getUpdateBy() != null ? withHasResultsChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= withHasResultsChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(withHasResultsChange.getOldValue()) : "" %>" data-new="<%= withHasResultsChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(withHasResultsChange.getNewValue()) : "" %>" data-updated="<%= withHasResultsChange.getChangedAt() != null ? withHasResultsChange.getChangedAt() : "" %>" data-by="<%= withHasResultsChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(withHasResultsChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -476,7 +476,7 @@
                 <td class="label">
                     Target&nbsp;Gene/Variant
                     <% if(targetGeneChanged) { %>
-                    <span class="change-info-icon" data-old="<%= targetGeneChange.getOldValue() != null ? targetGeneChange.getOldValue() : "" %>" data-new="<%= targetGeneChange.getNewValue() != null ? targetGeneChange.getNewValue() : "" %>" data-updated="<%= targetGeneChange.getChangedAt() != null ? targetGeneChange.getChangedAt() : "" %>" data-by="<%= targetGeneChange.getUpdateBy() != null ? targetGeneChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= targetGeneChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(targetGeneChange.getOldValue()) : "" %>" data-new="<%= targetGeneChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(targetGeneChange.getNewValue()) : "" %>" data-updated="<%= targetGeneChange.getChangedAt() != null ? targetGeneChange.getChangedAt() : "" %>" data-by="<%= targetGeneChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(targetGeneChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -488,7 +488,7 @@
                 <td class="label">
                     Target&nbsp;Gene/Variant
                     <% if(targetGeneChanged) { %>
-                    <span class="change-info-icon" data-old="<%= targetGeneChange.getOldValue() != null ? targetGeneChange.getOldValue() : "" %>" data-new="<%= targetGeneChange.getNewValue() != null ? targetGeneChange.getNewValue() : "" %>" data-updated="<%= targetGeneChange.getChangedAt() != null ? targetGeneChange.getChangedAt() : "" %>" data-by="<%= targetGeneChange.getUpdateBy() != null ? targetGeneChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= targetGeneChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(targetGeneChange.getOldValue()) : "" %>" data-new="<%= targetGeneChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(targetGeneChange.getNewValue()) : "" %>" data-updated="<%= targetGeneChange.getChangedAt() != null ? targetGeneChange.getChangedAt() : "" %>" data-by="<%= targetGeneChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(targetGeneChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td><%= clinicalTrialData.getTargetGeneOrVariant() %></td>
@@ -503,7 +503,7 @@
                 <td class="label">
                     Therapy&nbsp;Type
                     <% if(therapyTypeChanged) { %>
-                    <span class="change-info-icon" data-old="<%= therapyTypeChange.getOldValue() != null ? therapyTypeChange.getOldValue() : "" %>" data-new="<%= therapyTypeChange.getNewValue() != null ? therapyTypeChange.getNewValue() : "" %>" data-updated="<%= therapyTypeChange.getChangedAt() != null ? therapyTypeChange.getChangedAt() : "" %>" data-by="<%= therapyTypeChange.getUpdateBy() != null ? therapyTypeChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= therapyTypeChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(therapyTypeChange.getOldValue()) : "" %>" data-new="<%= therapyTypeChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(therapyTypeChange.getNewValue()) : "" %>" data-updated="<%= therapyTypeChange.getChangedAt() != null ? therapyTypeChange.getChangedAt() : "" %>" data-by="<%= therapyTypeChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(therapyTypeChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -515,7 +515,7 @@
                 <td class="label">
                     Therapy&nbsp;Type
                     <% if(therapyTypeChanged) { %>
-                    <span class="change-info-icon" data-old="<%= therapyTypeChange.getOldValue() != null ? therapyTypeChange.getOldValue() : "" %>" data-new="<%= therapyTypeChange.getNewValue() != null ? therapyTypeChange.getNewValue() : "" %>" data-updated="<%= therapyTypeChange.getChangedAt() != null ? therapyTypeChange.getChangedAt() : "" %>" data-by="<%= therapyTypeChange.getUpdateBy() != null ? therapyTypeChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= therapyTypeChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(therapyTypeChange.getOldValue()) : "" %>" data-new="<%= therapyTypeChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(therapyTypeChange.getNewValue()) : "" %>" data-updated="<%= therapyTypeChange.getChangedAt() != null ? therapyTypeChange.getChangedAt() : "" %>" data-by="<%= therapyTypeChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(therapyTypeChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td><%= clinicalTrialData.getTherapyType() %></td>
@@ -530,7 +530,7 @@
                 <td class="label">
                     Therapy&nbsp;Route
                     <% if(therapyRouteChanged) { %>
-                    <span class="change-info-icon" data-old="<%= therapyRouteChange.getOldValue() != null ? therapyRouteChange.getOldValue() : "" %>" data-new="<%= therapyRouteChange.getNewValue() != null ? therapyRouteChange.getNewValue() : "" %>" data-updated="<%= therapyRouteChange.getChangedAt() != null ? therapyRouteChange.getChangedAt() : "" %>" data-by="<%= therapyRouteChange.getUpdateBy() != null ? therapyRouteChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= therapyRouteChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(therapyRouteChange.getOldValue()) : "" %>" data-new="<%= therapyRouteChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(therapyRouteChange.getNewValue()) : "" %>" data-updated="<%= therapyRouteChange.getChangedAt() != null ? therapyRouteChange.getChangedAt() : "" %>" data-by="<%= therapyRouteChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(therapyRouteChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -542,7 +542,7 @@
                 <td class="label">
                     Therapy&nbsp;Route
                     <% if(therapyRouteChanged) { %>
-                    <span class="change-info-icon" data-old="<%= therapyRouteChange.getOldValue() != null ? therapyRouteChange.getOldValue() : "" %>" data-new="<%= therapyRouteChange.getNewValue() != null ? therapyRouteChange.getNewValue() : "" %>" data-updated="<%= therapyRouteChange.getChangedAt() != null ? therapyRouteChange.getChangedAt() : "" %>" data-by="<%= therapyRouteChange.getUpdateBy() != null ? therapyRouteChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= therapyRouteChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(therapyRouteChange.getOldValue()) : "" %>" data-new="<%= therapyRouteChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(therapyRouteChange.getNewValue()) : "" %>" data-updated="<%= therapyRouteChange.getChangedAt() != null ? therapyRouteChange.getChangedAt() : "" %>" data-by="<%= therapyRouteChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(therapyRouteChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td><%= clinicalTrialData.getTherapyRoute() %></td>
@@ -557,7 +557,7 @@
                 <td class="label">
                     Mechanism&nbsp;of&nbsp;Action
                     <% if(moaChanged) { %>
-                    <span class="change-info-icon" data-old="<%= moaChange.getOldValue() != null ? moaChange.getOldValue() : "" %>" data-new="<%= moaChange.getNewValue() != null ? moaChange.getNewValue() : "" %>" data-updated="<%= moaChange.getChangedAt() != null ? moaChange.getChangedAt() : "" %>" data-by="<%= moaChange.getUpdateBy() != null ? moaChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= moaChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(moaChange.getOldValue()) : "" %>" data-new="<%= moaChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(moaChange.getNewValue()) : "" %>" data-updated="<%= moaChange.getChangedAt() != null ? moaChange.getChangedAt() : "" %>" data-by="<%= moaChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(moaChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -569,7 +569,7 @@
                 <td class="label">
                     Mechanism&nbsp;of&nbsp;Action
                     <% if(moaChanged) { %>
-                    <span class="change-info-icon" data-old="<%= moaChange.getOldValue() != null ? moaChange.getOldValue() : "" %>" data-new="<%= moaChange.getNewValue() != null ? moaChange.getNewValue() : "" %>" data-updated="<%= moaChange.getChangedAt() != null ? moaChange.getChangedAt() : "" %>" data-by="<%= moaChange.getUpdateBy() != null ? moaChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= moaChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(moaChange.getOldValue()) : "" %>" data-new="<%= moaChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(moaChange.getNewValue()) : "" %>" data-updated="<%= moaChange.getChangedAt() != null ? moaChange.getChangedAt() : "" %>" data-by="<%= moaChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(moaChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td><%= clinicalTrialData.getMechanismOfAction() %></td>
@@ -584,7 +584,7 @@
                 <td class="label">
                     Route&nbsp;of&nbsp;Administration
                     <% if(roaChanged) { %>
-                    <span class="change-info-icon" data-old="<%= roaChange.getOldValue() != null ? roaChange.getOldValue() : "" %>" data-new="<%= roaChange.getNewValue() != null ? roaChange.getNewValue() : "" %>" data-updated="<%= roaChange.getChangedAt() != null ? roaChange.getChangedAt() : "" %>" data-by="<%= roaChange.getUpdateBy() != null ? roaChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= roaChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(roaChange.getOldValue()) : "" %>" data-new="<%= roaChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(roaChange.getNewValue()) : "" %>" data-updated="<%= roaChange.getChangedAt() != null ? roaChange.getChangedAt() : "" %>" data-by="<%= roaChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(roaChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -596,7 +596,7 @@
                 <td class="label">
                     Route&nbsp;of&nbsp;Administration
                     <% if(roaChanged) { %>
-                    <span class="change-info-icon" data-old="<%= roaChange.getOldValue() != null ? roaChange.getOldValue() : "" %>" data-new="<%= roaChange.getNewValue() != null ? roaChange.getNewValue() : "" %>" data-updated="<%= roaChange.getChangedAt() != null ? roaChange.getChangedAt() : "" %>" data-by="<%= roaChange.getUpdateBy() != null ? roaChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= roaChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(roaChange.getOldValue()) : "" %>" data-new="<%= roaChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(roaChange.getNewValue()) : "" %>" data-updated="<%= roaChange.getChangedAt() != null ? roaChange.getChangedAt() : "" %>" data-by="<%= roaChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(roaChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td><%= clinicalTrialData.getRouteOfAdministration() %></td>
@@ -611,7 +611,7 @@
                 <td class="label">
                     Drug&nbsp;Product&nbsp;Type
                     <% if(drugProductTypeChanged) { %>
-                    <span class="change-info-icon" data-old="<%= drugProductTypeChange.getOldValue() != null ? drugProductTypeChange.getOldValue() : "" %>" data-new="<%= drugProductTypeChange.getNewValue() != null ? drugProductTypeChange.getNewValue() : "" %>" data-updated="<%= drugProductTypeChange.getChangedAt() != null ? drugProductTypeChange.getChangedAt() : "" %>" data-by="<%= drugProductTypeChange.getUpdateBy() != null ? drugProductTypeChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= drugProductTypeChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(drugProductTypeChange.getOldValue()) : "" %>" data-new="<%= drugProductTypeChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(drugProductTypeChange.getNewValue()) : "" %>" data-updated="<%= drugProductTypeChange.getChangedAt() != null ? drugProductTypeChange.getChangedAt() : "" %>" data-by="<%= drugProductTypeChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(drugProductTypeChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -623,7 +623,7 @@
                 <td class="label">
                     Drug&nbsp;Product&nbsp;Type
                     <% if(drugProductTypeChanged) { %>
-                    <span class="change-info-icon" data-old="<%= drugProductTypeChange.getOldValue() != null ? drugProductTypeChange.getOldValue() : "" %>" data-new="<%= drugProductTypeChange.getNewValue() != null ? drugProductTypeChange.getNewValue() : "" %>" data-updated="<%= drugProductTypeChange.getChangedAt() != null ? drugProductTypeChange.getChangedAt() : "" %>" data-by="<%= drugProductTypeChange.getUpdateBy() != null ? drugProductTypeChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= drugProductTypeChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(drugProductTypeChange.getOldValue()) : "" %>" data-new="<%= drugProductTypeChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(drugProductTypeChange.getNewValue()) : "" %>" data-updated="<%= drugProductTypeChange.getChangedAt() != null ? drugProductTypeChange.getChangedAt() : "" %>" data-by="<%= drugProductTypeChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(drugProductTypeChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td><%= clinicalTrialData.getDrugProductType() %></td>
@@ -638,7 +638,7 @@
                 <td class="label">
                     Target&nbsp;Tissue/Cell
                     <% if(targetTissueChanged) { %>
-                    <span class="change-info-icon" data-old="<%= targetTissueChange.getOldValue() != null ? targetTissueChange.getOldValue() : "" %>" data-new="<%= targetTissueChange.getNewValue() != null ? targetTissueChange.getNewValue() : "" %>" data-updated="<%= targetTissueChange.getChangedAt() != null ? targetTissueChange.getChangedAt() : "" %>" data-by="<%= targetTissueChange.getUpdateBy() != null ? targetTissueChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= targetTissueChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(targetTissueChange.getOldValue()) : "" %>" data-new="<%= targetTissueChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(targetTissueChange.getNewValue()) : "" %>" data-updated="<%= targetTissueChange.getChangedAt() != null ? targetTissueChange.getChangedAt() : "" %>" data-by="<%= targetTissueChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(targetTissueChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -650,7 +650,7 @@
                 <td class="label">
                     Target&nbsp;Tissue/Cell
                     <% if(targetTissueChanged) { %>
-                    <span class="change-info-icon" data-old="<%= targetTissueChange.getOldValue() != null ? targetTissueChange.getOldValue() : "" %>" data-new="<%= targetTissueChange.getNewValue() != null ? targetTissueChange.getNewValue() : "" %>" data-updated="<%= targetTissueChange.getChangedAt() != null ? targetTissueChange.getChangedAt() : "" %>" data-by="<%= targetTissueChange.getUpdateBy() != null ? targetTissueChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= targetTissueChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(targetTissueChange.getOldValue()) : "" %>" data-new="<%= targetTissueChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(targetTissueChange.getNewValue()) : "" %>" data-updated="<%= targetTissueChange.getChangedAt() != null ? targetTissueChange.getChangedAt() : "" %>" data-by="<%= targetTissueChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(targetTissueChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td><%= clinicalTrialData.getTargetTissueOrCell() %></td>
@@ -665,7 +665,7 @@
                 <td class="label">
                     Delivery&nbsp;System
                     <% if(deliverySystemChanged) { %>
-                    <span class="change-info-icon" data-old="<%= deliverySystemChange.getOldValue() != null ? deliverySystemChange.getOldValue() : "" %>" data-new="<%= deliverySystemChange.getNewValue() != null ? deliverySystemChange.getNewValue() : "" %>" data-updated="<%= deliverySystemChange.getChangedAt() != null ? deliverySystemChange.getChangedAt() : "" %>" data-by="<%= deliverySystemChange.getUpdateBy() != null ? deliverySystemChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= deliverySystemChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(deliverySystemChange.getOldValue()) : "" %>" data-new="<%= deliverySystemChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(deliverySystemChange.getNewValue()) : "" %>" data-updated="<%= deliverySystemChange.getChangedAt() != null ? deliverySystemChange.getChangedAt() : "" %>" data-by="<%= deliverySystemChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(deliverySystemChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -677,7 +677,7 @@
                 <td class="label">
                     Delivery&nbsp;System
                     <% if(deliverySystemChanged) { %>
-                    <span class="change-info-icon" data-old="<%= deliverySystemChange.getOldValue() != null ? deliverySystemChange.getOldValue() : "" %>" data-new="<%= deliverySystemChange.getNewValue() != null ? deliverySystemChange.getNewValue() : "" %>" data-updated="<%= deliverySystemChange.getChangedAt() != null ? deliverySystemChange.getChangedAt() : "" %>" data-by="<%= deliverySystemChange.getUpdateBy() != null ? deliverySystemChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= deliverySystemChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(deliverySystemChange.getOldValue()) : "" %>" data-new="<%= deliverySystemChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(deliverySystemChange.getNewValue()) : "" %>" data-updated="<%= deliverySystemChange.getChangedAt() != null ? deliverySystemChange.getChangedAt() : "" %>" data-by="<%= deliverySystemChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(deliverySystemChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td><%= clinicalTrialData.getDeliverySystem() %></td>
@@ -692,7 +692,7 @@
                 <td class="label">
                     Vector&nbsp;Type
                     <% if(vectorTypeChanged) { %>
-                    <span class="change-info-icon" data-old="<%= vectorTypeChange.getOldValue() != null ? vectorTypeChange.getOldValue() : "" %>" data-new="<%= vectorTypeChange.getNewValue() != null ? vectorTypeChange.getNewValue() : "" %>" data-updated="<%= vectorTypeChange.getChangedAt() != null ? vectorTypeChange.getChangedAt() : "" %>" data-by="<%= vectorTypeChange.getUpdateBy() != null ? vectorTypeChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= vectorTypeChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(vectorTypeChange.getOldValue()) : "" %>" data-new="<%= vectorTypeChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(vectorTypeChange.getNewValue()) : "" %>" data-updated="<%= vectorTypeChange.getChangedAt() != null ? vectorTypeChange.getChangedAt() : "" %>" data-by="<%= vectorTypeChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(vectorTypeChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -704,7 +704,7 @@
                 <td class="label">
                     Vector&nbsp;Type
                     <% if(vectorTypeChanged) { %>
-                    <span class="change-info-icon" data-old="<%= vectorTypeChange.getOldValue() != null ? vectorTypeChange.getOldValue() : "" %>" data-new="<%= vectorTypeChange.getNewValue() != null ? vectorTypeChange.getNewValue() : "" %>" data-updated="<%= vectorTypeChange.getChangedAt() != null ? vectorTypeChange.getChangedAt() : "" %>" data-by="<%= vectorTypeChange.getUpdateBy() != null ? vectorTypeChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= vectorTypeChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(vectorTypeChange.getOldValue()) : "" %>" data-new="<%= vectorTypeChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(vectorTypeChange.getNewValue()) : "" %>" data-updated="<%= vectorTypeChange.getChangedAt() != null ? vectorTypeChange.getChangedAt() : "" %>" data-by="<%= vectorTypeChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(vectorTypeChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td><%= clinicalTrialData.getVectorType() %></td>
@@ -719,7 +719,7 @@
                 <td class="label">
                     Editor&nbsp;Type
                     <% if(editorTypeChanged) { %>
-                    <span class="change-info-icon" data-old="<%= editorTypeChange.getOldValue() != null ? editorTypeChange.getOldValue() : "" %>" data-new="<%= editorTypeChange.getNewValue() != null ? editorTypeChange.getNewValue() : "" %>" data-updated="<%= editorTypeChange.getChangedAt() != null ? editorTypeChange.getChangedAt() : "" %>" data-by="<%= editorTypeChange.getUpdateBy() != null ? editorTypeChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= editorTypeChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(editorTypeChange.getOldValue()) : "" %>" data-new="<%= editorTypeChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(editorTypeChange.getNewValue()) : "" %>" data-updated="<%= editorTypeChange.getChangedAt() != null ? editorTypeChange.getChangedAt() : "" %>" data-by="<%= editorTypeChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(editorTypeChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -731,7 +731,7 @@
                 <td class="label">
                     Editor&nbsp;Type
                     <% if(editorTypeChanged) { %>
-                    <span class="change-info-icon" data-old="<%= editorTypeChange.getOldValue() != null ? editorTypeChange.getOldValue() : "" %>" data-new="<%= editorTypeChange.getNewValue() != null ? editorTypeChange.getNewValue() : "" %>" data-updated="<%= editorTypeChange.getChangedAt() != null ? editorTypeChange.getChangedAt() : "" %>" data-by="<%= editorTypeChange.getUpdateBy() != null ? editorTypeChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= editorTypeChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(editorTypeChange.getOldValue()) : "" %>" data-new="<%= editorTypeChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(editorTypeChange.getNewValue()) : "" %>" data-updated="<%= editorTypeChange.getChangedAt() != null ? editorTypeChange.getChangedAt() : "" %>" data-by="<%= editorTypeChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(editorTypeChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td><%= clinicalTrialData.getEditorType() %></td>
@@ -746,7 +746,7 @@
                 <td class="label">
                     Dose&nbsp;1
                     <% if(dose1Changed) { %>
-                    <span class="change-info-icon" data-old="<%= dose1Change.getOldValue() != null ? dose1Change.getOldValue() : "" %>" data-new="<%= dose1Change.getNewValue() != null ? dose1Change.getNewValue() : "" %>" data-updated="<%= dose1Change.getChangedAt() != null ? dose1Change.getChangedAt() : "" %>" data-by="<%= dose1Change.getUpdateBy() != null ? dose1Change.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= dose1Change.getOldValue() != null ? StringEscapeUtils.escapeHtml4(dose1Change.getOldValue()) : "" %>" data-new="<%= dose1Change.getNewValue() != null ? StringEscapeUtils.escapeHtml4(dose1Change.getNewValue()) : "" %>" data-updated="<%= dose1Change.getChangedAt() != null ? dose1Change.getChangedAt() : "" %>" data-by="<%= dose1Change.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(dose1Change.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -758,7 +758,7 @@
                 <td class="label">
                     Dose&nbsp;1
                     <% if(dose1Changed) { %>
-                    <span class="change-info-icon" data-old="<%= dose1Change.getOldValue() != null ? dose1Change.getOldValue() : "" %>" data-new="<%= dose1Change.getNewValue() != null ? dose1Change.getNewValue() : "" %>" data-updated="<%= dose1Change.getChangedAt() != null ? dose1Change.getChangedAt() : "" %>" data-by="<%= dose1Change.getUpdateBy() != null ? dose1Change.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= dose1Change.getOldValue() != null ? StringEscapeUtils.escapeHtml4(dose1Change.getOldValue()) : "" %>" data-new="<%= dose1Change.getNewValue() != null ? StringEscapeUtils.escapeHtml4(dose1Change.getNewValue()) : "" %>" data-updated="<%= dose1Change.getChangedAt() != null ? dose1Change.getChangedAt() : "" %>" data-by="<%= dose1Change.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(dose1Change.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td><%= clinicalTrialData.getDose1() %></td>
@@ -773,7 +773,7 @@
                 <td class="label">
                     Dose&nbsp;2
                     <% if(dose2Changed) { %>
-                    <span class="change-info-icon" data-old="<%= dose2Change.getOldValue() != null ? dose2Change.getOldValue() : "" %>" data-new="<%= dose2Change.getNewValue() != null ? dose2Change.getNewValue() : "" %>" data-updated="<%= dose2Change.getChangedAt() != null ? dose2Change.getChangedAt() : "" %>" data-by="<%= dose2Change.getUpdateBy() != null ? dose2Change.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= dose2Change.getOldValue() != null ? StringEscapeUtils.escapeHtml4(dose2Change.getOldValue()) : "" %>" data-new="<%= dose2Change.getNewValue() != null ? StringEscapeUtils.escapeHtml4(dose2Change.getNewValue()) : "" %>" data-updated="<%= dose2Change.getChangedAt() != null ? dose2Change.getChangedAt() : "" %>" data-by="<%= dose2Change.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(dose2Change.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -785,7 +785,7 @@
                 <td class="label">
                     Dose&nbsp;2
                     <% if(dose2Changed) { %>
-                    <span class="change-info-icon" data-old="<%= dose2Change.getOldValue() != null ? dose2Change.getOldValue() : "" %>" data-new="<%= dose2Change.getNewValue() != null ? dose2Change.getNewValue() : "" %>" data-updated="<%= dose2Change.getChangedAt() != null ? dose2Change.getChangedAt() : "" %>" data-by="<%= dose2Change.getUpdateBy() != null ? dose2Change.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= dose2Change.getOldValue() != null ? StringEscapeUtils.escapeHtml4(dose2Change.getOldValue()) : "" %>" data-new="<%= dose2Change.getNewValue() != null ? StringEscapeUtils.escapeHtml4(dose2Change.getNewValue()) : "" %>" data-updated="<%= dose2Change.getChangedAt() != null ? dose2Change.getChangedAt() : "" %>" data-by="<%= dose2Change.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(dose2Change.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td><%= clinicalTrialData.getDose2() %></td>
@@ -800,7 +800,7 @@
                 <td class="label">
                     Dose&nbsp;3
                     <% if(dose3Changed) { %>
-                    <span class="change-info-icon" data-old="<%= dose3Change.getOldValue() != null ? dose3Change.getOldValue() : "" %>" data-new="<%= dose3Change.getNewValue() != null ? dose3Change.getNewValue() : "" %>" data-updated="<%= dose3Change.getChangedAt() != null ? dose3Change.getChangedAt() : "" %>" data-by="<%= dose3Change.getUpdateBy() != null ? dose3Change.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= dose3Change.getOldValue() != null ? StringEscapeUtils.escapeHtml4(dose3Change.getOldValue()) : "" %>" data-new="<%= dose3Change.getNewValue() != null ? StringEscapeUtils.escapeHtml4(dose3Change.getNewValue()) : "" %>" data-updated="<%= dose3Change.getChangedAt() != null ? dose3Change.getChangedAt() : "" %>" data-by="<%= dose3Change.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(dose3Change.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -812,7 +812,7 @@
                 <td class="label">
                     Dose&nbsp;3
                     <% if(dose3Changed) { %>
-                    <span class="change-info-icon" data-old="<%= dose3Change.getOldValue() != null ? dose3Change.getOldValue() : "" %>" data-new="<%= dose3Change.getNewValue() != null ? dose3Change.getNewValue() : "" %>" data-updated="<%= dose3Change.getChangedAt() != null ? dose3Change.getChangedAt() : "" %>" data-by="<%= dose3Change.getUpdateBy() != null ? dose3Change.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= dose3Change.getOldValue() != null ? StringEscapeUtils.escapeHtml4(dose3Change.getOldValue()) : "" %>" data-new="<%= dose3Change.getNewValue() != null ? StringEscapeUtils.escapeHtml4(dose3Change.getNewValue()) : "" %>" data-updated="<%= dose3Change.getChangedAt() != null ? dose3Change.getChangedAt() : "" %>" data-by="<%= dose3Change.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(dose3Change.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td><%= clinicalTrialData.getDose3() %></td>
@@ -827,7 +827,7 @@
                 <td class="label">
                     Dose&nbsp;4
                     <% if(dose4Changed) { %>
-                    <span class="change-info-icon" data-old="<%= dose4Change.getOldValue() != null ? dose4Change.getOldValue() : "" %>" data-new="<%= dose4Change.getNewValue() != null ? dose4Change.getNewValue() : "" %>" data-updated="<%= dose4Change.getChangedAt() != null ? dose4Change.getChangedAt() : "" %>" data-by="<%= dose4Change.getUpdateBy() != null ? dose4Change.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= dose4Change.getOldValue() != null ? StringEscapeUtils.escapeHtml4(dose4Change.getOldValue()) : "" %>" data-new="<%= dose4Change.getNewValue() != null ? StringEscapeUtils.escapeHtml4(dose4Change.getNewValue()) : "" %>" data-updated="<%= dose4Change.getChangedAt() != null ? dose4Change.getChangedAt() : "" %>" data-by="<%= dose4Change.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(dose4Change.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -839,7 +839,7 @@
                 <td class="label">
                     Dose&nbsp;4
                     <% if(dose4Changed) { %>
-                    <span class="change-info-icon" data-old="<%= dose4Change.getOldValue() != null ? dose4Change.getOldValue() : "" %>" data-new="<%= dose4Change.getNewValue() != null ? dose4Change.getNewValue() : "" %>" data-updated="<%= dose4Change.getChangedAt() != null ? dose4Change.getChangedAt() : "" %>" data-by="<%= dose4Change.getUpdateBy() != null ? dose4Change.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= dose4Change.getOldValue() != null ? StringEscapeUtils.escapeHtml4(dose4Change.getOldValue()) : "" %>" data-new="<%= dose4Change.getNewValue() != null ? StringEscapeUtils.escapeHtml4(dose4Change.getNewValue()) : "" %>" data-updated="<%= dose4Change.getChangedAt() != null ? dose4Change.getChangedAt() : "" %>" data-by="<%= dose4Change.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(dose4Change.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td><%= clinicalTrialData.getDose4() %></td>
@@ -854,7 +854,7 @@
                 <td class="label">
                     Dose&nbsp;5
                     <% if(dose5Changed) { %>
-                    <span class="change-info-icon" data-old="<%= dose5Change.getOldValue() != null ? dose5Change.getOldValue() : "" %>" data-new="<%= dose5Change.getNewValue() != null ? dose5Change.getNewValue() : "" %>" data-updated="<%= dose5Change.getChangedAt() != null ? dose5Change.getChangedAt() : "" %>" data-by="<%= dose5Change.getUpdateBy() != null ? dose5Change.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= dose5Change.getOldValue() != null ? StringEscapeUtils.escapeHtml4(dose5Change.getOldValue()) : "" %>" data-new="<%= dose5Change.getNewValue() != null ? StringEscapeUtils.escapeHtml4(dose5Change.getNewValue()) : "" %>" data-updated="<%= dose5Change.getChangedAt() != null ? dose5Change.getChangedAt() : "" %>" data-by="<%= dose5Change.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(dose5Change.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -866,7 +866,7 @@
                 <td class="label">
                     Dose&nbsp;5
                     <% if(dose5Changed) { %>
-                    <span class="change-info-icon" data-old="<%= dose5Change.getOldValue() != null ? dose5Change.getOldValue() : "" %>" data-new="<%= dose5Change.getNewValue() != null ? dose5Change.getNewValue() : "" %>" data-updated="<%= dose5Change.getChangedAt() != null ? dose5Change.getChangedAt() : "" %>" data-by="<%= dose5Change.getUpdateBy() != null ? dose5Change.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= dose5Change.getOldValue() != null ? StringEscapeUtils.escapeHtml4(dose5Change.getOldValue()) : "" %>" data-new="<%= dose5Change.getNewValue() != null ? StringEscapeUtils.escapeHtml4(dose5Change.getNewValue()) : "" %>" data-updated="<%= dose5Change.getChangedAt() != null ? dose5Change.getChangedAt() : "" %>" data-by="<%= dose5Change.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(dose5Change.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td><%= clinicalTrialData.getDose5() %></td>
@@ -885,7 +885,7 @@
                 <td class="label">
                     Current&nbsp;Stage
                     <% if(phasesChanged) { %>
-                    <span class="change-info-icon" data-old="<%= phasesChange.getOldValue() != null ? phasesChange.getOldValue() : "" %>" data-new="<%= phasesChange.getNewValue() != null ? phasesChange.getNewValue() : "" %>" data-updated="<%= phasesChange.getChangedAt() != null ? phasesChange.getChangedAt() : "" %>" data-by="<%= phasesChange.getUpdateBy() != null ? phasesChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= phasesChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(phasesChange.getOldValue()) : "" %>" data-new="<%= phasesChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(phasesChange.getNewValue()) : "" %>" data-updated="<%= phasesChange.getChangedAt() != null ? phasesChange.getChangedAt() : "" %>" data-by="<%= phasesChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(phasesChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
 
@@ -901,7 +901,7 @@
                 <td class="label">
                     Submit&nbsp;Date
                     <% if(firstSubmitDateChanged) { %>
-                    <span class="change-info-icon" data-old="<%= firstSubmitDateChange.getOldValue() != null ? firstSubmitDateChange.getOldValue() : "" %>" data-new="<%= firstSubmitDateChange.getNewValue() != null ? firstSubmitDateChange.getNewValue() : "" %>" data-updated="<%= firstSubmitDateChange.getChangedAt() != null ? firstSubmitDateChange.getChangedAt() : "" %>" data-by="<%= firstSubmitDateChange.getUpdateBy() != null ? firstSubmitDateChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= firstSubmitDateChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(firstSubmitDateChange.getOldValue()) : "" %>" data-new="<%= firstSubmitDateChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(firstSubmitDateChange.getNewValue()) : "" %>" data-updated="<%= firstSubmitDateChange.getChangedAt() != null ? firstSubmitDateChange.getChangedAt() : "" %>" data-by="<%= firstSubmitDateChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(firstSubmitDateChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
 
@@ -917,7 +917,7 @@
                 <td class="label">
                     Completion&nbsp;Date
                     <% if(completionDateChanged) { %>
-                    <span class="change-info-icon" data-old="<%= completionDateChange.getOldValue() != null ? completionDateChange.getOldValue() : "" %>" data-new="<%= completionDateChange.getNewValue() != null ? completionDateChange.getNewValue() : "" %>" data-updated="<%= completionDateChange.getChangedAt() != null ? completionDateChange.getChangedAt() : "" %>" data-by="<%= completionDateChange.getUpdateBy() != null ? completionDateChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= completionDateChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(completionDateChange.getOldValue()) : "" %>" data-new="<%= completionDateChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(completionDateChange.getNewValue()) : "" %>" data-updated="<%= completionDateChange.getChangedAt() != null ? completionDateChange.getChangedAt() : "" %>" data-by="<%= completionDateChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(completionDateChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
 
@@ -933,7 +933,7 @@
                 <td class="label">
                     Last&nbsp;Update
                     <% if(lastUpdateChanged) { %>
-                    <span class="change-info-icon" data-old="<%= lastUpdateChange.getOldValue() != null ? lastUpdateChange.getOldValue() : "" %>" data-new="<%= lastUpdateChange.getNewValue() != null ? lastUpdateChange.getNewValue() : "" %>" data-updated="<%= lastUpdateChange.getChangedAt() != null ? lastUpdateChange.getChangedAt() : "" %>" data-by="<%= lastUpdateChange.getUpdateBy() != null ? lastUpdateChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= lastUpdateChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(lastUpdateChange.getOldValue()) : "" %>" data-new="<%= lastUpdateChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(lastUpdateChange.getNewValue()) : "" %>" data-updated="<%= lastUpdateChange.getChangedAt() != null ? lastUpdateChange.getChangedAt() : "" %>" data-by="<%= lastUpdateChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(lastUpdateChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
 
@@ -964,18 +964,18 @@
                 StringBuilder ageUpdated = new StringBuilder();
                 String ageBy = "";
                 if (minAgeChanged) {
-                    ageOldVal.append("Min Age: ").append(minAgeChange.getOldValue() != null ? minAgeChange.getOldValue() : "");
-                    ageNewVal.append("Min Age: ").append(minAgeChange.getNewValue() != null ? minAgeChange.getNewValue() : "");
+                    ageOldVal.append("Min Age: ").append(minAgeChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(minAgeChange.getOldValue()) : "");
+                    ageNewVal.append("Min Age: ").append(minAgeChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(minAgeChange.getNewValue()) : "");
                     ageUpdated.append("Min Age: ").append(minAgeChange.getChangedAt() != null ? minAgeChange.getChangedAt().toString() : "");
-                    ageBy = minAgeChange.getUpdateBy() != null ? minAgeChange.getUpdateBy() : "";
+                    ageBy = minAgeChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(minAgeChange.getUpdateBy()) : "";
                 }
                 if (maxAgeChanged) {
                     if (minAgeChanged) { ageOldVal.append(", "); ageNewVal.append(", "); ageUpdated.append(", "); }
-                    ageOldVal.append("Max Age: ").append(maxAgeChange.getOldValue() != null ? maxAgeChange.getOldValue() : "");
-                    ageNewVal.append("Max Age: ").append(maxAgeChange.getNewValue() != null ? maxAgeChange.getNewValue() : "");
+                    ageOldVal.append("Max Age: ").append(maxAgeChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(maxAgeChange.getOldValue()) : "");
+                    ageNewVal.append("Max Age: ").append(maxAgeChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(maxAgeChange.getNewValue()) : "");
                     ageUpdated.append("Max Age: ").append(maxAgeChange.getChangedAt() != null ? maxAgeChange.getChangedAt().toString() : "");
                     if (!minAgeChanged) {
-                        ageBy = maxAgeChange.getUpdateBy() != null ? maxAgeChange.getUpdateBy() : "";
+                        ageBy = maxAgeChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(maxAgeChange.getUpdateBy()) : "";
                     }
                 }
             %>
@@ -999,7 +999,7 @@
                 <td class="label">
                     Standard&nbsp;Ages
                     <% if(stdAgeChanged) { %>
-                    <span class="change-info-icon" data-old="<%= stdAgeChange.getOldValue() != null ? stdAgeChange.getOldValue() : "" %>" data-new="<%= stdAgeChange.getNewValue() != null ? stdAgeChange.getNewValue() : "" %>" data-updated="<%= stdAgeChange.getChangedAt() != null ? stdAgeChange.getChangedAt() : "" %>" data-by="<%= stdAgeChange.getUpdateBy() != null ? stdAgeChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= stdAgeChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(stdAgeChange.getOldValue()) : "" %>" data-new="<%= stdAgeChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(stdAgeChange.getNewValue()) : "" %>" data-updated="<%= stdAgeChange.getChangedAt() != null ? stdAgeChange.getChangedAt() : "" %>" data-by="<%= stdAgeChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(stdAgeChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
 
@@ -1015,7 +1015,7 @@
                 <td class="label">
                     Sexes&nbsp;Eligible&nbsp;for&nbsp;Study
                     <% if(eligibilitySexChanged) { %>
-                    <span class="change-info-icon" data-old="<%= eligibilitySexChange.getOldValue() != null ? eligibilitySexChange.getOldValue() : "" %>" data-new="<%= eligibilitySexChange.getNewValue() != null ? eligibilitySexChange.getNewValue() : "" %>" data-updated="<%= eligibilitySexChange.getChangedAt() != null ? eligibilitySexChange.getChangedAt() : "" %>" data-by="<%= eligibilitySexChange.getUpdateBy() != null ? eligibilitySexChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= eligibilitySexChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(eligibilitySexChange.getOldValue()) : "" %>" data-new="<%= eligibilitySexChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(eligibilitySexChange.getNewValue()) : "" %>" data-updated="<%= eligibilitySexChange.getChangedAt() != null ? eligibilitySexChange.getChangedAt() : "" %>" data-by="<%= eligibilitySexChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(eligibilitySexChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
 
@@ -1036,7 +1036,7 @@
                 <td class="label">
                     No.of&nbsp;Trial&nbsp;Sites
                     <% if(numLocationsChanged) { %>
-                    <span class="change-info-icon" data-old="<%= numLocationsChange.getOldValue() != null ? numLocationsChange.getOldValue() : "" %>" data-new="<%= numLocationsChange.getNewValue() != null ? numLocationsChange.getNewValue() : "" %>" data-updated="<%= numLocationsChange.getChangedAt() != null ? numLocationsChange.getChangedAt() : "" %>" data-by="<%= numLocationsChange.getUpdateBy() != null ? numLocationsChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= numLocationsChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(numLocationsChange.getOldValue()) : "" %>" data-new="<%= numLocationsChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(numLocationsChange.getNewValue()) : "" %>" data-updated="<%= numLocationsChange.getChangedAt() != null ? numLocationsChange.getChangedAt() : "" %>" data-by="<%= numLocationsChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(numLocationsChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
 
@@ -1052,7 +1052,7 @@
                 <td class="label">
                     Locations
                     <% if(locationsChanged) { %>
-                    <span class="change-info-icon" data-old="<%= locationsChange.getOldValue() != null ? locationsChange.getOldValue() : "" %>" data-new="<%= locationsChange.getNewValue() != null ? locationsChange.getNewValue() : "" %>" data-updated="<%= locationsChange.getChangedAt() != null ? locationsChange.getChangedAt() : "" %>" data-by="<%= locationsChange.getUpdateBy() != null ? locationsChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= locationsChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(locationsChange.getOldValue()) : "" %>" data-new="<%= locationsChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(locationsChange.getNewValue()) : "" %>" data-updated="<%= locationsChange.getChangedAt() != null ? locationsChange.getChangedAt() : "" %>" data-by="<%= locationsChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(locationsChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
 
@@ -1073,7 +1073,7 @@
                 <td class="label">
                     Has&nbsp;US&nbsp;IND
                     <% if(isFdaRegulatedChanged) { %>
-                    <span class="change-info-icon" data-old="<%= isFdaRegulatedChange.getOldValue() != null ? isFdaRegulatedChange.getOldValue() : "" %>" data-new="<%= isFdaRegulatedChange.getNewValue() != null ? isFdaRegulatedChange.getNewValue() : "" %>" data-updated="<%= isFdaRegulatedChange.getChangedAt() != null ? isFdaRegulatedChange.getChangedAt() : "" %>" data-by="<%= isFdaRegulatedChange.getUpdateBy() != null ? isFdaRegulatedChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= isFdaRegulatedChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(isFdaRegulatedChange.getOldValue()) : "" %>" data-new="<%= isFdaRegulatedChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(isFdaRegulatedChange.getNewValue()) : "" %>" data-updated="<%= isFdaRegulatedChange.getChangedAt() != null ? isFdaRegulatedChange.getChangedAt() : "" %>" data-by="<%= isFdaRegulatedChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(isFdaRegulatedChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
 
@@ -1089,7 +1089,7 @@
                 <td class="label">
                     FDA&nbsp;Designations
                     <% if(fdaDesignationChanged) { %>
-                    <span class="change-info-icon" data-old="<%= fdaDesignationChange.getOldValue() != null ? fdaDesignationChange.getOldValue() : "" %>" data-new="<%= fdaDesignationChange.getNewValue() != null ? fdaDesignationChange.getNewValue() : "" %>" data-updated="<%= fdaDesignationChange.getChangedAt() != null ? fdaDesignationChange.getChangedAt() : "" %>" data-by="<%= fdaDesignationChange.getUpdateBy() != null ? fdaDesignationChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= fdaDesignationChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(fdaDesignationChange.getOldValue()) : "" %>" data-new="<%= fdaDesignationChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(fdaDesignationChange.getNewValue()) : "" %>" data-updated="<%= fdaDesignationChange.getChangedAt() != null ? fdaDesignationChange.getChangedAt() : "" %>" data-by="<%= fdaDesignationChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(fdaDesignationChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -1149,7 +1149,7 @@
                 <td class="label">
                     Recent&nbsp;Updates
                     <% if(recentUpdatesChanged) { %>
-                    <span class="change-info-icon" data-old="<%= recentUpdatesChange.getOldValue() != null ? recentUpdatesChange.getOldValue() : "" %>" data-new="<%= recentUpdatesChange.getNewValue() != null ? recentUpdatesChange.getNewValue() : "" %>" data-updated="<%= recentUpdatesChange.getChangedAt() != null ? recentUpdatesChange.getChangedAt() : "" %>" data-by="<%= recentUpdatesChange.getUpdateBy() != null ? recentUpdatesChange.getUpdateBy() : "" %>">🔄</span>
+                    <span class="change-info-icon" data-old="<%= recentUpdatesChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(recentUpdatesChange.getOldValue()) : "" %>" data-new="<%= recentUpdatesChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(recentUpdatesChange.getNewValue()) : "" %>" data-updated="<%= recentUpdatesChange.getChangedAt() != null ? recentUpdatesChange.getChangedAt() : "" %>" data-by="<%= recentUpdatesChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(recentUpdatesChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
                 </td>
                 <td>
@@ -1222,7 +1222,7 @@
                     <td>
                         <button type="button" class="btn btn-danger" onclick="deleteExtLink(<%=cext.getId()%>)">Delete</button>
                         <% if(extLinkChanged) { %>
-                        <span class="change-info-icon" data-old="<%= extLinkChange.getOldValue() != null ? extLinkChange.getOldValue() : "" %>" data-new="<%= extLinkChange.getNewValue() != null ? extLinkChange.getNewValue() : "" %>" data-updated="<%= extLinkChange.getChangedAt() != null ? extLinkChange.getChangedAt() : "" %>" data-by="<%= extLinkChange.getUpdateBy() != null ? extLinkChange.getUpdateBy() : "" %>">🔄</span>
+                        <span class="change-info-icon" data-old="<%= extLinkChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(extLinkChange.getOldValue()) : "" %>" data-new="<%= extLinkChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(extLinkChange.getNewValue()) : "" %>" data-updated="<%= extLinkChange.getChangedAt() != null ? extLinkChange.getChangedAt() : "" %>" data-by="<%= extLinkChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(extLinkChange.getUpdateBy()) : "" %>">🔄</span>
                         <% } %>
                     </td>
                 </tr>
@@ -1277,10 +1277,10 @@
                         typeNewValues.get(linkType).append(" ");
                     }
 
-                    typeOldValues.get(linkType).append("[").append(count).append("] ").append(change.getOldValue() != null ? change.getOldValue() : "");
-                    typeNewValues.get(linkType).append("[").append(count).append("] ").append(change.getNewValue() != null ? change.getNewValue() : "");
+                    typeOldValues.get(linkType).append("[").append(count).append("] ").append(change.getOldValue() != null ? StringEscapeUtils.escapeHtml4(change.getOldValue()) : "");
+                    typeNewValues.get(linkType).append("[").append(count).append("] ").append(change.getNewValue() != null ? StringEscapeUtils.escapeHtml4(change.getNewValue()) : "");
                     typeUpdatedAt.put(linkType, change.getChangedAt() != null ? change.getChangedAt().toString() : "");
-                    typeUpdatedBy.put(linkType, change.getUpdateBy() != null ? change.getUpdateBy() : "");
+                    typeUpdatedBy.put(linkType, change.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(change.getUpdateBy()) : "");
                 }
             }
 

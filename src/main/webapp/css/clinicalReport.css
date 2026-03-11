@@ -584,6 +584,13 @@ hr {
     display: inline;
 }
 
+.change-popover-old,
+.change-popover-new {
+    max-height: 150px;
+    overflow-y: auto;
+    display: block;
+}
+
 .change-popover-old {
     color: #dc2626;
 }
