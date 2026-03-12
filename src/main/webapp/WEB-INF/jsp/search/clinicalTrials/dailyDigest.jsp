@@ -92,11 +92,114 @@
         </div>
         <% if(totalUpdates > displayLimit) { %>
         <div class="digest-footer">
-            <span class="digest-more-info"><i class="fa fa-info-circle"></i> <%=totalUpdates - displayLimit%> more update(s) recently</span>
+            <a href="#" class="digest-more-info" onclick="openDigestModal(event)" style="cursor:pointer; text-decoration:none;"><i class="fa fa-info-circle"></i> <%=totalUpdates - displayLimit%> more update(s) recently — View All</a>
         </div>
         <% } %>
     </div><!-- end digest-sidebar-content -->
 </div>
+<!-- All Updates Modal -->
+<div id="digestModal" class="digest-modal-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:10000; justify-content:center; align-items:center;">
+    <div class="digest-modal" style="background:#fff; border-radius:8px; width:90%; max-width:800px; max-height:85vh; display:flex; flex-direction:column; box-shadow:0 8px 32px rgba(0,0,0,0.25); margin:auto; position:relative; top:50%; transform:translateY(-50%);">
+        <div class="digest-modal-header" style="display:flex; justify-content:space-between; align-items:center; padding:16px 20px; border-bottom:1px solid #e0e0e0;">
+            <h4 style="margin:0;">All Recent Updates (<%=totalUpdates%>)</h4>
+            <button onclick="closeDigestModal()" style="background:none; border:none; font-size:1.5rem; cursor:pointer; color:#666; padding:0 4px;">&times;</button>
+        </div>
+        <div class="digest-modal-body" style="overflow-y:auto; padding:16px 20px;">
+            <%
+                for(int j = 0; j < totalUpdates; j++) {
+                    Map<String, Object> modalItem = recentUpdates.get(j);
+                    String modalNctId = modalItem.get("nctId") != null ? modalItem.get("nctId").toString() : "";
+                    String modalIndication = modalItem.get("indication") != null ? modalItem.get("indication").toString() : "N/A";
+                    String modalSponsor = modalItem.get("sponsor") != null ? modalItem.get("sponsor").toString() : "N/A";
+                    String modalUpdateDate = modalItem.get("recordModifiedDate") != null ? modalItem.get("recordModifiedDate").toString() : "";
+                    String modalCreationDate = modalItem.get("recordCreationDate") != null ? modalItem.get("recordCreationDate").toString() : "";
+                    boolean modalIsNew = !modalCreationDate.isEmpty() && modalCreationDate.equals(modalUpdateDate);
+                    String modalRecentUpdateNote = modalItem.get("recentUpdates") != null ? modalItem.get("recentUpdates").toString() : "";
+                    List<String> modalStatusList = modalItem.get("status") != null ? (List<String>) modalItem.get("status") : new ArrayList<>();
+                    String modalStatus = modalStatusList.size() > 0 ? modalStatusList.get(0) : "N/A";
+                    List<ClinicalTrialFieldChange> modalUpdatedFields = null;
+                    List<ClinicalTrialFieldChange> modalFilteredUpdates = new ArrayList<>();
+                    try {
+                        modalUpdatedFields = clinicalTrailDAO.getFieldChangesByNctId(modalNctId);
+                        if(modalUpdatedFields != null && modalUpdatedFields.size() > 0){
+                            for(ClinicalTrialFieldChange update : modalUpdatedFields) {
+                                modalFilteredUpdates.add(update);
+                            }
+                        }
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+            %>
+            <div class="digest-item" style="border-bottom:1px solid #eee; padding:10px 0;">
+                <div class="digest-item-header">
+                    <span class="digest-nct-wrapper">
+                        <a href="/platform/data/report/clinicalTrials/<%=modalNctId%>" target="_blank" class="digest-nct-link"><%=modalNctId%></a><% if(modalIsNew) { %><span class="digest-new-badge">NEW</span><% } %>
+                        <% if(modalFilteredUpdates.size() > 0) { %>
+                        <div class="digest-updates-section" style="display:inline-block;">
+                            <div class="digest-updates-header" onclick="toggleUpdatesPopover(event, this)">
+                                <span title="View Updates"><i class="fa fa-pencil-square-o"></i></span>
+                                <div class="digest-updates-tooltip">
+                                    <% for(ClinicalTrialFieldChange update : modalFilteredUpdates) { %>
+                                    <div class="digest-update-item">
+                                        <span class="digest-field-name"><%=StringUtils.capitalize(update.getFieldName().toLowerCase().trim().replaceAll("_", " "))%></span>
+                                        <span class="digest-field-change">
+                                            <span class="digest-old-value" title="<%=update.getOldValue()%>"><%=update.getOldValue() != null && update.getOldValue().length() > 50 ? update.getOldValue().substring(0, 50) + "..." : update.getOldValue()%></span>
+                                            <i class="fa fa-arrow-right"></i>
+                                            <span class="digest-new-value" title="<%=update.getNewValue()%>"><%=update.getNewValue() != null && update.getNewValue().length() > 50 ? update.getNewValue().substring(0, 50) + "..." : update.getNewValue()%></span>
+                                        </span>
+                                        <span class="digest-update-by"><%=update.getUpdateBy()%></span>
+                                    </div>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                    </span>
+                    <span class="digest-date"><i class="fa fa-calendar"></i> <%=modalUpdateDate%></span>
+                </div>
+                <div class="digest-item-body">
+                    <div class="digest-indication" title="<%=modalIndication%>"><%=modalIndication.length() > 120 ? modalIndication.substring(0, 120) + "..." : modalIndication%></div>
+                    <div class="digest-meta">
+                        <span class="digest-sponsor"><i class="fa fa-building"></i> <%=modalSponsor%></span>
+                        <span class="digest-status status-<%=modalStatus.toLowerCase().replace(" ", "-")%>"><%=modalStatus%></span>
+                    </div>
+                    <% if(modalRecentUpdateNote != null && !modalRecentUpdateNote.isEmpty() && !modalRecentUpdateNote.equals("null")) { %>
+                    <div class="digest-update-note"><i class="fa fa-info-circle"></i> <%=modalRecentUpdateNote.length() > 200 ? modalRecentUpdateNote.substring(0, 200) + "..." : modalRecentUpdateNote%></div>
+                    <% } %>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openDigestModal(event) {
+        event.preventDefault();
+        document.getElementById('digestModal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeDigestModal() {
+        document.getElementById('digestModal').style.display = 'none';
+        document.body.style.overflow = '';
+    }
+
+    // Close modal on overlay click
+    document.getElementById('digestModal').addEventListener('click', function(event) {
+        if (event.target === this) {
+            closeDigestModal();
+        }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeDigestModal();
+        }
+    });
+</script>
+
 <script>
     function toggleUpdatesPopover(event, element) {
         event.stopPropagation();
