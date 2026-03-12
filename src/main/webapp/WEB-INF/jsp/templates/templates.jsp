@@ -14,7 +14,8 @@
 
 
 <div class="page-header has-page-nav">
-    <h3>IND (Investigational New Drug) Application for gene therapy </h3>
+    <h3>Investigational New Drug (IND) Application Toolkit for Gene Therapy</h3>
+    <p style="margin: 5px 0 0 0; color: #666; font-size: 0.95rem;">The Somatic Cell Genome Editing (SCGE) Consortium is an NIH Common Fund program created to accelerate translational research in genome editing, and a primary goal of this initiative is to submit IND applications for novel gene editing therapies. As part of this work, we have created a collection of useful resources, templates, and tools for filing out an IND application.</p>
 </div>
 
 <!-- Page Navigation Sidebar -->
@@ -62,9 +63,9 @@
                         </div>
                         <form action="/platform/public/download/zipFile" method="post" style="margin: 0;">
                             <input type="hidden" name="filename" value="IND000000.zip">
-                            <button class="btn btn-primary btn-sm"><i class="fa-solid fa-folder-open" style="font-weight: bold"></i>&nbsp;<i class="fa-solid fa-download" style="font-weight: bold"></i>&nbsp;Full IND Submission Template</button>
+                            <button class="btn btn-primary btn-sm"><i class="fa-solid fa-folder-open" style="font-weight: bold"></i>&nbsp;<i class="fa-solid fa-download" style="font-weight: bold"></i>&nbsp;SCGE IND Template Bundle (.zip)</button>
                         </form>
-                        <a href="/platform/data/ind/resources" class="btn btn-primary btn-sm" style="color: #ffffff; text-transform: capitalize;"><i class="fa-solid fa-file-arrow-down" style="font-weight: bold"></i>&nbsp;Individual Templates</a>
+                        <a href="/platform/data/ind/resources" class="btn btn-primary btn-sm" style="color: #ffffff; text-transform: capitalize;"><i class="fa-solid fa-file-arrow-down" style="font-weight: bold"></i>&nbsp;Browse SCGE Module Resources</a>
                 </div>
 
                 </div>

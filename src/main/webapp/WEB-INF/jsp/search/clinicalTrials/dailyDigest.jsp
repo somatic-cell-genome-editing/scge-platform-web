@@ -6,10 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="edu.mcw.scge.services.SCGEContext" %>
 <%
-
     int displayLimit = 5;
     int maxDigestItems = Math.min(totalUpdates, displayLimit);
+    int lookbackDays = SCGEContext.isProduction() ? 14 : 7;
 %>
 <% if(totalUpdates > 0) { %>
 <div class="daily-digest-sidebar">
@@ -18,7 +19,7 @@
         <h4>Clinical Trials Daily Digest</h4>
         <span class="digest-badge"><%=totalUpdates%> Update<%=totalUpdates > 1 ? "s" : ""%></span>
     </div>
-    <p class="digest-subtitle">Updates in the last 7 days</p>
+    <p class="digest-subtitle">Updates in the last <%=lookbackDays%> days</p>
     <div class="digest-sidebar-content">
         <div class="digest-items">
             <%
