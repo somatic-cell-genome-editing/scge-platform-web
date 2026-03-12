@@ -217,13 +217,17 @@ public class ClinicalTrialsService {
     }
 
     /**
-     * Get recent updates for daily digest (last 7 days)
+     * Get recent updates for daily digest.
+     * Stage: last 7 days (daily ingestion).
+     * Production: last 14 days (weekly release cycle).
      */
     public SearchResponse getRecentUpdatesForDigest(String category, Map<String, List<String>> filtersMap) throws IOException {
         String searchIndex = SCGEContext.getESIndexName();
         SearchSourceBuilder srb = new SearchSourceBuilder();
 
-        // Build query with date range for last 7 days
+        // Use wider lookback window in production to account for weekly release cycle
+        int lookbackDays = SCGEContext.isProduction() ? 14 : 7;
+
         BoolQueryBuilder q = new BoolQueryBuilder();
         q.must(QueryBuilders.matchAllQuery());
 
@@ -231,9 +235,9 @@ public class ClinicalTrialsService {
             q.filter(QueryBuilders.termQuery("category.keyword", category));
         }
 
-        // Filter for records modified in last 7 days
+        // Filter for records modified in last N days
         q.filter(QueryBuilders.rangeQuery("recordModifiedDate")
-                .gte("now-7d/d")
+                .gte("now-" + lookbackDays + "d/d")
                 .lte("now/d"));
         if (filtersMap != null && filtersMap.size() > 0 && (filtersMap.get("recordStatus")!=null && filtersMap.get("recordStatus").size()>0) ) {
            q.filter(QueryBuilders.termsQuery("recordStatus.keyword", filtersMap.get("recordStatus")));
