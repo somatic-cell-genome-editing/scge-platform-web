@@ -44,6 +44,19 @@ $(function () {
         $(this).prev(".card-header").find(".fas").removeClass("fa-angle-up").addClass("fa-angle-down");
     }).on('hide.bs.collapse', function(){
         $(this).prev(".card-header").find(".fas").removeClass("fa-angle-down").addClass("fa-angle-up");
+    }).on('shown.bs.collapse', function(){
+        // Scroll the expanded accordion group into view within the facet container
+        var accordionGroup = $(this).closest('.accordion-group');
+        var facetForm = $('#facetForm');
+        if (accordionGroup.length && facetForm.length) {
+            var groupTop = accordionGroup[0].offsetTop;
+            var containerScroll = facetForm.scrollTop();
+            var containerHeight = facetForm.innerHeight();
+            var groupBottom = groupTop + accordionGroup.outerHeight();
+            if (groupBottom > containerScroll + containerHeight) {
+                facetForm.animate({ scrollTop: groupTop }, 300);
+            }
+        }
     });
     var facets=allFacets
     // var facets=["status","indication", "sponsor"
