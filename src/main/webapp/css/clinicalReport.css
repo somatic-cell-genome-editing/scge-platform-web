@@ -139,6 +139,69 @@ html {
     padding: 0.25rem 0.25rem 0.25rem 0;
 }
 
+/* Eligibility Criteria Dropdown */
+.eligibility-dropdown-toggle {
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+.eligibility-dropdown-btn {
+    display: inline-block;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background-color: #1a80b6;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.eligibility-dropdown-btn:hover {
+    background-color: #155d8a;
+}
+/* Horizontal bar of the + */
+.eligibility-dropdown-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 2px;
+    background-color: #fff;
+    transform: translate(-50%, -50%);
+}
+/* Vertical bar of the + (hidden when minus) */
+.eligibility-dropdown-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 10px;
+    background-color: #fff;
+    transform: translate(-50%, -50%);
+}
+.eligibility-dropdown-btn[data-state="minus"]::after {
+    display: none;
+}
+.eligibility-dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    margin-top: 8px;
+    padding: 0 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: #f8fafc;
+    transition: max-height 0.3s ease, padding 0.3s ease, border-color 0.3s ease;
+}
+.eligibility-dropdown-content.open {
+    max-height: 500px;
+    padding: 10px;
+    border-color: #e2e8f0;
+    overflow-y: auto;
+}
+
 /* Side Navigation */
 .sidenav {
     width: 200px;
