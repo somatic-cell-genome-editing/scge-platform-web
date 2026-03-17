@@ -1023,6 +1023,24 @@
                     <%=clinicalTrialData.getEligibilitySex()!=null?clinicalTrialData.getEligibilitySex():""%>
                 </td>
             </tr>
+            <tr>
+                <td class="label">
+                    Eligibility&nbsp;Criteria
+                </td>
+                <td>
+                    <% if(clinicalTrialData.getEligibilityCriteria() != null && !clinicalTrialData.getEligibilityCriteria().isEmpty()) { %>
+                    <span class="eligibility-dropdown-toggle" id="eligibilityCriteriaToggle">
+                        <span class="eligibility-dropdown-btn" id="eligibilityCriteriaBtn" data-state="minus"></span>
+                    </span>
+                    <div class="eligibility-dropdown-content open" id="eligibilityCriteriaContent">
+                        <div class="readonly-field description-field"><%= StringEscapeUtils.escapeHtml4(clinicalTrialData.getEligibilityCriteria()) %></div>
+                        <a href="https://clinicaltrials.gov/study/<%=clinicalTrialData.getNctId()%>#participation-criteria" target="_blank" style="color: #1a80b6; font-weight: 600; text-decoration: none; border-bottom: 1px solid #1a80b6; display: inline-block; margin-top: 10px;">View Inclusion and Exclusion Criteria at ClinicalTrials.gov</a>
+                    </div>
+                    <% } else { %>
+                    <a href="https://clinicaltrials.gov/study/<%=clinicalTrialData.getNctId()%>#participation-criteria" target="_blank" style="color: #1a80b6; font-weight: 600; text-decoration: none; border-bottom: 1px solid #1a80b6;">View Inclusion and Exclusion Criteria at ClinicalTrials.gov</a>
+                    <% } %>
+                </td>
+            </tr>
         </table>
 
         <div class="dynamic-heading" id="location"><h3 class="ctSubHeading">Locations</h3></div>
@@ -1363,6 +1381,22 @@
         alert("Changes saved successfully!");
         <% session.removeAttribute("showAlert"); %>
         <% } %>
+
+        // Eligibility criteria dropdown toggle
+        var ecToggle = document.getElementById('eligibilityCriteriaToggle');
+        var ecContent = document.getElementById('eligibilityCriteriaContent');
+        var ecBtn = document.getElementById('eligibilityCriteriaBtn');
+        if (ecToggle && ecContent && ecBtn) {
+            ecToggle.addEventListener('click', function() {
+                if (ecContent.classList.contains('open')) {
+                    ecContent.classList.remove('open');
+                    ecBtn.setAttribute('data-state', 'plus');
+                } else {
+                    ecContent.classList.add('open');
+                    ecBtn.setAttribute('data-state', 'minus');
+                }
+            });
+        }
 
         // Initialize change info popovers from data attributes
         initChangePopovers();
