@@ -200,7 +200,11 @@
                                 </button>
                             </td>
                             <td class="publications-cell">
-                                <div class="no-publications">—</div>
+                                <button class="publications-toggle docs-toggle" onclick="togglePublications('sma-documents')">
+                                    <i class="fas fa-folder-open"></i>
+                                    <span class="pub-count">2</span>
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
+                                </button>
                             </td>
                         </tr>
                         <tr class="publications-row" id="sma-publications">
