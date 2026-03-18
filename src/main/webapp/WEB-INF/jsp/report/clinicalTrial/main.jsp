@@ -1028,14 +1028,16 @@
                     Eligibility&nbsp;Criteria
                 </td>
                 <td>
-                    <a href="https://clinicaltrials.gov/study/<%=clinicalTrialData.getNctId()%>#participation-criteria" target="_blank" style="color: #1a80b6; font-weight: 600; text-decoration: none; border-bottom: 1px solid #1a80b6;">View Inclusion and Exclusion Criteria at ClinicalTrials.gov</a>
                     <% if(clinicalTrialData.getEligibilityCriteria() != null && !clinicalTrialData.getEligibilityCriteria().isEmpty()) { %>
                     <span class="eligibility-dropdown-toggle" id="eligibilityCriteriaToggle">
-                        <span class="eligibility-dropdown-btn" id="eligibilityCriteriaBtn" data-state="plus"></span>
+                        <span class="eligibility-dropdown-btn" id="eligibilityCriteriaBtn" data-state="minus"></span>
                     </span>
-                    <div class="eligibility-dropdown-content" id="eligibilityCriteriaContent">
+                    <div class="eligibility-dropdown-content open" id="eligibilityCriteriaContent">
                         <div class="readonly-field description-field"><%= StringEscapeUtils.escapeHtml4(clinicalTrialData.getEligibilityCriteria()) %></div>
+                        <a href="https://clinicaltrials.gov/study/<%=clinicalTrialData.getNctId()%>#participation-criteria" target="_blank" style="color: #1a80b6; font-weight: 600; text-decoration: none; border-bottom: 1px solid #1a80b6; display: inline-block; margin-top: 10px;">View Inclusion and Exclusion Criteria at ClinicalTrials.gov</a>
                     </div>
+                    <% } else { %>
+                    <a href="https://clinicaltrials.gov/study/<%=clinicalTrialData.getNctId()%>#participation-criteria" target="_blank" style="color: #1a80b6; font-weight: 600; text-decoration: none; border-bottom: 1px solid #1a80b6;">View Inclusion and Exclusion Criteria at ClinicalTrials.gov</a>
                     <% } %>
                 </td>
             </tr>
