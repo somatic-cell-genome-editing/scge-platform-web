@@ -12,7 +12,7 @@
     </h5>
     <ul class="publications-list">
         <li>
-            <a href="INTERACT_Meeting_Request_Final_04.30.2024_Redacted.pdf'" target="_blank">INTERACT Briefing Book</a>
+            <a href="/platform/public/download/regulatory?documentName='INTERACT_Meeting_Request_Final_04.30.2024_Redacted.pdf'" target="_blank">INTERACT Briefing Book</a>
         </li>
         <li>
             <a href="/platform/public/download/regulatory?documentName='SMA_Annotated_FDA_Responses_Redacted.pdf'" target="_blank">FDA Responses</a>        </li>
