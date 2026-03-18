@@ -208,6 +208,11 @@
                                 <%@include file="sma/sma_publications.jsp"%>
                             </td>
                         </tr>
+                        <tr class="publications-row" id="sma-documents">
+                            <td colspan="9" class="publications-content">
+                                <%@include file="sma/sma_docs.jsp"%>
+                            </td>
+                        </tr>
                         <tr>
                             <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#jackson" target="_blank">Friedreich's<br>Ataxia (FA)</a></td>
                             <td colspan="5" style="position: relative;">

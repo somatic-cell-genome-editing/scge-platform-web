@@ -203,35 +203,66 @@
 <script>
     function toggleUpdatesPopover(event, element) {
         event.stopPropagation();
-        // Close all other open popovers
+        // Close all other open popovers and restore their styles
         document.querySelectorAll('.digest-updates-header.active').forEach(function(el) {
             if (el !== element) {
                 el.classList.remove('active');
+                resetPopoverStyles(el);
             }
         });
         // Toggle this popover
         var isActive = element.classList.toggle('active');
+
+        if (!isActive) {
+            resetPopoverStyles(element);
+        }
 
         // Position the tooltip if active
         if (isActive) {
             var tooltip = element.querySelector('.digest-updates-tooltip');
             if (tooltip) {
                 var rect = element.getBoundingClientRect();
-                var tooltipWidth = 550; // max-width from CSS
+                var modal = element.closest('.digest-modal-body');
 
-                // Position below the button, aligned to the right edge
-                tooltip.style.top = (rect.bottom + 8) + 'px';
-                tooltip.style.right = (window.innerWidth - rect.right) + 'px';
-                tooltip.style.left = 'auto';
-
-                // Check if tooltip goes off left edge of screen
-                var tooltipRect = tooltip.getBoundingClientRect();
-                if (tooltipRect.left < 10) {
+                if (modal) {
+                    // Inside modal: render tooltip inline (no fixed positioning)
+                    tooltip.style.position = 'relative';
+                    tooltip.style.top = 'auto';
+                    tooltip.style.left = 'auto';
                     tooltip.style.right = 'auto';
-                    tooltip.style.left = '10px';
+                    tooltip.style.zIndex = '10001';
+                    tooltip.style.maxWidth = '100%';
+                    tooltip.style.width = '100%';
+                    tooltip.style.marginTop = '4px';
+                    // Remove blue background from header so tooltip isn't wrapped in it
+                    element.style.background = 'transparent';
+                    element.style.padding = '0';
+                    element.style.boxShadow = 'none';
+                } else {
+                    // Outside modal (sidebar): use fixed viewport positioning
+                    tooltip.style.position = 'fixed';
+                    tooltip.style.marginTop = '';
+                    tooltip.style.width = '';
+                    tooltip.style.top = (rect.bottom + 8) + 'px';
+                    tooltip.style.right = (window.innerWidth - rect.right) + 'px';
+                    tooltip.style.left = 'auto';
+                    tooltip.style.maxWidth = '';
+
+                    // Check if tooltip goes off left edge of screen
+                    var tooltipRect = tooltip.getBoundingClientRect();
+                    if (tooltipRect.left < 10) {
+                        tooltip.style.right = 'auto';
+                        tooltip.style.left = '10px';
+                    }
                 }
             }
         }
+    }
+
+    function resetPopoverStyles(el) {
+        el.style.background = '';
+        el.style.padding = '';
+        el.style.boxShadow = '';
     }
 
     // Close popover when clicking outside
@@ -239,6 +270,7 @@
         if (!event.target.closest('.digest-updates-header')) {
             document.querySelectorAll('.digest-updates-header.active').forEach(function(el) {
                 el.classList.remove('active');
+                resetPopoverStyles(el);
             });
         }
     });
