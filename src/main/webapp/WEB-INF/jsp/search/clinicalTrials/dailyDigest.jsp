@@ -17,7 +17,14 @@
     <div class="digest-sidebar-header">
         <i class="fa fa-newspaper-o"></i>
         <h4>Clinical Trials Daily Digest</h4>
-        <span class="digest-badge"><%=totalUpdates%> Update<%=totalUpdates > 1 ? "s" : ""%></span>
+
+        <% if(totalUpdates > displayLimit) { %>
+        <div>
+            <a href="#" class="digest-more-info" onclick="openDigestModal(event)" style="cursor:pointer; text-decoration:none;"><span class="digest-badge"><%=totalUpdates%> Update<%=totalUpdates > 1 ? "s" : ""%></span></a>
+        </div>
+        <% } else{%>
+               <span class="digest-badge"><%=totalUpdates%> Update<%=totalUpdates > 1 ? "s" : ""%></span>
+        <%}%>
     </div>
     <p class="digest-subtitle">Updates in the last <%=lookbackDays%> days</p>
     <div class="digest-sidebar-content">
