@@ -12,6 +12,11 @@
     </h5>
     <ul class="publications-list">
         <li>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41399808/" target="_blank">
+                Base editing strategies for in vivo correction of two highly recurrent phenylketonuria variants (2025)
+            </a>
+        </li>
+        <li>
             <a href="https://pubmed.ncbi.nlm.nih.gov/41175865/" target="_blank">
                 How to create personalized gene editing platforms: Next steps towards interventional genetics (2025)
             </a>
