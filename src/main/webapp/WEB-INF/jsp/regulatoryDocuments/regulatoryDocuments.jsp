@@ -93,7 +93,7 @@
                         </tr>
 
                         <tr>
-                            <td class="program-name"><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#ahrens-nicklas" target="_blank">PE - Urea Cycle Disorders<br>(UCDs)</a></td>
+                            <td class="program-name"><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#ahrens-nicklas" target="_blank">BE - Urea Cycle Disorders<br>(UCDs)</a></td>
                             <td colspan="5" style="position: relative;">
                                 <div class="timeline-bar" style="left: 5px; width: 55%;"></div>
                             </td>
@@ -124,7 +124,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="program-name"><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#ahrens-nicklas" target="_blank">BE - Urea Cycle Disorders<br>(UCDs)</a></td>
+                            <td class="program-name"><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#ahrens-nicklas" target="_blank">PE - Urea Cycle Disorders<br>(UCDs)</a></td>
                             <td colspan="5" style="position: relative;">
                                 <div class="timeline-bar" style="left: 5px; width: 55%;"></div>
                             </td>
