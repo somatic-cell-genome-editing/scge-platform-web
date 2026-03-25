@@ -8,7 +8,9 @@
                 <h5>Contents</h5>
 
                 <%@include file="pku/pku_sidebar.jsp"%>
+
                 <%@include file="ucd/ucd_sidebar.jsp"%>
+                <%@include file="ucdBaseEditing/ucd_sidebar.jsp"%>
                 <%@include file="cps1/cps1_docs.jsp"%>
 
                 <%@include file="prion/prion_sidebar.jsp"%>
@@ -51,7 +53,7 @@
                     <tbody>
                         <!-- Inborn Errors of Metabolism -->
                         <tr>
-                            <td rowspan="3" class="disease-area-cell">
+                            <td rowspan="4" class="disease-area-cell">
                                 <div class="disease-icon-container">
                                     <div class="disease-icon inborn-errors-icon">
 <%--                                        <i class="fas fa-dna" style="color: white !important;"></i>--%>
@@ -91,7 +93,7 @@
                         </tr>
 
                         <tr>
-                            <td class="program-name"><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#ahrens-nicklas" target="_blank">Urea Cycle Disorders<br>(UCDs)</a></td>
+                            <td class="program-name"><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#ahrens-nicklas" target="_blank">PE - Urea Cycle Disorders<br>(UCDs)</a></td>
                             <td colspan="5" style="position: relative;">
                                 <div class="timeline-bar" style="left: 5px; width: 55%;"></div>
                             </td>
@@ -119,6 +121,37 @@
                         <tr class="publications-row" id="ucd-documents">
                             <td colspan="9" class="publications-content">
                                 <%@include file="ucd/ucd_docs.jsp"%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="program-name"><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#ahrens-nicklas" target="_blank">BE - Urea Cycle Disorders<br>(UCDs)</a></td>
+                            <td colspan="5" style="position: relative;">
+                                <div class="timeline-bar" style="left: 5px; width: 55%;"></div>
+                            </td>
+                            <td class="publications-cell">
+                                <button class="publications-toggle" onclick="togglePublications('base-editing-ucd-publications')">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span class="pub-count">1</span>
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
+                                </button>
+                            </td>
+                            <td class="publications-cell">
+                                <button class="publications-toggle docs-toggle" onclick="togglePublications('base-editing-ucd-documents')">
+                                    <i class="fas fa-folder-open"></i>
+                                    <span class="pub-count">2</span>
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr class="publications-row" id="base-editing-ucd-publications">
+                            <td colspan="9" class="publications-content">
+                                <%@include file="ucdBaseEditing/ucd_publications.jsp"%>
+                            </td>
+                        </tr>
+                        <tr class="publications-row" id="base-editing-ucd-documents">
+                            <td colspan="9" class="publications-content">
+                                <%@include file="ucdBaseEditing/ucd_docs.jsp"%>
                             </td>
                         </tr>
                         <tr>
