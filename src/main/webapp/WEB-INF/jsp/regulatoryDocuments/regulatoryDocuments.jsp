@@ -369,6 +369,18 @@
 </div>
 
 <script>
+function findDiseaseAreaCell(pubRow) {
+    var prevRow = pubRow.previousElementSibling;
+    while (prevRow) {
+        var diseaseCell = prevRow.querySelector('.disease-area-cell');
+        if (diseaseCell) {
+            return diseaseCell;
+        }
+        prevRow = prevRow.previousElementSibling;
+    }
+    return null;
+}
+
 function togglePublications(rowId) {
     const row = document.getElementById(rowId);
     const button = event.currentTarget;
@@ -378,20 +390,27 @@ function togglePublications(rowId) {
         row.classList.remove('active');
         icon.classList.remove('fa-chevron-up');
         icon.classList.add('fa-chevron-down');
+        // Decrease rowspan when hiding
+        var cell = findDiseaseAreaCell(row);
+        if (cell) cell.rowSpan -= 1;
     } else {
-        // Close all other open publications
+        // Close all other open publications and adjust their rowspans
         document.querySelectorAll('.publications-row.active').forEach(openRow => {
             openRow.classList.remove('active');
+            var cell = findDiseaseAreaCell(openRow);
+            if (cell) cell.rowSpan -= 1;
         });
         document.querySelectorAll('.toggle-icon.fa-chevron-up').forEach(openIcon => {
             openIcon.classList.remove('fa-chevron-up');
             openIcon.classList.add('fa-chevron-down');
         });
 
-        // Open clicked publication
+        // Open clicked publication and increase rowspan
         row.classList.add('active');
         icon.classList.remove('fa-chevron-down');
         icon.classList.add('fa-chevron-up');
+        var cell = findDiseaseAreaCell(row);
+        if (cell) cell.rowSpan += 1;
     }
 }
 
