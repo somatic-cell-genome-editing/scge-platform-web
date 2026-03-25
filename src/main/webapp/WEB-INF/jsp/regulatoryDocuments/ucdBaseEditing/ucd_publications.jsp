@@ -11,10 +11,6 @@
         <i class="fas fa-file-alt"></i>Base Editing - UCD Program Publications
     </h5>
     <ul class="publications-list">
-        <li>
-            <a href="https://pubmed.ncbi.nlm.nih.gov/41175865/" target="_blank">
-                How to create personalized gene editing platforms: Next steps towards interventional genetics (2025)
-            </a>
-        </li>
+
     </ul>
 </div>

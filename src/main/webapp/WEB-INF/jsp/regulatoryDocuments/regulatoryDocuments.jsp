@@ -129,19 +129,22 @@
                                 <div class="timeline-bar" style="left: 5px; width: 55%;"></div>
                             </td>
                             <td class="publications-cell">
-                                <button class="publications-toggle" onclick="togglePublications('base-editing-ucd-publications')">
-                                    <i class="fas fa-file-alt"></i>
-                                    <span class="pub-count">1</span>
-                                    <i class="fas fa-chevron-down toggle-icon"></i>
-                                </button>
+<%--                                <button class="publications-toggle" onclick="togglePublications('base-editing-ucd-publications')">--%>
+<%--                                    <i class="fas fa-file-alt"></i>--%>
+<%--                                    <span class="pub-count">1</span>--%>
+<%--                                    <i class="fas fa-chevron-down toggle-icon"></i>--%>
+<%--                                </button>--%>
+                                    <div class="no-publications">—</div>
                             </td>
                             <td class="publications-cell">
-                                <button class="publications-toggle docs-toggle" onclick="togglePublications('base-editing-ucd-documents')">
-                                    <i class="fas fa-folder-open"></i>
-                                    <span class="pub-count">2</span>
-                                    <i class="fas fa-chevron-down toggle-icon"></i>
-                                </button>
+<%--                                <button class="publications-toggle docs-toggle" onclick="togglePublications('base-editing-ucd-documents')">--%>
+<%--                                    <i class="fas fa-folder-open"></i>--%>
+<%--                                    <span class="pub-count">2</span>--%>
+<%--                                    <i class="fas fa-chevron-down toggle-icon"></i>--%>
+<%--                                </button>--%>
+    <div class="no-publications">—</div>
                             </td>
+
                         </tr>
 
                         <tr class="publications-row" id="base-editing-ucd-publications">
