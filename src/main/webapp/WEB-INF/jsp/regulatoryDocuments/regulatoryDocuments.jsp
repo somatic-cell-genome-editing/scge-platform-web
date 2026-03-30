@@ -10,7 +10,7 @@
                 <%@include file="pku/pku_sidebar.jsp"%>
 
                 <%@include file="ucd/ucd_sidebar.jsp"%>
-                <%@include file="ucdBaseEditing/ucd_sidebar.jsp"%>
+                <%@include file="ucdPrimeEditing/ucd_sidebar.jsp"%>
                 <%@include file="cps1/cps1_docs.jsp"%>
 
                 <%@include file="prion/prion_sidebar.jsp"%>
@@ -137,11 +137,11 @@
                                     <div class="no-publications">—</div>
                             </td>
                             <td class="publications-cell">
-<%--                                <button class="publications-toggle docs-toggle" onclick="togglePublications('base-editing-ucd-documents')">--%>
-<%--                                    <i class="fas fa-folder-open"></i>--%>
-<%--                                    <span class="pub-count">2</span>--%>
-<%--                                    <i class="fas fa-chevron-down toggle-icon"></i>--%>
-<%--                                </button>--%>
+                                <button class="publications-toggle docs-toggle" onclick="togglePublications('base-editing-ucd-documents')">
+                                    <i class="fas fa-folder-open"></i>
+                                    <span class="pub-count">2</span>
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
+                                </button>
     <div class="no-publications">—</div>
                             </td>
 
@@ -149,12 +149,12 @@
 
                         <tr class="publications-row" id="base-editing-ucd-publications">
                             <td colspan="9" class="publications-content">
-                                <%@include file="ucdBaseEditing/ucd_publications.jsp"%>
+                                <%@include file="ucdPrimeEditing/ucd_publications.jsp"%>
                             </td>
                         </tr>
                         <tr class="publications-row" id="base-editing-ucd-documents">
                             <td colspan="9" class="publications-content">
-                                <%@include file="ucdBaseEditing/ucd_docs.jsp"%>
+                                <%@include file="ucdPrimeEditing/ucd_docs.jsp"%>
                             </td>
                         </tr>
                         <tr>

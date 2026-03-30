@@ -2,8 +2,8 @@
 <div class="sidebar-program">
     <h6><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#ahrens-nicklas" target="_blank">Urea Cycle Disorders - Prime Editing (CHOP/UPENN)</a></h6>
     <ul class="sidebar-docs-list">
-<%--        <li><a href="/platform/public/download/regulatory?documentName='UCD Pre-IND briefing book redacted.pdf'" target="_blank">Pre-IND Briefing Book</a></li>--%>
-<%--        <li><a href="/platform/public/download/regulatory?documentName='UCD FDA Signed_a_Meeting Summary_PS010343-CHOP redacted.pdf'" target="_blank">Pre-IND Responses</a></li>--%>
+        <li><a href="/platform/public/download/regulatory?documentName='CHOP.UCD.PE_FDA_briefing_book_redacted.pdf'" target="_blank">Pre-IND Briefing Book</a></li>
+        <li><a href="/platform/public/download/regulatory?documentName='Meeting Summary_PS010700__Meeting 22239_CHOP.mcc_redacted.pdf'" target="_blank">Pre-IND Responses</a></li>
     </ul>
 <%--    <div class="sidebar-publications">--%>
 <%--        <button class="sidebar-pub-toggle" onclick="toggleSidebarPublications('sidebar-ucd-pubs')">--%>
