@@ -5,14 +5,14 @@
         <li><a href="/platform/public/download/regulatory?documentName='CHOP.UCD.PE_FDA_briefing_book_redacted.pdf'" target="_blank">Pre-IND Briefing Book</a></li>
         <li><a href="/platform/public/download/regulatory?documentName='Meeting Summary_PS010700__Meeting 22239_CHOP.mcc_redacted.pdf'" target="_blank">Pre-IND Responses</a></li>
     </ul>
-<%--    <div class="sidebar-publications">--%>
-<%--        <button class="sidebar-pub-toggle" onclick="toggleSidebarPublications('sidebar-ucd-pubs')">--%>
-<%--&lt;%&ndash;            <i class="fas fa-file-alt"></i>&ndash;%&gt;--%>
-<%--&lt;%&ndash;            <span>Publications (1)</span>&ndash;%&gt;--%>
-<%--&lt;%&ndash;            <i class="fas fa-chevron-down sidebar-toggle-icon"></i>&ndash;%&gt;--%>
-<%--        </button>--%>
-<%--        <div class="sidebar-pub-content" id="sidebar-ucd-pubs">--%>
-<%--&lt;%&ndash;            <%@include file="ucd_publications.jsp"%>&ndash;%&gt;--%>
-<%--        </div>--%>
-<%--    </div>--%>
+    <div class="sidebar-publications">
+        <button class="sidebar-pub-toggle" onclick="toggleSidebarPublications('sidebar-ucd-pe-pubs')">
+            <i class="fas fa-file-alt"></i>
+            <span>Publications (1)</span>
+            <i class="fas fa-chevron-down sidebar-toggle-icon"></i>
+        </button>
+        <div class="sidebar-pub-content" id="sidebar-ucd-pe-pubs">
+            <%@include file="ucd_publications.jsp"%>
+        </div>
+    </div>
 </div>

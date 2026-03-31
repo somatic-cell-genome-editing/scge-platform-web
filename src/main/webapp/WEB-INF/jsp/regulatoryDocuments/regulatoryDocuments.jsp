@@ -129,12 +129,11 @@
                                 <div class="timeline-bar" style="left: 5px; width: 55%;"></div>
                             </td>
                             <td class="publications-cell">
-<%--                                <button class="publications-toggle" onclick="togglePublications('base-editing-ucd-publications')">--%>
-<%--                                    <i class="fas fa-file-alt"></i>--%>
-<%--                                    <span class="pub-count">1</span>--%>
-<%--                                    <i class="fas fa-chevron-down toggle-icon"></i>--%>
-<%--                                </button>--%>
-                                    <div class="no-publications">—</div>
+                                <button class="publications-toggle" onclick="togglePublications('base-editing-ucd-publications')">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span class="pub-count">1</span>
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
+                                </button>
                             </td>
                             <td class="publications-cell">
                                 <button class="publications-toggle docs-toggle" onclick="togglePublications('base-editing-ucd-documents')">
@@ -142,7 +141,6 @@
                                     <span class="pub-count">2</span>
                                     <i class="fas fa-chevron-down toggle-icon"></i>
                                 </button>
-    <div class="no-publications">—</div>
                             </td>
 
                         </tr>
