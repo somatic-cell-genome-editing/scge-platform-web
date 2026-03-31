@@ -128,7 +128,7 @@
 
 
                 <div class="news-item">
-                    <div class="news-item-date">March 31, 2026</div>
+                    <div class="news-item-date">April 1st, 2026</div>
                     <h4 class="news-item-title">
                         <a href="/platform/public/documents/regulatory">SCGE Regulatory Documents – New Documents Released</a>
                     </h4>
