@@ -143,7 +143,7 @@
                         <a href="/platform/public/documents/regulatory">New projects targeting neurological disorders – Regulatory Documents Released</a>
                     </h4>
                     <p class="news-item-excerpt">
-                        INTERACT briefing books and FDA responses for the Spinal Muscular Atrophy (SMA) base editing program and the Prion Disease program (Broad Institute) are now available on the SCGE Platform.
+                        INTERACT briefing books and FDA responses for the Spinal Muscular Atrophy (SMA) program and the Prion Disease program (Broad Institute) are now available on the SCGE Platform.
                     </p>
                     <a href="/platform/public/documents/regulatory" class="news-item-link">View Documents &rarr;</a>
                 </div>
