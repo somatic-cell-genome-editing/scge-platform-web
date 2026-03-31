@@ -138,13 +138,24 @@
                     </p>
                     <a href="/platform/public/documents/regulatory" class="news-item-link">Explore &rarr;</a>
                 </div>
+                <%
+                    long digestCount = 0;
+                    if (request.getAttribute("digestCount") != null) {
+                        digestCount = (Long) request.getAttribute("digestCount");
+                    }
+                    int homeLookbackDays = edu.mcw.scge.services.SCGEContext.isProduction() ? 14 : 7;
+                %>
                 <div class="news-item">
                     <div class="news-item-date">March 31st, 2026</div>
                     <h4 class="news-item-title">
                         <a href="/platform/data/search/ClinicalTrial">Clinical Trials Daily Digest Now Available</a>
                     </h4>
                     <p class="news-item-excerpt">
-                        Stay up to date with the latest changes in gene therapy clinical trials. The new Daily Digest feature tracks recent updates across all trials in the Gene Therapy Trial Browser, highlighting new trials, status changes, sponsor updates, and other key modifications. View a summary of recent activity at a glance or explore all updates in detail.
+                        <% if (digestCount > 0) { %>
+                        <strong><%=digestCount%> trial update<%=digestCount > 1 ? "s" : ""%></strong> in the last <%=homeLookbackDays%> days.
+                        <% } %>
+                       <br> Stay up to date with the latest changes in gene therapy clinical trials. The new Daily Digest feature tracks recent updates across all trials in the Gene Therapy Trial Browser, highlighting new trials, status changes, sponsor updates, and other key modifications.
+
                     </p>
                     <a href="/platform/data/search/ClinicalTrial" class="news-item-link">View Digest &rarr;</a>
                 </div>
