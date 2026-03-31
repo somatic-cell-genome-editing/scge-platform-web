@@ -126,9 +126,7 @@
             <div class="news-section">
                 <h3>Latest News & Updates</h3>
 
-                <%
-                    if(!SCGEContext.isProduction()){
-                %>
+
                 <div class="news-item">
                     <div class="news-item-date">April 1st, 2026</div>
                     <h4 class="news-item-title">
@@ -139,7 +137,7 @@
                     </p>
                     <a href="/platform/public/documents/regulatory" class="news-item-link">View Documents &rarr;</a>
                 </div>
-                <%}%>
+            
                 <div class="news-item">
                     <div class="news-item-date">March 31st, 2026</div>
                     <h4 class="news-item-title">
