@@ -5,7 +5,7 @@
   Time: 3:31 PM
   To change this template use File | Settings | File Templates.
 --%>
-
+<%@ page import="edu.mcw.scge.services.SCGEContext" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link href="/platform/css/home.css" rel="stylesheet" type="text/css"/>
 
