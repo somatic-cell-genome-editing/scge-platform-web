@@ -127,7 +127,16 @@
                 <h3>Latest News & Updates</h3>
 
 
-              
+                <div class="news-item">
+                    <div class="news-item-date">March 31, 2026</div>
+                    <h4 class="news-item-title">
+                        <a href="/platform/public/documents/regulatory">SCGE Regulatory Documents – New Documents Released</a>
+                    </h4>
+                    <p class="news-item-excerpt">
+                        New regulatory documents are now available including INTERACT briefing books and FDA responses for Urea Cycle Disorders - Prime Editing, Prion Disease (Broad Institute) and Spinal Muscular Atrophy (SMA) programs. These join the existing pre-IND documents for PKU and Urea Cycle Disorders - Base Editing to provide a growing library of shared regulatory interactions for the gene editing community.
+                    </p>
+                    <a href="/platform/public/documents/regulatory" class="news-item-link">Explore &rarr;</a>
+                </div>
                 <div class="news-item">
                     <div class="news-item-date">October 31, 2025</div>
                     <h4 class="news-item-title">
