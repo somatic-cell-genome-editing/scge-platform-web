@@ -140,20 +140,10 @@
                 <div class="news-item">
                     <div class="news-item-date">March 31st, 2026</div>
                     <h4 class="news-item-title">
-                        <a href="/platform/public/documents/regulatory">Spinal Muscular Atrophy (SMA) – Regulatory Documents Released</a>
+                        <a href="/platform/public/documents/regulatory">New projects targeting neurological disorders – Regulatory Documents Released</a>
                     </h4>
                     <p class="news-item-excerpt">
-                        INTERACT briefing book and annotated FDA responses for the Spinal Muscular Atrophy (SMA) base editing program are now available on the SCGE Platform.
-                    </p>
-                    <a href="/platform/public/documents/regulatory" class="news-item-link">View Documents &rarr;</a>
-                </div>
-                <div class="news-item">
-                    <div class="news-item-date">March 31st, 2026</div>
-                    <h4 class="news-item-title">
-                        <a href="/platform/public/documents/regulatory">Prion Disease – Regulatory Documents Released</a>
-                    </h4>
-                    <p class="news-item-excerpt">
-                        INTERACT meeting briefing book and official FDA responses for the Prion Disease program (Broad Institute) are now available on the SCGE Platform.
+                        INTERACT briefing books and FDA responses for the Spinal Muscular Atrophy (SMA) base editing program and the Prion Disease program (Broad Institute) are now available on the SCGE Platform.
                     </p>
                     <a href="/platform/public/documents/regulatory" class="news-item-link">View Documents &rarr;</a>
                 </div>
