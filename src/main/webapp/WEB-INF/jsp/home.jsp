@@ -126,18 +126,38 @@
             <div class="news-section">
                 <h3>Latest News & Updates</h3>
 
-
-
                 <div class="news-item">
                     <div class="news-item-date">April 1st, 2026</div>
                     <h4 class="news-item-title">
-                        <a href="/platform/public/documents/regulatory">SCGE Regulatory Documents – New Documents Released</a>
+                        <a href="/platform/public/documents/regulatory">Urea Cycle Disorders (Prime Editing) – Regulatory Documents Released</a>
                     </h4>
                     <p class="news-item-excerpt">
-                        New regulatory documents are now available including INTERACT briefing books and FDA responses for Urea Cycle Disorders - Prime Editing, Prion Disease (Broad Institute) and Spinal Muscular Atrophy (SMA) programs. These join the existing pre-IND documents for PKU and Urea Cycle Disorders - Base Editing to provide a growing library of shared regulatory interactions for the gene editing community.
+                        Pre-IND briefing book and FDA responses for the Prime Editing approach to Urea Cycle Disorders (CHOP/UPENN) are now available on the SCGE Platform.
                     </p>
-                    <a href="/platform/public/documents/regulatory" class="news-item-link">Explore &rarr;</a>
+                    <a href="/platform/public/documents/regulatory" class="news-item-link">View Documents &rarr;</a>
                 </div>
+
+                <div class="news-item">
+                    <div class="news-item-date">March 31st, 2026</div>
+                    <h4 class="news-item-title">
+                        <a href="/platform/public/documents/regulatory">Spinal Muscular Atrophy (SMA) – Regulatory Documents Released</a>
+                    </h4>
+                    <p class="news-item-excerpt">
+                        INTERACT briefing book and annotated FDA responses for the Spinal Muscular Atrophy (SMA) base editing program are now available on the SCGE Platform.
+                    </p>
+                    <a href="/platform/public/documents/regulatory" class="news-item-link">View Documents &rarr;</a>
+                </div>
+                <div class="news-item">
+                    <div class="news-item-date">March 31st, 2026</div>
+                    <h4 class="news-item-title">
+                        <a href="/platform/public/documents/regulatory">Prion Disease – Regulatory Documents Released</a>
+                    </h4>
+                    <p class="news-item-excerpt">
+                        INTERACT meeting briefing book and official FDA responses for the Prion Disease program (Broad Institute) are now available on the SCGE Platform.
+                    </p>
+                    <a href="/platform/public/documents/regulatory" class="news-item-link">View Documents &rarr;</a>
+                </div>
+
                 <%
                     long digestCount = 0;
                     if (request.getAttribute("digestCount") != null) {
