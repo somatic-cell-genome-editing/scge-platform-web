@@ -195,6 +195,23 @@
                 </div>
             </div>
 
+            <div class="publications-section">
+                <h3><i class="fas fa-book-open"></i> Latest Publications</h3>
+
+                <div class="publication-item">
+                    <div class="publication-journal">The American Journal of Human Genetics</div>
+                    <div class="publication-date">March 31, 2026</div>
+                    <h4 class="publication-title">
+                        <a href="https://www.cell.com/ajhg/fulltext/S0002-9297(26)00148-5" target="_blank">Implications of the FDA's New Plausible Mechanism Framework for the Development of a Personalized In Vivo Prime Editing Platform</a>
+                    </h4>
+<%--                    <p class="publication-authors">Feierman et al.</p>--%>
+<%--                    <p class="publication-excerpt">--%>
+<%--                        Researchers from CHOP and Penn Medicine demonstrate a customizable in vivo prime editing platform to treat urea cycle disorders, achieving 30-40% correction in liver DNA in preclinical studies. Supported by the NIH SCGE program.--%>
+<%--                    </p>--%>
+                    <a href="https://www.cell.com/ajhg/fulltext/S0002-9297(26)00148-5" target="_blank" class="publication-link">Read Full Paper <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+
 <%--            <%@include file="bsky_feeds.jsp"%>--%>
             <div class="bluesky-section">
                 <h3>Latest from Bluesky</h3>
