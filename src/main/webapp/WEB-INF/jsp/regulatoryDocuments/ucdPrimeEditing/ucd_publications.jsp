@@ -11,6 +11,10 @@
         <i class="fas fa-file-alt"></i>UCD - Prime Editing Program Publications
     </h5>
     <ul class="publications-list">
-
+        <li>
+            <a href="https://www.cell.com/ajhg/fulltext/S0002-9297(26)00148-5" target="_blank">
+                Implications of the FDA’s new plausible mechanism framework for the development of a personalized in vivo prime editing platform (2026)
+            </a>
+        </li>
     </ul>
 </div>

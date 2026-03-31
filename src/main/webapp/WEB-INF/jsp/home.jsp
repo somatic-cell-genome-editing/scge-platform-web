@@ -126,10 +126,56 @@
             <div class="news-section">
                 <h3>Latest News & Updates</h3>
 
+                <%
+                    if(!SCGEContext.isProduction()){
+                %>
+                <div class="news-item">
+                    <div class="news-item-date">April 1st, 2026</div>
+                    <h4 class="news-item-title">
+                        <a href="/platform/public/documents/regulatory">Urea Cycle Disorders (Prime Editing) – Regulatory Documents Released</a>
+                    </h4>
+                    <p class="news-item-excerpt">
+                        Pre-IND briefing book and FDA responses for a new Urea Cycle Disorder Program using Prime Editing (CHOP/UPENN) are now available on the SCGE Platform. These join the existing pre-IND documents for PKU and Urea Cycle Disorders - Base Editing to provide a growing library of shared regulatory interactions for the gene editing community.
+                    </p>
+                    <a href="/platform/public/documents/regulatory" class="news-item-link">View Documents &rarr;</a>
+                </div>
+                <%}%>
+                <div class="news-item">
+                    <div class="news-item-date">March 31st, 2026</div>
+                    <h4 class="news-item-title">
+                        <a href="/platform/public/documents/regulatory">New projects targeting neurological disorders – Regulatory Documents Released</a>
+                    </h4>
+                    <p class="news-item-excerpt">
+                        INTERACT briefing books and FDA responses for the Spinal Muscular Atrophy (SMA) program and the Prion Disease program (Broad Institute) are now available on the SCGE Platform.
+                    </p>
+                    <a href="/platform/public/documents/regulatory" class="news-item-link">View Documents &rarr;</a>
+                </div>
+
+                <%
+                    long digestCount = 0;
+                    if (request.getAttribute("digestCount") != null) {
+                        digestCount = (Long) request.getAttribute("digestCount");
+                    }
+                    int homeLookbackDays = edu.mcw.scge.services.SCGEContext.isProduction() ? 14 : 7;
+                %>
+                <div class="news-item">
+                    <div class="news-item-date">March 31st, 2026</div>
+                    <h4 class="news-item-title">
+                        <a href="/platform/data/search/ClinicalTrial">Clinical Trials Daily Digest Now Available</a>
+                    </h4>
+                    <p class="news-item-excerpt">
+                        <% if (digestCount > 0) { %>
+                        <strong><%=digestCount%> trial update<%=digestCount > 1 ? "s" : ""%></strong> in the last <%=homeLookbackDays%> days.
+                        <% } %>
+                       <br> Stay up to date with the latest changes in gene therapy clinical trials. The new Daily Digest feature tracks recent updates across all trials in the Gene Therapy Trial Browser, highlighting new trials, status changes, sponsor updates, and other key modifications.
+
+                    </p>
+                    <a href="/platform/data/search/ClinicalTrial" class="news-item-link">View Digest &rarr;</a>
+                </div>
                 <div class="news-item">
                     <div class="news-item-date">October 31, 2025</div>
                     <h4 class="news-item-title">
-                        <a href="#">SCGE Regulatory Documents – First Set Released</a>
+                        <a href="/platform/public/documents/regulatory">SCGE Regulatory Documents – First Set Released</a>
                     </h4>
                     <p class="news-item-excerpt">
                         Full set of pre-IND briefing books and the FDA's written responses of projects "Postnatal and Prenatal Therapeutic Base Editing for Metabolic Diseases" and "Personalized prime editing as a platform for hepatic inborn errors of metabolism" are available on the SCGE Translational Coordination and Dissemination Center

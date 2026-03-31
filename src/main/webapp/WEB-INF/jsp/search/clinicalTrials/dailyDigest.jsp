@@ -142,28 +142,28 @@
                     <span class="digest-nct-wrapper">
                         <a href="/platform/data/report/clinicalTrials/<%=modalNctId%>" target="_blank" class="digest-nct-link"><%=modalNctId%></a><% if(modalIsNew) { %><span class="digest-new-badge">NEW</span><% } %>
                         <% if(modalFilteredUpdates.size() > 0) { %>
-                        <div class="digest-updates-section" style="display:inline-block;">
-                            <div class="digest-updates-header" onclick="toggleUpdatesPopover(event, this)">
-                                <span title="View Updates"><i class="fa fa-pencil-square-o"></i></span>
-                                <div class="digest-updates-tooltip">
-                                    <% for(ClinicalTrialFieldChange update : modalFilteredUpdates) { %>
-                                    <div class="digest-update-item">
-                                        <span class="digest-field-name"><%=StringUtils.capitalize(update.getFieldName().toLowerCase().trim().replaceAll("_", " "))%></span>
-                                        <span class="digest-field-change">
-                                            <span class="digest-old-value" title="<%=update.getOldValue()%>"><%=update.getOldValue() != null && update.getOldValue().length() > 50 ? update.getOldValue().substring(0, 50) + "..." : update.getOldValue()%></span>
-                                            <i class="fa fa-arrow-right"></i>
-                                            <span class="digest-new-value" title="<%=update.getNewValue()%>"><%=update.getNewValue() != null && update.getNewValue().length() > 50 ? update.getNewValue().substring(0, 50) + "..." : update.getNewValue()%></span>
-                                        </span>
-                                        <span class="digest-update-by"><%=update.getUpdateBy()%></span>
-                                    </div>
-                                    <% } %>
-                                </div>
-                            </div>
-                        </div>
+                        <a href="#" class="modal-changes-toggle" onclick="toggleModalAccordion(event, this)" style="margin-left:6px; font-size:0.75rem; color:#3b82f6; text-decoration:none;">
+                            <i class="fa fa-pencil-square-o"></i> <span>Show Changes</span> <i class="fa fa-angle-down"></i>
+                        </a>
                         <% } %>
                     </span>
                     <span class="digest-date"><i class="fa fa-calendar"></i> <%=modalUpdateDate%></span>
                 </div>
+                <% if(modalFilteredUpdates.size() > 0) { %>
+                <div class="modal-changes-panel" style="display:none; margin-top:6px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; padding:8px 12px; font-size:0.85rem;">
+                    <% for(ClinicalTrialFieldChange update : modalFilteredUpdates) { %>
+                    <div style="display:flex; align-items:baseline; gap:0.5rem; padding:4px 0; border-bottom:1px solid #f1f5f9; flex-wrap:wrap;">
+                        <span class="digest-field-name"><%=StringUtils.capitalize(update.getFieldName().toLowerCase().trim().replaceAll("_", " "))%></span>
+                        <span class="digest-field-change">
+                            <span class="digest-old-value" title="<%=update.getOldValue()%>"><%=update.getOldValue() != null && update.getOldValue().length() > 50 ? update.getOldValue().substring(0, 50) + "..." : update.getOldValue()%></span>
+                            <i class="fa fa-arrow-right"></i>
+                            <span class="digest-new-value" title="<%=update.getNewValue()%>"><%=update.getNewValue() != null && update.getNewValue().length() > 50 ? update.getNewValue().substring(0, 50) + "..." : update.getNewValue()%></span>
+                        </span>
+                        <span class="digest-update-by"><%=update.getUpdateBy()%></span>
+                    </div>
+                    <% } %>
+                </div>
+                <% } %>
                 <div class="digest-item-body">
                     <div class="digest-indication" title="<%=modalIndication%>"><%=modalIndication.length() > 120 ? modalIndication.substring(0, 120) + "..." : modalIndication%></div>
                     <div class="digest-meta">
@@ -205,71 +205,58 @@
             closeDigestModal();
         }
     });
+
+    function toggleModalAccordion(event, toggle) {
+        event.preventDefault();
+        var panel = toggle.closest('.digest-item').querySelector('.modal-changes-panel');
+        var label = toggle.querySelector('span');
+        var arrow = toggle.querySelector('.fa-angle-down, .fa-angle-up');
+        if (panel.style.display === 'none') {
+            panel.style.display = 'block';
+            label.textContent = 'Hide Changes';
+            arrow.classList.remove('fa-angle-down');
+            arrow.classList.add('fa-angle-up');
+        } else {
+            panel.style.display = 'none';
+            label.textContent = 'Show Changes';
+            arrow.classList.remove('fa-angle-up');
+            arrow.classList.add('fa-angle-down');
+        }
+    }
 </script>
 
 <script>
     function toggleUpdatesPopover(event, element) {
         event.stopPropagation();
-        // Close all other open popovers and restore their styles
+        // Close all other open popovers
         document.querySelectorAll('.digest-updates-header.active').forEach(function(el) {
             if (el !== element) {
                 el.classList.remove('active');
-                resetPopoverStyles(el);
             }
         });
         // Toggle this popover
         var isActive = element.classList.toggle('active');
-
-        if (!isActive) {
-            resetPopoverStyles(element);
-        }
 
         // Position the tooltip if active
         if (isActive) {
             var tooltip = element.querySelector('.digest-updates-tooltip');
             if (tooltip) {
                 var rect = element.getBoundingClientRect();
-                var modal = element.closest('.digest-modal-body');
+                var tooltipWidth = 550; // max-width from CSS
 
-                if (modal) {
-                    // Inside modal: render tooltip inline (no fixed positioning)
-                    tooltip.style.position = 'relative';
-                    tooltip.style.top = 'auto';
-                    tooltip.style.left = 'auto';
+                // Position below the button, aligned to the right edge
+                tooltip.style.top = (rect.bottom + 8) + 'px';
+                tooltip.style.right = (window.innerWidth - rect.right) + 'px';
+                tooltip.style.left = 'auto';
+
+                // Check if tooltip goes off left edge of screen
+                var tooltipRect = tooltip.getBoundingClientRect();
+                if (tooltipRect.left < 10) {
                     tooltip.style.right = 'auto';
-                    tooltip.style.zIndex = '10001';
-                    tooltip.style.maxWidth = '100%';
-                    tooltip.style.width = '100%';
-                    tooltip.style.marginTop = '4px';
-                    // Remove blue background from header so tooltip isn't wrapped in it
-                    element.style.background = 'transparent';
-                    element.style.padding = '0';
-                    element.style.boxShadow = 'none';
-                } else {
-                    // Outside modal (sidebar): use fixed viewport positioning
-                    tooltip.style.position = 'fixed';
-                    tooltip.style.marginTop = '';
-                    tooltip.style.width = '';
-                    tooltip.style.top = (rect.bottom + 8) + 'px';
-                    tooltip.style.right = (window.innerWidth - rect.right) + 'px';
-                    tooltip.style.left = 'auto';
-                    tooltip.style.maxWidth = '';
-
-                    // Check if tooltip goes off left edge of screen
-                    var tooltipRect = tooltip.getBoundingClientRect();
-                    if (tooltipRect.left < 10) {
-                        tooltip.style.right = 'auto';
-                        tooltip.style.left = '10px';
-                    }
+                    tooltip.style.left = '10px';
                 }
             }
         }
-    }
-
-    function resetPopoverStyles(el) {
-        el.style.background = '';
-        el.style.padding = '';
-        el.style.boxShadow = '';
     }
 
     // Close popover when clicking outside
@@ -277,7 +264,6 @@
         if (!event.target.closest('.digest-updates-header')) {
             document.querySelectorAll('.digest-updates-header.active').forEach(function(el) {
                 el.classList.remove('active');
-                resetPopoverStyles(el);
             });
         }
     });
