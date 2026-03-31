@@ -132,7 +132,7 @@
                         <a href="/platform/public/documents/regulatory">Urea Cycle Disorders (Prime Editing) – Regulatory Documents Released</a>
                     </h4>
                     <p class="news-item-excerpt">
-                        Pre-IND briefing book and FDA responses for the Prime Editing approach to Urea Cycle Disorders (CHOP/UPENN) are now available on the SCGE Platform.
+                        Pre-IND briefing book and FDA responses for a new Urea Cycle Disorder Program using Prime Editing (CHOP/UPENN) are now available on the SCGE Platform. These join the existing pre-IND documents for PKU and Urea Cycle Disorders - Base Editing to provide a growing library of shared regulatory interactions for the gene editing community.
                     </p>
                     <a href="/platform/public/documents/regulatory" class="news-item-link">View Documents &rarr;</a>
                 </div>
