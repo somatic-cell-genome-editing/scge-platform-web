@@ -1,11 +1,11 @@
 <div id="hiddenBtns" class="hiddenBtns" style="display: block;">
-    <%if(request.getServerName().equals("localhost")||SCGEContext.isDev()){%>
+    <%if(request.getServerName().equals("localhost")||!SCGEContext.isProduction()){%>
     <button type="button" class="aiAssistantBtn" onclick="window.open('/assistant/chat', '_blank')" title="AI Assistant">
         <i class="fas fa-robot"></i>
     </button>
     <%}%>
     <button type="button" class="openLikeBtn" onclick="openForm()"></button>
-    <%if(request.getServerName().equals("localhost")||SCGEContext.isDev()){%>
+    <%if(request.getServerName().equals("localhost")||!SCGEContext.isProduction()){%>
     <!-- AI Assistant Speech Bubble -->
     <div id="aiSpeechBubble" class="ai-speech-bubble" style="display: none;">
         <button class="ai-speech-close" onclick="closeAISpeech()">&times;</button>
