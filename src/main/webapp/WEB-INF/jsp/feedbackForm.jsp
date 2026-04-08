@@ -11,7 +11,7 @@
         <button class="ai-speech-close" onclick="closeAISpeech()">&times;</button>
         <div class="ai-speech-content">
             <strong><span style="font-size: 18px;">&#128075;</span> Hi there!</strong><br>
-            I'm your AI assistant. Ask me anything about clinical trials, fda documents!
+            I'm your AI assistant. Ask me anything about clinical trials, FDA documents!
         </div>
     </div>
     <%--<%}%>--%>
