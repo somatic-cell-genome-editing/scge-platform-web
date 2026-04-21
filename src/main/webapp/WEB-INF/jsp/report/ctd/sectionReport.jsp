@@ -17,6 +17,8 @@
     List<CTDResource> externalResources=null;
     List<CTDResource> templates=null;
     List<CTDResource> examples=null;
+    List<CTDResource> guidance=null;
+    List<CTDResource> regulation=null;
     List<CTDResource> other=null;
 %>
 <%

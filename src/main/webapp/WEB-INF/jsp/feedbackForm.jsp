@@ -1,20 +1,20 @@
 <div id="hiddenBtns" class="hiddenBtns" style="display: block;">
-    <%if(request.getServerName().equals("localhost")||!SCGEContext.isProduction()){%>
+    <%--<%if(request.getServerName().equals("localhost")||!SCGEContext.isProduction()){%>--%>
     <button type="button" class="aiAssistantBtn" onclick="window.open('/assistant/chat', '_blank')" title="AI Assistant">
         <i class="fas fa-robot"></i>
     </button>
-    <%}%>
+    <%--<%}%>--%>
     <button type="button" class="openLikeBtn" onclick="openForm()"></button>
-    <%if(request.getServerName().equals("localhost")||!SCGEContext.isProduction()){%>
+    <%--<%if(request.getServerName().equals("localhost")||!SCGEContext.isProduction()){%>--%>
     <!-- AI Assistant Speech Bubble -->
     <div id="aiSpeechBubble" class="ai-speech-bubble" style="display: none;">
         <button class="ai-speech-close" onclick="closeAISpeech()">&times;</button>
         <div class="ai-speech-content">
             <strong><span style="font-size: 18px;">&#128075;</span> Hi there!</strong><br>
-            I'm your AI assistant. Ask me anything about clinical trials, fda documents!
+            I'm your AI assistant. Ask me anything about clinical trials, FDA documents!
         </div>
     </div>
-    <%}%>
+    <%--<%}%>--%>
 </div>
 <div class="chat-popup" id="messageVue">
     <form class="form-container">
