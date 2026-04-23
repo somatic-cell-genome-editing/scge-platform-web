@@ -395,7 +395,11 @@
                 <tr>
 <%--                    <td></td>--%>
                     <td></td>
-    <td><a href="/platform/data/report/ctdSection/<%=l2.getSectionCode()%>"><%=l2.getSectionCode()%></a></td>
+    <td>
+        <%if(!l2.getSectionCode().contains("1.1.")){%>
+        <a href="/platform/data/report/ctdSection/<%=l2.getSectionCode()%>"><%=l2.getSectionCode()%></a>
+    <%}%>
+    </td>
                     <td></td>
                     <td></td>
                     <td>
