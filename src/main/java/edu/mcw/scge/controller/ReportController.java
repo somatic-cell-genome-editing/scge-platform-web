@@ -33,6 +33,23 @@ public class ReportController {
             List<Alias> aliasData = ctDAO.getAliases(nctId,"compound");
             List<ClinicalTrialAdditionalInfo>fdaInfo = ctDAO.getAdditionalInfo(nctId,"fda_designation");
             List<String>propertyValues = ctDAO.getDistinctPropertyValues("fda_designation");
+            List<String> fdaOptions = List.of(
+                    "Accelerated Approval",
+                    "Breakthrough Therapy",
+                    "Chemistry, Manufacturing, and Controls Development and Readiness Pilot (CDRP) Program",
+                    "Fast Track",
+                    "Orphan Drug Designation",
+                    "Priority Review",
+                    "Rare Pediatric Disease Designation",
+                    "Regenerative Medicine Advanced Therapy (RMAT)",
+                    "Support for Clinical Trials Advancing Rare Disease Therapeutics (START) Pilot"
+            );
+            for (String option : fdaOptions) {
+                if (!propertyValues.contains(option)) {
+                    propertyValues.add(option);
+                }
+            }
+            propertyValues.sort(null);
             if(clinicalTrialData==null){
                 req.setAttribute("errorMessage","Clinical Trial Data not found for NCT ID: "+nctId);
                 req.setAttribute("page","/WEB-INF/jsp/report/clinicalTrial/error");
