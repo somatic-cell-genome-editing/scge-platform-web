@@ -394,7 +394,35 @@ hr {
 }
 
 /* Responsive */
+/* Filters panel collapse toggle - hidden on the wide/side-by-side layout */
+.filters-collapse-toggle {
+  display: none;
+}
+
 @media (max-width: 768px) {
+  /* Collapse the whole Filters panel by default so the results block is
+     reachable without scrolling past a long filter list */
+  .filters-collapse-toggle {
+    display: inline-flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: #1a80b6;
+    cursor: pointer;
+    padding: 0 0.25rem;
+  }
+
+  #filtersPanel.is-collapsed > *:not(.grid-title) {
+    display: none;
+  }
+
+  /* hide the expand/collapse-all accordion controls when the panel is
+     collapsed - they only make sense once the filter list is showing */
+  #filtersPanel.is-collapsed #expandAll,
+  #filtersPanel.is-collapsed #collapseAll {
+    display: none;
+  }
+
   /* Columns stack on mobile - drop the sticky sidebar so it doesn't
      stay pinned and overlap the results when scrolling */
   .grid-body .row > .col-md-2 {

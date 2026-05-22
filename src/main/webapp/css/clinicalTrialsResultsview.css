@@ -107,6 +107,10 @@
 }
 
 /* Search Box Styling */
+.header-search {
+    margin-bottom: 1.5rem;
+}
+
 #searchFormByCategory {
     width: 100%;
 }

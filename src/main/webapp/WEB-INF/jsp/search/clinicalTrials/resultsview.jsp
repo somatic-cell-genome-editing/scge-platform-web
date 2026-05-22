@@ -96,6 +96,12 @@
                 <h3>SCGE Platform - General Search Results</h3>
                 <%}%>
             </div>
+            <%
+                if(category!=null && !category.equals("")){%>
+            <div class="header-search">
+                <%@include file="../searchByCategory.jsp"%>
+            </div>
+            <%}%>
             <div class="disclaimer-card collapsible-section" id="disclaimerCard">
                 <button type="button" class="collapsible-header" onclick="toggleCollapsibleSection('disclaimerCard')">
                     <span><i class="fa fa-exclamation-triangle"></i> Disclaimer</span>
@@ -124,7 +130,7 @@
           <div class="row">
             <!-- BEGIN FILTERS -->
 
-            <div class="col-md-2">
+            <div class="col-md-2" id="filtersPanel">
 
                 <%@include file="facets.jsp"%>
 
@@ -168,12 +174,6 @@
                         </div>
                     </div>
                     <%}%>
-                    <div class="col-lg-3 col-md-12 mb-2 mb-lg-0">
-                        <%
-                            if(category!=null && !category.equals("")){%>
-                        <%@include file="../searchByCategory.jsp"%>
-                        <%}%>
-                    </div>
                 </div>
 
     <%@include file="filtersApplied.jsp"%>
@@ -286,6 +286,11 @@
             $('#list-view-tab').tab('show');
             // Collapse the disclaimer and daily digest by default on small screens
             $('#disclaimerCard, #dailyDigestSidebar').addClass('is-collapsed');
+        }
+        // Collapse the Filters panel once it stacks above the results (<768px)
+        // so the results are reachable without scrolling past a long filter list
+        if (window.matchMedia("(max-width: 767.98px)").matches) {
+            $('#filtersPanel').addClass('is-collapsed');
         }
     });
 

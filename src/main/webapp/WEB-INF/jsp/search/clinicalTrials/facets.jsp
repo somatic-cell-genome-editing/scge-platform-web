@@ -25,7 +25,7 @@ expandFilterVal="<%=request.getAttribute("expandAllFilters")%>"
 <%--  </div>--%>
 <%--</div>--%>
 
-<h4 class="grid-title"><i class="fa fa-filter"></i> Filters ..&nbsp;<span id="expandAll" class="plus" title="Expand All" onclick="expandAll()" style="cursor: pointer;font-size: medium"><i class="fa-solid fa-circle-plus"></i></span><span id="collapseAll" class="minus" style="display: none;color:red;cursor:pointer;font-size: medium" title="Close All" onclick="collapseAll()"><i class="fa-solid fa-circle-minus"></i></span><span style="float:right"><!--button id="clearFilters" class="btn btn-primary btn-sm" onclick="removeFilters()" >Clear</button-->
+<h4 class="grid-title"><i class="fa fa-filter"></i> Filters ..&nbsp;<button type="button" class="filters-collapse-toggle" onclick="toggleCollapsibleSection('filtersPanel')" aria-label="Toggle filters"><i class="fa fa-chevron-up collapsible-toggle-icon"></i></button><span id="expandAll" class="plus" title="Expand All" onclick="expandAll()" style="cursor: pointer;font-size: medium"><i class="fa-solid fa-circle-plus"></i></span><span id="collapseAll" class="minus" style="display: none;color:red;cursor:pointer;font-size: medium" title="Close All" onclick="collapseAll()"><i class="fa-solid fa-circle-minus"></i></span><span style="float:right"><!--button id="clearFilters" class="btn btn-primary btn-sm" onclick="removeFilters()" >Clear</button-->
 <a href="/platform/data/search/ClinicalTrial"><button id="clearFilters" class="btn btn-primary btn-sm"  >Clear</button></a></span></h4>
 
 <hr>
