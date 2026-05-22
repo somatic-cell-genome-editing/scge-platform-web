@@ -323,6 +323,18 @@ hr {
   outline: 2px solid rgba(26, 128, 182, 0.3);
 }
 
+/* Disabled state - shown when there is only a single result and
+   filtering would have no effect */
+.form-check-input:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.form-check-input:disabled + .form-check-label {
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
 /* Label */
 .form-check-label {
   cursor: pointer;
