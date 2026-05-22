@@ -96,8 +96,14 @@
                 <h3>SCGE Platform - General Search Results</h3>
                 <%}%>
             </div>
-            <div class="disclaimer-card">
-                <small><strong>Disclaimer:</strong> The information on this dashboard has been collected for the convenience of patients and researchers. <b>The SCGE team are not medical doctors and cannot provide medical advice. Please discuss with your provider the risks/benefits of participating in a clinical trial, and do not send us your personal medical information.</b> The information contained within this table does not make use of any confidential or privileged information-all data is collected from publicly available sources. The SCGE makes no comment as to the efficacy and safety of the items listed, as these are not known at the time of publication. For the most up to date information, or to inquire about enrollment, please refer to <a href="https://clinicaltrials.gov/">clinicaltrials.gov</a> or the Sponsor's website for contact information.</small>
+            <div class="disclaimer-card collapsible-section" id="disclaimerCard">
+                <button type="button" class="collapsible-header" onclick="toggleCollapsibleSection('disclaimerCard')">
+                    <span><i class="fa fa-exclamation-triangle"></i> Disclaimer</span>
+                    <i class="fa fa-chevron-up collapsible-toggle-icon"></i>
+                </button>
+                <div class="collapsible-body">
+                    <small><strong>Disclaimer:</strong> The information on this dashboard has been collected for the convenience of patients and researchers. <b>The SCGE team are not medical doctors and cannot provide medical advice. Please discuss with your provider the risks/benefits of participating in a clinical trial, and do not send us your personal medical information.</b> The information contained within this table does not make use of any confidential or privileged information-all data is collected from publicly available sources. The SCGE makes no comment as to the efficacy and safety of the items listed, as these are not known at the time of publication. For the most up to date information, or to inquire about enrollment, please refer to <a href="https://clinicaltrials.gov/">clinicaltrials.gov</a> or the Sponsor's website for contact information.</small>
+                </div>
             </div>
         </div>
         <!-- Right Column: Daily Digest -->
@@ -274,12 +280,20 @@
         $("#myTable").tableToCSV();
     }
 
-    // Default to List View on smaller screens (Bootstrap md breakpoint: <992px)
+    // Default to List View on smaller screens (Bootstrap lg breakpoint: <992px)
     $(function () {
         if (window.matchMedia("(max-width: 991.98px)").matches) {
             $('#list-view-tab').tab('show');
+            // Collapse the disclaimer and daily digest by default on small screens
+            $('#disclaimerCard, #dailyDigestSidebar').addClass('is-collapsed');
         }
     });
+
+    // Toggle a collapsible section (disclaimer / daily digest)
+    function toggleCollapsibleSection(id) {
+        var el = document.getElementById(id);
+        if (el) { el.classList.toggle('is-collapsed'); }
+    }
 
     // Pagination navigation function
     function goToPage(pageNum) {

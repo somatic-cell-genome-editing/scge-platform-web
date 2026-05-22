@@ -13,7 +13,7 @@
     int lookbackDays = SCGEContext.isProduction() ? 14 : 7;
 %>
 <% if(totalUpdates > 0) { %>
-<div class="daily-digest-sidebar">
+<div class="daily-digest-sidebar" id="dailyDigestSidebar">
     <div class="digest-sidebar-header">
         <i class="fa fa-newspaper-o"></i>
         <h4>Clinical Trials Daily Digest</h4>
@@ -25,6 +25,9 @@
         <% } else{%>
                <span class="digest-badge"><%=totalUpdates%> Update<%=totalUpdates > 1 ? "s" : ""%></span>
         <%}%>
+        <button type="button" class="digest-collapse-toggle" onclick="toggleCollapsibleSection('dailyDigestSidebar')" aria-label="Toggle daily digest">
+            <i class="fa fa-chevron-up collapsible-toggle-icon"></i>
+        </button>
     </div>
     <p class="digest-subtitle">Updates in the last <%=lookbackDays%> days</p>
     <div class="digest-sidebar-content">

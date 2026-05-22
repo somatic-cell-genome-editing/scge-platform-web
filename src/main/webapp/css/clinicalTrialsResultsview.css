@@ -954,6 +954,94 @@
     }
 }
 
+/* ================================================
+   COLLAPSIBLE SECTIONS (disclaimer + daily digest)
+   Always expanded on desktop; collapsible & collapsed
+   by default on smaller screens (<992px).
+   ================================================ */
+
+/* Disclaimer collapse header is hidden on desktop - body always shows */
+.collapsible-header {
+    display: none;
+}
+
+/* Digest collapse toggle button is hidden on desktop */
+.digest-collapse-toggle {
+    display: none;
+}
+
+/* Chevron rotates when the section is collapsed */
+.collapsible-toggle-icon {
+    transition: transform 0.2s ease;
+}
+
+.is-collapsed .collapsible-toggle-icon {
+    transform: rotate(180deg);
+}
+
+@media (max-width: 991.98px) {
+    /* --- Disclaimer --- */
+    .disclaimer-card .collapsible-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        color: #9a3412;
+        font-weight: 700;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .disclaimer-card .collapsible-header i.fa-exclamation-triangle {
+        color: #f97316;
+        margin-right: 0.35rem;
+    }
+
+    /* The header now carries the warning icon, so drop the absolute one */
+    .disclaimer-card::before {
+        display: none;
+    }
+
+    .disclaimer-card small {
+        padding-left: 0;
+        margin-top: 0.5rem;
+    }
+
+    .disclaimer-card.is-collapsed .collapsible-body {
+        display: none;
+    }
+
+    /* --- Daily Digest --- */
+    .digest-collapse-toggle {
+        display: inline-flex;
+        align-items: center;
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: 0 0.25rem;
+        margin-left: 0.25rem;
+    }
+
+    .daily-digest-sidebar.is-collapsed {
+        height: auto;
+    }
+
+    .daily-digest-sidebar.is-collapsed .digest-subtitle,
+    .daily-digest-sidebar.is-collapsed .digest-sidebar-content {
+        display: none;
+    }
+
+    .daily-digest-sidebar.is-collapsed .digest-sidebar-header {
+        border-radius: 8px;
+    }
+}
+
 @media print {
     .disclaimer-card {
         page-break-inside: avoid;
