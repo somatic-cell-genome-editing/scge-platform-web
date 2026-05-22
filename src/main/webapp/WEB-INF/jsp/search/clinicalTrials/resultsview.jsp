@@ -274,6 +274,13 @@
         $("#myTable").tableToCSV();
     }
 
+    // Default to List View on smaller screens (Bootstrap md breakpoint: <992px)
+    $(function () {
+        if (window.matchMedia("(max-width: 991.98px)").matches) {
+            $('#list-view-tab').tab('show');
+        }
+    });
+
     // Pagination navigation function
     function goToPage(pageNum) {
         if(pageNum < 0 || pageNum >= <%=totalPages%>) return;
