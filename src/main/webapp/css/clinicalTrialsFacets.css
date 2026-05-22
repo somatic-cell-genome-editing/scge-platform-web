@@ -395,6 +395,18 @@ hr {
 
 /* Responsive */
 @media (max-width: 768px) {
+  /* Columns stack on mobile - drop the sticky sidebar so it doesn't
+     stay pinned and overlap the results when scrolling */
+  .grid-body .row > .col-md-2 {
+    position: static;
+    top: auto;
+  }
+
+  #facetForm {
+    max-height: none;
+    overflow-y: visible;
+  }
+
   .grid-title {
     font-size: 1rem;
     padding: 0.75rem;
