@@ -67,10 +67,10 @@
                 // Check if the row contains a labelText element - these rows should be excluded from filtering
                 const hasLabelText = row.querySelector('.labelText') !== null;
 
-                if(hasLabelText) {
-                    // Always show rows with labelText (section headers)
-                    row.style.display = '';
-                } else {
+                // if(hasLabelText) {
+                //     // Always show rows with labelText (section headers)
+                //     row.style.display = '';
+                // } else {
                     // Check if the cells have Yes/No/Maybe classes - only filter rows that have these
                     const indCell = row.cells[initialINDColumnIndex];
                     const marketingCell = row.cells[marketingColumnIndex];
@@ -95,7 +95,7 @@
                             row.style.display = (matchIndStatus || matchMarketingStatus) ? '' : 'none';
                         }
                     }
-                }
+                // }
             });
         });
 
