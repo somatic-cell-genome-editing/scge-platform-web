@@ -92,12 +92,6 @@ nav.navbar.bg-light {
 
 /* Mobile responsiveness for dropdowns */
 @media (max-width: 991px) {
-    .navbar .dropdown-menu {
-        border: none;
-        box-shadow: none;
-        padding-left: 15px;
-    }
-
     .navbar-brand img {
         max-height: 60px;
         padding: 8px;
@@ -106,5 +100,103 @@ nav.navbar.bg-light {
     /* On mobile, keep click behavior for dropdown */
     .navbar .hover-dropdown > .dropdown-toggle {
         pointer-events: auto;
+    }
+
+    /* === Collapsed hamburger menu === */
+    /* Give the collapsed panel a clean container that visually separates
+       it from the page below */
+    nav.navbar.bg-light .navbar-collapse {
+        background: #f8fafc;
+        border-top: 1px solid #e2e8f0;
+        border-radius: 0 0 8px 8px;
+        margin: 8px -1rem 0;
+        padding: 8px 1rem 12px;
+        box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.03);
+    }
+
+    /* Each top-level menu item gets a clear full-width row with hover */
+    .navbar .navbar-nav > .nav-item {
+        width: 100%;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    .navbar .navbar-nav > .nav-item:last-child {
+        border-bottom: none;
+    }
+
+    .navbar .navbar-nav > .nav-item > .nav-link {
+        padding: 12px 8px;
+        font-weight: 500;
+        color: #1e293b;
+        border-radius: 4px;
+        transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .navbar .navbar-nav > .nav-item > .nav-link:hover,
+    .navbar .navbar-nav > .nav-item > .nav-link:focus {
+        background-color: rgba(0, 102, 204, 0.08);
+        color: #0066cc;
+    }
+
+    /* Dropdown caret stays on the right of the row */
+    .navbar .navbar-nav > .nav-item.dropdown > .dropdown-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* Dropdown menus on mobile: render inline (Bootstrap default), but
+       indent + style items so they read as a sub-group, not free-floating links */
+    .navbar .dropdown-menu {
+        border: none;
+        box-shadow: none;
+        background: transparent;
+        padding: 4px 0 8px;
+        margin: 0 0 4px 0.5rem;
+        border-left: 2px solid #cbd5e1;
+        border-radius: 0;
+        min-width: 0;
+    }
+
+    .navbar .dropdown-item {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        color: #475569;
+        border-radius: 4px;
+    }
+
+    .navbar .dropdown-item:hover {
+        background-color: rgba(0, 102, 204, 0.08);
+        color: #0066cc;
+        padding-left: 16px; /* override the desktop-only padding-left:25px shift */
+    }
+
+    .navbar .dropdown-divider {
+        margin: 4px 8px;
+    }
+
+    /* Hide the desktop vertical separator pipe on mobile */
+    .navbar .navbar-separator {
+        display: none;
+    }
+
+    /* Search box: let it fill the row instead of its fixed 300px container */
+    nav.navbar.bg-light .autocomplete-container {
+        width: 100%;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid #e2e8f0;
+    }
+
+    nav.navbar.bg-light #searchForm,
+    nav.navbar.bg-light #searchForm .input-group {
+        width: 100%;
+    }
+
+    /* Toggler button - cleaner border for visibility on white navbar */
+    nav.navbar.bg-light .navbar-toggler {
+        border-color: rgba(0, 0, 0, 0.15);
+        padding: 6px 10px;
+        margin-right: 0.5rem;
     }
 }
