@@ -27,11 +27,32 @@
   background: #64748b;
 }
 
-/* Make facets sidebar stick to viewport */
-.grid-body .row > .col-md-2 {
+/* ============================================
+   FILTERS MODAL - facets rendered in a wide popup
+   ============================================ */
+#filtersModal .modal-dialog {
+  max-width: 1100px;
+}
+
+/* Let the modal body scroll; lay the facet groups out across the wide
+   popup in a responsive grid instead of one tall single column. */
+#filtersModal #facetForm {
+  max-height: none;
+  overflow: visible;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.5rem 1.5rem;
+  align-items: start;
+}
+
+#filtersModal .accordion-group {
+  break-inside: avoid;
+}
+
+#filtersModal .modal-footer {
   position: sticky;
-  top: 20px;
-  align-self: flex-start;
+  bottom: 0;
+  background: #fff;
 }
 
 /* Search Within Filters */
@@ -406,47 +427,7 @@ hr {
 }
 
 /* Responsive */
-/* Filters panel collapse toggle - hidden on the wide/side-by-side layout */
-.filters-collapse-toggle {
-  display: none;
-}
-
 @media (max-width: 768px) {
-  /* Collapse the whole Filters panel by default so the results block is
-     reachable without scrolling past a long filter list */
-  .filters-collapse-toggle {
-    display: inline-flex;
-    align-items: center;
-    background: none;
-    border: none;
-    color: #1a80b6;
-    cursor: pointer;
-    padding: 0 0.25rem;
-  }
-
-  #filtersPanel.is-collapsed > *:not(.grid-title) {
-    display: none;
-  }
-
-  /* hide the expand/collapse-all accordion controls when the panel is
-     collapsed - they only make sense once the filter list is showing */
-  #filtersPanel.is-collapsed #expandAll,
-  #filtersPanel.is-collapsed #collapseAll {
-    display: none;
-  }
-
-  /* Columns stack on mobile - drop the sticky sidebar so it doesn't
-     stay pinned and overlap the results when scrolling */
-  .grid-body .row > .col-md-2 {
-    position: static;
-    top: auto;
-  }
-
-  #facetForm {
-    max-height: none;
-    overflow-y: visible;
-  }
-
   .grid-title {
     font-size: 1rem;
     padding: 0.75rem;

@@ -128,24 +128,26 @@
       <div class="grid search">
         <div class="grid-body">
           <div class="row">
-            <!-- BEGIN FILTERS -->
-
-            <div class="col-md-2" id="filtersPanel">
-
-                <%@include file="facets.jsp"%>
-
-            </div>
-
-            <!-- END FILTERS -->
             <!-- BEGIN RESULT -->
-            <div class="col-md-10">
+            <div class="col-md-12">
+                <%
+                    int activeFilterCount = 0;
+                    if(filtersSelected!=null){
+                        for(String f: filtersSelected){ if(!f.equalsIgnoreCase("Active")) activeFilterCount++; }
+                    }
+                %>
                 <div class="row results-count-section align-items-center">
-                    <div class="col-lg-3 col-md-6 col-12 mb-2 mb-lg-0">
+                    <div class="col-lg-6 col-md-6 col-12 mb-2 mb-lg-0 d-flex align-items-center results-toolbar-left">
+                        <button type="button" class="btn btn-sm btn-outline-primary filters-open-btn" data-toggle="modal" data-target="#filtersModal">
+                            <i class="fa fa-filter"></i> Filters<% if(activeFilterCount>0){ %> <span class="filters-count-badge"><%=activeFilterCount%></span><% } %>
+                        </button>
+                        <span class="results-count-text">
                         <% if(totalHits > 0) { %>
-                        <span>Showing <strong><%=startRecord%>-<%=endRecord%></strong> of <strong><%=totalHits%></strong> results <%=searchTerm%><%=dCategory%></span>
+                        Showing <strong><%=startRecord%>-<%=endRecord%></strong> of <strong><%=totalHits%></strong> results <%=searchTerm%><%=dCategory%>
                         <% } else { %>
-                        <span>Showing <strong>0</strong> results <%=searchTerm%><%=dCategory%></span>
+                        Showing <strong>0</strong> results <%=searchTerm%><%=dCategory%>
                         <% } %>
+                        </span>
                     </div>
                     <%
                         if(hits.size()>0){
@@ -273,6 +275,27 @@
     <!-- END SEARCH RESULT -->
   </div>
 </div>
+
+<!-- FILTERS MODAL -->
+<div class="modal fade filters-modal" id="filtersModal" tabindex="-1" role="dialog" aria-labelledby="filtersModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="filtersModalLabel"><i class="fa fa-filter"></i> Filter Results</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <%@include file="facets.jsp"%>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="applyFiltersAndClose()">Done</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END FILTERS MODAL -->
+
 <div style="padding-top:2%;padding-bottom:  5%">
 </div>
 <script>
@@ -286,11 +309,6 @@
             $('#list-view-tab').tab('show');
             // Collapse the disclaimer and daily digest by default on small screens
             $('#disclaimerCard, #dailyDigestSidebar').addClass('is-collapsed');
-        }
-        // Collapse the Filters panel once it stacks above the results (<768px)
-        // so the results are reachable without scrolling past a long filter list
-        if (window.matchMedia("(max-width: 767.98px)").matches) {
-            $('#filtersPanel').addClass('is-collapsed');
         }
     });
 

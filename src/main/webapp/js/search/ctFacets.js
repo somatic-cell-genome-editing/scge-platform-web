@@ -21,17 +21,22 @@ function removeFilter(filter) {
     });
   $('#facetForm').submit()
 }
-$('input[type="checkbox"]').on('click',function (){
-    // var name=this.getAttribute("name");
-    if ($(this).is(":checked")) {
+// Filters are now batched: ticking checkboxes only updates selection in the
+// modal. Nothing is submitted until the user clicks "Done" (applyFiltersAndClose).
 
-        $('#checked').val($(this).val());
-        // $('#checkedName').val(name)
-    }else{
-        $('#unchecked').val($(this).val());
-        // $('#uncheckedName').val(name)
-    }
-    $('#facetForm').submit();})
+// Apply all selected filters at once and reload the results page.
+function applyFiltersAndClose(){
+    var selected=[];
+    $('#facetForm input[type="checkbox"]:checked').each(function (){
+        selected.push($(this).val());
+    });
+    // Rebuild the ordered "Remove Filters" chip list from the current selection.
+    // (The actual search is driven by the submitted checkbox params server-side.)
+    $('#filtersSelected').val(JSON.stringify(selected));
+    $('#checked').val('');
+    $('#unchecked').val('');
+    $('#facetForm').submit();
+}
 
 $(function () {
     // Add down arrow icon for collapse element which is open by default
