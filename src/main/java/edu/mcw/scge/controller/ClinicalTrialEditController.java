@@ -41,7 +41,8 @@ public class ClinicalTrialEditController {
             ctRecord.setTargetGeneOrVariant(req.getParameter("targetGeneOrVariant"));
             ctRecord.setTherapyType(req.getParameter("therapyType"));
             ctRecord.setTherapyRoute(req.getParameter("therapyRoute"));
-            ctRecord.setMechanismOfAction(req.getParameter("mechanismOfAction"));
+            String[] moaValues = req.getParameterValues("mechanismOfAction");
+            ctRecord.setMechanismOfAction(moaValues != null ? String.join(", ", moaValues) : "");
             ctRecord.setRouteOfAdministration(req.getParameter("routeOfAdministration"));
             ctRecord.setDrugProductType(req.getParameter("drugProductType"));
             ctRecord.setTargetTissueOrCell(req.getParameter("targetTissueOrCell"));
