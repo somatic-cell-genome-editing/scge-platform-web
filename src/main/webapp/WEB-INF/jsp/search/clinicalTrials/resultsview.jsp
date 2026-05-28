@@ -139,7 +139,7 @@
                     <%
                         if(hits.size()>0){
                     %>
-                    <div class="col-lg-6 col-md-6 col-12 d-flex justify-content-end action-buttons mb-2 mb-lg-0">
+                    <div class="col-lg-6 col-md-6 col-12 d-flex justify-content-start action-buttons mb-2 mb-lg-0">
                         <div class="row">
 
                             <div class="col">
@@ -323,8 +323,19 @@
             // Collapse the daily digest by default on small screens
             $('#dailyDigestSidebar').addClass('is-collapsed');
         }
-        // Auto-open the disclaimer popup on page load
-        $('#disclaimerModal').modal('show');
+        // Auto-open the disclaimer popup only if the user hasn't dismissed it
+        // already this browser session (pagination reloads the page, so without
+        // this guard the popup would re-appear on every page).
+        try {
+            if (sessionStorage.getItem('ctDisclaimerDismissed') !== '1') {
+                $('#disclaimerModal').modal('show');
+            }
+        } catch (e) {
+            $('#disclaimerModal').modal('show');
+        }
+        $('#disclaimerModal').on('hidden.bs.modal', function () {
+            try { sessionStorage.setItem('ctDisclaimerDismissed', '1'); } catch (e) {}
+        });
     });
 
     // Toggle a collapsible section (disclaimer / daily digest)
