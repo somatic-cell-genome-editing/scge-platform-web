@@ -137,10 +137,7 @@
                     }
                 %>
                 <div class="row results-count-section align-items-center">
-                    <div class="col-lg-6 col-md-6 col-12 mb-2 mb-lg-0 d-flex align-items-center results-toolbar-left">
-                        <button type="button" class="btn btn-sm btn-outline-primary filters-open-btn" data-toggle="modal" data-target="#filtersModal">
-                            <i class="fa fa-filter"></i> Filters<% if(activeFilterCount>0){ %> <span class="filters-count-badge"><%=activeFilterCount%></span><% } %>
-                        </button>
+                    <div class="col-lg-6 col-md-6 col-12 mb-2 mb-lg-0">
                         <span class="results-count-text">
                         <% if(totalHits > 0) { %>
                         Showing <strong><%=startRecord%>-<%=endRecord%></strong> of <strong><%=totalHits%></strong> results <%=searchTerm%><%=dCategory%>
@@ -164,6 +161,9 @@
 
                                 <div id="fileCitation" style="display:none;">SCGE Platform Gene Therapy Clinical Trials downloaded on: <%=dtf.format(now)%>; Please cite the Somatic Cell Genome Editing Consortium Platform when using publicly accessible data in formal presentation or publication.</div>
                                 <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-sm btn-outline-primary text-nowrap filters-open-btn" data-toggle="modal" data-target="#filtersModal">
+                                        <i class="fa fa-filter"></i> Filters<% if(activeFilterCount>0){ %> <span class="filters-count-badge"><%=activeFilterCount%></span><% } %>
+                                    </button>
                                     <button type="button" class="btn btn-sm btn-primary text-nowrap"  onclick="download()">Export to CSV</button>
                                     <button type="button" class="btn btn-info btn-sm text-nowrap" data-toggle="modal" data-target="#definitionsModal">Help Doc&nbsp;&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></button>
                                     <%@include file="modal.jsp"%>

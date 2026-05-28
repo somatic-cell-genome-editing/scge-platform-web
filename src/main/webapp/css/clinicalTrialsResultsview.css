@@ -106,11 +106,7 @@
     font-weight: 500;
 }
 
-/* Filters open button + toolbar */
-.results-toolbar-left {
-    gap: 0.75rem;
-}
-
+/* Filters open button (sits inside the action-buttons btn-group) */
 .filters-open-btn {
     border-radius: 6px;
     font-weight: 600;
@@ -118,6 +114,31 @@
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
+}
+
+/* Override the .action-buttons .btn { border: none } that would erase the
+   outline-primary style, and give it a clear hover treatment. */
+.action-buttons .filters-open-btn {
+    background: #fff;
+    color: #1a80b6;
+    border: 1px solid #1a80b6 !important;
+}
+
+.action-buttons .filters-open-btn:hover {
+    background: #1a80b6;
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(26, 128, 182, 0.3);
+}
+
+.action-buttons .filters-open-btn .filters-count-badge {
+    background: #1a80b6;
+    color: #fff;
+}
+
+.action-buttons .filters-open-btn:hover .filters-count-badge {
+    background: #fff;
+    color: #1a80b6;
 }
 
 .filters-count-badge {

@@ -86,20 +86,21 @@ $(function () {
             }
         });
     })
-    $('#collapseAll').hide()
-    if(expandFilterVal == "true"){
-        expandAll()
-    }
+    // Expand all filter accordions by default so the items are visible as
+    // soon as the user opens the Filters popup.
+    expandAll()
 })
 
 function expandAll(){
-    $('.collapse').addClass("show");
+    // Scope to facets only - otherwise this also expands navbar .collapse
+    // elements (the mobile hamburger menus).
+    $('#facetForm .collapse').addClass("show");
     $('#expandAll').hide()
     $('#collapseAll').show()
     $('#expandAllFilters').val("true");
 }
 function collapseAll(){
-    $('.collapse').removeClass("show");
+    $('#facetForm .collapse').removeClass("show");
     $('#expandAll').show()
     $('#collapseAll').hide()
     $('#expandAllFilters').val("false");
