@@ -102,15 +102,6 @@
                 <%@include file="../searchByCategory.jsp"%>
             </div>
             <%}%>
-            <div class="disclaimer-card collapsible-section" id="disclaimerCard">
-                <button type="button" class="collapsible-header" onclick="toggleCollapsibleSection('disclaimerCard')">
-                    <span><i class="fa fa-exclamation-triangle"></i> Disclaimer</span>
-                    <i class="fa fa-chevron-up collapsible-toggle-icon"></i>
-                </button>
-                <div class="collapsible-body">
-                    <small><strong>Disclaimer:</strong> The information on this dashboard has been collected for the convenience of patients and researchers. <b>The SCGE team are not medical doctors and cannot provide medical advice. Please discuss with your provider the risks/benefits of participating in a clinical trial, and do not send us your personal medical information.</b> The information contained within this table does not make use of any confidential or privileged information-all data is collected from publicly available sources. The SCGE makes no comment as to the efficacy and safety of the items listed, as these are not known at the time of publication. For the most up to date information, or to inquire about enrollment, please refer to <a href="https://clinicaltrials.gov/">clinicaltrials.gov</a> or the Sponsor's website for contact information.</small>
-                </div>
-            </div>
         </div>
         <!-- Right Column: Daily Digest -->
         <%
@@ -276,6 +267,25 @@
   </div>
 </div>
 
+<!-- DISCLAIMER MODAL (auto-opens on page load) -->
+<div class="modal fade disclaimer-modal" id="disclaimerModal" tabindex="-1" role="dialog" aria-labelledby="disclaimerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="disclaimerModalLabel"><i class="fa fa-exclamation-triangle"></i> Disclaimer</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Disclaimer:</strong> The information on this dashboard has been collected for the convenience of patients and researchers. <b>The SCGE team are not medical doctors and cannot provide medical advice. Please discuss with your provider the risks/benefits of participating in a clinical trial, and do not send us your personal medical information.</b> The information contained within this table does not make use of any confidential or privileged information-all data is collected from publicly available sources. The SCGE makes no comment as to the efficacy and safety of the items listed, as these are not known at the time of publication. For the most up to date information, or to inquire about enrollment, please refer to <a href="https://clinicaltrials.gov/">clinicaltrials.gov</a> or the Sponsor's website for contact information.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END DISCLAIMER MODAL -->
+
 <!-- FILTERS MODAL -->
 <div class="modal fade filters-modal" id="filtersModal" tabindex="-1" role="dialog" aria-labelledby="filtersModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
@@ -307,9 +317,11 @@
     $(function () {
         if (window.matchMedia("(max-width: 991.98px)").matches) {
             $('#list-view-tab').tab('show');
-            // Collapse the disclaimer and daily digest by default on small screens
-            $('#disclaimerCard, #dailyDigestSidebar').addClass('is-collapsed');
+            // Collapse the daily digest by default on small screens
+            $('#dailyDigestSidebar').addClass('is-collapsed');
         }
+        // Auto-open the disclaimer popup on page load
+        $('#disclaimerModal').modal('show');
     });
 
     // Toggle a collapsible section (disclaimer / daily digest)
