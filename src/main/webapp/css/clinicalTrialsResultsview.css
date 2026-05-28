@@ -5,8 +5,8 @@
 /* Modern Header Section */
 .jumbotron {
     background: white !important;
-    padding: 2rem !important;
-    margin-bottom: 1.5rem;
+    padding: 1.25rem 1.5rem !important;
+    margin-bottom: 0.75rem;
     border: 1px solid #e2e8f0;
     border-radius: 8px;
 }
@@ -15,10 +15,38 @@
     color: #003366 !important;
     font-size: 1.8rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header title + search row: title left, search box on the extreme right */
+.header-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
     padding-bottom: 15px;
+    margin-bottom: 1rem;
     border-bottom: 3px solid #0066cc;
+}
+
+.header-title-row h3 {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.header-title-row .header-search {
+    flex: 0 0 auto;
+    margin: 0;
+    width: 320px;
+    max-width: 100%;
+}
+
+@media (max-width: 767.98px) {
+    .header-title-row .header-search {
+        width: 100%;
+    }
 }
 
 .jumbotron p {
@@ -88,6 +116,12 @@
 .jumbotron,
 .disclaimer-card {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* Footer-position variant of the disclaimer card */
+.disclaimer-footer {
+    margin-top: 1.5rem;
+    margin-bottom: 0;
 }
 
 /* Results Count Section */
@@ -295,7 +329,7 @@
 
 /* Spacing Improvements */
 .padding {
-    height: 1rem;
+    height: 0.5rem;
 }
 
 /* Responsive Adjustments */
