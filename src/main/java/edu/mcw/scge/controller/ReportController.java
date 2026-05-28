@@ -7,6 +7,7 @@ import edu.mcw.scge.datamodel.Alias;
 import edu.mcw.scge.datamodel.ClinicalTrialAdditionalInfo;
 import edu.mcw.scge.datamodel.ClinicalTrialExternalLink;
 import edu.mcw.scge.datamodel.ClinicalTrialFieldChange;
+import edu.mcw.scge.datamodel.ClinicalTrialFieldOption;
 import edu.mcw.scge.datamodel.ClinicalTrialRecord;
 import edu.mcw.scge.datamodel.ctd.Section;
 import jakarta.servlet.http.HttpServletRequest;
@@ -68,6 +69,13 @@ public class ReportController {
                     extLinkChanges.put(change.getExtLinkId(), change);
                 }
             }
+
+            // Load dropdown options for curated fields
+            req.setAttribute("therapyTypeOptions", ctDAO.getFieldOptions("therapy_type"));
+            req.setAttribute("therapyRouteOptions", ctDAO.getFieldOptions("therapy_route"));
+            req.setAttribute("mechanismOfActionOptions", ctDAO.getFieldOptions("mechanism_of_action"));
+            req.setAttribute("drugProductTypeOptions", ctDAO.getFieldOptions("drug_product_type"));
+            req.setAttribute("deliverySystemOptions", ctDAO.getFieldOptions("delivery_system"));
 
             req.setAttribute("clinicalTrialData",clinicalTrialData);
             req.setAttribute("clinicalExtLinkData",clinicalExtLinkData);
