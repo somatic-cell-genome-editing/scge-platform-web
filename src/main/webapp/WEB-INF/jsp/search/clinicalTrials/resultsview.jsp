@@ -90,26 +90,16 @@
             <div class="jumbotron">
                 <%
                     if(category!=null && !category.equals("")){%>
-                <h3>Clinical Trials - Gene Therapy Trial Browser</h3>
+                <div class="header-title-row">
+                    <h3>Clinical Trials - Gene Therapy Trial Browser</h3>
+                    <div class="header-search">
+                        <%@include file="../searchByCategory.jsp"%>
+                    </div>
+                </div>
                 <p>The Gene Therapy Trial Browser represents a unique publicly accessible, free database for the benefit of users seeking information on gene therapy development. The information within integrates various sources, including clinicaltrials.gov, publications, sponsor press releases, patent applications, and more to give a comprehensive overview of the gene therapy clinical trial landscape.</p>
                 <%}else{%>
                 <h3>SCGE Platform - General Search Results</h3>
                 <%}%>
-            </div>
-            <%
-                if(category!=null && !category.equals("")){%>
-            <div class="header-search">
-                <%@include file="../searchByCategory.jsp"%>
-            </div>
-            <%}%>
-            <div class="disclaimer-card collapsible-section" id="disclaimerCard">
-                <button type="button" class="collapsible-header" onclick="toggleCollapsibleSection('disclaimerCard')">
-                    <span><i class="fa fa-exclamation-triangle"></i> Disclaimer</span>
-                    <i class="fa fa-chevron-up collapsible-toggle-icon"></i>
-                </button>
-                <div class="collapsible-body">
-                    <small><strong>Disclaimer:</strong> The information on this dashboard has been collected for the convenience of patients and researchers. <b>The SCGE team are not medical doctors and cannot provide medical advice. Please discuss with your provider the risks/benefits of participating in a clinical trial, and do not send us your personal medical information.</b> The information contained within this table does not make use of any confidential or privileged information-all data is collected from publicly available sources. The SCGE makes no comment as to the efficacy and safety of the items listed, as these are not known at the time of publication. For the most up to date information, or to inquire about enrollment, please refer to <a href="https://clinicaltrials.gov/">clinicaltrials.gov</a> or the Sponsor's website for contact information.</small>
-                </div>
             </div>
         </div>
         <!-- Right Column: Daily Digest -->
@@ -122,35 +112,34 @@
         <%}%>
     </div>
 
-  <div class="row" style="margin-top: 1.5rem;">
+  <div class="row">
     <!-- BEGIN SEARCH RESULT -->
     <div class="col-md-12">
       <div class="grid search">
         <div class="grid-body">
           <div class="row">
-            <!-- BEGIN FILTERS -->
-
-            <div class="col-md-2" id="filtersPanel">
-
-                <%@include file="facets.jsp"%>
-
-            </div>
-
-            <!-- END FILTERS -->
             <!-- BEGIN RESULT -->
-            <div class="col-md-10">
+            <div class="col-md-12">
+                <%
+                    int activeFilterCount = 0;
+                    if(filtersSelected!=null){
+                        for(String f: filtersSelected){ if(!f.equalsIgnoreCase("Active")) activeFilterCount++; }
+                    }
+                %>
                 <div class="row results-count-section align-items-center">
-                    <div class="col-lg-3 col-md-6 col-12 mb-2 mb-lg-0">
+                    <div class="col-lg-6 col-md-6 col-12 mb-2 mb-lg-0">
+                        <span class="results-count-text">
                         <% if(totalHits > 0) { %>
-                        <span>Showing <strong><%=startRecord%>-<%=endRecord%></strong> of <strong><%=totalHits%></strong> results <%=searchTerm%><%=dCategory%></span>
+                        Showing <strong><%=startRecord%>-<%=endRecord%></strong> of <strong><%=totalHits%></strong> results <%=searchTerm%><%=dCategory%>
                         <% } else { %>
-                        <span>Showing <strong>0</strong> results <%=searchTerm%><%=dCategory%></span>
+                        Showing <strong>0</strong> results <%=searchTerm%><%=dCategory%>
                         <% } %>
+                        </span>
                     </div>
                     <%
                         if(hits.size()>0){
                     %>
-                    <div class="col-lg-6 col-md-6 col-12 d-flex justify-content-end action-buttons mb-2 mb-lg-0">
+                    <div class="col-lg-6 col-md-6 col-12 d-flex justify-content-start action-buttons mb-2 mb-lg-0">
                         <div class="row">
 
                             <div class="col">
@@ -162,6 +151,9 @@
 
                                 <div id="fileCitation" style="display:none;">SCGE Platform Gene Therapy Clinical Trials downloaded on: <%=dtf.format(now)%>; Please cite the Somatic Cell Genome Editing Consortium Platform when using publicly accessible data in formal presentation or publication.</div>
                                 <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-sm btn-outline-primary text-nowrap filters-open-btn" data-toggle="modal" data-target="#filtersModal">
+                                        <i class="fa fa-filter"></i> Filters<% if(activeFilterCount>0){ %> <span class="filters-count-badge"><%=activeFilterCount%></span><% } %>
+                                    </button>
                                     <button type="button" class="btn btn-sm btn-primary text-nowrap"  onclick="download()">Export to CSV</button>
                                     <button type="button" class="btn btn-info btn-sm text-nowrap" data-toggle="modal" data-target="#definitionsModal">Help Doc&nbsp;&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></button>
                                     <%@include file="modal.jsp"%>
@@ -272,9 +264,53 @@
     </div>
     <!-- END SEARCH RESULT -->
   </div>
+
+  <!-- Footer disclaimer (always visible at the bottom of the page) -->
+  <div class="disclaimer-card disclaimer-footer">
+      <small><strong>Disclaimer:</strong> The information on this dashboard has been collected for the convenience of patients and researchers. <b>The SCGE team are not medical doctors and cannot provide medical advice. Please discuss with your provider the risks/benefits of participating in a clinical trial, and do not send us your personal medical information.</b> The information contained within this table does not make use of any confidential or privileged information-all data is collected from publicly available sources. The SCGE makes no comment as to the efficacy and safety of the items listed, as these are not known at the time of publication. For the most up to date information, or to inquire about enrollment, please refer to <a href="https://clinicaltrials.gov/">clinicaltrials.gov</a> or the Sponsor's website for contact information.</small>
+  </div>
 </div>
-<div style="padding-top:2%;padding-bottom:  5%">
+
+<!-- DISCLAIMER MODAL (auto-opens on page load) -->
+<div class="modal fade disclaimer-modal" id="disclaimerModal" tabindex="-1" role="dialog" aria-labelledby="disclaimerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="disclaimerModalLabel"><i class="fa fa-exclamation-triangle"></i> Disclaimer</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Disclaimer:</strong> The information on this dashboard has been collected for the convenience of patients and researchers. <b>The SCGE team are not medical doctors and cannot provide medical advice. Please discuss with your provider the risks/benefits of participating in a clinical trial, and do not send us your personal medical information.</b> The information contained within this table does not make use of any confidential or privileged information-all data is collected from publicly available sources. The SCGE makes no comment as to the efficacy and safety of the items listed, as these are not known at the time of publication. For the most up to date information, or to inquire about enrollment, please refer to <a href="https://clinicaltrials.gov/">clinicaltrials.gov</a> or the Sponsor's website for contact information.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
+<!-- END DISCLAIMER MODAL -->
+
+<!-- FILTERS MODAL -->
+<div class="modal fade filters-modal" id="filtersModal" tabindex="-1" role="dialog" aria-labelledby="filtersModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="filtersModalLabel"><i class="fa fa-filter"></i> Filter Results</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <%@include file="facets.jsp"%>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="applyFiltersAndClose()">Done</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END FILTERS MODAL -->
+
+<div style="padding-bottom: 1rem;"></div>
 <script>
     function download(){
         $("#myTable").tableToCSV();
@@ -284,14 +320,22 @@
     $(function () {
         if (window.matchMedia("(max-width: 991.98px)").matches) {
             $('#list-view-tab').tab('show');
-            // Collapse the disclaimer and daily digest by default on small screens
-            $('#disclaimerCard, #dailyDigestSidebar').addClass('is-collapsed');
+            // Collapse the daily digest by default on small screens
+            $('#dailyDigestSidebar').addClass('is-collapsed');
         }
-        // Collapse the Filters panel once it stacks above the results (<768px)
-        // so the results are reachable without scrolling past a long filter list
-        if (window.matchMedia("(max-width: 767.98px)").matches) {
-            $('#filtersPanel').addClass('is-collapsed');
+        // Auto-open the disclaimer popup only if the user hasn't dismissed it
+        // already this browser session (pagination reloads the page, so without
+        // this guard the popup would re-appear on every page).
+        try {
+            if (sessionStorage.getItem('ctDisclaimerDismissed') !== '1') {
+                $('#disclaimerModal').modal('show');
+            }
+        } catch (e) {
+            $('#disclaimerModal').modal('show');
         }
+        $('#disclaimerModal').on('hidden.bs.modal', function () {
+            try { sessionStorage.setItem('ctDisclaimerDismissed', '1'); } catch (e) {}
+        });
     });
 
     // Toggle a collapsible section (disclaimer / daily digest)

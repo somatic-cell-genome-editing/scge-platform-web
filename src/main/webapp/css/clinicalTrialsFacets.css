@@ -27,11 +27,174 @@
   background: #64748b;
 }
 
-/* Make facets sidebar stick to viewport */
-.grid-body .row > .col-md-2 {
+/* ============================================
+   FILTERS MODAL - facets rendered in a wide popup
+   ============================================ */
+#filtersModal .modal-dialog {
+  max-width: 1100px;
+  margin: 1.75rem auto;
+}
+
+/* Modal content: rounded card with strong shadow and a subtle border. */
+#filtersModal .modal-content {
+  border: none;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.35),
+              0 10px 25px rgba(15, 23, 42, 0.15);
+  background: #fff;
+}
+
+/* Subtle dark backdrop so the modal lifts off the page. */
+#filtersModal.show {
+  background: rgba(15, 23, 42, 0.15);
+}
+
+/* Header: brand-blue gradient bar with white title and oversized close. */
+#filtersModal .modal-header {
+  background: linear-gradient(135deg, #1a80b6 0%, #0891b2 100%);
+  color: #fff;
+  border-bottom: none;
+  padding: 1rem 1.5rem;
+  align-items: center;
+}
+
+#filtersModal .modal-header .modal-title {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.125rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  letter-spacing: 0.01em;
+}
+
+#filtersModal .modal-header .modal-title i.fa-filter {
+  font-size: 1rem;
+  opacity: 0.95;
+}
+
+#filtersModal .modal-header .close {
+  color: #fff;
+  opacity: 0.85;
+  text-shadow: none;
+  font-size: 1.75rem;
+  font-weight: 400;
+  line-height: 1;
+  padding: 0.25rem 0.5rem;
+  margin: -0.25rem -0.5rem -0.25rem auto;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+#filtersModal .modal-header .close:hover,
+#filtersModal .modal-header .close:focus {
+  color: #fff;
+  opacity: 1;
+  transform: rotate(90deg);
+  outline: none;
+}
+
+/* Body: soft slate background so the white facet cards pop. */
+#filtersModal .modal-body {
+  background: #f8fafc;
+  padding: 1.25rem 1.5rem;
+  max-height: calc(100vh - 14rem);
+  overflow-y: auto;
+}
+
+/* Reuse the page-level grid-title block inside the modal but flatten it
+   since the modal already has its own header bar. */
+#filtersModal .grid-title {
+  background: transparent;
+  border-bottom: 1px dashed #cbd5e1;
+  padding: 0.25rem 0 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: #334155;
+}
+
+#filtersModal .grid-title > i.fa-filter {
+  display: none; /* the modal header already shows a filter icon */
+}
+
+/* Lay the facet groups out across the wide popup in a responsive grid;
+   each card sits on its own surface so groups don't bleed together. */
+#filtersModal #facetForm {
+  max-height: none;
+  overflow: visible;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+#filtersModal .accordion-group {
+  break-inside: avoid;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+#filtersModal .accordion-group:hover {
+  border-color: #93c5fd;
+  box-shadow: 0 4px 14px rgba(26, 128, 182, 0.12);
+}
+
+#filtersModal .accordion-toggle {
+  padding: 0.65rem 0.9rem;
+  font-size: 0.9rem;
+}
+
+#filtersModal .accordion-inner {
+  border-top: 1px solid #f1f5f9;
+}
+
+/* Footer: sticky action bar with subtle top border and clear hierarchy. */
+#filtersModal .modal-footer {
   position: sticky;
-  top: 20px;
-  align-self: flex-start;
+  bottom: 0;
+  background: #fff;
+  border-top: 1px solid #e2e8f0;
+  padding: 0.85rem 1.5rem;
+  gap: 0.5rem;
+}
+
+#filtersModal .modal-footer .btn {
+  font-weight: 600;
+  padding: 0.45rem 1.25rem;
+  border-radius: 6px;
+  min-width: 96px;
+}
+
+#filtersModal .modal-footer .btn-primary {
+  background: #1a80b6;
+  border-color: #1a80b6;
+  box-shadow: 0 2px 4px rgba(26, 128, 182, 0.3);
+}
+
+#filtersModal .modal-footer .btn-primary:hover,
+#filtersModal .modal-footer .btn-primary:focus {
+  background: #0e7090;
+  border-color: #0e7090;
+  box-shadow: 0 4px 10px rgba(26, 128, 182, 0.4);
+}
+
+@media (max-width: 767.98px) {
+  #filtersModal .modal-dialog {
+    margin: 0.5rem;
+  }
+  #filtersModal .modal-content {
+    border-radius: 10px;
+  }
+  #filtersModal .modal-header,
+  #filtersModal .modal-body,
+  #filtersModal .modal-footer {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 /* Search Within Filters */
@@ -323,18 +486,6 @@ hr {
   outline: 2px solid rgba(26, 128, 182, 0.3);
 }
 
-/* Disabled state - shown when there is only a single result and
-   filtering would have no effect */
-.form-check-input:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-}
-
-.form-check-input:disabled + .form-check-label {
-  color: #94a3b8;
-  cursor: not-allowed;
-}
-
 /* Label */
 .form-check-label {
   cursor: pointer;
@@ -406,47 +557,7 @@ hr {
 }
 
 /* Responsive */
-/* Filters panel collapse toggle - hidden on the wide/side-by-side layout */
-.filters-collapse-toggle {
-  display: none;
-}
-
 @media (max-width: 768px) {
-  /* Collapse the whole Filters panel by default so the results block is
-     reachable without scrolling past a long filter list */
-  .filters-collapse-toggle {
-    display: inline-flex;
-    align-items: center;
-    background: none;
-    border: none;
-    color: #1a80b6;
-    cursor: pointer;
-    padding: 0 0.25rem;
-  }
-
-  #filtersPanel.is-collapsed > *:not(.grid-title) {
-    display: none;
-  }
-
-  /* hide the expand/collapse-all accordion controls when the panel is
-     collapsed - they only make sense once the filter list is showing */
-  #filtersPanel.is-collapsed #expandAll,
-  #filtersPanel.is-collapsed #collapseAll {
-    display: none;
-  }
-
-  /* Columns stack on mobile - drop the sticky sidebar so it doesn't
-     stay pinned and overlap the results when scrolling */
-  .grid-body .row > .col-md-2 {
-    position: static;
-    top: auto;
-  }
-
-  #facetForm {
-    max-height: none;
-    overflow-y: visible;
-  }
-
   .grid-title {
     font-size: 1rem;
     padding: 0.75rem;
