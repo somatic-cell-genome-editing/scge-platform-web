@@ -84,8 +84,8 @@
     var json=JSON.parse(filterMap)
 </script>
 <div class="container-fluid">
-    <div class="row header-section">
-        <!-- Left Column: Description and Disclaimer -->
+    <div class="row main-layout-row">
+        <!-- Left Column: Header + Results -->
         <div class="col-lg-<%=divSize%> col-md-12">
             <div class="jumbotron">
                 <%
@@ -101,25 +101,13 @@
                 <h3>SCGE Platform - General Search Results</h3>
                 <%}%>
             </div>
-        </div>
-        <!-- Right Column: Daily Digest -->
-        <%
-            if(totalUpdates>0){
-        %>
-        <div class="col-lg-3 col-md-12">
-            <%@include file="dailyDigest.jsp"%>
-        </div>
-        <%}%>
-    </div>
 
-  <div class="row">
-    <!-- BEGIN SEARCH RESULT -->
-    <div class="col-md-12">
-      <div class="grid search">
-        <div class="grid-body">
-          <div class="row">
-            <!-- BEGIN RESULT -->
-            <div class="col-md-12">
+            <!-- BEGIN SEARCH RESULT -->
+            <div class="grid search">
+              <div class="grid-body">
+                <div class="row">
+                  <!-- BEGIN RESULT -->
+                  <div class="col-md-12">
                 <%
                     int activeFilterCount = 0;
                     if(filtersSelected!=null){
@@ -261,8 +249,16 @@
           </div>
         </div>
       </div>
+      <!-- END SEARCH RESULT -->
     </div>
-    <!-- END SEARCH RESULT -->
+    <!-- Right Column: Daily Digest (sidebar alongside jumbotron + results) -->
+    <%
+        if(totalUpdates>0){
+    %>
+    <div class="col-lg-3 col-md-12">
+        <%@include file="dailyDigest.jsp"%>
+    </div>
+    <%}%>
   </div>
 
   <!-- Footer disclaimer (always visible at the bottom of the page) -->

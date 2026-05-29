@@ -73,9 +73,14 @@
                                     <div class="digest-update-item">
                                         <span class="digest-field-name"><%=StringUtils.capitalize(update.getFieldName().toLowerCase().trim().replaceAll("_", " "))%></span>
                                         <span class="digest-field-change">
-                                            <span class="digest-old-value" title="<%=update.getOldValue()%>"><%=update.getOldValue() != null && update.getOldValue().length() > 50 ? update.getOldValue().substring(0, 50) + "..." : update.getOldValue()%></span>
-                                            <i class="fa fa-arrow-right"></i>
-                                            <span class="digest-new-value" title="<%=update.getNewValue()%>"><%=update.getNewValue() != null && update.getNewValue().length() > 50 ? update.getNewValue().substring(0, 50) + "..." : update.getNewValue()%></span>
+                                            <span class="digest-value-row digest-old-row">
+                                                <span class="digest-change-label">Previous:</span>
+                                                <span class="digest-old-value" title="<%=update.getOldValue()%>"><%=update.getOldValue() != null && update.getOldValue().length() > 50 ? update.getOldValue().substring(0, 50) + "..." : update.getOldValue()%></span>
+                                            </span>
+                                            <span class="digest-value-row digest-new-row">
+                                                <span class="digest-change-label">Current:</span>
+                                                <span class="digest-new-value" title="<%=update.getNewValue()%>"><%=update.getNewValue() != null && update.getNewValue().length() > 50 ? update.getNewValue().substring(0, 50) + "..." : update.getNewValue()%></span>
+                                            </span>
                                         </span>
                                         <span class="digest-update-by"><%=update.getUpdateBy()%></span>
                                     </div>
@@ -155,12 +160,17 @@
                 <% if(modalFilteredUpdates.size() > 0) { %>
                 <div class="modal-changes-panel" style="display:none; margin-top:6px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; padding:8px 12px; font-size:0.85rem;">
                     <% for(ClinicalTrialFieldChange update : modalFilteredUpdates) { %>
-                    <div style="display:flex; align-items:baseline; gap:0.5rem; padding:4px 0; border-bottom:1px solid #f1f5f9; flex-wrap:wrap;">
+                    <div style="display:flex; flex-direction:column; gap:0.35rem; padding:6px 0; border-bottom:1px solid #f1f5f9;">
                         <span class="digest-field-name"><%=StringUtils.capitalize(update.getFieldName().toLowerCase().trim().replaceAll("_", " "))%></span>
                         <span class="digest-field-change">
-                            <span class="digest-old-value" title="<%=update.getOldValue()%>"><%=update.getOldValue() != null && update.getOldValue().length() > 50 ? update.getOldValue().substring(0, 50) + "..." : update.getOldValue()%></span>
-                            <i class="fa fa-arrow-right"></i>
-                            <span class="digest-new-value" title="<%=update.getNewValue()%>"><%=update.getNewValue() != null && update.getNewValue().length() > 50 ? update.getNewValue().substring(0, 50) + "..." : update.getNewValue()%></span>
+                            <span class="digest-value-row digest-old-row">
+                                <span class="digest-change-label">Previous:</span>
+                                <span class="digest-old-value" title="<%=update.getOldValue()%>"><%=update.getOldValue() != null && update.getOldValue().length() > 50 ? update.getOldValue().substring(0, 50) + "..." : update.getOldValue()%></span>
+                            </span>
+                            <span class="digest-value-row digest-new-row">
+                                <span class="digest-change-label">Current:</span>
+                                <span class="digest-new-value" title="<%=update.getNewValue()%>"><%=update.getNewValue() != null && update.getNewValue().length() > 50 ? update.getNewValue().substring(0, 50) + "..." : update.getNewValue()%></span>
+                            </span>
                         </span>
                         <span class="digest-update-by"><%=update.getUpdateBy()%></span>
                     </div>
