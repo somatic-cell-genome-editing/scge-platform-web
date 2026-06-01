@@ -394,6 +394,25 @@
    CLINICAL TRIALS DAILY DIGEST SIDEBAR
    ================================================ */
 
+/* Main layout: digest sidebar is a custom width between col-lg-2 (16.67%)
+   and col-lg-3 (25%) — Bootstrap's grid has no intermediate column, so we
+   override the col widths directly at the lg breakpoint. */
+@media (min-width: 992px) {
+    .main-layout-row {
+        flex-wrap: nowrap;
+    }
+    .main-layout-row > .digest-sidebar-col {
+        flex: 0 0 20%;
+        max-width: 300px;
+        min-width: 0;
+    }
+    .main-layout-row > .results-content-col {
+        flex: 1 1 0;
+        max-width: none;
+        min-width: 0;
+    }
+}
+
 /* Daily Digest Sidebar Container */
 .daily-digest-sidebar {
     background: white;

@@ -75,8 +75,10 @@
 
     int totalUpdates = recentUpdates.size();
     int divSize=12;
+    int digestColSize=0;
     if(totalUpdates>0){
         divSize=9;
+        digestColSize=3;
     }
 %>
 <script>
@@ -86,7 +88,7 @@
 <div class="container-fluid">
     <div class="row main-layout-row">
         <!-- Left Column: Header + Results -->
-        <div class="col-lg-<%=divSize%> col-md-12">
+        <div class="col-lg-<%=divSize%> col-md-12 results-content-col">
             <div class="jumbotron">
                 <%
                     if(category!=null && !category.equals("")){%>
@@ -255,7 +257,7 @@
     <%
         if(totalUpdates>0){
     %>
-    <div class="col-lg-3 col-md-12">
+    <div class="col-lg-<%=digestColSize%> col-md-12 digest-sidebar-col">
         <%@include file="dailyDigest.jsp"%>
     </div>
     <%}%>
