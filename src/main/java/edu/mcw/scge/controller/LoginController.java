@@ -12,7 +12,7 @@ import edu.mcw.scge.datamodel.PersonInfo;
 import edu.mcw.scge.datamodel.ctd.Section;
 import edu.mcw.scge.service.es.clinicalTrials.ClinicalTrialsService;
 import edu.mcw.scge.uploadFiles.DBService;
-import org.elasticsearch.action.search.SearchResponse;
+import co.elastic.clients.elasticsearch.core.SearchResponse;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,8 +46,8 @@ public class LoginController extends ModulesController{
         try {
             Map<String, List<String>> filtersMap = new HashMap<>();
             filtersMap.put("recordStatus", Collections.singletonList("Active"));
-            SearchResponse digestSr = clinicalTrialsService.getRecentUpdatesForDigest(null, filtersMap);
-            req.setAttribute("digestCount", digestSr.getHits().getTotalHits().value);
+            SearchResponse<Map> digestSr = clinicalTrialsService.getRecentUpdatesForDigest(null, filtersMap);
+            req.setAttribute("digestCount", digestSr.hits().total().value());
         } catch (Exception e) {
             req.setAttribute("digestCount", 0L);
         }

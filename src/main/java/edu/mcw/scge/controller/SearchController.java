@@ -11,7 +11,7 @@ import edu.mcw.scge.datamodel.web.ClinicalTrials;
 import edu.mcw.scge.service.es.clinicalTrials.ClinicalTrialsService;
 
 import edu.mcw.scge.uploadFiles.DBService;
-import org.elasticsearch.action.search.SearchResponse;
+import co.elastic.clients.elasticsearch.core.SearchResponse;
 
 
 import org.springframework.stereotype.Controller;
@@ -45,10 +45,10 @@ public class SearchController{
         ClinicalTrialsService services = new ClinicalTrialsService();
         Person person = getPersonFromAuth(authentication, req);
         LinkedHashMap<String, List<String>> filterMap=getFiltersMap(req, person);
-        SearchResponse sr=services.getSearchResults(searchTerm, null, filterMap, page, pageSize);
+        SearchResponse<Map> sr=services.getSearchResults(searchTerm, null, filterMap, page, pageSize);
 
         // Set pagination attributes
-        long totalHits = sr.getHits().getTotalHits().value;
+        long totalHits = sr.hits().total().value();
         int totalPages = (int) Math.ceil((double) totalHits / pageSize);
         req.setAttribute("currentPage", page);
         req.setAttribute("pageSize", pageSize);
@@ -56,8 +56,8 @@ public class SearchController{
         req.setAttribute("totalPages", totalPages);
 
         // Get recent updates for daily digest (separate query)
-        SearchResponse digestSr = services.getRecentUpdatesForDigest(null, getFiltersMap(req, person));
-        req.setAttribute("digestHits", digestSr.getHits().getHits());
+        SearchResponse<Map> digestSr = services.getRecentUpdatesForDigest(null, getFiltersMap(req, person));
+        req.setAttribute("digestHits", digestSr.hits().hits());
 
         req.setAttribute("searchTerm", searchTerm);
         req.setAttribute("sr", sr);
@@ -81,10 +81,10 @@ public class SearchController{
         ClinicalTrialsService services = new ClinicalTrialsService();
         Person person = getPersonFromAuth(authentication, req);
         LinkedHashMap<String, List<String>> filterMap=getFiltersMap(req, person);
-        SearchResponse sr=services.getSearchResults(searchTerm, category, filterMap, page, pageSize);
+        SearchResponse<Map> sr=services.getSearchResults(searchTerm, category, filterMap, page, pageSize);
 
         // Set pagination attributes
-        long totalHits = sr.getHits().getTotalHits().value;
+        long totalHits = sr.hits().total().value();
         int totalPages = (int) Math.ceil((double) totalHits / pageSize);
         req.setAttribute("currentPage", page);
         req.setAttribute("pageSize", pageSize);
@@ -92,8 +92,8 @@ public class SearchController{
         req.setAttribute("totalPages", totalPages);
 
         // Get recent updates for daily digest (separate query)
-        SearchResponse digestSr = services.getRecentUpdatesForDigest(category, filterMap);
-        req.setAttribute("digestHits", digestSr.getHits().getHits());
+        SearchResponse<Map> digestSr = services.getRecentUpdatesForDigest(category, filterMap);
+        req.setAttribute("digestHits", digestSr.hits().hits());
 
         req.setAttribute("searchTerm", searchTerm);
         req.setAttribute("sr", sr);

@@ -41,8 +41,8 @@ $(this).off('mouseleave');
     <tfoot><tr><%@include file="columns.jsp"%></tr></tfoot>
     <tbody>
     <%
-        for(SearchHit hit:hits) {
-            Map<String, Object> sourceFields = hit.getSourceAsMap();
+        for(Hit<Map> hit:hits) {
+            Map<String, Object> sourceFields = (Map<String, Object>) hit.source();
     %>
     <tr>
 <%--        <td style="font-weight: bold"><a href="https://www.clinicaltrials.gov/study/<%=sourceFields.get("nctId")%>" target="_blank"><%=sourceFields.get("nctId")%></a></td>--%>
