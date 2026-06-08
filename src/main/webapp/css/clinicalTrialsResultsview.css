@@ -431,6 +431,18 @@
     }
 }
 
+/* On smaller screens the columns stack. By source order the digest sidebar
+   would fall below the results table, so pull it above the content column. */
+@media (max-width: 991.98px) {
+    .main-layout-row > .digest-sidebar-col {
+        order: -1;
+        margin-bottom: 1rem;
+    }
+    .main-layout-row > .results-content-col {
+        order: 0;
+    }
+}
+
 /* Daily Digest Sidebar Container */
 .daily-digest-sidebar {
     background: white;
