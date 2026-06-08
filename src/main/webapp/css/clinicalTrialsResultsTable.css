@@ -42,7 +42,9 @@
 #resultsTable {
     height: auto;
     min-height: 50px;
-    max-height: 600px;
+    /* Cap the viewport so more rows than before are visible but the rest
+       scroll inside; the sticky header stays in view while scrolling. */
+    max-height: 92vh;
     overflow: auto;
     position: relative;
     width: 100%;
@@ -536,7 +538,7 @@
 /* Responsive */
 @media (max-width: 768px) {
     #resultsTable {
-        max-height: 400px;
+        max-height: 75vh;
     }
 
     #myTable th,
