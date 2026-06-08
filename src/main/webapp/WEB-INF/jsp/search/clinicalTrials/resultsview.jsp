@@ -139,7 +139,7 @@
                                 %>
 
                                 <div id="fileCitation" style="display:none;">SCGE Platform Gene Therapy Clinical Trials downloaded on: <%=dtf.format(now)%>; Please cite the Somatic Cell Genome Editing Consortium Platform when using publicly accessible data in formal presentation or publication.</div>
-                                <div class="btn-group" role="group">
+                                <div class="action-btn-group d-flex flex-wrap" role="group">
                                     <button type="button" class="btn btn-sm btn-outline-primary text-nowrap filters-open-btn" data-toggle="modal" data-target="#filtersModal">
                                         <i class="fa fa-filter"></i> Filters<% if(activeFilterCount>0){ %> <span class="filters-count-badge"><%=activeFilterCount%></span><% } %>
                                     </button>

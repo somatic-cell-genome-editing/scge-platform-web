@@ -151,12 +151,18 @@
     letter-spacing: 0.02em;
 }
 
-/* Detach the button from the btn-group so it reads as its own control:
-   restore the full pill rounding (btn-group strips right-side radius from
-   the first child) and add a clear gap before the next button. */
-.action-buttons .btn-group > .filters-open-btn {
+/* Lay the toolbar buttons out as separate, individually-rounded controls
+   instead of a connected btn-group. The gap keeps a clear space between each
+   button and every button keeps its own full corner radius. */
+.action-buttons .action-btn-group {
+    gap: 0.5rem;
+    align-items: center;
+}
+
+/* Restore the full pill rounding on the Filters button so it matches the
+   other detached buttons. */
+.action-buttons .action-btn-group > .filters-open-btn {
     border-radius: 6px !important;
-    margin-right: 0.5rem;
 }
 
 /* Override the .action-buttons .btn { border: none } and give the button a
