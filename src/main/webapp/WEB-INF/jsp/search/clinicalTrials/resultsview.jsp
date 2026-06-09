@@ -1,5 +1,5 @@
-<%@ page import="co.elastic.clients.elasticsearch.core.search.Hit" %>
-<%@ page import="co.elastic.clients.elasticsearch.core.SearchResponse" %>
+<%@ page import="org.elasticsearch.search.SearchHit" %>
+<%@ page import="org.elasticsearch.action.search.SearchResponse" %>
 <%@ page import="com.google.gson.Gson" %>
 
 <%@ page import="java.util.*" %>
@@ -28,10 +28,11 @@
 <%
     ClinicalTrailDAO clinicalTrailDAO=new ClinicalTrailDAO();
     Gson gson=new Gson();
-    SearchResponse<Map> sr= (SearchResponse<Map>) request.getAttribute("sr");
-    List<Hit<Map>> hits = sr.hits().hits();
-    if(hits == null) {
-        hits = new ArrayList<>();
+    SearchResponse sr= (SearchResponse) request.getAttribute("sr");
+    SearchHit[] hitsArray=sr.getHits().getHits();
+    List<SearchHit> hits=new ArrayList<>();
+    if(hitsArray!=null && hitsArray.length>0) {
+        hits = (Arrays.asList(hitsArray));
     }
     Map<String, List<String>> filterMap= (Map<String, List<String>>) request.getAttribute("filterMap");
     List<String> filtersSelected= (List<String>) request.getAttribute("filtersSelected");
@@ -63,12 +64,12 @@
         e.printStackTrace();
     }
     // Get digest hits from controller (all updates from past 7 days)
-    List<Hit<Map>> digestHitsArray = (List<Hit<Map>>) request.getAttribute("digestHits");
+    SearchHit[] digestHitsArray = (SearchHit[]) request.getAttribute("digestHits");
     List<Map<String, Object>> recentUpdates = new ArrayList<>();
 
     if(digestHitsArray != null) {
-        for(Hit<Map> hit : digestHitsArray) {
-            recentUpdates.add((Map<String, Object>) hit.source());
+        for(SearchHit hit : digestHitsArray) {
+            recentUpdates.add(hit.getSourceAsMap());
         }
     }
 
@@ -160,7 +161,7 @@
     <%@include file="filtersApplied.jsp"%>
     <div class="padding"></div>
                 <!-- BEGIN TABLE RESULT -->
-              <div style="width:100%">
+              <div class="results-fill-wrapper" style="width:100%">
                   <%
                       if(hits.size()==0){%>
                           <div class="no-results-message">

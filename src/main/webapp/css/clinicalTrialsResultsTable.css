@@ -42,7 +42,11 @@
 #resultsTable {
     height: auto;
     min-height: 50px;
-    max-height: 600px;
+    /* Fixed pixel cap (not vh) so the same number of rows is visible on every
+       screen size before the rest scroll inside; the sticky header/footer stay
+       in view while scrolling. ~18 rows + sticky header + footer — sized to
+       reach the bottom of the daily digest sidebar so no gap is left. */
+    max-height: 900px;
     overflow: auto;
     position: relative;
     width: 100%;
@@ -536,7 +540,7 @@
 /* Responsive */
 @media (max-width: 768px) {
     #resultsTable {
-        max-height: 400px;
+        max-height: 75vh;
     }
 
     #myTable th,
