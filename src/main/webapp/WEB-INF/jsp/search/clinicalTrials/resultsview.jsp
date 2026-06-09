@@ -161,7 +161,7 @@
     <%@include file="filtersApplied.jsp"%>
     <div class="padding"></div>
                 <!-- BEGIN TABLE RESULT -->
-              <div style="width:100%">
+              <div class="results-fill-wrapper" style="width:100%">
                   <%
                       if(hits.size()==0){%>
                           <div class="no-results-message">

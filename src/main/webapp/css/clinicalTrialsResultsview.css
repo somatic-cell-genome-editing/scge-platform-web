@@ -420,6 +420,30 @@
         flex: 1 1 0;
         max-width: none;
         min-width: 0;
+        /* Flex column so the table card can absorb leftover height (see below)
+           when the digest sidebar is the taller column. */
+        display: flex;
+        flex-direction: column;
+    }
+    /* When the digest sidebar is taller, the row stretches this column past its
+       content, leaving a gap under the pagination. Chain flex-grow from the
+       column down to the table card so the card expands to fill that gap and
+       the pagination sits at the bottom. min-height: 0 lets each level shrink
+       below its content so the table's own scroll area still works. */
+    .results-content-col > .grid.search,
+    .results-content-col .grid-body,
+    .results-content-col .grid-body > .row,
+    .results-content-col .grid-body > .row > .col-md-12,
+    .results-content-col .results-fill-wrapper,
+    .results-content-col .results-fill-wrapper > .tab-content,
+    .results-content-col .results-fill-wrapper > .tab-content > .tab-pane.active {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        min-height: 0;
+    }
+    .results-content-col #resultsTable {
+        flex: 1 1 auto;
     }
     /* Match the sidebar height to the left content. The column already
        stretches (flex align-items: stretch); make the card fill it and cap
@@ -428,6 +452,13 @@
         height: 100%;
         max-height: 100%;
         overflow: hidden;
+    }
+    /* The scroll container is a flex child; its default min-height: auto would
+       force it (and the card) to grow to fit all items, overshooting the left
+       column. min-height: 0 lets it shrink and scroll, keeping the card level
+       with the left content height. */
+    .main-layout-row > .digest-sidebar-col .digest-sidebar-content {
+        min-height: 0;
     }
 }
 
