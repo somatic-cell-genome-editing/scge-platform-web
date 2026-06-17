@@ -143,7 +143,7 @@
                                     <button type="button" class="btn btn-sm btn-outline-primary text-nowrap filters-open-btn" data-toggle="modal" data-target="#filtersModal">
                                         <i class="fa fa-filter"></i> Filters<% if(activeFilterCount>0){ %> <span class="filters-count-badge"><%=activeFilterCount%></span><% } %>
                                     </button>
-                                    <button type="button" class="btn btn-sm btn-primary text-nowrap"  onclick="download()">Export to CSV</button>
+                                    <button type="button" class="btn btn-sm btn-primary text-nowrap"  onclick="download(this)">Export to CSV</button>
                                     <button type="button" class="btn btn-info btn-sm text-nowrap" data-toggle="modal" data-target="#definitionsModal">Help Doc&nbsp;&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></button>
                                     <%@include file="modal.jsp"%>
                                     <% if (request.getServerName().equals("localhost") || request.getServerName().equals("dev.scge.mcw.edu") || request.getServerName().equals("stage.scge.mcw.edu") ) { %>
@@ -309,8 +309,63 @@
 
 <div style="padding-bottom: 1rem;"></div>
 <script>
-    function download(){
-        $("#myTable").tableToCSV();
+    // Export ALL results, not just the current page. The table in the DOM only
+    // holds the current page (pageSize rows), so re-fetch the same search with a
+    // page size large enough to include every result, then build the CSV from
+    // that full table. Reusing the server-rendered table guarantees the CSV
+    // columns match exactly what is shown on screen.
+    function download(btn){
+        var $btn = btn ? $(btn) : null;
+        // ES default max result window is 10000; cap to stay within it.
+        var exportSize = Math.min(<%=totalHits%>, 10000);
+
+        // If everything is already on the page, just export the current table.
+        if(<%=totalHits%> <= <%=pageSize%>){
+            $("#myTable").tableToCSV();
+            return;
+        }
+
+        var url = new URL(window.location.href);
+        url.searchParams.set('page', '0');
+        url.searchParams.set('pageSize', exportSize);
+
+        var originalHtml = $btn ? $btn.html() : null;
+        if($btn){ $btn.prop('disabled', true).html('Preparing…'); }
+
+        $.ajax({ url: url.toString(), method: 'GET', dataType: 'html' })
+            .done(function(html){
+                var fullTable = null;
+                try {
+                    var doc = new DOMParser().parseFromString(html, 'text/html');
+                    fullTable = doc.getElementById('myTable');
+                } catch(e){ fullTable = null; }
+
+                if(!fullTable){
+                    // Fallback: export whatever is currently shown.
+                    $("#myTable").tableToCSV();
+                    return;
+                }
+
+                // Import the fetched table into this document, attach it hidden,
+                // run the existing CSV serializer over it, then clean up.
+                var imported = document.importNode(fullTable, true);
+                var holder = document.createElement('div');
+                holder.style.display = 'none';
+                holder.appendChild(imported);
+                document.body.appendChild(holder);
+                try {
+                    $(imported).tableToCSV();
+                } finally {
+                    document.body.removeChild(holder);
+                }
+            })
+            .fail(function(){
+                // On any failure, fall back to exporting the current page.
+                $("#myTable").tableToCSV();
+            })
+            .always(function(){
+                if($btn && originalHtml !== null){ $btn.prop('disabled', false).html(originalHtml); }
+            });
     }
 
     // Default to List View on smaller screens (Bootstrap lg breakpoint: <992px)
