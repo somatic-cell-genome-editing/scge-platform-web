@@ -12,7 +12,7 @@
     <div class="publications-list">
         <ul>
         <li>
-            <a href="/platform/public/download/regulatory?documentName='UW-LNP-SpCaS9-BEST1-R218C_PS010799_INTERACT_Briefing_Book_Redacted.pdf'" target="_blank">INTERACT Briefing Book</a>
+            <a href="/platform/public/download/regulatory?documentName='UW-LNP-SpCaS9-BEST1-R218C PS010799_INTERACT_Briefing_Book_Redacted.pdf'" target="_blank">INTERACT Briefing Book</a>
         </li>
         <li>
             <a href="/platform/public/download/regulatory?documentName='Annotated_Preliminary_Response_University_of_Wisconsin_PS010799_Meeting_ID_22451_for_sponsor_Redacted.pdf'" target="_blank" >FDA Responses</a>
