@@ -15,7 +15,7 @@
 
                 <%@include file="prion/prion_sidebar.jsp"%>
                 <%@include file="lca/lca_sidebar.jsp"%>
-                <%@include file="best/docs.jsp"%>
+                <%@include file="best/best_sidebar.jsp"%>
                 <%@include file="sma/sma_sidebar.jsp"%>
                 <%@include file="fa/fa_sidebar.jsp"%>
                 <%@include file="hd/hd_sidebar.jsp"%>
@@ -359,12 +359,21 @@
                             </button>
                         </td>
                         <td class="publications-cell">
-                            <div class="no-publications">—</div>
+                            <button class="publications-toggle docs-toggle" onclick="togglePublications('best-documents')">
+                                <i class="fas fa-folder-open"></i>
+                                <span class="pub-count">2</span>
+                                <i class="fas fa-chevron-down toggle-icon"></i>
+                            </button>
                         </td>
                     </tr>
                         <tr class="publications-row" id="best-publications">
                             <td colspan="9" class="publications-content">
                                 <%@include file="best/publications.jsp"%>
+                            </td>
+                        </tr>
+                        <tr class="publications-row" id="best-documents">
+                            <td colspan="9" class="publications-content">
+                                <%@include file="best/docs.jsp"%>
                             </td>
                         </tr>
                     </tbody>
