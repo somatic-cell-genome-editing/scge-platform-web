@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="sidebar-program">
-<h6><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#peranteau" target="_blank">Leber Congenital Amaurosis (UW-Madison)</a></h6>
+<h6><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#saha" target="_blank">Leber Congenital Amaurosis (UW-Madison)</a></h6>
 <ul class="sidebar-docs-list">
     <li>
         <a href="/platform/public/download/regulatory?documentName='UW-LNP-ABE8E_INTERACT_Briefing_Book_Redacted.pdf'" target="_blank">INTERACT Briefing Book</a>
