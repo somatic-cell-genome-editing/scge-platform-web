@@ -10,10 +10,10 @@
 <h6><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#peranteau" target="_blank">Leber Congenital Amaurosis (UW-Madison)</a></h6>
 <ul class="sidebar-docs-list">
     <li>
-        <a href="/platform/public/download/regulatory?documentName='UW-LNP-ABE8E INTERACT Briefing Book_Redacted.pdf'" target="_blank">INTERACT Briefing Book</a>
+        <a href="/platform/public/download/regulatory?documentName='UW-LNP-ABE8E_INTERACT_Briefing_Book_Redacted.pdf'" target="_blank">INTERACT Briefing Book</a>
     </li>
     <li>
-        <a href="/platform/public/download/regulatory?documentName='UW-LNP-ABE8E Agency Response_Redacted.pdf'" target="_blank" >FDA Responses</a>
+        <a href="/platform/public/download/regulatory?documentName='UW-LNP-ABE8E_Agency_Response_Redacted.pdf'" target="_blank" >FDA Responses</a>
     </li>
 </ul>
 <div class="sidebar-publications">

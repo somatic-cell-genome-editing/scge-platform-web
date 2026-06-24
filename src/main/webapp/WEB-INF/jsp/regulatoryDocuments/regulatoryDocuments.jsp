@@ -328,13 +328,22 @@
                                     <i class="fas fa-chevron-down toggle-icon"></i>
                                 </button>                            </td>
                             <td class="publications-cell">
-                                <div class="no-publications">—</div>
+                                <button class="publications-toggle docs-toggle" onclick="togglePublications('lca-documents')">
+                                    <i class="fas fa-folder-open"></i>
+                                    <span class="pub-count">2</span>
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
+                                </button>
                             </td>
 
                         </tr>
                         <tr class="publications-row" id="lca-publications">
                             <td colspan="9" class="publications-content">
                                 <%@include file="lca/publications.jsp"%>
+                            </td>
+                        </tr>
+                        <tr class="publications-row" id="lca-documents">
+                            <td colspan="9" class="publications-content">
+                                <%@include file="lca/docs.jsp"%>
                             </td>
                         </tr>
                     <tr>
