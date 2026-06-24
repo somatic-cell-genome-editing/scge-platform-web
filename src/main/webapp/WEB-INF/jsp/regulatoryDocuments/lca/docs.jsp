@@ -12,10 +12,10 @@
     </h5>
     <ul class="publications-list">
         <li>
-            <a href="/platform/public/download/regulatory?documentName='UW-LNP-ABE8E INTERACT Briefing Book_Redacted.pdf'" target="_blank">INTERACT Briefing Book</a>
+            <a href="/platform/public/download/regulatory?documentName='UW-LNP-ABE8E_INTERACT_Briefing_Book_Redacted.pdf'" target="_blank">INTERACT Briefing Book</a>
         </li>
         <li>
-            <a href="/platform/public/download/regulatory?documentName='UW-LNP-ABE8E Agency Response_Redacted.pdf'" target="_blank" >FDA Responses</a>
+            <a href="/platform/public/download/regulatory?documentName='UW-LNP-ABE8E_Agency_Response_Redacted.pdf'" target="_blank" >FDA Responses</a>
         </li>
 
 
