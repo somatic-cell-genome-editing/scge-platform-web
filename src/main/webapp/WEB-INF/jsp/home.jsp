@@ -130,7 +130,7 @@
                 <div class="news-item">
                     <div class="news-item-date">June 24th, 2026</div>
                     <h4 class="news-item-title">
-                        <a href="/platform/public/documents/regulatory">Inherited Retinal Disorders (LCA & Best Disease) – Regulatory Documents Released</a>
+                        <a href="/platform/public/documents/regulatory">Inherited Retinal Disorders (Leber Congenital Amaurosis & Best Disease) – Regulatory Documents Released</a>
                     </h4>
                     <p class="news-item-excerpt">
                         The INTERACT Briefing Books and FDA Responses for two retinal disease programs (UW-Madison) are now available on the SCGE Platform. More information on the Leber Congenital Amaurosis (KCNJ13) and Best Disease programs can be found on the Regulatory Documents page . These additions expand the shared library of regulatory interactions to inherited retinal disorders for the gene editing community.
