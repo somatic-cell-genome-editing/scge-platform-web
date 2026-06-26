@@ -9,8 +9,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="publications-container">
     <h5 class="publications-title"> <i class="fas fa-file-alt"></i><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#saha" target="_blank">Best Disease (UW-Madison) Documents</a></h5>
-    <div class="publications-list">
-        <ul>
+    <div >
+        <ul class="publications-list">
         <li>
             <a href="/platform/public/download/regulatory?documentName=UW-LNP-SpCaS9-BEST1-R218C_PS010799_INTERACT_Briefing_Book_Redacted.pdf" target="_blank">INTERACT Briefing Book</a>
         </li>
