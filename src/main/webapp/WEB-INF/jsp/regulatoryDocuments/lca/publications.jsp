@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="publications-container">
     <h5 class="publications-title">
-        <i class="fas fa-file-alt"></i> Leber Congenital Amaurosis (UW-Madison)
+        <i class="fas fa-file-alt"></i> Leber Congenital Amaurosis (UW-Madison) Publications
     </h5>
     <ul class="publications-list">
         <li>

@@ -12,6 +12,7 @@
 <%@ page import="edu.mcw.scge.configuration.Access" %>
 <%@ page import="edu.mcw.scge.datamodel.*" %>
 <%@ page import="org.apache.commons.text.StringEscapeUtils" %>
+<%@ page import="edu.mcw.scge.datamodel.ClinicalTrialFieldOption" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
     <link rel="stylesheet" href="/platform/css/clinicalReport.css" type="text/css">
@@ -507,7 +508,12 @@
                     <% } %>
                 </td>
                 <td>
-                    <textarea name="therapyType" class="form-control" rows="1"><%=clinicalTrialData.getTherapyType()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getTherapyType()):""%></textarea>
+                    <select name="therapyType" class="form-control">
+                        <option value="">-- Select --</option>
+                        <% for (ClinicalTrialFieldOption opt : (List<ClinicalTrialFieldOption>) request.getAttribute("therapyTypeOptions")) { %>
+                        <option value="<%= opt.getValue() %>" <%= clinicalTrialData.getTherapyType() != null && clinicalTrialData.getTherapyType().equalsIgnoreCase(opt.getValue()) ? "selected" : "" %>><%= opt.getValue() %></option>
+                        <% } %>
+                    </select>
                 </td>
             </tr>
             <% } else if(clinicalTrialData.getTherapyType() != null && !clinicalTrialData.getTherapyType().isEmpty()) { %>
@@ -534,7 +540,12 @@
                     <% } %>
                 </td>
                 <td>
-                    <textarea name="therapyRoute" class="form-control" rows="1"><%=clinicalTrialData.getTherapyRoute()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getTherapyRoute()):""%></textarea>
+                    <select name="therapyRoute" class="form-control">
+                        <option value="">-- Select --</option>
+                        <% for (ClinicalTrialFieldOption opt : (List<ClinicalTrialFieldOption>) request.getAttribute("therapyRouteOptions")) { %>
+                        <option value="<%= opt.getValue() %>" <%= clinicalTrialData.getTherapyRoute() != null && clinicalTrialData.getTherapyRoute().equalsIgnoreCase(opt.getValue()) ? "selected" : "" %>><%= opt.getValue() %></option>
+                        <% } %>
+                    </select>
                 </td>
             </tr>
             <% } else if(clinicalTrialData.getTherapyRoute() != null && !clinicalTrialData.getTherapyRoute().isEmpty()) { %>
@@ -561,7 +572,21 @@
                     <% } %>
                 </td>
                 <td>
-                    <textarea name="mechanismOfAction" class="form-control" rows="1"><%=clinicalTrialData.getMechanismOfAction()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getMechanismOfAction()):""%></textarea>
+                    <%
+                        String moaVal = clinicalTrialData.getMechanismOfAction() != null ? clinicalTrialData.getMechanismOfAction() : "";
+                        java.util.Set<String> moaSelected = new java.util.HashSet<>();
+                        for (String v : moaVal.split(",\\s*")) { moaSelected.add(v.trim().toLowerCase()); }
+                    %>
+                    <div class="fda-designations-container">
+                        <% for (ClinicalTrialFieldOption opt : (List<ClinicalTrialFieldOption>) request.getAttribute("mechanismOfActionOptions")) { %>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="mechanismOfAction_<%= opt.getValue().replaceAll("\\s+", "_") %>"
+                                   name="mechanismOfAction" value="<%= opt.getValue() %>"
+                                <%= moaSelected.contains(opt.getValue().toLowerCase()) ? "checked" : "" %>>
+                            <label for="mechanismOfAction_<%= opt.getValue().replaceAll("\\s+", "_") %>"><%= opt.getValue() %></label>
+                        </div>
+                        <% } %>
+                    </div>
                 </td>
             </tr>
             <% } else if(clinicalTrialData.getMechanismOfAction() != null && !clinicalTrialData.getMechanismOfAction().isEmpty()) { %>
@@ -615,7 +640,12 @@
                     <% } %>
                 </td>
                 <td>
-                    <textarea name="drugProductType" class="form-control" rows="1"><%=clinicalTrialData.getDrugProductType()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getDrugProductType()):""%></textarea>
+                    <select name="drugProductType" class="form-control">
+                        <option value="">-- Select --</option>
+                        <% for (ClinicalTrialFieldOption opt : (List<ClinicalTrialFieldOption>) request.getAttribute("drugProductTypeOptions")) { %>
+                        <option value="<%= opt.getValue() %>" <%= clinicalTrialData.getDrugProductType() != null && clinicalTrialData.getDrugProductType().equalsIgnoreCase(opt.getValue()) ? "selected" : "" %>><%= opt.getValue() %></option>
+                        <% } %>
+                    </select>
                 </td>
             </tr>
             <% } else if(clinicalTrialData.getDrugProductType() != null && !clinicalTrialData.getDrugProductType().isEmpty()) { %>
@@ -669,7 +699,12 @@
                     <% } %>
                 </td>
                 <td>
-                    <textarea name="deliverySystem" class="form-control" rows="1"><%=clinicalTrialData.getDeliverySystem()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getDeliverySystem()):""%></textarea>
+                    <select name="deliverySystem" class="form-control">
+                        <option value="">-- Select --</option>
+                        <% for (ClinicalTrialFieldOption opt : (List<ClinicalTrialFieldOption>) request.getAttribute("deliverySystemOptions")) { %>
+                        <option value="<%= opt.getValue() %>" <%= clinicalTrialData.getDeliverySystem() != null && clinicalTrialData.getDeliverySystem().equalsIgnoreCase(opt.getValue()) ? "selected" : "" %>><%= opt.getValue() %></option>
+                        <% } %>
+                    </select>
                 </td>
             </tr>
             <% } else if(clinicalTrialData.getDeliverySystem() != null && !clinicalTrialData.getDeliverySystem().isEmpty()) { %>

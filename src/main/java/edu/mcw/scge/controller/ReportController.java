@@ -7,6 +7,7 @@ import edu.mcw.scge.datamodel.Alias;
 import edu.mcw.scge.datamodel.ClinicalTrialAdditionalInfo;
 import edu.mcw.scge.datamodel.ClinicalTrialExternalLink;
 import edu.mcw.scge.datamodel.ClinicalTrialFieldChange;
+import edu.mcw.scge.datamodel.ClinicalTrialFieldOption;
 import edu.mcw.scge.datamodel.ClinicalTrialRecord;
 import edu.mcw.scge.datamodel.ctd.Section;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,6 +34,23 @@ public class ReportController {
             List<Alias> aliasData = ctDAO.getAliases(nctId,"compound");
             List<ClinicalTrialAdditionalInfo>fdaInfo = ctDAO.getAdditionalInfo(nctId,"fda_designation");
             List<String>propertyValues = ctDAO.getDistinctPropertyValues("fda_designation");
+            List<String> fdaOptions = List.of(
+                    "Accelerated Approval",
+                    "Breakthrough Therapy",
+                    "Chemistry, Manufacturing, and Controls Development and Readiness Pilot (CDRP) Program",
+                    "Fast Track",
+                    "Orphan Drug Designation",
+                    "Priority Review",
+                    "Rare Pediatric Disease Designation",
+                    "Regenerative Medicine Advanced Therapy (RMAT)",
+                    "Support for Clinical Trials Advancing Rare Disease Therapeutics (START) Pilot"
+            );
+            for (String option : fdaOptions) {
+                if (!propertyValues.contains(option)) {
+                    propertyValues.add(option);
+                }
+            }
+            propertyValues.sort(null);
             if(clinicalTrialData==null){
                 req.setAttribute("errorMessage","Clinical Trial Data not found for NCT ID: "+nctId);
                 req.setAttribute("page","/WEB-INF/jsp/report/clinicalTrial/error");
@@ -51,6 +69,13 @@ public class ReportController {
                     extLinkChanges.put(change.getExtLinkId(), change);
                 }
             }
+
+            // Load dropdown options for curated fields
+            req.setAttribute("therapyTypeOptions", ctDAO.getFieldOptions("therapy_type"));
+            req.setAttribute("therapyRouteOptions", ctDAO.getFieldOptions("therapy_route"));
+            req.setAttribute("mechanismOfActionOptions", ctDAO.getFieldOptions("mechanism_of_action"));
+            req.setAttribute("drugProductTypeOptions", ctDAO.getFieldOptions("drug_product_type"));
+            req.setAttribute("deliverySystemOptions", ctDAO.getFieldOptions("delivery_system"));
 
             req.setAttribute("clinicalTrialData",clinicalTrialData);
             req.setAttribute("clinicalExtLinkData",clinicalExtLinkData);

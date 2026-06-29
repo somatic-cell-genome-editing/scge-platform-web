@@ -128,6 +128,17 @@
 
 
                 <div class="news-item">
+                    <div class="news-item-date">June 24th, 2026</div>
+                    <h4 class="news-item-title">
+                        <a href="/platform/public/documents/regulatory">Inherited Retinal Disorders (Leber Congenital Amaurosis & Best Disease) – Regulatory Documents Released</a>
+                    </h4>
+                    <p class="news-item-excerpt">
+                        The INTERACT Briefing Books and FDA Responses for two retinal disease programs (UW-Madison) are now available on the SCGE Platform. More information on the Leber Congenital Amaurosis (KCNJ13) and Best Disease programs can be found on the Regulatory Documents page . These additions expand the shared library of regulatory interactions to inherited retinal disorders for the gene editing community.
+                    </p>
+                    <a href="/platform/public/documents/regulatory" class="news-item-link">View Documents &rarr;</a>
+                </div>
+
+                <div class="news-item">
                     <div class="news-item-date">April 1st, 2026</div>
                     <h4 class="news-item-title">
                         <a href="/platform/public/documents/regulatory">Urea Cycle Disorders (Prime Editing) – Regulatory Documents Released</a>
@@ -137,7 +148,7 @@
                     </p>
                     <a href="/platform/public/documents/regulatory" class="news-item-link">View Documents &rarr;</a>
                 </div>
-             
+            
                 <div class="news-item">
                     <div class="news-item-date">March 31st, 2026</div>
                     <h4 class="news-item-title">
@@ -190,6 +201,23 @@
                         providing researchers and clinicians with access to the latest clinical trial information in genome editing.
                     </p>
                     <a href="/platform/data/search/ClinicalTrial" class="news-item-link">Explore &rarr;</a>
+                </div>
+            </div>
+
+            <div class="publications-section">
+                <h3><i class="fas fa-book-open"></i> Latest Publications</h3>
+
+                <div class="publication-item">
+                    <div class="publication-journal">The American Journal of Human Genetics</div>
+                    <div class="publication-date">March 31, 2026</div>
+                    <h4 class="publication-title">
+                        <a href="https://www.cell.com/ajhg/fulltext/S0002-9297(26)00148-5" target="_blank">Implications of the FDA's New Plausible Mechanism Framework for the Development of a Personalized In Vivo Prime Editing Platform</a>
+                    </h4>
+<%--                    <p class="publication-authors">Feierman et al.</p>--%>
+<%--                    <p class="publication-excerpt">--%>
+<%--                        Researchers from CHOP and Penn Medicine demonstrate a customizable in vivo prime editing platform to treat urea cycle disorders, achieving 30-40% correction in liver DNA in preclinical studies. Supported by the NIH SCGE program.--%>
+<%--                    </p>--%>
+                    <a href="https://www.cell.com/ajhg/fulltext/S0002-9297(26)00148-5" target="_blank" class="publication-link">Read Full Paper <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
 

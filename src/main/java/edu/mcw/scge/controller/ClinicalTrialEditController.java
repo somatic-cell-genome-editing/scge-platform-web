@@ -41,7 +41,8 @@ public class ClinicalTrialEditController {
             ctRecord.setTargetGeneOrVariant(req.getParameter("targetGeneOrVariant"));
             ctRecord.setTherapyType(req.getParameter("therapyType"));
             ctRecord.setTherapyRoute(req.getParameter("therapyRoute"));
-            ctRecord.setMechanismOfAction(req.getParameter("mechanismOfAction"));
+            String[] moaValues = req.getParameterValues("mechanismOfAction");
+            ctRecord.setMechanismOfAction(moaValues != null ? String.join(", ", moaValues) : "");
             ctRecord.setRouteOfAdministration(req.getParameter("routeOfAdministration"));
             ctRecord.setDrugProductType(req.getParameter("drugProductType"));
             ctRecord.setTargetTissueOrCell(req.getParameter("targetTissueOrCell"));
@@ -104,6 +105,23 @@ public class ClinicalTrialEditController {
             //Handle FDA designations
             List<ClinicalTrialAdditionalInfo> existingFdaDesignations = ctDAO.getAdditionalInfo(nctId,"fda_designation");
             List<String>allFdaDesignations = ctDAO.getDistinctPropertyValues("fda_designation");
+            List<String> fdaOptions = List.of(
+                    "Accelerated Approval",
+                    "Breakthrough Therapy",
+                    "Chemistry, Manufacturing, and Controls Development and Readiness Pilot (CDRP) Program",
+                    "Fast Track",
+                    "Orphan Drug Designation",
+                    "Priority Review",
+                    "Rare Pediatric Disease Designation",
+                    "Regenerative Medicine Advanced Therapy (RMAT)",
+                    "Support for Clinical Trials Advancing Rare Disease Therapeutics (START) Pilot"
+            );
+            for (String option : fdaOptions) {
+                if (!allFdaDesignations.contains(option)) {
+                    allFdaDesignations.add(option);
+                }
+            }
+            allFdaDesignations.sort(null);
             String[] selectedFdaDesignations = req.getParameterValues("fdaDesignation");
 
             // Track FDA designation changes
