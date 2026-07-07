@@ -1,7 +1,7 @@
 
-<%@ page import="org.elasticsearch.search.aggregations.Aggregation" %>
+<%@ page import="co.elastic.clients.elasticsearch._types.aggregations.StringTermsAggregate" %>
+<%@ page import="co.elastic.clients.elasticsearch._types.aggregations.StringTermsBucket" %>
 <%@ page import="edu.mcw.scge.service.es.clinicalTrials.ClinicalTrialsService" %>
-<%@ page import="org.elasticsearch.search.aggregations.bucket.terms.Terms" %>
 <%@ page import="edu.mcw.scge.datamodel.web.ClinicalTrials" %><%--
   Created by IntelliJ IDEA.
   User: jthota
@@ -73,15 +73,15 @@ expandFilterVal="<%=request.getAttribute("expandAllFilters")%>"
     <div id="collapse<%=aggName%>" class="accordion-body collapse" >
       <div class="pl-3  accordion-inner" style="height:auto;max-height: 300px;; overflow-y: auto">
         <%
-         Terms aggs= sr.getAggregations().get(aggName);
-          for(Terms.Bucket bkt:aggs.getBuckets()){
-
-            if(bkt.getKey()!=null && !bkt.getKey().equals("")){
+         StringTermsAggregate aggs= sr.aggregations().get(aggName).sterms();
+          for(StringTermsBucket bkt:aggs.buckets().array()){
+            String bktKey = bkt.key().stringValue();
+            if(bktKey!=null && !bktKey.equals("")){
         %>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="<%=aggName%>" value="<%=bkt.getKey()%>" id="<%=bkt.getKey()%>" >
-          <label class="form-check-label" for="<%=bkt.getKey()%>" data-title="<%=bkt.getKey()%>" title="<%=bkt.getKey()%>">
-            <%=bkt.getKey()%>&nbsp;<!--(<%--=bkt.getDocCount()--%>)-->
+          <input class="form-check-input" type="checkbox" name="<%=aggName%>" value="<%=bktKey%>" id="<%=bktKey%>" >
+          <label class="form-check-label" for="<%=bktKey%>" data-title="<%=bktKey%>" title="<%=bktKey%>">
+            <%=bktKey%>&nbsp;<!--(<%--=bkt.docCount()--%>)-->
           </label>
         </div>
           <%}}%>

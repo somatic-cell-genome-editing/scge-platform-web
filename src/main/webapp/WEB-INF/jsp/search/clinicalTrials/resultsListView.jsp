@@ -9,8 +9,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div class="results-list-view">
-    <% for(SearchHit hit : hits) {
-        Map<String, Object> sourceFields = hit.getSourceAsMap();
+    <% for(Hit<Map> hit : hits) {
+        Map<String, Object> sourceFields = (Map<String, Object>) hit.source();
         String nctId = sourceFields.get("nctId") != null ? sourceFields.get("nctId").toString() : "";
         String indication = sourceFields.get("indication") != null ? sourceFields.get("indication").toString() : "N/A";
         String sponsor = sourceFields.get("sponsor") != null ? sourceFields.get("sponsor").toString() : "N/A";
