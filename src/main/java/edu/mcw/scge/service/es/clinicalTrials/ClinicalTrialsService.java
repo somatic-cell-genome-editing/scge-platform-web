@@ -1,218 +1,235 @@
 package edu.mcw.scge.service.es.clinicalTrials;
 
+import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorCause;
+import co.elastic.clients.elasticsearch._types.FieldValue;
+import co.elastic.clients.elasticsearch._types.SortOrder;
+import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
+import co.elastic.clients.elasticsearch._types.query_dsl.BoolQuery;
+import co.elastic.clients.elasticsearch._types.query_dsl.DisMaxQuery;
+import co.elastic.clients.elasticsearch._types.query_dsl.Operator;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.TextQueryType;
+import co.elastic.clients.elasticsearch.core.SearchRequest;
+import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.util.NamedValue;
 import edu.mcw.scge.dao.implementation.DefinitionDAO;
 import edu.mcw.scge.datamodel.Definition;
 import edu.mcw.scge.datamodel.web.ClinicalTrials;
 import edu.mcw.scge.services.ESClient;
 import edu.mcw.scge.services.SCGEContext;
-import org.elasticsearch.action.search.SearchRequest;
-import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.index.query.*;
-import org.elasticsearch.search.aggregations.AggregationBuilder;
-import org.elasticsearch.search.aggregations.AggregationBuilders;
-import org.elasticsearch.search.aggregations.BucketOrder;
-import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.elasticsearch.search.sort.SortOrder;
-import org.elasticsearch.search.suggest.Suggest;
-import org.elasticsearch.search.suggest.SuggestBuilder;
-import org.elasticsearch.search.suggest.completion.CompletionSuggestionBuilder;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class ClinicalTrialsService {
 
-
-    public static Map<String, String> fieldDisplayNames= new HashMap<>();
-    static{
-            for(String field: ClinicalTrials.facets) {
-                String displayName=String.join(" ", field.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])"));
-                if(displayName.toLowerCase().startsWith("fda")) {
-                  String name=  displayName.substring(0,3).toUpperCase()+displayName.substring(3);
-                    fieldDisplayNames.put(field, StringUtils.capitalize(name));
-                }else  if(field.equalsIgnoreCase("status")) {
-                    String name=  "Recruitment Status";
-                    fieldDisplayNames.put(field, StringUtils.capitalize(name));
-                }else  if(field.equalsIgnoreCase("withHasResults")) {
-                    String name=  "Results Posted";
-                    fieldDisplayNames.put(field, name);
-                }else if(field.equalsIgnoreCase("eligibilitySex")){
-                    String name=  "Sexes Eligible for Study";
-                    fieldDisplayNames.put(field, name);
-                }
-                else{
-                    fieldDisplayNames.put(field, StringUtils.capitalize(displayName));
-                }
+    public static Map<String, String> fieldDisplayNames = new HashMap<>();
+    static {
+        for (String field : ClinicalTrials.facets) {
+            String displayName = String.join(" ", field.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])"));
+            if (displayName.toLowerCase().startsWith("fda")) {
+                String name = displayName.substring(0, 3).toUpperCase() + displayName.substring(3);
+                fieldDisplayNames.put(field, StringUtils.capitalize(name));
+            } else if (field.equalsIgnoreCase("status")) {
+                fieldDisplayNames.put(field, StringUtils.capitalize("Recruitment Status"));
+            } else if (field.equalsIgnoreCase("withHasResults")) {
+                fieldDisplayNames.put(field, "Results Posted");
+            } else if (field.equalsIgnoreCase("eligibilitySex")) {
+                fieldDisplayNames.put(field, "Sexes Eligible for Study");
+            } else {
+                fieldDisplayNames.put(field, StringUtils.capitalize(displayName));
             }
-
+        }
     }
-    public static Map<String, String> facetDefinitions= new HashMap<>();
-    static{
-        DefinitionDAO definitionDAO=new DefinitionDAO();
+
+    public static Map<String, String> facetDefinitions = new HashMap<>();
+    static {
+        DefinitionDAO definitionDAO = new DefinitionDAO();
         try {
-            List<Definition> definitions=definitionDAO.getDefinitionsByCategory("Table Column Header");
-            for(Definition d:definitions){
+            List<Definition> definitions = definitionDAO.getDefinitionsByCategory("Table Column Header");
+            for (Definition d : definitions) {
                 facetDefinitions.put(d.getTerm(), d.getDefinition());
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 
-    public SearchResponse getSearchResults(String searchTerm, String category, Map<String, List<String>> filtersMap, int page, int pageSize) throws IOException {
-        String searchIndex= SCGEContext.getESIndexName();
-        SearchSourceBuilder srb=new SearchSourceBuilder();
-        BoolQueryBuilder q=this.buildBoolQuery(searchTerm, category, filtersMap);
-        srb.query(q);
-        for(String fieldName:ClinicalTrials.facets) {
-            srb.aggregation(buildAggregations(fieldName));
+    public SearchResponse<Map> getSearchResults(String searchTerm, String category,
+                                                 Map<String, List<String>> filtersMap,
+                                                 int page, int pageSize) throws IOException {
+        String searchIndex = SCGEContext.getESIndexName();
+        ElasticsearchClient client = ESClient.getClient();
+
+        Query query = buildBoolQuery(searchTerm, category, filtersMap);
+
+        Map<String, Aggregation> aggsMap = new HashMap<>();
+        for (String fieldName : ClinicalTrials.facets) {
+            aggsMap.put(fieldName, buildAggregation(fieldName));
         }
-        // Pagination: calculate offset and set page size
-        srb.from(page * pageSize);
-        srb.size(pageSize);
-        srb.trackTotalHits(true); // Ensure total hits are tracked for pagination
-        try {
-            srb.sort("recordModifiedDate", SortOrder.DESC);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        if(filtersMap!=null && filtersMap.size()>0)
+
+        SearchRequest.Builder srb = new SearchRequest.Builder()
+                .index(searchIndex)
+                .query(query)
+                .from(page * pageSize)
+                .size(pageSize)
+                .trackTotalHits(t -> t.enabled(true))
+                .aggregations(aggsMap)
+                .sort(s -> s.field(f -> f.field("recordModifiedDate").order(SortOrder.Desc)));
+
+        if (filtersMap != null && !filtersMap.isEmpty()) {
             srb.postFilter(filter(filtersMap));
+        }
 
-        SearchRequest searchRequest=new SearchRequest(searchIndex);
-        searchRequest.source(srb);
-       return ESClient.getClient().search(searchRequest, RequestOptions.DEFAULT);
-
-
+        try {
+            return client.search(srb.build(), Map.class);
+        } catch (ElasticsearchException ex) {
+            System.err.println("[ClinicalTrialsService.getSearchResults] ES error: " + describeError(ex));
+            throw ex;
+        }
     }
+
     public Set<String> getAutocompleteList(String term) throws IOException {
-        Set<String> autocompleteList=new HashSet<>();
-        CompletionSuggestionBuilder suggestionBuilder=new CompletionSuggestionBuilder("suggest");
-        suggestionBuilder.text(term);
-        //   suggestionBuilder.prefix(term, Fuzziness.TWO);
-        suggestionBuilder.size(10000);
-        SearchSourceBuilder srb=new SearchSourceBuilder();
-        srb.suggest(new SuggestBuilder().addSuggestion("autocomplete-suggest", suggestionBuilder));
+        Set<String> autocompleteList = new HashSet<>();
+        ElasticsearchClient client = ESClient.getClient();
 
-        SearchRequest searchRequest=new SearchRequest(SCGEContext.getESIndexName());
-        searchRequest.source(srb);
-        SearchResponse sr= ESClient.getClient().search(searchRequest, RequestOptions.DEFAULT);
+        SearchResponse<Map> sr = client.search(s -> s
+                        .index(SCGEContext.getESIndexName())
+                        .suggest(sug -> sug
+                                .suggesters("autocomplete-suggest", suggester -> suggester
+                                        .text(term)
+                                        .completion(c -> c.field("suggest").size(10000))
+                                )
+                        ),
+                Map.class);
 
-        if(sr!=null){
-            // Process the response
-            sr.getSuggest().getSuggestion("autocomplete-suggest").getEntries().stream().map(Suggest.Suggestion.Entry::getOptions)
-                    .forEach(options -> {
-                        options.forEach(option -> {
-                            autocompleteList.add(String.valueOf(option.getText()));
-                        });
-                    });
-
+        if (sr != null && sr.suggest() != null && sr.suggest().get("autocomplete-suggest") != null) {
+            sr.suggest().get("autocomplete-suggest").forEach(entry ->
+                    entry.completion().options().forEach(option ->
+                            autocompleteList.add(option.text())
+                    )
+            );
         }
         return autocompleteList;
     }
-    public BoolQueryBuilder filter(Map<String, List<String>> filters){
-        BoolQueryBuilder q=new BoolQueryBuilder();
-        for(String filter:filters.keySet()) {
-            List<String> filterValues=filters.get(filter);
-            if(filterValues.size()>0)
-            q.filter().add(QueryBuilders.termsQuery(filter + ".keyword", filterValues.toArray()));
+
+    public Query filter(Map<String, List<String>> filters) {
+        BoolQuery.Builder b = new BoolQuery.Builder();
+        for (String field : filters.keySet()) {
+            List<String> values = filters.get(field);
+            if (values != null && !values.isEmpty()) {
+                List<FieldValue> fieldValues = new ArrayList<>();
+                for (String v : values) {
+                    fieldValues.add(FieldValue.of(v));
+                }
+                b.filter(f -> f.terms(t -> t
+                        .field(field + ".keyword")
+                        .terms(tv -> tv.value(fieldValues))));
+            }
         }
-      //  q.must(dqb);
-        return q;
-    }
-    public BoolQueryBuilder buildBoolQuery( String searchTerm, String category, Map<String, List<String>> filtersMap){
-        BoolQueryBuilder q=new BoolQueryBuilder();
-        q.must(buildQuery(searchTerm));
-        if(category!=null && !category.equals("")){
-            q.filter(QueryBuilders.termQuery("category.keyword", category));
-        }
-        if (filtersMap != null && filtersMap.size() > 0 && (filtersMap.get("recordStatus")!=null && filtersMap.get("recordStatus").size()>0) ) {
-            q.filter(QueryBuilders.termsQuery("recordStatus.keyword", filtersMap.get("recordStatus")));
-        }
-//        q.filter(QueryBuilders.termsQuery("recordStatus.keyword", filtersMap.get("recordStatus")));
-        return q;
+        return Query.of(q -> q.bool(b.build()));
     }
 
-    public AggregationBuilder buildAggregations(String fieldName){
-        AggregationBuilder builder = null;
-        builder= AggregationBuilders.terms(fieldName).field(fieldName + ".keyword").size(1000).order(BucketOrder.key(true));
-         return builder;
+    public Query buildBoolQuery(String searchTerm, String category, Map<String, List<String>> filtersMap) {
+        BoolQuery.Builder b = new BoolQuery.Builder();
+        b.must(buildQuery(searchTerm));
+
+        if (category != null && !category.equals("")) {
+            b.filter(f -> f.term(t -> t.field("category.keyword").value(category)));
+        }
+
+        if (filtersMap != null && !filtersMap.isEmpty()
+                && filtersMap.get("recordStatus") != null
+                && !filtersMap.get("recordStatus").isEmpty()) {
+            List<FieldValue> fieldValues = new ArrayList<>();
+            for (String s : filtersMap.get("recordStatus")) {
+                fieldValues.add(FieldValue.of(s));
+            }
+            b.filter(f -> f.terms(t -> t
+                    .field("recordStatus.keyword")
+                    .terms(tv -> tv.value(fieldValues))));
+        }
+
+        return Query.of(q -> q.bool(b.build()));
     }
 
-    public QueryBuilder buildQuery(String term){
-        DisMaxQueryBuilder q=new DisMaxQueryBuilder();
+    public Aggregation buildAggregation(String fieldName) {
+        return Aggregation.of(a -> a.terms(t -> t
+                .field(fieldName + ".keyword")
+                .size(1000)
+                .order(List.of(NamedValue.of("_key", SortOrder.Asc)))
+        ));
+    }
 
+    public Query buildQuery(String term) {
+        DisMaxQuery.Builder dq = new DisMaxQuery.Builder();
 
-        if(term!=null && !term.equals("") && !term.equals("null")) {
-            String searchTerm=term.toLowerCase().trim();
-            if(searchTerm.toLowerCase().contains(" and ")){
-                String searchString=String.join(" ", searchTerm.toLowerCase().split(" and "));
-                q.add(QueryBuilders.multiMatchQuery(searchString)
-                        .type(MultiMatchQueryBuilder.Type.CROSS_FIELDS)
-                        .operator(Operator.AND)
+        if (term != null && !term.equals("") && !term.equals("null")) {
+            String searchTerm = term.toLowerCase().trim();
+
+            if (searchTerm.contains(" and ")) {
+                String searchString = String.join(" ", searchTerm.split(" and "));
+                dq.queries(Query.of(q -> q.multiMatch(m -> m
+                        .query(searchString)
+                        .type(TextQueryType.CrossFields)
+                        .operator(Operator.And)
+                        .analyzer("stop"))));
+                dq.queries(Query.of(q -> q.multiMatch(m -> m
+                        .query(searchString)
+                        .type(TextQueryType.Phrase)
                         .analyzer("stop")
-
-                );
-
-                q.add(QueryBuilders.multiMatchQuery(searchString)
-                        .type(MultiMatchQueryBuilder.Type.CROSS_FIELDS)
-                        .type(MultiMatchQueryBuilder.Type.PHRASE)
+                        .boost(1000f))));
+            } else if (searchTerm.contains(" or ")) {
+                String searchString = String.join(" ", searchTerm.split(" or "));
+                dq.queries(Query.of(q -> q.multiMatch(m -> m
+                        .query(searchString)
+                        .type(TextQueryType.CrossFields)
+                        .operator(Operator.Or)
+                        .analyzer("stop"))));
+            } else if (searchTerm.contains(" ")) {
+                dq.queries(Query.of(q -> q.multiMatch(m -> m
+                        .query(searchTerm)
+                        .type(TextQueryType.CrossFields)
+                        .operator(Operator.And))));
+                dq.queries(Query.of(q -> q.multiMatch(m -> m
+                        .query(searchTerm)
+                        .type(TextQueryType.Phrase)
+                        .operator(Operator.And)
                         .analyzer("stop")
-                        .boost(1000)
-                );
-
-            }else if(searchTerm.toLowerCase().contains(" or ")){
-                String searchString=String.join(" ", searchTerm.toLowerCase().split(" or "));
-                q.add(QueryBuilders.multiMatchQuery(searchString)
-                        .type(MultiMatchQueryBuilder.Type.CROSS_FIELDS)
-                        .operator(Operator.OR)
-                        .analyzer("stop")
-
-                );
-
-            }else if(!searchTerm.toLowerCase().contains(" and ") && searchTerm.toLowerCase().contains(" ") ) {
-                q.add(QueryBuilders.multiMatchQuery(searchTerm)
-                        .type(MultiMatchQueryBuilder.Type.CROSS_FIELDS)
-                        .operator(Operator.AND)
-
-                );
-                q.add(QueryBuilders.multiMatchQuery(searchTerm)
-                        .type(MultiMatchQueryBuilder.Type.CROSS_FIELDS)
-                        .operator(Operator.AND)
-                        .type(MultiMatchQueryBuilder.Type.PHRASE)
-                        .analyzer("stop")
-                        .boost(1000)
-                );
-
-            }else { if (isNumeric(searchTerm)) {
-//                q.add(QueryBuilders.termQuery("nctId", searchTerm));
+                        .boost(1000f))));
             } else {
-                q.add(QueryBuilders.multiMatchQuery(searchTerm)
-                        .type(MultiMatchQueryBuilder.Type.CROSS_FIELDS)
-                        .type(MultiMatchQueryBuilder.Type.PHRASE)
-//                        .analyzer("stop")
-                );
-                q.add(QueryBuilders.multiMatchQuery(searchTerm)
-                        .type(MultiMatchQueryBuilder.Type.CROSS_FIELDS)
-                        .operator(Operator.AND)
-//                        .analyzer("stop")
-                );
+                if (!isNumeric(searchTerm)) {
+                    dq.queries(Query.of(q -> q.multiMatch(m -> m
+                            .query(searchTerm)
+                            .type(TextQueryType.Phrase))));
+                    dq.queries(Query.of(q -> q.multiMatch(m -> m
+                            .query(searchTerm)
+                            .type(TextQueryType.CrossFields)
+                            .operator(Operator.And))));
+                }
             }
-            }
-
-        }else{
-            q.add(QueryBuilders.matchAllQuery());
+        } else {
+            dq.queries(Query.of(q -> q.matchAll(ma -> ma)));
         }
-        return q;
+
+        return Query.of(q -> q.disMax(dq.build()));
     }
-    public boolean isNumeric(String searchTerm){
-        try{
-            if(Long.parseLong(searchTerm)>0)
+
+    public boolean isNumeric(String searchTerm) {
+        try {
+            if (Long.parseLong(searchTerm) > 0)
                 return true;
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
         return false;
     }
 
@@ -221,42 +238,88 @@ public class ClinicalTrialsService {
      * Stage: last 7 days (daily ingestion).
      * Production: last 14 days (weekly release cycle).
      */
-    public SearchResponse getRecentUpdatesForDigest(String category, Map<String, List<String>> filtersMap) throws IOException {
+    public SearchResponse<Map> getRecentUpdatesForDigest(String category,
+                                                          Map<String, List<String>> filtersMap) throws IOException {
         String searchIndex = SCGEContext.getESIndexName();
-        SearchSourceBuilder srb = new SearchSourceBuilder();
+        ElasticsearchClient client = ESClient.getClient();
 
-        // Use wider lookback window in production to account for weekly release cycle
         int lookbackDays = SCGEContext.isProduction() ? 14 : 7;
 
-        BoolQueryBuilder q = new BoolQueryBuilder();
-        q.must(QueryBuilders.matchAllQuery());
+        BoolQuery.Builder b = new BoolQuery.Builder();
+        b.must(m -> m.matchAll(ma -> ma));
 
         if (category != null && !category.equals("")) {
-            q.filter(QueryBuilders.termQuery("category.keyword", category));
+            b.filter(f -> f.term(t -> t.field("category.keyword").value(category)));
         }
 
-        // Filter for records modified in last N days
-        q.filter(QueryBuilders.rangeQuery("recordModifiedDate")
-                .gte("now-" + lookbackDays + "d/d")
-                .lte("now/d"));
-        if (filtersMap != null && filtersMap.size() > 0 && (filtersMap.get("recordStatus")!=null && filtersMap.get("recordStatus").size()>0) ) {
-           q.filter(QueryBuilders.termsQuery("recordStatus.keyword", filtersMap.get("recordStatus")));
+        // recordModifiedDate is mapped as a long (epoch millis), not a date —
+        // compute the window bounds in Java instead of relying on ES date math.
+        long nowMs = System.currentTimeMillis();
+        long startMs = nowMs - lookbackDays * 24L * 60L * 60L * 1000L;
+        b.filter(f -> f.range(r -> r.longNumber(n -> n
+                .field("recordModifiedDate")
+                .gte(startMs)
+                .lte(nowMs))));
+
+        if (filtersMap != null && !filtersMap.isEmpty()
+                && filtersMap.get("recordStatus") != null
+                && !filtersMap.get("recordStatus").isEmpty()) {
+            List<FieldValue> fieldValues = new ArrayList<>();
+            for (String s : filtersMap.get("recordStatus")) {
+                fieldValues.add(FieldValue.of(s));
+            }
+            b.filter(f -> f.terms(t -> t
+                    .field("recordStatus.keyword")
+                    .terms(tv -> tv.value(fieldValues))));
         }
 
+        BoolQuery boolQuery = b.build();
 
-        srb.query(q);
-        srb.size(10000); // Get all updates from past 7 days, display limited in UI
-        srb.sort("recordModifiedDate", SortOrder.DESC);
-
-
-        SearchRequest searchRequest = new SearchRequest(searchIndex);
-        searchRequest.source(srb);
-        return ESClient.getClient().search(searchRequest, RequestOptions.DEFAULT);
+        try {
+            return client.search(s -> s
+                            .index(searchIndex)
+                            .query(q -> q.bool(boolQuery))
+                            .size(10000)
+                            .sort(so -> so.field(f -> f.field("recordModifiedDate").order(SortOrder.Desc))),
+                    Map.class);
+        } catch (ElasticsearchException ex) {
+            System.err.println("[ClinicalTrialsService.getRecentUpdatesForDigest] ES error: " + describeError(ex));
+            throw ex;
+        }
     }
-    public static List<String> searchFields(){
+
+    /** Walk an ElasticsearchException's cause chain and shard failures into a readable string. */
+    private static String describeError(ElasticsearchException ex) {
+        StringBuilder sb = new StringBuilder();
+        if (ex.response() != null && ex.response().error() != null) {
+            describeCause(ex.response().error(), sb, 0);
+        } else {
+            sb.append(ex.getMessage());
+        }
+        return sb.toString();
+    }
+
+    private static void describeCause(ErrorCause cause, StringBuilder sb, int depth) {
+        String indent = "  ".repeat(depth);
+        sb.append("\n").append(indent)
+                .append("type=").append(cause.type())
+                .append(", reason=").append(cause.reason());
+        if (cause.metadata() != null && !cause.metadata().isEmpty()) {
+            sb.append("\n").append(indent).append("metadata=").append(cause.metadata());
+        }
+        if (cause.causedBy() != null) {
+            sb.append("\n").append(indent).append("causedBy:");
+            describeCause(cause.causedBy(), sb, depth + 1);
+        }
+        if (cause.rootCause() != null && !cause.rootCause().isEmpty()) {
+            sb.append("\n").append(indent).append("rootCause:");
+            cause.rootCause().forEach(rc -> describeCause(rc, sb, depth + 1));
+        }
+    }
+
+    public static List<String> searchFields() {
         return Arrays.asList(
                 "nctId," +
-                      
                         "interventionName," +
                         "     sponsor," +
                         "     sponsorClass," +
@@ -264,17 +327,8 @@ public class ClinicalTrialsService {
                         "     phase," +
                         "     location," +
                         "     eligibilitySex," +
-
-
-
                         "     standardAge," +
-
-
-
                         "     studyStatus," +
-
-
-
                         "     browseConditionTerms," +
                         "     nCTNumber," +
                         "     targetGeneOrVariant," +
@@ -295,8 +349,6 @@ public class ClinicalTrialsService {
                         "   status," +
                         "  standardAges," +
                         "   locations;"
-                
-                
         );
     }
 }
