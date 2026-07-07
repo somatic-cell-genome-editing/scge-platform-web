@@ -12,7 +12,7 @@
         border-bottom: 3px solid #ef4444;
         padding: 1rem 0;
         position: relative;
-        z-index: 1000;
+        z-index: 1;
     }
 
     .outage-banner-content {
