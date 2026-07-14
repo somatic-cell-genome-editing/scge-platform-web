@@ -72,7 +72,7 @@
                 <% } %>
                 <% if(!therapyType.isEmpty() && !therapyType.equals("null")) { %>
                 <div class="list-view-field">
-                    <span class="list-view-label">Therapy Type</span>
+                    <span class="list-view-label">Therapeutic Modality</span>
                     <span class="list-view-value"><%=therapyType%></span>
                 </div>
                 <% } %>
