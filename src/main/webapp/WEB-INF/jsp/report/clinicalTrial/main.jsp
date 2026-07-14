@@ -225,7 +225,7 @@
             <% if(isEditMode) { %>
             <tr class="<%= compoundNameChanged ? "curator-updated" : "" %>">
                 <td class="label">
-                    Compound&nbsp;Name
+                    Drug Product Name
                     <% if(compoundNameChanged) { %>
                     <span class="change-info-icon" data-old="<%= compoundNameChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(compoundNameChange.getOldValue()) : "" %>" data-new="<%= compoundNameChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(compoundNameChange.getNewValue()) : "" %>" data-updated="<%= compoundNameChange.getChangedAt() != null ? compoundNameChange.getChangedAt() : "" %>" data-by="<%= compoundNameChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(compoundNameChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
@@ -237,7 +237,7 @@
             <% } else if(clinicalTrialData.getCompoundName() != null && !clinicalTrialData.getCompoundName().isEmpty()) { %>
             <tr class="<%= compoundNameChanged ? "curator-updated" : "" %>">
                 <td class="label">
-                    Compound&nbsp;Name
+                    Drug Product Name
                     <% if(compoundNameChanged) { %>
                     <span class="change-info-icon" data-old="<%= compoundNameChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(compoundNameChange.getOldValue()) : "" %>" data-new="<%= compoundNameChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(compoundNameChange.getNewValue()) : "" %>" data-updated="<%= compoundNameChange.getChangedAt() != null ? compoundNameChange.getChangedAt() : "" %>" data-by="<%= compoundNameChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(compoundNameChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
@@ -253,7 +253,7 @@
             <% if(isEditMode) { %>
             <tr class="<%= aliasValueChanged ? "curator-updated" : "" %>">
                 <td class="label">
-                    Compound&nbsp;Alias
+                    Drug Product Alias
                     <% if(aliasValueChanged) { %>
                     <span class="change-info-icon" data-old="<%= aliasValueChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(aliasValueChange.getOldValue()) : "" %>" data-new="<%= aliasValueChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(aliasValueChange.getNewValue()) : "" %>" data-updated="<%= aliasValueChange.getChangedAt() != null ? aliasValueChange.getChangedAt() : "" %>" data-by="<%= aliasValueChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(aliasValueChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
@@ -300,7 +300,7 @@
             <% } else if(hasExistingAlias && existingAlias.getAlias() != null && !existingAlias.getAlias().isEmpty()) { %>
             <tr class="<%= aliasValueChanged ? "curator-updated" : "" %>">
                 <td class="label">
-                    Compound&nbsp;Alias
+                    Drug Product Alias
                     <% if(aliasValueChanged) { %>
                     <span class="change-info-icon" data-old="<%= aliasValueChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(aliasValueChange.getOldValue()) : "" %>" data-new="<%= aliasValueChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(aliasValueChange.getNewValue()) : "" %>" data-updated="<%= aliasValueChange.getChangedAt() != null ? aliasValueChange.getChangedAt() : "" %>" data-by="<%= aliasValueChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(aliasValueChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
@@ -339,7 +339,7 @@
             <% if(isEditMode) { %>
             <tr class="<%= compoundDescChanged ? "curator-updated" : "" %>">
                 <td class="label">
-                    Compound&nbsp;Description
+                    Drug Product Description
                     <% if(compoundDescChanged) { %>
                     <span class="change-info-icon" data-old="<%= compoundDescChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(compoundDescChange.getOldValue()) : "" %>" data-new="<%= compoundDescChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(compoundDescChange.getNewValue()) : "" %>" data-updated="<%= compoundDescChange.getChangedAt() != null ? compoundDescChange.getChangedAt() : "" %>" data-by="<%= compoundDescChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(compoundDescChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
@@ -351,7 +351,7 @@
             <% } else if(clinicalTrialData.getCompoundDescription() != null && !clinicalTrialData.getCompoundDescription().isEmpty()) { %>
             <tr class="<%= compoundDescChanged ? "curator-updated" : "" %>">
                 <td class="label">
-                    Compound&nbsp;Description
+                    Drug Product Description
                     <% if(compoundDescChanged) { %>
                     <span class="change-info-icon" data-old="<%= compoundDescChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(compoundDescChange.getOldValue()) : "" %>" data-new="<%= compoundDescChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(compoundDescChange.getNewValue()) : "" %>" data-updated="<%= compoundDescChange.getChangedAt() != null ? compoundDescChange.getChangedAt() : "" %>" data-by="<%= compoundDescChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(compoundDescChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
@@ -502,7 +502,7 @@
             <% if(isEditMode) { %>
             <tr class="<%= therapyTypeChanged ? "curator-updated" : "" %>">
                 <td class="label">
-                    Therapy&nbsp;Type
+                    Therapeutic Modality
                     <% if(therapyTypeChanged) { %>
                     <span class="change-info-icon" data-old="<%= therapyTypeChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(therapyTypeChange.getOldValue()) : "" %>" data-new="<%= therapyTypeChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(therapyTypeChange.getNewValue()) : "" %>" data-updated="<%= therapyTypeChange.getChangedAt() != null ? therapyTypeChange.getChangedAt() : "" %>" data-by="<%= therapyTypeChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(therapyTypeChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
@@ -519,7 +519,7 @@
             <% } else if(clinicalTrialData.getTherapyType() != null && !clinicalTrialData.getTherapyType().isEmpty()) { %>
             <tr class="<%= therapyTypeChanged ? "curator-updated" : "" %>">
                 <td class="label">
-                    Therapy&nbsp;Type
+                    Therapeutic Modality
                     <% if(therapyTypeChanged) { %>
                     <span class="change-info-icon" data-old="<%= therapyTypeChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(therapyTypeChange.getOldValue()) : "" %>" data-new="<%= therapyTypeChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(therapyTypeChange.getNewValue()) : "" %>" data-updated="<%= therapyTypeChange.getChangedAt() != null ? therapyTypeChange.getChangedAt() : "" %>" data-by="<%= therapyTypeChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(therapyTypeChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
@@ -693,7 +693,7 @@
             <% if(isEditMode) { %>
             <tr class="<%= deliverySystemChanged ? "curator-updated" : "" %>">
                 <td class="label">
-                    Delivery&nbsp;System
+                    Gene Delivery System Type
                     <% if(deliverySystemChanged) { %>
                     <span class="change-info-icon" data-old="<%= deliverySystemChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(deliverySystemChange.getOldValue()) : "" %>" data-new="<%= deliverySystemChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(deliverySystemChange.getNewValue()) : "" %>" data-updated="<%= deliverySystemChange.getChangedAt() != null ? deliverySystemChange.getChangedAt() : "" %>" data-by="<%= deliverySystemChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(deliverySystemChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
@@ -710,7 +710,7 @@
             <% } else if(clinicalTrialData.getDeliverySystem() != null && !clinicalTrialData.getDeliverySystem().isEmpty()) { %>
             <tr class="<%= deliverySystemChanged ? "curator-updated" : "" %>">
                 <td class="label">
-                    Delivery&nbsp;System
+                    Gene Delivery System Type
                     <% if(deliverySystemChanged) { %>
                     <span class="change-info-icon" data-old="<%= deliverySystemChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(deliverySystemChange.getOldValue()) : "" %>" data-new="<%= deliverySystemChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(deliverySystemChange.getNewValue()) : "" %>" data-updated="<%= deliverySystemChange.getChangedAt() != null ? deliverySystemChange.getChangedAt() : "" %>" data-by="<%= deliverySystemChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(deliverySystemChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>
@@ -918,7 +918,7 @@
             %>
             <tr class="<%= phasesChanged ? "api-updated" : "" %>">
                 <td class="label">
-                    Current&nbsp;Stage
+                    Current Phase
                     <% if(phasesChanged) { %>
                     <span class="change-info-icon" data-old="<%= phasesChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(phasesChange.getOldValue()) : "" %>" data-new="<%= phasesChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(phasesChange.getNewValue()) : "" %>" data-updated="<%= phasesChange.getChangedAt() != null ? phasesChange.getChangedAt() : "" %>" data-by="<%= phasesChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(phasesChange.getUpdateBy()) : "" %>">🔄</span>
                     <% } %>

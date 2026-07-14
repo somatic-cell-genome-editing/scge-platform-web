@@ -13,24 +13,24 @@
 <th>Indication&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Indication")%>" class="column-header-description"></span></sup></th>
 <th class="manual">FDA Designation&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("FDA Designations")%>" class="column-header-description"></span></sup></th>
 
-<th>Compound Name&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Compound Name")%>" class="column-header-description"></span></sup></th>
+<th>Drug Product Name&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Drug Product Name")%>" class="column-header-description"></span></sup></th>
 <th>Sponsor&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Sponsor")%>" class="column-header-description"></span></sup></th>
 <th>Funder Type&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Funder Type")%>" class="column-header-description"></span></sup></th>
 <%--<th>Intervention</th>--%>
 <th class="manual">Target Gene/Variant&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Target Gene or Variant")%>" class="column-header-description"></span></sup></th>
-<th class="manual">Therapy Type&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Therapy Type")%>" class="column-header-description"></span></sup></th>
+<th class="manual">Therapeutic Modality&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Therapy Type")%>" class="column-header-description"></span></sup></th>
 <th class="manual">Therapy Route&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Therapy Route")%>" class="column-header-description"></span></sup></th>
 <th class="manual">Mechanism of Action&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Mechanism of Action")%>" class="column-header-description"></span></sup></th>
 <th class="manual">Route of Administration&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Route of Administration")%>" class="column-header-description">></span></sup></th>
 <th class="manual">Drug Product Type&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Drug Product Type")%>" class="column-header-description"></span></sup></th>
 <th class="manual">Target Tissue/Cell&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Target Tissue or Cell")%>" class="column-header-description"></span></sup></th>
-<th class="manual">Delivery System&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Delivery System")%>" class="column-header-description"></span></sup></th>
+<th class="manual">Gene Delivery System Type&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Delivery System")%>" class="column-header-description"></span></sup></th>
 <th class="manual">Vector Type&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Vector Type")%>" class="column-header-description"></span></sup></th>
 <th class="manual">Editor Type&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Editor Type")%>" class="column-header-description"></span></sup></th>
 <th class="manual">Dosage/s&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Dose levels (up to 5)")%>" class="column-header-description"></span></sup></th>
 <%--<th class="manual">Dose 5&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Dose levels (up to 5)")%>" class="column-header-description"></span></sup></th>--%>
 <%--<th>Treatment</th>--%>
-<th>Current Stage&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Current Stage")%>" class="column-header-description"></span></sup></th>
+<th>Current Phase&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Current Stage")%>" class="column-header-description"></span></sup></th>
 <th>Recruitment Status&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Recruitment Status")%>" class="column-header-description"></span></sup></th>
 <th class="manual">Development Status&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Development Status")%>" class="column-header-description"></span></sup></th>
 

@@ -12,7 +12,7 @@
 <%--<th class="manual">Indication DOID&nbsp;<sup><span title="" class="column-header-description"></span></sup></th>--%>
 <th>Indication&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Indication")%>" class="column-header-description"></span></sup></th>
 
-<th>Compound Name&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Compound Name")%>" class="column-header-description"></span></sup></th>
+<th>Drug Product Name&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Drug Product Name")%>" class="column-header-description"></span></sup></th>
 <th>Sponsor&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Sponsor")%>" class="column-header-description"></span></sup></th>
 <th>Funder Type&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Funder Type")%>" class="column-header-description"></span></sup></th>
 <%--<th>Intervention</th>--%>
