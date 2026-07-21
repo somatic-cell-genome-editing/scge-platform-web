@@ -45,7 +45,11 @@ public class ClinicalTrialsService {
                 fieldDisplayNames.put(field, "Results Posted");
             } else if (field.equalsIgnoreCase("eligibilitySex")) {
                 fieldDisplayNames.put(field, "Sexes Eligible for Study");
-            } else {
+            } else if (field.equalsIgnoreCase("therapyType")) {
+                fieldDisplayNames.put(field, "Therapeutic Modality");
+            } else if (field.trim().equalsIgnoreCase("deliverySystem")) {
+                fieldDisplayNames.put(field, "Gene Delivery System");
+            }else {
                 fieldDisplayNames.put(field, StringUtils.capitalize(displayName));
             }
         }
