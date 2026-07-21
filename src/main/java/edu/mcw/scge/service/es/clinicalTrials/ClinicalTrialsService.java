@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -114,15 +115,17 @@ public class ClinicalTrialsService {
         // "Search as you type": query the search_as_you_type field and its shingle
         // subfields with a bool_prefix multi_match, which matches word-prefixes
         // anywhere in the indexed text as the user types.
+        // Also match nctId directly so typing a trial ID (e.g. "NCT07681778")
+        // surfaces that trial, even though nctId is not part of the suggest terms.
         SearchResponse<Map> sr = client.search(s -> s
                         .index(SCGEContext.getESIndexName())
                         .size(50)
-                        .source(src -> src.filter(f -> f.includes("suggest")))
+                        .source(src -> src.filter(f -> f.includes("suggest", "nctId")))
                         .query(q -> q
                                 .multiMatch(mm -> mm
                                         .query(term)
                                         .type(TextQueryType.BoolPrefix)
-                                        .fields("suggest", "suggest._2gram", "suggest._3gram")
+                                        .fields("suggest", "suggest._2gram", "suggest._3gram", "nctId")
                                 )
                         ),
                 Map.class);
@@ -133,27 +136,62 @@ public class ClinicalTrialsService {
             if (source == null) {
                 continue;
             }
-            Object suggestVal = source.get("suggest");
-            if (suggestVal instanceof List) {
-                for (Object o : (List<?>) suggestVal) {
-                    if (o == null) {
-                        continue;
-                    }
-                    String suggestion = String.valueOf(o);
-                    // The matched document may carry many suggest terms; only surface
-                    // the ones the user is actually typing toward.
-                    if (suggestion.toLowerCase().contains(typed)) {
-                        autocompleteList.add(suggestion);
-                    }
-                }
-            } else if (suggestVal != null) {
-                String suggestion = String.valueOf(suggestVal);
-                if (suggestion.toLowerCase().contains(typed)) {
-                    autocompleteList.add(suggestion);
-                }
+            collectMatches(source.get("suggest"), typed, autocompleteList);
+            collectMatches(source.get("nctId"), typed, autocompleteList);
+        }
+
+        // Collapse singular/plural duplicates (e.g. "Lentiviral Infection" and
+        // "Lentiviral Infections") so only one form shows in the dropdown. The
+        // first-seen form wins, preserving ES relevance order.
+        Set<String> deduped = new LinkedHashSet<>();
+        Set<String> seenKeys = new HashSet<>();
+        for (String suggestion : autocompleteList) {
+            if (seenKeys.add(singularKey(suggestion))) {
+                deduped.add(suggestion);
             }
         }
-        return autocompleteList;
+        return deduped;
+    }
+
+    /**
+     * Normalizes a phrase for singular/plural de-duplication by lower-casing and
+     * stripping a single regular trailing plural "s" from its last word (leaving
+     * "ss" endings like "address" intact). Intentionally conservative: it collapses
+     * the common "+s" plural without risking merges of genuinely distinct phrases.
+     */
+    private String singularKey(String phrase) {
+        String key = phrase.toLowerCase().trim();
+        if (key.endsWith("s") && !key.endsWith("ss") && key.length() > 1) {
+            key = key.substring(0, key.length() - 1);
+        }
+        return key;
+    }
+
+    /**
+     * Adds every value in {@code value} (a String or a List of Strings) that
+     * contains the typed text (case-insensitive) into {@code out}. The matched
+     * document may carry many terms; only the ones the user is typing toward
+     * are surfaced.
+     */
+    private void collectMatches(Object value, String typed, Set<String> out) {
+        if (value == null) {
+            return;
+        }
+        if (value instanceof List) {
+            for (Object o : (List<?>) value) {
+                if (o != null) {
+                    String suggestion = String.valueOf(o);
+                    if (suggestion.toLowerCase().contains(typed)) {
+                        out.add(suggestion);
+                    }
+                }
+            }
+        } else {
+            String suggestion = String.valueOf(value);
+            if (suggestion.toLowerCase().contains(typed)) {
+                out.add(suggestion);
+            }
+        }
     }
 
     public Query filter(Map<String, List<String>> filters) {
