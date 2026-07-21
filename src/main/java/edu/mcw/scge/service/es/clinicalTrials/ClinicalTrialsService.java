@@ -13,6 +13,7 @@ import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.TextQueryType;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.search.Hit;
 import co.elastic.clients.util.NamedValue;
 import edu.mcw.scge.dao.implementation.DefinitionDAO;
 import edu.mcw.scge.datamodel.Definition;
@@ -25,7 +26,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -103,25 +104,54 @@ public class ClinicalTrialsService {
     }
 
     public Set<String> getAutocompleteList(String term) throws IOException {
-        Set<String> autocompleteList = new HashSet<>();
+        // Preserve insertion order and de-dupe suggestion terms.
+        Set<String> autocompleteList = new LinkedHashSet<>();
+        if (term == null || term.trim().isEmpty()) {
+            return autocompleteList;
+        }
         ElasticsearchClient client = ESClient.getClient();
 
+        // "Search as you type": query the search_as_you_type field and its shingle
+        // subfields with a bool_prefix multi_match, which matches word-prefixes
+        // anywhere in the indexed text as the user types.
         SearchResponse<Map> sr = client.search(s -> s
                         .index(SCGEContext.getESIndexName())
-                        .suggest(sug -> sug
-                                .suggesters("autocomplete-suggest", suggester -> suggester
-                                        .text(term)
-                                        .completion(c -> c.field("suggest").size(10000))
+                        .size(50)
+                        .source(src -> src.filter(f -> f.includes("suggest")))
+                        .query(q -> q
+                                .multiMatch(mm -> mm
+                                        .query(term)
+                                        .type(TextQueryType.BoolPrefix)
+                                        .fields("suggest", "suggest._2gram", "suggest._3gram")
                                 )
                         ),
                 Map.class);
 
-        if (sr != null && sr.suggest() != null && sr.suggest().get("autocomplete-suggest") != null) {
-            sr.suggest().get("autocomplete-suggest").forEach(entry ->
-                    entry.completion().options().forEach(option ->
-                            autocompleteList.add(option.text())
-                    )
-            );
+        String typed = term.toLowerCase().trim();
+        for (Hit<Map> hit : sr.hits().hits()) {
+            Map source = hit.source();
+            if (source == null) {
+                continue;
+            }
+            Object suggestVal = source.get("suggest");
+            if (suggestVal instanceof List) {
+                for (Object o : (List<?>) suggestVal) {
+                    if (o == null) {
+                        continue;
+                    }
+                    String suggestion = String.valueOf(o);
+                    // The matched document may carry many suggest terms; only surface
+                    // the ones the user is actually typing toward.
+                    if (suggestion.toLowerCase().contains(typed)) {
+                        autocompleteList.add(suggestion);
+                    }
+                }
+            } else if (suggestVal != null) {
+                String suggestion = String.valueOf(suggestVal);
+                if (suggestion.toLowerCase().contains(typed)) {
+                    autocompleteList.add(suggestion);
+                }
+            }
         }
         return autocompleteList;
     }
