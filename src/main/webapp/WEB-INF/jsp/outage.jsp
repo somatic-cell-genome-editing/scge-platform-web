@@ -102,7 +102,7 @@
         </div>
         <div class="outage-message">
             <strong>Scheduled Maintenance Notice</strong>
-            <p>The site will be undergoing scheduled maintenance on Wednesday 22th July 2026 from 12:30PM to 1:30PM Central Time (CT). During this time, the site may be temporarily unavailable. We apologize for any inconvenience.</p>
+            <p>The site will be undergoing scheduled maintenance on Wednesday 22nd July 2026 from 12:30PM to 1:30PM Central Time (CT). During this time, the site may be temporarily unavailable. We apologize for any inconvenience.</p>
         </div>
         <%--        <button class="outage-close" onclick="dismissOutageBanner()" aria-label="Dismiss message">--%>
         <%--            &times;--%>
