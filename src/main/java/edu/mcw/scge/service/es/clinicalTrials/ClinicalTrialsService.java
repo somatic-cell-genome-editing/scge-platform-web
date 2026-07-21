@@ -15,6 +15,7 @@ import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.search.Hit;
 import co.elastic.clients.util.NamedValue;
+import org.apache.lucene.analysis.en.EnglishMinimalStemmer;
 import edu.mcw.scge.dao.implementation.DefinitionDAO;
 import edu.mcw.scge.datamodel.Definition;
 import edu.mcw.scge.datamodel.web.ClinicalTrials;
@@ -153,18 +154,25 @@ public class ClinicalTrialsService {
         return deduped;
     }
 
+    // Plural-only stemmer (-s/-es/-ies -> singular). Stateless; safe to share.
+    private static final EnglishMinimalStemmer PLURAL_STEMMER = new EnglishMinimalStemmer();
+
     /**
      * Normalizes a phrase for singular/plural de-duplication by lower-casing and
-     * stripping a single regular trailing plural "s" from its last word (leaving
-     * "ss" endings like "address" intact). Intentionally conservative: it collapses
-     * the common "+s" plural without risking merges of genuinely distinct phrases.
+     * stemming each word to its singular form (e.g. "infections"->"infection",
+     * "studies"->"study", "boxes"->"box"), so both forms collapse to one entry.
      */
     private String singularKey(String phrase) {
-        String key = phrase.toLowerCase().trim();
-        if (key.endsWith("s") && !key.endsWith("ss") && key.length() > 1) {
-            key = key.substring(0, key.length() - 1);
+        StringBuilder key = new StringBuilder();
+        for (String word : phrase.toLowerCase().trim().split("\\s+")) {
+            if (word.isEmpty()) {
+                continue;
+            }
+            char[] chars = word.toCharArray();
+            int len = PLURAL_STEMMER.stem(chars, chars.length);
+            key.append(chars, 0, len).append(' ');
         }
-        return key;
+        return key.toString().trim();
     }
 
     /**
@@ -254,11 +262,11 @@ public class ClinicalTrialsService {
                         .query(searchString)
                         .type(TextQueryType.CrossFields)
                         .operator(Operator.And)
-                        .analyzer("stop"))));
+                        .analyzer("default"))));
                 dq.queries(Query.of(q -> q.multiMatch(m -> m
                         .query(searchString)
                         .type(TextQueryType.Phrase)
-                        .analyzer("stop")
+                        .analyzer("default")
                         .boost(1000f))));
             } else if (searchTerm.contains(" or ")) {
                 String searchString = String.join(" ", searchTerm.split(" or "));
@@ -266,7 +274,7 @@ public class ClinicalTrialsService {
                         .query(searchString)
                         .type(TextQueryType.CrossFields)
                         .operator(Operator.Or)
-                        .analyzer("stop"))));
+                        .analyzer("default"))));
             } else if (searchTerm.contains(" ")) {
                 dq.queries(Query.of(q -> q.multiMatch(m -> m
                         .query(searchTerm)
@@ -276,7 +284,7 @@ public class ClinicalTrialsService {
                         .query(searchTerm)
                         .type(TextQueryType.Phrase)
                         .operator(Operator.And)
-                        .analyzer("stop")
+                        .analyzer("default")
                         .boost(1000f))));
             } else {
                 if (!isNumeric(searchTerm)) {
