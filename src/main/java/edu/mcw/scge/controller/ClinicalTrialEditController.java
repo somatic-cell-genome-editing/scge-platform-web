@@ -48,6 +48,9 @@ public class ClinicalTrialEditController {
             ctRecord.setTargetTissueOrCell(req.getParameter("targetTissueOrCell"));
             ctRecord.setDeliverySystem(req.getParameter("deliverySystem"));
             ctRecord.setVectorType(req.getParameter("vectorType"));
+            ctRecord.setViralVectorSubType(req.getParameter("viralVectorSubType"));
+            ctRecord.setNonViralVectorType(req.getParameter("nonViralVectorType"));
+            ctRecord.setRegulatoryElement(req.getParameter("regulatoryElement"));
             ctRecord.setEditorType(req.getParameter("editorType"));
             ctRecord.setDose1(req.getParameter("dose1"));
             ctRecord.setDose2(req.getParameter("dose2"));
