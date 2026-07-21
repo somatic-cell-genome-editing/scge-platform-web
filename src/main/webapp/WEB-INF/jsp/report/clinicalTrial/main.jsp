@@ -496,6 +496,33 @@
             </tr>
             <% } %>
             <%
+                boolean regulatoryElementChanged = fieldChanges != null && fieldChanges.containsKey("regulatory_element");
+                ClinicalTrialFieldChange regulatoryElementChange = regulatoryElementChanged ? fieldChanges.get("regulatory_element") : null;
+            %>
+            <% if(isEditMode) { %>
+            <tr class="<%= regulatoryElementChanged ? "curator-updated" : "" %>">
+                <td class="label">
+                    Regulatory&nbsp;Element
+                    <% if(regulatoryElementChanged) { %>
+                    <span class="change-info-icon" data-old="<%= regulatoryElementChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(regulatoryElementChange.getOldValue()) : "" %>" data-new="<%= regulatoryElementChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(regulatoryElementChange.getNewValue()) : "" %>" data-updated="<%= regulatoryElementChange.getChangedAt() != null ? regulatoryElementChange.getChangedAt() : "" %>" data-by="<%= regulatoryElementChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(regulatoryElementChange.getUpdateBy()) : "" %>">🔄</span>
+                    <% } %>
+                </td>
+                <td>
+                    <textarea name="regulatoryElement" class="form-control" rows="1"><%=clinicalTrialData.getRegulatoryElement()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getRegulatoryElement()):""%></textarea>
+                </td>
+            </tr>
+            <% } else if(clinicalTrialData.getRegulatoryElement() != null && !clinicalTrialData.getRegulatoryElement().isEmpty()) { %>
+            <tr class="<%= regulatoryElementChanged ? "curator-updated" : "" %>">
+                <td class="label">
+                    Regulatory&nbsp;Element
+                    <% if(regulatoryElementChanged) { %>
+                    <span class="change-info-icon" data-old="<%= regulatoryElementChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(regulatoryElementChange.getOldValue()) : "" %>" data-new="<%= regulatoryElementChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(regulatoryElementChange.getNewValue()) : "" %>" data-updated="<%= regulatoryElementChange.getChangedAt() != null ? regulatoryElementChange.getChangedAt() : "" %>" data-by="<%= regulatoryElementChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(regulatoryElementChange.getUpdateBy()) : "" %>">🔄</span>
+                    <% } %>
+                </td>
+                <td><%= clinicalTrialData.getRegulatoryElement() %></td>
+            </tr>
+            <% } %>
+            <%
                 boolean therapyTypeChanged = fieldChanges != null && fieldChanges.containsKey("therapy_type");
                 ClinicalTrialFieldChange therapyTypeChange = therapyTypeChanged ? fieldChanges.get("therapy_type") : null;
             %>
@@ -743,6 +770,60 @@
                     <% } %>
                 </td>
                 <td><%= clinicalTrialData.getVectorType() %></td>
+            </tr>
+            <% } %>
+            <%
+                boolean viralVectorSubTypeChanged = fieldChanges != null && fieldChanges.containsKey("viral_vector_sub_type");
+                ClinicalTrialFieldChange viralVectorSubTypeChange = viralVectorSubTypeChanged ? fieldChanges.get("viral_vector_sub_type") : null;
+            %>
+            <% if(isEditMode) { %>
+            <tr class="<%= viralVectorSubTypeChanged ? "curator-updated" : "" %>">
+                <td class="label">
+                    Viral&nbsp;Vector&nbsp;Subtype
+                    <% if(viralVectorSubTypeChanged) { %>
+                    <span class="change-info-icon" data-old="<%= viralVectorSubTypeChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(viralVectorSubTypeChange.getOldValue()) : "" %>" data-new="<%= viralVectorSubTypeChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(viralVectorSubTypeChange.getNewValue()) : "" %>" data-updated="<%= viralVectorSubTypeChange.getChangedAt() != null ? viralVectorSubTypeChange.getChangedAt() : "" %>" data-by="<%= viralVectorSubTypeChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(viralVectorSubTypeChange.getUpdateBy()) : "" %>">🔄</span>
+                    <% } %>
+                </td>
+                <td>
+                    <textarea name="viralVectorSubType" class="form-control" rows="1"><%=clinicalTrialData.getViralVectorSubType()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getViralVectorSubType()):""%></textarea>
+                </td>
+            </tr>
+            <% } else if(clinicalTrialData.getViralVectorSubType() != null && !clinicalTrialData.getViralVectorSubType().isEmpty()) { %>
+            <tr class="<%= viralVectorSubTypeChanged ? "curator-updated" : "" %>">
+                <td class="label">
+                    Viral&nbsp;Vector&nbsp;Subtype
+                    <% if(viralVectorSubTypeChanged) { %>
+                    <span class="change-info-icon" data-old="<%= viralVectorSubTypeChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(viralVectorSubTypeChange.getOldValue()) : "" %>" data-new="<%= viralVectorSubTypeChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(viralVectorSubTypeChange.getNewValue()) : "" %>" data-updated="<%= viralVectorSubTypeChange.getChangedAt() != null ? viralVectorSubTypeChange.getChangedAt() : "" %>" data-by="<%= viralVectorSubTypeChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(viralVectorSubTypeChange.getUpdateBy()) : "" %>">🔄</span>
+                    <% } %>
+                </td>
+                <td><%= clinicalTrialData.getViralVectorSubType() %></td>
+            </tr>
+            <% } %>
+            <%
+                boolean nonViralVectorTypeChanged = fieldChanges != null && fieldChanges.containsKey("non_viral_vector_type");
+                ClinicalTrialFieldChange nonViralVectorTypeChange = nonViralVectorTypeChanged ? fieldChanges.get("non_viral_vector_type") : null;
+            %>
+            <% if(isEditMode) { %>
+            <tr class="<%= nonViralVectorTypeChanged ? "curator-updated" : "" %>">
+                <td class="label">
+                    Non-Viral&nbsp;Vector&nbsp;Type
+                    <% if(nonViralVectorTypeChanged) { %>
+                    <span class="change-info-icon" data-old="<%= nonViralVectorTypeChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(nonViralVectorTypeChange.getOldValue()) : "" %>" data-new="<%= nonViralVectorTypeChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(nonViralVectorTypeChange.getNewValue()) : "" %>" data-updated="<%= nonViralVectorTypeChange.getChangedAt() != null ? nonViralVectorTypeChange.getChangedAt() : "" %>" data-by="<%= nonViralVectorTypeChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(nonViralVectorTypeChange.getUpdateBy()) : "" %>">🔄</span>
+                    <% } %>
+                </td>
+                <td>
+                    <textarea name="nonViralVectorType" class="form-control" rows="1"><%=clinicalTrialData.getNonViralVectorType()!=null?StringEscapeUtils.escapeHtml4(clinicalTrialData.getNonViralVectorType()):""%></textarea>
+                </td>
+            </tr>
+            <% } else if(clinicalTrialData.getNonViralVectorType() != null && !clinicalTrialData.getNonViralVectorType().isEmpty()) { %>
+            <tr class="<%= nonViralVectorTypeChanged ? "curator-updated" : "" %>">
+                <td class="label">
+                    Non-Viral&nbsp;Vector&nbsp;Type
+                    <% if(nonViralVectorTypeChanged) { %>
+                    <span class="change-info-icon" data-old="<%= nonViralVectorTypeChange.getOldValue() != null ? StringEscapeUtils.escapeHtml4(nonViralVectorTypeChange.getOldValue()) : "" %>" data-new="<%= nonViralVectorTypeChange.getNewValue() != null ? StringEscapeUtils.escapeHtml4(nonViralVectorTypeChange.getNewValue()) : "" %>" data-updated="<%= nonViralVectorTypeChange.getChangedAt() != null ? nonViralVectorTypeChange.getChangedAt() : "" %>" data-by="<%= nonViralVectorTypeChange.getUpdateBy() != null ? StringEscapeUtils.escapeHtml4(nonViralVectorTypeChange.getUpdateBy()) : "" %>">🔄</span>
+                    <% } %>
+                </td>
+                <td><%= clinicalTrialData.getNonViralVectorType() %></td>
             </tr>
             <% } %>
             <%
