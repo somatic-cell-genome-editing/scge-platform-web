@@ -61,4 +61,4 @@
 <%@include file="cookieNotice.jsp"%>
 
 <!-- Site Outage Message Banner -->
-<%--<%@include file="outage.jsp"%>--%>
+<%@include file="outage.jsp"%>
