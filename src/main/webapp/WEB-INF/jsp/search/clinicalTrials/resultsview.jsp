@@ -97,7 +97,9 @@
                         <%@include file="../searchByCategory.jsp"%>
                     </div>
                 </div>
-                <p>The Gene Therapy Trial Browser represents a unique publicly accessible, free database for the benefit of users seeking information on gene therapy development. The information within integrates various sources, including clinicaltrials.gov, publications, sponsor press releases, patent applications, and more to give a comprehensive overview of the gene therapy clinical trial landscape.</p>
+                <p>The Gene Therapy Trial Browser represents a unique publicly accessible, free database for the benefit of users seeking information on gene therapy development. The information within integrates various sources, including clinicaltrials.gov, publications, sponsor press releases, meeting abstracts, and more to give a comprehensive overview of the gene therapy clinical trial landscape.
+
+                </p>
                 <%}else{%>
                 <h3>SCGE Platform - General Search Results</h3>
                 <%}%>
