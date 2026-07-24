@@ -143,17 +143,54 @@ public class ClinicalTrialsService {
             collectMatches(source.get("nctId"), typed, autocompleteList);
         }
 
+        // ES orders whole documents, and a single document's suggest array is
+        // emitted in raw array order, so an exact match can land below longer
+        // incidental matches (e.g. "Viral Infectious Diseases" ahead of
+        // "Infectious Diseases"). Re-rank the collected terms against what the
+        // user actually typed. The sort is stable, so ES relevance still breaks
+        // ties within a rank.
+        List<String> ranked = new ArrayList<>(autocompleteList);
+        ranked.sort((a, b) -> {
+            int byRank = Integer.compare(suggestionRank(a, typed), suggestionRank(b, typed));
+            if (byRank != 0) {
+                return byRank;
+            }
+            // Prefer the more concise term when both match equally well.
+            return Integer.compare(a.length(), b.length());
+        });
+
         // Collapse singular/plural duplicates (e.g. "Lentiviral Infection" and
         // "Lentiviral Infections") so only one form shows in the dropdown. The
-        // first-seen form wins, preserving ES relevance order.
+        // first-seen form wins, so the best-ranked form above survives.
         Set<String> deduped = new LinkedHashSet<>();
         Set<String> seenKeys = new HashSet<>();
-        for (String suggestion : autocompleteList) {
+        for (String suggestion : ranked) {
             if (seenKeys.add(singularKey(suggestion))) {
                 deduped.add(suggestion);
             }
         }
         return deduped;
+    }
+
+    /**
+     * Scores how well a suggestion matches the typed text, lowest first:
+     * 0 exact, 1 starts with, 2 typed text begins a later word, 3 matches
+     * mid-word. Keeps the term the user is literally typing at the top of the
+     * dropdown instead of letting longer incidental matches outrank it.
+     */
+    private int suggestionRank(String suggestion, String typed) {
+        String candidate = suggestion.toLowerCase().trim();
+        if (candidate.equals(typed)) {
+            return 0;
+        }
+        if (candidate.startsWith(typed)) {
+            return 1;
+        }
+        int at = candidate.indexOf(typed);
+        if (at > 0 && !Character.isLetterOrDigit(candidate.charAt(at - 1))) {
+            return 2;
+        }
+        return 3;
     }
 
     // Plural-only stemmer (-s/-es/-ies -> singular). Stateless; safe to share.
