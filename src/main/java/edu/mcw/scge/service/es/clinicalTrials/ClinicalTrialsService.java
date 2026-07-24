@@ -52,6 +52,8 @@ public class ClinicalTrialsService {
                 fieldDisplayNames.put(field, "Therapeutic Modality");
             } else if (field.trim().equalsIgnoreCase("deliverySystem")) {
                 fieldDisplayNames.put(field, "Gene Delivery System");
+            }else if (field.trim().equalsIgnoreCase("sponsorClass")) {
+                fieldDisplayNames.put(field, "Funder Type");
             }else {
                 fieldDisplayNames.put(field, StringUtils.capitalize(displayName));
             }
