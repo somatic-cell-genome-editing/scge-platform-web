@@ -13,7 +13,9 @@ import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.TextQueryType;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.search.Hit;
 import co.elastic.clients.util.NamedValue;
+import org.apache.lucene.analysis.en.EnglishMinimalStemmer;
 import edu.mcw.scge.dao.implementation.DefinitionDAO;
 import edu.mcw.scge.datamodel.Definition;
 import edu.mcw.scge.datamodel.web.ClinicalTrials;
@@ -26,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -49,6 +52,8 @@ public class ClinicalTrialsService {
                 fieldDisplayNames.put(field, "Therapeutic Modality");
             } else if (field.trim().equalsIgnoreCase("deliverySystem")) {
                 fieldDisplayNames.put(field, "Gene Delivery System");
+            }else if (field.trim().equalsIgnoreCase("sponsorClass")) {
+                fieldDisplayNames.put(field, "Funder Type");
             }else {
                 fieldDisplayNames.put(field, StringUtils.capitalize(displayName));
             }
@@ -103,27 +108,137 @@ public class ClinicalTrialsService {
     }
 
     public Set<String> getAutocompleteList(String term) throws IOException {
-        Set<String> autocompleteList = new HashSet<>();
+        // Preserve insertion order and de-dupe suggestion terms.
+        Set<String> autocompleteList = new LinkedHashSet<>();
+        if (term == null || term.trim().isEmpty()) {
+            return autocompleteList;
+        }
         ElasticsearchClient client = ESClient.getClient();
 
+        // "Search as you type": query the search_as_you_type field and its shingle
+        // subfields with a bool_prefix multi_match, which matches word-prefixes
+        // anywhere in the indexed text as the user types.
+        // Also match nctId directly so typing a trial ID (e.g. "NCT07681778")
+        // surfaces that trial, even though nctId is not part of the suggest terms.
         SearchResponse<Map> sr = client.search(s -> s
                         .index(SCGEContext.getESIndexName())
-                        .suggest(sug -> sug
-                                .suggesters("autocomplete-suggest", suggester -> suggester
-                                        .text(term)
-                                        .completion(c -> c.field("suggest").size(10000))
+                        .size(50)
+                        .source(src -> src.filter(f -> f.includes("suggest", "nctId")))
+                        .query(q -> q
+                                .multiMatch(mm -> mm
+                                        .query(term)
+                                        .type(TextQueryType.BoolPrefix)
+                                        .fields("suggest", "suggest._2gram", "suggest._3gram", "nctId")
                                 )
                         ),
                 Map.class);
 
-        if (sr != null && sr.suggest() != null && sr.suggest().get("autocomplete-suggest") != null) {
-            sr.suggest().get("autocomplete-suggest").forEach(entry ->
-                    entry.completion().options().forEach(option ->
-                            autocompleteList.add(option.text())
-                    )
-            );
+        String typed = term.toLowerCase().trim();
+        for (Hit<Map> hit : sr.hits().hits()) {
+            Map source = hit.source();
+            if (source == null) {
+                continue;
+            }
+            collectMatches(source.get("suggest"), typed, autocompleteList);
+            collectMatches(source.get("nctId"), typed, autocompleteList);
         }
-        return autocompleteList;
+
+        // ES orders whole documents, and a single document's suggest array is
+        // emitted in raw array order, so an exact match can land below longer
+        // incidental matches (e.g. "Viral Infectious Diseases" ahead of
+        // "Infectious Diseases"). Re-rank the collected terms against what the
+        // user actually typed. The sort is stable, so ES relevance still breaks
+        // ties within a rank.
+        List<String> ranked = new ArrayList<>(autocompleteList);
+        ranked.sort((a, b) -> {
+            int byRank = Integer.compare(suggestionRank(a, typed), suggestionRank(b, typed));
+            if (byRank != 0) {
+                return byRank;
+            }
+            // Prefer the more concise term when both match equally well.
+            return Integer.compare(a.length(), b.length());
+        });
+
+        // Collapse singular/plural duplicates (e.g. "Lentiviral Infection" and
+        // "Lentiviral Infections") so only one form shows in the dropdown. The
+        // first-seen form wins, so the best-ranked form above survives.
+        Set<String> deduped = new LinkedHashSet<>();
+        Set<String> seenKeys = new HashSet<>();
+        for (String suggestion : ranked) {
+            if (seenKeys.add(singularKey(suggestion))) {
+                deduped.add(suggestion);
+            }
+        }
+        return deduped;
+    }
+
+    /**
+     * Scores how well a suggestion matches the typed text, lowest first:
+     * 0 exact, 1 starts with, 2 typed text begins a later word, 3 matches
+     * mid-word. Keeps the term the user is literally typing at the top of the
+     * dropdown instead of letting longer incidental matches outrank it.
+     */
+    private int suggestionRank(String suggestion, String typed) {
+        String candidate = suggestion.toLowerCase().trim();
+        if (candidate.equals(typed)) {
+            return 0;
+        }
+        if (candidate.startsWith(typed)) {
+            return 1;
+        }
+        int at = candidate.indexOf(typed);
+        if (at > 0 && !Character.isLetterOrDigit(candidate.charAt(at - 1))) {
+            return 2;
+        }
+        return 3;
+    }
+
+    // Plural-only stemmer (-s/-es/-ies -> singular). Stateless; safe to share.
+    private static final EnglishMinimalStemmer PLURAL_STEMMER = new EnglishMinimalStemmer();
+
+    /**
+     * Normalizes a phrase for singular/plural de-duplication by lower-casing and
+     * stemming each word to its singular form (e.g. "infections"->"infection",
+     * "studies"->"study", "boxes"->"box"), so both forms collapse to one entry.
+     */
+    private String singularKey(String phrase) {
+        StringBuilder key = new StringBuilder();
+        for (String word : phrase.toLowerCase().trim().split("\\s+")) {
+            if (word.isEmpty()) {
+                continue;
+            }
+            char[] chars = word.toCharArray();
+            int len = PLURAL_STEMMER.stem(chars, chars.length);
+            key.append(chars, 0, len).append(' ');
+        }
+        return key.toString().trim();
+    }
+
+    /**
+     * Adds every value in {@code value} (a String or a List of Strings) that
+     * contains the typed text (case-insensitive) into {@code out}. The matched
+     * document may carry many terms; only the ones the user is typing toward
+     * are surfaced.
+     */
+    private void collectMatches(Object value, String typed, Set<String> out) {
+        if (value == null) {
+            return;
+        }
+        if (value instanceof List) {
+            for (Object o : (List<?>) value) {
+                if (o != null) {
+                    String suggestion = String.valueOf(o);
+                    if (suggestion.toLowerCase().contains(typed)) {
+                        out.add(suggestion);
+                    }
+                }
+            }
+        } else {
+            String suggestion = String.valueOf(value);
+            if (suggestion.toLowerCase().contains(typed)) {
+                out.add(suggestion);
+            }
+        }
     }
 
     public Query filter(Map<String, List<String>> filters) {
@@ -186,11 +301,11 @@ public class ClinicalTrialsService {
                         .query(searchString)
                         .type(TextQueryType.CrossFields)
                         .operator(Operator.And)
-                        .analyzer("stop"))));
+                        .analyzer("default"))));
                 dq.queries(Query.of(q -> q.multiMatch(m -> m
                         .query(searchString)
                         .type(TextQueryType.Phrase)
-                        .analyzer("stop")
+                        .analyzer("default")
                         .boost(1000f))));
             } else if (searchTerm.contains(" or ")) {
                 String searchString = String.join(" ", searchTerm.split(" or "));
@@ -198,7 +313,7 @@ public class ClinicalTrialsService {
                         .query(searchString)
                         .type(TextQueryType.CrossFields)
                         .operator(Operator.Or)
-                        .analyzer("stop"))));
+                        .analyzer("default"))));
             } else if (searchTerm.contains(" ")) {
                 dq.queries(Query.of(q -> q.multiMatch(m -> m
                         .query(searchTerm)
@@ -208,7 +323,7 @@ public class ClinicalTrialsService {
                         .query(searchTerm)
                         .type(TextQueryType.Phrase)
                         .operator(Operator.And)
-                        .analyzer("stop")
+                        .analyzer("default")
                         .boost(1000f))));
             } else {
                 if (!isNumeric(searchTerm)) {
