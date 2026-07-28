@@ -59,6 +59,10 @@ public class SearchController{
         SearchResponse<Map> digestSr = services.getRecentUpdatesForDigest(null, getFiltersMap(req, person));
         req.setAttribute("digestHits", digestSr.hits().hits());
 
+        // Full-result-set distributions for the graphical Overview tab (not
+        // limited to the current page).
+        req.setAttribute("overviewAggs", services.getOverviewDistributions(searchTerm, null, filterMap));
+
         req.setAttribute("searchTerm", searchTerm);
         req.setAttribute("sr", sr);
         req.setAttribute("filterMap", filterMap);
@@ -94,6 +98,10 @@ public class SearchController{
         // Get recent updates for daily digest (separate query)
         SearchResponse<Map> digestSr = services.getRecentUpdatesForDigest(category, filterMap);
         req.setAttribute("digestHits", digestSr.hits().hits());
+
+        // Full-result-set distributions for the graphical Overview tab (not
+        // limited to the current page).
+        req.setAttribute("overviewAggs", services.getOverviewDistributions(searchTerm, category, filterMap));
 
         req.setAttribute("searchTerm", searchTerm);
         req.setAttribute("sr", sr);

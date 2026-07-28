@@ -25,6 +25,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap" rel="stylesheet">
 <script src="/platform/js/scge.js"></script>
 <script src="/platform/common/js/jquery.tabletoCSV.js"> </script>
+<!-- Chart.js: powers the graphical Overview tab -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <%
     ClinicalTrailDAO clinicalTrailDAO=new ClinicalTrailDAO();
     Gson gson=new Gson();
@@ -181,6 +183,11 @@
                             <i class="fa fa-list"></i> List View
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="overview-tab" data-toggle="tab" href="#overviewView" role="tab" aria-controls="overviewView" aria-selected="false">
+                            <i class="fa fa-bar-chart"></i> Overview
+                        </a>
+                    </li>
                 </ul>
                 <div class="tab-content" id="resultsViewTabContent">
                     <!-- Table View Tab -->
@@ -190,6 +197,10 @@
                     <!-- List View Tab -->
                     <div class="tab-pane fade" id="listView" role="tabpanel" aria-labelledby="list-view-tab">
                         <%@include file="resultsListView.jsp"%>
+                    </div>
+                    <!-- Overview (graphical) Tab -->
+                    <div class="tab-pane fade" id="overviewView" role="tabpanel" aria-labelledby="overview-tab">
+                        <%@include file="resultsOverview.jsp"%>
                     </div>
                 </div>
 
