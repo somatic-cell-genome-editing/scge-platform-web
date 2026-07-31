@@ -46,6 +46,7 @@
 <style>
     .overview-wrap { padding: 1rem 0.25rem 0.5rem; }
     .overview-caption { color:#64748b; font-size:0.85rem; margin-bottom:1rem; }
+    .overview-hint { color:#2563eb; margin-left:0.4rem; }
     .overview-grid {
         display:grid;
         grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
@@ -79,6 +80,7 @@
     <div class="overview-caption">
         <i class="fa fa-info-circle"></i>
         Visual summary of all <strong><%=ovCount%></strong> matching trial<%=ovCount==1?"":"s"%> (across every page).
+        <span class="overview-hint"><i class="fa fa-hand-pointer-o"></i> Click a slice or bar to filter the results by it.</span>
     </div>
     <div class="overview-grid">
         <div class="overview-card">
@@ -120,6 +122,46 @@
         indication: <%=gson.toJson(topN(ovIndication, 10))%>
     };
 
+    // Chart key -> the facet checkbox name the sidebar submits for that field.
+    // Clicking a segment ticks the matching facet and re-runs the search.
+    var ovFields = {
+        therapy:    'therapyType',
+        phase:      'phases',
+        status:     'status',
+        sponsor:    'sponsorClass',
+        vector:     'vectorType',
+        indication: 'indications'
+    };
+
+    // Apply a value as a facet filter by driving the existing #facetForm, so a
+    // chart click behaves exactly like ticking that box in the Filters popup
+    // (existing filters are preserved and merged).
+    function applyOverviewFilter(field, value){
+        if(!field || value == null) return;
+        if(value === 'Other') return; // rolled-up bucket, not a single value
+        var $form = $('#facetForm');
+        if(!$form.length) return;
+        var matched = $form.find('input[type="checkbox"][name="' + field + '"]').filter(function(){
+            return $(this).val() === value;
+        });
+        if(matched.length){
+            matched.prop('checked', true);
+        } else {
+            // Value isn't in the current facet list (e.g. differing normalization);
+            // still send it to the server via a hidden field.
+            $('<input>').attr({ type:'hidden', name:field, value:value }).appendTo($form);
+        }
+        // Mirror applyFiltersAndClose(): rebuild the ordered selection chip list.
+        var selected = [];
+        $form.find('input[type="checkbox"]:checked').each(function(){ selected.push($(this).val()); });
+        if(matched.length === 0) selected.push(value);
+        $('#filtersSelected').val(JSON.stringify(selected));
+        $('#checked').val('');
+        $('#unchecked').val('');
+        $('#page').val('0');
+        $form[0].submit();
+    }
+
     (function(){
         var PALETTE = ['#2563eb','#16a34a','#f59e0b','#dc2626','#7c3aed','#0891b2',
                        '#db2777','#65a30d','#ea580c','#0d9488','#4f46e5','#94a3b8'];
@@ -138,6 +180,7 @@
             var values = labels.map(function(k){ return map[k]; });
             if(labels.length === 0) return;
             var horizontal = opts && opts.horizontal;
+            var field = opts && opts.field;
             new Chart(el.getContext('2d'), {
                 type: type,
                 data: {
@@ -153,11 +196,28 @@
                     indexAxis: horizontal ? 'y' : 'x',
                     responsive: true,
                     maintainAspectRatio: false,
+                    // Clicking a slice/bar filters the results by that value.
+                    onClick: function(evt, elements, chart){
+                        if(!field || !elements || !elements.length) return;
+                        var label = chart.data.labels[elements[0].index];
+                        applyOverviewFilter(field, label);
+                    },
+                    // Show a pointer cursor over clickable (non-"Other") elements.
+                    onHover: function(evt, elements){
+                        if(!field){ return; }
+                        var clickable = elements.length &&
+                            chartLabelAt(this, elements[0].index) !== 'Other';
+                        evt.native.target.style.cursor = clickable ? 'pointer' : 'default';
+                    },
                     plugins: {
                         legend: {
                             display: (type !== 'bar'),
                             position: 'right',
-                            labels: { boxWidth: 12, font: { size: 11 } }
+                            labels: { boxWidth: 12, font: { size: 11 } },
+                            // Clicking a legend entry filters instead of toggling visibility.
+                            onClick: function(e, legendItem){
+                                if(field) applyOverviewFilter(field, legendItem.text);
+                            }
                         },
                         tooltip: {
                             callbacks: {
@@ -166,6 +226,11 @@
                                         ? (horizontal ? ctx.parsed.x : ctx.parsed.y)
                                         : ctx.parsed;
                                     return ' ' + ctx.label + ': ' + v;
+                                },
+                                footer: function(items){
+                                    if(!field || !items.length) return '';
+                                    return (items[0].label === 'Other')
+                                        ? '' : 'Click to filter by this';
                                 }
                             }
                         }
@@ -178,16 +243,20 @@
             });
         }
 
+        function chartLabelAt(chart, idx){
+            return chart && chart.data && chart.data.labels ? chart.data.labels[idx] : null;
+        }
+
         function renderOverviewCharts(){
             if(rendered) return;
             if(typeof Chart === 'undefined') return; // library not loaded yet
             rendered = true;
-            makeChart('ovChartTherapy',    'doughnut', ovData.therapy);
-            makeChart('ovChartPhase',      'bar',      ovData.phase);
-            makeChart('ovChartStatus',     'doughnut', ovData.status);
-            makeChart('ovChartSponsor',    'pie',      ovData.sponsor);
-            makeChart('ovChartVector',     'bar',      ovData.vector,     { horizontal: true });
-            makeChart('ovChartIndication', 'bar',      ovData.indication, { horizontal: true });
+            makeChart('ovChartTherapy',    'doughnut', ovData.therapy,    { field: ovFields.therapy });
+            makeChart('ovChartPhase',      'bar',      ovData.phase,      { field: ovFields.phase });
+            makeChart('ovChartStatus',     'doughnut', ovData.status,     { field: ovFields.status });
+            makeChart('ovChartSponsor',    'pie',      ovData.sponsor,    { field: ovFields.sponsor });
+            makeChart('ovChartVector',     'bar',      ovData.vector,     { horizontal: true, field: ovFields.vector });
+            makeChart('ovChartIndication', 'bar',      ovData.indication, { horizontal: true, field: ovFields.indication });
         }
 
         // Canvases have no size while the tab is hidden, so defer drawing until
