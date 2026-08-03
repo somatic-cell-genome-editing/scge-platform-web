@@ -133,6 +133,7 @@ public class ClinicalTrialsService {
         fields.put("sponsor", "sponsorClass");
         fields.put("vector", "vectorType");
         fields.put("indication", "indications");
+        fields.put("age", "standardAges");
 
         Map<String, LinkedHashMap<String, Integer>> result = new LinkedHashMap<>();
         for (String key : fields.keySet()) {
@@ -392,6 +393,7 @@ public class ClinicalTrialsService {
                         .type(TextQueryType.Phrase)
                         .analyzer("default")
                         .boost(1000f))));
+                dq.queries(prefixQuery(searchString, Operator.And));
             } else if (searchTerm.contains(" or ")) {
                 String searchString = String.join(" ", searchTerm.split(" or "));
                 dq.queries(Query.of(q -> q.multiMatch(m -> m
@@ -399,6 +401,7 @@ public class ClinicalTrialsService {
                         .type(TextQueryType.CrossFields)
                         .operator(Operator.Or)
                         .analyzer("default"))));
+                dq.queries(prefixQuery(searchString, Operator.Or));
             } else if (searchTerm.contains(" ")) {
                 dq.queries(Query.of(q -> q.multiMatch(m -> m
                         .query(searchTerm)
@@ -410,6 +413,7 @@ public class ClinicalTrialsService {
                         .operator(Operator.And)
                         .analyzer("default")
                         .boost(1000f))));
+                dq.queries(prefixQuery(searchTerm, Operator.And));
             } else {
                 if (!isNumeric(searchTerm)) {
                     dq.queries(Query.of(q -> q.multiMatch(m -> m
@@ -419,6 +423,7 @@ public class ClinicalTrialsService {
                             .query(searchTerm)
                             .type(TextQueryType.CrossFields)
                             .operator(Operator.And))));
+                    dq.queries(prefixQuery(searchTerm, Operator.And));
                 }
             }
         } else {
@@ -426,6 +431,26 @@ public class ClinicalTrialsService {
         }
 
         return Query.of(q -> q.disMax(dq.build()));
+    }
+
+    /**
+     * Word-prefix clause for the search dis_max. The other clauses only match
+     * whole analyzed tokens, so a partial word the user is still typing toward
+     * (e.g. "cardio" for "cardiovascular") matched nothing at all and the search
+     * returned 0 results even though the autocomplete dropdown offered the term.
+     *
+     * bool_prefix treats every term but the last as an ordinary term match and
+     * the last one as a prefix, which is the same semantics the autocomplete in
+     * {@link #getAutocompleteList(String)} already uses. The low boost keeps
+     * prefix-only hits ranked beneath real token/phrase matches — dis_max scores
+     * on the best-matching clause, so exact matches still lead the results.
+     */
+    private Query prefixQuery(String searchTerm, Operator operator) {
+        return Query.of(q -> q.multiMatch(m -> m
+                .query(searchTerm)
+                .type(TextQueryType.BoolPrefix)
+                .operator(operator)
+                .boost(0.1f)));
     }
 
     public boolean isNumeric(String searchTerm) {
