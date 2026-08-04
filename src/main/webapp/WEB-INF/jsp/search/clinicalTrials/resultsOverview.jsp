@@ -40,6 +40,7 @@
     java.util.Map<String,Integer> ovSponsor     = ovGet(ovAggs, "sponsor");
     java.util.Map<String,Integer> ovVector      = ovGet(ovAggs, "vector");
     java.util.Map<String,Integer> ovIndication  = ovGet(ovAggs, "indication");
+    java.util.Map<String,Integer> ovAge          = ovGet(ovAggs, "age");
 
     long ovCount = totalHits;
 %>
@@ -107,6 +108,10 @@
             <h5><i class="fa fa-stethoscope"></i> Top Indications</h5>
             <div class="chart-holder"><canvas id="ovChartIndication"></canvas></div>
         </div>
+        <div class="overview-card">
+            <h5><i class="fa fa-users"></i> Age Group</h5>
+            <div class="chart-holder"><canvas id="ovChartAge"></canvas></div>
+        </div>
     </div>
     <% } %>
 </div>
@@ -119,7 +124,8 @@
         status:     <%=gson.toJson(topN(ovStatus, 8))%>,
         sponsor:    <%=gson.toJson(topN(ovSponsor, 8))%>,
         vector:     <%=gson.toJson(topN(ovVector, 8))%>,
-        indication: <%=gson.toJson(topN(ovIndication, 10))%>
+        indication: <%=gson.toJson(topN(ovIndication, 10))%>,
+        age:        <%=gson.toJson(topN(ovAge, 8))%>
     };
 
     // Chart key -> the facet checkbox name the sidebar submits for that field.
@@ -130,7 +136,8 @@
         status:     'status',
         sponsor:    'sponsorClass',
         vector:     'vectorType',
-        indication: 'indications'
+        indication: 'indications',
+        age:        'standardAges'
     };
 
     // Apply a value as a facet filter by driving the existing #facetForm, so a
@@ -257,6 +264,7 @@
             makeChart('ovChartSponsor',    'pie',      ovData.sponsor,    { field: ovFields.sponsor });
             makeChart('ovChartVector',     'bar',      ovData.vector,     { horizontal: true, field: ovFields.vector });
             makeChart('ovChartIndication', 'bar',      ovData.indication, { horizontal: true, field: ovFields.indication });
+            makeChart('ovChartAge',        'doughnut', ovData.age,        { field: ovFields.age });
         }
 
         // Canvases have no size while the tab is hidden, so defer drawing until
