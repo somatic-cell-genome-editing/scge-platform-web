@@ -134,6 +134,7 @@ public class ClinicalTrialsService {
         fields.put("vector", "vectorType");
         fields.put("indication", "indications");
         fields.put("age", "standardAges");
+        fields.put("location", "locations");
 
         Map<String, LinkedHashMap<String, Integer>> result = new LinkedHashMap<>();
         for (String key : fields.keySet()) {
@@ -293,11 +294,45 @@ public class ClinicalTrialsService {
             if (word.isEmpty()) {
                 continue;
             }
-            char[] chars = word.toCharArray();
-            int len = PLURAL_STEMMER.stem(chars, chars.length);
-            key.append(chars, 0, len).append(' ');
+            key.append(singularize(word)).append(' ');
         }
         return key.toString().trim();
+    }
+
+    /**
+     * Singular form of one word ("cardiomyopathies"->"cardiomyopathy").
+     *
+     * Words ending in "-is" are left alone: they are singular already, but the
+     * stemmer treats the trailing "s" as a plural marker and would turn
+     * "fibrosis" into "fibrosi" and "analysis" into "analysi". That matters here
+     * because conditions like cystic fibrosis are common trial indications.
+     */
+    private String singularize(String word) {
+        if (word.endsWith("is")) {
+            return word;
+        }
+        char[] chars = word.toCharArray();
+        return new String(chars, 0, PLURAL_STEMMER.stem(chars, chars.length));
+    }
+
+    /**
+     * Plural form of an already-singular word. The stemmer only strips plurals,
+     * so this covers the other direction: a user searching the singular form
+     * still needs to reach documents that only carry the plural.
+     */
+    private String pluralize(String singular) {
+        if (singular.isEmpty()) {
+            return singular;
+        }
+        int last = singular.length() - 1;
+        if (singular.endsWith("y") && last > 0 && "aeiou".indexOf(singular.charAt(last - 1)) < 0) {
+            return singular.substring(0, last) + "ies";
+        }
+        if (singular.endsWith("s") || singular.endsWith("x") || singular.endsWith("z")
+                || singular.endsWith("ch") || singular.endsWith("sh")) {
+            return singular + "es";
+        }
+        return singular + "s";
     }
 
     /**
@@ -394,6 +429,7 @@ public class ClinicalTrialsService {
                         .analyzer("default")
                         .boost(1000f))));
                 dq.queries(prefixQuery(searchString, Operator.And));
+                addNumberVariants(dq, searchString, Operator.And);
             } else if (searchTerm.contains(" or ")) {
                 String searchString = String.join(" ", searchTerm.split(" or "));
                 dq.queries(Query.of(q -> q.multiMatch(m -> m
@@ -402,6 +438,7 @@ public class ClinicalTrialsService {
                         .operator(Operator.Or)
                         .analyzer("default"))));
                 dq.queries(prefixQuery(searchString, Operator.Or));
+                addNumberVariants(dq, searchString, Operator.Or);
             } else if (searchTerm.contains(" ")) {
                 dq.queries(Query.of(q -> q.multiMatch(m -> m
                         .query(searchTerm)
@@ -414,6 +451,7 @@ public class ClinicalTrialsService {
                         .analyzer("default")
                         .boost(1000f))));
                 dq.queries(prefixQuery(searchTerm, Operator.And));
+                addNumberVariants(dq, searchTerm, Operator.And);
             } else {
                 if (!isNumeric(searchTerm)) {
                     dq.queries(Query.of(q -> q.multiMatch(m -> m
@@ -424,6 +462,7 @@ public class ClinicalTrialsService {
                             .type(TextQueryType.CrossFields)
                             .operator(Operator.And))));
                     dq.queries(prefixQuery(searchTerm, Operator.And));
+                    addNumberVariants(dq, searchTerm, Operator.And);
                 }
             }
         } else {
@@ -431,6 +470,61 @@ public class ClinicalTrialsService {
         }
 
         return Query.of(q -> q.disMax(dq.build()));
+    }
+
+    /**
+     * The singular and plural rewrites of a search string, minus the form the
+     * user actually typed. Empty when the term has no distinct other form.
+     *
+     * Only the final word is pluralized — in an English noun phrase that is the
+     * head noun, and the preceding words are modifiers that stay as they are.
+     * Pluralizing every word turned "sickle cell disease" into the nonsense
+     * "sickles cells diseases". Singularizing is applied to every word, which is
+     * safe because the stemmer only ever strips a trailing plural marker.
+     */
+    private Set<String> numberVariants(String searchString) {
+        String[] words = searchString.split("\\s+");
+        StringBuilder singular = new StringBuilder();
+        StringBuilder plural = new StringBuilder();
+        for (int i = 0; i < words.length; i++) {
+            if (words[i].isEmpty()) {
+                continue;
+            }
+            String stem = singularize(words[i]);
+            singular.append(stem).append(' ');
+            plural.append(i == words.length - 1 ? pluralize(stem) : words[i]).append(' ');
+        }
+        Set<String> variants = new LinkedHashSet<>();
+        variants.add(singular.toString().trim());
+        variants.add(plural.toString().trim());
+        variants.remove(searchString);
+        variants.remove("");
+        return variants;
+    }
+
+    /**
+     * Adds singular/plural rewrites of the search string as extra dis_max
+     * clauses. The index is not stemmed, so "cardiomyopathy" and
+     * "cardiomyopathies" are distinct tokens and each term reached only the
+     * trials carrying that exact form. Searching either one now reaches both.
+     *
+     * Boosts sit below the corresponding same-form clauses so that dis_max —
+     * which scores a document on its best-matching clause — still ranks trials
+     * matching the form the user typed above those matching the other form.
+     */
+    private void addNumberVariants(DisMaxQuery.Builder dq, String searchString, Operator operator) {
+        for (String variant : numberVariants(searchString)) {
+            dq.queries(Query.of(q -> q.multiMatch(m -> m
+                    .query(variant)
+                    .type(TextQueryType.Phrase)
+                    .analyzer("default")
+                    .boost(500f))));
+            dq.queries(Query.of(q -> q.multiMatch(m -> m
+                    .query(variant)
+                    .type(TextQueryType.CrossFields)
+                    .operator(operator)
+                    .boost(0.5f))));
+        }
     }
 
     /**
