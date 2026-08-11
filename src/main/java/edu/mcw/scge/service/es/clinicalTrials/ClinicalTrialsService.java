@@ -6,6 +6,8 @@ import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.SortOrder;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
+import co.elastic.clients.elasticsearch._types.aggregations.StringTermsAggregate;
+import co.elastic.clients.elasticsearch._types.aggregations.StringTermsBucket;
 import co.elastic.clients.elasticsearch._types.query_dsl.BoolQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.DisMaxQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.Operator;
@@ -28,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -54,6 +57,10 @@ public class ClinicalTrialsService {
                 fieldDisplayNames.put(field, "Gene Delivery System");
             }else if (field.trim().equalsIgnoreCase("sponsorClass")) {
                 fieldDisplayNames.put(field, "Funder Type");
+            }else if (field.trim().equalsIgnoreCase("routesOfAdministration")) {
+                fieldDisplayNames.put(field, "Route Of Administration");
+            }else if (field.trim().equalsIgnoreCase("mechanismOfActions")) {
+                fieldDisplayNames.put(field, "Mechanism Of Action");
             }else {
                 fieldDisplayNames.put(field, StringUtils.capitalize(displayName));
             }
@@ -105,6 +112,89 @@ public class ClinicalTrialsService {
             System.err.println("[ClinicalTrialsService.getSearchResults] ES error: " + describeError(ex));
             throw ex;
         }
+    }
+
+    /**
+     * Full-result-set distributions for the graphical Overview tab. Unlike the
+     * paginated table (which only holds one page of hits), this aggregates over
+     * every document matching the current search term + category + filters, so
+     * the charts describe the entire result set rather than the visible page.
+     *
+     * The facet filters are applied as REAL query filters here (not a
+     * post_filter), so the bucket totals reflect exactly the filtered result set
+     * the user is viewing and sum to the "Showing X of Y results" total.
+     *
+     * Returns friendly-key -> (label -> count), each map ordered by count desc.
+     */
+    public Map<String, LinkedHashMap<String, Integer>> getOverviewDistributions(
+            String searchTerm, String category, Map<String, List<String>> filtersMap) throws IOException {
+
+        // Friendly response key -> ES aggregatable (keyword) field name.
+        LinkedHashMap<String, String> fields = new LinkedHashMap<>();
+        fields.put("therapy", "therapyType");
+        fields.put("phase", "phases");
+        fields.put("status", "status");
+        fields.put("sponsor", "sponsorClass");
+        fields.put("vector", "vectorType");
+        fields.put("indication", "indications");
+        fields.put("age", "standardAges");
+
+        Map<String, LinkedHashMap<String, Integer>> result = new LinkedHashMap<>();
+        for (String key : fields.keySet()) {
+            result.put(key, new LinkedHashMap<>());
+        }
+
+        ElasticsearchClient client = ESClient.getClient();
+        final Map<String, List<String>> safeFilters =
+                (filtersMap == null) ? new HashMap<>() : filtersMap;
+
+        Query query = Query.of(q -> q.bool(b -> b
+                .must(buildBoolQuery(searchTerm, category, safeFilters))
+                .must(filter(safeFilters))));
+
+        Map<String, Aggregation> aggsMap = new HashMap<>();
+        for (String esField : fields.values()) {
+            aggsMap.put(esField, buildAggregation(esField));
+        }
+
+        SearchRequest.Builder srb = new SearchRequest.Builder()
+                .index(SCGEContext.getESIndexName())
+                .query(query)
+                .size(0)
+                .trackTotalHits(t -> t.enabled(true))
+                .aggregations(aggsMap);
+
+        SearchResponse<Map> sr;
+        try {
+            sr = client.search(srb.build(), Map.class);
+        } catch (ElasticsearchException ex) {
+            System.err.println("[ClinicalTrialsService.getOverviewDistributions] ES error: " + describeError(ex));
+            throw ex;
+        }
+
+        for (Map.Entry<String, String> e : fields.entrySet()) {
+            String key = e.getKey();
+            String esField = e.getValue();
+            if (sr.aggregations() == null || sr.aggregations().get(esField) == null) {
+                continue;
+            }
+            StringTermsAggregate agg = sr.aggregations().get(esField).sterms();
+            LinkedHashMap<String, Integer> counts = new LinkedHashMap<>();
+            for (StringTermsBucket bkt : agg.buckets().array()) {
+                String label = bkt.key().stringValue();
+                if (label == null || label.trim().isEmpty()) {
+                    continue;
+                }
+                counts.put(label, (int) bkt.docCount());
+            }
+            LinkedHashMap<String, Integer> sorted = new LinkedHashMap<>();
+            counts.entrySet().stream()
+                    .sorted((a, b) -> Integer.compare(b.getValue(), a.getValue()))
+                    .forEach(en -> sorted.put(en.getKey(), en.getValue()));
+            result.put(key, sorted);
+        }
+
+        return result;
     }
 
     public Set<String> getAutocompleteList(String term) throws IOException {
@@ -307,6 +397,7 @@ public class ClinicalTrialsService {
                         .type(TextQueryType.Phrase)
                         .analyzer("default")
                         .boost(1000f))));
+                dq.queries(prefixQuery(searchString, Operator.And));
             } else if (searchTerm.contains(" or ")) {
                 String searchString = String.join(" ", searchTerm.split(" or "));
                 dq.queries(Query.of(q -> q.multiMatch(m -> m
@@ -314,6 +405,7 @@ public class ClinicalTrialsService {
                         .type(TextQueryType.CrossFields)
                         .operator(Operator.Or)
                         .analyzer("default"))));
+                dq.queries(prefixQuery(searchString, Operator.Or));
             } else if (searchTerm.contains(" ")) {
                 dq.queries(Query.of(q -> q.multiMatch(m -> m
                         .query(searchTerm)
@@ -325,6 +417,7 @@ public class ClinicalTrialsService {
                         .operator(Operator.And)
                         .analyzer("default")
                         .boost(1000f))));
+                dq.queries(prefixQuery(searchTerm, Operator.And));
             } else {
                 if (!isNumeric(searchTerm)) {
                     dq.queries(Query.of(q -> q.multiMatch(m -> m
@@ -334,6 +427,7 @@ public class ClinicalTrialsService {
                             .query(searchTerm)
                             .type(TextQueryType.CrossFields)
                             .operator(Operator.And))));
+                    dq.queries(prefixQuery(searchTerm, Operator.And));
                 }
             }
         } else {
@@ -341,6 +435,26 @@ public class ClinicalTrialsService {
         }
 
         return Query.of(q -> q.disMax(dq.build()));
+    }
+
+    /**
+     * Word-prefix clause for the search dis_max. The other clauses only match
+     * whole analyzed tokens, so a partial word the user is still typing toward
+     * (e.g. "cardio" for "cardiovascular") matched nothing at all and the search
+     * returned 0 results even though the autocomplete dropdown offered the term.
+     *
+     * bool_prefix treats every term but the last as an ordinary term match and
+     * the last one as a prefix, which is the same semantics the autocomplete in
+     * {@link #getAutocompleteList(String)} already uses. The low boost keeps
+     * prefix-only hits ranked beneath real token/phrase matches — dis_max scores
+     * on the best-matching clause, so exact matches still lead the results.
+     */
+    private Query prefixQuery(String searchTerm, Operator operator) {
+        return Query.of(q -> q.multiMatch(m -> m
+                .query(searchTerm)
+                .type(TextQueryType.BoolPrefix)
+                .operator(operator)
+                .boost(0.1f)));
     }
 
     public boolean isNumeric(String searchTerm) {
