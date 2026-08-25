@@ -106,7 +106,7 @@
             <div class="chart-holder"><canvas id="ovChartVector"></canvas></div>
         </div>
         <div class="overview-card">
-            <h5><i class="fa fa-stethoscope"></i> Top Indications</h5>
+            <h5><i class="fa fa-stethoscope"></i> Conditions Studied</h5>
             <div class="chart-holder"><canvas id="ovChartIndication"></canvas></div>
         </div>
         <div class="overview-card">
