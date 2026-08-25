@@ -148,7 +148,7 @@
                                         <i class="fa fa-filter"></i> Filters<% if(activeFilterCount>0){ %> <span class="filters-count-badge"><%=activeFilterCount%></span><% } %>
                                     </button>
                                     <button type="button" class="btn btn-sm btn-primary text-nowrap"  onclick="download(this)">Export to CSV</button>
-                                    <button type="button" class="btn btn-info btn-sm text-nowrap" data-toggle="modal" data-target="#definitionsModal">Help Doc&nbsp;&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></button>
+                                    <button type="button" class="btn btn-info btn-sm text-nowrap" data-toggle="modal" data-target="#definitionsModal">Glossary&nbsp;&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></button>
                                     <%@include file="modal.jsp"%>
                                     <% if (request.getServerName().equals("localhost") || request.getServerName().equals("dev.scge.mcw.edu") || request.getServerName().equals("stage.scge.mcw.edu") ) { %>
                                     <%try {if (p!=null && access.isAdmin(p) && !SCGEContext.isProduction()) {%>
