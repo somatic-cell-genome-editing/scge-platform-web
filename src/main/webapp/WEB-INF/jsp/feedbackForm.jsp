@@ -28,7 +28,7 @@
     function openForm() {
         document.getElementById("messageBackdrop").style.display = "block";
         document.getElementById("messageVue").style.display = "block";
-        document.getElementById("headMsg").innerText = 'We value your feedback';
+        document.getElementById("headMsg").innerText = 'Contact SCGE';
     }
 
     function closeForm() {
