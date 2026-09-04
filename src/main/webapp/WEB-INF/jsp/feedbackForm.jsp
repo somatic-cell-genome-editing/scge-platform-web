@@ -16,21 +16,21 @@
     </div>
     <%--<%}%>--%>
 </div>
+<div class="chat-popup-backdrop" id="messageBackdrop" onclick="closeForm()"></div>
 <div class="chat-popup" id="messageVue">
     <form class="form-container">
-        <img src="/platform/images/close30.png" id="close" onclick="closeForm()" class="closeForm"/>
+        <button type="button" id="close" onclick="closeForm()" class="closeForm" aria-label="Close">&times;</button>
         <h2 id="headMsg">Contact SCGE</h2>
         <input type="hidden" name="subject" value="Help and Feedback Form">
         <input type="hidden" name="found" value="0">
 
         <label><b>Your email</b></label>
-        <br><input type="email" name="email" v-model="email" >
-        <br>
-        <br><label><b style="">Message</b></label>
-        <textarea placeholder="Type message.." name="comment" v-model="message"></textarea>
+        <input type="email" name="email" v-model="email" placeholder="you@example.com">
 
-        <button type="button" id="sendEmail" class="btn" v-on:click="sendMail">Send</button>
+        <label><b>Message</b></label>
+        <textarea placeholder="How can we help?" name="comment" v-model="message"></textarea>
 
+        <button type="button" id="sendEmail" class="btn" v-on:click="sendMail">Send message</button>
     </form>
 </div>
 
@@ -41,11 +41,13 @@
 <script src="https://unpkg.com/axios@1.7.8/dist/axios.min.js"></script>
 <script>
     function openForm() {
+        document.getElementById("messageBackdrop").style.display = "block";
         document.getElementById("messageVue").style.display = "block";
         document.getElementById("headMsg").innerText = 'We value your feedback';
     }
 
     function closeForm() {
+        document.getElementById("messageBackdrop").style.display = "none";
         document.getElementById("messageVue").style.display = "none";
         document.getElementById("sendEmail").disabled = false;
     }
