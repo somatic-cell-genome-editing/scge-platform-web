@@ -19,6 +19,7 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="/platform/css/resultTable.css" rel="stylesheet" type="text/css"/>
 <link href="/platform/css/referencesModal.css" rel="stylesheet" type="text/css"/>
+<link href="/platform/css/definitionsModal.css" rel="stylesheet" type="text/css"/>
 <link href="/platform/css/clinicalTrialsResultsview.css" rel="stylesheet" type="text/css"/>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap" rel="stylesheet">
 <script src="/platform/js/scge.js"></script>

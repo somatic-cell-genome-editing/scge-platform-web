@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="edu.mcw.scge.services.SCGEContext" %>
+<%@ page import="edu.mcw.scge.datamodel.ClinicalTrialFieldChange" %>
 <%
     int displayLimit = 5;
     int maxDigestItems = Math.min(totalUpdates, displayLimit);
