@@ -8,7 +8,6 @@
 <%@ page import="edu.mcw.scge.configuration.Access" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page import="java.time.LocalDateTime" %>
-<%@ page import="edu.mcw.scge.datamodel.ClinicalTrialFieldChange" %>
 <%@ page import="edu.mcw.scge.dao.implementation.ClinicalTrailDAO" %>
 <%--
   Created by IntelliJ IDEA.
@@ -17,14 +16,17 @@
   Time: 2:59 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="/platform/css/resultTable.css" rel="stylesheet" type="text/css"/>
 <link href="/platform/css/referencesModal.css" rel="stylesheet" type="text/css"/>
+<link href="/platform/css/definitionsModal.css" rel="stylesheet" type="text/css"/>
 <link href="/platform/css/clinicalTrialsResultsview.css" rel="stylesheet" type="text/css"/>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap" rel="stylesheet">
 <script src="/platform/js/scge.js"></script>
 <script src="/platform/common/js/jquery.tabletoCSV.js"> </script>
+<!-- Chart.js: powers the graphical Overview tab -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <%
     ClinicalTrailDAO clinicalTrailDAO=new ClinicalTrailDAO();
     Gson gson=new Gson();
@@ -146,7 +148,7 @@
                                         <i class="fa fa-filter"></i> Filters<% if(activeFilterCount>0){ %> <span class="filters-count-badge"><%=activeFilterCount%></span><% } %>
                                     </button>
                                     <button type="button" class="btn btn-sm btn-primary text-nowrap"  onclick="download(this)">Export to CSV</button>
-                                    <button type="button" class="btn btn-info btn-sm text-nowrap" data-toggle="modal" data-target="#definitionsModal">Help Doc&nbsp;&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></button>
+                                    <button type="button" class="btn btn-info btn-sm text-nowrap" data-toggle="modal" data-target="#definitionsModal">Glossary&nbsp;&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></button>
                                     <%@include file="modal.jsp"%>
                                     <% if (request.getServerName().equals("localhost") || request.getServerName().equals("dev.scge.mcw.edu") || request.getServerName().equals("stage.scge.mcw.edu") ) { %>
                                     <%try {if (p!=null && access.isAdmin(p) && !SCGEContext.isProduction()) {%>
@@ -181,6 +183,11 @@
                             <i class="fa fa-list"></i> List View
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="overview-tab" data-toggle="tab" href="#overviewView" role="tab" aria-controls="overviewView" aria-selected="false">
+                            <i class="fa fa-bar-chart"></i> Overview
+                        </a>
+                    </li>
                 </ul>
                 <div class="tab-content" id="resultsViewTabContent">
                     <!-- Table View Tab -->
@@ -190,6 +197,10 @@
                     <!-- List View Tab -->
                     <div class="tab-pane fade" id="listView" role="tabpanel" aria-labelledby="list-view-tab">
                         <%@include file="resultsListView.jsp"%>
+                    </div>
+                    <!-- Overview (graphical) Tab -->
+                    <div class="tab-pane fade" id="overviewView" role="tabpanel" aria-labelledby="overview-tab">
+                        <%@include file="resultsOverview.jsp"%>
                     </div>
                 </div>
 

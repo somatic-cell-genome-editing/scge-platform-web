@@ -19,6 +19,7 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="/platform/css/resultTable.css" rel="stylesheet" type="text/css"/>
 <link href="/platform/css/referencesModal.css" rel="stylesheet" type="text/css"/>
+<link href="/platform/css/definitionsModal.css" rel="stylesheet" type="text/css"/>
 <link href="/platform/css/clinicalTrialsResultsview.css" rel="stylesheet" type="text/css"/>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap" rel="stylesheet">
 <script src="/platform/js/scge.js"></script>
@@ -108,7 +109,7 @@
                                 <div id="fileCitation" style="display:none;">SCGE Platform Gene Therapy Clinical Trials downloaded on: <%=dtf.format(now)%>; Please cite the Somatic Cell Genome Editing Consortium Platform when using publicly accessible data in formal presentation or publication.</div>
                                 <div class="btn-group" role="group">
                                     <button type="button" class="btn btn-sm btn-primary text-nowrap"  onclick="download()">Export to CSV</button>
-                                    <button type="button" class="btn btn-info btn-sm text-nowrap" data-toggle="modal" data-target="#definitionsModal">Help Doc&nbsp;&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></button>
+                                    <button type="button" class="btn btn-info btn-sm text-nowrap" data-toggle="modal" data-target="#definitionsModal">Glossary&nbsp;&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></button>
                                     <%@include file="modal.jsp"%>
                                     <% if (request.getServerName().equals("localhost") || request.getServerName().equals("dev.scge.mcw.edu") || request.getServerName().equals("stage.scge.mcw.edu") ) { %>
                                     <%try {if (p!=null && access.isAdmin(p) && !SCGEContext.isProduction()) {%>
