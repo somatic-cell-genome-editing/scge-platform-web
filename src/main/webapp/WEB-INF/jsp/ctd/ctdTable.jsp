@@ -17,6 +17,16 @@
   Time: 1:12 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%!
+    // resource_url and file_path can come back from ctd_resources as SQL NULL or
+    // as the literal text "null"/"(null)"; treat all of those as "not set" so we
+    // never emit href="null" or path='null'.
+    private static boolean hasValue(String value) {
+        if (value == null) return false;
+        String p = value.trim();
+        return !p.isEmpty() && !p.equalsIgnoreCase("null") && !p.equalsIgnoreCase("(null)");
+    }
+%>
 <script>
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
@@ -310,10 +320,12 @@
                         <%if(guidance!=null && guidance.size()>0){%>
                         <ul class="resource-list">
                             <%for(CTDResource resource:guidance){
-                                if(resource.getSource()!=null && (resource.getSource().equalsIgnoreCase("External") || resource.getSource().equalsIgnoreCase("FDA"))){%>
-                            <li><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                                if(hasValue(resource.getResourceUrl())){%>
+                            <li><a href="<%=resource.getResourceUrl().trim()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <%}else if(hasValue(resource.getFilePath())){%>
+                            <li><a href="/platform/public/download/module?path=<%=resource.getFilePath().trim()%>&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
                             <%}else{%>
-                            <li><a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <li><%=resource.getResourceName()%></li>
                             <%}}%>
                         </ul>
                         <%}%>
@@ -322,10 +334,12 @@
                         <%if(regulation!=null && regulation.size()>0){%>
                         <ul class="resource-list">
                             <%for(CTDResource resource:regulation){
-                                if(resource.getSource()!=null && (resource.getSource().equalsIgnoreCase("External") || resource.getSource().equalsIgnoreCase("FDA"))){%>
-                            <li><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                                if(hasValue(resource.getResourceUrl())){%>
+                            <li><a href="<%=resource.getResourceUrl().trim()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <%}else if(hasValue(resource.getFilePath())){%>
+                            <li><a href="/platform/public/download/module?path=<%=resource.getFilePath().trim()%>&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
                             <%}else{%>
-                            <li><a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <li><%=resource.getResourceName()%></li>
                             <%}}%>
                         </ul>
                         <%}%>
@@ -334,10 +348,12 @@
                         <%if(templates!=null && templates.size()>0){%>
                         <ul class="resource-list">
                             <%for(CTDResource resource:templates){
-                                if(resource.getSource()!=null && (resource.getSource().equalsIgnoreCase("External") || resource.getSource().equalsIgnoreCase("FDA"))){%>
-                            <li><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                                if(hasValue(resource.getResourceUrl())){%>
+                            <li><a href="<%=resource.getResourceUrl().trim()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <%}else if(hasValue(resource.getFilePath())){%>
+                            <li><a href="/platform/public/download/module?path=<%=resource.getFilePath().trim()%>&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
                             <%}else{%>
-                            <li><a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <li><%=resource.getResourceName()%></li>
                             <%}}%>
                         </ul>
                         <%}%>
@@ -346,10 +362,12 @@
                         <%if(examples!=null && examples.size()>0){%>
                         <ul class="resource-list">
                             <%for(CTDResource resource:examples){
-                                if(resource.getSource()!=null && (resource.getSource().equalsIgnoreCase("External") || resource.getSource().equalsIgnoreCase("FDA"))){%>
-                            <li><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                                if(hasValue(resource.getResourceUrl())){%>
+                            <li><a href="<%=resource.getResourceUrl().trim()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <%}else if(hasValue(resource.getFilePath())){%>
+                            <li><a href="/platform/public/download/module?path=<%=resource.getFilePath().trim()%>&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
                             <%}else{%>
-                            <li><a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <li><%=resource.getResourceName()%></li>
                             <%}}%>
                         </ul>
                         <%}%>
@@ -358,10 +376,12 @@
                         <%if(other!=null && other.size()>0){%>
                         <ul class="resource-list">
                             <%for(CTDResource resource:other){
-                                if(resource.getSource()!=null && (resource.getSource().equalsIgnoreCase("External") || resource.getSource().equalsIgnoreCase("FDA"))){%>
-                            <li><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                                if(hasValue(resource.getResourceUrl())){%>
+                            <li><a href="<%=resource.getResourceUrl().trim()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <%}else if(hasValue(resource.getFilePath())){%>
+                            <li><a href="/platform/public/download/module?path=<%=resource.getFilePath().trim()%>&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
                             <%}else{%>
-                            <li><a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <li><%=resource.getResourceName()%></li>
                             <%}}%>
                         </ul>
                         <%}%>
@@ -435,10 +455,12 @@
                         <%if(guidance!=null && guidance.size()>0){%>
                         <ul class="resource-list">
                             <%for(CTDResource resource:guidance){
-                                if(resource.getSource()!=null && (resource.getSource().equalsIgnoreCase("External") || resource.getSource().equalsIgnoreCase("FDA"))){%>
-                            <li><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                                if(hasValue(resource.getResourceUrl())){%>
+                            <li><a href="<%=resource.getResourceUrl().trim()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <%}else if(hasValue(resource.getFilePath())){%>
+                            <li><a href="/platform/public/download/module?path=<%=resource.getFilePath().trim()%>&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
                             <%}else{%>
-                            <li><a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <li><%=resource.getResourceName()%></li>
                             <%}}%>
                         </ul>
                         <%}%>
@@ -447,10 +469,12 @@
                         <%if(regulation!=null && regulation.size()>0){%>
                         <ul class="resource-list">
                             <%for(CTDResource resource:regulation){
-                                if(resource.getSource()!=null && (resource.getSource().equalsIgnoreCase("External") || resource.getSource().equalsIgnoreCase("FDA"))){%>
-                            <li><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                                if(hasValue(resource.getResourceUrl())){%>
+                            <li><a href="<%=resource.getResourceUrl().trim()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <%}else if(hasValue(resource.getFilePath())){%>
+                            <li><a href="/platform/public/download/module?path=<%=resource.getFilePath().trim()%>&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
                             <%}else{%>
-                            <li><a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <li><%=resource.getResourceName()%></li>
                             <%}}%>
                         </ul>
                         <%}%>
@@ -459,10 +483,12 @@
                         <%if(templates!=null && templates.size()>0){%>
                         <ul class="resource-list">
                             <%for(CTDResource resource:templates){
-                                if(resource.getSource()!=null && (resource.getSource().equalsIgnoreCase("External") || resource.getSource().equalsIgnoreCase("FDA"))){%>
-                            <li><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                                if(hasValue(resource.getResourceUrl())){%>
+                            <li><a href="<%=resource.getResourceUrl().trim()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <%}else if(hasValue(resource.getFilePath())){%>
+                            <li><a href="/platform/public/download/module?path=<%=resource.getFilePath().trim()%>&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
                             <%}else{%>
-                            <li><a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <li><%=resource.getResourceName()%></li>
                             <%}}%>
                         </ul>
                         <%}%>
@@ -471,10 +497,12 @@
                         <%if(examples!=null && examples.size()>0){%>
                         <ul class="resource-list">
                             <%for(CTDResource resource:examples){
-                                if(resource.getSource()!=null && (resource.getSource().equalsIgnoreCase("External") || resource.getSource().equalsIgnoreCase("FDA"))){%>
-                            <li><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                                if(hasValue(resource.getResourceUrl())){%>
+                            <li><a href="<%=resource.getResourceUrl().trim()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <%}else if(hasValue(resource.getFilePath())){%>
+                            <li><a href="/platform/public/download/module?path=<%=resource.getFilePath().trim()%>&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
                             <%}else{%>
-                            <li><a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <li><%=resource.getResourceName()%></li>
                             <%}}%>
                         </ul>
                         <%}%>
@@ -483,10 +511,12 @@
                         <%if(other!=null && other.size()>0){%>
                         <ul class="resource-list">
                             <%for(CTDResource resource:other){
-                                if(resource.getSource()!=null && (resource.getSource().equalsIgnoreCase("External") || resource.getSource().equalsIgnoreCase("FDA"))){%>
-                            <li><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                                if(hasValue(resource.getResourceUrl())){%>
+                            <li><a href="<%=resource.getResourceUrl().trim()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <%}else if(hasValue(resource.getFilePath())){%>
+                            <li><a href="/platform/public/download/module?path=<%=resource.getFilePath().trim()%>&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
                             <%}else{%>
-                            <li><a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <li><%=resource.getResourceName()%></li>
                             <%}}%>
                         </ul>
                         <%}%>
@@ -557,10 +587,12 @@
                         <%if(guidance!=null && guidance.size()>0){%>
                         <ul class="resource-list">
                             <%for(CTDResource resource:guidance){
-                                if(resource.getSource()!=null && (resource.getSource().equalsIgnoreCase("External") || resource.getSource().equalsIgnoreCase("FDA"))){%>
-                            <li><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                                if(hasValue(resource.getResourceUrl())){%>
+                            <li><a href="<%=resource.getResourceUrl().trim()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <%}else if(hasValue(resource.getFilePath())){%>
+                            <li><a href="/platform/public/download/module?path=<%=resource.getFilePath().trim()%>&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
                             <%}else{%>
-                            <li><a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <li><%=resource.getResourceName()%></li>
                             <%}}%>
                         </ul>
                         <%}%>
@@ -569,10 +601,12 @@
                         <%if(regulation!=null && regulation.size()>0){%>
                         <ul class="resource-list">
                             <%for(CTDResource resource:regulation){
-                                if(resource.getSource()!=null && (resource.getSource().equalsIgnoreCase("External") || resource.getSource().equalsIgnoreCase("FDA"))){%>
-                            <li><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                                if(hasValue(resource.getResourceUrl())){%>
+                            <li><a href="<%=resource.getResourceUrl().trim()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <%}else if(hasValue(resource.getFilePath())){%>
+                            <li><a href="/platform/public/download/module?path=<%=resource.getFilePath().trim()%>&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
                             <%}else{%>
-                            <li><a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <li><%=resource.getResourceName()%></li>
                             <%}}%>
                         </ul>
                         <%}%>
@@ -581,10 +615,12 @@
                         <%if(templates!=null && templates.size()>0){%>
                         <ul class="resource-list">
                             <%for(CTDResource resource:templates){
-                                if(resource.getSource()!=null && (resource.getSource().equalsIgnoreCase("External") || resource.getSource().equalsIgnoreCase("FDA"))){%>
-                            <li><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                                if(hasValue(resource.getResourceUrl())){%>
+                            <li><a href="<%=resource.getResourceUrl().trim()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <%}else if(hasValue(resource.getFilePath())){%>
+                            <li><a href="/platform/public/download/module?path=<%=resource.getFilePath().trim()%>&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
                             <%}else{%>
-                            <li><a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <li><%=resource.getResourceName()%></li>
                             <%}}%>
                         </ul>
                         <%}%>
@@ -593,10 +629,12 @@
                         <%if(examples!=null && examples.size()>0){%>
                         <ul class="resource-list">
                             <%for(CTDResource resource:examples){
-                                if(resource.getSource()!=null && (resource.getSource().equalsIgnoreCase("External") || resource.getSource().equalsIgnoreCase("FDA"))){%>
-                            <li><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                                if(hasValue(resource.getResourceUrl())){%>
+                            <li><a href="<%=resource.getResourceUrl().trim()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <%}else if(hasValue(resource.getFilePath())){%>
+                            <li><a href="/platform/public/download/module?path=<%=resource.getFilePath().trim()%>&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
                             <%}else{%>
-                            <li><a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <li><%=resource.getResourceName()%></li>
                             <%}}%>
                         </ul>
                         <%}%>
@@ -605,10 +643,12 @@
                         <%if(other!=null && other.size()>0){%>
                         <ul class="resource-list">
                             <%for(CTDResource resource:other){
-                                if(resource.getSource()!=null && (resource.getSource().equalsIgnoreCase("External") || resource.getSource().equalsIgnoreCase("FDA"))){%>
-                            <li><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                                if(hasValue(resource.getResourceUrl())){%>
+                            <li><a href="<%=resource.getResourceUrl().trim()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <%}else if(hasValue(resource.getFilePath())){%>
+                            <li><a href="/platform/public/download/module?path=<%=resource.getFilePath().trim()%>&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
                             <%}else{%>
-                            <li><a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <li><%=resource.getResourceName()%></li>
                             <%}}%>
                         </ul>
                         <%}%>
@@ -677,10 +717,12 @@
                         <%if(guidance!=null && guidance.size()>0){%>
                         <ul class="resource-list">
                             <%for(CTDResource resource:guidance){
-                                if(resource.getSource()!=null && (resource.getSource().equalsIgnoreCase("External") || resource.getSource().equalsIgnoreCase("FDA"))){%>
-                            <li><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                                if(hasValue(resource.getResourceUrl())){%>
+                            <li><a href="<%=resource.getResourceUrl().trim()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <%}else if(hasValue(resource.getFilePath())){%>
+                            <li><a href="/platform/public/download/module?path=<%=resource.getFilePath().trim()%>&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
                             <%}else{%>
-                            <li><a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <li><%=resource.getResourceName()%></li>
                             <%}}%>
                         </ul>
                         <%}%>
@@ -689,10 +731,12 @@
                         <%if(regulation!=null && regulation.size()>0){%>
                         <ul class="resource-list">
                             <%for(CTDResource resource:regulation){
-                                if(resource.getSource()!=null && (resource.getSource().equalsIgnoreCase("External") || resource.getSource().equalsIgnoreCase("FDA"))){%>
-                            <li><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                                if(hasValue(resource.getResourceUrl())){%>
+                            <li><a href="<%=resource.getResourceUrl().trim()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <%}else if(hasValue(resource.getFilePath())){%>
+                            <li><a href="/platform/public/download/module?path=<%=resource.getFilePath().trim()%>&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
                             <%}else{%>
-                            <li><a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <li><%=resource.getResourceName()%></li>
                             <%}}%>
                         </ul>
                         <%}%>
@@ -701,10 +745,12 @@
                         <%if(templates!=null && templates.size()>0){%>
                         <ul class="resource-list">
                             <%for(CTDResource resource:templates){
-                                if(resource.getSource()!=null && (resource.getSource().equalsIgnoreCase("External") || resource.getSource().equalsIgnoreCase("FDA"))){%>
-                            <li><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                                if(hasValue(resource.getResourceUrl())){%>
+                            <li><a href="<%=resource.getResourceUrl().trim()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <%}else if(hasValue(resource.getFilePath())){%>
+                            <li><a href="/platform/public/download/module?path=<%=resource.getFilePath().trim()%>&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
                             <%}else{%>
-                            <li><a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <li><%=resource.getResourceName()%></li>
                             <%}}%>
                         </ul>
                         <%}%>
@@ -713,10 +759,12 @@
                         <%if(examples!=null && examples.size()>0){%>
                         <ul class="resource-list">
                             <%for(CTDResource resource:examples){
-                                if(resource.getSource()!=null && (resource.getSource().equalsIgnoreCase("External") || resource.getSource().equalsIgnoreCase("FDA"))){%>
-                            <li><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                                if(hasValue(resource.getResourceUrl())){%>
+                            <li><a href="<%=resource.getResourceUrl().trim()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <%}else if(hasValue(resource.getFilePath())){%>
+                            <li><a href="/platform/public/download/module?path=<%=resource.getFilePath().trim()%>&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
                             <%}else{%>
-                            <li><a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <li><%=resource.getResourceName()%></li>
                             <%}}%>
                         </ul>
                         <%}%>
@@ -725,10 +773,12 @@
                         <%if(other!=null && other.size()>0){%>
                         <ul class="resource-list">
                             <%for(CTDResource resource:other){
-                                if(resource.getSource()!=null && (resource.getSource().equalsIgnoreCase("External") || resource.getSource().equalsIgnoreCase("FDA"))){%>
-                            <li><a href="<%=resource.getResourceUrl()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                                if(hasValue(resource.getResourceUrl())){%>
+                            <li><a href="<%=resource.getResourceUrl().trim()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <%}else if(hasValue(resource.getFilePath())){%>
+                            <li><a href="/platform/public/download/module?path=<%=resource.getFilePath().trim()%>&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
                             <%}else{%>
-                            <li><a href="/platform/public/download/module?path='<%=resource.getFilePath()%>'&filename=<%=resource.getResourceDescription()%>" target="_blank"><%=resource.getResourceName()%></a></li>
+                            <li><%=resource.getResourceName()%></li>
                             <%}}%>
                         </ul>
                         <%}%>
