@@ -179,6 +179,7 @@
     (function(){
         var PALETTE = ['#2563eb','#16a34a','#f59e0b','#dc2626','#7c3aed','#0891b2',
                        '#db2777','#65a30d','#ea580c','#0d9488','#4f46e5','#94a3b8'];
+        var BAR_COLOR = PALETTE[0];
         var rendered = false;
 
         function colorsFor(n){
@@ -201,8 +202,11 @@
                     labels: labels,
                     datasets: [{
                         data: values,
-                        backgroundColor: colorsFor(labels.length),
-                        borderColor: (type === 'bar') ? colorsFor(labels.length) : '#fff',
+                        // Bars use one colour - the bar length already encodes the value,
+                        // so per-bar colours add nothing. Pie/doughnut slices still need
+                        // one colour each to stay distinguishable.
+                        backgroundColor: (type === 'bar') ? BAR_COLOR : colorsFor(labels.length),
+                        borderColor: (type === 'bar') ? BAR_COLOR : '#fff',
                         borderWidth: (type === 'bar') ? 0 : 1
                     }]
                 },
