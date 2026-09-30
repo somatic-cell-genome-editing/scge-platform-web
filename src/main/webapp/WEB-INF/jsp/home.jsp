@@ -116,6 +116,8 @@
                 <ol class="list-unstyled mb-0">
                     <li><a href="https://www.fda.gov/drugs/investigational-new-drug-ind-application/ind-forms-and-instructions" target="_blank">FDA IND Forms and Instructions</a></li>
                     <li><a href="https://www.fda.gov/drugs/types-applications/investigational-new-drug-ind-application#FDA%20Guidances%20for%20Investigational%20New%20Drugs" target="_blank">FDA Guidance Documents for INDs</a></li>
+                    <li><a href="https://bgtcplaybook.document360.io/docs" target="_blank">Bespoke Gene Therapy Consortium (BGTC) Regulatory Playbook</a></li>
+                    <li><a href="https://alliancerm.org/wp-content/uploads/2026/09/2026-ARM-Gene-Editing-Playbook.pdf" target="_blank">Alliance for Regenerative Medicine: A Platform Framework for Gene Editing Drug Development</a></li>
                 </ol>
 
             </div>
