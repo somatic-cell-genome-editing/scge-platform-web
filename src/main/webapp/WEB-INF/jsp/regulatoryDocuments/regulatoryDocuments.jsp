@@ -17,6 +17,7 @@
                 <%@include file="lca/lca_sidebar.jsp"%>
                 <%@include file="best/best_sidebar.jsp"%>
                 <%@include file="sma/sma_sidebar.jsp"%>
+                <%@include file="als/als_sidebar.jsp"%>
                 <%@include file="fa/fa_sidebar.jsp"%>
                 <%@include file="hd/hd_sidebar.jsp"%>
                 <%@include file="rtt/rtt_sidebar.jsp"%>
@@ -182,7 +183,7 @@
                         </tr>
                         <!-- Neurological Disorders -->
                         <tr>
-                            <td rowspan="5" class="disease-area-cell">
+                            <td rowspan="6" class="disease-area-cell">
                                 <div class="disease-icon-container">
                                     <div class="disease-icon neurological-icon">
                                         <i class="fas fa-brain"></i>
@@ -248,6 +249,27 @@
                         <tr class="publications-row" id="sma-documents">
                             <td colspan="9" class="publications-content">
                                 <%@include file="sma/sma_docs.jsp"%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#wilson" target="_blank">Amyotrophic Lateral<br>Sclerosis (C9orf72)</a></td>
+                            <td colspan="5" style="position: relative;">
+                                <div class="timeline-bar" style="left: 5px; width: 40%;"></div>
+                            </td>
+                            <td class="publications-cell">
+                                <button class="publications-toggle" onclick="togglePublications('als-publications')">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span class="pub-count">6</span>
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
+                                </button>
+                            </td>
+                            <td class="publications-cell">
+                                <div class="no-publications">—</div>
+                            </td>
+                        </tr>
+                        <tr class="publications-row" id="als-publications">
+                            <td colspan="9" class="publications-content">
+                                <%@include file="als/als_publications.jsp"%>
                             </td>
                         </tr>
                         <tr>
