@@ -6,13 +6,19 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.net.*, java.io.*, javax.xml.parsers.*, org.w3c.dom.*" %>
+<%@ page import="java.net.*, java.io.*, java.util.regex.*, javax.xml.parsers.*, org.w3c.dom.*" %>
 
 <%
   String rssUrl = "https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/press-releases/rss.xml";
   NodeList items = null;
   boolean feedError = false;
-  String[] keywords = {"gene therapy", "gene editing", "cell therapy", "biologics", "genome", "cber", "ind", "investigational new drug"};
+  String[] keywords = {"gene therapy", "gene editing", "cell therapy", "biologics", "genome", "investigational new drug"};
+  // Short acronyms must match as whole words - a substring match on "ind" also hits
+  // Indian, Indicated, Kind, finding, industry, etc.
+  Pattern[] acronymPatterns = {
+      Pattern.compile("\\bind\\b"),
+      Pattern.compile("\\bcber\\b")
+  };
 
   try {
     DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -49,6 +55,11 @@
         boolean matches = false;
         for (String kw : keywords) {
           if (titleLower.contains(kw)) { matches = true; break; }
+        }
+        if (!matches) {
+          for (Pattern p : acronymPatterns) {
+            if (p.matcher(titleLower).find()) { matches = true; break; }
+          }
         }
         if (matches) {
           matchCount++;
