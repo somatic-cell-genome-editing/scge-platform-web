@@ -12,7 +12,10 @@
   String rssUrl = "https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/press-releases/rss.xml";
   NodeList items = null;
   boolean feedError = false;
-  String[] keywords = {"gene therapy", "gene editing", "cell therapy", "biologics", "genome", "investigational new drug"};
+  String[] keywords = {"gene therapy", "gene editing", "cell therapy", "biologics", "genome", "investigational new drug",
+                       // nonclinical testing terminology - FDA direct final rule, Sep 2026
+                       // (90 FR 2026-19350) replaced "animal"/"preclinical" with "nonclinical"
+                       "nonclinical", "non-clinical", "preclinical", "animal testing"};
   // Short acronyms must match as whole words - a substring match on "ind" also hits
   // Indian, Indicated, Kind, finding, industry, etc.
   Pattern[] acronymPatterns = {
