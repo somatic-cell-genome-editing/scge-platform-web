@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--<ul>--%>
 <%--    <li>• <a href="/platform/public/download/regulatory?documentName='PKU Pre-IND briefing book redacted.pdf'" target="_blank">Pre-IND Briefing Book</a></li>--%>
-<%--    <li>• <a href="/platform/public/download/regulatory?documentName='PKU FDA Preliminary Responses_PS008879_4 redacted.pdf'" target="_blank" >Pre-IND Official Responses/Meeting Summary</a></li>--%>
+<%--    <li>• <a href="/platform/public/download/regulatory?documentName='PKU FDA Preliminary Responses_PS008879_4 redacted.pdf'" target="_blank" >Pre-IND FDA Responses</a></li>--%>
 <%--</ul>--%>
 
 <div class="publications-container">
@@ -20,7 +20,7 @@
             <a href="/platform/public/download/regulatory?documentName='PKU Pre-IND briefing book redacted.pdf'" target="_blank">Pre-IND Briefing Book</a>
         </li>
         <li>
-            <a href="/platform/public/download/regulatory?documentName='PKU FDA Preliminary Responses_PS008879_4 redacted.pdf'" target="_blank" >Pre-IND Official Responses/Meeting Summary</a>
+            <a href="/platform/public/download/regulatory?documentName='PKU FDA Preliminary Responses_PS008879_4 redacted.pdf'" target="_blank" >Pre-IND FDA Responses</a>
         </li>
 
 

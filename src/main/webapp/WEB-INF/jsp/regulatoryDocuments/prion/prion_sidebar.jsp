@@ -3,7 +3,7 @@
     <h6><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#vallabh" target="_blank">Prion Disease (Broad Institute)</a></h6>
     <ul class="sidebar-docs-list">
         <li><a href="/platform/public/download/regulatory?documentName='2025-02-10_PRNP-CHARM-001_INTERACT-noncon-v2.pdf'" target="_blank">INTERACT Briefing Book</a></li>
-        <li><a href="/platform/public/download/regulatory?documentName='2025-02-10-PRNP-CHARM-INTERACT-feedback-CBER-noncon-v2.pdf'" target="_blank">FDA Responses</a></li>
+        <li><a href="/platform/public/download/regulatory?documentName='2025-02-10-PRNP-CHARM-INTERACT-feedback-CBER-noncon-v2.pdf'" target="_blank">INTERACT FDA Responses</a></li>
     </ul>
     <div class="sidebar-publications">
         <button class="sidebar-pub-toggle" onclick="toggleSidebarPublications('sidebar-prion-pubs')">
