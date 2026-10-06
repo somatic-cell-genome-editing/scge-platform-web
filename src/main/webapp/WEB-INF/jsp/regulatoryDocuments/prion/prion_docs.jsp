@@ -14,7 +14,7 @@
         <li>
             <a href="/platform/public/download/regulatory?documentName='2025-02-10_PRNP-CHARM-001_INTERACT-noncon-v2.pdf'" target="_blank">INTERACT Meeting Briefing Book</a>        </li>
         <li>
-            <a href="/platform/public/download/regulatory?documentName='2025-02-10-PRNP-CHARM-INTERACT-feedback-CBER-noncon-v2.pdf'" target="_blank">Official FDA Responses</a>        </li>
+            <a href="/platform/public/download/regulatory?documentName='2025-02-10-PRNP-CHARM-INTERACT-feedback-CBER-noncon-v2.pdf'" target="_blank">INTERACT FDA Responses</a>        </li>
 
 
     </ul>
