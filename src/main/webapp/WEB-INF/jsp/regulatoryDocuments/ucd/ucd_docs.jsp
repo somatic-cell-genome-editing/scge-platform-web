@@ -14,7 +14,7 @@
         <li>
             <a href="/platform/public/download/regulatory?documentName='UCD Pre-IND briefing book redacted.pdf'" target="_blank">Pre-IND Briefing Book</a>        </li>
         <li>
-            <a href="/platform/public/download/regulatory?documentName='UCD FDA Signed_a_Meeting Summary_PS010343-CHOP redacted.pdf'" target="_blank">Pre-IND Official Responses/Meeting Summary</a>
+            <a href="/platform/public/download/regulatory?documentName='UCD FDA Signed_a_Meeting Summary_PS010343-CHOP redacted.pdf'" target="_blank">Pre-IND FDA Responses</a>
         </li>
 
     </ul>

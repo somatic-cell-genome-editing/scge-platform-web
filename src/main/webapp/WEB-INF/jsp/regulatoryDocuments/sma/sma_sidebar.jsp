@@ -6,7 +6,7 @@
             <a href="/platform/public/download/regulatory?documentName='INTERACT_Meeting_Request_Final_04.30.2024_Redacted.pdf'" target="_blank">INTERACT Briefing Book</a>
         </li>
         <li>
-            <a href="/platform/public/download/regulatory?documentName='SMA_Annotated_FDA_Responses_Redacted.pdf'" target="_blank">FDA Responses</a>        </li>
+            <a href="/platform/public/download/regulatory?documentName='SMA_Annotated_FDA_Responses_Redacted.pdf'" target="_blank">INTERACT FDA Responses</a>        </li>
 
     </ul>
     <div class="sidebar-publications">

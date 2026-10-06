@@ -3,7 +3,7 @@
     <h6><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#ahrens-nicklas" target="_blank">Urea Cycle Disorders - Base Editing (CHOP/UPENN)</a></h6>
     <ul class="sidebar-docs-list">
         <li><a href="/platform/public/download/regulatory?documentName='UCD Pre-IND briefing book redacted.pdf'" target="_blank">Pre-IND Briefing Book</a></li>
-        <li><a href="/platform/public/download/regulatory?documentName='UCD FDA Signed_a_Meeting Summary_PS010343-CHOP redacted.pdf'" target="_blank">Pre-IND Responses</a></li>
+        <li><a href="/platform/public/download/regulatory?documentName='UCD FDA Signed_a_Meeting Summary_PS010343-CHOP redacted.pdf'" target="_blank">Pre-IND FDA Responses</a></li>
     </ul>
     <div class="sidebar-publications">
         <button class="sidebar-pub-toggle" onclick="toggleSidebarPublications('sidebar-ucd-pubs')">
