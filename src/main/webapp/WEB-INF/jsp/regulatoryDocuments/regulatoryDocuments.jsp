@@ -21,6 +21,7 @@
                 <%@include file="fa/fa_sidebar.jsp"%>
                 <%@include file="hd/hd_sidebar.jsp"%>
                 <%@include file="rtt/rtt_sidebar.jsp"%>
+                <%@include file="hearingLoss/hearingLoss_sidebar.jsp"%>
             </div>
         </div>
 
@@ -396,6 +397,36 @@
                         <tr class="publications-row" id="best-documents">
                             <td colspan="9" class="publications-content">
                                 <%@include file="best/docs.jsp"%>
+                            </td>
+                        </tr>
+                        <!-- Genetic Hearing Loss -->
+                        <tr>
+                            <td rowspan="1" class="disease-area-cell">
+                                <div class="disease-icon-container">
+                                    <div class="disease-icon hearing-loss-icon">
+                                        <i class="fas fa-ear-listen"></i>
+                                    </div>
+                                    <div class="disease-label">Genetic<br>Hearing<br>Loss</div>
+                                </div>
+                            </td>
+                            <td class="program-name"><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/" target="_blank">DNFA41 and DNFA2</a></td>
+                            <td colspan="5" style="position: relative;">
+                                <div class="timeline-bar" style="left: 5px; width: 40%;"></div>
+                            </td>
+                            <td class="publications-cell">
+                                <button class="publications-toggle" onclick="togglePublications('hearing-loss-publications')">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span class="pub-count">2</span>
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
+                                </button>
+                            </td>
+                            <td class="publications-cell">
+                                <div class="no-publications">&mdash;</div>
+                            </td>
+                        </tr>
+                        <tr class="publications-row" id="hearing-loss-publications">
+                            <td colspan="9" class="publications-content">
+                                <%@include file="hearingLoss/hearingLoss_publications.jsp"%>
                             </td>
                         </tr>
                     </tbody>
