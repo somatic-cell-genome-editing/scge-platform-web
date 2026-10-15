@@ -128,6 +128,28 @@
             <div class="news-section">
                 <h3>Latest News & Updates</h3>
 
+                <div class="news-item">
+                    <div class="news-item-date">October 15th, 2026</div>
+                    <h4 class="news-item-title">
+                        <a href="/platform/public/documents/regulatory">Genetic Hearing Loss (DFNA41 and DFNA2) &ndash; New Disease Program Added</a>
+                    </h4>
+                    <p class="news-item-excerpt">
+                        A new disease program targeting the genetic hearing loss disorders DFNA41 and DFNA2 (Mass Eye and Ear) has been added to the SCGE Platform, establishing genetic hearing loss as a new disease area. The program has completed its INTERACT meeting with the FDA, and two associated publications are now available on the Regulatory Documents page. Regulatory documents for this program will be shared as they become available.
+                    </p>
+                    <a href="/platform/public/documents/regulatory" class="news-item-link">View Program &rarr;</a>
+                </div>
+
+
+                <div class="news-item">
+                    <div class="news-item-date">October 2nd, 2026</div>
+                    <h4 class="news-item-title">
+                        <a href="/platform/public/documents/regulatory">Amyotrophic Lateral Sclerosis (C9orf72) &ndash; New Disease Program Added</a>
+                    </h4>
+                    <p class="news-item-excerpt">
+                        A new neurological disease program targeting the C9orf72 repeat expansion in ALS (UCSF) has been added to the SCGE Platform. The program has completed its INTERACT meeting with the FDA, and six associated publications are now available on the Regulatory Documents page. Regulatory documents for this program will be shared as they become available.
+                    </p>
+                    <a href="/platform/public/documents/regulatory" class="news-item-link">View Program &rarr;</a>
+                </div>
 
                 <div class="news-item">
                     <div class="news-item-date">June 24th, 2026</div>

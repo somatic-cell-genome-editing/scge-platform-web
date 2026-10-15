@@ -409,7 +409,7 @@
                                     <div class="disease-label">Genetic<br>Hearing<br>Loss</div>
                                 </div>
                             </td>
-                            <td class="program-name"><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#chen" target="_blank">DNFA41 and DNFA2</a></td>
+                            <td class="program-name"><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#chen" target="_blank">DFNA41 and DFNA2</a></td>
                             <td colspan="5" style="position: relative;">
                                 <div class="timeline-bar" style="left: 5px; width: 40%;"></div>
                             </td>
