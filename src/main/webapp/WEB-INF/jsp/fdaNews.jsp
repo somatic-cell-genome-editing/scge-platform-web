@@ -13,6 +13,9 @@
   NodeList items = null;
   boolean feedError = false;
   String[] keywords = {"gene therapy", "gene editing", "cell therapy", "biologics", "genome", "investigational new drug",
+                       // rare / orphan regulatory pathways - FDA Rare Disease Framework
+                       // Initiative, Oct 2026
+                       "rare disease", "orphan",
                        // nonclinical testing terminology - FDA direct final rule, Sep 2026
                        // (90 FR 2026-19350) replaced "animal"/"preclinical" with "nonclinical"
                        "nonclinical", "non-clinical", "preclinical", "animal testing"};
@@ -45,23 +48,34 @@
 <h4>FDA Press Releases</h4>
 
 <%
+  // Scan every item FDA sends (the feed currently carries 20, so the old
+  // Math.min(..., 20) scan cap never actually bound) and cap instead what gets
+  // rendered, which is what keeps the home page panel a fixed size.
+  int maxDisplay = 10;
   int matchCount = 0;
   if (!feedError && items != null) {
-    for (int i = 0; i < Math.min(items.getLength(), 20); i++) {
+    for (int i = 0; i < items.getLength() && matchCount < maxDisplay; i++) {
       Node item = items.item(i);
       if (item.getNodeType() == Node.ELEMENT_NODE) {
         Element e = (Element) item;
         String fdaNewstitle = e.getElementsByTagName("title").item(0).getTextContent();
         String link = e.getElementsByTagName("link").item(0).getTextContent();
         String pubDate = e.getElementsByTagName("pubDate").item(0).getTextContent();
-        String titleLower = fdaNewstitle.toLowerCase();
+        // Match title + summary, not title alone: relevant releases often carry the topical
+        // term only in the body. The Rare Disease Framework Initiative (Oct 2026) was missed
+        // this way - its headline says only "Rare Disease Drug Development" while its summary
+        // says "drugs and biologics for rare diseases". FDA item descriptions are a single
+        // summary sentence with no boilerplate, so this adds little false-positive risk.
+        NodeList descNodes = e.getElementsByTagName("description");
+        String description = (descNodes.getLength() > 0) ? descNodes.item(0).getTextContent() : "";
+        String searchText = (fdaNewstitle + " " + description).toLowerCase();
         boolean matches = false;
         for (String kw : keywords) {
-          if (titleLower.contains(kw)) { matches = true; break; }
+          if (searchText.contains(kw)) { matches = true; break; }
         }
         if (!matches) {
           for (Pattern p : acronymPatterns) {
-            if (p.matcher(titleLower).find()) { matches = true; break; }
+            if (p.matcher(searchText).find()) { matches = true; break; }
           }
         }
         if (matches) {
