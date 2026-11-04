@@ -45,8 +45,14 @@ expandFilterVal="<%=request.getAttribute("expandAllFilters")%>"
   <input type="hidden" id="pageSize" name="pageSize" value="<%=pageSize%>"/>
 
   <%
-      loop: for(String aggName:ClinicalTrials.facets){
+      loop: for(String aggName:ClinicalTrialsService.facets){
       if(aggName.equalsIgnoreCase("recordStatus") && (p==null || !access.isAdmin(p))){
+          continue loop;
+      }
+      // A facet whose field is not (yet) in the index mapping aggregates to nothing;
+      // skip it rather than rendering an empty accordion.
+      StringTermsAggregate aggs = sr.aggregations().get(aggName)==null ? null : sr.aggregations().get(aggName).sterms();
+      if(aggs==null || aggs.buckets().array().isEmpty()){
           continue loop;
       }
 %>
@@ -58,11 +64,17 @@ expandFilterVal="<%=request.getAttribute("expandAllFilters")%>"
           if (value != null) {
             value = value.replaceAll("\\bOf\\b", "of").replaceAll("\\bOr\\b", "or").trim();
           }
+          // Definitions are curated in the DB; fall back to blank so a term with no
+          // row yet shows no tooltip instead of the literal text "null".
+          String definition = ClinicalTrialsService.facetDefinitions.get(value);
+          if (definition == null) {
+            definition = "";
+          }
         %>
 <%--        <span class="<%=aggName%>"><%=ClinicalTrialsService.fieldDisplayNames.get(aggName)%></span><span class="float-right"><i class="fas fa-angle-up"></i></span>--%>
         <span class="<%=aggName%>" data-title="<%=value%>"><%=value%>&nbsp;
           <sup>
-            <span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get(value)%>">
+            <span data-toggle="tooltip" title="<%=definition%>">
              <%@include file="infoSvg.jsp"%>
             </span>
           </sup>
@@ -73,7 +85,6 @@ expandFilterVal="<%=request.getAttribute("expandAllFilters")%>"
     <div id="collapse<%=aggName%>" class="accordion-body collapse" >
       <div class="pl-3  accordion-inner" style="height:auto;max-height: 300px;; overflow-y: auto">
         <%
-         StringTermsAggregate aggs= sr.aggregations().get(aggName).sterms();
           for(StringTermsBucket bkt:aggs.buckets().array()){
             String bktKey = bkt.key().stringValue();
             if(bktKey!=null && !bktKey.equals("")){
@@ -96,7 +107,7 @@ expandFilterVal="<%=request.getAttribute("expandAllFilters")%>"
 
 </form>
 <script>
-let allFacets=<%=gson.toJson(ClinicalTrials.facets)%>
+let allFacets=<%=gson.toJson(ClinicalTrialsService.facets)%>
 </script>
 <script src="/platform/js/search/ctFacets.js"></script>
 
