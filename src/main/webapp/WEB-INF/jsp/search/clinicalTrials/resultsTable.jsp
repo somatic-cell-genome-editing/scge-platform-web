@@ -93,6 +93,13 @@ $(this).off('mouseleave');
         <td ><%=sourceFields.get("sponsorClass")%></td>
 <%--        <td><%=sourceFields.get("interventionName")%></td>--%>
         <td class="manual"><%=sourceFields.get("targetGeneOrVariant")%></td>
+        <td class="manual">
+            <%
+                if(sourceFields.get("regulatoryElement")!=null){
+            %>
+            <%=sourceFields.get("regulatoryElement")%>
+            <%}%>
+        </td>
         <td class="manual"><%=sourceFields.get("therapyType")%></td>
         <td class="manual"><%=sourceFields.get("therapyRoute")%></td>
         <td class="manual"><%=sourceFields.get("mechanismOfAction")%></td>
@@ -363,6 +370,31 @@ $(document).ready(function() {
 (function() {
     var columnNames = [];
     var columnVisible = [];
+    // Paging / filtering reloads the whole page, so the chosen columns have to be
+    // remembered outside the DOM or every navigation would reset them to the default.
+    var STORAGE_KEY = 'ctColumnVisibility';
+
+    // Keyed by header name rather than index so adding, removing or reordering a
+    // column later does not shift a saved preference onto the wrong column.
+    function loadSavedVisibility() {
+        try {
+            var raw = localStorage.getItem(STORAGE_KEY);
+            var parsed = raw ? JSON.parse(raw) : null;
+            return (parsed && typeof parsed === 'object') ? parsed : {};
+        } catch (e) {
+            return {};
+        }
+    }
+
+    function saveVisibility() {
+        try {
+            var saved = {};
+            $.each(columnNames, function(index, name) {
+                saved[name] = columnVisible[index];
+            });
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+        } catch (e) {}
+    }
 
     function initColumnToggle() {
         var $headerCells = $('#myTable thead tr:first th');
@@ -371,19 +403,33 @@ $(document).ready(function() {
         columnNames = [];
         columnVisible = [];
         var listHtml = '';
+        var saved = loadSavedVisibility();
 
         $headerCells.each(function(index) {
             var name = $(this).clone().children('sup').remove().end().text().trim();
             if (!name) name = 'Column ' + (index + 1);
+            // Columns marked data-default-hidden="true" start hidden until picked from this list
+            var hiddenByDefault = String($(this).attr('data-default-hidden')) === 'true';
+            // A saved choice wins; a column with no saved entry falls back to its default
+            var isVisible = saved.hasOwnProperty(name) ? saved[name] !== false : !hiddenByDefault;
             columnNames.push(name);
-            columnVisible.push(true);
+            columnVisible.push(isVisible);
             listHtml += '<label class="column-toggle-item">' +
-                '<input type="checkbox" checked data-col-index="' + index + '"> ' +
+                '<input type="checkbox" ' + (isVisible ? 'checked' : '') + ' data-col-index="' + index + '"> ' +
                 '<span>' + name + '</span></label>';
         });
 
         $('#columnToggleList').html(listHtml);
+
+        // Hide the columns that are off, whether by default or by saved choice
+        $.each(columnVisible, function(index, isVisible) {
+            if (!isVisible) {
+                toggleColumn(index, false);
+            }
+        });
+
         updateColumnCount();
+        saveVisibility();
 
         // Toggle button
         $('#columnToggleBtn').off('click').on('click', function(e) {
@@ -405,6 +451,7 @@ $(document).ready(function() {
             columnVisible[colIndex] = isVisible;
             toggleColumn(colIndex, isVisible);
             updateColumnCount();
+            saveVisibility();
         });
 
         // Select All
