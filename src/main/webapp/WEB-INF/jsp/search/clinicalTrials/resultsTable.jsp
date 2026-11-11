@@ -8,6 +8,18 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%!
+    /**
+     * Elasticsearch leaves a field out of _source when the trial has no value for it,
+     * so printing map.get(...) directly puts the literal "null" in the cell.
+     * Render an empty cell instead.
+     */
+    private static String cellValue(Object value) {
+        if (value == null) return "";
+        String text = value.toString().trim();
+        return text.equalsIgnoreCase("null") ? "" : text;
+    }
+%>
 <link href="/platform/css/clinicalTrialsResultsTable.css" rel="stylesheet" type="text/css"/>
 <script>
 $(function () {
@@ -86,30 +98,30 @@ $(this).off('mouseleave');
 <%--        <a href="https://www.disease-ontology.org/term/DOID:<%=doid%>" target="_blank">DOID:<%=doid%></a>&nbsp;--%>
 <%--        <%}}%>--%>
 <%--    </td>--%>
-        <td class="manual"><%=sourceFields.get("indication")%></td>
+        <td class="manual"><%=cellValue(sourceFields.get("indication"))%></td>
 
-        <td class="manual"><%=sourceFields.get("compoundName")%></td>
-        <td><%=sourceFields.get("sponsor")%></td>
-        <td ><%=sourceFields.get("sponsorClass")%></td>
+        <td class="manual"><%=cellValue(sourceFields.get("compoundName"))%></td>
+        <td><%=cellValue(sourceFields.get("sponsor"))%></td>
+        <td ><%=cellValue(sourceFields.get("sponsorClass"))%></td>
 <%--        <td><%=sourceFields.get("interventionName")%></td>--%>
-        <td class="manual"><%=sourceFields.get("targetGeneOrVariant")%></td>
+        <td class="manual"><%=cellValue(sourceFields.get("targetGeneOrVariant"))%></td>
         <td class="manual">
             <%
                 if(sourceFields.get("regulatoryElement")!=null){
             %>
-            <%=sourceFields.get("regulatoryElement")%>
+            <%=cellValue(sourceFields.get("regulatoryElement"))%>
             <%}%>
         </td>
-        <td class="manual"><%=sourceFields.get("therapyType")%></td>
-        <td class="manual"><%=sourceFields.get("therapyRoute")%></td>
-        <td class="manual"><%=sourceFields.get("mechanismOfAction")%></td>
-        <td class="manual"><%=sourceFields.get("routeOfAdministration")%></td>
-        <td class="manual"><%=sourceFields.get("drugProductType")%></td>
-        <td class="manual"><%=sourceFields.get("targetTissueOrCell")%></td>
-        <td class="manual"><%=sourceFields.get("deliverySystem")%></td>
-        <td class="manual"><%=sourceFields.get("vectorType")%></td>
+        <td class="manual"><%=cellValue(sourceFields.get("therapyType"))%></td>
+        <td class="manual"><%=cellValue(sourceFields.get("therapyRoute"))%></td>
+        <td class="manual"><%=cellValue(sourceFields.get("mechanismOfAction"))%></td>
+        <td class="manual"><%=cellValue(sourceFields.get("routeOfAdministration"))%></td>
+        <td class="manual"><%=cellValue(sourceFields.get("drugProductType"))%></td>
+        <td class="manual"><%=cellValue(sourceFields.get("targetTissueOrCell"))%></td>
+        <td class="manual"><%=cellValue(sourceFields.get("deliverySystem"))%></td>
+        <td class="manual"><%=cellValue(sourceFields.get("vectorType"))%></td>
         <td class="manual"><%if(sourceFields.get("editorType")!=null && !sourceFields.get("editorType").toString().equalsIgnoreCase("none")){%>
-            <%=sourceFields.get("editorType")%>
+            <%=cellValue(sourceFields.get("editorType"))%>
             <%}%>
         </td>
         <td class="manual">
@@ -153,7 +165,7 @@ $(this).off('mouseleave');
         <td class="text-nowrap">
             <%
                 List<String> phases= (List<String>) sourceFields.get("phases");
-                String phase= phases.stream().collect(Collectors.joining(", "));
+                String phase= phases==null ? "" : phases.stream().collect(Collectors.joining(", "));
             %>
             <%=phase%>
         </td>
@@ -168,28 +180,28 @@ $(this).off('mouseleave');
         <%
             if(sourceFields.get("developmentStatus")!=null){
         %>
-        <%=sourceFields.get("developmentStatus")%>
+        <%=cellValue(sourceFields.get("developmentStatus"))%>
         <%}%>
     </td>
-        <td class="text-nowrap"><%=sourceFields.get("firstSubmitDate")%></td>
-        <td><%=sourceFields.get("estimatedCompleteDate")%></td>
-        <td class="text-nowrap"><%=sourceFields.get("lastUpdatePostDate")%></td>
+        <td class="text-nowrap"><%=cellValue(sourceFields.get("firstSubmitDate"))%></td>
+        <td><%=cellValue(sourceFields.get("estimatedCompleteDate"))%></td>
+        <td class="text-nowrap"><%=cellValue(sourceFields.get("lastUpdatePostDate"))%></td>
 <%--        <td class="text-nowrap"><%=sourceFields.get("standardAges")%></td>--%>
         <td class="text-nowrap">
-            <%if(sourceFields.get("elibilityMinAge")!=null && sourceFields.get("elibilityMaxAge")!=null){%>
-            <%=sourceFields.get("elibilityMinAge")%> - <%=sourceFields.get("elibilityMaxAge")%>
-
-            <%}else{
-                if(sourceFields.get("elibilityMinAge")!=null && sourceFields.get("elibilityMaxAge")==null){%>
-                   >=&nbsp;<%=sourceFields.get("elibilityMinAge")%>
-               <%}else{
-                   if(sourceFields.get("elibilityMinAge")==null && sourceFields.get("elibilityMaxAge")!=null){%>
-            <=&nbsp;<%=sourceFields.get("elibilityMaxAge")%>
-                  <% }}}%>
-
+            <%
+                String minAge = cellValue(sourceFields.get("elibilityMinAge"));
+                String maxAge = cellValue(sourceFields.get("elibilityMaxAge"));
+                if(!minAge.isEmpty() && !maxAge.isEmpty()){
+            %>
+            <%=minAge%> - <%=maxAge%>
+            <%}else if(!minAge.isEmpty()){%>
+                   >=&nbsp;<%=minAge%>
+            <%}else if(!maxAge.isEmpty()){%>
+            <=&nbsp;<%=maxAge%>
+            <%}%>
         </td>
-        <td><%=sourceFields.get("enrorllmentCount")%></td>
-        <td><%=sourceFields.get("numberOfLocations")%></td>
+        <td><%=cellValue(sourceFields.get("enrorllmentCount"))%></td>
+        <td><%=cellValue(sourceFields.get("numberOfLocations"))%></td>
     <td>
 <%--        <td><%--%>
 <%--            if(sourceFields.get("locations")!=null){--%>
@@ -246,7 +258,7 @@ $(this).off('mouseleave');
         <%}%>
     </td>
 <%--        <td class="manual"><%=sourceFields.get("patents")%></td>--%>
-        <td class="manual"><%=sourceFields.get("recentUpdates")%></td>
+        <td class="manual"><%=cellValue(sourceFields.get("recentUpdates"))%></td>
         <td class="manual lastColumn">
             <% if (sourceFields.get("externalLinks")!=null){%>
             <a href="javascript:void(0)" onclick="myModal('<%=sourceFields.get("nctId")%>')" title="Resources/Links" ><i class="fa-solid fa-eye"></i></a>
@@ -274,9 +286,9 @@ $(this).off('mouseleave');
                         <%for(Map<String, String> map:sortedLinks.get(type)){%>
                         <li  style="list-style-type: none">
                         <%if(map.get("link")!=null){%>
-                            <a href="<%=map.get("link")%>" target="_blank"><%=map.get("name")%></a>
+                            <a href="<%=map.get("link")%>" target="_blank"><%=cellValue(map.get("name"))%></a>
                                 <%}else{%>
-                                <%=map.get("name")%>
+                                <%=cellValue(map.get("name"))%>
                         <%}%>
                         </li>
                         <%}%>
