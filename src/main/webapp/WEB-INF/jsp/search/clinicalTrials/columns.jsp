@@ -27,7 +27,7 @@
 <th class="manual" data-default-hidden="true">Gene Delivery System&nbsp;Type<%=columnInfo("Delivery System")%></th>
 <th class="manual" data-default-hidden="true">Viral Vector Type&nbsp;<%=columnInfo("Viral Vector Type")%></th>
 <th class="manual" data-default-hidden="true">Editor Type&nbsp;<%=columnInfo("Editor Type")%></th>
-<th class="manual" data-default-hidden="true">Dosage/s&nbsp;<%=columnInfo("Dose levels")%></th>
+<th class="manual sorter-false" data-default-hidden="true">Dosage/s&nbsp;<%=columnInfo("Dose levels")%></th>
 <%--<th class="manual">Dose 5&nbsp;<sup><span title="<%=ClinicalTrialsService.facetDefinitions.get("Dose levels (up to 5)")%>" class="column-header-description"></span></sup></th>--%>
 <%--<th>Treatment</th>--%>
 <th>Current Phase&nbsp;<%=columnInfo("Current Phase")%></th>
@@ -42,8 +42,8 @@
 <th data-default-hidden="true">Enrollment Count&nbsp;<%=columnInfo("Trial Enrollment")%></th>
 <th data-default-hidden="true">No. of Trial Sites&nbsp;<%=columnInfo("No. of Trial Sites")%></th>
 <%--<th>Centers in USA</th>--%>
-<th>Locations&nbsp;<%=columnInfo("Countries")%></th>
-<th data-default-hidden="true">Has US IND&nbsp;<%=columnInfo("Has US IND?")%></th>
+<th class="sorter-false">Locations&nbsp;<%=columnInfo("Countries")%></th>
+<th class="sorter-false" data-default-hidden="true">Has US IND&nbsp;<%=columnInfo("Has US IND?")%></th>
 <th class="manual">FDA Designation&nbsp;<%=columnInfo("FDA Designations")%></th>
 
 <%--<th class="manual">Patents&nbsp;<%=columnInfo("Patents")%></th>--%>
