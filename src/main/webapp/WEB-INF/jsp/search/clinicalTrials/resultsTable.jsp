@@ -268,7 +268,10 @@ $(this).off('mouseleave');
                     }else{
                         isFDARegulated+="<i class=\"fa-solid fa-xmark\" style='color:red'></i>";
                     }
-            }%>
+            }else{
+                    isFDARegulated+="<i class=\"fa-solid fa-xmark\" style='color:red'></i>";
+
+                }%>
             <%=isFDARegulated%>
         </td>
     <td class="manual">
