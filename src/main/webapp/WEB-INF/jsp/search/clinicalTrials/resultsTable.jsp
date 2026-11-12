@@ -19,6 +19,27 @@
         String text = value.toString().trim();
         return text.equalsIgnoreCase("null") ? "" : text;
     }
+
+    /**
+     * Info icon for a column header. The tooltip text is looked up by `term` in the
+     * definitions table (rows where field = 'Table Column Header'), so a header whose
+     * term has no matching row used to render title="null" and show "null" on hover.
+     * Render no icon at all in that case, and let a caller supply a fallback.
+     */
+    private static String columnInfo(String term) {
+        return columnInfo(term, null);
+    }
+
+    private static String columnInfo(String term, String fallback) {
+        String definition = edu.mcw.scge.service.es.clinicalTrials.ClinicalTrialsService.facetDefinitions.get(term);
+        String text = cellValue(definition);
+        if (text.isEmpty()) text = cellValue(fallback);
+        if (text.isEmpty()) return "";
+        String safe = text.replace("&", "&amp;").replace("\"", "&quot;")
+                          .replace("<", "&lt;").replace(">", "&gt;");
+        return "<sup><span data-toggle=\"tooltip\" title=\"" + safe
+             + "\" class=\"column-header-description\"></span></sup>";
+    }
 %>
 <link href="/platform/css/clinicalTrialsResultsTable.css" rel="stylesheet" type="text/css"/>
 <script>
@@ -384,7 +405,14 @@ $(document).ready(function() {
     var columnVisible = [];
     // Paging / filtering reloads the whole page, so the chosen columns have to be
     // remembered outside the DOM or every navigation would reset them to the default.
-    var STORAGE_KEY = 'ctColumnVisibility';
+    // Every column is written on init, so a saved set from before a default changed
+    // would pin the old choice forever - bump the suffix when the defaults change
+    // to hand returning visitors the new default set.
+    var STORAGE_KEY = 'ctColumnVisibility.v3';
+    try {
+        localStorage.removeItem('ctColumnVisibility');
+        localStorage.removeItem('ctColumnVisibility.v2');
+    } catch (e) {}
 
     // Keyed by header name rather than index so adding, removing or reordering a
     // column later does not shift a saved preference onto the wrong column.
