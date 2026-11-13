@@ -194,7 +194,7 @@
                             </td>
                             <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#vallabh" target="_blank">Prion Disease</a></td>
                             <td colspan="5" style="position: relative;">
-                                <div class="timeline-bar" style="left: 5px; width: 40%;"></div>
+                                <div class="timeline-bar" style="left: 5px; width: 70%;"></div>
 
                             </td>
                             <td class="publications-cell">
@@ -207,7 +207,7 @@
                             <td class="publications-cell">
                                 <button class="publications-toggle docs-toggle" onclick="togglePublications('prion-documents')">
                                     <i class="fas fa-folder-open"></i>
-                                    <span class="pub-count">2</span>
+                                    <span class="pub-count">4</span>
                                     <i class="fas fa-chevron-down toggle-icon"></i>
                                 </button>
                             </td>
