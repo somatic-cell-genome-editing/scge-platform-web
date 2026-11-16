@@ -4,6 +4,8 @@
     <ul class="sidebar-docs-list">
         <li><a href="/platform/public/download/regulatory?documentName='2025-02-10_PRNP-CHARM-001_INTERACT-noncon-v2.pdf'" target="_blank">INTERACT Briefing Book</a></li>
         <li><a href="/platform/public/download/regulatory?documentName='2025-02-10-PRNP-CHARM-INTERACT-feedback-CBER-noncon-v2.pdf'" target="_blank">INTERACT FDA Responses</a></li>
+        <li><a href="/platform/public/download/regulatory?documentName='CHARM_Pre-IND_Meeting_Package.pdf'" target="_blank">Pre-IND Briefing Book</a></li>
+        <li><a href="/platform/public/download/regulatory?documentName='CHARM_preIND_Meeting_Summary.pdf'" target="_blank">Pre-IND FDA Responses</a></li>
     </ul>
     <div class="sidebar-publications">
         <button class="sidebar-pub-toggle" onclick="toggleSidebarPublications('sidebar-prion-pubs')">
