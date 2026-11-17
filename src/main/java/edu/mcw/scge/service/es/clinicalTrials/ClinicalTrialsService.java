@@ -15,6 +15,8 @@ import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.TextQueryType;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.search.HighlightField;
+import co.elastic.clients.elasticsearch.core.search.HighlighterEncoder;
 import co.elastic.clients.elasticsearch.core.search.Hit;
 import co.elastic.clients.util.NamedValue;
 import org.apache.lucene.analysis.en.EnglishMinimalStemmer;
@@ -124,7 +126,29 @@ public class ClinicalTrialsService {
                 .size(pageSize)
                 .trackTotalHits(t -> t.enabled(true))
                 .aggregations(aggsMap)
-                .sort(s -> s.field(f -> f.field("recordModifiedDate").order(SortOrder.Desc)));
+                // A regulatory document carries its whole extracted text in
+                // "content" (up to 900k chars). No view renders it, and a page
+                // of 100 hits would otherwise drag megabytes back per request -
+                // the matching snippet comes from the highlighter below instead.
+                .source(src -> src.filter(f -> f.excludes("content")))
+                .highlight(h -> h
+                        .encoder(HighlighterEncoder.Html)
+                        .fields(NamedValue.of("content", HighlightField.of(hf -> hf
+                                .fragmentSize(240)
+                                .numberOfFragments(1)))));
+
+        if (category == null || category.trim().isEmpty()) {
+            // General search spans every category in the index. Regulatory
+            // documents carry no recordModifiedDate, so a date-only sort would
+            // park every document behind every trial however well it matched;
+            // rank on relevance and keep the date as the tie-breaker.
+            srb.sort(s -> s.score(sc -> sc.order(SortOrder.Desc)));
+            srb.sort(s -> s.field(f -> f.field("recordModifiedDate")
+                    .order(SortOrder.Desc)
+                    .missing(FieldValue.of(0L))));
+        } else {
+            srb.sort(s -> s.field(f -> f.field("recordModifiedDate").order(SortOrder.Desc)));
+        }
 
         if (filtersMap != null && !filtersMap.isEmpty()) {
             srb.postFilter(filter(filtersMap));
@@ -220,6 +244,77 @@ public class ClinicalTrialsService {
         }
 
         return result;
+    }
+
+    /**
+     * Hit count per category for the current search, used to build the category
+     * sidebar on the general search results page.
+     *
+     * The category the user has narrowed to is deliberately NOT applied here, so
+     * the sidebar keeps listing every category the search term reaches and the
+     * visitor can switch between them instead of being stranded in one.
+     *
+     * Ordered by count desc; keys are the raw index values ("ClinicalTrial",
+     * "RegulatoryDocument"), so a category added to the index later shows up
+     * with no change here - see {@link #categoryDisplayName(String)}.
+     */
+    public LinkedHashMap<String, Long> getCategoryCounts(
+            String searchTerm, Map<String, List<String>> filtersMap) throws IOException {
+
+        ElasticsearchClient client = ESClient.getClient();
+        final Map<String, List<String>> safeFilters =
+                (filtersMap == null) ? new HashMap<>() : filtersMap;
+
+        Query query = Query.of(q -> q.bool(b -> b
+                .must(buildBoolQuery(searchTerm, null, safeFilters))
+                .must(filter(safeFilters))));
+
+        SearchResponse<Map> sr;
+        try {
+            sr = client.search(s -> s
+                            .index(SCGEContext.getESIndexName())
+                            .query(query)
+                            .size(0)
+                            .trackTotalHits(t -> t.enabled(true))
+                            .aggregations("category", Aggregation.of(a -> a.terms(t -> t
+                                    .field("category.keyword")
+                                    .size(50)))),
+                    Map.class);
+        } catch (ElasticsearchException ex) {
+            System.err.println("[ClinicalTrialsService.getCategoryCounts] ES error: " + describeError(ex));
+            throw ex;
+        }
+
+        LinkedHashMap<String, Long> counts = new LinkedHashMap<>();
+        if (sr.aggregations() != null && sr.aggregations().get("category") != null) {
+            for (StringTermsBucket bkt : sr.aggregations().get("category").sterms().buckets().array()) {
+                String key = bkt.key().stringValue();
+                if (key != null && !key.trim().isEmpty()) {
+                    counts.put(key, bkt.docCount());
+                }
+            }
+        }
+        return counts;
+    }
+
+    /**
+     * Sidebar and page-heading label for an index category. Falls back to
+     * splitting the camel-cased index value, so a category indexed later reads
+     * sensibly without a code change here.
+     */
+    public static String categoryDisplayName(String category) {
+        if (category == null || category.trim().isEmpty()) {
+            return "All Results";
+        }
+        switch (category.trim().toLowerCase()) {
+            case "clinicaltrial":
+                return "Clinical Trials";
+            case "regulatorydocument":
+                return "Regulatory Documents";
+            default:
+                return StringUtils.capitalize(String.join(" ",
+                        category.trim().split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])")));
+        }
     }
 
     public Set<String> getAutocompleteList(String term) throws IOException {
@@ -395,6 +490,10 @@ public class ClinicalTrialsService {
         for (String field : filters.keySet()) {
             List<String> values = filters.get(field);
             if (values != null && !values.isEmpty()) {
+                if (field.equals("recordStatus")) {
+                    b.filter(recordStatusFilter(values));
+                    continue;
+                }
                 List<FieldValue> fieldValues = new ArrayList<>();
                 for (String v : values) {
                     fieldValues.add(FieldValue.of(v));
@@ -418,16 +517,30 @@ public class ClinicalTrialsService {
         if (filtersMap != null && !filtersMap.isEmpty()
                 && filtersMap.get("recordStatus") != null
                 && !filtersMap.get("recordStatus").isEmpty()) {
-            List<FieldValue> fieldValues = new ArrayList<>();
-            for (String s : filtersMap.get("recordStatus")) {
-                fieldValues.add(FieldValue.of(s));
-            }
-            b.filter(f -> f.terms(t -> t
-                    .field("recordStatus.keyword")
-                    .terms(tv -> tv.value(fieldValues))));
+            b.filter(recordStatusFilter(filtersMap.get("recordStatus")));
         }
 
         return Query.of(q -> q.bool(b.build()));
+    }
+
+    /**
+     * recordStatus gates which trials a signed-out visitor may see, but it is a
+     * clinical-trial-only field: regulatory documents carry no recordStatus at
+     * all, so filtering on the term alone hid every document from the general
+     * search. A record that does not carry the field passes the filter.
+     */
+    private Query recordStatusFilter(List<String> values) {
+        List<FieldValue> fieldValues = new ArrayList<>();
+        for (String v : values) {
+            fieldValues.add(FieldValue.of(v));
+        }
+        return Query.of(q -> q.bool(rb -> rb
+                .should(s -> s.terms(t -> t
+                        .field("recordStatus.keyword")
+                        .terms(tv -> tv.value(fieldValues))))
+                .should(s -> s.bool(nb -> nb
+                        .mustNot(mn -> mn.exists(e -> e.field("recordStatus.keyword")))))
+                .minimumShouldMatch("1")));
     }
 
     public Aggregation buildAggregation(String fieldName) {

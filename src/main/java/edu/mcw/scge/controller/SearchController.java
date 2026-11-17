@@ -33,18 +33,29 @@ public class SearchController{
     private static final int DEFAULT_PAGE_SIZE = 100;
 
 
+    /**
+     * General search: results from every category in the index, listed together
+     * in the main content area with a category sidebar beside them.
+     *
+     * {@code category} narrows the list to one category while keeping the user
+     * on this page; the sidebar counts are always computed across every
+     * category so the visitor can switch back out again.
+     */
     @RequestMapping(value="/")
     public String getSearchResultsResults(HttpServletRequest req, HttpServletResponse res, Model model,
                                                @RequestParam(required = true) String searchTerm,
+                                               @RequestParam(required = false) String category,
                                                @RequestParam(defaultValue = "0") int page,
                                                @RequestParam(defaultValue = "100") int pageSize,
                                                OAuth2AuthenticationToken authentication) throws Exception {
         if(searchTerm==null)
             return null;
+        if(category!=null && category.trim().isEmpty())
+            category=null;
         ClinicalTrialsService services = new ClinicalTrialsService();
         Person person = getPersonFromAuth(authentication, req);
         LinkedHashMap<String, List<String>> filterMap=getFiltersMap(req, person);
-        SearchResponse<Map> sr=services.getSearchResults(searchTerm, null, filterMap, page, pageSize);
+        SearchResponse<Map> sr=services.getSearchResults(searchTerm, category, filterMap, page, pageSize);
 
         // Set pagination attributes
         long totalHits = sr.hits().total().value();
@@ -54,23 +65,16 @@ public class SearchController{
         req.setAttribute("totalHits", totalHits);
         req.setAttribute("totalPages", totalPages);
 
-        // Get recent updates for daily digest (separate query)
-        SearchResponse<Map> digestSr = services.getRecentUpdatesForDigest(null, getFiltersMap(req, person));
-        req.setAttribute("digestHits", digestSr.hits().hits());
-
-        // Full-result-set distributions for the graphical Overview tab (not
-        // limited to the current page).
-        req.setAttribute("overviewAggs", services.getOverviewDistributions(searchTerm, null, filterMap));
+        // Sidebar: how many hits this search has in each category.
+        req.setAttribute("categoryCounts", services.getCategoryCounts(searchTerm, filterMap));
+        req.setAttribute("selectedCategory", category);
 
         req.setAttribute("searchTerm", searchTerm);
         req.setAttribute("sr", sr);
         req.setAttribute("filterMap", filterMap);
         req.setAttribute("filtersSelected", getSelectedOrderedFilters(req, person));
         model.addAttribute("searchTerm", searchTerm);
-//        Terms terms=sr.getAggregations().get("organization");
-        Map<String,List<Definition>> definitions=service.getAllDefinitionsMap();
-        req.setAttribute("definitions", definitions);
-        req.setAttribute("page", "/WEB-INF/jsp/search/clinicalTrials/resultsview");
+        req.setAttribute("page", "/WEB-INF/jsp/search/generalSearch/resultsview");
         req.getRequestDispatcher("/WEB-INF/jsp/base.jsp").forward(req, res);
 
         return null;
