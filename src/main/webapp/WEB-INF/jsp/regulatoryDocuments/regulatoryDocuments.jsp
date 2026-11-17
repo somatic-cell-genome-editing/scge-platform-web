@@ -1,4 +1,14 @@
+<%--
+  SCGE Shared Regulatory Documents.
+
+  Every program, document and publication on this page comes from the
+  regulatory_* tables (see db/regulatory_documents_schema.sql), loaded by
+  DocumentsController into "diseaseAreas". Curating the page is an INSERT -
+  there is nothing here to edit when a program or a document is added.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <link href="/platform/css/regulatoryDocuments.css" rel="stylesheet" type="text/css"/>
 <div class="container-fluid">
     <div class="row">
@@ -6,22 +16,59 @@
         <div class="col-md-3">
             <div class="sidebar-content">
                 <h5>Contents</h5>
+                <c:forEach var="area" items="${diseaseAreas}">
+                    <c:forEach var="program" items="${area.programs}">
+                        <%-- A program with neither documents nor publications has
+                             nothing for the sidebar to link to. --%>
+                        <c:if test="${program.listedInSidebar}">
+                            <div class="sidebar-program">
+                                <h6>
+                                    <c:choose>
+                                        <c:when test="${not empty program.programUrl}">
+                                            <a href="${fn:escapeXml(program.programUrl)}" target="_blank"><c:out value="${program.sidebarName}"/></a>
+                                        </c:when>
+                                        <c:otherwise><c:out value="${program.sidebarName}"/></c:otherwise>
+                                    </c:choose>
+                                </h6>
 
-                <%@include file="pku/pku_sidebar.jsp"%>
+                                <c:if test="${not empty program.documents}">
+                                    <ul class="sidebar-docs-list">
+                                        <c:forEach var="document" items="${program.documents}">
+                                            <c:url var="documentUrl" value="/public/download/regulatory">
+                                                <c:param name="documentName" value="${document.fileName}"/>
+                                            </c:url>
+                                            <li><a href="${fn:escapeXml(documentUrl)}" target="_blank"><c:out value="${document.label}"/></a></li>
+                                        </c:forEach>
+                                    </ul>
+                                </c:if>
 
-                <%@include file="ucd/ucd_sidebar.jsp"%>
-                <%@include file="ucdPrimeEditing/ucd_sidebar.jsp"%>
-                <%@include file="cps1/cps1_docs.jsp"%>
-
-                <%@include file="prion/prion_sidebar.jsp"%>
-                <%@include file="lca/lca_sidebar.jsp"%>
-                <%@include file="best/best_sidebar.jsp"%>
-                <%@include file="sma/sma_sidebar.jsp"%>
-                <%@include file="als/als_sidebar.jsp"%>
-                <%@include file="fa/fa_sidebar.jsp"%>
-                <%@include file="hd/hd_sidebar.jsp"%>
-                <%@include file="rtt/rtt_sidebar.jsp"%>
-                <%@include file="hearingLoss/hearingLoss_sidebar.jsp"%>
+                                <c:if test="${not empty program.publications}">
+                                    <div class="sidebar-publications">
+                                        <button class="sidebar-pub-toggle" onclick="toggleSidebarPublications('${fn:escapeXml(program.sidebarPublicationsId)}')">
+                                            <i class="fas fa-file-alt"></i>
+                                            <span>Publications (${fn:length(program.publications)})</span>
+                                            <i class="fas fa-chevron-down sidebar-toggle-icon"></i>
+                                        </button>
+                                        <div class="sidebar-pub-content" id="${fn:escapeXml(program.sidebarPublicationsId)}">
+                                            <div class="publications-container">
+                                                <h5 class="publications-title">
+                                                    <i class="fas fa-file-alt"></i> <c:out value="${program.programName}"/> Publications
+                                                </h5>
+                                                <ul class="publications-list">
+                                                    <c:forEach var="publication" items="${program.publications}">
+                                                        <li>
+                                                            <a href="${fn:escapeXml(publication.url)}" target="_blank"><c:out value="${publication.displayTitle}"/></a>
+                                                        </li>
+                                                    </c:forEach>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </c:if>
+                            </div>
+                        </c:if>
+                    </c:forEach>
+                </c:forEach>
             </div>
         </div>
 
@@ -52,383 +99,111 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Inborn Errors of Metabolism -->
+                    <c:forEach var="area" items="${diseaseAreas}">
+                        <c:forEach var="program" items="${area.programs}" varStatus="programStatus">
                         <tr>
-                            <td rowspan="4" class="disease-area-cell">
+                            <c:if test="${programStatus.first}">
+                            <%-- One icon cell per disease area, spanning its programs. The
+                                 page script bumps the rowspan as panels are opened. --%>
+                            <td rowspan="${area.rowSpan}" class="disease-area-cell">
                                 <div class="disease-icon-container">
-                                    <div class="disease-icon inborn-errors-icon">
-<%--                                        <i class="fas fa-dna" style="color: white !important;"></i>--%>
-                                        <img src="/platform/common/images/liver_100_noBorder_blue1.png"/>
+                                    <div class="disease-icon ${fn:escapeXml(area.cssClass)}">
+                                        <c:choose>
+                                            <c:when test="${not empty area.iconImage}">
+                                                <img src="${fn:escapeXml(area.iconImage)}" alt="<c:out value="${area.name}"/>"/>
+                                            </c:when>
+                                            <c:when test="${not empty area.iconClass}">
+                                                <i class="${fn:escapeXml(area.iconClass)}"></i>
+                                            </c:when>
+                                        </c:choose>
                                     </div>
-                                    <div class="disease-label">Inborn<br>Errors of<br>Metabolism</div>
+                                    <div class="disease-label"><c:out value="${area.name}"/></div>
                                 </div>
                             </td>
-                            <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#peranteau" target="_blank">Phenylketonuria<br>(PKU)</a></td>
+                            </c:if>
+
+                            <td class="program-name">
+                                <c:choose>
+                                    <c:when test="${not empty program.programUrl}">
+                                        <a href="${fn:escapeXml(program.programUrl)}" target="_blank"><c:out value="${program.programName}"/></a>
+                                    </c:when>
+                                    <c:otherwise><c:out value="${program.programName}"/></c:otherwise>
+                                </c:choose>
+                            </td>
+
                             <td colspan="5" style="position: relative;">
-                                <div class="timeline-bar" style="left: 5px; width: 55%;"></div>
+                                <div class="timeline-bar" style="left: 5px; width: ${program.timelineWidthPct}%;"></div>
                             </td>
+
                             <td class="publications-cell">
-                                <button class="publications-toggle" onclick="togglePublications('pku-publications')">
-                                    <i class="fas fa-file-alt"></i>
-                                    <span class="pub-count">6</span>
-                                    <i class="fas fa-chevron-down toggle-icon"></i>
-                                </button>
+                                <c:choose>
+                                    <c:when test="${not empty program.publications}">
+                                        <button class="publications-toggle" onclick="togglePublications('${fn:escapeXml(program.publicationsRowId)}')">
+                                            <i class="fas fa-file-alt"></i>
+                                            <span class="pub-count">${fn:length(program.publications)}</span>
+                                            <i class="fas fa-chevron-down toggle-icon"></i>
+                                        </button>
+                                    </c:when>
+                                    <c:otherwise><div class="no-publications">&mdash;</div></c:otherwise>
+                                </c:choose>
                             </td>
+
                             <td class="publications-cell">
-                                <button class="publications-toggle docs-toggle" onclick="togglePublications('pku-documents')">
-                                    <i class="fas fa-folder-open"></i>
-                                    <span class="pub-count">2</span>
-                                    <i class="fas fa-chevron-down toggle-icon"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr class="publications-row" id="pku-publications">
-                            <td colspan="9" class="publications-content">
-                               <%@include file="pku/pku_publications.jsp"%>
-                            </td>
-                        </tr>
-                        <tr class="publications-row" id="pku-documents">
-                            <td colspan="9" class="publications-content">
-                               <%@include file="pku/pku_docs.jsp"%>
+                                <c:choose>
+                                    <c:when test="${not empty program.documents}">
+                                        <button class="publications-toggle docs-toggle" onclick="togglePublications('${fn:escapeXml(program.documentsRowId)}')">
+                                            <i class="fas fa-folder-open"></i>
+                                            <span class="pub-count">${fn:length(program.documents)}</span>
+                                            <i class="fas fa-chevron-down toggle-icon"></i>
+                                        </button>
+                                    </c:when>
+                                    <c:otherwise><div class="no-publications">&mdash;</div></c:otherwise>
+                                </c:choose>
                             </td>
                         </tr>
 
-                        <tr>
-                            <td class="program-name"><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#ahrens-nicklas" target="_blank">Urea Cycle Disorders<br>(UCDs) - Base Editing</a></td>
-                            <td colspan="5" style="position: relative;">
-                                <div class="timeline-bar" style="left: 5px; width: 55%;"></div>
-                            </td>
-                            <td class="publications-cell">
-                                <button class="publications-toggle" onclick="togglePublications('ucd-publications')">
-                                    <i class="fas fa-file-alt"></i>
-                                    <span class="pub-count">1</span>
-                                    <i class="fas fa-chevron-down toggle-icon"></i>
-                                </button>
-                            </td>
-                            <td class="publications-cell">
-                                <button class="publications-toggle docs-toggle" onclick="togglePublications('ucd-documents')">
-                                    <i class="fas fa-folder-open"></i>
-                                    <span class="pub-count">2</span>
-                                    <i class="fas fa-chevron-down toggle-icon"></i>
-                                </button>
-                            </td>
-                        </tr>
-
-                        <tr class="publications-row" id="ucd-publications">
+                        <c:if test="${not empty program.publications}">
+                        <tr class="publications-row" id="${fn:escapeXml(program.publicationsRowId)}">
                             <td colspan="9" class="publications-content">
-                                <%@include file="ucd/ucd_publications.jsp"%>
-                            </td>
-                        </tr>
-                        <tr class="publications-row" id="ucd-documents">
-                            <td colspan="9" class="publications-content">
-                                <%@include file="ucd/ucd_docs.jsp"%>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="program-name"><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#ahrens-nicklas" target="_blank">Urea Cycle Disorders<br>(UCDs) - Prime Editing</a></td>
-                            <td colspan="5" style="position: relative;">
-                                <div class="timeline-bar" style="left: 5px; width: 55%;"></div>
-                            </td>
-                            <td class="publications-cell">
-                                <button class="publications-toggle" onclick="togglePublications('base-editing-ucd-publications')">
-                                    <i class="fas fa-file-alt"></i>
-                                    <span class="pub-count">1</span>
-                                    <i class="fas fa-chevron-down toggle-icon"></i>
-                                </button>
-                            </td>
-                            <td class="publications-cell">
-                                <button class="publications-toggle docs-toggle" onclick="togglePublications('base-editing-ucd-documents')">
-                                    <i class="fas fa-folder-open"></i>
-                                    <span class="pub-count">2</span>
-                                    <i class="fas fa-chevron-down toggle-icon"></i>
-                                </button>
-                            </td>
-
-                        </tr>
-
-                        <tr class="publications-row" id="base-editing-ucd-publications">
-                            <td colspan="9" class="publications-content">
-                                <%@include file="ucdPrimeEditing/ucd_publications.jsp"%>
-                            </td>
-                        </tr>
-                        <tr class="publications-row" id="base-editing-ucd-documents">
-                            <td colspan="9" class="publications-content">
-                                <%@include file="ucdPrimeEditing/ucd_docs.jsp"%>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="program-name"><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#ahrens-nicklas" target="_blank">Carbamoyl<br>Phosphate<br>Synthetase I (CPS1)<br>Deficiency</a></td>
-                            <td colspan="5" style="position: relative;">
-                                <div class="timeline-bar" style="left: 5px; width: 85%;"></div>
-                            </td>
-                            <td class="publications-cell">
-                                <button class="publications-toggle" onclick="togglePublications('cps1-publications')">
-                                    <i class="fas fa-file-alt"></i>
-                                    <span class="pub-count">1</span>
-                                    <i class="fas fa-chevron-down toggle-icon"></i>
-                                </button>
-                            </td>
-                            <td class="publications-cell">
-                                <div class="no-publications">—</div>
-                            </td>
-                        </tr>
-                        <tr class="publications-row" id="cps1-publications">
-                            <td colspan="9" class="publications-content">
-                                <%@include file="cps1/cps1_publications.jsp"%>
-                            </td>
-                        </tr>
-                        <tr class="publications-row" id="cps1-documents">
-                            <td colspan="9" class="publications-content">
-                                <%@include file="cps1/cps1_docs.jsp"%>
-                            </td>
-                        </tr>
-                        <!-- Neurological Disorders -->
-                        <tr>
-                            <td rowspan="6" class="disease-area-cell">
-                                <div class="disease-icon-container">
-                                    <div class="disease-icon neurological-icon">
-                                        <i class="fas fa-brain"></i>
-                                    </div>
-                                    <div class="disease-label">Neurological<br>Disorders</div>
+                                <div class="publications-container">
+                                    <h5 class="publications-title">
+                                        <i class="fas fa-file-alt"></i> <c:out value="${program.programName}"/> Publications
+                                    </h5>
+                                    <ul class="publications-list">
+                                        <c:forEach var="publication" items="${program.publications}">
+                                            <li>
+                                                <a href="${fn:escapeXml(publication.url)}" target="_blank"><c:out value="${publication.displayTitle}"/></a>
+                                            </li>
+                                        </c:forEach>
+                                    </ul>
                                 </div>
                             </td>
-                            <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#vallabh" target="_blank">Prion Disease</a></td>
-                            <td colspan="5" style="position: relative;">
-                                <div class="timeline-bar" style="left: 5px; width: 70%;"></div>
+                        </tr>
+                        </c:if>
 
-                            </td>
-                            <td class="publications-cell">
-                                <button class="publications-toggle" onclick="togglePublications('prion-publications')">
-                                    <i class="fas fa-file-alt"></i>
-                                    <span class="pub-count">2</span>
-                                    <i class="fas fa-chevron-down toggle-icon"></i>
-                                </button>
-                            </td>
-                            <td class="publications-cell">
-                                <button class="publications-toggle docs-toggle" onclick="togglePublications('prion-documents')">
-                                    <i class="fas fa-folder-open"></i>
-                                    <span class="pub-count">4</span>
-                                    <i class="fas fa-chevron-down toggle-icon"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr class="publications-row" id="prion-publications">
+                        <c:if test="${not empty program.documents}">
+                        <tr class="publications-row" id="${fn:escapeXml(program.documentsRowId)}">
                             <td colspan="9" class="publications-content">
-                                <%@include file="prion/prion_publications.jsp"%>
-                            </td>
-                        </tr>
-                        <tr class="publications-row" id="prion-documents">
-                            <td colspan="9" class="publications-content">
-                                <%@include file="prion/prion_docs.jsp"%>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#jackson" target="_blank">Spinal Muscular<br>Atrophy (SMA)</a></td>
-                            <td colspan="5" style="position: relative;">
-                                <div class="timeline-bar" style="left: 5px; width: 40%;"></div>
-                            </td>
-                            <td class="publications-cell">
-                                <button class="publications-toggle" onclick="togglePublications('sma-publications')">
-                                    <i class="fas fa-file-alt"></i>
-                                    <span class="pub-count">1</span>
-                                    <i class="fas fa-chevron-down toggle-icon"></i>
-                                </button>
-                            </td>
-                            <td class="publications-cell">
-                                <button class="publications-toggle docs-toggle" onclick="togglePublications('sma-documents')">
-                                    <i class="fas fa-folder-open"></i>
-                                    <span class="pub-count">2</span>
-                                    <i class="fas fa-chevron-down toggle-icon"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr class="publications-row" id="sma-publications">
-                            <td colspan="9" class="publications-content">
-                                <%@include file="sma/sma_publications.jsp"%>
-                            </td>
-                        </tr>
-                        <tr class="publications-row" id="sma-documents">
-                            <td colspan="9" class="publications-content">
-                                <%@include file="sma/sma_docs.jsp"%>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#wilson" target="_blank">Amyotrophic Lateral<br>Sclerosis (C9orf72)</a></td>
-                            <td colspan="5" style="position: relative;">
-                                <div class="timeline-bar" style="left: 5px; width: 40%;"></div>
-                            </td>
-                            <td class="publications-cell">
-                                <button class="publications-toggle" onclick="togglePublications('als-publications')">
-                                    <i class="fas fa-file-alt"></i>
-                                    <span class="pub-count">6</span>
-                                    <i class="fas fa-chevron-down toggle-icon"></i>
-                                </button>
-                            </td>
-                            <td class="publications-cell">
-                                <div class="no-publications">—</div>
-                            </td>
-                        </tr>
-                        <tr class="publications-row" id="als-publications">
-                            <td colspan="9" class="publications-content">
-                                <%@include file="als/als_publications.jsp"%>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#jackson" target="_blank">Friedreich's<br>Ataxia (FA)</a></td>
-                            <td colspan="5" style="position: relative;">
-                                <div class="timeline-bar" style="left: 5px; width: 20%;"></div>
-                            </td>
-                            <td class="publications-cell">
-                                <button class="publications-toggle" onclick="togglePublications('fa-publications')">
-                                    <i class="fas fa-file-alt"></i>
-                                    <span class="pub-count">1</span>
-                                    <i class="fas fa-chevron-down toggle-icon"></i>
-                                </button>
-                            </td>
-                            <td class="publications-cell">
-                                <div class="no-publications">—</div>
-                            </td>
-                        </tr>
-                        <tr class="publications-row" id="fa-publications">
-                            <td colspan="9" class="publications-content">
-                                <%@include file="fa/fa_publications.jsp"%>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#jackson" target="_blank">Huntington's<br>Disease (HD)</a></td>
-                            <td colspan="5" style="position: relative;">
-                                <div class="timeline-bar" style="left: 5px; width: 20%;"></div>
-                            </td>
-                            <td class="publications-cell">
-                                <button class="publications-toggle" onclick="togglePublications('hd-publications')">
-                                    <i class="fas fa-file-alt"></i>
-                                    <span class="pub-count">1</span>
-                                    <i class="fas fa-chevron-down toggle-icon"></i>
-                                </button>
-                            </td>
-                            <td class="publications-cell">
-                                <div class="no-publications">—</div>
-                            </td>
-                        </tr>
-                        <tr class="publications-row" id="hd-publications">
-                            <td colspan="9" class="publications-content">
-                                <%@include file="hd/hd_publications.jsp"%>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#jackson" target="_blank">Rett Syndrome<br>(RTT)</a></td>
-                            <td colspan="5" style="position: relative;">
-                                <div class="timeline-bar" style="left: 5px; width: 20%;"></div>
-                            </td>
-                            <td class="publications-cell">
-                                <div class="no-publications">—</div>
-                            </td>
-                            <td class="publications-cell">
-                                <div class="no-publications">—</div>
-                            </td>
-                        </tr>
-
-
-                        <!-- Retinal Diseases -->
-                        <tr>
-                            <td rowspan="2" class="disease-area-cell">
-                                <div class="disease-icon-container">
-                                    <div class="disease-icon retinal-icon">
-                                        <i class="fas fa-eye"></i>
-                                    </div>
-                                    <div class="disease-label">Retinal<br>Diseases</div>
+                                <div class="publications-container">
+                                    <h5 class="publications-title">
+                                        <i class="fas fa-folder-open"></i> <c:out value="${program.programName}"/> Documents
+                                    </h5>
+                                    <ul class="publications-list">
+                                        <c:forEach var="document" items="${program.documents}">
+                                            <c:url var="documentUrl" value="/public/download/regulatory">
+                                                <c:param name="documentName" value="${document.fileName}"/>
+                                            </c:url>
+                                            <li>
+                                                <a href="${fn:escapeXml(documentUrl)}" target="_blank"><c:out value="${document.label}"/></a>
+                                            </li>
+                                        </c:forEach>
+                                    </ul>
                                 </div>
                             </td>
-                            <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#saha" target="_blank">Leber Congenital<br>Amaurosis (KCNJ13)</a></td>
-                            <td colspan="5" style="position: relative;">
-                                <div class="timeline-bar" style="left: 5px; width: 40%;"></div>
-<%--                                <div class="coming-soon-text">Coming Soon..</div>--%>
-                            </td>
-                            <td class="publications-cell">
-                                <button class="publications-toggle" onclick="togglePublications('lca-publications')">
-                                    <i class="fas fa-file-alt"></i>
-                                    <span class="pub-count">1</span>
-                                    <i class="fas fa-chevron-down toggle-icon"></i>
-                                </button>                            </td>
-                            <td class="publications-cell">
-                                <button class="publications-toggle docs-toggle" onclick="togglePublications('lca-documents')">
-                                    <i class="fas fa-folder-open"></i>
-                                    <span class="pub-count">2</span>
-                                    <i class="fas fa-chevron-down toggle-icon"></i>
-                                </button>
-                            </td>
-
                         </tr>
-                        <tr class="publications-row" id="lca-publications">
-                            <td colspan="9" class="publications-content">
-                                <%@include file="lca/publications.jsp"%>
-                            </td>
-                        </tr>
-                        <tr class="publications-row" id="lca-documents">
-                            <td colspan="9" class="publications-content">
-                                <%@include file="lca/docs.jsp"%>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="program-name"><a href="https://scge.mcw.edu/phase-2-ind-enabling-studies/#saha" target="_blank">Best Vitelliform Macular Dystrophy (BVMD, Best Disease)</a></td>
-                        <td colspan="5" style="position: relative;">
-                            <div class="timeline-bar" style="left: 5px; width: 20%;"></div>
-                        </td>
-                        <td class="publications-cell">
-                            <button class="publications-toggle" onclick="togglePublications('best-publications')">
-                                <i class="fas fa-file-alt"></i>
-                                <span class="pub-count">2</span>
-                                <i class="fas fa-chevron-down toggle-icon"></i>
-                            </button>
-                        </td>
-                        <td class="publications-cell">
-                            <button class="publications-toggle docs-toggle" onclick="togglePublications('best-documents')">
-                                <i class="fas fa-folder-open"></i>
-                                <span class="pub-count">2</span>
-                                <i class="fas fa-chevron-down toggle-icon"></i>
-                            </button>
-                        </td>
-                    </tr>
-                        <tr class="publications-row" id="best-publications">
-                            <td colspan="9" class="publications-content">
-                                <%@include file="best/publications.jsp"%>
-                            </td>
-                        </tr>
-                        <tr class="publications-row" id="best-documents">
-                            <td colspan="9" class="publications-content">
-                                <%@include file="best/docs.jsp"%>
-                            </td>
-                        </tr>
-                        <!-- Genetic Hearing Loss -->
-                        <tr>
-                            <td rowspan="1" class="disease-area-cell">
-                                <div class="disease-icon-container">
-                                    <div class="disease-icon hearing-loss-icon">
-                                        <i class="fas fa-ear-listen"></i>
-                                    </div>
-                                    <div class="disease-label">Genetic<br>Hearing<br>Loss</div>
-                                </div>
-                            </td>
-                            <td class="program-name"><a href="https://scge.mcw.edu/ind-enabling-studies-multiple-disease-platforms/#chen" target="_blank">DFNA41 and DFNA2</a></td>
-                            <td colspan="5" style="position: relative;">
-                                <div class="timeline-bar" style="left: 5px; width: 40%;"></div>
-                            </td>
-                            <td class="publications-cell">
-                                <button class="publications-toggle" onclick="togglePublications('hearing-loss-publications')">
-                                    <i class="fas fa-file-alt"></i>
-                                    <span class="pub-count">2</span>
-                                    <i class="fas fa-chevron-down toggle-icon"></i>
-                                </button>
-                            </td>
-                            <td class="publications-cell">
-                                <div class="no-publications">&mdash;</div>
-                            </td>
-                        </tr>
-                        <tr class="publications-row" id="hearing-loss-publications">
-                            <td colspan="9" class="publications-content">
-                                <%@include file="hearingLoss/hearingLoss_publications.jsp"%>
-                            </td>
-                        </tr>
+                        </c:if>
+                        </c:forEach>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>
