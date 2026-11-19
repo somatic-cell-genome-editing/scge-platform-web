@@ -7,7 +7,6 @@ import com.google.gson.Gson;
 import edu.mcw.scge.configuration.Access;
 import edu.mcw.scge.datamodel.Definition;
 import edu.mcw.scge.datamodel.Person;
-import edu.mcw.scge.datamodel.web.ClinicalTrials;
 import edu.mcw.scge.service.es.clinicalTrials.ClinicalTrialsService;
 
 import edu.mcw.scge.uploadFiles.DBService;
@@ -134,7 +133,7 @@ public class SearchController{
     public LinkedHashMap<String,  List<String>> getFiltersMap(HttpServletRequest request, Person person) throws Exception {
 
         LinkedHashMap<String,  List<String>> filterMap=new LinkedHashMap<>();
-        for(String filterField: ClinicalTrials.facets) {
+        for(String filterField: ClinicalTrialsService.facets) {
             if (request.getParameterValues(filterField) != null) {
                 List<String> filterValues = Arrays.asList(request.getParameterValues(filterField));
                 filterMap.put(filterField, filterValues);

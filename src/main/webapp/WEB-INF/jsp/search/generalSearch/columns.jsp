@@ -18,7 +18,7 @@
 <th>Funder Type&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Funder Type")%>" class="column-header-description"></span></sup></th>
 <%--<th>Intervention</th>--%>
 <th class="manual">Target Gene/Variant&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Target Gene or Variant")%>" class="column-header-description"></span></sup></th>
-<th class="manual">Therapeutic Modality&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Therapy Type")%>" class="column-header-description"></span></sup></th>
+<th class="manual">Therapeutic Modality&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Therapeutic Modality")%>" class="column-header-description"></span></sup></th>
 <th class="manual">Therapy Route&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Therapy Route")%>" class="column-header-description"></span></sup></th>
 <th class="manual">Mechanism of Action&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Mechanism of Action")%>" class="column-header-description"></span></sup></th>
 <th class="manual">Route of Administration&nbsp;<sup><span data-toggle="tooltip" title="<%=ClinicalTrialsService.facetDefinitions.get("Route of Administration")%>" class="column-header-description">></span></sup></th>

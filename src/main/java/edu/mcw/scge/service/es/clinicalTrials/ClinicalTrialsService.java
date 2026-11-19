@@ -28,6 +28,7 @@ import org.springframework.util.StringUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -38,9 +39,32 @@ import java.util.Set;
 
 public class ClinicalTrialsService {
 
+    /**
+     * Facets offered in the search sidebar. ClinicalTrials.facets (core jar) is the
+     * base list; facets added here are web-only, so introducing one does not require
+     * rebuilding and redeploying the core artifact. Everything downstream - the
+     * aggregations, the sidebar accordions, the filter parsing and the JS that
+     * restores checked boxes - reads this list, so adding a name here is enough.
+     */
+    public static final List<String> facets = buildFacets();
+
+    private static List<String> buildFacets() {
+        List<String> all = new ArrayList<>(ClinicalTrials.facets);
+        if (!all.contains("regulatoryElement")) {
+            // Sits next to Target Gene/Variant, matching the results table column order
+            int anchor = all.indexOf("targetGeneOrVariant");
+            if (anchor >= 0) {
+                all.add(anchor + 1, "regulatoryElement");
+            } else {
+                all.add("regulatoryElement");
+            }
+        }
+        return Collections.unmodifiableList(all);
+    }
+
     public static Map<String, String> fieldDisplayNames = new HashMap<>();
     static {
-        for (String field : ClinicalTrials.facets) {
+        for (String field : facets) {
             String displayName = String.join(" ", field.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])"));
             if (displayName.toLowerCase().startsWith("fda")) {
                 String name = displayName.substring(0, 3).toUpperCase() + displayName.substring(3);
@@ -89,7 +113,7 @@ public class ClinicalTrialsService {
         Query query = buildBoolQuery(searchTerm, category, filtersMap);
 
         Map<String, Aggregation> aggsMap = new HashMap<>();
-        for (String fieldName : ClinicalTrials.facets) {
+        for (String fieldName : facets) {
             aggsMap.put(fieldName, buildAggregation(fieldName));
         }
 

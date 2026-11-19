@@ -1345,7 +1345,7 @@
                         <select name="extLink" class="form-control">
 <%--                            <option value="Grant" <%=cext.getType()!=null&&cext.getType().equalsIgnoreCase("Grant")?"selected":""%>>Grant</option>--%>
                             <option value="Protocol" <%=cext.getType()!=null&&cext.getType().equalsIgnoreCase("Protocol")?"selected":""%>>Protocol</option>
-                            <option value="Preclinical Publications" <%=cext.getType()!=null&&cext.getType().equalsIgnoreCase("Preclinical Publications")?"selected":""%>>Preclinical Publications</option>
+                            <option value="Nonclinical Publications" <%=cext.getType()!=null&&cext.getType().equalsIgnoreCase("Nonclinical Publications")?"selected":""%>>Nonclinical Publications</option>
                             <option value="News and Press Releases" <%=cext.getType()!=null&&cext.getType().equalsIgnoreCase("News and Press Releases")?"selected":""%>>News and Press Releases</option>
                             <option value="Clinical Publications" <%=cext.getType()!=null&&cext.getType().equalsIgnoreCase("Clinical Publications")?"selected":""%>>Clinical Publications</option>
                             <option value="Related NCTID" <%=cext.getType()!=null&&cext.getType().equalsIgnoreCase("Related NCTID")?"selected":""%>>Related NCTID</option>

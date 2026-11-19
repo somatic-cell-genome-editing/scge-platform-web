@@ -8,6 +8,39 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%!
+    /**
+     * Elasticsearch leaves a field out of _source when the trial has no value for it,
+     * so printing map.get(...) directly puts the literal "null" in the cell.
+     * Render an empty cell instead.
+     */
+    private static String cellValue(Object value) {
+        if (value == null) return "";
+        String text = value.toString().trim();
+        return text.equalsIgnoreCase("null") ? "" : text;
+    }
+
+    /**
+     * Info icon for a column header. The tooltip text is looked up by `term` in the
+     * definitions table (rows where field = 'Table Column Header'), so a header whose
+     * term has no matching row used to render title="null" and show "null" on hover.
+     * Render no icon at all in that case, and let a caller supply a fallback.
+     */
+    private static String columnInfo(String term) {
+        return columnInfo(term, null);
+    }
+
+    private static String columnInfo(String term, String fallback) {
+        String definition = edu.mcw.scge.service.es.clinicalTrials.ClinicalTrialsService.facetDefinitions.get(term);
+        String text = cellValue(definition);
+        if (text.isEmpty()) text = cellValue(fallback);
+        if (text.isEmpty()) return "";
+        String safe = text.replace("&", "&amp;").replace("\"", "&quot;")
+                          .replace("<", "&lt;").replace(">", "&gt;");
+        return "<sup><span data-toggle=\"tooltip\" title=\"" + safe
+             + "\" class=\"column-header-description\"></span></sup>";
+    }
+%>
 <link href="/platform/css/clinicalTrialsResultsTable.css" rel="stylesheet" type="text/css"/>
 <script>
 $(function () {
@@ -86,23 +119,30 @@ $(this).off('mouseleave');
 <%--        <a href="https://www.disease-ontology.org/term/DOID:<%=doid%>" target="_blank">DOID:<%=doid%></a>&nbsp;--%>
 <%--        <%}}%>--%>
 <%--    </td>--%>
-        <td class="manual"><%=sourceFields.get("indication")%></td>
+        <td class="manual"><%=cellValue(sourceFields.get("indication"))%></td>
 
-        <td class="manual"><%=sourceFields.get("compoundName")%></td>
-        <td><%=sourceFields.get("sponsor")%></td>
-        <td ><%=sourceFields.get("sponsorClass")%></td>
+        <td class="manual"><%=cellValue(sourceFields.get("compoundName"))%></td>
+        <td><%=cellValue(sourceFields.get("sponsor"))%></td>
+        <td ><%=cellValue(sourceFields.get("sponsorClass"))%></td>
 <%--        <td><%=sourceFields.get("interventionName")%></td>--%>
-        <td class="manual"><%=sourceFields.get("targetGeneOrVariant")%></td>
-        <td class="manual"><%=sourceFields.get("therapyType")%></td>
-        <td class="manual"><%=sourceFields.get("therapyRoute")%></td>
-        <td class="manual"><%=sourceFields.get("mechanismOfAction")%></td>
-        <td class="manual"><%=sourceFields.get("routeOfAdministration")%></td>
-        <td class="manual"><%=sourceFields.get("drugProductType")%></td>
-        <td class="manual"><%=sourceFields.get("targetTissueOrCell")%></td>
-        <td class="manual"><%=sourceFields.get("deliverySystem")%></td>
-        <td class="manual"><%=sourceFields.get("vectorType")%></td>
+        <td class="manual"><%=cellValue(sourceFields.get("targetGeneOrVariant"))%></td>
+        <td class="manual">
+            <%
+                if(sourceFields.get("regulatoryElement")!=null){
+            %>
+            <%=cellValue(sourceFields.get("regulatoryElement"))%>
+            <%}%>
+        </td>
+        <td class="manual"><%=cellValue(sourceFields.get("therapyType"))%></td>
+        <td class="manual"><%=cellValue(sourceFields.get("therapyRoute"))%></td>
+        <td class="manual"><%=cellValue(sourceFields.get("mechanismOfAction"))%></td>
+        <td class="manual"><%=cellValue(sourceFields.get("routeOfAdministration"))%></td>
+        <td class="manual"><%=cellValue(sourceFields.get("drugProductType"))%></td>
+        <td class="manual"><%=cellValue(sourceFields.get("targetTissueOrCell"))%></td>
+        <td class="manual"><%=cellValue(sourceFields.get("deliverySystem"))%></td>
+        <td class="manual"><%=cellValue(sourceFields.get("vectorType"))%></td>
         <td class="manual"><%if(sourceFields.get("editorType")!=null && !sourceFields.get("editorType").toString().equalsIgnoreCase("none")){%>
-            <%=sourceFields.get("editorType")%>
+            <%=cellValue(sourceFields.get("editorType"))%>
             <%}%>
         </td>
         <td class="manual">
@@ -146,7 +186,7 @@ $(this).off('mouseleave');
         <td class="text-nowrap">
             <%
                 List<String> phases= (List<String>) sourceFields.get("phases");
-                String phase= phases.stream().collect(Collectors.joining(", "));
+                String phase= phases==null ? "" : phases.stream().collect(Collectors.joining(", "));
             %>
             <%=phase%>
         </td>
@@ -161,28 +201,28 @@ $(this).off('mouseleave');
         <%
             if(sourceFields.get("developmentStatus")!=null){
         %>
-        <%=sourceFields.get("developmentStatus")%>
+        <%=cellValue(sourceFields.get("developmentStatus"))%>
         <%}%>
     </td>
-        <td class="text-nowrap"><%=sourceFields.get("firstSubmitDate")%></td>
-        <td><%=sourceFields.get("estimatedCompleteDate")%></td>
-        <td class="text-nowrap"><%=sourceFields.get("lastUpdatePostDate")%></td>
+        <td class="text-nowrap"><%=cellValue(sourceFields.get("firstSubmitDate"))%></td>
+        <td><%=cellValue(sourceFields.get("estimatedCompleteDate"))%></td>
+        <td class="text-nowrap"><%=cellValue(sourceFields.get("lastUpdatePostDate"))%></td>
 <%--        <td class="text-nowrap"><%=sourceFields.get("standardAges")%></td>--%>
         <td class="text-nowrap">
-            <%if(sourceFields.get("elibilityMinAge")!=null && sourceFields.get("elibilityMaxAge")!=null){%>
-            <%=sourceFields.get("elibilityMinAge")%> - <%=sourceFields.get("elibilityMaxAge")%>
-
-            <%}else{
-                if(sourceFields.get("elibilityMinAge")!=null && sourceFields.get("elibilityMaxAge")==null){%>
-                   >=&nbsp;<%=sourceFields.get("elibilityMinAge")%>
-               <%}else{
-                   if(sourceFields.get("elibilityMinAge")==null && sourceFields.get("elibilityMaxAge")!=null){%>
-            <=&nbsp;<%=sourceFields.get("elibilityMaxAge")%>
-                  <% }}}%>
-
+            <%
+                String minAge = cellValue(sourceFields.get("elibilityMinAge"));
+                String maxAge = cellValue(sourceFields.get("elibilityMaxAge"));
+                if(!minAge.isEmpty() && !maxAge.isEmpty()){
+            %>
+            <%=minAge%> - <%=maxAge%>
+            <%}else if(!minAge.isEmpty()){%>
+                   >=&nbsp;<%=minAge%>
+            <%}else if(!maxAge.isEmpty()){%>
+            <=&nbsp;<%=maxAge%>
+            <%}%>
         </td>
-        <td><%=sourceFields.get("enrorllmentCount")%></td>
-        <td><%=sourceFields.get("numberOfLocations")%></td>
+        <td><%=cellValue(sourceFields.get("enrorllmentCount"))%></td>
+        <td><%=cellValue(sourceFields.get("numberOfLocations"))%></td>
     <td>
 <%--        <td><%--%>
 <%--            if(sourceFields.get("locations")!=null){--%>
@@ -228,7 +268,10 @@ $(this).off('mouseleave');
                     }else{
                         isFDARegulated+="<i class=\"fa-solid fa-xmark\" style='color:red'></i>";
                     }
-            }%>
+            }else{
+                    isFDARegulated+="<i class=\"fa-solid fa-xmark\" style='color:red'></i>";
+
+                }%>
             <%=isFDARegulated%>
         </td>
     <td class="manual">
@@ -239,7 +282,7 @@ $(this).off('mouseleave');
         <%}%>
     </td>
 <%--        <td class="manual"><%=sourceFields.get("patents")%></td>--%>
-        <td class="manual"><%=sourceFields.get("recentUpdates")%></td>
+        <td class="manual"><%=cellValue(sourceFields.get("recentUpdates"))%></td>
         <td class="manual lastColumn">
             <% if (sourceFields.get("externalLinks")!=null){%>
             <a href="javascript:void(0)" onclick="myModal('<%=sourceFields.get("nctId")%>')" title="Resources/Links" ><i class="fa-solid fa-eye"></i></a>
@@ -267,9 +310,9 @@ $(this).off('mouseleave');
                         <%for(Map<String, String> map:sortedLinks.get(type)){%>
                         <li  style="list-style-type: none">
                         <%if(map.get("link")!=null){%>
-                            <a href="<%=map.get("link")%>" target="_blank"><%=map.get("name")%></a>
+                            <a href="<%=map.get("link")%>" target="_blank"><%=cellValue(map.get("name"))%></a>
                                 <%}else{%>
-                                <%=map.get("name")%>
+                                <%=cellValue(map.get("name"))%>
                         <%}%>
                         </li>
                         <%}%>
@@ -363,6 +406,38 @@ $(document).ready(function() {
 (function() {
     var columnNames = [];
     var columnVisible = [];
+    // Paging / filtering reloads the whole page, so the chosen columns have to be
+    // remembered outside the DOM or every navigation would reset them to the default.
+    // Every column is written on init, so a saved set from before a default changed
+    // would pin the old choice forever - bump the suffix when the defaults change
+    // to hand returning visitors the new default set.
+    var STORAGE_KEY = 'ctColumnVisibility.v3';
+    try {
+        localStorage.removeItem('ctColumnVisibility');
+        localStorage.removeItem('ctColumnVisibility.v2');
+    } catch (e) {}
+
+    // Keyed by header name rather than index so adding, removing or reordering a
+    // column later does not shift a saved preference onto the wrong column.
+    function loadSavedVisibility() {
+        try {
+            var raw = localStorage.getItem(STORAGE_KEY);
+            var parsed = raw ? JSON.parse(raw) : null;
+            return (parsed && typeof parsed === 'object') ? parsed : {};
+        } catch (e) {
+            return {};
+        }
+    }
+
+    function saveVisibility() {
+        try {
+            var saved = {};
+            $.each(columnNames, function(index, name) {
+                saved[name] = columnVisible[index];
+            });
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+        } catch (e) {}
+    }
 
     function initColumnToggle() {
         var $headerCells = $('#myTable thead tr:first th');
@@ -371,19 +446,33 @@ $(document).ready(function() {
         columnNames = [];
         columnVisible = [];
         var listHtml = '';
+        var saved = loadSavedVisibility();
 
         $headerCells.each(function(index) {
             var name = $(this).clone().children('sup').remove().end().text().trim();
             if (!name) name = 'Column ' + (index + 1);
+            // Columns marked data-default-hidden="true" start hidden until picked from this list
+            var hiddenByDefault = String($(this).attr('data-default-hidden')) === 'true';
+            // A saved choice wins; a column with no saved entry falls back to its default
+            var isVisible = saved.hasOwnProperty(name) ? saved[name] !== false : !hiddenByDefault;
             columnNames.push(name);
-            columnVisible.push(true);
+            columnVisible.push(isVisible);
             listHtml += '<label class="column-toggle-item">' +
-                '<input type="checkbox" checked data-col-index="' + index + '"> ' +
+                '<input type="checkbox" ' + (isVisible ? 'checked' : '') + ' data-col-index="' + index + '"> ' +
                 '<span>' + name + '</span></label>';
         });
 
         $('#columnToggleList').html(listHtml);
+
+        // Hide the columns that are off, whether by default or by saved choice
+        $.each(columnVisible, function(index, isVisible) {
+            if (!isVisible) {
+                toggleColumn(index, false);
+            }
+        });
+
         updateColumnCount();
+        saveVisibility();
 
         // Toggle button
         $('#columnToggleBtn').off('click').on('click', function(e) {
@@ -405,6 +494,7 @@ $(document).ready(function() {
             columnVisible[colIndex] = isVisible;
             toggleColumn(colIndex, isVisible);
             updateColumnCount();
+            saveVisibility();
         });
 
         // Select All
