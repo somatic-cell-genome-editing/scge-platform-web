@@ -90,6 +90,85 @@
         </div>
     </div>
 <%
+        } else if (hitCategory.equalsIgnoreCase("Program")) {
+            String title = raw(source.get("title"));
+            String description = raw(source.get("description"));
+            String leadInstitution = raw(source.get("leadInstitution"));
+            String sourceUrl = raw(source.get("sourceUrl"));
+            String nihReportLink = raw(source.get("nihReportLink"));
+
+            List<String> investigators = source.get("investigators") != null
+                    ? (List<String>) source.get("investigators") : new ArrayList<>();
+            List<String> coveredPrograms = source.get("indications") != null
+                    ? (List<String>) source.get("indications") : new ArrayList<>();
+
+            // The roster runs to nineteen on one project; lead with the first
+            // few and say how many more there are.
+            String investigatorSummary = investigators.stream().limit(5).collect(Collectors.joining(", "));
+            if (investigators.size() > 5) {
+                investigatorSummary += " + " + (investigators.size() - 5) + " more";
+            }
+
+            // The abstract is long; show the opening rather than the whole thing.
+            String blurb = snippet.isEmpty() && !description.isEmpty()
+                    ? (description.length() > 320 ? esc(description.substring(0, 320)) + "&hellip;" : esc(description))
+                    : snippet;
+%>
+    <div class="list-view-card gs-card gs-card-program">
+        <div class="list-view-header">
+            <div class="list-view-title">
+                <% if (!sourceUrl.isEmpty()) { %>
+                <a href="<%=esc(sourceUrl)%>" target="_blank" class="list-view-nct-link"><%=esc(title)%></a>
+                <% } else { %>
+                <span class="list-view-nct-link"><%=esc(title)%></span>
+                <% } %>
+                <span class="gs-badge gs-badge-category">Program</span>
+                <% if (!leadInstitution.isEmpty()) { %>
+                <span class="gs-badge gs-badge-program"><%=esc(leadInstitution)%></span>
+                <% } %>
+            </div>
+            <div class="list-view-actions">
+                <a href="/platform/public/documents/regulatory" class="btn btn-sm btn-primary">Regulatory Documents</a>
+            </div>
+        </div>
+
+        <% if (!blurb.isEmpty()) { %>
+        <div class="gs-snippet"><%=blurb%></div>
+        <% } %>
+
+        <div class="list-view-body">
+            <div class="list-view-row">
+                <% if (!investigatorSummary.isEmpty()) { %>
+                <div class="list-view-field full-width">
+                    <span class="list-view-label">Investigators (<%=investigators.size()%>)</span>
+                    <span class="list-view-value"><%=esc(investigatorSummary)%></span>
+                </div>
+                <% } %>
+            </div>
+            <% if (!coveredPrograms.isEmpty()) { %>
+            <div class="list-view-row">
+                <div class="list-view-field full-width">
+                    <span class="list-view-label">Covers</span>
+                    <span class="list-view-value"><%=esc(coveredPrograms.stream().collect(Collectors.joining(" &middot; ")))%></span>
+                </div>
+            </div>
+            <% } %>
+        </div>
+
+        <% if (!nihReportLink.isEmpty() || !sourceUrl.isEmpty()) { %>
+        <div class="list-view-footer">
+            <div class="list-view-meta">
+                <% if (!sourceUrl.isEmpty()) { %>
+                <span><i class="fa fa-external-link"></i> <a href="<%=esc(sourceUrl)%>" target="_blank">Project page</a></span>
+                <% } %>
+                <% if (!nihReportLink.isEmpty()) { %>
+                <span><i class="fa fa-flask"></i> <a href="<%=esc(nihReportLink)%>" target="_blank">NIH Reporter</a></span>
+                <% } %>
+            </div>
+        </div>
+        <% } %>
+    </div>
+<%
         } else if (hitCategory.equalsIgnoreCase("ClinicalTrial")) {
             String nctId = raw(source.get("nctId"));
             String indication = raw(source.get("indication"));

@@ -218,3 +218,12 @@
         margin-bottom: 1rem;
     }
 }
+
+.gs-card-program {
+    border-left-color: #0f766e;
+}
+
+.gs-card-program .gs-badge-category {
+    background: #ccfbf1;
+    color: #115e59;
+}

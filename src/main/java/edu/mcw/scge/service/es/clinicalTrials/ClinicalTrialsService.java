@@ -311,6 +311,8 @@ public class ClinicalTrialsService {
                 return "Clinical Trials";
             case "regulatorydocument":
                 return "Regulatory Documents";
+            case "program":
+                return "Programs";
             default:
                 return StringUtils.capitalize(String.join(" ",
                         category.trim().split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])")));
